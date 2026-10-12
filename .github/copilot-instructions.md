@@ -1,0 +1,1 @@
+Read and follow [AGENTS.md](../AGENTS.md). It routes tasks to the shared contributor guide and topic rules. Keep repository instructions in those sources.

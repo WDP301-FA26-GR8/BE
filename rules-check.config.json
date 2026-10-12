@@ -1,0 +1,38 @@
+[
+  {
+    "name": "BE",
+    "root": ".",
+    "entry": "AGENTS.md",
+    "rules": "docs/rules",
+    "files": [
+      "README.md",
+      "CONTRIBUTING.md",
+      "ARCHITECTURE.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "GEMINI.md",
+      ".cursor/rules/database.mdc",
+      ".github/copilot-instructions.md",
+      ".windsurfrules",
+      "docs/README.md",
+      "docs/guides/ai-tools.md",
+      "docs/guides/kien-truc-backend-va-cach-viet-code.md",
+      "docs/reviews/backend-baseline-review.md",
+      "test/README.md",
+      "scripts/README.md",
+      "docs/guides/containers.md",
+      "docs/roadmap.md"
+    ],
+    "siblings": [],
+    "requiredEdges": [
+      ["AGENTS.md", "CONTRIBUTING.md"],
+      ["AGENTS.md", "ARCHITECTURE.md"],
+      ["AGENTS.md", "docs/rules/README.md"],
+      ["CLAUDE.md", "AGENTS.md"],
+      ["GEMINI.md", "AGENTS.md"],
+      [".cursor/rules/database.mdc", "docs/rules/database-business.md"]
+    ],
+    "directories": ["docs/workspace"],
+    "excludeDirectories": ["docs/workspace/local"]
+  }
+]
