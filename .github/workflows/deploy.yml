@@ -75,10 +75,14 @@ jobs:
 
       - name: Deploy on VPS
         uses: appleboy/ssh-action@v1.2.0
+        env:
+          CR_PAT: ${{ secrets.GHCR_PAT || secrets.GITHUB_TOKEN }}
+          REGISTRY_USER: ${{ github.actor }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
+          envs: CR_PAT,REGISTRY_USER
           timeout: 30m
           command_timeout: 30m
           script: |
@@ -96,6 +100,11 @@ jobs:
             if [ ! -f .env ]; then
               echo "❌ LỖI: Không tìm thấy file .env tại $APP_DIR. Hãy tạo file .env trước khi deploy!"
               exit 1
+            fi
+
+            # 2.5. Đăng nhập GHCR (hỗ trợ private image khi Organization chặn public package)
+            if [ -n "$CR_PAT" ]; then
+              echo "$CR_PAT" | docker login ghcr.io -u "$REGISTRY_USER" --password-stdin || true
             fi
 
             # 3. Đặt biến môi trường image cho docker-compose
