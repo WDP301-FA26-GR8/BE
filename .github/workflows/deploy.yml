@@ -117,7 +117,7 @@ jobs:
             docker compose -f docker-compose.prod.yml up -d postgres redis caddy
 
             echo "🔄 Chạy Prisma Migration cập nhật Database..."
-            docker compose -f docker-compose.prod.yml run --rm --no-deps api node_modules/.bin/prisma migrate deploy
+            docker compose -f docker-compose.prod.yml run --rm --no-deps api node node_modules/prisma/build/index.js migrate deploy
 
             echo "♻️ Khởi chạy lại container API & Worker với code mới..."
             docker compose -f docker-compose.prod.yml up -d --force-recreate api worker
