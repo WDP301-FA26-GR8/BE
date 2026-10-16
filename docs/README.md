@@ -27,11 +27,20 @@ trong docs/architecture. Các gói triển khai auth/US cũ đã được dọn 
 
 ## Quyết định đề xuất (chưa Accepted)
 
-- [Xác thực nội bộ, phiên và quy ước persistence vùng danh tính](decisions/0011-internal-authentication-and-sessions.md) — Proposed 12/10/2026, chờ dev review; khi Accepted sẽ thay một câu của ADR-0002 và ADR-0004.
+- [Xác thực nội bộ, phiên và quy ước persistence vùng danh tính](decisions/0011-internal-authentication-and-sessions.md) — Proposed, đã implement và merge ở `64073c4`; chờ dev review/Accepted. ADR-0002/0004 đã có ghi chú hiện thực.
+- [Gửi thư vòng đời tài khoản: outbox, thư viện SMTP, dispatcher](decisions/0012-account-email-delivery.md) — Proposed, đã implement và merge cùng lát 1b; chờ dev review/Accepted.
 
 Số ADR bị khuyết không cần đánh lại. Định hướng tài khoản/mật khẩu + JWT hiện ghi
-ở ARCHITECTURE; thiết kế chi tiết sẽ được lập lại theo US.
+ở ARCHITECTURE; spec/plan G0 và lát 1a/1b đã có tại workspace, còn chờ dev review.
 
 [Rules](rules/README.md) · [Tests](../test/README.md) · [Scripts](../scripts/README.md)
 
 [Quy trình thiết kế](workspace/README.md) · [Roadmap](roadmap.md) · [Nguồn BRD/US](workspace/sources.md)
+
+## Review G0/G1
+
+- [Review và remediation G0/1a/1b](reviews/g0-g1-remediation-2026-10-15/README.md): lịch sử finding, bản sửa `a0cf5f1`, kết quả kiểm chứng và phần còn mở; không phải phê duyệt của dev.
+
+## Review dịch EN–VI
+
+- [Nghiên cứu và spike dịch nội dung động](reviews/dynamic-content-translation-2026-10-15/README.md): kết quả chất lượng âm tính, trạng thái pending và các finding còn lại; không phải phê duyệt của dev.
