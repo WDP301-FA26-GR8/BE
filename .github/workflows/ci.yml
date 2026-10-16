@@ -142,6 +142,11 @@ jobs:
         env:
           TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
 
+      - name: Run targeted mutation verification
+        run: pnpm test:mutation
+        env:
+          TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
+
       - name: Validate Compose and build runtime
         run: |
           docker compose config --quiet
