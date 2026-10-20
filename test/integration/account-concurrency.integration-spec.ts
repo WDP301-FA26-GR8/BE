@@ -108,6 +108,7 @@ describe('lock protocol: account administration races (integration, real Postgre
     request(server())
       .post(`/api/v1/app-users/${appUserId}/lock`)
       .set(asAdmin())
+      .send({ reason: 'Lock racing the invitation redeem' })
       .then((r) => r);
 
   it('redeem racing a lock: never an activated account with a usable link, never a server error', async () => {
@@ -174,13 +175,13 @@ describe('lock protocol: account administration races (integration, real Postgre
         .post('/api/v1/auth/login')
         .send({ email: account.email, password: PASSWORD })
         .expect(200);
-      const cookie = (session.headers['set-cookie'] as unknown as string[])[0].split(';')[0];
+      const refreshToken = bodyOf(session).data.refreshToken;
 
       const [refreshed, locked] = await raceBehindLock(account.id, [
         () =>
           request(server())
             .post('/api/v1/auth/refresh')
-            .set('Cookie', cookie)
+            .send({ refreshToken })
             .then((r) => r),
         lock(account.id),
       ]);
