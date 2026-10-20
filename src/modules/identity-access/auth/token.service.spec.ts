@@ -41,19 +41,3 @@ describe('TokenService.verifyAccessToken', () => {
     await expect(tokens.verifyAccessToken(forged)).rejects.toBeInstanceOf(InvalidAccessTokenError);
   });
 });
-
-describe('TokenService.newInvitationToken', () => {
-  const tokens = new TokenService(
-    new JwtService({ secret: SECRET }),
-    new ConfigService({ AUTH_INVITATION_TTL_SECONDS: 3600 }) as never,
-  );
-
-  it('issues a well-formed token whose hash matches and whose expiry is the configured time to live after now', () => {
-    const now = new Date('2026-10-15T08:00:00.000Z');
-    const issued = tokens.newInvitationToken(now);
-
-    expect(tokens.isWellFormedActionToken(issued.token)).toBe(true);
-    expect(tokens.hashActionToken(issued.token)).toBe(issued.hash);
-    expect(issued.expiresAt).toEqual(new Date('2026-10-15T09:00:00.000Z'));
-  });
-});

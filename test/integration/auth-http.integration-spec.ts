@@ -11,7 +11,8 @@ import {
 } from '../support/http-test-app';
 import { findPlacementCoverageViolations } from '../support/placement-coverage';
 
-const REFRESH_COOKIE = 'slm_refresh';
+/** A well-formed refresh token: 32 random bytes, base64url. */
+const REFRESH_TOKEN_SHAPE = /^[A-Za-z0-9_-]{43}$/;
 
 function setCookies(response: request.Response): string[] {
   const header = response.headers['set-cookie'] as unknown;
@@ -19,13 +20,12 @@ function setCookies(response: request.Response): string[] {
   return typeof header === 'string' ? [header] : [];
 }
 
-function refreshCookie(response: request.Response): string | undefined {
-  return setCookies(response).find((cookie) => cookie.startsWith(`${REFRESH_COOKIE}=`));
+/** The refresh token a login or refresh response carries in its body. */
+function refreshTokenOf(response: request.Response): string {
+  return bodyOf(response).data.refreshToken;
 }
 
-function cookieValue(cookie: string): string {
-  return cookie.split(';')[0].slice(REFRESH_COOKIE.length + 1);
-}
+const sha256 = (value: string): string => createHash('sha256').update(value).digest('hex');
 
 describe('authentication over HTTP (integration, real PostgreSQL)', () => {
   let ctx: HttpTestApp;
@@ -35,6 +35,8 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
   const login = (email: string, password: string) =>
     request(server()).post('/api/v1/auth/login').send({ email, password });
   const loginAdmin = () => login(seed.superAdmin.email, SEED_PASSWORD).expect(200);
+  const refresh = (refreshToken: string) => request(server()).post('/api/v1/auth/refresh').send({ refreshToken });
+  const logout = (refreshToken: string) => request(server()).post('/api/v1/auth/logout').send({ refreshToken });
 
   beforeAll(async () => {
     ctx = await createHttpTestApp();
@@ -49,8 +51,17 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
     await ctx.sql.query('DELETE FROM login_throttles');
   });
 
+  /** The stored row of a refresh token, found by the hash of the raw token a response returned. */
+  const storedToken = async (rawToken: string) =>
+    (
+      await ctx.sql.query<{ expires_at: Date; session_id: string }>(
+        'SELECT expires_at, session_id FROM refresh_tokens WHERE token_hash = $1',
+        [sha256(rawToken)],
+      )
+    ).rows[0];
+
   describe('login and /me', () => {
-    it('signs the Super Admin in, sets a hardened refresh cookie and serves /me', async () => {
+    it('signs the Super Admin in with an access token and a refresh token in the body, and serves /me', async () => {
       const response = await loginAdmin();
 
       expect(bodyOf(response)).toMatchObject({
@@ -60,15 +71,9 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
       });
       expect(typeof bodyOf(response).data.accessToken).toBe('string');
       expect(new Date(bodyOf(response).data.expiresAt).getTime()).toBeGreaterThan(Date.now());
-
-      const cookie = refreshCookie(response);
-      expect(cookie).toBeDefined();
-      expect(cookie).toMatch(/HttpOnly/i);
-      expect(cookie).toMatch(/SameSite=Strict/i);
-      expect(cookie).toMatch(/Path=\/api\/v1\/auth/);
-      expect(cookie).toMatch(/Secure/i);
-      expect(cookie).toMatch(/Max-Age=\d+/);
-      expect(JSON.stringify(bodyOf(response))).not.toContain(cookieValue(cookie as string));
+      expect(refreshTokenOf(response)).toMatch(REFRESH_TOKEN_SHAPE);
+      expect(refreshTokenOf(response)).not.toBe(bodyOf(response).data.accessToken);
+      expect(setCookies(response)).toEqual([]);
 
       const me = await request(server())
         .get('/api/v1/me')
@@ -90,6 +95,23 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
           selfServiceOnly: false,
         },
       });
+    });
+
+    it('returns the stored expiry of the issued refresh token next to the access-token expiry, with TTLs unchanged', async () => {
+      const before = Date.now();
+      const response = await loginAdmin();
+      const after = Date.now();
+      const data = bodyOf(response).data;
+
+      expect(new Date(data.refreshExpiresAt).toISOString()).toBe(data.refreshExpiresAt);
+      expect(new Date(data.refreshExpiresAt)).toEqual((await storedToken(data.refreshToken)).expires_at);
+      // Defaults: access token 600 s, refresh token = idle TTL 28 800 s (the absolute TTL is longer).
+      const expiresAt = new Date(data.expiresAt).getTime();
+      const refreshExpiresAt = new Date(data.refreshExpiresAt).getTime();
+      expect(expiresAt).toBeGreaterThanOrEqual(before + 600_000);
+      expect(expiresAt).toBeLessThanOrEqual(after + 600_000);
+      expect(refreshExpiresAt).toBeGreaterThanOrEqual(before + 28_800_000);
+      expect(refreshExpiresAt).toBeLessThanOrEqual(after + 28_800_000);
     });
 
     it('requires a token for /me', async () => {
@@ -157,14 +179,14 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
       await insertAccountFixture(ctx.app, seed, { code: `E-${email.slice(7, 13)}`, email, activated: true });
       const session = await login(email, SEED_PASSWORD).expect(200);
       const token = bodyOf(session).data.accessToken;
-      const cookie = cookieValue(refreshCookie(session) as string);
+      const refreshToken = refreshTokenOf(session);
       await request(server()).get('/api/v1/me').set('Authorization', `Bearer ${token}`).expect(200);
 
       await ctx.sql.query(breakIt, [email]);
 
       const me = await request(server()).get('/api/v1/me').set('Authorization', `Bearer ${token}`).expect(401);
       expect(bodyOf(me).error.code).toBe('INVALID_ACCESS_TOKEN');
-      await request(server()).post('/api/v1/auth/refresh').set('Cookie', `${REFRESH_COOKIE}=${cookie}`).expect(401);
+      await refresh(refreshToken).expect(401);
       await login(email, SEED_PASSWORD).expect(401);
 
       await ctx.sql.query(fixIt, [email]);
@@ -273,47 +295,77 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
   describe('refresh', () => {
     it('rotates the refresh token and issues a new access token', async () => {
       const first = await loginAdmin();
-      const oldCookie = cookieValue(refreshCookie(first) as string);
+      const oldToken = refreshTokenOf(first);
 
-      const second = await request(server())
-        .post('/api/v1/auth/refresh')
-        .set('Cookie', `${REFRESH_COOKIE}=${oldCookie}`)
-        .expect(200);
+      const second = await refresh(oldToken).expect(200);
 
       expect(bodyOf(second)).toMatchObject({ message: 'AUTH.SESSION_REFRESHED', data: { tokenType: 'Bearer' } });
-      const newCookie = cookieValue(refreshCookie(second) as string);
-      expect(newCookie).not.toBe(oldCookie);
+      expect(refreshTokenOf(second)).toMatch(REFRESH_TOKEN_SHAPE);
+      expect(refreshTokenOf(second)).not.toBe(oldToken);
+      expect(setCookies(second)).toEqual([]);
       await request(server())
         .get('/api/v1/me')
         .set('Authorization', `Bearer ${bodyOf(second).data.accessToken}`)
         .expect(200);
     });
 
+    it('returns the stored expiry of the next refresh token, not the spent one or the access token', async () => {
+      const first = await loginAdmin();
+      // Give the token about to be spent its own, still valid expiry, so it cannot coincide with the next one.
+      await ctx.sql.query(`UPDATE refresh_tokens SET expires_at = now() + interval '1 hour' WHERE token_hash = $1`, [
+        sha256(refreshTokenOf(first)),
+      ]);
+      const spent = await storedToken(refreshTokenOf(first));
+
+      const second = await refresh(refreshTokenOf(first)).expect(200);
+      const data = bodyOf(second).data;
+
+      const next = await storedToken(data.refreshToken);
+      expect(new Date(data.refreshExpiresAt)).toEqual(next.expires_at);
+      expect(next.session_id).toBe(spent.session_id);
+      expect(data.refreshExpiresAt).not.toBe(spent.expires_at.toISOString());
+      expect(data.refreshExpiresAt).not.toBe(data.expiresAt);
+    });
+
+    it('caps the next refresh token at the absolute session expiry and returns exactly that value', async () => {
+      const first = await loginAdmin();
+      const { session_id: sessionId } = await storedToken(refreshTokenOf(first));
+      const { rows } = await ctx.sql.query<{ absolute_expires_at: Date }>(
+        `UPDATE auth_sessions SET absolute_expires_at = date_trunc('milliseconds', now()) + interval '90 seconds'
+         WHERE id = $1 RETURNING absolute_expires_at`,
+        [sessionId],
+      );
+
+      const second = await refresh(refreshTokenOf(first)).expect(200);
+      const data = bodyOf(second).data;
+
+      expect(new Date(data.refreshExpiresAt)).toEqual(rows[0].absolute_expires_at);
+      expect((await storedToken(data.refreshToken)).expires_at).toEqual(rows[0].absolute_expires_at);
+    });
+
     it('treats a replayed token as theft: 401, session revoked, exactly one committed audit row', async () => {
       const first = await loginAdmin();
-      const oldCookie = cookieValue(refreshCookie(first) as string);
-      const second = await request(server())
-        .post('/api/v1/auth/refresh')
-        .set('Cookie', `${REFRESH_COOKIE}=${oldCookie}`)
-        .expect(200);
-      const newCookie = cookieValue(refreshCookie(second) as string);
+      const oldToken = refreshTokenOf(first);
+      const second = await refresh(oldToken).expect(200);
+      const newToken = refreshTokenOf(second);
 
-      const replay = await request(server())
-        .post('/api/v1/auth/refresh')
-        .set('Cookie', `${REFRESH_COOKIE}=${oldCookie}`)
-        .expect(401);
+      const replay = await refresh(oldToken).expect(401);
       expect(bodyOf(replay).error.code).toBe('AUTH.SESSION_INVALID');
-      expect(refreshCookie(replay)).toMatch(/Max-Age=0|Expires=Thu, 01 Jan 1970/);
+      expect(bodyOf(replay).data).toBeUndefined();
+      expect(setCookies(replay)).toEqual([]);
 
       // The rotated token belongs to the same, now revoked, session.
-      await request(server()).post('/api/v1/auth/refresh').set('Cookie', `${REFRESH_COOKIE}=${newCookie}`).expect(401);
+      await refresh(newToken).expect(401);
       await request(server())
         .get('/api/v1/me')
         .set('Authorization', `Bearer ${bodyOf(second).data.accessToken}`)
         .expect(401);
 
+      // The event of this session only, so a revoke elsewhere in the database neither satisfies nor breaks it (CP0-05).
       const audit = await ctx.sql.query(
-        `SELECT actor_kind, action, resource_type, after FROM audit_events WHERE action = 'SESSION.REVOKED'`,
+        `SELECT actor_kind, action, resource_type, after FROM audit_events
+          WHERE action = 'SESSION.REVOKED' AND resource_id = $1`,
+        [(await storedToken(oldToken)).session_id],
       );
       expect(audit.rows).toHaveLength(1);
       expect(audit.rows[0]).toMatchObject({
@@ -326,13 +378,10 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
 
     it('rejects an expired consumed token without revoking its live successor or minting a token', async () => {
       const first = await loginAdmin();
-      const oldCookie = cookieValue(refreshCookie(first) as string);
-      const second = await request(server())
-        .post('/api/v1/auth/refresh')
-        .set('Cookie', `${REFRESH_COOKIE}=${oldCookie}`)
-        .expect(200);
-      const nextCookie = cookieValue(refreshCookie(second) as string);
-      const oldHash = createHash('sha256').update(oldCookie).digest('hex');
+      const oldToken = refreshTokenOf(first);
+      const second = await refresh(oldToken).expect(200);
+      const nextToken = refreshTokenOf(second);
+      const oldHash = createHash('sha256').update(oldToken).digest('hex');
       const { rows } = await ctx.sql.query<{ session_id: string }>(
         `UPDATE refresh_tokens SET expires_at = now() - interval '1 second'
          WHERE token_hash = $1 AND consumed_at IS NOT NULL RETURNING session_id`,
@@ -355,27 +404,23 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
       expect(before.session[0]).toMatchObject({ revoked_at: null });
       expect(before.audit).toHaveLength(0);
 
-      const rejected = await request(server())
-        .post('/api/v1/auth/refresh')
-        .set('Cookie', `${REFRESH_COOKIE}=${oldCookie}`)
-        .expect(401);
+      const rejected = await refresh(oldToken).expect(401);
       expect(bodyOf(rejected).error.code).toBe('AUTH.SESSION_INVALID');
       expect(bodyOf(rejected).data).toBeUndefined();
-      expect(refreshCookie(rejected)).toMatch(/Max-Age=0|Expires=Thu, 01 Jan 1970/);
       expect(await snapshot()).toEqual(before);
 
       await request(server())
         .get('/api/v1/me')
         .set('Authorization', `Bearer ${bodyOf(second).data.accessToken}`)
         .expect(200);
-      await request(server()).post('/api/v1/auth/refresh').set('Cookie', `${REFRESH_COOKIE}=${nextCookie}`).expect(200);
+      await refresh(nextToken).expect(200);
       expect((await snapshot()).audit).toHaveLength(0);
     });
 
     it('rejects an expired unconsumed token without changing the session or minting a token', async () => {
       const first = await loginAdmin();
-      const cookie = cookieValue(refreshCookie(first) as string);
-      const hash = createHash('sha256').update(cookie).digest('hex');
+      const token = refreshTokenOf(first);
+      const hash = createHash('sha256').update(token).digest('hex');
       const { rows } = await ctx.sql.query<{ session_id: string }>(
         `UPDATE refresh_tokens SET expires_at = now() - interval '1 second'
          WHERE token_hash = $1 AND consumed_at IS NULL RETURNING session_id`,
@@ -393,13 +438,9 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
         ).rows,
       });
       const before = await readState();
-      const rejected = await request(server())
-        .post('/api/v1/auth/refresh')
-        .set('Cookie', `${REFRESH_COOKIE}=${cookie}`)
-        .expect(401);
+      const rejected = await refresh(token).expect(401);
       expect(bodyOf(rejected).error.code).toBe('AUTH.SESSION_INVALID');
       expect(bodyOf(rejected).data).toBeUndefined();
-      expect(refreshCookie(rejected)).toMatch(/Max-Age=0|Expires=Thu, 01 Jan 1970/);
       expect(await readState()).toEqual(before);
       expect(before.audit).toHaveLength(0);
       await request(server())
@@ -408,43 +449,42 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
         .expect(200);
     });
 
-    it('rejects a missing, malformed or unknown cookie and clears it', async () => {
-      for (const cookie of [undefined, `${REFRESH_COOKIE}=short`, `${REFRESH_COOKIE}=${'A'.repeat(43)}`]) {
-        const req = request(server()).post('/api/v1/auth/refresh');
-        const response = await (cookie ? req.set('Cookie', cookie) : req).expect(401);
+    it('rejects a malformed or unknown refresh token with the same answer', async () => {
+      for (const refreshToken of ['short', 'A'.repeat(43)]) {
+        const response = await refresh(refreshToken).expect(401);
         expect(bodyOf(response).error.code).toBe('AUTH.SESSION_INVALID');
-        expect(refreshCookie(response)).toBeDefined();
       }
     });
 
-    it('rejects a session past its absolute lifetime and clears the cookie', async () => {
+    it('rejects a request without a refresh token in the body, and ignores a cookie', async () => {
       const session = await loginAdmin();
-      const cookie = cookieValue(refreshCookie(session) as string);
+
+      for (const send of [{}, { refreshToken: '' }, { refreshToken: refreshTokenOf(session), extra: true }]) {
+        const response = await request(server())
+          .post('/api/v1/auth/refresh')
+          .set('Cookie', `slm_refresh=${refreshTokenOf(session)}`)
+          .send(send)
+          .expect(422);
+        expect(bodyOf(response).error.code).toBe('VALIDATION_ERROR');
+      }
+    });
+
+    it('rejects a session past its absolute lifetime', async () => {
+      const session = await loginAdmin();
       await ctx.sql.query(`UPDATE auth_sessions SET absolute_expires_at = now() - interval '1 second'`);
 
-      const response = await request(server())
-        .post('/api/v1/auth/refresh')
-        .set('Cookie', `${REFRESH_COOKIE}=${cookie}`)
-        .expect(401);
-      expect(refreshCookie(response)).toMatch(/Max-Age=0|Expires=Thu, 01 Jan 1970/);
+      const response = await refresh(refreshTokenOf(session)).expect(401);
+      expect(bodyOf(response).error.code).toBe('AUTH.SESSION_INVALID');
     });
   });
 
   describe('logout contract', () => {
-    const logout = (cookie?: string) => {
-      const req = request(server()).post('/api/v1/auth/logout');
-      return cookie ? req.set('Cookie', `${REFRESH_COOKIE}=${cookie}`) : req;
-    };
-    const expectCleared = (response: request.Response) =>
-      expect(refreshCookie(response)).toMatch(/Max-Age=0|Expires=Thu, 01 Jan 1970/);
-
-    it('revokes exactly the session of the cookie and returns 204', async () => {
+    it('revokes exactly the session of the refresh token and returns 204', async () => {
       const first = await loginAdmin();
       const other = await loginAdmin();
-      const cookie = cookieValue(refreshCookie(first) as string);
 
-      const response = await logout(cookie).expect(204);
-      expectCleared(response);
+      const response = await logout(refreshTokenOf(first)).expect(204);
+      expect(setCookies(response)).toEqual([]);
 
       await request(server())
         .get('/api/v1/me')
@@ -458,27 +498,29 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
       expect(reasons.rows).toContainEqual({ revoked_reason: 'LOGOUT' });
     });
 
-    it('is idempotent: repeating, or using a stale, malformed or unknown cookie, is 204 and clears it', async () => {
+    it('is idempotent: repeating, or using a stale, malformed or unknown refresh token, is 204', async () => {
       const first = await loginAdmin();
-      const cookie = cookieValue(refreshCookie(first) as string);
-      await logout(cookie).expect(204);
+      const token = refreshTokenOf(first);
+      await logout(token).expect(204);
 
-      for (const value of [cookie, 'short', 'A'.repeat(43), undefined]) {
-        expectCleared(await logout(value).expect(204));
+      for (const value of [token, 'short', 'A'.repeat(43)]) {
+        await logout(value).expect(204);
       }
     });
 
-    it('does not use a Bearer token and does not revoke anything without the cookie', async () => {
+    it('needs the refresh token in the body: a Bearer token alone, or a cookie, ends nothing', async () => {
       const session = await loginAdmin();
+      const bearer = { Authorization: `Bearer ${bodyOf(session).data.accessToken}` };
+
+      const noBody = await request(server()).post('/api/v1/auth/logout').set(bearer).send({}).expect(422);
+      expect(bodyOf(noBody).error.code).toBe('VALIDATION_ERROR');
       await request(server())
         .post('/api/v1/auth/logout')
-        .set('Authorization', `Bearer ${bodyOf(session).data.accessToken}`)
-        .expect(204);
+        .set('Cookie', `slm_refresh=${refreshTokenOf(session)}`)
+        .send({})
+        .expect(422);
 
-      await request(server())
-        .get('/api/v1/me')
-        .set('Authorization', `Bearer ${bodyOf(session).data.accessToken}`)
-        .expect(200);
+      await request(server()).get('/api/v1/me').set(bearer).expect(200);
     });
 
     it('signs out even when the account is locked or the employee has left', async () => {
@@ -491,7 +533,7 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
       const session = await login(email, SEED_PASSWORD).expect(200);
       await ctx.sql.query(`UPDATE app_users SET status = 'LOCKED' WHERE id = $1`, [appUserId]);
 
-      await logout(cookieValue(refreshCookie(session) as string)).expect(204);
+      await logout(refreshTokenOf(session)).expect(204);
 
       const { rows } = await ctx.sql.query(
         `SELECT revoked_reason FROM auth_sessions WHERE app_user_id = $1 AND revoked_at IS NOT NULL`,
@@ -510,13 +552,17 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
       });
       let accessToken = '';
       let refreshToken = '';
+      let rotatedAccessToken = '';
+      let rotatedRefreshToken = '';
       try {
         const session = await loginAdmin();
         accessToken = bodyOf(session).data.accessToken;
-        refreshToken = cookieValue(refreshCookie(session) as string);
+        refreshToken = refreshTokenOf(session);
         await login(seed.superAdmin.email, 'a wrong password for logging').expect(401);
-        await request(server()).post('/api/v1/auth/refresh').set('Cookie', `${REFRESH_COOKIE}=${refreshToken}`);
-        await request(server()).post('/api/v1/auth/refresh').set('Cookie', `${REFRESH_COOKIE}=${refreshToken}`);
+        const rotated = await refresh(refreshToken).expect(200);
+        rotatedAccessToken = bodyOf(rotated).data.accessToken;
+        rotatedRefreshToken = refreshTokenOf(rotated);
+        await refresh(refreshToken);
       } finally {
         spy.mockRestore();
       }
@@ -525,7 +571,16 @@ describe('authentication over HTTP (integration, real PostgreSQL)', () => {
       const hash = (await ctx.sql.query<{ hash: string }>('SELECT hash FROM password_credentials LIMIT 1')).rows[0]
         .hash;
       const everything = audit + writes.join('');
-      for (const secret of [SEED_PASSWORD, 'a wrong password for logging', hash, accessToken, refreshToken]) {
+      const secrets = [
+        SEED_PASSWORD,
+        'a wrong password for logging',
+        hash,
+        accessToken,
+        refreshToken,
+        rotatedAccessToken,
+        rotatedRefreshToken,
+      ];
+      for (const secret of secrets) {
         expect(everything).not.toContain(secret);
       }
     });
