@@ -29,6 +29,7 @@ describe('EmployeeImportService: upload (H8 Phase 0 characterization)', () => {
 
       expect(h.calls).toEqual([
         'org.getOrganization',
+        'org.getEmployee()',
         'org.lookupForEmployeeImport()',
         'repo.findCompletedWithContent()',
         'org.lookupForEmployeeImport()',
@@ -56,13 +57,14 @@ describe('EmployeeImportService: upload (H8 Phase 0 characterization)', () => {
           { departmentCode: 'P-DES', count: 1 },
         ],
         departmentsWithoutHead: [{ code: 'P-DES', name: 'Design' }],
+        reviewQueue: { total: 0, items: [] },
         duplicateOf: null,
       };
       const record = h.imports.get(view.id) as ImportRecord;
       expect(record).toEqual({
         id: 'import-1',
         organizationId: 'org-1',
-        uploadedBy: 'u-it',
+        uploadedBy: 'u-sa',
         fileName: 'people.csv',
         contentHash: createHash('sha256').update(Buffer.from(FILE, 'utf8')).digest('hex'),
         status: 'PREVIEW',
@@ -161,8 +163,8 @@ describe('EmployeeImportService: upload (H8 Phase 0 characterization)', () => {
         {
           organizationId: 'org-1',
           actorKind: 'USER',
-          actorAppUserId: 'u-it',
-          actorRoles: ['IT_ADMIN'],
+          actorAppUserId: 'u-sa',
+          actorRoles: ['SUPER_ADMIN'],
           action: 'EMPLOYEE_IMPORT.UPLOADED',
           resourceType: 'EmployeeImport',
           resourceId: 'import-1',

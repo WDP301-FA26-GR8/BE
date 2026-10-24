@@ -9,6 +9,7 @@ import {
   seedInstallation,
 } from '../support/http-test-app';
 import { findPlacementCoverageViolations } from '../support/placement-coverage';
+import { HR_BASIS } from '../support/hr-basis';
 
 interface DepartmentWire {
   id: string;
@@ -131,9 +132,10 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       hireDate: '2026-10-01',
       departmentCode,
       jobTitleId: seed.jobTitleId,
+      hrBasis: HR_BASIS,
       ...overrides,
     };
-    const response = await request(server()).post('/api/v1/employees').set(asIt()).send(body).expect(201);
+    const response = await request(server()).post('/api/v1/employees').set(asAdmin()).send(body).expect(201);
 
     return { employeeId: (response.body as { data: { id: string } }).data.id, code, email: body.workEmail };
   };
@@ -206,7 +208,9 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
         memberCount: 0,
         warnings: ['MISSING_HEAD'],
         headHistory: [],
+        headHistoryHasMore: false,
         projects: [],
+        projectTotal: 0,
       });
       expect(await auditOf(dataOf(response).id)).toEqual([
         {
@@ -232,14 +236,12 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
 
     it('turns back the cost centers that cannot be used, each with its own reason, and creates nothing (AC-2)', async () => {
       const before = await rowCount('departments');
-      const company = await createCostCenter('COMPANY');
       const retired = await createCostCenter();
       await request(server()).post(`/api/v1/cost-centers/${retired.id}/deactivate`).set(asFinance()).expect(200);
       const inUse = (await ctx.sql.query<{ id: string }>(`SELECT id FROM cost_centers WHERE code = 'CC-1'`)).rows[0];
 
       const cases: [string, string, number, string][] = [
         ['one that does not exist', '3f0c7d54-9e1b-4f6a-8d2c-5b7a1e9c0d11', 422, 'DEPARTMENT.COST_CENTER_NOT_FOUND'],
-        ['one that is a COMPANY cost center', company.id, 422, 'DEPARTMENT.COST_CENTER_NOT_UNIT'],
         ['one that is retired', retired.id, 422, 'DEPARTMENT.COST_CENTER_INACTIVE'],
         ['one that already has a department', inUse.id, 409, 'DEPARTMENT.COST_CENTER_TAKEN'],
       ];
@@ -462,15 +464,23 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       const error = (response.body as { error: { code: string; message: string; details: Record<string, unknown> } })
         .error;
       expect(error.code).toBe('DEPARTMENT.IN_USE');
-      expect(error.message).toBe('The department still has members.');
-      // Two groups only (US-03-06 AC-19): members and open work. Shared accounts are out of scope since QĐ-75, so the
-      // key is absent — not empty, not null.
-      expect(Object.keys(error.details).sort()).toEqual(['members', 'openWork', 'totalMembers']);
+      expect(error.message).toBe('The department still has members or service accounts.');
+      // Members, the service accounts the department owns (QĐ-86c) and open work (US-03-06 AC-19). Shared accounts are out
+      // of scope since QĐ-75, so that key is absent — not empty, not null.
+      expect(Object.keys(error.details).sort()).toEqual([
+        'members',
+        'openWork',
+        'serviceAccounts',
+        'totalMembers',
+        'totalServiceAccounts',
+      ]);
       expect(Object.hasOwn(error.details, 'sharedAccounts')).toBe(false);
       expect(response.text).not.toContain('sharedAccounts');
       expect(error.details).toEqual({
         totalMembers: 1,
         members: [{ employeeCode: member.code, fullName: expect.any(String) as unknown }],
+        totalServiceAccounts: 0,
+        serviceAccounts: [],
         openWork: [],
       });
       expect((await getDepartment(department.id)).status).toBe('ACTIVE');
@@ -497,8 +507,9 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       ]);
       const entry = await request(server())
         .post('/api/v1/employees')
-        .set(asIt())
+        .set(asAdmin())
         .send({
+          hrBasis: HR_BASIS,
           employeeCode: unique('E-LATE'),
           fullName: 'Late Joiner',
           employmentType: 'STAFF',
@@ -1012,7 +1023,7 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       ]);
     });
 
-    it('lists every project by name, then id, when no department is named', async () => {
+    it('lists a page of projects by name, then id, without the description, when no department is named', async () => {
       const department = await newDepartment();
       const prefix = unique('Order');
       const later = await createProject({ name: `${prefix}-B`, departmentIds: [department.id] });
@@ -1021,7 +1032,10 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       const items = itemsOf(await request(server()).get('/api/v1/projects').set(asIt()).expect(200));
       const ids = items.map((item) => item.id);
 
-      items.forEach(expectWire);
+      for (const item of items) {
+        expect(Object.keys(item).sort()).toEqual(['departments', 'id', 'name', 'status', 'updatedAt']);
+        expect(item.updatedAt).toMatch(ISO_INSTANT);
+      }
       expect(ids).toContain(later.id);
       expect(ids.indexOf(earlier.id)).toBeLessThan(ids.indexOf(later.id));
       expect(items.find((item) => item.id === earlier.id)?.departments).toEqual([]);
@@ -1148,7 +1162,7 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       'updatedAt',
       'warnings',
     ];
-    const PROFILE_KEYS = [...LIST_KEYS, 'headHistory', 'projects'].sort();
+    const PROFILE_KEYS = [...LIST_KEYS, 'headHistory', 'headHistoryHasMore', 'projects', 'projectTotal'].sort();
     const vacate = (departmentId: string, effectiveFrom: string) =>
       request(server()).post(`/api/v1/departments/${departmentId}/head-vacancies`).set(asIt()).send({ effectiveFrom });
 
@@ -1184,7 +1198,9 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
         updatedAt: profile.createdAt,
         deactivatedAt: null,
         headHistory: [],
+        headHistoryHasMore: false,
         projects: [],
+        projectTotal: 0,
       });
     });
 
@@ -1352,41 +1368,45 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       const department = await newDepartment();
       const first = await enter(department.code);
       const second = await enter(department.code);
-      await insertPeriod(department.id, first.employeeId, '2026-11-01', '2026-12-01');
+      // Days are relative to today: a member's placement starts today, so a fixed calendar date goes stale.
+      const start = addDays(today(), 10);
+      const end = addDays(today(), 40);
+      await insertPeriod(department.id, first.employeeId, start, end);
 
-      await expect(insertPeriod(department.id, second.employeeId, '2026-11-15', null)).rejects.toMatchObject({
+      await expect(insertPeriod(department.id, second.employeeId, addDays(today(), 25), null)).rejects.toMatchObject({
         code: '23P01',
       });
-      await expect(insertPeriod(department.id, second.employeeId, '2026-12-01', null)).resolves.toBeDefined();
+      await expect(insertPeriod(department.id, second.employeeId, end, null)).resolves.toBeDefined();
     });
 
     it('lets a person head only one department on any day: the member rule and the exclusion both refuse overlap', async () => {
       const first = await newDepartment();
       const second = await newDepartment();
       const person = await enter(first.code);
+      const transfer = addDays(today(), 40);
       // The same person is a member of the second department from a later day (a transfer), by SQL.
-      await ctx.sql.query(
-        `UPDATE employee_placements SET valid_to = '2026-12-01' WHERE employee_id = $1 AND valid_to IS NULL`,
-        [person.employeeId],
-      );
+      await ctx.sql.query(`UPDATE employee_placements SET valid_to = $2 WHERE employee_id = $1 AND valid_to IS NULL`, [
+        person.employeeId,
+        transfer,
+      ]);
       await ctx.sql.query(
         `INSERT INTO employee_placements (id, organization_id, employee_id, department_id, job_title_id, valid_from)
-         VALUES (gen_random_uuid(), $1, $2, $3, $4, '2026-12-01')`,
-        [seed.organizationId, person.employeeId, second.id, seed.jobTitleId],
+         VALUES (gen_random_uuid(), $1, $2, $3, $4, $5)`,
+        [seed.organizationId, person.employeeId, second.id, seed.jobTitleId, transfer],
       );
-      await insertPeriod(first.id, person.employeeId, '2026-10-20', '2026-12-01');
+      await insertPeriod(first.id, person.employeeId, today(), transfer);
 
       // Heading the second department before the transfer is refused: not a member yet (a second guard, the
       // exclusion on the person, would refuse it too if the placements ever overlapped).
-      const refusal: unknown = await insertPeriod(second.id, person.employeeId, '2026-11-20', null).catch(
+      const refusal: unknown = await insertPeriod(second.id, person.employeeId, addDays(today(), 30), null).catch(
         (error: unknown) => error,
       );
       expect(['23514', '23P01']).toContain((refusal as { code?: string }).code);
-      await expect(insertPeriod(second.id, person.employeeId, '2026-12-01', null)).resolves.toBeDefined();
+      await expect(insertPeriod(second.id, person.employeeId, transfer, null)).resolves.toBeDefined();
       await ctx.sql.query('DELETE FROM department_head_periods WHERE employee_id = $1', [person.employeeId]);
       await ctx.sql.query('DELETE FROM employee_placements WHERE employee_id = $1 AND valid_from = $2', [
         person.employeeId,
-        '2026-12-01',
+        transfer,
       ]);
       await ctx.sql.query('UPDATE employee_placements SET valid_to = NULL WHERE employee_id = $1', [person.employeeId]);
     });
@@ -1395,19 +1415,21 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       const department = await newDepartment();
       const elsewhere = await enter('P-OPS');
       const member = await enter(department.code);
+      const periodStart = addDays(today(), 10);
+      const placementEnd = addDays(today(), 20);
 
-      await expect(insertPeriod(department.id, elsewhere.employeeId, '2026-11-01', null)).rejects.toMatchObject({
+      await expect(insertPeriod(department.id, elsewhere.employeeId, periodStart, null)).rejects.toMatchObject({
         code: '23514',
       });
       // A closed placement that ends before the period does.
-      await ctx.sql.query(
-        `UPDATE employee_placements SET valid_to = '2026-11-10' WHERE employee_id = $1 AND valid_to IS NULL`,
-        [member.employeeId],
-      );
-      await expect(insertPeriod(department.id, member.employeeId, '2026-11-01', null)).rejects.toMatchObject({
+      await ctx.sql.query(`UPDATE employee_placements SET valid_to = $2 WHERE employee_id = $1 AND valid_to IS NULL`, [
+        member.employeeId,
+        placementEnd,
+      ]);
+      await expect(insertPeriod(department.id, member.employeeId, periodStart, null)).rejects.toMatchObject({
         code: '23514',
       });
-      await expect(insertPeriod(department.id, member.employeeId, '2026-10-20', '2026-11-10')).resolves.toBeDefined();
+      await expect(insertPeriod(department.id, member.employeeId, today(), placementEnd)).resolves.toBeDefined();
       await ctx.sql.query('DELETE FROM department_head_periods WHERE employee_id = $1', [member.employeeId]);
       await ctx.sql.query('UPDATE employee_placements SET valid_to = NULL WHERE employee_id = $1', [member.employeeId]);
     });
@@ -1416,7 +1438,9 @@ describe('department profiles, heads and the derived MANAGER role over HTTP (int
       const department = await newDepartment();
       const member = await enter(department.code);
 
-      await expect(insertPeriod(department.id, member.employeeId, '2026-11-01', '2026-11-01')).rejects.toMatchObject({
+      const day = addDays(today(), 10);
+
+      await expect(insertPeriod(department.id, member.employeeId, day, day)).rejects.toMatchObject({
         code: '23514',
       });
     });

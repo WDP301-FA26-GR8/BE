@@ -115,12 +115,15 @@ export class OperatingParametersController {
   })
   async history(@Param() params: ParameterKeyParamDto) {
     try {
+      const history = await this.parameters.history(params.key);
+
       return {
-        items: (await this.parameters.history(params.key)).map((entry) => ({
+        items: history.items.map((entry) => ({
           value: entry.value,
           from: entry.from.toISOString(),
           until: entry.until ? entry.until.toISOString() : null,
         })),
+        hasMore: history.hasMore,
       };
     } catch (error) {
       throw toOperatingParametersApiException(error);
@@ -132,12 +135,15 @@ export class OperatingParametersController {
   @ApiOperation({ operationId: 'nonWorkingDateList', summary: 'List non-working dates' })
   @ApiSuccessResponse(NonWorkingDateListResponseDto, {
     message: 'NON_WORKING_DATE.LISTED',
-    description: 'The days nobody works, in date order, optionally between two dates.',
+    description:
+      'One page of the days nobody works, in date order, optionally between two dates. The list is paged: without page and pageSize the answer holds the first 20 only. pagination.totalItems counts every matching day and pagination.totalPages the pages; ask for page 2 up to totalPages (pageSize up to 100) to read the rest.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, VALIDATION_ERROR)
   async listNonWorkingDates(@Query() query: ListNonWorkingDatesQueryDto) {
     try {
-      return { items: await this.nonWorkingDates.list(query) };
+      const page = await this.nonWorkingDates.list(query);
+
+      return { items: page.items, pagination: page.pagination };
     } catch (error) {
       throw toOperatingParametersApiException(error);
     }

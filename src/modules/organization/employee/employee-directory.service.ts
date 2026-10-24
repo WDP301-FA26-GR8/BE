@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import type { BusinessDate } from '../../../core/business-date';
 import { DbTx } from '../../../infrastructure/database/transaction-runner';
 import {
   CreateEmployeeWithPlacementInput,
@@ -6,6 +7,7 @@ import {
   EmployeeImportLookupData,
   EmployeeProfile,
   EmployeeRecord,
+  OfficialFieldsPatch,
 } from '../organization.types';
 import { EmployeeRepo } from './employee.repo';
 import { ImportLookupRepo } from './import-lookup.repo';
@@ -39,8 +41,20 @@ export class EmployeeDirectoryService {
     return this.repo.findEmployeeByCode(employeeCode, tx);
   }
 
-  findMany(employeeIds: string[]): Promise<EmployeeRecord[]> {
-    return this.repo.findEmployees(employeeIds);
+  findMany(employeeIds: string[], tx?: DbTx): Promise<EmployeeRecord[]> {
+    return this.repo.findEmployees(employeeIds, tx);
+  }
+
+  placementOn(employeeId: string, onDate: BusinessDate): Promise<{ departmentId: string; jobTitleId: string } | null> {
+    return this.repo.placementIdsOn(employeeId, onDate);
+  }
+
+  findManyByCodes(employeeCodes: readonly string[], tx?: DbTx): Promise<EmployeeRecord[]> {
+    return this.repo.findEmployeesByCodes(employeeCodes, tx);
+  }
+
+  workEmailDomains(tx?: DbTx): Promise<string[]> {
+    return this.repo.workEmailDomains(tx);
   }
 
   countActive(tx?: DbTx): Promise<number> {
@@ -67,6 +81,10 @@ export class EmployeeDirectoryService {
 
   isCodeTaken(tx: DbTx, organizationId: string, employeeCode: string): Promise<boolean> {
     return this.repo.employeeCodeExists(tx, organizationId, employeeCode);
+  }
+
+  updateOfficialFields(tx: DbTx, employeeId: string, patch: OfficialFieldsPatch): Promise<void> {
+    return this.repo.updateOfficialFields(tx, employeeId, patch);
   }
 
   isWorkEmailTaken(tx: DbTx, organizationId: string, normalizedWorkEmail: string): Promise<boolean> {

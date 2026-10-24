@@ -26,6 +26,7 @@ import { RecoveryModule } from './modules/identity-access/recovery.module';
 import { InstallationModule } from './modules/installation/installation.module';
 import { InspectionModule } from './modules/installation/inspect/inspection.module';
 import { DevSeedModule } from './modules/installation/dev-seed/dev-seed.module';
+import { MigrationPreflightModule } from './modules/installation/migration-preflight/migration-preflight.module';
 import { IdentityAccessLocalSeedFacadeModule } from './modules/identity-access/identity-access-local-seed-facade.module';
 import { IdentityAccessInspectionFacadeModule } from './modules/identity-access/identity-access-inspection-facade.module';
 import { DATABASE_SESSION_OPTIONS } from './infrastructure/database/read-only-session.module';
@@ -40,13 +41,21 @@ import { WorkerModule } from './worker.module';
 /**
  * What a business module may export (docs/rules/module-structure.md): its facade, a port it implements for
  * infrastructure, or the service of a CLI entry module. Every other exported token of a business module is private,
- * whatever its name (A4-03). Exact `Module: token` pairs; a module that is not mounted (catalog) is not listed.
+ * whatever its name (A4-03). Exact `Module: token` pairs; a module that is not mounted is not listed.
  */
 const PUBLIC_CONTRACT_EXPORTS: ReadonlySet<string> = new Set([
   'AuditModule: AuditService',
+  // G4 (ADR-0013): the catalog facade licensing reads the seat targets (subscription or internal plan) through.
+  'CatalogModule: CatalogService',
   // H8.3 (A4-10): the data-import facade; onboarding reads the latest people import through it.
   'DataImportModule: DataImportService',
+  // G3 (ADR-0013): the finance facade, money in and conversion snapshot out; the repos stay private.
+  'FinanceModule: FinanceService',
+  // The audited exchange-rate use case the finance HTTP module serves; the raw ledger is not exported.
+  'FinanceModule: ExchangeRateService',
   'IdentityAccessFacadeModule: IdentityAccessService',
+  // G4 (ADR-0013): the licensing facade the seat baseline import (data-import) reads and writes the assignments through.
+  'LicensingModule: LicensingService',
   // H5.5 (identity-access Wave B): the account contracts the API and the recovery command reach the account persistence
   // through; the persistence itself is declared once, here, because every graph needs it.
   'IdentityAccessFacadeModule: AccountDirectoryService',
@@ -63,6 +72,8 @@ const PUBLIC_CONTRACT_EXPORTS: ReadonlySet<string> = new Set([
   'DevSeedModule: DevSeedService',
   // H6.1: the entry service of `pnpm ops:inspect`.
   'InspectionModule: InstallationInspectionService',
+  // P28-01 (Prompt 29): the entry service of `pnpm ops:preflight`.
+  'MigrationPreflightModule: MigrationPreflightService',
   'NotificationsModule: NotificationsService',
   // ROOT.1: the delivery contract the worker's mail loop (composition root, ADR-0012) calls; EmailDispatcher stays private.
   'NotificationsModule: EmailDeliveryService',
@@ -261,6 +272,7 @@ describe('module graph', () => {
     ['RecoveryCliModule', RecoveryCliModule],
     ['InspectionModule', InspectionModule],
     ['DevSeedModule', DevSeedModule],
+    ['MigrationPreflightModule', MigrationPreflightModule],
   ];
 
   it.each(graphs)('%s declares no provider token in two different modules', (_name, root) => {
@@ -282,16 +294,18 @@ describe('module graph', () => {
   it('declares the account repositories, PasswordHasher and IdentityAccessService once, and SessionRepo only in the API and the recovery command', () => {
     for (const [name, root] of graphs) {
       const graph = collectGraph(root);
+      // The preflight (P28-01) reads the database only: no account is in its graph at all.
+      const once = name === 'MigrationPreflightModule' ? 0 : 1;
 
       for (const repo of [AppUserRepo, CredentialRepo, RoleGrantRepo, ActionTokenRepo]) {
         expect({ name, repo: repo.name, declarations: declarationsOf(graph, repo).length }).toEqual({
           name,
           repo: repo.name,
-          declarations: 1,
+          declarations: once,
         });
       }
-      expect({ name, hasher: declarationsOf(graph, PasswordHasher).length }).toEqual({ name, hasher: 1 });
-      expect({ name, facade: declarationsOf(graph, IdentityAccessService).length }).toEqual({ name, facade: 1 });
+      expect({ name, hasher: declarationsOf(graph, PasswordHasher).length }).toEqual({ name, hasher: once });
+      expect({ name, facade: declarationsOf(graph, IdentityAccessService).length }).toEqual({ name, facade: once });
       expect({ name, sessionRepo: declarationsOf(graph, SessionRepo).length }).toEqual({
         name,
         sessionRepo: name === 'AppModule' || name === 'RecoveryCliModule' ? 1 : 0,
@@ -446,7 +460,7 @@ describe('module graph', () => {
     }
   });
 
-  it('H6.4 (E2 = A): mounts neither the queue nor object storage in the API, the worker or either command', () => {
+  it('H6.4 (E2 = A, ADR-0014): mounts no queue anywhere, and object storage only in the API, for the files of contracts', () => {
     for (const [name, root] of graphs) {
       const modules = collectGraph(root).map((node) => node.module);
 
@@ -454,7 +468,7 @@ describe('module graph', () => {
         name,
         storage: modules.includes(ObjectStorageModule),
         queue: modules.includes(QueueInfrastructureModule),
-      }).toEqual({ name, storage: false, queue: false });
+      }).toEqual({ name, storage: name === 'AppModule', queue: false });
     }
   });
 
@@ -493,6 +507,7 @@ describe('operational command graphs (H6.1, docs/rules/operational-commands.md)'
           IdentityAccessInspectionFacadeModule,
           DevSeedModule,
           IdentityAccessLocalSeedFacadeModule,
+          MigrationPreflightModule,
         ]
           .filter((module) => modules.includes(module))
           .map((module) => module.name),
@@ -500,7 +515,7 @@ describe('operational command graphs (H6.1, docs/rules/operational-commands.md)'
     }
   });
 
-  it('rule 1: opens the sessions of the inspection graph read-only, and of no other graph', () => {
+  it('rule 1: opens the sessions of the inspection and preflight graphs read-only, and of no other graph', () => {
     const graphs: [string, Type<unknown>, number][] = [
       ['AppModule', AppModule, 0],
       ['WorkerModule', WorkerModule, 0],
@@ -508,6 +523,7 @@ describe('operational command graphs (H6.1, docs/rules/operational-commands.md)'
       ['RecoveryCliModule', RecoveryCliModule, 0],
       ['InspectionModule', InspectionModule, 1],
       ['DevSeedModule', DevSeedModule, 0],
+      ['MigrationPreflightModule', MigrationPreflightModule, 1],
     ];
     for (const [name, root, expected] of graphs) {
       expect({ name, readOnly: declarationsOf(collectGraph(root), DATABASE_SESSION_OPTIONS).length }).toEqual({
@@ -533,6 +549,21 @@ describe('operational command graphs (H6.1, docs/rules/operational-commands.md)'
     expect(moduleNames(graph)).toContain('InstallationConfigurationModule');
     expect(declarationsOf(graph, MailTransport)).toHaveLength(0);
   });
+
+  it('rule 1: the preflight graph (P28-01) loads the database settings and the database only: no business module', () => {
+    const graph = collectGraph(MigrationPreflightModule);
+
+    expect(controllersOf(graph)).toEqual([]);
+    for (const forbidden of [NotificationsModule, IdentityAccessModule, RecoveryModule, QueueInfrastructureModule]) {
+      expect({ forbidden: forbidden.name, mounted: graph.map((node) => node.module).includes(forbidden) }).toEqual({
+        forbidden: forbidden.name,
+        mounted: false,
+      });
+    }
+    expect(moduleNames(graph)).toContain('InstallationConfigurationModule');
+    expect(moduleNames(graph)).not.toContain('OrganizationModule');
+    expect(moduleNames(graph)).not.toContain('ConfigurationModule');
+  });
 });
 
 describe('the local seed graph (H6.2)', () => {
@@ -544,6 +575,7 @@ describe('the local seed graph (H6.2)', () => {
       ['RecoveryCliModule', RecoveryCliModule, 0],
       ['InspectionModule', InspectionModule, 0],
       ['DevSeedModule', DevSeedModule, 1],
+      ['MigrationPreflightModule', MigrationPreflightModule, 0],
     ];
     for (const [name, root, expected] of graphs) {
       const modules = collectGraph(root).map((node) => node.module);
