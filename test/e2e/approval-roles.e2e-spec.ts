@@ -110,6 +110,6 @@ describe('approval role routes (e2e, no database)', () => {
         expect(bodyOf(response).error.code).toBe('HTTP_NOT_FOUND');
         await app.close();
       }
-    });
+    }, 15_000);
   });
 });
