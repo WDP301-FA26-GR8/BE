@@ -22,6 +22,7 @@
     "ops:bootstrap": "node dist/installation-cli",
     "ops:recover": "node dist/recovery-cli",
     "ops:inspect": "node dist/inspect-cli",
+    "ops:preflight": "node dist/migration-preflight-cli",
     "dev:seed": "node dist/dev-seed-cli",
     "lint": "eslint \"{src,test,scripts}/**/*.ts\"",
     "lint:fix": "eslint \"{src,test,scripts}/**/*.ts\" --fix",
@@ -71,7 +72,7 @@
     "pg": "^8.23.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "zod": "4.4.3"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

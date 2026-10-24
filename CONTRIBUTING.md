@@ -7,7 +7,7 @@ Dành cho mọi contributor, có hoặc không dùng AI. Bắt đầu từ [READ
 
 1. Đọc yêu cầu/acceptance criteria của task, kiểm tra `git status` và test gần code cần sửa.
 2. Chọn một lát chức năng nhỏ; đặt file theo [module structure](docs/rules/module-structure.md) và architecture gate,
-   không copy layout của một module cụ thể (`catalog` chưa mount, không phải mẫu).
+   không copy layout của một module cụ thể.
 3. Sửa trong module sở hữu; thêm test hành vi, gồm trường hợp bị từ chối liên quan.
 4. Chạy kiểm tra theo bảng dưới và đọc diff cuối.
 5. Trong PR, mô tả hành vi thay đổi, bằng chứng đã chạy và phần chưa kiểm chứng.
@@ -45,6 +45,11 @@ E2E, integration, OpenAPI export và dependency audit chạy riêng theo tác đ
 CI also runs HTTP E2E, isolated PostgreSQL integration, OpenAPI drift, Docker build and dependency audit.
 
 `pnpm check` sinh Prisma client trước lint nên chạy được trực tiếp trên checkout sạch.
+
+Xuống dòng: `.gitattributes` chỉ có một rule `openapi.json text eol=lf` (`GATE-EOL=A`), để test export so đúng byte trên
+mọi checkout, kể cả Windows `core.autocrlf=true`. Checkout có từ trước khi có rule mà `openapi.json` còn CRLF thì sinh lại
+đúng tệp đó bằng `pnpm openapi:export` (không sửa tay). Không thêm rule toàn repo như `* text=auto eol=lf` và không chạy
+`git add --renormalize .`: đổi EOL tệp khác cần quyết định riêng.
 
 ## Chọn tài liệu theo tác vụ
 

@@ -1,4 +1,5 @@
 import { BusinessDate } from '../../core/business-date';
+import type { DbTx } from '../../infrastructure/database/transaction-runner';
 import { CostCenterKind, CostCenterStatus } from './cost-center/cost-center.types';
 import { DepartmentStatus } from './department/department.types';
 import { JobTitleStatus } from './job-title/job-title.types';
@@ -42,12 +43,21 @@ export interface CreateEmployeeWithPlacementInput {
   jobTitleId: string;
 }
 
+/** The official fields of an employee record an IT Admin may correct on an HR basis (`US-02-02` AC-19). */
+export interface OfficialFieldsPatch {
+  fullName?: string;
+  workEmail?: string | null;
+  employmentType?: EmploymentType;
+  hireDate?: BusinessDate;
+}
+
 export interface EmployeeRecord {
   id: string;
   organizationId: string;
   employeeCode: string;
   fullName: string;
   workEmail: string | null;
+  employmentType: EmploymentType;
   status: EmployeeStatus;
   hireDate: BusinessDate;
 }
@@ -110,6 +120,26 @@ export interface OnboardingFacts {
 }
 
 /**
+ * What the organization needs to know of the service accounts a department owns, without importing `licensing`: the
+ * first `limit` of those that are open or will be, and how many there are in all. `licensing` registers the reader when
+ * its module starts (as `licensing` does for the seats the catalog reads).
+ */
+export interface DepartmentServiceAccountReader {
+  ownedBy(
+    departmentId: string,
+    day: BusinessDate,
+    limit: number,
+    tx?: DbTx,
+  ): Promise<{ items: { assignmentId: string; accountIdentifier: string }[]; total: number }>;
+}
+
+/** The department an employee was in on a day and its Unit (the Cost Center the department is charged to). */
+export interface OwningUnit {
+  departmentId: string;
+  costCenter: { id: string; code: string; status: CostCenterStatus };
+}
+
+/**
  * The local seed fixture items as `pnpm dev:seed` compares them (P23-RV-01): every field the fixture fixes, the link
  * between the cost center and its department, and the ids it writes against. Null when absent.
  */
@@ -131,4 +161,21 @@ export interface LocalSeedFixtureFacts {
     costCenterCode: string;
   } | null;
   jobTitle: { id: string; name: string; normalizedName: string; status: JobTitleStatus } | null;
+}
+
+/** What another module needs to know of a department to point at it: its code, name and whether it is still active. */
+export interface DepartmentBrief {
+  id: string;
+  code: string;
+  name: string;
+  active: boolean;
+}
+
+/** What another module needs to know of a Cost Center to point at it: its code, name, kind and whether it takes new use. */
+export interface CostCenterBrief {
+  id: string;
+  code: string;
+  name: string;
+  kind: CostCenterKind;
+  status: CostCenterStatus;
 }
