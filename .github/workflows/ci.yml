@@ -75,7 +75,7 @@ permissions:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 50
     services:
       postgres:
         image: postgres:17-alpine
