@@ -1,14 +1,15 @@
 import { Controller, Get, HttpStatus } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 import {
   ApiErrorResponses,
+  FORBIDDEN_EXAMPLE,
   GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
   UNAUTHENTICATED_RESPONSE,
 } from '../../infrastructure/http/decorators/api-error-responses.decorator';
 import { ApiSuccessResponse } from '../../infrastructure/http/decorators/api-success-response.decorator';
 import { successEnvelopeSchema } from '../../infrastructure/http/dto/success-envelope.dto';
+import { createZodDto } from '../../infrastructure/http/dto/zod-dto';
 import { toUnavailableApiException } from '../../infrastructure/http/errors/service-unavailable';
 import { RequireRoles } from '../../infrastructure/security/decorators/access.decorators';
 import { OnboardingService } from './onboarding.service';
@@ -87,7 +88,11 @@ export class OnboardingController {
   })
   @ApiErrorResponses(
     UNAUTHENTICATED_RESPONSE,
-    { status: HttpStatus.FORBIDDEN, description: 'Only an IT Admin sees the onboarding checklist.' },
+    {
+      status: HttpStatus.FORBIDDEN,
+      description: 'Only an IT Admin sees the onboarding checklist.',
+      examples: [FORBIDDEN_EXAMPLE],
+    },
     GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
   )
   async get() {
