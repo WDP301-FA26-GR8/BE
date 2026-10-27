@@ -16,6 +16,7 @@ import { ApplicationOwnersController } from './catalog-entry/application-owners.
 import { ApplicationRepo } from './catalog-entry/application.repo';
 import { ApplicationListService } from './catalog-entry/application-list.service';
 import { ApplicationService } from './catalog-entry/application.service';
+import { ApplicationViewService } from './catalog-entry/application-view.service';
 import { ApplicationVendorLinkService } from './catalog-entry/application-vendor-link.service';
 import { ApplicationsController } from './catalog-entry/applications.controller';
 import { ContractRepo } from './contract/contract.repo';
@@ -60,6 +61,8 @@ import { VendorProposalRepo } from './vendor-dictionary/vendor-proposal.repo';
 import { VendorProposalService } from './vendor-dictionary/vendor-proposal.service';
 import { VendorRecognitionService } from './vendor-dictionary/vendor-recognition.service';
 import { VendorDirectoryService } from './vendor/vendor-directory.service';
+import { InternalSoftwareRegistrationService } from './catalog-entry/internal-software-registration.service';
+import { VendorLookupService } from './vendor/vendor-lookup.service';
 import { VendorQueryService } from './vendor/vendor-query.service';
 import { VendorTaxService } from './vendor/vendor-tax.service';
 import { VendorsController } from './vendor/vendors.controller';
@@ -110,6 +113,7 @@ import { VendorRepo } from './vendor/vendor.repo';
     FunctionalGroupRepo,
     FunctionalGroupLookupService,
     ApplicationService,
+    ApplicationViewService,
     ApplicationListService,
     ApplicationVendorLinkService,
     ApplicationRepo,
@@ -117,6 +121,8 @@ import { VendorRepo } from './vendor/vendor.repo';
     PlanService,
     PlanWorkspaceService,
     PlanRepo,
+    InternalSoftwareRegistrationService,
+    VendorLookupService,
     VendorQueryService,
     VendorTaxService,
     PlanLookupService,

@@ -43,7 +43,7 @@ Mọi phần đã giao cho hạng mục khác trong scope map.
 
 ## Dependencies and blockers
 
-Blocker: hộp thông báo trong ứng dụng chưa có (module `notifications` hiện chỉ có outbox thư). Điều kiện gỡ: `US-05-15` `verified`.
+Blocker: hộp thông báo trong ứng dụng chưa có (module `notifications` hiện chỉ có outbox thư). Điều kiện gỡ: `US-05-15` `verified`. _Cập nhật 24/10/2026: hộp thư và cửa `NotificationsService.notifyInApp` đã có (Phase 1 của `g5-request-status-notifications`, `verified` local; bảng mã đóng và khóa tham số ở `inbox/inbox.policy.ts`, thêm mã của hạng mục này vào đó); hạng mục này chưa mở khóa cho tới khi người tích hợp ghi `US-05-15` `verified` ở roadmap._
 
 ## Ownership: module, data, API
 
@@ -78,3 +78,8 @@ Ma trận trên là khung từ tiêu đề AC; tình huống cụ thể (từ ch
 ## Changes and acceptance
 
 20/10/2026: lập khung theo bản đồ phân rã G3/G4 của [roadmap](../../../roadmap.md). Chưa thiết kế chi tiết, chưa code, chưa review, chưa nghiệm thu.
+
+## Mở lại theo baseline `769bb64` (Prompt 03, 26/10/2026)
+
+- Audit G0–G6 trên Docs `769bb64` ↔ BE `7c28e75` mở lại hạng mục này: F58 — cảnh báo license `FR-5.14` (phạm vi theo P03-D15).
+- Remediation duy nhất: [g0-g6-final-business-baseline-remediation](../g0-g6-final-business-baseline-remediation/spec.md) ([impact matrix](../g0-g6-final-business-baseline-remediation/impact-matrix.md#3-findings)). AC liên quan không còn được coi là thỏa nguồn hiện hành cho tới khi remediation xong; trạng thái triển khai ở roadmap. Phần đã ghi phía trên là lịch sử, giữ nguyên.
