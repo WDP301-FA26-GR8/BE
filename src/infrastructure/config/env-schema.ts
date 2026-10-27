@@ -3,6 +3,7 @@ import { parseCorsOrigins, validateProductionCorsOrigins } from './cors';
 import {
   DatabaseEnvironmentVariables,
   assertDatabaseLimits,
+  assertNoDatabaseAdministrationCredentials,
   databaseKeys,
   resolveDatabaseSettings,
 } from './database-environment';
@@ -45,6 +46,8 @@ export interface EnvironmentVariables extends DatabaseEnvironmentVariables, Secr
   /** `id:base64` pairs separated by commas: keys that may still seal pending rows after a rotation. */
   OUTBOX_PAYLOAD_PREVIOUS_KEYS: string;
   OUTBOX_POLL_INTERVAL_MS: number;
+  /** How often the worker looks at the open steps of requests: who holds a step that waits, whose holder left (ms). */
+  REQUEST_WORK_INTERVAL_MS: number;
   /** `id:base64` pairs separated by commas: vault keys that may still open license keys sealed before a rotation. */
   LICENSE_KEY_VAULT_PREVIOUS_KEYS: string;
   SMTP_HOST: string;
@@ -92,6 +95,7 @@ const environmentSchema = Joi.object({
   OUTBOX_PAYLOAD_KEY_ID: secretKeys.OUTBOX_PAYLOAD_KEY_ID,
   OUTBOX_PAYLOAD_PREVIOUS_KEYS: Joi.string().allow('').default(''),
   OUTBOX_POLL_INTERVAL_MS: Joi.number().integer().min(500).max(60_000).default(3_000),
+  REQUEST_WORK_INTERVAL_MS: Joi.number().integer().min(1_000).max(300_000).default(10_000),
   LICENSE_KEY_VAULT_KEY: secretKeys.LICENSE_KEY_VAULT_KEY,
   LICENSE_KEY_VAULT_KEY_ID: secretKeys.LICENSE_KEY_VAULT_KEY_ID,
   LICENSE_KEY_FINGERPRINT_PEPPER: secretKeys.LICENSE_KEY_FINGERPRINT_PEPPER,
@@ -138,6 +142,8 @@ export function validateEnvironment(input: Record<string, unknown>): Environment
   assertSecrets(result);
 
   if (result.NODE_ENV === 'production') {
+    assertNoDatabaseAdministrationCredentials(input);
+
     if (!result.SMTP_TLS) {
       throw new EnvironmentValidationError(
         'Environment validation failed: SMTP_TLS must be true in production (the mail carries a bearer activation link)',
