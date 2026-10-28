@@ -33,6 +33,8 @@ export class OpenRequestRepo {
     const db = tx ?? this.prisma;
     const where = {
       beneficiaries: { some: { employeeId } },
+      // A request being drafted is written by the release after this one and is not read here (spec L.1).
+      state: { not: 'DRAFT' as const },
       OR: [
         { type: { not: 'GROUP_GRANT' as const }, state: { notIn: [...NOT_OPEN_FOR_LEAVER] } },
         { type: 'GROUP_GRANT' as const, lines: { some: { employeeId, state: { in: [...OPEN_LINE_STATES] } } } },
@@ -49,6 +51,14 @@ export class OpenRequestRepo {
       db.accessRequest.count({ where }),
     ]);
 
-    return { items: rows, total };
+    return {
+      items: rows.map((row) => {
+        // The filter above leaves drafts out, and only a draft has no moment it was sent.
+        if (row.submittedAt === null) throw new Error(`The request ${row.id} is listed as open but has not been sent.`);
+
+        return { ...row, submittedAt: row.submittedAt };
+      }),
+      total,
+    };
   }
 }

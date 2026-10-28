@@ -10,7 +10,7 @@ import { LocalDemoAccountService } from '../../identity-access/local-demo-accoun
 import { OrganizationService } from '../../organization/organization.service';
 import { DEMO_FIXTURE_KEYS, DEMO_PEOPLE_LOOKUP, buildSeedPlan, samePlan } from './dev-seed-plan';
 import { SeedStateChangedError } from './dev-seed.errors';
-import { DEMO_COST_CENTER, DEMO_DEPARTMENT, DEMO_HIRE_DATE, DEMO_JOB_TITLE, DEMO_PEOPLE } from './dev-seed.fixture';
+import { DEMO_COST_CENTER, DEMO_DEPARTMENT, DEMO_HIRE_DATE, DEMO_PEOPLE } from './dev-seed.fixture';
 import { DevSeedRepo } from './dev-seed.repo';
 import { DevSeedResult, SeedPlan, SeedReportItem } from './dev-seed.types';
 import { checkLocalSeedGuards } from './local-seed.guard';
@@ -24,7 +24,9 @@ export const LOCAL_SEED_OPERATOR_REFERENCE = 'LOCAL_SEED';
 type Credentials = Map<string, { password: string; hash: string; hashPolicyVersion: number }>;
 
 /**
- * `pnpm dev:seed` (H6.2): the local demo data, through the owning services and the Audit Trail. The three local guards
+ * `pnpm dev:seed` (H6.2): the local demo data, through the owning services and the Audit Trail. The department is written
+ * before the Cost Center created for it (`QĐ-87d`(1)), the people carry no job title and no Cost Center activation row is
+ * written (the final code never reads one). The three local guards
  * are checked first; then a plan is read, the new passwords are hashed outside any transaction, and one transaction
  * takes the seed lock, reads the plan again and writes. All or nothing; a rerun writes nothing.
  */
@@ -132,34 +134,25 @@ export class DevSeedService {
         after,
       });
 
-    let costCenterId = plan.costCenterId;
-    if (creates('COST_CENTER', DEMO_COST_CENTER.code)) {
-      costCenterId = (await this.organization.createUnitCostCenter(tx, { organizationId, ...DEMO_COST_CENTER })).id;
-      await record('DEV_SEED.COST_CENTER_CREATED', 'CostCenter', costCenterId, {
-        code: DEMO_COST_CENTER.code,
-        kind: 'UNIT',
-      });
-    }
-
+    // The department first, then the Cost Center created for it (`QĐ-87d(1)`: there is no Cost Center without a department).
     let departmentId = plan.departmentId;
     if (creates('DEPARTMENT', DEMO_DEPARTMENT.code)) {
-      // On the Cost Center just created, or on the exact DEMO-CC that exists without its department (P23-RV-01).
-      const department = await this.organization.createDepartment(tx, {
-        organizationId,
-        ...DEMO_DEPARTMENT,
-        costCenterId: costCenterId as string,
-      });
+      const department = await this.organization.createDepartment(tx, { organizationId, ...DEMO_DEPARTMENT });
       departmentId = department.id;
-      await record('DEV_SEED.DEPARTMENT_CREATED', 'Department', department.id, {
-        code: DEMO_DEPARTMENT.code,
-        costCenterCode: DEMO_COST_CENTER.code,
-      });
+      await record('DEV_SEED.DEPARTMENT_CREATED', 'Department', department.id, { code: DEMO_DEPARTMENT.code });
     }
 
-    let jobTitleId = plan.jobTitleId;
-    if (creates('JOB_TITLE', DEMO_JOB_TITLE)) {
-      jobTitleId = (await this.organization.createJobTitle(tx, organizationId, DEMO_JOB_TITLE)).id;
-      await record('DEV_SEED.JOB_TITLE_CREATED', 'JobTitle', jobTitleId, { name: DEMO_JOB_TITLE });
+    if (creates('COST_CENTER', DEMO_COST_CENTER.code)) {
+      const costCenter = await this.organization.createUnitCostCenter(tx, {
+        organizationId,
+        ...DEMO_COST_CENTER,
+        departmentId: departmentId as string,
+      });
+      await record('DEV_SEED.COST_CENTER_CREATED', 'CostCenter', costCenter.id, {
+        code: DEMO_COST_CENTER.code,
+        kind: 'UNIT',
+        departmentCode: DEMO_DEPARTMENT.code,
+      });
     }
 
     for (const person of DEMO_PEOPLE) {
@@ -174,7 +167,7 @@ export class DevSeedService {
             employmentType: 'STAFF',
             hireDate: DEMO_HIRE_DATE,
             departmentId: departmentId as string,
-            jobTitleId: jobTitleId as string,
+            jobTitle: null,
           })
         ).id;
         await record('DEV_SEED.EMPLOYEE_CREATED', 'Employee', employeeId, {

@@ -5,7 +5,7 @@ import { employeeRef, moneySchema, pricingSchema, submitBodySchema } from './acc
 
 /**
  * What is asked before a request is sent: the plan and the term, and the day the money is expected to go out when the
- * sender has one. The reason and the reason for a tool outside the standard toolset are for sending, not for looking.
+ * sender has one. The reason is for sending, not for looking.
  * There is no field for an amount, a price or a budget year: nobody gives the system a number (`US-05-01` AC-14).
  */
 export const previewBodySchema = submitBodySchema.pick({
@@ -56,13 +56,12 @@ const previewSchema = z.strictObject({
   termMonths: z.number().int().positive(),
   projectLabel: z.string().nullable(),
   department: z.strictObject({ id: z.uuid(), code: z.string(), name: z.string() }),
-  /** Read only: the Unit of the department of the day; nothing the sender or a project changes (`US-05-01` AC-7). */
-  costCenter: z.strictObject({ id: z.uuid(), code: z.string(), name: z.string() }),
-  /** Whether the plan is outside the standard toolset of the sender, which is why a reason must go with the request. */
-  outsideStandard: z.boolean(),
+  /**
+   * Read only: the Unit of the department of the day; nothing the sender or a project changes (`US-05-01` AC-7). Null when the
+   * department has none in use and the request is free internal software, which is judged without it (`QĐ-87g(2)`).
+   */
+  costCenter: z.strictObject({ id: z.uuid(), code: z.string(), name: z.string() }).nullable(),
   requirements: z.strictObject({
-    /** The request is sent with `outsideStandardReason` or refused. */
-    outsideStandardReason: z.boolean(),
     /** The head must confirm the term in so many words with a reason; the chain gains no step. */
     termConfirmationByHead: z.boolean(),
   }),

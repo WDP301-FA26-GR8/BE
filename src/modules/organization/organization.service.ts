@@ -4,15 +4,17 @@ import { DbTx } from '../../infrastructure/database/transaction-runner';
 import { CostCenterCatalogueService } from './cost-center/cost-center-catalogue.service';
 import { DepartmentDirectoryService } from './department/department-directory.service';
 import { DepartmentServiceAccountRegistry } from './department/service-account-registry';
+import { DepartmentUseRegistry } from './department/department-use-registry';
 import { OrganizationChangeService } from './change-announcement/organization-change.service';
 import { DepartmentHeadRecord, HeadPeriodChanges, HeadPeriodRecord } from './department/department.types';
 import { EmployeeDirectoryService } from './employee/employee-directory.service';
-import { JobTitleCatalogueService } from './job-title/job-title-catalogue.service';
-import { JobTitleListFilter, JobTitleRecord, JobTitleStatus } from './job-title/job-title.types';
 import { toBrief, toLocalSeedFixtureFacts } from './mappers/local-seed-fixture.mapper';
 import { OrganizationRepo } from './organization.repo';
+import type { CostCenterUse, CostCenterUseReader, DepartmentUse, DepartmentUseReader } from './organization-use.types';
 import {
+  ClearedHeadSuccessor,
   CostCenterBrief,
+  CostedOwningUnit,
   CreateCostCenterInput,
   CreateDepartmentInput,
   CreateEmployeeWithPlacementInput,
@@ -34,6 +36,9 @@ import {
   OrganizationChangeListener,
   OwningUnit,
   OrganizationRecord,
+  ProfileNotice,
+  ProfileNoticeRequest,
+  UsableItAdmins,
 } from './organization.types';
 
 /** Public facade of the organization module: other modules call it in their own transaction, never the tables. */
@@ -47,8 +52,8 @@ export class OrganizationService {
     private readonly departments: DepartmentDirectoryService,
     private readonly employees: EmployeeDirectoryService,
     private readonly costCenters: CostCenterCatalogueService,
-    private readonly jobTitles: JobTitleCatalogueService,
     private readonly serviceAccounts: DepartmentServiceAccountRegistry,
+    private readonly use: DepartmentUseRegistry,
     private readonly changes: OrganizationChangeService,
   ) {}
 
@@ -83,17 +88,12 @@ export class OrganizationService {
     return (await this.departments.findMany(departmentIds, tx)).flatMap((record) => toBrief(record) ?? []);
   }
 
-  /** The job titles with these ids in one read (`LD-07`). */
-  getJobTitles(jobTitleIds: readonly string[], tx?: DbTx): Promise<JobTitleRecord[]> {
-    return this.jobTitles.findMany(jobTitleIds, tx);
-  }
-
   /** The same, held `FOR SHARE` until the caller transaction ends, so it cannot be made inactive between check and commit. */
   async lockDepartmentShared(tx: DbTx, departmentId: string): Promise<DepartmentBrief | null> {
     return toBrief(await this.departments.lockShared(tx, departmentId));
   }
 
-  /** The department and the job title of the employee on `onDate` (default today), by id; null when they have none. */
+  /** The department of the employee on `onDate` (default today), by id; null when they have none. */
   async getEmployeePlacement(
     employeeId: string,
     onDate?: BusinessDate,
@@ -117,6 +117,11 @@ export class OrganizationService {
   /** The departments this employee is named IT Admin in charge of, while they still work (an unlocked read, `US-01-11`). */
   getDepartmentIdsInChargeOf(employeeId: string, tx?: DbTx): Promise<string[]> {
     return this.departments.idsInChargeOf(employeeId, tx);
+  }
+
+  /** What an IT Admin reads and handles: the departments that name them and, while nobody usable is named, every active one (F12). */
+  getItAdminScope(employeeId: string, usableAmong: UsableItAdmins, tx?: DbTx): Promise<string[]> {
+    return this.departments.itAdminScopeOf(employeeId, usableAmong, tx);
   }
 
   /** Everyone placed in the department on `onDate` (default today), by employee id; null when it does not exist. */
@@ -150,6 +155,14 @@ export class OrganizationService {
   /** A module that acts when the organization changes asks to be told in the transaction of the change (`FR-3.16`). */
   registerChangeListener(listener: OrganizationChangeListener): void {
     this.changes.register(listener);
+  }
+
+  /** F47 (`ops:inspect`, read only): how many changes of each kind had taken effect at `asOf` in their organization's calendar and were never marked as told. */
+  countUnmarkedChangesAsOf(
+    tx: DbTx,
+    asOf: Date,
+  ): Promise<Record<'PLACEMENT_START' | 'HEAD_PERIOD_START' | 'HEAD_PERIOD_END', number>> {
+    return this.changes.countUnmarkedAsOf(tx, asOf);
   }
 
   /** Tells the registered listeners of a change that has taken effect, in the caller's transaction; one that throws rolls it back. */
@@ -197,50 +210,6 @@ export class OrganizationService {
 
   createDepartment(tx: DbTx, input: CreateDepartmentInput): Promise<{ id: string }> {
     return this.departments.createForInstallation(tx, input);
-  }
-
-  createJobTitle(tx: DbTx, organizationId: string, name: string): Promise<{ id: string }> {
-    return this.jobTitles.createForInstallation(tx, organizationId, name);
-  }
-
-  /** One page of the catalogue and the total for the same filter, from one snapshot. */
-  listJobTitles(filter: JobTitleListFilter): Promise<{ items: JobTitleRecord[]; total: number }> {
-    return this.jobTitles.list(filter);
-  }
-
-  /** Adds an `ACTIVE` title under the T-12 name rule. A lost race on the name is the database error, unchanged. */
-  insertJobTitle(tx: DbTx, organizationId: string, name: string): Promise<JobTitleRecord> {
-    return this.jobTitles.insert(tx, organizationId, name);
-  }
-
-  /** `FOR UPDATE` before a change of the title, then its row; null when it does not exist. */
-  lockJobTitleForUpdate(tx: DbTx, jobTitleId: string): Promise<JobTitleRecord | null> {
-    return this.jobTitles.lock(tx, jobTitleId, 'UPDATE');
-  }
-
-  /** `FOR SHARE` when an entry relies on the title staying as it is until commit; null when it does not exist. */
-  lockJobTitleForShare(tx: DbTx, jobTitleId: string): Promise<JobTitleRecord | null> {
-    return this.jobTitles.lock(tx, jobTitleId, 'SHARE');
-  }
-
-  /** The job title with this id, or null. Pass `tx` to read in a transaction. */
-  getJobTitle(jobTitleId: string, tx?: DbTx): Promise<JobTitleRecord | null> {
-    return this.jobTitles.find(jobTitleId, tx);
-  }
-
-  /** Unlocked: the title that has this normalized name, whatever its status, to name it in a conflict. */
-  findJobTitleByNormalizedName(organizationId: string, normalizedName: string): Promise<JobTitleRecord | null> {
-    return this.jobTitles.findByNormalizedName(organizationId, normalizedName);
-  }
-
-  /** Renames a title the caller has locked and raises its version. */
-  renameJobTitle(tx: DbTx, jobTitleId: string, name: string, now: Date): Promise<JobTitleRecord> {
-    return this.jobTitles.rename(tx, jobTitleId, name, now);
-  }
-
-  /** Changes the status of a title the caller has locked and raises its version. */
-  setJobTitleStatus(tx: DbTx, jobTitleId: string, status: JobTitleStatus, now: Date): Promise<JobTitleRecord> {
-    return this.jobTitles.setStatus(tx, jobTitleId, status, now);
   }
 
   /** The only way to create an employee: Employee and its first placement, in the caller's transaction. */
@@ -301,14 +270,14 @@ export class OrganizationService {
     return this.employees.profile(employeeId, onDate);
   }
 
-  /** What a people file names, as the database knows it: departments, job titles, people and work-email owners. */
+  /** What a people file names, as the database knows it: departments, people and work-email owners. */
   async lookupForEmployeeImport(names: EmployeeImportNames, tx?: DbTx): Promise<EmployeeImportLookupData> {
     return this.employees.lookupForImport(tx, names, await this.businessToday(new Date(), tx));
   }
 
-  /** The row locks a write of imported people needs, in protocol order: departments, then job titles (T-11). */
-  lockForEmployeeImport(tx: DbTx, departmentIds: string[], jobTitleIds: string[]): Promise<void> {
-    return this.employees.lockForImport(tx, departmentIds, jobTitleIds);
+  /** The row locks a write of imported people needs: the departments (T-11). */
+  lockForEmployeeImport(tx: DbTx, departmentIds: string[]): Promise<void> {
+    return this.employees.lockForImport(tx, departmentIds);
   }
 
   /** The database clock at the start of the transaction: the instant the new employee's `created_at` gets. */
@@ -330,28 +299,35 @@ export class OrganizationService {
   }
 
   /** Among these active departments, those nobody heads today: what the people import reports at its end (AC-1). */
-  async departmentsWithoutHead(departmentIds: string[]): Promise<{ id: string; code: string; name: string }[]> {
-    const wanted = new Set(departmentIds);
-    const without = await this.departments.activeWithoutHead(await this.businessToday());
-
-    return without.filter((department) => wanted.has(department.id));
+  async departmentsWithoutHead(ids: string[]) {
+    return (await this.departments.activeWithoutHead(await this.businessToday())).filter((d) => ids.includes(d.id));
   }
 
-  /** The three local seed fixture items by their stable keys, in the caller's transaction (`pnpm dev:seed`); null when absent. */
+  /** The two local seed fixture items by their stable keys, in the caller's transaction (`pnpm dev:seed`); null when absent. */
   async readLocalSeedFixture(
     tx: DbTx,
-    keys: { organizationId: string; costCenterCode: string; departmentCode: string; normalizedJobTitleName: string },
+    keys: { organizationId: string; costCenterCode: string; departmentCode: string },
   ): Promise<LocalSeedFixtureFacts> {
     const costCenter = await this.costCenters.findByCode(tx, keys.organizationId, keys.costCenterCode);
     const department = await this.departments.findByCode(tx, keys.organizationId, keys.departmentCode);
-    const jobTitle = await this.jobTitles.findByNormalizedName(keys.organizationId, keys.normalizedJobTitleName, tx);
+    const activated = await this.costCenters.isDirectionActivated(tx);
 
-    return toLocalSeedFixtureFacts(costCenter, department, jobTitle, keys.normalizedJobTitleName);
+    return toLocalSeedFixtureFacts(costCenter, department, activated);
+  }
+
+  /** Records, for a new local database, that the Cost Center link is activated (`pnpm dev:seed`): no previous release to recover. */
+  activateCostCenterDirectionForLocalSeed(tx: DbTx, organizationId: string): Promise<boolean> {
+    return this.costCenters.recordLocalSeedActivation(tx, organizationId);
   }
 
   /** For each employee, the department they were in on `onDate` and its Unit: where a service account they answer for is owned and charged (`QĐ-86c`). */
   getOwningUnits(employeeIds: readonly string[], onDate: BusinessDate, tx?: DbTx): Promise<Map<string, OwningUnit>> {
     return this.departments.owningUnitsOn(employeeIds, onDate, tx);
+  }
+
+  /** The unit with the Cost Center a cost is charged to; the department may have none yet (`QĐ-87d(1)`): FinanceSetupIncompleteError. */
+  requireUnitCostCenter(unit: OwningUnit): CostedOwningUnit {
+    return this.departments.requireUnitCostCenter(unit);
   }
 
   /** `licensing` hands over how the organization reads the service accounts a department owns, when its module starts. */
@@ -364,29 +340,53 @@ export class OrganizationService {
     return this.serviceAccounts.current().ownedBy(departmentId, onDate, limit, tx);
   }
 
+  /** The modules that hold what keeps a department in use (open work, subscriptions: `QĐ-90e`) register a reader when they start. */
+  registerDepartmentUseReader(reader: DepartmentUseReader): void {
+    this.use.registerDepartment(reader);
+  }
+
+  /** The first `limit` of each thing that keeps the department in use on `day` and how many there are: retiring waits for them. */
+  getDepartmentUse(departmentId: string, day: BusinessDate, limit: number, tx?: DbTx): Promise<DepartmentUse> {
+    return this.use.readDepartment(departmentId, day, limit, tx);
+  }
+
+  /** The same for a Cost Center: Requests with a cost not over and commitments held (`QĐ-87d(2)`), registered by their modules. */
+  registerCostCenterUseReader(reader: CostCenterUseReader): void {
+    this.use.registerCostCenter(reader);
+  }
+
+  getCostCenterUse(costCenterId: string, limit: number, tx?: DbTx): Promise<CostCenterUse> {
+    return this.use.readCostCenter(costCenterId, limit, tx);
+  }
+
+  /** The notices a created or corrected employee record owes, to write with `NotificationsService.notifyInApp` in the same transaction (`F17`). */
+  getProfileNotices(tx: DbTx, request: ProfileNoticeRequest): Promise<ProfileNotice[]> {
+    return this.employees.profileNotices(tx, request);
+  }
+
+  /** Takes back the successor named to take over the department from a day after `today`; the caller holds the department lock. */
+  clearDepartmentHeadSuccessor(
+    tx: DbTx,
+    departmentId: string,
+    today: BusinessDate,
+  ): Promise<ClearedHeadSuccessor | null> {
+    return this.departments.clearHeadSuccessor(tx, departmentId, today);
+  }
+
   /** The numbers and gaps of the onboarding checklist (US-02-04 AC-1, AC-6); with `tx`, in order in that transaction. */
   async getOnboardingFacts(tx?: DbTx): Promise<OnboardingFacts> {
     const today = await this.businessToday(new Date(), tx);
-    const [activeDepartments, activeEmployees, freeCostCenters, withoutHead, withItAdmin] = tx
-      ? [
-          await this.departments.countActive(tx),
-          await this.employees.countActive(tx),
-          await this.costCenters.countFreeUnits(tx),
-          await this.departments.activeWithoutHead(today, tx),
-          await this.departments.activeWithItAdmin(tx),
-        ]
-      : await Promise.all([
-          this.departments.countActive(),
-          this.employees.countActive(),
-          this.costCenters.countFreeUnits(),
-          this.departments.activeWithoutHead(today),
-          this.departments.activeWithItAdmin(),
-        ]);
+    // In order, in the caller's transaction when there is one (a transaction runs one statement at a time anyway).
+    const activeDepartments = await this.departments.countActive(tx);
+    const activeEmployees = await this.employees.countActive(tx);
+    const withoutCostCenter = await this.costCenters.departmentsWithoutCostCenter(tx);
+    const withoutHead = await this.departments.activeWithoutHead(today, tx);
+    const withItAdmin = await this.departments.activeWithItAdmin(tx);
 
     return {
       activeDepartments,
       activeEmployees,
-      freeCostCenters,
+      departmentsWithoutCostCenter: withoutCostCenter.map(({ code, name }) => ({ code, name })),
       departmentsWithoutHead: withoutHead.map((department) => ({ code: department.code, name: department.name })),
       departmentsByItAdmin: withItAdmin.map((department) => ({
         code: department.code,

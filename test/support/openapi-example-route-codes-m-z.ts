@@ -144,6 +144,7 @@ export const ROUTE_ERROR_CODES_M_TO_Z: Readonly<Record<string, Partial<Record<Ro
         'LICENSE_ASSIGNMENT.EXPECTED_END_REQUIRED',
         'LICENSE_ASSIGNMENT.IDENTIFIER_IN_USE',
         'LICENSE_ASSIGNMENT.OVERLAP',
+        'LICENSE_ASSIGNMENT.SUBSCRIPTION_DEPARTMENT_MISMATCH',
         'PROVISIONING.ACCOUNT_IDENTIFIER_REQUIRED',
         'PROVISIONING.BENEFICIARY_REQUIRED',
         'PROVISIONING.PERSONAL_ACCOUNT',
@@ -159,7 +160,6 @@ export const ROUTE_ERROR_CODES_M_TO_Z: Readonly<Record<string, Partial<Record<Ro
       '403': ['PROVISIONING.ANOTHER_IT_ADMIN_NEEDED'],
       '404': ['PROVISIONING_TASK.NOT_FOUND'],
       '409': ['PROVISIONING_TASK.ALREADY_MANUAL', 'PROVISIONING_TASK.NOT_FAILED'],
-      '422': ['PROVISIONING_TASK.EVIDENCE_REQUIRED'],
     },
     provisioningTaskReportFailure: {
       '403': ['PROVISIONING.ANOTHER_IT_ADMIN_NEEDED'],
@@ -215,49 +215,10 @@ export const ROUTE_ERROR_CODES_M_TO_Z: Readonly<Record<string, Partial<Record<Ro
         'VALIDATION_ERROR',
       ],
     },
-    standardToolsetGet: {
-      '403': ['DEPARTMENT.OUT_OF_SCOPE'],
-      '404': ['DEPARTMENT.NOT_FOUND', 'JOB_TITLE.NOT_FOUND'],
-    },
-    standardToolsetHistory: {
-      '404': ['DEPARTMENT.NOT_FOUND', 'JOB_TITLE.NOT_FOUND'],
-    },
-    standardToolsetList: {
-      '403': ['DEPARTMENT.OUT_OF_SCOPE'],
-    },
-    standardToolsetSet: {
-      '404': ['DEPARTMENT.NOT_FOUND', 'JOB_TITLE.NOT_FOUND'],
-      '422': [
-        'STANDARD_TOOLSET.DEPARTMENT_INACTIVE',
-        'STANDARD_TOOLSET.JOB_TITLE_INACTIVE',
-        'STANDARD_TOOLSET.PLAN_DUPLICATE',
-        'STANDARD_TOOLSET.PLAN_NOT_FOUND',
-        'STANDARD_TOOLSET.REASON_REQUIRED',
-        'STANDARD_TOOLSET.TOO_MANY_PLANS',
-      ],
-    },
     subscriptionComplete: {
       '404': ['SUBSCRIPTION.NOT_FOUND'],
       '409': ['REPORTING_CURRENCY_NOT_SUPPORTED'],
       '422': ['MONEY_OUT_OF_RANGE', 'SUBSCRIPTION.STILL_DRAFT'],
-    },
-    subscriptionCostAllocationGet: {
-      '404': ['SUBSCRIPTION.NOT_FOUND'],
-    },
-    subscriptionCostAllocationHistory: {
-      '404': ['SUBSCRIPTION.NOT_FOUND'],
-    },
-    subscriptionCostAllocationSet: {
-      '404': ['SUBSCRIPTION.NOT_FOUND'],
-      '409': ['SUBSCRIPTION.COST_ALLOCATION_NOT_APPLICABLE'],
-      '422': [
-        'COST_ALLOCATION.COST_CENTER_DUPLICATE',
-        'COST_ALLOCATION.COST_CENTER_INACTIVE',
-        'COST_ALLOCATION.COST_CENTER_NOT_FOUND',
-        'COST_ALLOCATION.LINE_COUNT_INVALID',
-        'COST_ALLOCATION.RATIO_INVALID',
-        'COST_ALLOCATION.TOTAL_NOT_100',
-      ],
     },
     subscriptionCreate: {
       '409': ['REPORTING_CURRENCY_NOT_SUPPORTED'],
@@ -265,7 +226,9 @@ export const ROUTE_ERROR_CODES_M_TO_Z: Readonly<Record<string, Partial<Record<Ro
         'CURRENCY_NOT_SUPPORTED',
         'MONEY_OUT_OF_RANGE',
         'MONEY_SCALE_EXCEEDED',
+        'SUBSCRIPTION.APPLICATION_RETIRED',
         'SUBSCRIPTION.DATES_INVALID',
+        'SUBSCRIPTION.OWNER_DEPARTMENT_INACTIVE',
         'SUBSCRIPTION.PERPETUAL_HAS_NO_TERM',
         'SUBSCRIPTION.PERPETUAL_NEEDS_LICENSED_APPLICATION',
         'SUBSCRIPTION.PLAN_HAS_NO_SUBSCRIPTION',
@@ -280,7 +243,7 @@ export const ROUTE_ERROR_CODES_M_TO_Z: Readonly<Record<string, Partial<Record<Ro
     },
     subscriptionUpdate: {
       '404': ['SUBSCRIPTION.NOT_FOUND'],
-      '409': ['REPORTING_CURRENCY_NOT_SUPPORTED'],
+      '409': ['FINANCE.SETUP_INCOMPLETE', 'REPORTING_CURRENCY_NOT_SUPPORTED'],
       '422': [
         'CURRENCY_NOT_SUPPORTED',
         'MONEY_OUT_OF_RANGE',

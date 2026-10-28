@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { normalizeDisplayName } from '../../../core/display-name';
+import type { HrBasis } from '../../../core/hr-basis';
 import { DbTx, TransactionRunner } from '../../../infrastructure/database/transaction-runner';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import { AuditService } from '../../audit/audit.service';
 import { IdentityAccessService } from '../../identity-access/identity-access.service';
-import { CostCenterService } from '../cost-center/cost-center.service';
 import { organizationAuditEvent } from '../mappers/audit-event.mapper';
 import { OrganizationService } from '../organization.service';
 import {
-  DepartmentCostCenterError,
   DepartmentInUseError,
   DepartmentInactiveError,
   DepartmentItAdminInvalidError,
@@ -17,12 +16,13 @@ import {
   DepartmentUpdateEmptyError,
 } from './department.errors';
 import { lockAndReadEmployee, requireOrganization } from './department-lookups';
+import { assertMayChangeOrganization } from './department.policy';
 import { DepartmentRepo } from './department.repo';
 
 const DEPARTMENT_NAME_MAX_LENGTH = 200;
 const DEPARTMENT_FUNCTION_MAX_LENGTH = 1000;
-/** How many names of the people still in the department the refusal to retire it lists. */
-const IN_USE_LISTED_MEMBERS = 20;
+/** How many of each kind of thing that still keeps the department in use the refusal to retire it lists. */
+const IN_USE_LISTED = 20;
 
 const normalizeFunction = (raw: string | null | undefined): string | null => {
   // Free text keeps its line breaks: accents composed, the ends trimmed, nothing else.
@@ -32,15 +32,15 @@ const normalizeFunction = (raw: string | null | undefined): string | null => {
 };
 
 /**
- * Department profiles (`US-03-06`, `US-01-11`): the IT Admin creates a department on a free `UNIT` Cost Center,
- * names who is in charge of its technical work, and retires it once nobody is left in it. Who heads it is
- * `DepartmentHeadService`; what a profile shows is `DepartmentQueryService`.
+ * Department profiles (`US-03-06`, `US-01-11`): the Super Admin creates a department, with no Cost Center (Finance creates one for
+ * it afterwards, `QĐ-87d(1)`), changes it, names who is in charge of its technical work and retires it once nothing keeps it in
+ * use, always on an HR basis (`QĐ-87a`, `QĐ-87b(1)`). The IT Admin changes none of it. Who heads it is `DepartmentHeadService`;
+ * what a profile shows is `DepartmentQueryService`; who may do what is `department.policy.ts`, run first in every use case.
  */
 @Injectable()
 export class DepartmentService {
   constructor(
     private readonly repo: DepartmentRepo,
-    private readonly costCenters: CostCenterService,
     private readonly organization: OrganizationService,
     private readonly identity: IdentityAccessService,
     private readonly audit: AuditService,
@@ -48,8 +48,9 @@ export class DepartmentService {
   ) {}
 
   /**
-   * Creates a department on a `UNIT` Cost Center that is in use and has no department (AC-1, AC-2) and returns its id.
-   * The Cost Center follows from the department and is never changed by renaming it or changing its head (AC-4).
+   * Creates a department with no Cost Center and returns its id: Finance creates the Cost Center for it afterwards, and it is
+   * never changed by renaming the department or changing its head (AC-4). The HR basis is recorded with the change. Throws
+   * DepartmentForbiddenError, DepartmentNameInvalidError, DepartmentItAdminInvalidError or DepartmentCodeTakenError.
    */
   async create(
     actor: AuthenticatedPrincipal,
@@ -57,22 +58,17 @@ export class DepartmentService {
       code: string;
       name: string;
       functionDescription?: string | null;
-      costCenterId: string;
       itAdminEmployeeId?: string | null;
+      hrBasis: HrBasis;
     },
   ): Promise<string> {
+    assertMayChangeOrganization(actor.roles);
     const name = this.requireName(input.name);
     const functionDescription = this.requireFunction(input.functionDescription);
     const organization = await requireOrganization(this.organization);
     const code = input.code.trim();
 
     return this.runner.run(async (tx) => {
-      // Lock order (T-11): the cost center, the new department, then the people it names.
-      const costCenter = await this.costCenters.lockForDepartment(tx, input.costCenterId);
-      if (!costCenter) throw new DepartmentCostCenterError('NOT_FOUND');
-      if (costCenter.kind !== 'UNIT') throw new DepartmentCostCenterError('NOT_UNIT');
-      if (costCenter.status !== 'ACTIVE') throw new DepartmentCostCenterError('INACTIVE');
-      if (costCenter.department) throw new DepartmentCostCenterError('TAKEN');
       if (input.itAdminEmployeeId) await this.assertUsableItAdmin(tx, input.itAdminEmployeeId);
 
       const created = await this.repo.insert(tx, {
@@ -80,7 +76,6 @@ export class DepartmentService {
         code,
         name,
         functionDescription,
-        costCenterId: costCenter.id,
         itAdminEmployeeId: input.itAdminEmployeeId ?? null,
       });
       await this.audit.record(
@@ -89,8 +84,8 @@ export class DepartmentService {
           code,
           name,
           function: functionDescription,
-          costCenter: costCenter.code,
           itAdminEmployeeId: input.itAdminEmployeeId ?? null,
+          hrBasis: { ...input.hrBasis },
         }),
       );
 
@@ -99,14 +94,15 @@ export class DepartmentService {
   }
 
   /**
-   * Renames a department, changes what it does or who is in charge of its technical work. Nothing here touches
-   * its Cost Center or its members (AC-4). A change that changes nothing records nothing.
+   * Renames a department, changes what it does or who is in charge of its technical work. Nothing here touches its Cost Center or
+   * its members (AC-4). A change that changes nothing records nothing. Throws DepartmentForbiddenError.
    */
   async update(
     actor: AuthenticatedPrincipal,
     id: string,
-    input: { name?: string; functionDescription?: string | null; itAdminEmployeeId?: string | null },
+    input: { name?: string; functionDescription?: string | null; itAdminEmployeeId?: string | null; hrBasis: HrBasis },
   ): Promise<void> {
+    assertMayChangeOrganization(actor.roles);
     if (input.name === undefined && input.functionDescription === undefined && input.itAdminEmployeeId === undefined) {
       throw new DepartmentUpdateEmptyError();
     }
@@ -144,17 +140,29 @@ export class DepartmentService {
       await this.repo.update(tx, id, changes, new Date());
       await this.audit.record(
         tx,
-        organizationAuditEvent(actor, organization.id, 'DEPARTMENT.UPDATED', 'Department', id, before, after),
+        organizationAuditEvent(
+          actor,
+          organization.id,
+          'DEPARTMENT.UPDATED',
+          'Department',
+          id,
+          before,
+          // The basis the change is made on is part of what it says (`QĐ-87b(1)`).
+          { ...after, hrBasis: { ...input.hrBasis } },
+        ),
       );
     });
   }
 
   /**
-   * Retires a department. Refused while anyone is still a member or a service account it owns is still open (AC-19,
-   * `QĐ-86c`); open work (reviews, recommendations) joins this check when its slices exist.
-   * What the department was, who headed it and what was charged to it stay as they were. Already retired ⟹ the same answer.
+   * Retires a department. Refused while anything keeps it in use, and the refusal lists each group with its first things and
+   * its total (AC-19, `QĐ-90e`, `QĐ-86c`): the people in it, the service accounts it owns, the open work (Requests not over,
+   * personnel events waiting, open tasks) and the subscriptions and purchases it owns that still owe a payment. What the
+   * department was, who headed it and what was charged to it stay as they were. Already retired ⟹ the same answer. Throws
+   * DepartmentForbiddenError, DepartmentNotFoundError or DepartmentInUseError.
    */
-  async deactivate(actor: AuthenticatedPrincipal, id: string): Promise<void> {
+  async deactivate(actor: AuthenticatedPrincipal, id: string, input: { hrBasis: HrBasis }): Promise<void> {
+    assertMayChangeOrganization(actor.roles);
     const organization = await requireOrganization(this.organization);
 
     await this.runner.run(async (tx) => {
@@ -163,16 +171,20 @@ export class DepartmentService {
       if (current.status === 'INACTIVE') return;
 
       const today = await this.organization.businessToday();
-      const members = await this.repo.members(tx, id, today, { skip: 0, take: IN_USE_LISTED_MEMBERS });
+      const members = await this.repo.members(tx, id, today, { skip: 0, take: IN_USE_LISTED });
       // A service account is owned by the department, not held by a member: it stays until its chain ends (`QĐ-86c`).
-      const accounts = await this.organization.getOwnedServiceAccounts(id, today, IN_USE_LISTED_MEMBERS, tx);
-      if (members.total > 0 || accounts.total > 0) {
-        throw new DepartmentInUseError(
-          members.items.map((member) => ({ employeeCode: member.employeeCode, fullName: member.fullName })),
-          members.total,
-          accounts.items,
-          accounts.total,
-        );
+      const accounts = await this.organization.getOwnedServiceAccounts(id, today, IN_USE_LISTED, tx);
+      const use = await this.organization.getDepartmentUse(id, today, IN_USE_LISTED, tx);
+      if (members.total > 0 || accounts.total > 0 || use.openWork.total > 0 || use.subscriptions.total > 0) {
+        throw new DepartmentInUseError({
+          members: {
+            items: members.items.map((member) => ({ employeeCode: member.employeeCode, fullName: member.fullName })),
+            total: members.total,
+          },
+          serviceAccounts: accounts,
+          openWork: use.openWork,
+          subscriptions: use.subscriptions,
+        });
       }
 
       await this.repo.deactivate(tx, id, new Date());
@@ -185,7 +197,7 @@ export class DepartmentService {
           'Department',
           id,
           { status: current.status },
-          { status: 'INACTIVE' },
+          { status: 'INACTIVE', hrBasis: { ...input.hrBasis } },
         ),
       );
     });

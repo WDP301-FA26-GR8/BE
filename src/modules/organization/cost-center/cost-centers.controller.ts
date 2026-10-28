@@ -29,7 +29,7 @@ const AUTH_ERRORS = [UNAUTHENTICATED_RESPONSE, GUARDED_SERVICE_UNAVAILABLE_RESPO
 
 const FINANCE_ONLY = {
   status: HttpStatus.FORBIDDEN,
-  description: 'Only Finance maintains the Cost Center catalogue.',
+  description: 'Only Finance maintains the Cost Center catalogue (the IT Admin and the Super Admin do not).',
   examples: [FORBIDDEN_EXAMPLE],
 } as const;
 
@@ -40,14 +40,15 @@ const NOT_FOUND = {
 } as const;
 
 const VALIDATION_ERROR_DESCRIPTION =
-  'The request is invalid (VALIDATION_ERROR), the kind is not UNIT (COST_CENTER.KIND_NOT_SUPPORTED), or the name is empty, too long (COST_CENTER.NAME_INVALID) or reserved (COST_CENTER.NAME_RESERVED).';
+  'The request is invalid (VALIDATION_ERROR), the kind is not UNIT (COST_CENTER.KIND_NOT_SUPPORTED), the name is empty, too long (COST_CENTER.NAME_INVALID) or reserved (COST_CENTER.NAME_RESERVED), or the department does not exist or is no longer in use (COST_CENTER.DEPARTMENT_NOT_ACTIVE).';
 
-/** A new cost center: the request, its kind or its name. */
+/** A new cost center: the request, its kind, its name or its department. */
 const CREATE_INVALID = {
   status: HttpStatus.UNPROCESSABLE_ENTITY,
   description: VALIDATION_ERROR_DESCRIPTION,
   examples: [
     VALIDATION_EXAMPLE,
+    ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_DEPARTMENT_NOT_ACTIVE,
     ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_KIND_NOT_SUPPORTED,
     ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_NAME_INVALID,
     ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_NAME_RESERVED,
@@ -80,6 +81,7 @@ function toWire(record: CostCenterRecord) {
     kind: record.kind,
     status: record.status,
     department: record.department,
+    linkedAt: record.linkedAt ? record.linkedAt.toISOString() : null,
     createdAt: record.createdAt.toISOString(),
     updatedAt: record.updatedAt.toISOString(),
     deactivatedAt: record.deactivatedAt ? record.deactivatedAt.toISOString() : null,
@@ -87,9 +89,10 @@ function toWire(record: CostCenterRecord) {
 }
 
 /**
- * The Cost Center catalogue (`US-04-09`). Finance creates, renames and retires; the IT Admin may read it (to pick a
- * free `UNIT` for a department) but not change it (AC-2). Every other role is refused, the Super Admin included
- * (`SoD-1`). There is no route that deletes a cost center: a code that has been used is kept.
+ * The Cost Center catalogue (`US-04-09`). Finance creates, renames and retires; the Super Admin, who owns the departments, may
+ * read it to see which still have none; the IT Admin has no operation on it (AC-2, `QĐ-87a`). Every other role is refused. Who may
+ * is decided by the policy of the service as well as by the role of the route (`F13`). There is no route that deletes a cost
+ * center: a code that has been used is kept.
  */
 @ApiTags('cost-centers')
 @Controller({ path: 'cost-centers', version: '1' })
@@ -97,17 +100,17 @@ export class CostCentersController {
   constructor(private readonly costCenters: CostCenterService) {}
 
   @Get()
-  @RequireRoles('FINANCE', 'IT_ADMIN')
+  @RequireRoles('FINANCE', 'SUPER_ADMIN')
   @ApiOperation({ operationId: 'costCenterList', summary: 'List cost centers' })
   @ApiSuccessResponse(CostCenterPageResponseDto, {
     message: 'COST_CENTER.LISTED',
-    description: 'A page of cost centers in code order, with the department charged to each.',
+    description: 'A page of cost centers in code order, with the department each belongs to and since when.',
   })
   @ApiErrorResponses(
     ...AUTH_ERRORS,
     {
       status: HttpStatus.FORBIDDEN,
-      description: 'Only Finance and the IT Admin read the Cost Center catalogue.',
+      description: 'Only Finance and the Super Admin read the Cost Center catalogue.',
       examples: [FORBIDDEN_EXAMPLE],
     },
     {
@@ -116,9 +119,9 @@ export class CostCentersController {
       examples: [VALIDATION_EXAMPLE],
     },
   )
-  async list(@Query() query: ListCostCentersQueryDto) {
+  async list(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Query() query: ListCostCentersQueryDto) {
     try {
-      const page = await this.costCenters.list(query);
+      const page = await this.costCenters.list(actor, query);
 
       return { items: page.items.map(toWire), pagination: page.pagination };
     } catch (error) {
@@ -132,12 +135,17 @@ export class CostCentersController {
   @ApiSuccessResponse(CostCenterResponseDto, {
     status: HttpStatus.CREATED,
     message: 'COST_CENTER.CREATED',
-    description: 'The cost center is in the catalogue, in use, with no department yet.',
+    description:
+      "The cost center is in the catalogue, in use, created for the department: it is the department's current one from now on.",
   })
   @ApiErrorResponses(...AUTH_ERRORS, FINANCE_ONLY, CREATE_INVALID, {
     status: HttpStatus.CONFLICT,
-    description: 'The code is already taken (COST_CENTER.CODE_TAKEN).',
-    examples: [ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_CODE_TAKEN],
+    description:
+      'The code is already taken (COST_CENTER.CODE_TAKEN), or the department already has a cost center in use (COST_CENTER.DEPARTMENT_ALREADY_LINKED).',
+    examples: [
+      ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_CODE_TAKEN,
+      ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_DEPARTMENT_ALREADY_LINKED,
+    ],
   })
   async create(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Body() body: CreateCostCenterBodyDto) {
     try {
@@ -172,12 +180,13 @@ export class CostCentersController {
   @ApiOperation({ operationId: 'costCenterDeactivate', summary: 'Retire a cost center' })
   @ApiSuccessResponse(CostCenterResponseDto, {
     message: 'COST_CENTER.DEACTIVATED',
-    description: 'The cost center is no longer in use. If it is already retired, the answer is the same.',
+    description:
+      'The cost center is no longer in use and its department goes back to an incomplete finance configuration. If it is already retired, the answer is the same.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, FINANCE_ONLY, VALIDATION_ERROR, NOT_FOUND, {
     status: HttpStatus.CONFLICT,
     description:
-      'The department charged to it still has people (COST_CENTER.IN_USE; details lists the department and the people).',
+      'Open obligations sit on it (COST_CENTER.IN_USE; details lists the department and, with their totals, the Requests with a cost that are not over and the commitments still held). The people in the department do not block it.',
     examples: [ORGANIZATION_ERROR_EXAMPLES.COST_CENTER_IN_USE],
   })
   async deactivate(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Param() params: CostCenterIdParamDto) {
@@ -197,9 +206,13 @@ export class CostCentersController {
       'The people in the cost center today, reduced to code, name and that they are working: no email, contract, dates or manager.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, FINANCE_ONLY, VALIDATION_ERROR, NOT_FOUND)
-  async employees(@Param() params: CostCenterIdParamDto, @Query() query: ListCostCenterEmployeesQueryDto) {
+  async employees(
+    @CurrentPrincipal() actor: AuthenticatedPrincipal,
+    @Param() params: CostCenterIdParamDto,
+    @Query() query: ListCostCenterEmployeesQueryDto,
+  ) {
     try {
-      return await this.costCenters.employees(params.id, query);
+      return await this.costCenters.employees(actor, params.id, query);
     } catch (error) {
       throw toOrganizationApiException(error);
     }

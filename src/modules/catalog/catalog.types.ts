@@ -38,6 +38,12 @@ export interface SeatOccupancyReader {
     limit: number,
     tx?: DbTx,
   ): Promise<OpenSeatHoldings>;
+  /** Which of these subscriptions have an assignment that has not ended and has not failed as of `day`: one read for any number of them. */
+  subscriptionsWithOpenSeats(
+    subscriptionIds: readonly string[],
+    day: BusinessDate,
+    tx?: DbTx,
+  ): Promise<ReadonlySet<string>>;
 }
 
 /** The facts about a seat target that the assignments of seats (licensing) read. */
@@ -58,6 +64,8 @@ export interface SeatTarget {
   missing: string[];
   /** The seats bought; null while the subscription has no quantity, and always null for a plan with no subscription. */
   purchasedQuantity: number | null;
+  /** The department that owns the subscription (`QĐ-89a`); null only for a plan that has no subscription (an internal plan, K5). */
+  ownerDepartmentId: string | null;
 }
 
 /** How much of the catalog exists, for the onboarding checklist: judged from the data, not from how it was entered. */
@@ -65,8 +73,6 @@ export interface CatalogOnboardingFacts {
   applications: number;
   plans: number;
   subscriptions: number;
-  /** The department and job title pairs that have a standard toolset (US-04-10). */
-  standardToolsets: number;
 }
 
 /**

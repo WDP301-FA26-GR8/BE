@@ -1,9 +1,8 @@
 import { DevSeedResult, SeedItemKind, SeedRefusal, SeedReportItem } from './dev-seed.types';
 
 const LABEL: Record<SeedItemKind, string> = {
-  COST_CENTER: 'cost center',
   DEPARTMENT: 'department',
-  JOB_TITLE: 'job title',
+  COST_CENTER: 'cost center',
   EMPLOYEE: 'employee',
   ACCOUNT: 'account',
 };

@@ -40,7 +40,7 @@ export function submissionEvents(
       beneficiaryEmployeeIds: people,
       lineCount: people.length,
       departmentId: unit.departmentId,
-      costCenterId: unit.costCenter.id,
+      costCenterId: unit.costCenter?.id ?? null,
       policyVersion: policy.version,
       hasSpendStep: hasSpendStep(policy),
       slaWorkingDays: policy.slaWorkingDays,
@@ -49,7 +49,6 @@ export function submissionEvents(
       amountCurrency: pricing.amount?.currency ?? null,
       budgetYear: pricing.budgetYear,
       expectedSpendOn: pricing.expectedSpendOn,
-      outsideStandard: judged.outsideStandard,
       delegated: judged.senderIsHead,
     }),
     ...planned.map((entry, index) => {

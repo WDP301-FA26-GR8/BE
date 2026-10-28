@@ -77,13 +77,15 @@ export const leaveSummarySchema = z.strictObject({
 });
 
 export const leaveDetailSchema = leaveSummarySchema.extend({
-  /** The basis of the approved day of return in force. */
-  grounds: groundsSchema,
+  /** The basis of the approved day of return in force. Null in the minimal projection an IT Admin reads (F12). */
+  grounds: groundsSchema.nullable(),
   endKind: z.enum(['RETURNED', 'DEPARTURE_STARTED']).nullable(),
   resumesLeaveId: z.uuid().nullable(),
-  startedByAppUserId: z.uuid(),
+  /** The account that started it; null when the controlled procedure did (`startedByProcedure`, spec L.2). */
+  startedByAppUserId: z.uuid().nullable(),
+  /** True when the leave was recorded by the controlled procedure `pnpm ops:record-super-admin-event` and not by an account. */
+  startedByProcedure: z.boolean(),
   startedAt: z.iso.datetime(),
-  selfExecuted: z.boolean(),
 });
 
 const changeSchema = z.strictObject({
@@ -94,9 +96,10 @@ const changeSchema = z.strictObject({
   returnedOn: z.string().nullable(),
   onSchedule: z.boolean().nullable(),
   grounds: groundsSchema.nullable(),
-  recordedByAppUserId: z.uuid(),
+  /** The account that recorded it; null when the controlled procedure did (`recordedByProcedure`, spec L.2). */
+  recordedByAppUserId: z.uuid().nullable(),
+  recordedByProcedure: z.boolean(),
   recordedAt: z.iso.datetime(),
-  selfExecuted: z.boolean(),
 });
 
 export type LeaveSummaryWire = z.infer<typeof leaveSummarySchema>;

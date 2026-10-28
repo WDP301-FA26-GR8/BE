@@ -15,7 +15,6 @@ import { OnboardingFactsService } from './subscription/onboarding-facts.service'
 import { ApplicationLookupService } from './catalog-entry/application-lookup.service';
 import { PlanLookupService } from './plan/plan-lookup.service';
 import { SubscriptionLookupService } from './subscription/subscription-lookup.service';
-import { StandardToolsetService } from './standard-toolset/standard-toolset.service';
 import { SeatTargetService } from './subscription/seat-target.service';
 import { VendorLookupService } from './vendor/vendor-lookup.service';
 import {
@@ -33,7 +32,6 @@ export class CatalogService {
     private readonly seatTargets: SeatTargetService,
     private readonly onboarding: OnboardingFactsService,
     private readonly occupancy: SeatOccupancyRegistry,
-    private readonly toolsets: StandardToolsetService,
     private readonly plans: PlanLookupService,
     private readonly subscriptions: SubscriptionLookupService,
     private readonly vendors: VendorLookupService,
@@ -67,19 +65,17 @@ export class CatalogService {
     return this.onboarding.planSummaries(ids);
   }
 
-  /** Whether the standard toolset of the department and job title has the plan; false when that pair has none. */
-  isPlanInStandardToolset(departmentId: string, jobTitleId: string, planId: string, tx?: DbTx): Promise<boolean> {
-    return this.toolsets.includesPlan(departmentId, jobTitleId, planId, tx);
+  /**
+   * What a plan is bought at for a department (unit price and billing cycle), from the newest priced active subscription that
+   * department owns; null when it has none. The price of another department's subscription is never used (F38).
+   */
+  getPlanPrice(planId: string, ownerDepartmentId: string, tx?: DbTx) {
+    return this.subscriptions.priceOfPlan(planId, ownerDepartmentId, tx);
   }
 
-  /** The plans of the current standard toolset of the pair, one statement; empty when the pair has no toolset (`US-03-07`). */
-  getStandardToolsetPlanIds(departmentId: string, jobTitleId: string, tx?: DbTx): Promise<string[]> {
-    return this.toolsets.planIdsOf(departmentId, jobTitleId, tx);
-  }
-
-  /** What a plan is bought at (unit price and billing cycle), from its newest priced active subscription; null when none. */
-  getPlanPrice(planId: string, tx?: DbTx) {
-    return this.subscriptions.priceOfPlan(planId, tx);
+  /** The ids of every subscription and purchase a department owns, by id: for a module that finds what belongs to the department through them. */
+  getSubscriptionIdsOwnedBy(departmentId: string, tx?: DbTx): Promise<string[]> {
+    return this.subscriptions.idsOwnedBy(departmentId, tx);
   }
 
   /** The vendor of the application of the plan, null for internal software: whose tax profile estimates its price. */

@@ -5,6 +5,7 @@ import { DatabaseModule } from '../../infrastructure/database/database.module';
 import { AuditModule } from '../audit/audit.module';
 import { CatalogModule } from '../catalog/catalog.module';
 import { IdentityAccessFacadeModule } from '../identity-access/identity-access-facade.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 import { OperatingParametersModule } from '../operating-parameters/operating-parameters.module';
 import { OrganizationModule } from '../organization/organization.module';
 import { AssignmentEndService } from './assignment/assignment-end.service';
@@ -17,10 +18,7 @@ import { ServiceAccountDutiesController } from './assignment/service-account-dut
 import { ServiceAccountDutyRepo } from './assignment/service-account-duty.repo';
 import { ServiceAccountDutyService } from './assignment/service-account-duty.service';
 import { ServiceAccountDutySweeper } from './assignment/service-account-duty.sweeper';
-import { ServiceAccountMoveRepo } from './assignment/service-account-move.repo';
-import { ServiceAccountMoveService } from './assignment/service-account-move.service';
-import { ServiceAccountMoveViewService } from './assignment/service-account-move-view.service';
-import { ServiceAccountMovesController } from './assignment/service-account-moves.controller';
+import { AssignmentDepartmentRepo } from './assignment/assignment-department.repo';
 import { AssignmentRepo } from './assignment/assignment.repo';
 import { AssignmentSeatOccupancy } from './assignment/seat-occupancy.reader';
 import { AssignmentServiceAccountReader } from './assignment/service-account-reader';
@@ -66,6 +64,8 @@ import { ProvisioningTaskRepo } from './provisioning/provisioning-task.repo';
 import { ProvisioningTasksController } from './provisioning/provisioning-tasks.controller';
 import { RevocationTasksController } from './provisioning/revocation-tasks.controller';
 import { RegisteredGrantRequestGate } from './provisioning/registered-grant-request-gate.service';
+import { DepartmentOpenWorkReader } from './provisioning/department-open-work.reader';
+import { ProvisioningDepartmentUseRepo } from './provisioning/provisioning-department-use.repo';
 import { RegisteredRevocationHook } from './provisioning/registered-revocation-hook.service';
 import { RevocationCompletionService } from './provisioning/revocation-completion.service';
 import { OpenGrantTaskRepo } from './provisioning/open-grant-task.repo';
@@ -101,6 +101,7 @@ import { SeatBaselineService } from './seat-baseline/seat-baseline.service';
     OrganizationModule,
     CatalogModule,
     IdentityAccessFacadeModule,
+    NotificationsModule,
     OperatingParametersModule,
   ],
   controllers: [
@@ -108,7 +109,6 @@ import { SeatBaselineService } from './seat-baseline/seat-baseline.service';
     SubscriptionSeatsController,
     DepartmentToolsController,
     ServiceAccountDutiesController,
-    ServiceAccountMovesController,
     SeatBaselineController,
     ProvisioningTasksController,
     RevocationTasksController,
@@ -119,8 +119,11 @@ import { SeatBaselineService } from './seat-baseline/seat-baseline.service';
   ],
   providers: [
     AssignmentRepo,
+    AssignmentDepartmentRepo,
     AssignmentSeatOccupancy,
     AssignmentServiceAccountReader,
+    DepartmentOpenWorkReader,
+    ProvisioningDepartmentUseRepo,
     AssignmentService,
     AssignmentEndService,
     AssignmentFactsRepo,
@@ -128,9 +131,6 @@ import { SeatBaselineService } from './seat-baseline/seat-baseline.service';
     RegisteredRenewalHold,
     RegisteredResponsibleDeadline,
     AssignmentResponsibleService,
-    ServiceAccountMoveRepo,
-    ServiceAccountMoveService,
-    ServiceAccountMoveViewService,
     ServiceAccountDutyRepo,
     ServiceAccountDutyService,
     ServiceAccountDutySweeper,

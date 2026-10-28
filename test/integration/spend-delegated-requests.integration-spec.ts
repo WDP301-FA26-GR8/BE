@@ -11,8 +11,6 @@ interface RequestWire {
   beneficiary: { employeeId: string };
   delegatedBatchId: string | null;
   expectedEndDate: string | null;
-  outsideStandard: boolean;
-  outsideStandardReason: string | null;
   pricing: { status: string; amount: { amount: string } | null };
   needStep: { state: string; routingRow: number; assignee: { employeeId: string } | null };
   needDecision: { decision: string; decidedBy: { employeeId: string }; deciderRole: string; decidedAt: string } | null;
@@ -56,15 +54,9 @@ describe('a head sends requests for the people of the department over PostgreSQL
     return { ...person, code };
   };
   const send = (account: typeof h.finance, body: object) => h.sendDelegated(body, account);
-  const form = (
-    beneficiaries: string[],
-    plans: Array<string | { planId: string; outsideStandardReason?: string }>,
-    extra: object = {},
-  ) => ({
+  const form = (beneficiaries: string[], plans: Array<string | { planId: string }>, extra: object = {}) => ({
     beneficiaryEmployeeIds: beneficiaries,
-    items: plans.map((plan) =>
-      typeof plan === 'string' ? { planId: plan, outsideStandardReason: 'Not standard' } : plan,
-    ),
+    items: plans.map((plan) => (typeof plan === 'string' ? { planId: plan } : plan)),
     businessReason: 'The new designer needs the tools',
     termMonths: 6,
     ...extra,
@@ -275,25 +267,20 @@ describe('a head sends requests for the people of the department over PostgreSQL
     });
   });
 
-  describe('the standard toolset (AC-7)', () => {
-    it('needs a reason for a tool outside it, and flags the request when the reason is given', async () => {
+  describe('no standard toolset any more (QĐ-87h)', () => {
+    it('sends every tool without a reason of its own, shows no flag, and refuses the old field as a malformed body', async () => {
       const u = await unit();
       const n1 = await colleague(u);
-      await h.setToolset(u.department, [paidA]);
 
-      const inside = await sent(u.head.account, form([n1.employeeId], [{ planId: paidA }]));
-      expect(inside.requests[0]).toMatchObject({ outsideStandard: false, outsideStandardReason: null });
-
-      const refused = await send(u.head.account, form([n1.employeeId], [{ planId: paidB }])).expect(422);
-      expect(h.codeOf(refused)).toBe('ACCESS_REQUEST.OUTSIDE_STANDARD_REASON_REQUIRED');
-      const given = await sent(
+      const given = await sent(u.head.account, form([n1.employeeId], [{ planId: paidA }, { planId: paidB }]));
+      const old = await send(
         u.head.account,
-        form([n1.employeeId], [{ planId: paidB, outsideStandardReason: 'Needs it for GitHub work' }]),
+        form([n1.employeeId], [{ planId: paidB, outsideStandardReason: 'Needs it for GitHub work' } as never]),
       );
-      expect(given.requests[0]).toMatchObject({
-        outsideStandard: true,
-        outsideStandardReason: 'Needs it for GitHub work',
-      });
+
+      expect(given.requests).toHaveLength(2);
+      expect(Object.keys(given.requests[0])).not.toContain('outsideStandard');
+      expect([old.status, h.codeOf(old)]).toEqual([422, 'VALIDATION_ERROR']);
     });
   });
 
@@ -339,7 +326,7 @@ describe('a head sends requests for the people of the department over PostgreSQL
       const result = await sent(u.head.account, form([n1.employeeId], [internal]));
 
       const members = h.dataOf<{ items: Array<{ employeeCode: string }> }>(
-        await h.departmentEmployees(u.department.id, h.it1).expect(200),
+        await h.departmentEmployees(u.department.id, u.head.account).expect(200),
       );
       expect(members.items.map((item) => item.employeeCode)).toContain(n1.code);
       const early = await h.grant({ requestId: result.requests[0].id });
@@ -402,7 +389,8 @@ describe('a head sends requests for the people of the department over PostgreSQL
 
     it('gives the spend step to the substitute when the approver is the head who sent, and the approver decides nothing on it', async () => {
       const row = await h.ctx.sql.query<{ id: string; cost_center_id: string }>(
-        `SELECT id, cost_center_id FROM departments WHERE code = 'P-EXE'`,
+        `SELECT d.id, c.id AS cost_center_id FROM departments d
+           JOIN cost_centers c ON c.department_id = d.id AND c.status = 'ACTIVE' WHERE d.code = 'P-EXE'`,
       );
       const department = { id: row.rows[0].id, code: 'P-EXE', unitId: row.rows[0].cost_center_id };
       const executive = { department, head: h.boss, member: await h.staff(department, 'EXE-D7') };

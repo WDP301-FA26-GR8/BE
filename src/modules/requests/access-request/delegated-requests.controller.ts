@@ -51,8 +51,9 @@ export class DelegatedRequestsController {
     ...AUTH_ERRORS,
     {
       status: HttpStatus.FORBIDDEN,
-      description: 'The caller does not head the department (DELEGATED_REQUEST.NOT_HEAD).',
-      examples: [EXAMPLES.NOT_HEAD],
+      description:
+        'The caller does not head the department (DELEGATED_REQUEST.NOT_HEAD), or is the Super Admin, who sends no request (ACCESS_REQUEST.SUPER_ADMIN_CANNOT_REQUEST).',
+      examples: [EXAMPLES.NOT_HEAD, EXAMPLES.SUPER_ADMIN_CANNOT_REQUEST],
     },
     {
       status: HttpStatus.NOT_FOUND,
@@ -68,7 +69,7 @@ export class DelegatedRequestsController {
     {
       status: HttpStatus.UNPROCESSABLE_ENTITY,
       description:
-        'The form is invalid (VALIDATION_ERROR), a person is outside the department (DELEGATED_REQUEST.OUTSIDE_DEPARTMENT), has no work email (DELEGATED_REQUEST.EMAIL_REQUIRED), is a contractor, freelancer or intern without the day the access ends (DELEGATED_REQUEST.END_DATE_REQUIRED, DELEGATED_REQUEST.END_DATE_TOO_EARLY), a long term is not confirmed (DELEGATED_REQUEST.TERM_CONFIRMATION_REQUIRED) or a tool outside the standard toolset has no reason (ACCESS_REQUEST.OUTSIDE_STANDARD_REASON_REQUIRED).',
+        'The form is invalid (VALIDATION_ERROR), a person is outside the department (DELEGATED_REQUEST.OUTSIDE_DEPARTMENT), has no work email (DELEGATED_REQUEST.EMAIL_REQUIRED), is a contractor, freelancer or intern without the day the access ends (DELEGATED_REQUEST.END_DATE_REQUIRED, DELEGATED_REQUEST.END_DATE_TOO_EARLY), a long term is not confirmed (DELEGATED_REQUEST.TERM_CONFIRMATION_REQUIRED).',
       examples: [
         VALIDATION_EXAMPLE,
         EXAMPLES.OUTSIDE_DEPARTMENT,
@@ -76,7 +77,6 @@ export class DelegatedRequestsController {
         EXAMPLES.END_DATE_REQUIRED,
         EXAMPLES.END_DATE_TOO_EARLY,
         EXAMPLES.DELEGATED_TERM_CONFIRMATION_REQUIRED,
-        EXAMPLES.OUTSIDE_STANDARD_REASON_REQUIRED,
         EXAMPLES.NO_SPEND_FOR_FREE_SOFTWARE,
       ],
     },

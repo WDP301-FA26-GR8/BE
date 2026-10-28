@@ -50,6 +50,11 @@ export class ServiceAccountRequestsController {
   @ApiErrorResponses(
     ...AUTH_ERRORS,
     {
+      status: HttpStatus.FORBIDDEN,
+      description: 'The Super Admin sends no request (ACCESS_REQUEST.SUPER_ADMIN_CANNOT_REQUEST).',
+      examples: [SERVICE_ACCOUNT_ERROR_EXAMPLES.SUPER_ADMIN_CANNOT_REQUEST],
+    },
+    {
       status: HttpStatus.NOT_FOUND,
       description: 'The plan does not exist (ACCESS_REQUEST.PLAN_NOT_FOUND).',
       examples: [SERVICE_ACCOUNT_ERROR_EXAMPLES.PLAN_NOT_FOUND],
@@ -57,11 +62,12 @@ export class ServiceAccountRequestsController {
     {
       status: HttpStatus.CONFLICT,
       description:
-        'The seat baseline is not closed yet (SERVICE_ACCOUNT_REQUEST.BASELINE_NOT_CLOSED), the application of the plan is retired (ACCESS_REQUEST.APPLICATION_RETIRED) or the sender belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT). Nothing is written.',
+        'The seat baseline is not closed yet (SERVICE_ACCOUNT_REQUEST.BASELINE_NOT_CLOSED), the application of the plan is retired (ACCESS_REQUEST.APPLICATION_RETIRED) , the sender belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT) or the department has no Cost Center in use yet (FINANCE.SETUP_INCOMPLETE). Nothing is written.',
       examples: [
         SERVICE_ACCOUNT_ERROR_EXAMPLES.BASELINE_NOT_CLOSED,
         SERVICE_ACCOUNT_ERROR_EXAMPLES.APPLICATION_RETIRED,
         SERVICE_ACCOUNT_ERROR_EXAMPLES.NO_DEPARTMENT,
+        SERVICE_ACCOUNT_ERROR_EXAMPLES.FINANCE_SETUP_INCOMPLETE,
       ],
     },
     {

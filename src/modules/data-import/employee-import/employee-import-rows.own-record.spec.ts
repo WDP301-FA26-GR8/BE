@@ -1,8 +1,7 @@
 import { EmployeeImportLookup, EmployeeRowClassifier, ExistingEmployee } from './employee-import-rows';
 
 const lookup = (overrides: Partial<EmployeeImportLookup> = {}): EmployeeImportLookup => ({
-  departments: new Map([['P-DES', { id: 'd-des', active: true, costCenterActive: true }]]),
-  jobTitles: new Map([['designer', { id: 'j-des', name: 'Designer', status: 'ACTIVE' as const }]]),
+  departments: new Map([['P-DES', { id: 'd-des', active: true }]]),
   existing: new Map<string, ExistingEmployee>(),
   emailOwners: new Map<string, string>(),
   ...overrides,

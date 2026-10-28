@@ -22,7 +22,7 @@ describe('cell text (T-12)', () => {
       expect(clean(input)).toBe(display);
     });
 
-    it('looks a job title up by the same key as the catalogue', () => {
+    it('compares job titles by the display form in lower case', () => {
       expect(jobTitleKey(input)).toBe(comparison);
     });
   });
@@ -30,13 +30,10 @@ describe('cell text (T-12)', () => {
 
 const lookup = (overrides: Partial<EmployeeImportLookup> = {}): EmployeeImportLookup => ({
   departments: new Map([
-    ['P-DES', { id: 'd-des', active: true, costCenterActive: true }],
-    ['P-OLD', { id: 'd-old', active: false, costCenterActive: true }],
-    ['P-DEAD', { id: 'd-dead', active: true, costCenterActive: false }],
-  ]),
-  jobTitles: new Map([
-    ['designer', { id: 'j-des', name: 'Designer', status: 'ACTIVE' as const }],
-    ['intern', { id: 'j-int', name: 'Intern', status: 'INACTIVE' as const }],
+    ['P-DES', { id: 'd-des', active: true }],
+    ['P-OLD', { id: 'd-old', active: false }],
+    // A department with no Cost Center in use is a department like any other for a people file (`QĐ-87d(3)`, F44).
+    ['P-NOCC', { id: 'd-nocc', active: true }],
   ]),
   existing: new Map<string, ExistingEmployee>(),
   emailOwners: new Map<string, string>(),
@@ -79,13 +76,13 @@ describe('mapEmployeeColumns (US-02-02 AC-2)', () => {
     });
   });
 
-  it('names the columns that are missing: without a department or a job title the whole file is unusable', () => {
+  it('names the columns that are missing: without a department the whole file is unusable, and the job title is optional (QĐ-87e)', () => {
     const mapped = mapEmployeeColumns(['employee_code', 'full_name', 'employment_type', 'hire_date', 'work_email']);
 
-    expect(mapped.missing).toEqual(['department_code', 'job_title']);
+    expect(mapped.missing).toEqual(['department_code']);
   });
 
-  it('lets the work email column be absent, and lists the columns it does not know instead of using them', () => {
+  it('lets the work email and the job title columns be absent, and lists the columns it does not know instead of using them', () => {
     const mapped = mapEmployeeColumns([
       'employee_code',
       'full_name',
@@ -99,6 +96,9 @@ describe('mapEmployeeColumns (US-02-02 AC-2)', () => {
 
     expect(mapped.missing).toEqual([]);
     expect(mapped.ignored).toEqual(['manager', 'cost_center']);
+    expect(
+      mapEmployeeColumns(['employee_code', 'full_name', 'employment_type', 'hire_date', 'department_code']).missing,
+    ).toEqual([]);
   });
 
   it('counts a column named twice as missing nothing but ignores the second', () => {
@@ -130,39 +130,35 @@ describe('EmployeeRowClassifier', () => {
         employmentType: 'STAFF',
         hireDate: '2026-01-05',
         departmentId: 'd-des',
-        jobTitleId: 'j-des',
         departmentCode: 'P-DES',
         jobTitleName: 'Designer',
       },
     });
   });
 
-  it('reads the job title by name without case or stray spaces, and the employment type in any case', () => {
+  it('takes the job title as typed, with its stray spaces collapsed, and the employment type in any case', () => {
     const result = new EmployeeRowClassifier(lookup()).classify(
-      row({ job_title: '  DESIGNER ', employment_type: 'intern' }),
+      row({ job_title: '  Chief   Happiness  Officer ', employment_type: 'intern' }),
     );
 
-    expect(result).toMatchObject({ outcome: 'VALID', parsed: { jobTitleId: 'j-des', employmentType: 'INTERN' } });
+    expect(result).toMatchObject({
+      outcome: 'VALID',
+      parsed: { jobTitleName: 'Chief Happiness Officer', employmentType: 'INTERN' },
+    });
   });
 
-  it('reads the job title through Unicode spaces and decomposed accents, keeping the accents (T-12)', () => {
-    const titles = lookup({
-      jobTitles: new Map([
-        ['k\u1ebf to\u00e1n', { id: 'j-acc', name: 'K\u1ebf to\u00e1n', status: 'ACTIVE' as const }],
-      ]),
-    });
-
+  it('reads the job title through Unicode spaces and decomposed accents into its display form, keeping the accents (T-12)', () => {
     expect(
-      new EmployeeRowClassifier(titles).classify(
-        row({ job_title: '\u3000KE\u0302\u0301\u00a0\u00a0TOA\u0301N\ufeff' }),
-      ),
-    ).toMatchObject({
-      outcome: 'VALID',
-      parsed: { jobTitleId: 'j-acc', jobTitleName: 'K\u1ebf to\u00e1n' },
-    });
-    expect(new EmployeeRowClassifier(titles).classify(row({ job_title: 'Ke toan' })).errors).toEqual([
-      { column: 'job_title', code: 'JOB_TITLE_NOT_FOUND' },
-    ]);
+      new EmployeeRowClassifier(lookup()).classify(row({ job_title: '\u3000K\u1ebf\u00a0\u00a0TOA\u0301N\ufeff' })),
+    ).toMatchObject({ outcome: 'VALID', parsed: { jobTitleName: 'K\u1ebf TO\u00c1N' } });
+  });
+
+  it('refuses a job title longer than 255 characters, counted after the display form is made', () => {
+    const fits = new EmployeeRowClassifier(lookup()).classify(row({ job_title: ` ${'x'.repeat(255)} ` }));
+    const tooLong = new EmployeeRowClassifier(lookup()).classify(row({ job_title: 'x'.repeat(256) }));
+
+    expect(fits.outcome).toBe('VALID');
+    expect(tooLong).toMatchObject({ outcome: 'ERROR', errors: [{ column: 'job_title', code: 'JOB_TITLE_TOO_LONG' }] });
   });
 
   it.each([
@@ -176,10 +172,7 @@ describe('EmployeeRowClassifier', () => {
     ['department_code', '', 'DEPARTMENT_REQUIRED'],
     ['department_code', 'P-XYZ', 'DEPARTMENT_NOT_FOUND'],
     ['department_code', 'P-OLD', 'DEPARTMENT_INACTIVE'],
-    ['department_code', 'P-DEAD', 'DEPARTMENT_COST_CENTER_INACTIVE'],
-    ['job_title', '', 'JOB_TITLE_REQUIRED'],
-    ['job_title', 'Desginer', 'JOB_TITLE_NOT_FOUND'],
-    ['job_title', 'Intern', 'JOB_TITLE_INACTIVE'],
+    ['job_title', 'x'.repeat(256), 'JOB_TITLE_TOO_LONG'],
   ])('refuses a new person whose %s is %j with %s, naming the column (US-02-03)', (column, value, code) => {
     const result = new EmployeeRowClassifier(lookup()).classify(row({ [column]: value }));
 
@@ -189,14 +182,26 @@ describe('EmployeeRowClassifier', () => {
 
   it('reports every problem of one row at once', () => {
     const result = new EmployeeRowClassifier(lookup()).classify(
-      row({ department_code: '', job_title: 'Desginer', hire_date: 'x' }),
+      row({ department_code: '', job_title: 'x'.repeat(256), hire_date: 'x' }),
     );
 
     expect(result.errors).toEqual([
       { column: 'hire_date', code: 'HIRE_DATE_INVALID' },
       { column: 'department_code', code: 'DEPARTMENT_REQUIRED' },
-      { column: 'job_title', code: 'JOB_TITLE_NOT_FOUND' },
+      { column: 'job_title', code: 'JOB_TITLE_TOO_LONG' },
     ]);
+  });
+
+  it('lets a person with no job title in: the title is optional free text and a blank cell is not an error (QĐ-87e)', () => {
+    const result = new EmployeeRowClassifier(lookup()).classify(row({ job_title: '' }));
+
+    expect(result).toMatchObject({ outcome: 'VALID', errors: [], parsed: { jobTitleName: null } });
+  });
+
+  it('lets a person in a department with no Cost Center in (QĐ-87d(3), F44: no DEPARTMENT_COST_CENTER_INACTIVE)', () => {
+    const result = new EmployeeRowClassifier(lookup()).classify(row({ department_code: 'P-NOCC' }));
+
+    expect(result).toMatchObject({ outcome: 'VALID', parsed: { departmentId: 'd-nocc' } });
   });
 
   it('lets a person with no work email in (the record is kept, requests are refused later)', () => {
@@ -308,7 +313,6 @@ describe('judging the rows of a preview again (US-02-01 AC-9)', () => {
       ]),
     ).toEqual({
       departmentCodes: ['P-OPS'],
-      normalizedJobTitleNames: ['senior designer'],
       employeeCodes: ['N-1'],
       normalizedEmails: ['a@acme.vn'],
     });
@@ -316,24 +320,21 @@ describe('judging the rows of a preview again (US-02-01 AC-9)', () => {
 
   it('keys what the organization answered the way the classifier reads it', () => {
     const lookup = toEmployeeImportLookup({
-      departments: [{ id: 'd1', code: 'P-OPS', active: true, costCenterActive: true }],
-      jobTitles: [{ id: 'j1', name: 'Designer', normalizedName: 'designer', status: 'ACTIVE' }],
+      departments: [{ id: 'd1', code: 'P-OPS', active: true }],
       employees: [],
       emailOwners: [{ normalizedEmail: 'a@acme.vn', employeeCode: 'E1' }],
     });
 
     expect(lookup.departments.get('P-OPS')?.id).toBe('d1');
-    expect(lookup.jobTitles.get('designer')?.id).toBe('j1');
     expect(lookup.emailOwners.get('a@acme.vn')).toBe('E1');
   });
 
   it('locks only what the valid rows use, each once', () => {
     const lookup = toEmployeeImportLookup({
       departments: [
-        { id: 'd1', code: 'P-OPS', active: true, costCenterActive: true },
-        { id: 'd2', code: 'P-DES', active: true, costCenterActive: true },
+        { id: 'd1', code: 'P-OPS', active: true },
+        { id: 'd2', code: 'P-DES', active: true },
       ],
-      jobTitles: [{ id: 'j1', name: 'Designer', normalizedName: 'designer', status: 'ACTIVE' }],
       employees: [],
       emailOwners: [],
     });
@@ -347,7 +348,7 @@ describe('judging the rows of a preview again (US-02-01 AC-9)', () => {
         ],
         lookup,
       ),
-    ).toEqual({ departmentIds: ['d1'], jobTitleIds: ['j1'] });
+    ).toEqual({ departmentIds: ['d1'] });
   });
 
   it('compares a judgement whatever order its keys came back in, but keeps the order of its reasons', () => {
@@ -355,7 +356,7 @@ describe('judging the rows of a preview again (US-02-01 AC-9)', () => {
       outcome: 'ERROR' as const,
       errors: [
         { code: 'HIRE_DATE_INVALID', column: 'hire_date' },
-        { code: 'JOB_TITLE_NOT_FOUND', column: 'job_title' },
+        { code: 'JOB_TITLE_TOO_LONG', column: 'job_title' },
       ],
       differences: null,
     };
@@ -363,7 +364,7 @@ describe('judging the rows of a preview again (US-02-01 AC-9)', () => {
       outcome: 'ERROR' as const,
       errors: [
         { column: 'hire_date', code: 'HIRE_DATE_INVALID' },
-        { column: 'job_title', code: 'JOB_TITLE_NOT_FOUND' },
+        { column: 'job_title', code: 'JOB_TITLE_TOO_LONG' },
       ],
     };
 

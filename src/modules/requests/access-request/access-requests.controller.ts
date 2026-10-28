@@ -19,8 +19,11 @@ import {
   SubmitBodyDto,
   WithdrawBodyDto,
 } from './access-request.dto';
+import { AccessRequestOrDraftResponseDto } from './request-draft.dto';
 import { PreviewBodyDto, PreviewResponseDto } from './request-preview.dto';
+import { RequestDraftService } from './request-draft.service';
 import { RequestPreviewService } from './request-preview.service';
+import { AccessRequestNotFoundError } from './access-request.errors';
 import { ACCESS_REQUEST_ERROR_EXAMPLES as EXAMPLES, toAccessRequestApiException } from './access-request.http-errors';
 import { AccessRequestQueryService } from './access-request-query.service';
 import { toWire } from './access-request.wire';
@@ -56,6 +59,7 @@ export class AccessRequestsController {
     private readonly decisions: NeedDecisionService,
     private readonly similarSeats: SimilarSeatsService,
     private readonly withdrawals: WithdrawalService,
+    private readonly drafts: RequestDraftService,
   ) {}
 
   @Post()
@@ -69,18 +73,28 @@ export class AccessRequestsController {
   })
   @ApiErrorResponses(
     ...AUTH_ERRORS,
+    {
+      status: HttpStatus.FORBIDDEN,
+      description: 'The Super Admin sends no request (ACCESS_REQUEST.SUPER_ADMIN_CANNOT_REQUEST).',
+      examples: [EXAMPLES.SUPER_ADMIN_CANNOT_REQUEST],
+    },
     PLAN_NOT_FOUND,
     {
       status: HttpStatus.CONFLICT,
       description:
-        'The application of the plan is retired (ACCESS_REQUEST.APPLICATION_RETIRED), the sender belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT) or already holds a seat of the plan (ACCESS_REQUEST.ALREADY_HOLDS_ACCESS, with the seat in details).',
-      examples: [EXAMPLES.APPLICATION_RETIRED, EXAMPLES.NO_DEPARTMENT, EXAMPLES.ALREADY_HOLDS_ACCESS],
+        'The application of the plan is retired (ACCESS_REQUEST.APPLICATION_RETIRED), the sender belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT), the department has no Cost Center in use yet (FINANCE.SETUP_INCOMPLETE) or the sender already holds a seat of the plan (ACCESS_REQUEST.ALREADY_HOLDS_ACCESS, with the seat in details).',
+      examples: [
+        EXAMPLES.APPLICATION_RETIRED,
+        EXAMPLES.NO_DEPARTMENT,
+        EXAMPLES.FINANCE_SETUP_INCOMPLETE,
+        EXAMPLES.ALREADY_HOLDS_ACCESS,
+      ],
     },
     {
       status: HttpStatus.UNPROCESSABLE_ENTITY,
       description:
-        'The form is incomplete or invalid (VALIDATION_ERROR): the reason and the term are required; a tool outside the standard toolset needs its reason (ACCESS_REQUEST.OUTSIDE_STANDARD_REASON_REQUIRED). Nothing is written.',
-      examples: [VALIDATION_EXAMPLE, EXAMPLES.OUTSIDE_STANDARD_REASON_REQUIRED, EXAMPLES.NO_SPEND_FOR_FREE_SOFTWARE],
+        'The form is incomplete or invalid (VALIDATION_ERROR): the reason and the term are required. Nothing is written.',
+      examples: [VALIDATION_EXAMPLE, EXAMPLES.NO_SPEND_FOR_FREE_SOFTWARE],
     },
   )
   async submit(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Body() body: SubmitBodyDto) {
@@ -99,7 +113,7 @@ export class AccessRequestsController {
   @ApiSuccessResponse(PreviewResponseDto, {
     message: 'ACCESS_REQUEST.PREVIEWED',
     description:
-      'What sending the request would fix, without writing anything: the cost with its estimated tax (labelled as an estimate), the chain of people who decide it with the time each step may take, whether the plan is outside the standard toolset of the sender, the seat the sender already holds of it, and whether the request can go on to be decided as spend. There is no budget figure and no field to give an amount.',
+      'What sending the request would fix, without writing anything: the cost with its estimated tax (labelled as an estimate), the chain of people who decide it with the time each step may take, the seat the sender already holds of it, and whether the request can go on to be decided as spend. There is no budget figure and no field to give an amount.',
   })
   @ApiErrorResponses(
     ...AUTH_ERRORS,
@@ -107,8 +121,8 @@ export class AccessRequestsController {
     {
       status: HttpStatus.CONFLICT,
       description:
-        'The application of the plan is retired (ACCESS_REQUEST.APPLICATION_RETIRED) or the caller belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT).',
-      examples: [EXAMPLES.APPLICATION_RETIRED, EXAMPLES.NO_DEPARTMENT],
+        'The application of the plan is retired (ACCESS_REQUEST.APPLICATION_RETIRED), the caller belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT) or the department has no Cost Center in use yet (FINANCE.SETUP_INCOMPLETE).',
+      examples: [EXAMPLES.APPLICATION_RETIRED, EXAMPLES.NO_DEPARTMENT, EXAMPLES.FINANCE_SETUP_INCOMPLETE],
     },
     {
       status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -128,10 +142,10 @@ export class AccessRequestsController {
   @Get(':id')
   @AuthenticatedOnly()
   @ApiOperation({ operationId: 'accessRequestGet', summary: 'Get a request for access to software' })
-  @ApiSuccessResponse(AccessRequestResponseDto, {
+  @ApiSuccessResponse(AccessRequestOrDraftResponseDto, {
     message: 'ACCESS_REQUEST.FETCHED',
     description:
-      'The request with the person who holds its need step, the row of the routing table that named them (or why nobody holds it) and whether the same person also holds the spend step. Only the sender, the person it is for, the person who holds the step and an IT Admin read it.',
+      'The request with the person who holds its need step, the row of the routing table that named them (or why nobody holds it) and whether the same person also holds the spend step. Only the sender, the person it is for, the person who holds the step and an IT Admin read it. The person who saved a draft reads it here too, as `draft` instead of `request`: a draft is not a request yet, so it has no price, step or Cost Center, and nobody else reads it (the id of a draft that is owned by somebody else answers as one that does not exist).',
   })
   @ApiErrorResponses(...AUTH_ERRORS, NOT_FOUND, {
     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -140,9 +154,25 @@ export class AccessRequestsController {
   })
   async get(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Param() params: RequestIdParamDto) {
     try {
-      return { request: toWire(await this.queries.get(actor, params.id)) };
+      return await this.requestOrOwnDraft(actor, params.id);
     } catch (error) {
       throw toAccessRequestApiException(error);
+    }
+  }
+
+  /**
+   * The request when the caller may see it; else their own draft with that id (spec L.1, F92); else the answer of a request that does
+   * not exist. Only the miss reaches for the draft, so reading a request that was sent costs what it always did.
+   */
+  private async requestOrOwnDraft(actor: AuthenticatedPrincipal, id: string) {
+    try {
+      return { request: toWire(await this.queries.get(actor, id)) };
+    } catch (error) {
+      if (!(error instanceof AccessRequestNotFoundError)) throw error;
+      const draft = await this.drafts.readOwn(actor, id);
+      if (draft === null) throw error;
+
+      return { draft };
     }
   }
 

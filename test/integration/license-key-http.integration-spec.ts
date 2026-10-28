@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import request from 'supertest';
 import { ApiAccount } from '../support/api-accounts';
+import { HR_BASIS } from '../support/hr-basis';
 import { ProvisioningHarness } from '../support/provisioning-harness';
 
 const h = new ProvisioningHarness();
@@ -76,8 +77,9 @@ describe('the vault of license keys over HTTP (integration, real PostgreSQL)', (
     head = await h.account('E-HEAD', headId, []);
     await request(h.server())
       .post(`/api/v1/departments/${department.id}/head-assignments`)
-      .set(h.as(h.it1))
-      .send({ employeeId: headId, effectiveFrom: h.today() })
+      // The head of a department is named by the Super Admin (QĐ-87).
+      .set({ Authorization: `Bearer ${h.admin}` })
+      .send({ employeeId: headId, effectiveFrom: h.today(), hrBasis: HR_BASIS })
       .expect(200);
     superAdmin = { ...h.it1, accessToken: h.admin };
   }, 300000);
@@ -374,6 +376,7 @@ describe('the vault of license keys over HTTP (integration, real PostgreSQL)', (
         .post('/api/v1/subscriptions')
         .set(h.as(h.it1))
         .send({
+          ownerDepartmentId: h.seed.departmentId,
           planId,
           kind: 'PERPETUAL',
           purchasedQuantity: 3,
@@ -386,6 +389,22 @@ describe('the vault of license keys over HTTP (integration, real PostgreSQL)', (
       imported: 3,
       summary: { purchased: 3, usableKeys: 3, capacity: 3, warning: null },
     });
+  });
+
+  it('F23, US-04-01 AC-9: refuses to enter a key for a purchase whose application is retired: 422 LICENSE_KEY.APPLICATION_RETIRED, nothing is kept', async () => {
+    const subscriptionId = await h.subscription(5, 'K4');
+    await imported(subscriptionId, keys(2, 'LIVE'));
+    await h.ctx.sql.query(
+      `UPDATE applications SET catalog_status = 'RETIRED', retired_at = now()
+        WHERE id = (SELECT p.application_id FROM plans p JOIN subscriptions s ON s.plan_id = p.id WHERE s.id = $1)`,
+      [subscriptionId],
+    );
+    const before = await keyCount();
+
+    const refused = await importKeys(subscriptionId, keys(3, 'GONE')).expect(422);
+
+    expect(h.codeOf(refused)).toBe('LICENSE_KEY.APPLICATION_RETIRED');
+    expect(await keyCount()).toBe(before);
   });
 
   it('US-04-12 AC-10: a purchase that does not exist is not found, for an import and for a list', async () => {

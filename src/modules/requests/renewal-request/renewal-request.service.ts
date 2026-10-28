@@ -9,6 +9,8 @@ import type { AssignmentFacts } from '../../licensing/licensing-renewal.types';
 import { OrganizationService } from '../../organization/organization.service';
 import { accessRequestAuditEvent } from '../access-request/access-request-audit-event';
 import { TERM_MONTHS_MAX } from '../access-request/access-request.dto';
+import { AccessRequestSuperAdminCannotRequestError } from '../access-request/access-request.errors';
+import { mayRequest } from '../access-request/access-request.policy';
 import { AccessRequestRepo } from '../access-request/access-request.repo';
 import type { AccessRequestRecord } from '../access-request/access-request.types';
 import { AccessRequestService } from '../access-request/access-request.service';
@@ -57,9 +59,11 @@ export class RenewalRequestService {
 
   /**
    * Throws RenewalRequestRefusedError and the errors of sending a request (the plan or its application, the department, the seat
-   * the person already holds, the reason of a tool outside the standard toolset).
+   * the person already holds).
    */
   async submit(actor: AuthenticatedPrincipal, body: RenewalBodyDto): Promise<RenewalSubmitted> {
+    // The Super Admin sends no request, a renewal included (F30).
+    if (!mayRequest(actor.roles)) throw new AccessRequestSuperAdminCannotRequestError();
     const settings = await this.assessment.settings();
 
     return this.runner.run(async (tx) => {
@@ -133,7 +137,6 @@ export class RenewalRequestService {
         businessReason: body.businessReason,
         termMonths,
         ...(body.projectLabel === undefined ? {} : { projectLabel: body.projectLabel }),
-        ...(body.outsideStandardReason === undefined ? {} : { outsideStandardReason: body.outsideStandardReason }),
         ...(body.expectedSpendOn === undefined ? {} : { expectedSpendOn: body.expectedSpendOn }),
       },
       input.settings,
@@ -205,12 +208,10 @@ export class RenewalRequestService {
       requesterEmployeeId: actor.employeeId,
       beneficiaryEmployeeIds: [facts.employeeId],
       departmentId: unit.departmentId,
-      costCenterId: unit.costCenter.id,
+      costCenterId: unit.costCenter?.id ?? null,
       businessReason: body.businessReason,
       termMonths,
       projectLabel: body.projectLabel ?? null,
-      outsideStandardReason: null,
-      outsideStandard: assessed.outsideStandard,
       pricing,
       policy,
       expectedEndDate: newEnd,

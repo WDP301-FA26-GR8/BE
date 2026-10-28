@@ -162,7 +162,6 @@ const approvalDetailSchema = z.strictObject({
     budgetYear: z.number().int().nullable(),
     offPlan: z.boolean(),
     planLineAttached: z.boolean(),
-    outsideStandard: z.boolean(),
   }),
   /** The need the head confirmed. */
   need: z
@@ -188,6 +187,8 @@ const resultSchema = z.strictObject({
       'GROUP_NEEDS_LINES',
       'NOT_THE_ASSIGNEE',
       'OWN_REQUEST',
+      /** The approver completed the review of Finance of this request: the two are two people (`SoD-8`). */
+      'REVIEWER_IS_APPROVER',
       'STEP_NOT_PENDING',
       'NO_SPEND_STEP',
       'OVERRIDE_REQUIRED',

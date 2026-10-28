@@ -49,7 +49,12 @@ export function mapSeatColumns(header: readonly string[]): MappedSeatColumns {
 
 /** What the database says about the people and the Cost Centers the file names, and about the seats already kept. */
 export interface SeatFacts {
-  target: { kind: 'SUBSCRIPTION' | 'PLAN'; purchasedQuantity: number | null };
+  target: {
+    kind: 'SUBSCRIPTION' | 'PLAN';
+    purchasedQuantity: number | null;
+    /** The department that owns the subscription (`QĐ-89a`); null only for an internal plan, which has no subscription. */
+    ownerDepartmentId?: string | null;
+  };
   recordedOn: BusinessDate;
   /** By employee code. */
   employees: ReadonlyMap<
@@ -60,7 +65,7 @@ export interface SeatFacts {
       employmentType: string;
       hireDate: BusinessDate;
       /** The department the person is in on `recordedOn` and its Unit; null when they are in none. */
-      owningUnit?: { departmentId: string; costCenter: { id: string; code: string; status: string } } | null;
+      owningUnit?: { departmentId: string; costCenter: { id: string; code: string; status: string } | null } | null;
     }
   >;
   /** By Cost Center code. */
@@ -186,15 +191,23 @@ function judgeAlone(cells: SeatCells, facts: SeatFacts): { errors: SeatRowErrorC
     if (costCenterCode !== '') {
       const named = facts.costCenters.get(costCenterCode);
       if (!named) errors.push('COST_CENTER_NOT_FOUND');
-      else if (unit && named.id !== unit.costCenter.id) errors.push('COST_CENTER_NOT_OWNING_UNIT');
+      else if (unit && named.id !== unit.costCenter?.id) errors.push('COST_CENTER_NOT_OWNING_UNIT');
     }
     if (unit) {
-      if (unit.costCenter.status !== 'ACTIVE') errors.push('COST_CENTER_INACTIVE');
-      costCenterId = unit.costCenter.id;
+      // A department that has no Cost Center in use yet (`QĐ-87d(1)`) has nothing to charge the account to: the same refusal
+      // as a Unit that was retired.
+      if (!unit.costCenter || unit.costCenter.status !== 'ACTIVE') errors.push('COST_CENTER_INACTIVE');
+      // A service account of one department does not sit on the subscription of another (`QĐ-89a`, F20).
+      const owner = facts.target.ownerDepartmentId ?? null;
+      if (owner !== null && owner !== unit.departmentId) errors.push('SUBSCRIPTION_DEPARTMENT_MISMATCH');
+      costCenterId = unit.costCenter?.id ?? null;
       owningDepartmentId = unit.departmentId;
     }
-  } else if (kind === 'PERSONAL' && costCenterCode !== '') {
-    errors.push('COST_CENTER_NOT_ALLOWED');
+  } else if (kind === 'PERSONAL') {
+    if (costCenterCode !== '') errors.push('COST_CENTER_NOT_ALLOWED');
+    // A personal seat is written on the subscription of its owner department whatever department the person is in; when they are in
+    // another one, closing the baseline opens the review of their own head (F21, `QĐ-89e`).
+    owningDepartmentId = facts.target.ownerDepartmentId ?? null;
   }
 
   if (errors.length > 0 || kind === null || !employee) return { errors, parsed: null };

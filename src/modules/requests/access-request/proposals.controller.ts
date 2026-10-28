@@ -82,9 +82,15 @@ export class ProposalsController {
   @ApiErrorResponses(
     ...AUTH_ERRORS,
     {
+      status: HttpStatus.FORBIDDEN,
+      description: 'The Super Admin sends no request (ACCESS_REQUEST.SUPER_ADMIN_CANNOT_REQUEST).',
+      examples: [EXAMPLES.SUPER_ADMIN_CANNOT_REQUEST],
+    },
+    {
       status: HttpStatus.CONFLICT,
-      description: 'The sender belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT).',
-      examples: [EXAMPLES.NO_DEPARTMENT],
+      description:
+        'The sender belongs to no department (ACCESS_REQUEST.NO_DEPARTMENT) or the department has no Cost Center in use yet (FINANCE.SETUP_INCOMPLETE).',
+      examples: [EXAMPLES.NO_DEPARTMENT, EXAMPLES.FINANCE_SETUP_INCOMPLETE],
     },
     {
       status: HttpStatus.UNPROCESSABLE_ENTITY,
