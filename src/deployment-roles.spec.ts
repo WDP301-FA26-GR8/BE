@@ -171,7 +171,7 @@ describe('production PostgreSQL identities (H7: F-15, DB-04, Q9)', () => {
     });
 
     it('checks readiness with bounded defaults that the workflow does not override (H7-OPS-RV-04)', () => {
-      expect(hostScript).toMatch(/^READY_TIMEOUT=120$/m);
+      expect(hostScript).toMatch(/^READY_TIMEOUT=300$/m);
       expect(hostScript).toMatch(/^STABILITY_WINDOW=20$/m);
       expect(hostScript).toMatch(/^POLL_INTERVAL=2$/m);
       // The one bounded attempt to return the containers to the previous image (H7-OPS-RV-02) keeps its 300 s.
