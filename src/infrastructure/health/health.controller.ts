@@ -1,4 +1,4 @@
-import { Controller, Get, HttpStatus, Logger, ServiceUnavailableException } from '@nestjs/common';
+import { Controller, Get, HttpStatus, ServiceUnavailableException } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { HealthCheckService, PrismaHealthIndicator } from '@nestjs/terminus';
 import { z } from 'zod';
@@ -19,7 +19,7 @@ const ReadinessDataSchema = z.strictObject({
 });
 class ReadinessResponseDto extends createZodDto(successEnvelopeSchema(ReadinessDataSchema)) {}
 
-const READINESS_TIMEOUT_MS = 5_000;
+const READINESS_TIMEOUT_MS = 1_500;
 
 /** The readiness answer when the database does not reply; the document shows exactly this body. */
 const DEPENDENCY_UNAVAILABLE = Object.freeze({
@@ -28,8 +28,6 @@ const DEPENDENCY_UNAVAILABLE = Object.freeze({
 });
 /** Any other failure reaches the filter as an unexpected error. */
 const CHECK_FAILED_EXAMPLE = fallbackExample(HttpStatus.INTERNAL_SERVER_ERROR);
-
-const logger = new Logger('HealthController');
 
 @ApiTags('health')
 @Controller({ path: 'health', version: '1' })
@@ -82,10 +80,6 @@ export class HealthController {
         () => this.prismaHealth.pingCheck('database', this.prisma, { timeout: READINESS_TIMEOUT_MS }),
       ]);
     } catch (error) {
-      logger.error('Readiness check failed', error instanceof Error ? error.stack : String(error));
-      if (error && typeof error === 'object' && 'response' in error) {
-        logger.error(`Readiness details: ${JSON.stringify((error as { response: unknown }).response)}`);
-      }
       // Terminus reports a failed check as a bare 503; give it the availability code of the contract (R-12).
       if (!(error instanceof ServiceUnavailableException)) throw error;
       throw new ApiException(HttpStatus.SERVICE_UNAVAILABLE, DEPENDENCY_UNAVAILABLE);

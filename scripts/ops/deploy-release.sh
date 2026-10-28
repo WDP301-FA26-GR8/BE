@@ -236,8 +236,8 @@ echo "🔐 ops:db-roles reconcile (deploy role)..."
 candidate run --rm --no-deps migrate node dist/database-roles-cli.js reconcile ||
   fail 'ops:db-roles reconcile failed or the role matrix does not hold; the live configuration and the running containers are unchanged.'
 
-# The readiness of the API from inside its container (no published port): its real endpoint, 2xx only, at most 10 s.
-READY_PROBE='fetch("http://127.0.0.1:"+(process.env.PORT||3000)+"/"+(process.env.API_PREFIX||"api")+"/v1/health/ready",{signal:AbortSignal.timeout(10000)}).then(r=>r.ok?process.exit(0):r.text().then(t=>{console.error("HTTP "+r.status+": "+t);process.exit(r.ok?0:1)}),e=>{console.error("fetch failed: "+e.message);process.exit(1)})'
+# The readiness of the API from inside its container (no published port): its real endpoint, 2xx only, at most 5 s.
+READY_PROBE='fetch("http://127.0.0.1:"+(process.env.PORT||3000)+"/"+(process.env.API_PREFIX||"api")+"/v1/health/ready",{signal:AbortSignal.timeout(5000)}).then(r=>process.exit(r.ok?0:1),()=>process.exit(1))'
 # Compose and Docker reads of the live release, each bounded so that no look can hang.
 live_ps() { CADDYFILE_PATH="$APP_DIR/Caddyfile" timeout 30 docker compose --project-directory "$APP_DIR" -f "$APP_DIR/docker-compose.prod.yml" ps -a -q "$1"; }
 
@@ -293,9 +293,8 @@ look() {
     [ "$service" = api ] && api="$ids"
     snapshot="$snapshot $service=$ids#$restarts"
   done
-  local probe_err=''
-  if ! probe_err="$(timeout 15 docker exec "$api" node -e "$READY_PROBE" 2>&1)"; then
-    echo "api: its readiness endpoint did not answer 2xx (${probe_err:-no output})"
+  if ! timeout 15 docker exec "$api" node -e "$READY_PROBE" > /dev/null 2>&1; then
+    echo 'api: its readiness endpoint did not answer 2xx'
     return 1
   fi
   echo "${snapshot# }"
