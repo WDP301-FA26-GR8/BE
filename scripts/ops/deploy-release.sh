@@ -56,7 +56,7 @@ ATTEMPT=''
 FIRST_ROLLOUT_ENV=''
 # Bounded readiness (H7-OPS-RV-04): wait at most READY_TIMEOUT seconds for the release to answer ready, then watch it for
 # STABILITY_WINDOW seconds, looking every POLL_INTERVAL seconds. The workflow uses these defaults.
-READY_TIMEOUT=120
+READY_TIMEOUT=300
 STABILITY_WINDOW=20
 POLL_INTERVAL=2
 while [ "$#" -gt 0 ]; do
