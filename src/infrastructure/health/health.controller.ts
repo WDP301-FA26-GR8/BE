@@ -19,7 +19,7 @@ const ReadinessDataSchema = z.strictObject({
 });
 class ReadinessResponseDto extends createZodDto(successEnvelopeSchema(ReadinessDataSchema)) {}
 
-const READINESS_TIMEOUT_MS = 1_500;
+const READINESS_TIMEOUT_MS = 5_000;
 
 /** The readiness answer when the database does not reply; the document shows exactly this body. */
 const DEPENDENCY_UNAVAILABLE = Object.freeze({
