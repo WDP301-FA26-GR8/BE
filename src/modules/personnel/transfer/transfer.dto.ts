@@ -21,10 +21,10 @@ const successorBodySchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('NONE') }),
 ]);
 
+/** A transfer changes the department only (`QĐ-87e`): a body that names a job title is a malformed body. */
 const recordBodySchema = z.strictObject({
   employeeId: z.uuid(),
-  toDepartmentId: z.uuid().optional(),
-  toJobTitleId: z.uuid().optional(),
+  toDepartmentId: z.uuid(),
   effectiveOn: businessDate,
   grounds: groundsBodySchema.optional(),
   successor: successorBodySchema.optional(),
@@ -67,8 +67,7 @@ const pagination = z.strictObject({
 
 const employeeBrief = z.strictObject({ id: z.uuid(), employeeCode: z.string(), fullName: z.string() });
 const departmentBrief = z.strictObject({ id: z.uuid(), code: z.string(), name: z.string() });
-const jobTitleBrief = z.strictObject({ id: z.uuid(), name: z.string() });
-const place = z.strictObject({ department: departmentBrief, jobTitle: jobTitleBrief });
+const place = z.strictObject({ department: departmentBrief });
 const groundsSchema = z.strictObject({
   type: z.string(),
   reference: z.string(),
@@ -76,27 +75,35 @@ const groundsSchema = z.strictObject({
   issuedOn: z.string(),
 });
 
-/** The row of the list: who, what changes, from where to where, when, and where it stands. */
+/** The row of the list: who, from where to where, when, and where it stands. */
 export const transferSummarySchema = z.strictObject({
   id: z.uuid(),
   employee: employeeBrief,
-  changes: z.enum(['DEPARTMENT', 'JOB_TITLE', 'DEPARTMENT_AND_JOB_TITLE']),
   from: place,
   to: place,
   effectiveOn: z.string(),
   status: z.enum(['PENDING', 'EFFECTIVE', 'CANCELLED']),
-  selfExecuted: z.boolean(),
 });
 
 export const transferDetailSchema = transferSummarySchema.extend({
-  grounds: groundsSchema,
-  /** Who follows the head of the old department; null when the person did not head the department they leave. */
+  /** The basis of the transfer. Null in the minimal projection an IT Admin reads (F12). */
+  grounds: groundsSchema.nullable(),
+  /** Who follows the head of the old department; null when the person did not head the department they leave, and in the minimal projection. */
   headSuccessor: z.strictObject({ kind: z.enum(['EMPLOYEE', 'NONE']), employee: employeeBrief.nullable() }).nullable(),
-  recordedByAppUserId: z.uuid(),
+  /** The account that recorded it; null when the controlled procedure did (`recordedByProcedure`, spec L.2). */
+  recordedByAppUserId: z.uuid().nullable(),
+  /** True when the event was recorded by the controlled procedure `pnpm ops:record-super-admin-event` and not by an account. */
+  recordedByProcedure: z.boolean(),
   recordedAt: z.iso.datetime(),
   effectiveAt: z.iso.datetime().nullable(),
+  /** How it was cancelled; null while it was not, and in the minimal projection. */
   cancellation: z
-    .strictObject({ cancelledAt: z.iso.datetime(), cancelledByAppUserId: z.uuid(), reason: z.string() })
+    .strictObject({
+      cancelledAt: z.iso.datetime(),
+      cancelledByAppUserId: z.uuid().nullable(),
+      cancelledByProcedure: z.boolean(),
+      reason: z.string(),
+    })
     .nullable(),
   /** Set when the IT Admin closed the transfer after the people who answer for the service accounts of the person were named. */
   closure: z.strictObject({ closedAt: z.iso.datetime(), closedByAppUserId: z.uuid() }).nullable(),
@@ -117,7 +124,9 @@ const changeSchema = z.strictObject({
   newEffectiveOn: z.string().nullable(),
   reason: z.string(),
   grounds: groundsSchema,
-  changedByAppUserId: z.uuid(),
+  /** The account that changed it; null when the controlled procedure did (`changedByProcedure`, spec L.2). */
+  changedByAppUserId: z.uuid().nullable(),
+  changedByProcedure: z.boolean(),
   changedAt: z.iso.datetime(),
 });
 

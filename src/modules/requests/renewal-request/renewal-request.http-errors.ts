@@ -1,12 +1,13 @@
 import { HttpStatus } from '@nestjs/common';
 import { ApiException } from '../../../infrastructure/http/errors/api.exception';
 import { errorExampleOf } from '../../../infrastructure/http/openapi-error-examples';
+import { FinanceSetupIncompleteError } from '../../organization/organization.errors';
 import {
   AccessRequestAlreadyHoldsAccessError,
   AccessRequestApplicationRetiredError,
   AccessRequestNoDepartmentError,
-  AccessRequestOutsideStandardReasonRequiredError,
   AccessRequestSpendDateNotAllowedError,
+  AccessRequestSuperAdminCannotRequestError,
 } from '../access-request/access-request.errors';
 import { toAccessRequestApiException } from '../access-request/access-request.http-errors';
 import { RenewalRequestRefusedError, type RenewalRefusal } from './renewal-request.errors';
@@ -60,6 +61,7 @@ export const RENEWAL_ERROR_EXAMPLES = {
     }),
   ),
   NO_DEPARTMENT: example(new AccessRequestNoDepartmentError()),
-  OUTSIDE_STANDARD_REASON_REQUIRED: example(new AccessRequestOutsideStandardReasonRequiredError()),
+  FINANCE_SETUP_INCOMPLETE: example(new FinanceSetupIncompleteError('<department-id>')),
+  SUPER_ADMIN_CANNOT_REQUEST: example(new AccessRequestSuperAdminCannotRequestError()),
   NO_SPEND_FOR_FREE_SOFTWARE: example(new AccessRequestSpendDateNotAllowedError()),
 } as const;

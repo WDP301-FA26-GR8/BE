@@ -3,15 +3,9 @@ import { SMTPServer } from 'smtp-server';
 import { fakeSmtpEnvironment, listenOnLoopback } from '../support/fake-smtp';
 import request from 'supertest';
 import { PrismaService } from '../../src/infrastructure/database/prisma.service';
-import {
-  provisionDatabaseRoles,
-  reconcileDatabaseRoles,
-} from '../../src/infrastructure/database/roles/database-role-provisioning';
-import { readProvisionSettings } from '../../src/infrastructure/database/roles/database-role-settings';
 import { RuntimeDatabaseRoleGuard } from '../../src/infrastructure/database/runtime-role.guard';
 import { TransactionRunner } from '../../src/infrastructure/database/transaction-runner';
 import { bodyOf } from '../support/api-body';
-import { migrateDisposableDatabase } from '../support/disposable-database';
 import {
   HttpTestApp,
   SEED_PASSWORD,
@@ -20,10 +14,9 @@ import {
   insertEmployeeFixture,
   seedInstallation,
 } from '../support/http-test-app';
+import { prepareRoleDatabase } from '../support/role-database-prepare';
 import {
   RoleSeparatedDatabase,
-  allowDeployToReadMarker,
-  createRoleSeparatedDatabase,
   dropRoleSeparatedDatabase,
   tableFingerprints,
   withClient,
@@ -61,13 +54,7 @@ describe('the API and the worker run as the runtime role (integration, PostgreSQ
     Object.assign(process.env, fakeSmtpEnvironment(await listenOnLoopback(smtp)));
     process.env.OUTBOX_POLL_INTERVAL_MS = '500';
 
-    database = await createRoleSeparatedDatabase();
-    await withClient(database.bootstrapUrl, (client) =>
-      provisionDatabaseRoles(client, readProvisionSettings(database.provisionEnvironment)),
-    );
-    await allowDeployToReadMarker(database);
-    await migrateDisposableDatabase(database.deployHandle);
-    await withClient(database.deploy.url, (client) => reconcileDatabaseRoles(client, database.runtime.role));
+    database = await prepareRoleDatabase();
     ctx = await createHttpTestApp({ database: database.bootstrapHandle, appDatabaseUrl: () => database.runtime.url });
     seed = await seedInstallation(ctx.app);
   }, 120000);

@@ -16,9 +16,10 @@ export interface LeaveRecord {
   endKind: LeaveEndKind | null;
   resumesLeaveId: string | null;
   grounds: Grounds;
-  startedByAppUserId: string;
+  /** Who started it: an account, or the ticket of the controlled procedure (spec L.2): exactly one of the two is set. */
+  startedByAppUserId: string | null;
+  startedByTicketId: string | null;
   startedAt: Date;
-  selfExecuted: boolean;
   returnOverdueNoticedFor: BusinessDate | null;
 }
 
@@ -40,12 +41,15 @@ export interface LeaveChangeRecord {
   returnedOn: BusinessDate | null;
   onSchedule: boolean | null;
   grounds: Grounds | null;
-  recordedByAppUserId: string;
+  /** The account, or the ticket of the controlled procedure (spec L.2). */
+  recordedByAppUserId: string | null;
+  recordedByTicketId: string | null;
   recordedAt: Date;
-  selfExecuted: boolean;
 }
 
 export interface LeaveListFilter {
+  /** Set for an IT Admin: only the leaves of these people (the members of the departments in their charge). Empty reads nothing. */
+  employeeIds?: readonly string[];
   status?: LeaveStatus;
   employeeId?: string;
   overdueReturn?: boolean;

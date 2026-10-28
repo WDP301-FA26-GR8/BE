@@ -1,8 +1,12 @@
 import { HttpStatus } from '@nestjs/common';
+import { FORBIDDEN_ERROR } from '../../../infrastructure/http/errors/access-errors';
 import { ApiException } from '../../../infrastructure/http/errors/api.exception';
 import { TransientDatabaseError } from '../../../infrastructure/database/transaction-runner';
 import {
   CostCenterCodeTakenError,
+  CostCenterDepartmentAlreadyLinkedError,
+  CostCenterDepartmentNotActiveError,
+  CostCenterForbiddenError,
   CostCenterInUseError,
   CostCenterKindNotSupportedError,
   CostCenterNameInvalidError,
@@ -11,7 +15,7 @@ import {
 } from '../cost-center/cost-center.errors';
 import {
   DepartmentCodeTakenError,
-  DepartmentCostCenterError,
+  DepartmentForbiddenError,
   DepartmentInUseError,
   DepartmentInactiveError,
   DepartmentItAdminInvalidError,
@@ -22,17 +26,12 @@ import {
   HeadAssignmentError,
 } from '../department/department.errors';
 import {
-  EmployeeAnotherItAdminNeededError,
+  EmployeeForbiddenError,
   EmployeeRowInvalidError,
+  EmployeeSelfChangeForbiddenError,
   EmployeeUpdateEmptyError,
 } from '../employee/employee.errors';
-import {
-  JobTitleNameRequiredError,
-  JobTitleNameTakenError,
-  JobTitleNameTooLongError,
-  JobTitleNotFoundError,
-} from '../job-title/job-title.errors';
-import { ProjectInvalidError, ProjectNotFoundError } from '../project/project.errors';
+import { ProjectForbiddenError, ProjectInvalidError, ProjectNotFoundError } from '../project/project.errors';
 import { EmployeeCodeTakenError, EmployeeNotFoundError, OrganizationAlreadyExistsError } from '../organization.errors';
 import { toOrganizationApiException } from './organization.http-errors';
 
@@ -46,7 +45,7 @@ function answer(error: unknown): { status: number; body: unknown } {
 
 const department = { id: 'dep-1', code: 'DES', name: 'Design' };
 const people = [{ employeeCode: 'E-1', fullName: 'An Nguyen' }];
-const conflict = { id: 'jt-1', name: 'Designer', status: 'INACTIVE' as const };
+const work = [{ kind: 'ACCESS_REQUEST', id: 'req-1', label: null }];
 
 /**
  * Characterization of the organization error contract before the H4.1 refactor (wire contract: status, code, message,
@@ -55,39 +54,10 @@ const conflict = { id: 'jt-1', name: 'Designer', status: 'INACTIVE' as const };
 const CASES: [string, Error, HttpStatus, string, Record<string, unknown> | undefined][] = [
   [
     'EmployeeRowInvalidError',
-    new EmployeeRowInvalidError([{ field: 'jobTitle', code: 'JOB_TITLE_INACTIVE' }]),
+    new EmployeeRowInvalidError([{ field: 'jobTitle', code: 'JOB_TITLE_TOO_LONG' }]),
     HttpStatus.UNPROCESSABLE_ENTITY,
     'EMPLOYEE.ROW_INVALID',
-    { reasons: [{ field: 'jobTitle', code: 'JOB_TITLE_INACTIVE' }] },
-  ],
-  ['JobTitleNotFoundError', new JobTitleNotFoundError(), HttpStatus.NOT_FOUND, 'JOB_TITLE.NOT_FOUND', undefined],
-  [
-    'JobTitleNameRequiredError',
-    new JobTitleNameRequiredError(),
-    HttpStatus.UNPROCESSABLE_ENTITY,
-    'JOB_TITLE.NAME_REQUIRED',
-    undefined,
-  ],
-  [
-    'JobTitleNameTooLongError',
-    new JobTitleNameTooLongError(),
-    HttpStatus.UNPROCESSABLE_ENTITY,
-    'JOB_TITLE.NAME_TOO_LONG',
-    undefined,
-  ],
-  [
-    'JobTitleNameTakenError with a conflict',
-    new JobTitleNameTakenError(conflict),
-    HttpStatus.CONFLICT,
-    'JOB_TITLE.NAME_TAKEN',
-    { conflict },
-  ],
-  [
-    'JobTitleNameTakenError without a conflict',
-    new JobTitleNameTakenError(null),
-    HttpStatus.CONFLICT,
-    'JOB_TITLE.NAME_TAKEN',
-    undefined,
+    { reasons: [{ field: 'jobTitle', code: 'JOB_TITLE_TOO_LONG' }] },
   ],
   ['CostCenterNotFoundError', new CostCenterNotFoundError(), HttpStatus.NOT_FOUND, 'COST_CENTER.NOT_FOUND', undefined],
   [
@@ -95,6 +65,20 @@ const CASES: [string, Error, HttpStatus, string, Record<string, unknown> | undef
     new CostCenterCodeTakenError('CC-DES'),
     HttpStatus.CONFLICT,
     'COST_CENTER.CODE_TAKEN',
+    undefined,
+  ],
+  [
+    'CostCenterDepartmentNotActiveError',
+    new CostCenterDepartmentNotActiveError(),
+    HttpStatus.UNPROCESSABLE_ENTITY,
+    'COST_CENTER.DEPARTMENT_NOT_ACTIVE',
+    undefined,
+  ],
+  [
+    'CostCenterDepartmentAlreadyLinkedError',
+    new CostCenterDepartmentAlreadyLinkedError('<department-id>'),
+    HttpStatus.CONFLICT,
+    'COST_CENTER.DEPARTMENT_ALREADY_LINKED',
     undefined,
   ],
   [
@@ -120,10 +104,13 @@ const CASES: [string, Error, HttpStatus, string, Record<string, unknown> | undef
   ],
   [
     'CostCenterInUseError',
-    new CostCenterInUseError(department, people, 3),
+    new CostCenterInUseError(department, {
+      requests: { items: work, total: 3 },
+      commitments: { items: [], total: 0 },
+    }),
     HttpStatus.CONFLICT,
     'COST_CENTER.IN_USE',
-    { department, employees: people, totalEmployees: 3 },
+    { department, requests: work, totalRequests: 3, commitments: [], totalCommitments: 0 },
   ],
   ['DepartmentNotFoundError', new DepartmentNotFoundError(), HttpStatus.NOT_FOUND, 'DEPARTMENT.NOT_FOUND', undefined],
   [
@@ -138,34 +125,6 @@ const CASES: [string, Error, HttpStatus, string, Record<string, unknown> | undef
     new DepartmentCodeTakenError('DES'),
     HttpStatus.CONFLICT,
     'DEPARTMENT.CODE_TAKEN',
-    undefined,
-  ],
-  [
-    'DepartmentCostCenterError TAKEN',
-    new DepartmentCostCenterError('TAKEN'),
-    HttpStatus.CONFLICT,
-    'DEPARTMENT.COST_CENTER_TAKEN',
-    undefined,
-  ],
-  [
-    'DepartmentCostCenterError NOT_FOUND',
-    new DepartmentCostCenterError('NOT_FOUND'),
-    HttpStatus.UNPROCESSABLE_ENTITY,
-    'DEPARTMENT.COST_CENTER_NOT_FOUND',
-    undefined,
-  ],
-  [
-    'DepartmentCostCenterError NOT_UNIT',
-    new DepartmentCostCenterError('NOT_UNIT'),
-    HttpStatus.UNPROCESSABLE_ENTITY,
-    'DEPARTMENT.COST_CENTER_NOT_UNIT',
-    undefined,
-  ],
-  [
-    'DepartmentCostCenterError INACTIVE',
-    new DepartmentCostCenterError('INACTIVE'),
-    HttpStatus.UNPROCESSABLE_ENTITY,
-    'DEPARTMENT.COST_CENTER_INACTIVE',
     undefined,
   ],
   [
@@ -199,18 +158,32 @@ const CASES: [string, Error, HttpStatus, string, Record<string, unknown> | undef
     undefined,
   ],
   [
-    'EmployeeAnotherItAdminNeededError',
-    new EmployeeAnotherItAdminNeededError(),
+    'EmployeeSelfChangeForbiddenError',
+    new EmployeeSelfChangeForbiddenError(),
     HttpStatus.FORBIDDEN,
-    'EMPLOYEE.ANOTHER_IT_ADMIN_NEEDED',
+    'EMPLOYEE.SELF_CHANGE_FORBIDDEN',
     undefined,
   ],
   [
     'DepartmentInUseError',
-    new DepartmentInUseError(people, 4),
+    new DepartmentInUseError({
+      members: { items: people, total: 4 },
+      serviceAccounts: { items: [], total: 0 },
+      openWork: { items: work, total: 2 },
+      subscriptions: { items: [], total: 0 },
+    }),
     HttpStatus.CONFLICT,
     'DEPARTMENT.IN_USE',
-    { members: people, totalMembers: 4, serviceAccounts: [], totalServiceAccounts: 0, openWork: [] },
+    {
+      members: people,
+      totalMembers: 4,
+      serviceAccounts: [],
+      totalServiceAccounts: 0,
+      openWork: work,
+      totalOpenWork: 2,
+      subscriptions: [],
+      totalSubscriptions: 0,
+    },
   ],
   ...(
     [
@@ -220,6 +193,9 @@ const CASES: [string, Error, HttpStatus, string, Record<string, unknown> | undef
       'SUPER_ADMIN_CANNOT_HEAD',
       'DATE_IN_PAST',
       'HEADS_ANOTHER_DEPARTMENT',
+      'SUCCESSOR_DATE_NOT_FUTURE',
+      'SUCCESSOR_NEEDS_A_HEAD',
+      'SUCCESSOR_IS_THE_HEAD',
     ] as const
   ).map((problem): [string, Error, HttpStatus, string, undefined] => [
     `HeadAssignmentError ${problem}`,
@@ -228,6 +204,13 @@ const CASES: [string, Error, HttpStatus, string, Record<string, unknown> | undef
     `DEPARTMENT.HEAD_${problem}`,
     undefined,
   ]),
+  [
+    'HeadAssignmentError SUCCESSOR_ALREADY_NAMED',
+    new HeadAssignmentError('SUCCESSOR_ALREADY_NAMED'),
+    HttpStatus.CONFLICT,
+    'DEPARTMENT.HEAD_SUCCESSOR_ALREADY_NAMED',
+    undefined,
+  ],
   ['ProjectNotFoundError', new ProjectNotFoundError(), HttpStatus.NOT_FOUND, 'PROJECT.NOT_FOUND', undefined],
   ...(['NAME', 'DESCRIPTION', 'DEPARTMENT_NOT_FOUND'] as const).map(
     (reason): [string, Error, HttpStatus, string, undefined] => [
@@ -248,17 +231,51 @@ describe('toOrganizationApiException (organization HTTP error contract)', () => 
     });
   });
 
-  it('keeps DEPARTMENT.IN_USE details to the members, the service accounts it owns and open work, never shared accounts (QĐ-75, QĐ-86c)', () => {
+  it.each([
+    ['DepartmentForbiddenError', new DepartmentForbiddenError()],
+    ['CostCenterForbiddenError', new CostCenterForbiddenError()],
+    ['ProjectForbiddenError', new ProjectForbiddenError()],
+    ['EmployeeForbiddenError', new EmployeeForbiddenError()],
+  ])('answers %s with the same 403 as a route that refuses the role (F13)', (_label, error) => {
+    expect(answer(error)).toEqual({ status: HttpStatus.FORBIDDEN, body: { ...FORBIDDEN_ERROR } });
+  });
+
+  it('keeps DEPARTMENT.IN_USE details to the four bounded groups, never shared accounts (QĐ-75, QĐ-86c, F15)', () => {
     const { body } = answer(
-      new DepartmentInUseError(people, 1, [{ assignmentId: 'a-1', accountIdentifier: 'ci-bot' }], 1),
+      new DepartmentInUseError({
+        members: { items: people, total: 1 },
+        serviceAccounts: { items: [{ assignmentId: 'a-1', accountIdentifier: 'ci-bot' }], total: 1 },
+        openWork: { items: [], total: 0 },
+        subscriptions: { items: [], total: 0 },
+      }),
     );
 
     expect(Object.keys((body as { details: object }).details).sort()).toEqual([
       'members',
       'openWork',
       'serviceAccounts',
+      'subscriptions',
       'totalMembers',
+      'totalOpenWork',
       'totalServiceAccounts',
+      'totalSubscriptions',
+    ]);
+  });
+
+  it('keeps COST_CENTER.IN_USE details to the department and the two groups of obligations, never people (F16)', () => {
+    const { body } = answer(
+      new CostCenterInUseError(department, {
+        requests: { items: [], total: 0 },
+        commitments: { items: [], total: 0 },
+      }),
+    );
+
+    expect(Object.keys((body as { details: object }).details).sort()).toEqual([
+      'commitments',
+      'department',
+      'requests',
+      'totalCommitments',
+      'totalRequests',
     ]);
   });
 

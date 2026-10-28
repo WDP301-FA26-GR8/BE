@@ -1,8 +1,7 @@
 import { BusinessDate } from '../../core/business-date';
 import type { DbTx } from '../../infrastructure/database/transaction-runner';
 import { CostCenterKind, CostCenterStatus } from './cost-center/cost-center.types';
-import { DepartmentStatus } from './department/department.types';
-import { JobTitleStatus } from './job-title/job-title.types';
+import { DepartmentStatus, HeadPeriodRecord } from './department/department.types';
 
 export type EmploymentType = 'STAFF' | 'CONTRACTOR' | 'FREELANCER' | 'INTERN';
 export type EmployeeStatus = 'ACTIVE' | 'TERMINATED';
@@ -15,17 +14,19 @@ export interface CreateOrganizationInput {
   reportingCurrency: string;
 }
 
+/** A Cost Center is created for a department that exists, and linked to it in the same statement (`QĐ-87d(1)`). */
 export interface CreateCostCenterInput {
   organizationId: string;
   code: string;
   name: string;
+  departmentId: string;
 }
 
+/** A department is created with no Cost Center: Finance creates it for the department afterwards. */
 export interface CreateDepartmentInput {
   organizationId: string;
   code: string;
   name: string;
-  costCenterId: string;
 }
 
 export interface CreateEmployeeWithPlacementInput {
@@ -42,15 +43,18 @@ export interface CreateEmployeeWithPlacementInput {
    */
   memberSince?: BusinessDate;
   departmentId: string;
-  jobTitleId: string;
+  /** Free text (`QĐ-87e`); the catalogue entry is the database's business, not this call's (spec L.10). */
+  jobTitle: string | null;
 }
 
-/** The official fields of an employee record an IT Admin may correct on an HR basis (`US-02-02` AC-19). */
+/** The official fields of an employee record the Super Admin may correct on an HR basis (`US-02-02` AC-19, `QĐ-87a`). */
 export interface OfficialFieldsPatch {
   fullName?: string;
   workEmail?: string | null;
   employmentType?: EmploymentType;
   hireDate?: BusinessDate;
+  /** Free text, null to clear it (`QĐ-87e`): its display form is what is stored. */
+  jobTitle?: string | null;
 }
 
 export interface EmployeeRecord {
@@ -63,6 +67,22 @@ export interface EmployeeRecord {
   status: EmployeeStatus;
   workState: EmployeeWorkState;
   hireDate: BusinessDate;
+  /** The free-text title on the record (`QĐ-87e`); null when there is none. */
+  jobTitle?: string | null;
+}
+
+/**
+ * What an IT Admin may read of a person: the least a technical task needs (grant, revoke, hand over), never the record, the
+ * basis of an event or a verification (`F12`, spec K). `effectiveOn` is the first day of the person's current period in the
+ * department. Read only for the departments the IT Admin is in charge of or stands in for.
+ */
+export interface EmployeeTechnicalView {
+  id: string;
+  code: string;
+  fullName: string;
+  departmentId: string;
+  employmentStatus: EmployeeWorkState;
+  effectiveOn: BusinessDate;
 }
 
 export interface EmployeeProfile {
@@ -83,27 +103,30 @@ export interface OrganizationRecord {
 /** What a people file names, by what the import looks each of them up by. */
 export interface EmployeeImportNames {
   departmentCodes: string[];
-  normalizedJobTitleNames: string[];
   employeeCodes: string[];
   normalizedEmails: string[];
 }
 
-/** A department locked for the entry of a person, with what the entry needs to judge it. */
+/** A department locked for the entry of a person, with what the entry needs to judge it: a department with no Cost Center takes people in (`QĐ-87d(3)`). */
 export interface DepartmentEntryLock {
   id: string;
   code: string;
   name: string;
   active: boolean;
-  costCenterActive: boolean;
 }
 
-/** The department and the job title an employee had on a day, by id. */
+/** The department an employee had on a day, by id. */
 export interface EmployeePlacementIds {
   departmentId: string;
-  jobTitleId: string;
 }
 
 /** The department an employee was in on a day and the IT Admin in charge of it, named only while still working. */
+/**
+ * Which of these IT Admins can act now (they still work and hold the role on an account that can sign in). The accounts are another
+ * module's, so a caller of an organization read that needs the answer brings it.
+ */
+export type UsableItAdmins = (employeeIds: readonly string[]) => Promise<ReadonlySet<string>>;
+
 export interface ItAdminInCharge {
   departmentId: string;
   itAdminEmployeeId: string | null;
@@ -120,8 +143,7 @@ export interface EmployeeCandidate {
 
 /** What a people file names, as the database knows it (for the import preview and its confirmation). */
 export interface EmployeeImportLookupData {
-  departments: { id: string; code: string; active: boolean; costCenterActive: boolean }[];
-  jobTitles: { id: string; name: string; normalizedName: string; status: JobTitleStatus }[];
+  departments: { id: string; code: string; active: boolean }[];
   employees: {
     id: string;
     employeeCode: string;
@@ -139,8 +161,8 @@ export interface EmployeeImportLookupData {
 export interface OnboardingFacts {
   activeDepartments: number;
   activeEmployees: number;
-  /** Active UNIT cost centers with no department yet: the department that is created next takes one of these. */
-  freeCostCenters: number;
+  /** Active departments with no Cost Center in use yet: Finance creates one for each (`QĐ-87d(1)`). */
+  departmentsWithoutCostCenter: { code: string; name: string }[];
   departmentsWithoutHead: { code: string; name: string }[];
   /** Active departments and the employee named IT Admin in charge, to be judged by the account side. */
   departmentsByItAdmin: {
@@ -165,9 +187,49 @@ export interface DepartmentServiceAccountReader {
   ): Promise<{ items: { assignmentId: string; accountIdentifier: string }[]; total: number }>;
 }
 
-/** The department an employee was in on a day and its Unit (the Cost Center the department is charged to). */
+/**
+ * What taking back a named successor changed: the period that was removed and the head whose period is open again (it had been
+ * ended the day before the successor's began), for the audit.
+ */
+export interface ClearedHeadSuccessor {
+  successor: HeadPeriodRecord;
+  restoredHead: HeadPeriodRecord | null;
+}
+
+/**
+ * A notice an employee record owes, in the shape the inbox takes (`InAppNotificationInput`). It is declared here and not imported
+ * so that the facade, which the installation command loads, does not reach the notifications module (R-13); the code that writes it
+ * (`NotificationsService.notifyInApp`) takes it as it is, and the compiler holds the two shapes together. Ids only.
+ */
+export interface ProfileNotice {
+  organizationId: string;
+  recipientEmployeeId: string;
+  code: 'EMPLOYEE_PROFILE_CREATED' | 'EMPLOYEE_PROFILE_UPDATED';
+  subject: { type: 'EMPLOYEE'; id: string };
+  params: { employeeId: string; departmentId: string | null };
+  eventKey: string;
+}
+
+/** The notices an employee record owes when it is created or corrected, as the inbox takes them (`F17`, `QĐ-87b(3)`). */
+export interface ProfileNoticeRequest {
+  kind: 'CREATED' | 'UPDATED';
+  organizationId: string;
+  employeeId: string;
+  onDate: BusinessDate;
+}
+
+/**
+ * The department an employee was in on a day and its Unit (the Cost Center Finance created for the department and that is
+ * in use). A department may have none (`QĐ-87d(1)`): `costCenter` is then null and whatever needs a Cost Center refuses
+ * with `FINANCE.SETUP_INCOMPLETE` (`OrganizationService.requireUnitCostCenter`).
+ */
 export interface OwningUnit {
   departmentId: string;
+  costCenter: { id: string; code: string; status: CostCenterStatus } | null;
+}
+
+/** An {@link OwningUnit} whose department has a Cost Center in use: what a cost is charged to. */
+export interface CostedOwningUnit extends OwningUnit {
   costCenter: { id: string; code: string; status: CostCenterStatus };
 }
 
@@ -176,6 +238,8 @@ export interface OwningUnit {
  * between the cost center and its department, and the ids it writes against. Null when absent.
  */
 export interface LocalSeedFixtureFacts {
+  /** Whether the Cost Center link of this local database is activated (a new local database has no previous release to recover). */
+  costCenterDirectionActivated: boolean;
   costCenter: {
     id: string;
     code: string;
@@ -189,10 +253,9 @@ export interface LocalSeedFixtureFacts {
     code: string;
     name: string;
     status: DepartmentStatus;
-    costCenterId: string;
-    costCenterCode: string;
+    costCenterId: string | null;
+    costCenterCode: string | null;
   } | null;
-  jobTitle: { id: string; name: string; normalizedName: string; status: JobTitleStatus } | null;
 }
 
 /** What another module needs to know of a department to point at it: its code, name and whether it and its Cost Center are active. */
@@ -222,8 +285,6 @@ export type OrganizationChange =
       employeeId: string;
       fromDepartmentId: string | null;
       toDepartmentId: string;
-      fromJobTitleId: string | null;
-      toJobTitleId: string;
       effectiveOn: BusinessDate;
     }
   | {
@@ -267,31 +328,31 @@ export interface CostCenterBrief {
   name: string;
   kind: CostCenterKind;
   status: CostCenterStatus;
+  /** The department the Cost Center belongs to for its whole life (`QĐ-87d(1)`): who heads it is who answers for the budget. */
+  departmentId: string;
 }
 
 /** The placement of a person in force on a day, with the days it covers: the first day, and the last (exclusive) when it is to end. */
 export interface PlacementInForce {
   placementId: string;
   departmentId: string;
-  jobTitleId: string;
   validFrom: BusinessDate;
   validTo: BusinessDate | null;
 }
 
-/** A change of the department and/or the job title of a person from a day: what `scheduleStructureChange` writes. */
+/** A change of the department of a person from a day: what `scheduleStructureChange` writes. The title stays (`QĐ-87e`). */
 export interface StructureChangeInput {
   organizationId: string;
   employeeId: string;
   effectiveOn: BusinessDate;
   departmentId: string;
-  jobTitleId: string;
 }
 
 /** The two placements a scheduled change wrote, and what the person had before it: what a later move or cancellation needs. */
 export interface ScheduledStructureChange {
   closedPlacementId: string;
   openedPlacementId: string;
-  from: { departmentId: string; jobTitleId: string; validFrom: BusinessDate };
+  from: { departmentId: string; validFrom: BusinessDate };
 }
 
 /**

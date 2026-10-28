@@ -53,15 +53,19 @@ describe('EmployeeImportService: confirm (H8 Phase 0 characterization)', () => {
         'org.businessToday',
         'org.createEmployeeWithPlacement(tx, N-1)',
         'audit.record(tx)',
+        'org.getProfileNotices(tx, CREATED, new-N-1)',
+        'notifications.notifyInApp(tx, e-head)',
         'org.createEmployeeWithPlacement(tx, N-2)',
         'audit.record(tx)',
+        'org.getProfileNotices(tx, CREATED, new-N-2)',
+        'notifications.notifyInApp(tx, e-head)',
         'org.departmentsWithoutHead(d-ops,d-des)',
         'repo.markCompleted(tx)',
         'audit.record(tx)',
         'COMMIT',
         'repo.find()',
       ]);
-      expect(h.locks).toEqual([{ departmentIds: ['d-ops', 'd-des'], jobTitleIds: ['j-adm', 'j-des'] }]);
+      expect(h.locks).toEqual([{ departmentIds: ['d-ops', 'd-des'] }]);
       expect(h.created).toEqual([
         {
           organizationId: 'org-1',
@@ -72,7 +76,7 @@ describe('EmployeeImportService: confirm (H8 Phase 0 characterization)', () => {
           hireDate: '2026-10-01',
           memberSince: TODAY,
           departmentId: 'd-ops',
-          jobTitleId: 'j-adm',
+          jobTitle: 'Administrator',
         },
         {
           organizationId: 'org-1',
@@ -83,7 +87,7 @@ describe('EmployeeImportService: confirm (H8 Phase 0 characterization)', () => {
           hireDate: '2026-10-02',
           memberSince: TODAY,
           departmentId: 'd-des',
-          jobTitleId: 'j-des',
+          jobTitle: 'designer',
         },
       ]);
       const result = {
@@ -117,13 +121,26 @@ describe('EmployeeImportService: confirm (H8 Phase 0 characterization)', () => {
           after: {
             employeeCode,
             department: index === 0 ? 'P-OPS' : 'P-DES',
-            jobTitle: index === 0 ? 'Administrator' : 'Designer',
+            jobTitle: index === 0 ? 'Administrator' : 'designer',
             importId: id,
             hrBasis: HR_BASIS,
           },
           correlationId: 'session-1',
         })),
       );
+      // Each person created tells the head of their department, in the transaction that wrote them (`F17`): ids only.
+      expect(h.notices.map((notice) => [notice.code, notice.subject, notice.params])).toEqual([
+        [
+          'EMPLOYEE_PROFILE_CREATED',
+          { type: 'EMPLOYEE', id: 'new-N-1' },
+          { employeeId: 'new-N-1', departmentId: null },
+        ],
+        [
+          'EMPLOYEE_PROFILE_CREATED',
+          { type: 'EMPLOYEE', id: 'new-N-2' },
+          { employeeId: 'new-N-2', departmentId: null },
+        ],
+      ]);
       expect(h.audits.slice(2)).toEqual([
         {
           organizationId: 'org-1',
@@ -260,7 +277,7 @@ describe('EmployeeImportService: confirm (H8 Phase 0 characterization)', () => {
       const h = harness();
       const { id } = await upload(h, FILE);
       h.reset();
-      h.dir.jobTitles[1].status = 'INACTIVE';
+      h.dir.departments[1].active = false;
 
       const error = await h.service.confirm(ACTOR, id, confirmBody()).catch((e: unknown) => e);
 

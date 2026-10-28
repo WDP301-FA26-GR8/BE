@@ -16,8 +16,9 @@ export class RequestTimingRepo {
   constructor(private readonly prisma: PrismaService) {}
 
   async sourceOf(requestId: string): Promise<TimingSource | null> {
+    // A request being drafted is written by the release after this one and has no moments to read (spec L.1): 404 like a missing one.
     const row = await this.prisma.accessRequest.findUnique({
-      where: { id: requestId },
+      where: { id: requestId, state: { not: 'DRAFT' } },
       select: {
         state: true,
         submittedAt: true,
@@ -33,6 +34,9 @@ export class RequestTimingRepo {
       },
     });
     if (!row) return null;
+    // The filter above leaves drafts out, and only a draft has no moment it was sent.
+    if (row.submittedAt === null)
+      throw new Error(`The request ${requestId} is read for its time but has not been sent.`);
     const sentAt = row.batchItems.map((item) => item.batch.submittedAt.getTime());
 
     return {

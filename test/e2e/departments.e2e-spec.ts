@@ -24,45 +24,86 @@ function principal(direct: string[], derived: string[] = []) {
 
 type Call = (server: App) => request.Test;
 
-const IT_ONLY: Array<[string, Call]> = [
-  ['GET /departments', (server) => request(server).get('/api/v1/departments')],
+/** The HR document a department is created from (`QĐ-87b`): every part is required. */
+const HR_BASIS_BODY = { type: 'DECISION', reference: 'QD-2026-001', issuer: 'HR Office', issuedOn: '2026-10-01' };
+
+/** What the Super Admin alone does, each on an HR basis (`QĐ-87a`, `QĐ-87b(1)`): the IT Admin lost every one of these. */
+const SUPER_ADMIN_ONLY: Array<[string, Call]> = [
   [
-    'POST /departments',
-    (server) =>
-      request(server).post('/api/v1/departments').send({ code: 'P-DES', name: 'Design', costCenterId: OTHER }),
+    'PATCH /departments/{id}',
+    (server) => request(server).patch(`/api/v1/departments/${ID}`).send({ name: 'x', hrBasis: HR_BASIS_BODY }),
   ],
-  ['PATCH /departments/{id}', (server) => request(server).patch(`/api/v1/departments/${ID}`).send({ name: 'x' })],
-  ['POST /departments/{id}/deactivate', (server) => request(server).post(`/api/v1/departments/${ID}/deactivate`)],
+  [
+    'POST /departments/{id}/deactivate',
+    (server) => request(server).post(`/api/v1/departments/${ID}/deactivate`).send({ hrBasis: HR_BASIS_BODY }),
+  ],
   [
     'POST /departments/{id}/head-assignments',
     (server) =>
       request(server)
         .post(`/api/v1/departments/${ID}/head-assignments`)
-        .send({ employeeId: OTHER, effectiveFrom: '2030-01-01' }),
+        .send({ employeeId: OTHER, effectiveFrom: '2030-01-01', hrBasis: HR_BASIS_BODY }),
   ],
   [
     'POST /departments/{id}/head-vacancies',
-    (server) => request(server).post(`/api/v1/departments/${ID}/head-vacancies`).send({ effectiveFrom: '2030-01-01' }),
+    (server) =>
+      request(server)
+        .post(`/api/v1/departments/${ID}/head-vacancies`)
+        .send({ effectiveFrom: '2030-01-01', hrBasis: HR_BASIS_BODY }),
+  ],
+  [
+    'POST /departments/{id}/successor-designations',
+    (server) =>
+      request(server)
+        .post(`/api/v1/departments/${ID}/successor-designations`)
+        .send({ employeeId: OTHER, effectiveFrom: '2030-01-01', hrBasis: HR_BASIS_BODY }),
+  ],
+  [
+    'POST /departments/{id}/successor-clearances',
+    (server) => request(server).post(`/api/v1/departments/${ID}/successor-clearances`).send({ hrBasis: HR_BASIS_BODY }),
   ],
   ['GET /projects', (server) => request(server).get('/api/v1/projects')],
+  ['GET /projects/{id}', (server) => request(server).get(`/api/v1/projects/${ID}`)],
   [
     'POST /projects',
     (server) =>
       request(server)
         .post('/api/v1/projects')
-        .send({ name: 'Alpha', departmentIds: [ID] }),
+        .send({ name: 'Alpha', departmentIds: [ID], hrBasis: HR_BASIS_BODY }),
   ],
-  ['PATCH /projects/{id}', (server) => request(server).patch(`/api/v1/projects/${ID}`).send({ name: 'Beta' })],
+  [
+    'PATCH /projects/{id}',
+    (server) => request(server).patch(`/api/v1/projects/${ID}`).send({ name: 'Beta', hrBasis: HR_BASIS_BODY }),
+  ],
 ];
 
-const IT_OR_HEAD: Array<[string, Call]> = [
-  ['GET /departments/{id}', (server) => request(server).get(`/api/v1/departments/${ID}`)],
-  ['GET /departments/{id}/employees', (server) => request(server).get(`/api/v1/departments/${ID}/employees`)],
+/** The list of departments and their warnings: the Super Admin, and an IT Admin for the departments in their scope (`F12`). */
+const LISTS: Array<[string, Call]> = [
+  ['GET /departments', (server) => request(server).get('/api/v1/departments')],
+  ['GET /department-warnings', (server) => request(server).get('/api/v1/department-warnings')],
 ];
 
-const WARNINGS: [string, Call] = [
-  'GET /department-warnings',
-  (server) => request(server).get('/api/v1/department-warnings'),
+/** One department's profile: the Super Admin, an IT Admin in its scope, and the head of that department. */
+const PROFILE: [string, Call] = ['GET /departments/{id}', (server) => request(server).get(`/api/v1/departments/${ID}`)];
+
+/** The people of a department in full: the Super Admin and the head of that department, never the IT Admin. */
+const PEOPLE: [string, Call] = [
+  'GET /departments/{id}/employees',
+  (server) => request(server).get(`/api/v1/departments/${ID}/employees`),
+];
+
+/** The technical view of the people (`EmployeeTechnicalView`): the IT Admin alone. */
+const TECHNICAL: [string, Call] = [
+  'GET /departments/{id}/technical-members',
+  (server) => request(server).get(`/api/v1/departments/${ID}/technical-members`),
+];
+
+const NO_ROLE_OF_THEIR_OWN: Array<[string, string[], string[]]> = [
+  ['the finance officer', ['FINANCE'], []],
+  ['an employee', ['EMPLOYEE'], []],
+  ['an account with no role', [], []],
+  ['a department head, whose role is derived', [], ['MANAGER']],
+  ['the spending approver, whose role is derived', [], ['SPENDING_APPROVER']],
 ];
 
 describe('department routes (e2e, no database)', () => {
@@ -84,78 +125,133 @@ describe('department routes (e2e, no database)', () => {
     await app?.close();
   });
 
-  it.each([...IT_ONLY, ...IT_OR_HEAD, WARNINGS])('%s without a token is 401', async (_name, call) => {
-    app = await appFor(principal(['IT_ADMIN']));
+  it.each([...SUPER_ADMIN_ONLY, ...LISTS, PROFILE, PEOPLE, TECHNICAL])(
+    '%s without a token is 401',
+    async (_name, call) => {
+      app = await appFor(principal(['SUPER_ADMIN']));
 
-    const response = await call(app.getHttpServer()).expect(401);
+      const response = await call(app.getHttpServer()).expect(401);
 
-    expect(bodyOf(response).error.code).toBe('AUTHENTICATION_REQUIRED');
+      expect(bodyOf(response).error.code).toBe('AUTHENTICATION_REQUIRED');
+    },
+  );
+
+  describe('who may change department data: the Super Admin alone (QĐ-87a, US-03-06 AC-16)', () => {
+    it.each([
+      ['the IT Admin, who keeps the technical work only and lost every write (F10)', ['IT_ADMIN'], []],
+      ...NO_ROLE_OF_THEIR_OWN,
+    ])('refuses %s on every Super Admin route with 403', async (_name, direct, derived) => {
+      app = await appFor(principal(direct, derived));
+
+      for (const [route, call] of SUPER_ADMIN_ONLY) {
+        const response = await call(app.getHttpServer()).set('Authorization', 'Bearer any').expect(403);
+        expect({ route, code: bodyOf(response).error.code }).toEqual({ route, code: 'AUTHORIZATION.FORBIDDEN' });
+      }
+    });
   });
 
-  describe('who may change department data (US-03-06 AC-16)', () => {
-    it.each([
-      ['the finance officer', ['FINANCE'], []],
-      ['the Super Admin, who never does business work (SoD-1)', ['SUPER_ADMIN'], []],
-      ['an employee', ['EMPLOYEE'], []],
-      ['an account with no role', [], []],
-      ['a department head, whose role is derived', [], ['MANAGER']],
-      ['the spending approver, whose role is derived', [], ['SPENDING_APPROVER']],
-    ])('refuses %s on every IT Admin route with 403', async (_name, direct, derived) => {
-      app = await appFor(principal(direct, derived));
-
-      for (const [route, call] of IT_ONLY) {
-        const response = await call(app.getHttpServer()).set('Authorization', 'Bearer any').expect(403);
-        expect({ route, code: bodyOf(response).error.code }).toEqual({ route, code: 'AUTHORIZATION.FORBIDDEN' });
-      }
-    });
-
-    it.each([
-      ['the finance officer', ['FINANCE'], []],
-      ['the Super Admin', ['SUPER_ADMIN'], []],
-      ['an employee', ['EMPLOYEE'], []],
-      ['the spending approver', [], ['SPENDING_APPROVER']],
-    ])('refuses %s the profile and the people of a department with 403', async (_name, direct, derived) => {
-      app = await appFor(principal(direct, derived));
-
-      for (const [route, call] of IT_OR_HEAD) {
-        const response = await call(app.getHttpServer()).set('Authorization', 'Bearer any').expect(403);
-        expect({ route, code: bodyOf(response).error.code }).toEqual({ route, code: 'AUTHORIZATION.FORBIDDEN' });
-      }
-    });
-
-    it.each([
-      ['the finance officer', ['FINANCE'], []],
-      ['an employee', ['EMPLOYEE'], []],
-      ['a department head', [], ['MANAGER']],
-    ])(
-      'shows the warnings to %s: no, 403 (only the IT Admin and the Super Admin see them)',
-      async (_n, direct, derived) => {
+  describe('who may read department data (F12)', () => {
+    it.each(NO_ROLE_OF_THEIR_OWN)(
+      'refuses %s the list of departments and their warnings with 403',
+      async (_name, direct, derived) => {
         app = await appFor(principal(direct, derived));
 
-        const [, call] = WARNINGS;
+        for (const [route, call] of LISTS) {
+          const response = await call(app.getHttpServer()).set('Authorization', 'Bearer any').expect(403);
+          expect({ route, code: bodyOf(response).error.code }).toEqual({ route, code: 'AUTHORIZATION.FORBIDDEN' });
+        }
+      },
+    );
+
+    it.each(NO_ROLE_OF_THEIR_OWN.filter(([, , derived]) => !derived.includes('MANAGER')))(
+      'refuses %s the profile of a department with 403: only the Super Admin, an IT Admin in its scope and its head read it',
+      async (_name, direct, derived) => {
+        app = await appFor(principal(direct, derived));
+        const [route, call] = PROFILE;
+
         const response = await call(app.getHttpServer()).set('Authorization', 'Bearer any').expect(403);
 
-        expect(bodyOf(response).error.code).toBe('AUTHORIZATION.FORBIDDEN');
+        expect({ route, code: bodyOf(response).error.code }).toEqual({ route, code: 'AUTHORIZATION.FORBIDDEN' });
+      },
+    );
+
+    it.each([
+      ['the IT Admin, who reads the technical view instead', ['IT_ADMIN'], []],
+      ...NO_ROLE_OF_THEIR_OWN.filter(([, , derived]) => !derived.includes('MANAGER')),
+    ])('refuses %s the people of a department in full with 403', async (_name, direct, derived) => {
+      app = await appFor(principal(direct, derived));
+      const [route, call] = PEOPLE;
+
+      const response = await call(app.getHttpServer()).set('Authorization', 'Bearer any').expect(403);
+
+      expect({ route, code: bodyOf(response).error.code }).toEqual({ route, code: 'AUTHORIZATION.FORBIDDEN' });
+    });
+
+    it.each([['the Super Admin, who reads the people in full', ['SUPER_ADMIN'], []], ...NO_ROLE_OF_THEIR_OWN])(
+      'refuses %s the technical view of the people with 403: it is for the IT Admin alone',
+      async (_name, direct, derived) => {
+        app = await appFor(principal(direct, derived));
+        const [route, call] = TECHNICAL;
+
+        const response = await call(app.getHttpServer()).set('Authorization', 'Bearer any').expect(403);
+
+        expect({ route, code: bodyOf(response).error.code }).toEqual({ route, code: 'AUTHORIZATION.FORBIDDEN' });
       },
     );
   });
 
-  describe('validation', () => {
-    const asIt = () => ({ Authorization: 'Bearer any' });
+  describe('creating a department belongs to the Super Admin (QĐ-87b, QĐ-87d(1))', () => {
+    const body = { code: 'P-DES', name: 'Design', hrBasis: HR_BASIS_BODY };
 
     it.each([
-      ['no code', { name: 'Design', costCenterId: OTHER }],
-      ['a code with a space', { code: 'P DES', name: 'Design', costCenterId: OTHER }],
-      ['no name', { code: 'P-DES', costCenterId: OTHER }],
-      ['no cost center', { code: 'P-DES', name: 'Design' }],
-      ['a cost center that is not an id', { code: 'P-DES', name: 'Design', costCenterId: 'CC-1' }],
+      ['the finance officer', ['FINANCE'], []],
+      ['the IT Admin, who keeps the technical work only', ['IT_ADMIN'], []],
+      ['an employee', ['EMPLOYEE'], []],
+      ['an account with no role', [], []],
+      ['a department head, whose role is derived', [], ['MANAGER']],
+      ['the spending approver, whose role is derived', [], ['SPENDING_APPROVER']],
+    ])('refuses %s with 403', async (_name, direct, derived) => {
+      app = await appFor(principal(direct, derived));
+
+      const response = await request(app.getHttpServer())
+        .post('/api/v1/departments')
+        .set('Authorization', 'Bearer any')
+        .send(body)
+        .expect(403);
+
+      expect(bodyOf(response).error.code).toBe('AUTHORIZATION.FORBIDDEN');
+    });
+
+    it('needs a token', async () => {
+      app = await appFor(principal(['SUPER_ADMIN']));
+
+      const response = await request(app.getHttpServer()).post('/api/v1/departments').send(body).expect(401);
+
+      expect(bodyOf(response).error.code).toBe('AUTHENTICATION_REQUIRED');
+    });
+  });
+
+  describe('validation', () => {
+    const asIt = () => ({ Authorization: 'Bearer any' });
+    const asSuperAdmin = asIt;
+
+    it.each([
+      ['no code', { name: 'Design', hrBasis: HR_BASIS_BODY }],
+      ['a code with a space', { code: 'P DES', name: 'Design', hrBasis: HR_BASIS_BODY }],
+      ['no name', { code: 'P-DES', hrBasis: HR_BASIS_BODY }],
+      ['no HR basis', { code: 'P-DES', name: 'Design' }],
+      ['an HR basis with a missing part', { code: 'P-DES', name: 'Design', hrBasis: { type: 'DECISION' } }],
+      [
+        'a cost center, which a department is not created with (QĐ-87d(1))',
+        { code: 'P-DES', name: 'Design', hrBasis: HR_BASIS_BODY, costCenterId: OTHER },
+      ],
       [
         'a parent department, which does not exist (AC-3)',
-        { code: 'P-DES', name: 'Design', costCenterId: OTHER, parentId: ID },
+        { code: 'P-DES', name: 'Design', hrBasis: HR_BASIS_BODY, parentId: ID },
       ],
-      ['an unknown field', { code: 'P-DES', name: 'Design', costCenterId: OTHER, status: 'INACTIVE' }],
+      ['an unknown field', { code: 'P-DES', name: 'Design', hrBasis: HR_BASIS_BODY, status: 'INACTIVE' }],
     ])('turns away a new department with %s, 422 VALIDATION_ERROR', async (_name, body) => {
-      app = await appFor(principal(['IT_ADMIN']));
+      app = await appFor(principal(['SUPER_ADMIN']));
 
       const response = await request(app.getHttpServer())
         .post('/api/v1/departments')
@@ -171,13 +267,14 @@ describe('department routes (e2e, no database)', () => {
       ['a new code', { code: 'P-NEW' }],
       ['a parent', { parentId: ID }],
       ['a status', { status: 'INACTIVE' }],
+      ['no HR basis', { name: 'Design', hrBasis: undefined }],
     ])('turns away an update that names %s, 422 VALIDATION_ERROR', async (_name, body) => {
-      app = await appFor(principal(['IT_ADMIN']));
+      app = await appFor(principal(['SUPER_ADMIN']));
 
       const response = await request(app.getHttpServer())
         .patch(`/api/v1/departments/${ID}`)
-        .set(asIt())
-        .send(body)
+        .set(asSuperAdmin())
+        .send({ hrBasis: HR_BASIS_BODY, ...body })
         .expect(422);
 
       expect(bodyOf(response).error.code).toBe('VALIDATION_ERROR');
@@ -190,11 +287,44 @@ describe('department routes (e2e, no database)', () => {
       ['a date that is not a date', { employeeId: OTHER, effectiveFrom: '2030-02-31' }],
       ['an unknown field', { employeeId: OTHER, effectiveFrom: '2030-01-01', title: 'Head' }],
     ])('turns away a head assignment with %s, 422 VALIDATION_ERROR', async (_name, body) => {
-      app = await appFor(principal(['IT_ADMIN']));
+      app = await appFor(principal(['SUPER_ADMIN']));
 
       const response = await request(app.getHttpServer())
         .post(`/api/v1/departments/${ID}/head-assignments`)
-        .set(asIt())
+        .set(asSuperAdmin())
+        .send({ hrBasis: HR_BASIS_BODY, ...body })
+        .expect(422);
+
+      expect(bodyOf(response).error.code).toBe('VALIDATION_ERROR');
+    });
+
+    it.each([
+      ['no person', { effectiveFrom: '2030-01-01' }],
+      ['a person that is not an id', { employeeId: 'E-1', effectiveFrom: '2030-01-01' }],
+      ['no date', { employeeId: OTHER }],
+      ['no HR basis', { employeeId: OTHER, effectiveFrom: '2030-01-01', hrBasis: undefined }],
+      ['an unknown field', { employeeId: OTHER, effectiveFrom: '2030-01-01', title: 'Head' }],
+    ])('turns away a successor designation with %s, 422 VALIDATION_ERROR', async (_name, body) => {
+      app = await appFor(principal(['SUPER_ADMIN']));
+
+      const response = await request(app.getHttpServer())
+        .post(`/api/v1/departments/${ID}/successor-designations`)
+        .set(asSuperAdmin())
+        .send({ hrBasis: HR_BASIS_BODY, ...body })
+        .expect(422);
+
+      expect(bodyOf(response).error.code).toBe('VALIDATION_ERROR');
+    });
+
+    it.each([
+      ['no HR basis', {}],
+      ['an unknown field', { hrBasis: HR_BASIS_BODY, employeeId: OTHER }],
+    ])('turns away a successor clearance with %s, 422 VALIDATION_ERROR', async (_name, body) => {
+      app = await appFor(principal(['SUPER_ADMIN']));
+
+      const response = await request(app.getHttpServer())
+        .post(`/api/v1/departments/${ID}/successor-clearances`)
+        .set(asSuperAdmin())
         .send(body)
         .expect(422);
 
@@ -216,7 +346,12 @@ describe('department routes (e2e, no database)', () => {
       app = await appFor(principal(['IT_ADMIN']));
 
       await request(app.getHttpServer()).get('/api/v1/departments/not-a-uuid').set(asIt()).expect(422);
-      await request(app.getHttpServer()).post('/api/v1/departments/not-a-uuid/deactivate').set(asIt()).expect(422);
+      app = await appFor(principal(['SUPER_ADMIN']));
+      await request(app.getHttpServer())
+        .post('/api/v1/departments/not-a-uuid/deactivate')
+        .set(asSuperAdmin())
+        .send({ hrBasis: HR_BASIS_BODY })
+        .expect(422);
     });
   });
 
@@ -228,8 +363,8 @@ describe('department routes (e2e, no database)', () => {
       ['POST', `/api/v1/departments/${ID}/split`],
       ['DELETE', `/api/v1/departments/${ID}`],
       ['DELETE', '/api/v1/departments'],
-    ])('has no %s %s: 404, even for an IT Admin', async (method, path) => {
-      app = await appFor(principal(['IT_ADMIN']));
+    ])('has no %s %s: 404, even for the Super Admin', async (method, path) => {
+      app = await appFor(principal(['SUPER_ADMIN']));
 
       const response = await request(app.getHttpServer())
         [method.toLowerCase() as 'post' | 'delete'](path)

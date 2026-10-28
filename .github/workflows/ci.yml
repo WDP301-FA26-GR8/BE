@@ -117,11 +117,15 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: pnpm check
 
-      # Tạm tắt E2E tests trên CI vì quá nhiều test suite (chạy hơn 1 tiếng gây timeout GitHub Actions runner).
-      # Hơn 2,100 Unit tests và bộ Integration tests chạy với PostgreSQL thực tế vẫn đảm bảo chất lượng 100%.
-      # - name: Run API E2E tests
-      #   if: github.ref == 'refs/heads/main'
-      #   run: pnpm test:e2e
+      # HTTP-E2E-DEFERRED-BY-OWNER (Owner, 27–28/10/2026, Prompt 04 continuation sections 9.6 and 9.9): the HTTP E2E suite is
+      # paused until the Owner redesigns its runner (it ran over an hour and timed the runner out). Original condition:
+      # `if: github.ref == 'refs/heads/main'`. To re-enable: restore that condition, give the job a timeout that fits the suite,
+      # delete this comment and record it in the BE tracker. While it is off, CI proves nothing about HTTP behavior; `pnpm
+      # test:e2e` and the suite stay in the repository, and nothing here replaces the run with a fake pass (no
+      # continue-on-error, no `|| true`).
+      - name: Run API E2E tests (HTTP-E2E-DEFERRED-BY-OWNER)
+        if: ${{ false }}
+        run: pnpm test:e2e
 
       - name: Provision ordinary integration role
         run: |
@@ -160,15 +164,19 @@ jobs:
           pnpm exec prisma migrate deploy
           pnpm exec prisma migrate diff --from-config-datasource --to-schema prisma --exit-code
 
-      # Tạm tắt Integration tests trên CI vì có 224 file test chạy mất ~45-50 phút gây nghẽn CI.
-      # Bước Check Prisma schema bên trên và hơn 2,100 Unit tests trong pnpm check vẫn đảm bảo toàn vẹn DB và Logic.
-      # - name: Run isolated PostgreSQL integration tests
-      #   if: github.ref == 'refs/heads/main'
-      #   run: pnpm test:integration
-      #   env:
-      #     TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
-      #     # H7: the role-separation suites play the cluster administrator of this disposable service container only.
-      #     TEST_DATABASE_BOOTSTRAP_URL: postgresql://ci_bootstrap:ci-bootstrap-only@127.0.0.1:5432/postgres
+      # INTEGRATION-DEFERRED-BY-OWNER (Owner, 28/10/2026, Prompt 04 continuation section 9.9): the isolated PostgreSQL integration
+      # suite (about 45–50 minutes) is paused until the Owner redesigns its runner. Original condition:
+      # `if: github.ref == 'refs/heads/main'`. To re-enable: restore that condition, give the job a timeout that fits the suite,
+      # delete this comment and record it in the BE tracker. While it is off, CI proves no real-database behavior, runtime-role
+      # privilege, concurrency or recovery: the schema check above proves only that the migrations build the Prisma schema on
+      # an empty database. The suite stays in the repository; nothing here replaces the run with a fake pass.
+      - name: Run isolated PostgreSQL integration tests (INTEGRATION-DEFERRED-BY-OWNER)
+        if: ${{ false }}
+        run: pnpm test:integration
+        env:
+          TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
+          # H7: the role-separation suites play the cluster administrator of this disposable service container only.
+          TEST_DATABASE_BOOTSTRAP_URL: postgresql://ci_bootstrap:ci-bootstrap-only@127.0.0.1:5432/postgres
 
       - name: Validate Compose configuration
         run: docker compose config --quiet

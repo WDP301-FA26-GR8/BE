@@ -99,7 +99,6 @@ export async function createHttpTestApp(
 export interface SeededInstallation {
   organizationId: string;
   departmentId: string;
-  jobTitleId: string;
   superAdmin: { appUserId: string; employeeId: string; email: string; password: string };
 }
 
@@ -119,18 +118,18 @@ export async function seedInstallation(app: INestApplication): Promise<SeededIns
       timeZone: 'Asia/Ho_Chi_Minh',
       reportingCurrency: 'VND',
     });
-    const costCenter = await organization.createUnitCostCenter(tx, {
-      organizationId: org.id,
-      code: 'CC-1',
-      name: 'Ops',
-    });
+    // The department first, then the Cost Center created for it (`QĐ-87d(1)`), as the installation command does.
     const department = await organization.createDepartment(tx, {
       organizationId: org.id,
       code: 'P-OPS',
       name: 'Operations',
-      costCenterId: costCenter.id,
     });
-    const jobTitle = await organization.createJobTitle(tx, org.id, 'Administrator');
+    await organization.createUnitCostCenter(tx, {
+      organizationId: org.id,
+      code: 'CC-1',
+      name: 'Ops',
+      departmentId: department.id,
+    });
     const employee = await organization.createEmployeeWithPlacement(tx, {
       organizationId: org.id,
       employeeCode: 'E-ADMIN',
@@ -139,7 +138,7 @@ export async function seedInstallation(app: INestApplication): Promise<SeededIns
       employmentType: 'STAFF',
       hireDate: '2026-01-05',
       departmentId: department.id,
-      jobTitleId: jobTitle.id,
+      jobTitle: 'Administrator',
     });
     const account = await identity.createBootstrapSuperAdmin(tx, {
       organizationId: org.id,
@@ -152,7 +151,6 @@ export async function seedInstallation(app: INestApplication): Promise<SeededIns
     return {
       organizationId: org.id,
       departmentId: department.id,
-      jobTitleId: jobTitle.id,
       superAdmin: { appUserId: account.appUserId, employeeId: employee.id, email, password: SEED_PASSWORD },
     };
   });
@@ -183,7 +181,7 @@ export async function insertAccountFixture(
       employmentType: 'STAFF',
       hireDate: '2026-01-05',
       departmentId: seed.departmentId,
-      jobTitleId: seed.jobTitleId,
+      jobTitle: 'Administrator',
     });
     const rows = await tx.$queryRaw<{ id: string }[]>`
       INSERT INTO app_users (id, organization_id, employee_id, login_email, normalized_login_email, status,
@@ -225,7 +223,7 @@ export async function insertEmployeeFixture(
       employmentType: 'STAFF',
       hireDate: '2026-01-05',
       departmentId: seed.departmentId,
-      jobTitleId: seed.jobTitleId,
+      jobTitle: 'Administrator',
     });
     if (options.terminated) {
       await tx.$executeRaw`UPDATE employees SET status = 'TERMINATED' WHERE id = ${employee.id}::uuid`;

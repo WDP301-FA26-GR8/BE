@@ -20,7 +20,7 @@ export function grantAnswerFor(
     planId: string | null;
     expectedEndDate: string | null;
     departmentId: string;
-    costCenterId: string;
+    costCenterId: string | null;
     serviceAccount: ServiceAccountRecord | null;
     lines?: readonly { employeeId: string; state: LineState; expectedEndDate: string | null }[];
   },
@@ -40,10 +40,13 @@ export function grantAnswerFor(
           seat: 'PERSONAL',
           employeeId: request.beneficiaryEmployeeIds[0],
           planId,
+          departmentId: request.departmentId,
           expectedEndDate,
         };
       }
       if (serviceAccount.boundaryState !== 'ACCEPTED') return { status: 'BOUNDARY_NOT_CHECKED' };
+      // The seat of a service account is charged to the Unit of its department: the request of one always carries it (the table checks it, F91).
+      if (request.costCenterId === null) throw new Error('The request of a service account has no Cost Center.');
 
       return {
         status: 'GRANTABLE',
@@ -59,6 +62,8 @@ export function grantAnswerFor(
         },
       };
     }
+    // `DRAFT` is not readable in this release (spec L.1) and never reaches here; if it did, nothing about it is approved.
+    case 'DRAFT':
     case 'PENDING':
     case 'WAITING_CONTROLLED':
     case 'AWAITING_IT_ASSESSMENT':
@@ -83,6 +88,7 @@ function groupAnswerFor(
   request: {
     state: AccessRequestState;
     planId: string | null;
+    departmentId: string;
     lines?: readonly { employeeId: string; state: LineState; expectedEndDate: string | null }[];
   },
   employeeId: string | undefined,
@@ -103,6 +109,7 @@ function groupAnswerFor(
         seat: 'PERSONAL',
         employeeId: line.employeeId,
         planId: request.planId,
+        departmentId: request.departmentId,
         expectedEndDate: line.expectedEndDate,
       };
     default:

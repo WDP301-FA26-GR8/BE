@@ -38,7 +38,9 @@ describe('the service accounts of a person who is transferred or leaves (integra
     fin = await h.departmentWithUnit('P-FIN');
     head = await h.worker(des, 'H1-SD');
     await h.makeHead(des, head);
-    subscription = await h.subscription(400, 'K2');
+    // Every account of the suite answers to a person of P-DES, so the subscription is P-DES's: a seat sits only on a subscription
+    // of its own department (F20), and a subscription always has an owner department (F02).
+    subscription = await h.subscription(400, 'K2', des.id);
   }, 300000);
 
   afterAll(async () => {

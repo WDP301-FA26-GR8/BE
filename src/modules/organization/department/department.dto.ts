@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { isBusinessDate } from '../../../core/business-date';
 import { successEnvelopeSchema } from '../../../infrastructure/http/dto/success-envelope.dto';
+import { hrBasisSchema } from '../../../infrastructure/http/dto/hr-basis.dto';
 import { createZodDto } from '../../../infrastructure/http/dto/zod-dto';
 import { COST_CENTER_CODE_MAX_LENGTH, COST_CENTER_CODE_PATTERN } from '../cost-center/cost-center.types';
 import { projectSchema } from '../dto/project-wire.dto';
@@ -12,16 +13,24 @@ export const createDepartmentBodySchema = z.strictObject({
   code: z.string().trim().min(1).max(COST_CENTER_CODE_MAX_LENGTH).regex(COST_CENTER_CODE_PATTERN),
   name: z.string().max(1000),
   function: z.string().max(5000).nullish(),
-  costCenterId: z.uuid(),
   itAdminEmployeeId: z.uuid().nullish(),
+  /** The HR document the department is created from (`QĐ-87b`): every part is required. */
+  hrBasis: hrBasisSchema,
 });
 
-/** A department has no parent and its Cost Center cannot change: neither is a field (US-03-06 AC-3, AC-4). */
+/**
+ * A department has no parent and its Cost Center cannot change: neither is a field (US-03-06 AC-3, AC-4). Every change cites the
+ * HR document it is made on (`QĐ-87b(1)`): a missing part is a validation error and nothing is written.
+ */
 export const updateDepartmentBodySchema = z.strictObject({
   name: z.string().max(1000).optional(),
   function: z.string().max(5000).nullable().optional(),
   itAdminEmployeeId: z.uuid().nullable().optional(),
+  hrBasis: hrBasisSchema,
 });
+
+/** Retiring a department is made on an HR basis too. */
+export const deactivateDepartmentBodySchema = z.strictObject({ hrBasis: hrBasisSchema });
 
 export const listDepartmentsQuerySchema = z.strictObject({
   status: z.enum(['ACTIVE', 'INACTIVE']).optional(),
@@ -37,8 +46,19 @@ export const listMembersQuerySchema = z.strictObject({
 
 export const departmentIdParamSchema = z.strictObject({ id: z.uuid() });
 
-export const assignHeadBodySchema = z.strictObject({ employeeId: z.uuid(), effectiveFrom: businessDate });
-export const vacateHeadBodySchema = z.strictObject({ effectiveFrom: businessDate });
+export const assignHeadBodySchema = z.strictObject({
+  employeeId: z.uuid(),
+  effectiveFrom: businessDate,
+  hrBasis: hrBasisSchema,
+});
+export const vacateHeadBodySchema = z.strictObject({ effectiveFrom: businessDate, hrBasis: hrBasisSchema });
+/** The person who is to follow the head, from a day after today (`QĐ-87` `D-5`). */
+export const designateSuccessorBodySchema = z.strictObject({
+  employeeId: z.uuid(),
+  effectiveFrom: businessDate,
+  hrBasis: hrBasisSchema,
+});
+export const clearSuccessorBodySchema = z.strictObject({ hrBasis: hrBasisSchema });
 
 const pagination = z.strictObject({
   page: z.number().int().positive(),
@@ -53,12 +73,15 @@ const departmentSchema = z.strictObject({
   name: z.string(),
   function: z.string().nullable(),
   status: z.enum(['ACTIVE', 'INACTIVE']),
-  costCenter: z.strictObject({
-    id: z.uuid(),
-    code: z.string(),
-    name: z.string(),
-    status: z.enum(['ACTIVE', 'INACTIVE']),
-  }),
+  /** The Cost Center Finance created for the department and that is in use; null while it has none (`QĐ-87d(1)`). */
+  costCenter: z
+    .strictObject({
+      id: z.uuid(),
+      code: z.string(),
+      name: z.string(),
+      status: z.enum(['ACTIVE', 'INACTIVE']),
+    })
+    .nullable(),
   itAdmin: z
     .strictObject({ employeeId: z.uuid(), employeeCode: z.string(), fullName: z.string(), usable: z.boolean() })
     .nullable(),
@@ -66,13 +89,18 @@ const departmentSchema = z.strictObject({
     .strictObject({ employeeId: z.uuid(), employeeCode: z.string(), fullName: z.string(), since: z.string() })
     .nullable(),
   memberCount: z.number().int().nonnegative(),
-  warnings: z.array(z.enum(['MISSING_HEAD', 'MISSING_IT_ADMIN'])),
+  /** What the department still lacks: a head, a usable IT Admin in charge, a Cost Center in use (finance configuration incomplete). */
+  warnings: z.array(z.enum(['MISSING_HEAD', 'MISSING_IT_ADMIN', 'MISSING_COST_CENTER'])),
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime(),
   deactivatedAt: z.iso.datetime().nullable(),
 });
 
 const departmentProfileSchema = departmentSchema.extend({
+  /** The person named to take over from a day after today (`since` is that day); null when nobody is. */
+  successor: z
+    .strictObject({ employeeId: z.uuid(), employeeCode: z.string(), fullName: z.string(), since: z.string() })
+    .nullable(),
   headHistory: z.array(
     z.strictObject({
       employeeId: z.uuid(),
@@ -103,6 +131,21 @@ const memberPageSchema = z.strictObject({
   pagination,
 });
 
+/** What an IT Admin may read of a person (`EmployeeTechnicalView`): no email, no kind of staff, no hire date, no basis. */
+const technicalMemberPageSchema = z.strictObject({
+  items: z.array(
+    z.strictObject({
+      id: z.uuid(),
+      code: z.string(),
+      fullName: z.string(),
+      departmentId: z.uuid(),
+      employmentStatus: z.enum(['WORKING', 'ON_LONG_LEAVE', 'HANDING_OVER', 'LEFT']),
+      effectiveOn: z.string(),
+    }),
+  ),
+  pagination,
+});
+
 const warningsSchema = z.strictObject({
   items: z.array(
     z.strictObject({
@@ -121,9 +164,15 @@ export class ListDepartmentsQueryDto extends createZodDto(listDepartmentsQuerySc
 export class ListMembersQueryDto extends createZodDto(listMembersQuerySchema) {}
 export class ListWarningsQueryDto extends createZodDto(listMembersQuerySchema) {}
 export class DepartmentIdParamDto extends createZodDto(departmentIdParamSchema) {}
+export class DeactivateDepartmentBodyDto extends createZodDto(deactivateDepartmentBodySchema) {}
 export class AssignHeadBodyDto extends createZodDto(assignHeadBodySchema) {}
 export class VacateHeadBodyDto extends createZodDto(vacateHeadBodySchema) {}
+export class DesignateSuccessorBodyDto extends createZodDto(designateSuccessorBodySchema) {}
+export class ClearSuccessorBodyDto extends createZodDto(clearSuccessorBodySchema) {}
 export class DepartmentResponseDto extends createZodDto(successEnvelopeSchema(departmentProfileSchema)) {}
 export class DepartmentPageResponseDto extends createZodDto(successEnvelopeSchema(departmentPageSchema)) {}
 export class DepartmentMembersResponseDto extends createZodDto(successEnvelopeSchema(memberPageSchema)) {}
+export class DepartmentTechnicalMembersResponseDto extends createZodDto(
+  successEnvelopeSchema(technicalMemberPageSchema),
+) {}
 export class DepartmentWarningsResponseDto extends createZodDto(successEnvelopeSchema(warningsSchema)) {}

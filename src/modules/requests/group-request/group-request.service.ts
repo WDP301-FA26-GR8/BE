@@ -7,9 +7,13 @@ import { SpendEntryService } from '../spend/spend-entry.service';
 import { accessRequestAuditEvent } from '../access-request/access-request-audit-event';
 import {
   AccessRequestNoDepartmentError,
-  AccessRequestOutsideStandardReasonRequiredError,
+  AccessRequestNotDraftError,
+  AccessRequestNotFoundError,
+  AccessRequestSuperAdminCannotRequestError,
 } from '../access-request/access-request.errors';
+import { mayRequest } from '../access-request/access-request.policy';
 import { AccessRequestRepo } from '../access-request/access-request.repo';
+import { RequestDraftRepo } from '../access-request/request-draft.repo';
 import type { AccessRequestRecord, PricingRecord } from '../access-request/access-request.types';
 import { LONG_TERM_MONTHS, nextRequestState } from '../access-request/need-decision.policy';
 import { RequestAssessmentService, type RequestSettings } from '../access-request/request-assessment.service';
@@ -37,7 +41,6 @@ export interface GroupBody {
   businessReason: string;
   termMonths: number;
   projectLabel?: string;
-  outsideStandardReason?: string;
   expectedSpendOn?: string;
   termConfirmation?: { reason: string };
 }
@@ -47,7 +50,6 @@ export interface GroupCheck {
   plan: { eligible: boolean; reason: PlanRefusal | null };
   tooManyLines: { max: number } | null;
   lines: { employeeId: string; ok: boolean; reason: LineReason | 'DUPLICATE_LINE' | null }[];
-  outsideStandard: boolean;
   pricing: PricingRecord;
   lineCount: number;
 }
@@ -71,6 +73,7 @@ export class GroupRequestService {
     private readonly decisions: LineDecisionRepo,
     private readonly entry: SpendEntryService,
     private readonly audit: AuditService,
+    private readonly drafts: RequestDraftRepo,
   ) {}
 
   /** Every reason the request cannot be sent, and what it would cost, without writing anything. */
@@ -91,7 +94,6 @@ export class GroupRequestService {
 
           return { employeeId: line.employeeId, ok: reason === null, reason };
         }),
-        outsideStandard: judged.outsideStandard,
         pricing: judged.pricing,
         lineCount: judged.lines.length,
       };
@@ -99,14 +101,25 @@ export class GroupRequestService {
   }
 
   /**
-   * Throws GroupRequestPlanNotEligibleError, GroupRequestTooManyLinesError, GroupRequestDuplicateLineError,
-   * GroupRequestLinesRefusedError, AccessRequestOutsideStandardReasonRequiredError,
-   * GroupRequestTermConfirmationRequiredError, AccessRequestNoDepartmentError and the errors of assessing a plan.
+   * Throws AccessRequestSuperAdminCannotRequestError, GroupRequestPlanNotEligibleError, GroupRequestTooManyLinesError,
+   * GroupRequestDuplicateLineError, GroupRequestLinesRefusedError, GroupRequestTermConfirmationRequiredError,
+   * AccessRequestNoDepartmentError and the errors of assessing a plan. A draft (draftId) is the request being sent: it is locked first,
+   * judged again under the lock, and its row becomes the request (spec L.1); AccessRequestNotFoundError and AccessRequestNotDraftError.
    */
-  async submit(actor: AuthenticatedPrincipal, body: GroupBody): Promise<AccessRequestRecord> {
+  async submit(
+    actor: AuthenticatedPrincipal,
+    body: GroupBody,
+    options: { draftId?: string } = {},
+  ): Promise<AccessRequestRecord> {
+    if (!mayRequest(actor.roles)) throw new AccessRequestSuperAdminCannotRequestError();
     const settings = await this.assessment.settings();
 
     return this.runner.run(async (tx) => {
+      if (options.draftId) {
+        const verdict = await this.drafts.lockOwned(tx, options.draftId, actor.employeeId);
+        if (verdict === 'NOT_FOUND') throw new AccessRequestNotFoundError();
+        if (verdict === 'NOT_DRAFT') throw new AccessRequestNotDraftError();
+      }
       const organizationId = await this.requireSender(tx, actor);
       const judged = await this.facts.judge(tx, this.input(actor, body, settings, true));
       this.refuse(judged, body);
@@ -119,7 +132,7 @@ export class GroupRequestService {
         facts: judged.assessed.routing.facts,
         slaWorkingDays: settings.slaWorkingDays,
       });
-      const request = await this.write(tx, actor, organizationId, judged, planned, body);
+      const request = await this.write(tx, actor, organizationId, judged, planned, body, options.draftId ?? null);
       if (request.state === 'AWAITING_SPEND_SUBMISSION') await this.entry.enter(tx, actor, request);
 
       const final = await this.requests.findById(request.id, tx);
@@ -157,9 +170,6 @@ export class GroupRequestService {
     if (judged.count.tooMany !== null) throw new GroupRequestTooManyLinesError(judged.count.tooMany.max);
     if (judged.count.duplicates.length > 0) throw new GroupRequestDuplicateLineError(judged.count.duplicates);
     if (judged.refused.length > 0) throw new GroupRequestLinesRefusedError(judged.refused);
-    if (judged.outsideStandard && !body.outsideStandardReason) {
-      throw new AccessRequestOutsideStandardReasonRequiredError();
-    }
     if (
       needsTermConfirmation({
         senderIsHead: judged.senderIsHead,
@@ -179,6 +189,7 @@ export class GroupRequestService {
     judged: GroupJudgement,
     planned: readonly PlannedNeedStep<GroupLineInput>[],
     body: GroupBody,
+    draftId: string | null,
   ): Promise<AccessRequestRecord> {
     const { assessed } = judged;
     const { policy, unit } = assessed;
@@ -197,17 +208,16 @@ export class GroupRequestService {
       requesterEmployeeId: actor.employeeId,
       beneficiaryEmployeeIds: judged.lines.map((line) => line.employeeId),
       departmentId: unit.departmentId,
-      costCenterId: unit.costCenter.id,
+      costCenterId: unit.costCenter?.id ?? null,
       businessReason: body.businessReason,
       termMonths: body.termMonths,
       projectLabel: body.projectLabel ?? null,
-      outsideStandardReason: body.outsideStandardReason ?? null,
-      outsideStandard: judged.outsideStandard,
       pricing: judged.pricing,
       policy,
       createdByAppUserId: actor.appUserId,
       now,
       needStep: first.step,
+      draftId,
     });
     const stepIds = [created.needStepId];
     for (const entry of rest) {

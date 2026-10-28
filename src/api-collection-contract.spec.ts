@@ -129,6 +129,7 @@ const COLLECTION_EXCEPTIONS: readonly CollectionException[] = [
       'missingFinancialData',
       'noticeDeadline',
       'noticePeriodDays',
+      'ownerDepartmentId',
       'planId',
       'planName',
       'priceSnapshot',
@@ -142,57 +143,6 @@ const COLLECTION_EXCEPTIONS: readonly CollectionException[] = [
       'updatedAt',
       'vendor',
       'warnings',
-    ],
-  },
-  {
-    operationId: 'standardToolsetList',
-    classification: 'detail-reuse',
-    findings: ['LD-07'],
-    owner: 'catalog-standard-toolset-read-batching',
-    detailOperationId: 'standardToolsetGet',
-    businessMaximum: {
-      maxItems: 100,
-      source: 'pageSize maximum of the operation (the plans of each version: NESTED_ARRAYS standardToolsetList#plans)',
-    },
-    rationale: 'A list row is the current toolset version, the resource standardToolsetGet returns.',
-    removeWhen:
-      'A toolset summary schema ships, or the item records a decision that keeps this bounded reuse. Review maxItems when the pageSize maximum changes (the gate compares them).',
-    itemProperties: [
-      'changedAt',
-      'changedBy',
-      'department',
-      'departmentId',
-      'jobTitle',
-      'jobTitleId',
-      'plans',
-      'reason',
-      'version',
-    ],
-  },
-  {
-    operationId: 'standardToolsetHistory',
-    classification: 'detail-reuse',
-    findings: ['LD-07'],
-    owner: 'catalog-standard-toolset-read-batching',
-    detailOperationId: 'standardToolsetGet',
-    businessMaximum: {
-      maxItems: 100,
-      source:
-        'pageSize maximum of the operation (the plans of each version: NESTED_ARRAYS standardToolsetHistory#plans)',
-    },
-    rationale: 'A history row is a full toolset version, the shape standardToolsetGet returns.',
-    removeWhen:
-      'A version summary schema ships, or the item records a decision that keeps this bounded reuse. Review maxItems when the pageSize maximum changes (the gate compares them).',
-    itemProperties: [
-      'changedAt',
-      'changedBy',
-      'department',
-      'departmentId',
-      'jobTitle',
-      'jobTitleId',
-      'plans',
-      'reason',
-      'version',
     ],
   },
   {
@@ -287,6 +237,7 @@ const COLLECTION_EXCEPTIONS: readonly CollectionException[] = [
       'missingFinancialData',
       'noticeDeadline',
       'noticePeriodDays',
+      'ownerDepartmentId',
       'planId',
       'planName',
       'priceSnapshot',
@@ -522,9 +473,9 @@ const NESTED_ARRAYS: readonly NestedArrayEntry[] = [
     findings: [],
     owner: 'g2-department-profile',
     businessMaximum: {
-      maxItems: 2,
+      maxItems: 3,
       source:
-        'department-query.service.ts builds MISSING_HEAD and MISSING_IT_ADMIN, each at most once (DepartmentWarning)',
+        'department-query.service.ts builds MISSING_HEAD, MISSING_IT_ADMIN and MISSING_COST_CENTER, each at most once (DepartmentWarning)',
     },
     rationale: 'The warnings of one department.',
     removeWhen: 'Review when DepartmentWarning gains a kind or the warnings are built another way.',
@@ -535,9 +486,9 @@ const NESTED_ARRAYS: readonly NestedArrayEntry[] = [
     findings: [],
     owner: 'g2-department-profile',
     businessMaximum: {
-      maxItems: 2,
+      maxItems: 3,
       source:
-        'department-query.service.ts builds MISSING_HEAD and MISSING_IT_ADMIN, each at most once (DepartmentWarning)',
+        'department-query.service.ts builds MISSING_HEAD, MISSING_IT_ADMIN and MISSING_COST_CENTER, each at most once (DepartmentWarning)',
     },
     rationale: 'The warnings of the department.',
     removeWhen: 'Review when DepartmentWarning gains a kind or the warnings are built another way.',
@@ -1006,30 +957,6 @@ const NESTED_ARRAYS: readonly NestedArrayEntry[] = [
     removeWhen: 'Review when noticeWarnings or SubscriptionWarning changes.',
   },
   {
-    key: 'subscriptionCostAllocationGet#allocation.lines',
-    classification: 'bounded',
-    findings: [],
-    owner: 'g3-shared-cost-allocation',
-    businessMaximum: {
-      maxItems: 20,
-      source: 'MAX_ALLOCATION_LINES in cost-allocation.policy.ts (cleanAllocationLines on every declaration)',
-    },
-    rationale: 'The lines of the current allocation.',
-    removeWhen: 'Review when MAX_ALLOCATION_LINES or the declaration path changes.',
-  },
-  {
-    key: 'subscriptionCostAllocationHistory#lines',
-    classification: 'bounded',
-    findings: [],
-    owner: 'g3-shared-cost-allocation',
-    businessMaximum: {
-      maxItems: 20,
-      source: 'MAX_ALLOCATION_LINES in cost-allocation.policy.ts (cleanAllocationLines on every declaration)',
-    },
-    rationale: 'The lines of one allocation version.',
-    removeWhen: 'Review when MAX_ALLOCATION_LINES or the declaration path changes.',
-  },
-  {
     key: 'planTermsGet#opinions',
     classification: 'bounded',
     findings: ['LD-06'],
@@ -1091,42 +1018,6 @@ const NESTED_ARRAYS: readonly NestedArrayEntry[] = [
     removeWhen: 'Review when RETIREMENT_LIST_LIMIT changes.',
   })),
   {
-    key: 'standardToolsetList#plans',
-    classification: 'bounded',
-    findings: [],
-    owner: 'g3-standard-toolset',
-    businessMaximum: { maxItems: 50, source: 'MAX_TOOLSET_PLANS in standard-toolset.policy.ts (cleanToolsetInput)' },
-    rationale: 'The plans of one toolset version.',
-    removeWhen: 'Review when MAX_TOOLSET_PLANS or the toolset write path changes.',
-  },
-  {
-    key: 'standardToolsetMine#toolset.plans',
-    classification: 'bounded',
-    findings: [],
-    owner: 'g3-standard-toolset',
-    businessMaximum: { maxItems: 50, source: 'MAX_TOOLSET_PLANS in standard-toolset.policy.ts (cleanToolsetInput)' },
-    rationale: 'The plans of the toolset of the caller.',
-    removeWhen: 'Review when MAX_TOOLSET_PLANS or the toolset write path changes.',
-  },
-  {
-    key: 'standardToolsetGet#toolset.plans',
-    classification: 'bounded',
-    findings: [],
-    owner: 'g3-standard-toolset',
-    businessMaximum: { maxItems: 50, source: 'MAX_TOOLSET_PLANS in standard-toolset.policy.ts (cleanToolsetInput)' },
-    rationale: 'The plans of the toolset.',
-    removeWhen: 'Review when MAX_TOOLSET_PLANS or the toolset write path changes.',
-  },
-  {
-    key: 'standardToolsetHistory#plans',
-    classification: 'bounded',
-    findings: [],
-    owner: 'g3-standard-toolset',
-    businessMaximum: { maxItems: 50, source: 'MAX_TOOLSET_PLANS in standard-toolset.policy.ts (cleanToolsetInput)' },
-    rationale: 'The plans of one toolset version.',
-    removeWhen: 'Review when MAX_TOOLSET_PLANS or the toolset write path changes.',
-  },
-  {
     key: 'onboardingChecklistGet#steps',
     classification: 'bounded',
     findings: [],
@@ -1154,18 +1045,9 @@ const NESTED_ARRAYS: readonly NestedArrayEntry[] = [
     findings: ['LD-16'],
     owner: 'api-list-detail-contract-remediation',
     rationale:
-      'Step 1 lists MISSING_HEAD and MISSING_IT_ADMIN per active department, and the number of departments has no cap (the same bound as departmentWarningList, LD-15).',
+      'Step 1 lists MISSING_HEAD, MISSING_IT_ADMIN and MISSING_COST_CENTER per active department, and the number of departments has no cap (the same bound as departmentWarningList, LD-15).',
     removeWhen:
       'The warnings of the step get a proved maximum or a paginated form; the contract and the future package are not chosen here (LD-16).',
-  },
-  {
-    key: 'onboardingChecklistGet#suggestions',
-    classification: 'bounded',
-    findings: [],
-    owner: 'g2-onboarding-checklist',
-    businessMaximum: { maxItems: 1, source: 'the one-suggestion tuple of the checklist in onboarding.service.ts' },
-    rationale: 'The suggestions of the checklist.',
-    removeWhen: 'Review when a suggestion is added.',
   },
   {
     key: 'meGet#roles.direct',
@@ -1252,6 +1134,35 @@ const NESTED_ARRAYS: readonly NestedArrayEntry[] = [
     rationale:
       'One line per plan the department holds seats of, counted in SQL by one groupBy of the same snapshot as the page (LD-09 fixed the cost, not the number of plans).',
     removeWhen: 'The summary is capped with a total or paginated.',
+  },
+  {
+    key: 'budgetVersionHistoryList#changes',
+    classification: 'bounded',
+    findings: ['LD-14'],
+    owner: 'g0-g6-final-business-baseline-remediation',
+    businessMaximum: {
+      maxItems: 16,
+      source:
+        'HISTORY_CHANGES_MAX in version-history.policy.ts, the maxItems of the schema in budget-history.dto.ts: one entry of the history shows the fields one edit changed, and the widest edit is a line, which has eleven',
+    },
+    rationale:
+      'The fields one edit of a version changed, with their values before and after (F66, spec J.4); the history is paged.',
+    removeWhen:
+      'Review when a field is added to the figures or to a line of a version, or HISTORY_CHANGES_MAX changes.',
+  },
+  {
+    key: 'transferReviewGet#unfinishedRequests',
+    classification: 'bounded',
+    findings: ['LD-14'],
+    owner: 'g0-g6-final-business-baseline-remediation',
+    businessMaximum: {
+      maxItems: 20,
+      source:
+        'UNFINISHED_REQUESTS_MAX in transfer-review.dto.ts, the maxItems of the schema, and the take of unfinishedRequestsOf in transfer-review-view.service.ts: the open Requests of the person who moved, for the head to read beside the tools (F29)',
+    },
+    rationale:
+      'The open Requests of the person who was transferred, information only (F29); the Request list has the rest.',
+    removeWhen: 'Review when UNFINISHED_REQUESTS_MAX changes or the review shows the Requests as a paged subresource.',
   },
 ];
 
@@ -1366,6 +1277,24 @@ const closedException = (
   date: RegistryEvent['date'] = '2026-10-23',
 ): RegistryEvent => ({ registry: 'exceptions', key, change: 'closed', finding, item, date, reason });
 
+/** The entry of an operation the compatibility release removed (spec L.6): the live registry loses it, the frozen one keeps it. */
+const removedOperation = (
+  registry: RegistryEvent['registry'],
+  key: string,
+  finding: string,
+  reason: string,
+  from?: NestedClassification,
+): RegistryEvent => ({
+  registry,
+  key,
+  change: 'closed',
+  ...(from === undefined ? {} : { from }),
+  finding,
+  item: 'g0-g6-final-business-baseline-remediation',
+  date: '2026-10-28',
+  reason,
+});
+
 const boundedNested = (
   key: string,
   bound: string,
@@ -1392,6 +1321,56 @@ const boundedNested = (
  * its difference. Prompt 10 (23/10/2026, commit 4cc9a47) closed these with the remediation items of the G0-G4 review.
  */
 const REGISTRY_EVENTS_SINCE_INITIAL: readonly RegistryEvent[] = [
+  removedOperation('exceptions', 'standardToolsetList#detail-reuse', 'F04', 'standardToolsetList is removed (QĐ-87h).'),
+  removedOperation(
+    'exceptions',
+    'standardToolsetHistory#detail-reuse',
+    'F04',
+    'standardToolsetHistory is removed (QĐ-87h).',
+  ),
+  removedOperation('nested', 'standardToolsetList#plans', 'F04', 'standardToolsetList is removed (QĐ-87h).', 'bounded'),
+  removedOperation(
+    'nested',
+    'standardToolsetMine#toolset.plans',
+    'F04',
+    'standardToolsetMine is removed (QĐ-87h).',
+    'bounded',
+  ),
+  removedOperation(
+    'nested',
+    'standardToolsetGet#toolset.plans',
+    'F04',
+    'standardToolsetGet is removed (QĐ-87h).',
+    'bounded',
+  ),
+  removedOperation(
+    'nested',
+    'standardToolsetHistory#plans',
+    'F04',
+    'standardToolsetHistory is removed (QĐ-87h).',
+    'bounded',
+  ),
+  removedOperation(
+    'nested',
+    'subscriptionCostAllocationGet#allocation.lines',
+    'F05',
+    'subscriptionCostAllocationGet is removed (QĐ-87g).',
+    'bounded',
+  ),
+  removedOperation(
+    'nested',
+    'subscriptionCostAllocationHistory#lines',
+    'F05',
+    'subscriptionCostAllocationHistory is removed (QĐ-87g).',
+    'bounded',
+  ),
+  removedOperation(
+    'nested',
+    'onboardingChecklistGet#suggestions',
+    'F04',
+    'The onboarding checklist no longer has suggestions: the standard toolset was the only one (QĐ-87h).',
+    'bounded',
+  ),
   closedException(
     'provisioningTaskList#detail-reuse',
     'LD-08',
@@ -1580,6 +1559,22 @@ const REGISTRY_EVENTS_SINCE_INITIAL: readonly RegistryEvent[] = [
     'organization-identity-read-contracts',
     'The account embeds the newest grants with roleHistoryHasMore.',
   ),
+  boundedNested(
+    'budgetVersionHistoryList#changes',
+    'HISTORY_CHANGES_MAX',
+    'LD-14',
+    'g0-g6-final-business-baseline-remediation',
+    'The new history route of a version (F66, spec J.4): each entry shows the fields one edit changed, at most HISTORY_CHANGES_MAX.',
+    'added',
+  ),
+  boundedNested(
+    'transferReviewGet#unfinishedRequests',
+    'UNFINISHED_REQUESTS_MAX',
+    'LD-14',
+    'g0-g6-final-business-baseline-remediation',
+    'The review of a transfer lists the open Requests of the person beside the tools (F29), at most UNFINISHED_REQUESTS_MAX.',
+    'added',
+  ),
 ];
 
 interface Schema {
@@ -1642,6 +1637,11 @@ const EXACT_OPERATION_ID = /^[a-z][A-Za-z0-9]*$/;
 const NESTED_KEY =
   /^[a-z][A-Za-z0-9]*#(?:data\.)?(?:[A-Za-z_][A-Za-z0-9_]*|\{\})(?:\[\])*(?:\.(?:[A-Za-z_][A-Za-z0-9_]*|\{\})(?:\[\])*)*$/;
 const FINDING = /^LD-\d+$/;
+/**
+ * A finding of the baseline remediation (`g0-g6-final-business-baseline-remediation`, F55, P03-D14 = A): the only thing it may
+ * serve in this ledger is the removal of the entries of an operation that was removed, a `closed` event.
+ */
+const REMOVED_OPERATION_FINDING = /^F\d+$/;
 const WORK_ITEM_FOLDER = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const NEEDS_MAXIMUM_MESSAGE = 'needs a business maximum: maxItems as a positive integer item count, with its source';
 
@@ -1823,7 +1823,9 @@ function ledgerProblems(
 
 function eventHygiene(event: RegistryEvent, label: string, ownerExists: (owner: string) => boolean): string[] {
   const problems: string[] = [];
-  if (!FINDING.test(event.finding)) problems.push(`${label}: finding '${event.finding}' is not one exact LD-<n>`);
+  const removal = event.change === 'closed' && REMOVED_OPERATION_FINDING.test(event.finding);
+  if (!FINDING.test(event.finding) && !removal)
+    problems.push(`${label}: finding '${event.finding}' is not one exact LD-<n>`);
   if (!WORK_ITEM_FOLDER.test(event.item) || !ownerExists(event.item))
     problems.push(`${label}: item '${event.item}' is not a work item under docs/workspace/items`);
   if (!ISO_DATE.test(event.date) || Number.isNaN(Date.parse(event.date)))
@@ -2307,7 +2309,10 @@ describe('collection and detail contract gate (API-LIST-DETAIL.1, LD-R2)', () =>
     expect(REVIEW_NAMED_ARRAYS.filter((key) => !inventory.has(key))).toEqual(
       REVIEW_NAMED_ARRAYS.filter((key) => closed.includes(key)),
     );
-    expect(REVIEW_NAMED_ARRAYS.filter((key) => closed.includes(key))).toEqual(['applicationList#domains']);
+    expect(REVIEW_NAMED_ARRAYS.filter((key) => closed.includes(key))).toEqual([
+      'standardToolsetList#plans',
+      'applicationList#domains',
+    ]);
   });
 
   it('only ever shrinks the nested-array inventory recorded on 23/10/2026, classification included, except through the ledger', () => {

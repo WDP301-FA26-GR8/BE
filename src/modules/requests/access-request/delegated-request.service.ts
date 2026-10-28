@@ -9,10 +9,10 @@ import { accessRequestAuditEvent } from './access-request-audit-event';
 import {
   AccessRequestAlreadyHoldsAccessError,
   AccessRequestNoDepartmentError,
-  AccessRequestOutsideStandardReasonRequiredError,
+  AccessRequestSuperAdminCannotRequestError,
   DelegatedRequestRefusedError,
 } from './access-request.errors';
-import { hasSpendStep } from './access-request.policy';
+import { hasSpendStep, mayRequest } from './access-request.policy';
 import { AccessRequestRepo } from './access-request.repo';
 import type { AccessRequestRecord } from './access-request.types';
 import type { DelegatedBodyDto } from './delegated-request.dto';
@@ -42,13 +42,14 @@ export class DelegatedRequestService {
   ) {}
 
   /**
-   * Throws DelegatedRequestRefusedError, AccessRequestNoDepartmentError, AccessRequestAlreadyHoldsAccessError,
-   * AccessRequestOutsideStandardReasonRequiredError and the errors of assessing a plan.
+   * Throws AccessRequestSuperAdminCannotRequestError, DelegatedRequestRefusedError, AccessRequestNoDepartmentError,
+   * AccessRequestAlreadyHoldsAccessError and the errors of assessing a plan.
    */
   async send(
     actor: AuthenticatedPrincipal,
     body: DelegatedBodyDto,
   ): Promise<{ batchId: string; records: AccessRequestRecord[] }> {
+    if (!mayRequest(actor.roles)) throw new AccessRequestSuperAdminCannotRequestError();
     const settings = await this.assessment.settings();
 
     return this.runner.run(async (tx) => {
@@ -142,9 +143,6 @@ export class DelegatedRequestService {
       lockDepartment: true,
     });
     if (assessed.heldAccess) throw new AccessRequestAlreadyHoldsAccessError(assessed.heldAccess);
-    if (assessed.outsideStandard && !item.outsideStandardReason) {
-      throw new AccessRequestOutsideStandardReasonRequiredError();
-    }
 
     const own = isHeadOwnShare({ actorEmployeeId: actor.employeeId, beneficiaryEmployeeId: beneficiaryId });
     const { policy, pricing, unit, routing } = assessed;
@@ -169,12 +167,10 @@ export class DelegatedRequestService {
       requesterEmployeeId: actor.employeeId,
       beneficiaryEmployeeIds: [beneficiaryId],
       departmentId: unit.departmentId,
-      costCenterId: unit.costCenter.id,
+      costCenterId: unit.costCenter?.id ?? null,
       businessReason: body.businessReason,
       termMonths: body.termMonths,
       projectLabel: body.projectLabel ?? null,
-      outsideStandardReason: item.outsideStandardReason ?? null,
-      outsideStandard: assessed.outsideStandard,
       pricing,
       policy,
       delegatedBatchId: batchId,
@@ -292,7 +288,7 @@ export class DelegatedRequestService {
         requesterEmployeeId: actor.employeeId,
         beneficiaryEmployeeIds: [extra.beneficiaryId],
         departmentId: unit.departmentId,
-        costCenterId: unit.costCenter.id,
+        costCenterId: unit.costCenter?.id ?? null,
         policyVersion: policy.version,
         hasSpendStep: hasSpendStep(policy),
         slaWorkingDays: policy.slaWorkingDays,
@@ -301,7 +297,6 @@ export class DelegatedRequestService {
         amountCurrency: pricing.amount?.currency ?? null,
         budgetYear: pricing.budgetYear,
         expectedSpendOn: pricing.expectedSpendOn,
-        outsideStandard: assessed.outsideStandard,
         delegated: extra.delegated,
         delegatedBatchId: extra.batchId,
         expectedEndDate: extra.body.expectedEndDate ?? null,

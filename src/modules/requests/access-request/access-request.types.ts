@@ -3,11 +3,17 @@ import type { BusinessDate } from '../../../core/business-date';
 import type { AccessRequestBranchCode, RequestPolicy } from './access-request.policy';
 import type { BillingCycleCode, MissingPriceReason, PaymentPeriod } from './pricing.policy';
 import type { WaitingReason } from './routing.policy';
-import type { LineRecord } from '../group-request/group-request.types';
+import type { LineRecord, ReadableCancelCause } from '../group-request/group-request.types';
 
 /** The shapes the repository of requests reads and writes; the repository re-exports them, so importers do not change. */
 
+/**
+ * `DRAFT` is a paid request saved before the finance gates (spec L.1): it has no Cost Center, no moment it was sent, no step, no check
+ * and no commitment. It is neither listed nor readable as a request (`AccessRequestRepo.findById` and every other read filter it out and
+ * no wire of a request carries it): only `RequestDraftRepo` and the four draft operations see it.
+ */
 export type AccessRequestState =
+  | 'DRAFT'
   | 'PENDING'
   | 'WAITING_CONTROLLED'
   | 'AWAITING_EXECUTION'
@@ -81,12 +87,11 @@ export interface NewAccessRequest {
   /** The people it is for, in order: one today. */
   beneficiaryEmployeeIds: readonly string[];
   departmentId: string;
-  costCenterId: string;
+  /** Null only for a free internal request of a department that has no Cost Center in use (`QĐ-87g(2)`, F91). */
+  costCenterId: string | null;
   businessReason: string;
   termMonths: number;
   projectLabel: string | null;
-  outsideStandardReason: string | null;
-  outsideStandard: boolean;
   pricing: PricingRecord;
   policy: RequestPolicy;
   delegatedBatchId?: string | null;
@@ -94,6 +99,11 @@ export interface NewAccessRequest {
   createdByAppUserId: string;
   now: Date;
   needStep: NewNeedStep;
+  /**
+   * The draft this request is made from (spec L.1): the row of the draft becomes the request, so it is the same request from the
+   * day it was saved. Absent for a request written new. The caller holds the lock of the draft (`RequestDraftRepo.lock`).
+   */
+  draftId?: string | null;
 }
 
 /** A need step as it is written: the first one with the request, the others after it (`addNeedStep`). */
@@ -155,7 +165,7 @@ export interface WithdrawalRecord {
 export interface CancellationRecord {
   cancelledAt: Date;
   cancelledByEmployeeId: string;
-  cause: 'BENEFICIARY_LEFT';
+  cause: ReadableCancelCause;
   note: string | null;
 }
 
@@ -168,12 +178,11 @@ export interface AccessRequestRecord {
   planId: string | null;
   requesterEmployeeId: string;
   departmentId: string;
-  costCenterId: string;
+  /** Null only for a free internal request of a department that has no Cost Center in use (`QĐ-87g(2)`, F91): nothing is charged. */
+  costCenterId: string | null;
   businessReason: string;
   termMonths: number;
   projectLabel: string | null;
-  outsideStandardReason: string | null;
-  outsideStandard: boolean;
   pricing: PricingRecord;
   /** The line of the plan of the budget it is attached to; null when it is attached to none. */
   planLine: { versionId: string; position: number; confirmed: boolean } | null;

@@ -1,24 +1,26 @@
 import { randomUUID } from 'node:crypto';
 import request from 'supertest';
+import { HR_BASIS } from '../support/hr-basis';
+import { handOthersToSecondItAdmin } from '../support/second-it-admin';
 import { TransferHarness, type TransferWire } from '../support/transfer-harness';
 import type { Department, Person } from '../support/request-harness';
 
 const h = new TransferHarness();
 
-/** US-03-01 (AC-1, AC-2, AC-4 -> AC-8, AC-11, AC-13 -> AC-18, AC-21, AC-22): recording a transfer, over HTTP, on real PostgreSQL. */
+/**
+ * US-03-01 (AC-1, AC-2, AC-4 -> AC-8, AC-11, AC-13 -> AC-18, AC-21): recording a transfer, over HTTP, on real PostgreSQL. The Super
+ * Admin records it (`QĐ-87a`, F40); the IT Admin only reads a minimal projection (F12); a transfer changes the department only and
+ * is recorded into a department with no Cost Center like any other (F41, F44); the flag "done on oneself" is gone (F45).
+ */
 describe('recording a transfer of a person (integration, real PostgreSQL)', () => {
   let des: Department;
   let fin: Department;
-  let designer: string;
-  let senior: string;
   const NO = { personToPersonMessaging: false, callsOrMeetings: false, mailbox: false };
 
   beforeAll(async () => {
     await h.start();
     des = await h.departmentWithUnit('P-DES');
     fin = await h.departmentWithUnit('P-FIN');
-    designer = await h.title();
-    senior = await h.jobTitle('Senior Designer');
   }, 300000);
 
   afterAll(async () => {
@@ -44,14 +46,27 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
     ).rows[0].n,
   });
 
-  describe('an IT Admin who is the only one may record an event about themselves (AC-22)', () => {
-    it('records it, flags it as done on oneself and leaves a trace for the Super Admin', async () => {
-      const wire = await h.recorded(body(h.it1.employeeId, { toDepartmentId: des.id }), h.it1);
+  describe('the Super Admin records an event about another person, never about themselves (F40, F19)', () => {
+    it('refuses the Super Admin about themselves: 403 PERSONNEL.SELF_CHANGE_FORBIDDEN, no row and no audit event', async () => {
+      const before = await h.ctx.sql.query<{ n: string }>(
+        `SELECT (SELECT count(*) FROM department_transfers) || '/' || (SELECT count(*) FROM audit_events) AS n`,
+      );
 
-      expect(wire.selfExecuted).toBe(true);
-      expect((await h.auditEventsOf('PERSONNEL.SELF_EXECUTED', wire.id)).length).toBe(1);
-      expect(await h.auditEventsOf('DEPARTMENT_TRANSFER.RECORDED', wire.id)).toHaveLength(1);
-      await h.cancelTransfer(wire.id, { reason: 'The move is not needed', grounds: h.grounds }, h.it1).expect(200);
+      const response = await h.recordTransfer(body(h.sa.employeeId, { toDepartmentId: des.id }));
+
+      expect([response.status, codeOf(response)]).toEqual([403, 'PERSONNEL.SELF_CHANGE_FORBIDDEN']);
+      const after = await h.ctx.sql.query<{ n: string }>(
+        `SELECT (SELECT count(*) FROM department_transfers) || '/' || (SELECT count(*) FROM audit_events) AS n`,
+      );
+      expect(after.rows).toEqual(before.rows);
+    });
+
+    it('records one about an IT Admin without any flag of "done on oneself" (F45): the wire has no selfExecuted and no event says so', async () => {
+      const wire = await h.recorded(body(h.it1.employeeId, { toDepartmentId: des.id }));
+
+      expect(Object.keys(wire)).not.toContain('selfExecuted');
+      expect(await h.auditEventsOf('PERSONNEL.SELF_EXECUTED', wire.id)).toEqual([]);
+      await h.cancelTransfer(wire.id, { reason: 'The move is not needed', grounds: h.grounds }).expect(200);
     });
   });
 
@@ -63,12 +78,12 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
 
     expect(wire).toMatchObject({
       status: 'PENDING',
-      changes: 'DEPARTMENT',
       effectiveOn,
       from: { department: { code: 'P-DES' } },
       to: { department: { code: 'P-FIN' } },
       grounds: h.grounds,
-      selfExecuted: false,
+      recordedByAppUserId: h.sa.appUserId,
+      recordedByProcedure: false,
       warnings: [],
     });
     expect(await h.placements(e1.employeeId)).toEqual([
@@ -76,12 +91,12 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
       expect.objectContaining({ department_id: fin.id, valid_from: effectiveOn, valid_to: null }),
     ]);
     const owning = async (day: string) =>
-      (await h.organizationService().getOwningUnits([e1.employeeId], day)).get(e1.employeeId)?.costCenter.id;
+      (await h.organizationService().getOwningUnits([e1.employeeId], day)).get(e1.employeeId)?.costCenter?.id;
     expect(await owning(h.day(29))).toBe(des.unitId);
     expect(await owning(effectiveOn)).toBe(fin.unitId);
     expect(await h.auditEventsOf('DEPARTMENT_TRANSFER.RECORDED', wire.id)).toEqual([
       expect.objectContaining({
-        actor_app_user_id: h.it1.appUserId,
+        actor_app_user_id: h.sa.appUserId,
         before: expect.objectContaining({ department: 'P-DES' }) as unknown,
         after: expect.objectContaining({ department: 'P-FIN', effectiveOn, grounds: h.grounds }) as unknown,
       }),
@@ -99,9 +114,9 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
     await h.recordTransfer(body(person.employeeId)).expect(201);
     const fault = await h.ctx.sql
       .query(
-        `INSERT INTO employee_placements (id, organization_id, employee_id, department_id, job_title_id, valid_from)
-         VALUES (gen_random_uuid(), $1, $2, $3, $4, $5)`,
-        [h.seed.organizationId, person.employeeId, h.seed.departmentId, designer, h.day(15)],
+        `INSERT INTO employee_placements (id, organization_id, employee_id, department_id, valid_from)
+         VALUES (gen_random_uuid(), $1, $2, $3, $4)`,
+        [h.seed.organizationId, person.employeeId, h.seed.departmentId, h.day(15)],
       )
       .catch((error: { code?: string }) => error);
     expect((fault as { code?: string }).code).toBe('23P01');
@@ -112,9 +127,9 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
       h.day(40),
     ]);
     await h.ctx.sql.query(
-      `INSERT INTO employee_placements (id, organization_id, employee_id, department_id, job_title_id, valid_from)
-       VALUES (gen_random_uuid(), $1, $2, $3, $4, $5)`,
-      [h.seed.organizationId, other.employeeId, fin.id, designer, h.day(40)],
+      `INSERT INTO employee_placements (id, organization_id, employee_id, department_id, valid_from)
+       VALUES (gen_random_uuid(), $1, $2, $3, $4)`,
+      [h.seed.organizationId, other.employeeId, fin.id, h.day(40)],
     );
     const response = await h.recordTransfer(body(other.employeeId, { effectiveOn: h.day(30) }));
     expect(response.status).toBe(409);
@@ -145,23 +160,6 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
       return { department, head };
     };
 
-    it('naming a new head changes neither the members nor the Cost Center of the department (AC-4)', async () => {
-      const { department, head } = await headOf('P-AC4');
-      const members = [await h.veteran(department, code('M')), await h.veteran(department, code('M'))];
-      const next = await h.veteran(department, code('H'));
-      const before = await h.organizationService().getDepartmentMemberIds(department.id);
-
-      await h.makeHead(department, next);
-
-      expect([...((await h.organizationService().getDepartmentMemberIds(department.id)) ?? [])].sort()).toEqual(
-        [...(before ?? [])].sort(),
-      );
-      expect(members).toHaveLength(2);
-      expect(head.employeeId).not.toBe(next.employeeId);
-      const unit = (await h.organizationService().getOwningUnits([next.employeeId], h.today())).get(next.employeeId);
-      expect(unit?.costCenter.id).toBe(department.unitId);
-    });
-
     it('wants to know who follows: refuses with the name of the department and writes nothing', async () => {
       const { department, head } = await headOf('P-HEAD1');
       const before = await state(head);
@@ -188,12 +186,6 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
         { employee_id: head.employeeId, valid_from: h.today(), valid_to: effectiveOn },
         { employee_id: heir.employeeId, valid_from: effectiveOn, valid_to: null },
       ]);
-      expect(
-        (await h.organizationService().getDepartmentHeads([department.id], h.day(29))).get(department.id)?.employeeId,
-      ).toBe(head.employeeId);
-      expect(
-        (await h.organizationService().getDepartmentHeads([department.id], effectiveOn)).get(department.id)?.employeeId,
-      ).toBe(heir.employeeId);
     });
 
     it('lets the department be left without a head when that is chosen', async () => {
@@ -221,43 +213,42 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
       expect(h.detailsOf(response)).toMatchObject({ reason: 'NOT_A_MEMBER_ON_DATE' });
       expect(await state(head)).toEqual(before);
     });
-
-    it('keeps the head a head when only the title changes (AC-11)', async () => {
-      const { department, head } = await headOf('P-HEAD5');
-
-      await h.recorded({
-        employeeId: head.employeeId,
-        toJobTitleId: senior,
-        effectiveOn: h.day(30),
-        grounds: h.grounds,
-      });
-
-      expect(await h.headPeriods(department.id)).toEqual([
-        { employee_id: head.employeeId, valid_from: h.today(), valid_to: null },
-      ]);
-    });
   });
 
-  it('changes only the title inside the department: a new period of the title, the department and the Cost Center the same (AC-11)', async () => {
+  it('records the move of a person into a department that has no Cost Center, like any other (F44, QĐ-87d(3)): no refusal, the seats of the person stay charged to the old department', async () => {
+    // A department the Super Admin created and Finance has not given a Cost Center yet.
+    const bare = h.dataOf<{ id: string; code: string }>(
+      await request(h.server())
+        .post('/api/v1/departments')
+        .set({ Authorization: `Bearer ${h.admin}` })
+        .send({ code: 'P-BARE', name: 'Department P-BARE', hrBasis: HR_BASIS })
+        .expect(201),
+    );
+    const person = await h.veteran(des, code('E'));
+    const effectiveOn = h.day(20);
+
+    const wire = await h.recorded(body(person.employeeId, { toDepartmentId: bare.id, effectiveOn }));
+
+    expect(wire).toMatchObject({ status: 'PENDING', to: { department: { code: 'P-BARE' } } });
+    expect((await h.placements(person.employeeId)).map((row) => row.department_id)).toEqual([des.id, bare.id]);
+    const owning = async (day: string) =>
+      (await h.organizationService().getOwningUnits([person.employeeId], day)).get(person.employeeId)?.costCenter?.id;
+    expect(await owning(h.day(19))).toBe(des.unitId);
+  });
+
+  it('records the move of a person with the department only: the title is theirs and no job title is a fact of the transfer (F41, QĐ-87e)', async () => {
     const person = await h.veteran(des, code('E'));
     const effectiveOn = h.day(45);
 
-    const wire = await h.recorded({
-      employeeId: person.employeeId,
-      toJobTitleId: senior,
-      effectiveOn,
-      grounds: h.grounds,
-    });
+    const wire = await h.recorded(body(person.employeeId, { effectiveOn }));
 
-    expect(wire).toMatchObject({ changes: 'JOB_TITLE', from: { jobTitle: { name: expect.any(String) as unknown } } });
+    expect(Object.keys(wire).sort()).not.toContain('changes');
+    expect(wire.from).toEqual({ department: expect.objectContaining({ code: 'P-DES' }) as unknown });
+    expect(wire.to).toEqual({ department: expect.objectContaining({ code: 'P-FIN' }) as unknown });
     expect(await h.placements(person.employeeId)).toEqual([
-      expect.objectContaining({ department_id: des.id, job_title_id: designer, valid_to: effectiveOn }),
-      expect.objectContaining({ department_id: des.id, job_title_id: senior, valid_from: effectiveOn, valid_to: null }),
+      expect.objectContaining({ department_id: des.id, valid_to: effectiveOn }),
+      expect.objectContaining({ department_id: fin.id, valid_from: effectiveOn, valid_to: null }),
     ]);
-    const unit = async (day: string) =>
-      (await h.organizationService().getOwningUnits([person.employeeId], day)).get(person.employeeId)?.costCenter.id;
-    expect(await unit(h.day(44))).toBe(des.unitId);
-    expect(await unit(effectiveOn)).toBe(des.unitId);
   });
 
   it('warns without stopping when the person is the Business Owner of an application (AC-13)', async () => {
@@ -286,21 +277,45 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
     ]);
   });
 
-  describe('who may record one (AC-14)', () => {
-    it('refuses Finance, a department head, an employee and the Super Admin, and changes nothing', async () => {
+  describe('who may record one, and who reads what (AC-14, F40, F12, F13)', () => {
+    it('refuses Finance, a department head, an employee and the IT Admin on every write, and changes nothing', async () => {
       const person = await h.veteran(des, code('E'));
       const head = await h.veteran(fin, code('H'), []);
       await h.makeHead(fin, head);
       const before = await state(person);
-      const attempts = [h.finance, head.account, h.employee, { ...h.it1, accessToken: h.admin }];
 
-      for (const account of attempts) {
+      for (const account of [h.finance, head.account, h.employee, h.it1]) {
         const response = await h.recordTransfer(body(person.employeeId), account);
-        expect(response.status).toBe(403);
+        expect([response.status, codeOf(response)]).toEqual([403, 'AUTHORIZATION.FORBIDDEN']);
+      }
+      for (const account of [h.finance, head.account, h.employee]) {
         expect((await h.listTransfers('', account)).status).toBe(403);
       }
 
       expect(await state(person)).toEqual(before);
+    });
+
+    it('gives the IT Admin only the minimal projection of the departments in their charge, and 404 for the rest (F12)', async () => {
+      const inCharge = await h.departmentWithUnit('P-INCH');
+      const member = await h.veteran(inCharge, code('E'));
+      await h.ctx.sql.query(`UPDATE departments SET it_admin_employee_id = $2 WHERE id = $1`, [
+        inCharge.id,
+        h.it1.employeeId,
+      ]);
+      // The departments nobody usable is in charge of are the work of every IT Admin (F12): the others have a second IT Admin.
+      await handOthersToSecondItAdmin(h);
+      const mine = await h.recorded(body(member.employeeId, { toDepartmentId: fin.id }));
+      const elsewhere = await h.recorded(body((await h.veteran(des, code('E'))).employeeId));
+
+      const seen = h.dataOf<TransferWire>(await h.readTransfer(mine.id, h.it1).expect(200));
+      const hidden = await h.readTransfer(elsewhere.id, h.it1);
+      const listed = h.dataOf<{ items: TransferWire[] }>(await h.listTransfers('', h.it1).expect(200));
+
+      expect(seen).toMatchObject({ id: mine.id, status: 'PENDING', grounds: null, headSuccessor: null });
+      expect([hidden.status, codeOf(hidden)]).toEqual([404, 'DEPARTMENT_TRANSFER.NOT_FOUND']);
+      expect(listed.items.map((item) => item.id)).toContain(mine.id);
+      expect(listed.items.map((item) => item.id)).not.toContain(elsewhere.id);
+      expect((await h.transferChanges(mine.id, '', h.it1)).status).toBe(403);
     });
   });
 
@@ -329,9 +344,6 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
     expect((await h.organizationService().getEmployeePlacement(person.employeeId, h.today()))?.departmentId).toBe(
       fin.id,
     );
-
-    const later = await h.veteran(des, code('E'));
-    await h.recorded(body(later.employeeId, { effectiveOn: h.day(1) }));
   });
 
   it('wants a day after the first day of the placement the person has (a person recorded today cannot move today)', async () => {
@@ -345,31 +357,40 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
     ]);
   });
 
-  describe('the job title comes from the catalogue (AC-17)', () => {
-    it('refuses a title that is not there, and one that is not in use, without adding or reviving either', async () => {
+  describe('a job title is not a fact of a transfer (QĐ-87e, AC-17, F41)', () => {
+    it('refuses a body that names a job title, with or without a department, and a body that names no department: 422 VALIDATION_ERROR, nothing written', async () => {
       const person = await h.veteran(des, code('E'));
-      const retired = await h.jobTitle(h.unique('Retired title'));
-      await h.ctx.sql.query(`UPDATE job_titles SET status = 'INACTIVE' WHERE id = $1`, [retired]);
-      const titles = async () =>
-        (await h.ctx.sql.query<{ id: string; status: string }>(`SELECT id, status FROM job_titles ORDER BY id`)).rows;
-      const before = await titles();
+      const before = await state(person);
 
-      const unknown = await h.recordTransfer(body(person.employeeId, { toJobTitleId: randomUUID() }));
-      const inactive = await h.recordTransfer(body(person.employeeId, { toJobTitleId: retired }));
+      const withBoth = await h.recordTransfer(body(person.employeeId, { toJobTitleId: randomUUID() }));
+      const titleOnly = await h.recordTransfer({
+        employeeId: person.employeeId,
+        toJobTitleId: randomUUID(),
+        effectiveOn: h.day(30),
+        grounds: h.grounds,
+      });
+      const neither = await h.recordTransfer({
+        employeeId: person.employeeId,
+        effectiveOn: h.day(30),
+        grounds: h.grounds,
+      });
 
-      expect([unknown.status, codeOf(unknown)]).toEqual([422, 'DEPARTMENT_TRANSFER.JOB_TITLE_NOT_FOUND']);
-      expect([inactive.status, codeOf(inactive)]).toEqual([422, 'DEPARTMENT_TRANSFER.JOB_TITLE_INACTIVE']);
-      expect(await titles()).toEqual(before);
+      expect([withBoth, titleOnly, neither].map((answer) => [answer.status, codeOf(answer)])).toEqual([
+        [422, 'VALIDATION_ERROR'],
+        [422, 'VALIDATION_ERROR'],
+        [422, 'VALIDATION_ERROR'],
+      ]);
+      expect(await state(person)).toEqual(before);
     });
 
-    it('accepts the title the person keeps even when it is not in use any more', async () => {
+    it('answers a move to the department the person is in with NO_CHANGE', async () => {
       const person = await h.veteran(des, code('E'));
-      await h.ctx.sql.query(`UPDATE job_titles SET status = 'INACTIVE' WHERE id = $1`, [designer]);
-      try {
-        await h.recorded(body(person.employeeId));
-      } finally {
-        await h.ctx.sql.query(`UPDATE job_titles SET status = 'ACTIVE' WHERE id = $1`, [designer]);
-      }
+      const before = await state(person);
+
+      const same = await h.recordTransfer(body(person.employeeId, { toDepartmentId: des.id }));
+
+      expect([same.status, codeOf(same)]).toEqual([422, 'DEPARTMENT_TRANSFER.NO_CHANGE']);
+      expect(await state(person)).toEqual(before);
     });
   });
 
@@ -396,7 +417,7 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
 
       const wire = await h.recorded(body(person.employeeId, { grounds: { ...h.grounds, reference: 'QD-77/2026' } }));
 
-      expect(wire.grounds.reference).toBe('QD-77/2026');
+      expect(wire.grounds?.reference).toBe('QD-77/2026');
       const [event] = await h.auditEventsOf('DEPARTMENT_TRANSFER.RECORDED', wire.id);
       expect((event.after as { grounds: { reference: string } }).grounds.reference).toBe('QD-77/2026');
     });
@@ -406,41 +427,21 @@ describe('recording a transfer of a person (integration, real PostgreSQL)', () =
     const person = await h.veteran(des, code('E'));
     const first = await h.recorded(body(person.employeeId, { effectiveOn: h.day(30) }));
 
-    const second = await h.recordTransfer(
-      body(person.employeeId, { toDepartmentId: des.id, toJobTitleId: senior, effectiveOn: h.day(60) }),
-    );
+    const second = await h.recordTransfer(body(person.employeeId, { effectiveOn: h.day(60) }));
 
     expect([second.status, codeOf(second)]).toEqual([409, 'DEPARTMENT_TRANSFER.PENDING_EVENT_EXISTS']);
     expect(h.detailsOf(second)).toEqual({ kind: 'TRANSFER', effectiveOn: first.effectiveOn });
     const fault = await h.ctx.sql
       .query(
         `INSERT INTO department_transfers (id, organization_id, employee_id, from_department_id, to_department_id,
-           from_job_title_id, to_job_title_id, effective_on, closes_placement_id, opens_placement_id, grounds_type,
+           effective_on, closes_placement_id, opens_placement_id, grounds_type,
            grounds_reference, grounds_issuer, grounds_issued_on, recorded_by_app_user_id)
-         SELECT gen_random_uuid(), organization_id, employee_id, to_department_id, from_department_id, from_job_title_id,
-                to_job_title_id, effective_on + 10, gen_random_uuid(), gen_random_uuid(), 'X', 'X', 'X', current_date, recorded_by_app_user_id
+         SELECT gen_random_uuid(), organization_id, employee_id, to_department_id, from_department_id,
+                effective_on + 10, gen_random_uuid(), gen_random_uuid(), 'X', 'X', 'X', current_date, recorded_by_app_user_id
            FROM department_transfers WHERE id = $1`,
         [first.id],
       )
       .catch((error: { code?: string }) => error);
     expect((fault as { code?: string }).code).toBe('23505');
-  });
-
-  describe('an IT Admin recording an event about themselves while another can act (AC-22)', () => {
-    let it2: Person;
-
-    beforeAll(async () => {
-      it2 = await h.veteran(fin, 'E-IT2B', ['IT_ADMIN']);
-    });
-
-    it('is refused for themselves, accepted when the other one does it, and the first one is never flagged', async () => {
-      const own = await h.recordTransfer(body(h.it1.employeeId, { toDepartmentId: des.id }), h.it1);
-      expect([own.status, codeOf(own)]).toEqual([409, 'DEPARTMENT_TRANSFER.SELF_EVENT_NEEDS_ANOTHER_IT_ADMIN']);
-
-      const wire = await h.recorded(body(h.it1.employeeId, { toDepartmentId: des.id }), it2.account);
-      expect(wire.selfExecuted).toBe(false);
-      expect(await h.auditEventsOf('PERSONNEL.SELF_EXECUTED', wire.id)).toEqual([]);
-      await h.cancelTransfer(wire.id, { reason: 'Not needed', grounds: h.grounds }, it2.account).expect(200);
-    });
   });
 });
