@@ -134,8 +134,7 @@ jobs:
             # trước mọi thay đổi (RV-07). Script lỗi thì bước đánh dấu `latest` không chạy.
             case "$ATTEMPT" in '' | *[!0-9-]*) echo 'refused: ATTEMPT is not <run id>-<run attempt>' >&2; exit 2 ;; esac
             bash "$APP_DIR/releases/$RELEASE/scripts/ops/deploy-release.sh" \
-              --app-dir "$APP_DIR" --release "$RELEASE" --image "$IMAGE" --attempt "$ATTEMPT" \
-              --ready-timeout 300
+              --app-dir "$APP_DIR" --release "$RELEASE" --image "$IMAGE" --attempt "$ATTEMPT"
 
       # Runs only when the host deployment above succeeded: a failed deployment leaves `latest` on the last good release.
       - name: Log in to GitHub Container Registry
