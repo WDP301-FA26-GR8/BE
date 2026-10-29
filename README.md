@@ -25,6 +25,13 @@ revision/PR và kết quả kiểm chứng nằm ở [roadmap](docs/roadmap.md),
 [review G0/G1](docs/reviews/g0-g1-remediation-2026-10-15/README.md). Danh sách operation HTTP: `openapi.json`. Trạng
 thái ADR: [chỉ mục tài liệu](docs/README.md).
 
+## Cài mới và bootstrap trên VPS
+
+Sau khi CI/CD deploy image có `--password-stdin`, dùng
+[hướng dẫn bootstrap trên VPS](docs/guides/bootstrap-installation.md) để copy wrapper/template, điền `.env.bootstrap`,
+tạo tổ chức/phòng đầu tiên/Super Admin và kiểm tra. Hướng dẫn giải thích từng file env, cây thư mục VPS và mã thoát.
+Cài đặt hạ tầng, H7 và deploy: [runbook container](docs/guides/containers.md). Giữ database qua các lần deploy thì không bootstrap lại.
+
 ## Chạy local
 
 Cần Node.js 22 hoặc 24, pnpm 11.1.3, Docker Compose.
@@ -89,7 +96,7 @@ thư luôn được gửi plaintext.
 
 ## Build và kiểm tra
 
-`pnpm check` chạy gate không cần dịch vụ ngoài; `pnpm test:e2e` kiểm tra HTTP
+`pnpm check` chạy gate không cần dịch vụ ngoài; `pnpm test:http` kiểm tra hợp đồng HTTP
 với boundary thay thế. Integration test cần PostgreSQL riêng: xem [test guide](test/README.md).
 `pnpm check` sinh Prisma client trước lint nên chạy được trực tiếp trên checkout sạch.
 
