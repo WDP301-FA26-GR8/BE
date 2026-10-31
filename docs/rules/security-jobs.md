@@ -70,12 +70,14 @@
   timer: it tells the modules that act on the organization (the listeners added to `OrganizationChangeListeners`)
   of the placements and head periods that took effect on a day that has come and were not told. One transaction for each change
   records it in `organization_change_announcements` (unique `(kind, subject_id)`, so two instances tell it once) and calls the
-  listeners; a listener that throws rolls that change back and it is tried again at the next pass, and a failed pass only logs.
+  listeners; a listener that throws rolls that change back and it is tried again at the next pass, and a failed pass only logs
+  (one line that names the kind of error, the code and whether it can be retried: the bullet after this one).
   A change written for today is told in the transaction that writes it. It runs in the API graph because that is where every
   listener (requests, personnel) is registered. Run one by hand with `OrganizationHistoryService.announceDueChanges(day)`.
   The API also runs `HandoverDutySweeper` once an hour (the first pass five minutes after start, unreferenced timer): for each
-  handover duty whose deadline has passed unconfirmed it writes `overdue_noticed_at` and the audit event `HANDOVER_DUTY.OVERDUE` in one
-  transaction, so a duty is told once however many instances run; a failed pass only logs. Run one by hand with
+  handover duty whose deadline has passed unconfirmed it writes `overdue_noticed_at`, the audit event `HANDOVER_DUTY.OVERDUE` and an inbox
+  notice (`HANDOVER_CONFIRMATION_OVERDUE`) to the person who confirms today and the IT Admin in charge in one transaction, so a duty is told
+  once for a deadline however many instances run; a failed pass only logs. Run one by hand with
   `HandoverOverdueService.noticeOverdue(now)`.
   The API also runs `TransferReviewSweeper` once an hour (the first pass five minutes after start, unreferenced timer): for each open
   transfer review past its deadline whose department has a head today it writes `overdue_noticed_at` and the audit event
@@ -89,16 +91,18 @@
   `LeaveOverdueService.noticeOverdue(now)`.
   The API also runs `ServiceAccountDutySweeper` once an hour (the first pass five minutes after start, unreferenced timer): for each open
   service account whose responsible person has a transfer or a departure that is not closed and whose day has passed it writes a row of
-  `service_account_duty_notices` (unique for the account and the day) and the audit event `SERVICE_ACCOUNT_DUTY.OVERDUE` in one transaction,
-  so a day is told once however many instances run; a failed pass only logs. It only tells: the transfer or the departure still takes
+  `service_account_duty_notices` (unique for the account and the day), the audit event `SERVICE_ACCOUNT_DUTY.OVERDUE` and an inbox notice
+  (`SERVICE_ACCOUNT_RESPONSIBLE_OVERDUE`) to the IT Admin in charge of the owning department in one transaction, so a day is told once however
+  many instances run; a failed pass only logs. It only tells: the transfer or the departure still takes
   effect, the account keeps its person and nothing is revoked. It reads which people have a file that waits through the provider that the
   personnel module registers, so it finds nothing in a process that does not load it. Run one by hand with
   `ServiceAccountDutyService.noticeOverdue(now)`.
   The API also runs `ExpiryReminderSweeper` once an hour (the first pass five minutes after start, unreferenced timer): for each open
   personal right whose end date falls between today and seven days ahead it writes, in one transaction, at most three rows of
   `assignment_expiry_reminders` (unique for the right, the end date and the audience: the holder, the head of their department today, the
-  IT Admin in charge; none for a head nobody is) and the audit event `LICENSE_ASSIGNMENT.EXPIRY_REMINDER` for each new row, so a person is
-  told once however many instances run; a failed pass only logs. It only tells: the right stays in force, nothing is revoked or renewed
+  IT Admin in charge while they can act as one; none for a head nobody is) and, for each new row, the audit event
+  `LICENSE_ASSIGNMENT.EXPIRY_REMINDER` and an inbox notice (`LICENSE_EXPIRY_REMINDER`), so a person is told once however many instances run;
+  a failed pass only logs. It only tells: the right stays in force, nothing is revoked or renewed
   by the calendar, and the queue of the rights that have ended is read from the assignments, not stored. Run one by hand with
   `ExpiryReminderService.noticeDue(now)`.
   The API also runs `NoticeOverdueSweeper` once an hour (the first pass five minutes after start, unreferenced timer): for each notice of a
@@ -113,6 +117,17 @@
   passed it sets `response_overdue_noticed_at` and writes the audit event `SAAS_ISSUE.RESPONSE_OVERDUE` in one transaction, so a report is
   told once however many instances run; a failed pass only logs. The reminder only tells: the report keeps its IT Admin and its state and
   is never closed by the calendar while it is not resolved. Run one by hand with `SaasIssueSweepService.run(now)`.
+  The API also runs `SubscriptionRenewalSweeper` once an hour (the first pass five minutes after start, unreferenced timer): for each term
+  subscription period whose notice deadline falls from sixty days back to the largest `RENEWAL_ALERT_DAYS_BEFORE_DEADLINE` ahead it tells
+  the milestones due (inbox notices `SUBSCRIPTION_RENEWAL_ALERT`, with the audit event `SUBSCRIPTION_RENEWAL.ALERT_SENT`, and
+  `SUBSCRIPTION_RENEWAL_DATA_QUALITY` with `SUBSCRIPTION_RENEWAL.DATA_QUALITY_WARNED` when the contract has no date to count from), flags a
+  decision not carried out by its deadline late (`late_flagged_at`, the audit event `SUBSCRIPTION_RENEWAL.FLAGGED_LATE`, the notice
+  `SUBSCRIPTION_RENEWAL_LATE`) and records the event of a deadline passed with no decision (`subscription_deadline_events`, unique per
+  subscription and immutable, the audit event `SUBSCRIPTION.AUTO_RENEWAL_INCIDENT` or `SUBSCRIPTION.EXPIRY_MARKED` and its notice). It is
+  idempotent however many instances run: each notice carries an event key (`subscription-renewal-alert:{subscription}:{base date}:{days}`,
+  one per recipient), the late flag is a conditional update written once, and the deadline event has `ON CONFLICT DO NOTHING`; a failed
+  pass only logs. It only tells and flags late: it never renews, cancels, decides or records an outcome, never changes a subscription or
+  a seat, and a decision taken after the deadline is never voided. Run one by hand with `SubscriptionRenewalSweepService.sweep(now)`.
   The record of a departure has no job of its own: `EMPLOYEE_LEFT` is told once in the transaction that sets the employee `TERMINATED` (the
   unique `(kind, subject_id)` of the announcements makes a second telling a no-op), and a person who has left is refused by the sign-in and
   the access guard from their next action because they read the status of the employee, not a flag of the account. The reminder to the
@@ -127,6 +142,16 @@
   priority, the workspaces by name and whether an emergency account is declared, never a password, a key or the name of that account) once, again
   when the roles change before the last working day and, with the highest priority, when a person who left still holds the Super Admin role or a
   workspace. Nothing here locks, revokes or reassigns anything; the notification channel reads the event (`g4-notification-delivery`).
+- A failed pass of a job (`*.job.ts`, the loops of the worker) or of a sweep that works record by record logs one line,
+  `<kind> failed: <description>`, where the description is `describeForOperator`
+  ([operator-error.ts](../../src/infrastructure/observability/operator-error.ts)): the class name of the error, its Prisma
+  code or SQLSTATE, `retryable=true|false` (true when the database or a network connection was only unavailable for a while:
+  deadlock, lock or statement timeout, a dropped or refused connection, SMTP included) and the name of the error underneath, one level. Never the message of the error, which can carry a
+  name, an address or a secret. A loop over records names the record that failed (`step <id>`), and one failure does not
+  stop the next record. An error that is not just something being unavailable for a while adds its stack frames as the trace argument
+  of `logger.error` (`traceForOperator`; the frames carry no message). The pass behaves as before: it goes on at the next
+  tick, and a listener that throws still rolls its transaction back. Never log `(error as Error).name`: gate `module-layout`
+  fails on it anywhere in `src/`.
 - Business modules call ObjectStoragePort rather than vendor SDKs.
 - A signed upload link signs the declared `Content-Type` and `Content-Length` and lives two minutes; what was looked at is
   copied once to a key no upload link reaches before it is kept (ADR-0014). A download link is an `attachment` with the

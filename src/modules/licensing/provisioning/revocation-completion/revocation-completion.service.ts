@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import type { BusinessDate } from '../../../../core/business-date';
 import type { AuthenticatedPrincipal } from '../../../../infrastructure/security/tokens/access-token-verifier.port';
 import { CatalogApi } from '../../../catalog/public/catalog.api';
-import { OrganizationApi } from '../../../organization/public/organization.api';
+import { OrganizationReadApi } from '../../../organization/public/organization-read.api';
 import { AssignmentEndService } from '../../assignment/assignment-end.service';
 import {
   AssignmentNotOpenError,
@@ -16,12 +16,15 @@ import { ProvisioningTaskFrame } from '../provisioning-task-frame.service';
 import { toRevocationFacts } from '../provisioning-task.types';
 import { ProvisioningTaskViewService, type TaskView } from '../provisioning-task-view.service';
 import { ProvisioningTaskRepo } from '../provisioning-task.repo';
+import { RevocationLeaverAlert } from './revocation-leaver-alert.service';
 
 /**
  * What a person does to a revocation they work (`US-07-05` AC-1→AC-5, AC-8, AC-19): complete it, which is the only thing that
  * gives the seat back, and cut the access of a K1 seat earlier than the end of its paid period. Each is one transaction with its
  * audit events, under the locks of the task, the subscription and the assignment in that order. Nothing here writes savings,
- * an invoice, a contract or a budget (`AC-17`): the seat goes back, and what that saves is for another module to record.
+ * an invoice, a contract or a budget (`AC-17`): the seat goes back, and what that saves is for another module to record. A K1 seat
+ * of a person who leaves whose access runs on to the end of the paid period is told to the IT Admin in charge in the same
+ * transaction (`US-12-15` line 38, `QĐ-77l`).
  */
 @Injectable()
 export class RevocationCompletionService {
@@ -31,8 +34,9 @@ export class RevocationCompletionService {
     private readonly views: ProvisioningTaskViewService,
     private readonly ending: AssignmentEndService,
     private readonly catalog: CatalogApi,
-    private readonly organization: OrganizationApi,
+    private readonly organizationReads: OrganizationReadApi,
     private readonly revocation: RevocationListeners,
+    private readonly leaverAlert: RevocationLeaverAlert,
   ) {}
 
   /**
@@ -53,12 +57,19 @@ export class RevocationCompletionService {
         const [plan] = await this.catalog.getPlanRevocationInfo([locked.assignment.planId], tx);
         if (!plan) throw new SeatTargetNotFoundError('PLAN');
         const assignment = await this.ending.lock(tx, locked.assignmentId);
-        const today = await this.organization.businessToday(now, tx);
+        const today = await this.organizationReads.businessToday(now, tx);
         const done = planCompletion(input, { type: plan.provisioningType, startsOn: assignment.effectiveFrom, today });
 
         await this.tasks.markRevocationCompleted(tx, locked.id, actor.appUserId, done, now);
         await this.ending.end(tx, actor, { organizationId, assignment, until: done.endOn, taskId: locked.id });
         await this.revocation.emit(tx, { moment: 'AFTER_WORK', task: { ...facts, status: 'COMPLETED' }, now, actor });
+        await this.leaverAlert.tell(tx, {
+          organizationId,
+          task: locked,
+          accessState: done.accessState,
+          accessUntil: done.paidThroughOn ?? done.endOn,
+          today,
+        });
 
         // The evidence and the notes stay on the task: the audit event says what was done, not what was written about it.
         return {
@@ -100,7 +111,7 @@ export class RevocationCompletionService {
       write: async ({ tx, task: locked, organizationId, now }) => {
         const assignment = await this.ending.lock(tx, locked.assignmentId);
         if (assignment.validUntil === null) throw new AssignmentNotOpenError();
-        const today = await this.organization.businessToday(now, tx);
+        const today = await this.organizationReads.businessToday(now, tx);
         const cut = planAccessCut(input, {
           today,
           startsOn: assignment.effectiveFrom,

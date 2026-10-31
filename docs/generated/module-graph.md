@@ -31,23 +31,30 @@ flowchart BT
     onboarding["onboarding"]
     installation["installation"]
   end
+  subgraph T7["T7"]
+    dashboards["dashboards"]
+  end
   budgets -->|10| audit
   budgets -->|2| catalog
   budgets -->|3| finance
   budgets -->|2| identity_access
   budgets -->|3| notifications
-  budgets -->|2| operating_parameters
+  budgets -->|3| operating_parameters
   budgets -->|9| organization
-  catalog -->|17| audit
+  catalog -->|18| audit
   catalog -->|11| finance
   catalog -->|2| identity_access
   catalog -->|4| operating_parameters
-  catalog -->|26| organization
+  catalog -->|28| organization
+  dashboards -->|3| identity_access
+  dashboards -->|4| licensing
+  dashboards -->|5| organization
+  dashboards -->|4| personnel
   data_import -->|6| audit
   data_import -->|1| catalog
   data_import -->|9| licensing
   data_import -->|2| notifications
-  data_import -->|11| organization
+  data_import -->|12| organization
   finance -->|4| audit
   finance -->|4| organization
   identity_access -->|18| audit
@@ -56,13 +63,14 @@ flowchart BT
   installation -->|8| audit
   installation -->|2| finance
   installation -->|18| identity_access
-  installation -->|9| organization
-  licensing -->|24| audit
-  licensing -->|31| catalog
-  licensing -->|3| identity_access
-  licensing -->|2| notifications
-  licensing -->|5| operating_parameters
-  licensing -->|42| organization
+  installation -->|11| organization
+  licensing -->|29| audit
+  licensing -->|47| catalog
+  licensing -->|2| finance
+  licensing -->|5| identity_access
+  licensing -->|6| notifications
+  licensing -->|6| operating_parameters
+  licensing -->|55| organization
   onboarding -->|2| catalog
   onboarding -->|2| data_import
   onboarding -->|2| identity_access
@@ -70,7 +78,7 @@ flowchart BT
   onboarding -->|2| organization
   operating_parameters -->|5| audit
   operating_parameters -->|2| finance
-  operating_parameters -->|5| organization
+  operating_parameters -->|7| organization
   organization -->|10| audit
   organization -->|4| notifications
   personnel -->|24| audit
@@ -79,17 +87,17 @@ flowchart BT
   personnel -->|29| licensing
   personnel -->|5| notifications
   personnel -->|4| operating_parameters
-  personnel -->|75| organization
+  personnel -->|81| organization
   personnel -->|5| requests
   requests -->|60| audit
   requests -->|16| budgets
-  requests -->|21| catalog
+  requests -->|24| catalog
   requests -->|7| finance
-  requests -->|16| identity_access
+  requests -->|17| identity_access
   requests -->|37| licensing
   requests -->|7| notifications
-  requests -->|9| operating_parameters
-  requests -->|74| organization
+  requests -->|10| operating_parameters
+  requests -->|79| organization
 ```
 
-59 module edges.
+64 module edges.

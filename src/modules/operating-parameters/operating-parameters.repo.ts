@@ -4,6 +4,7 @@ import { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../../infrastructure/database/prisma.service';
 import { DbTx } from '../../infrastructure/database/transaction-runner';
 import { isUniqueViolation } from '../../infrastructure/database/unique-violation';
+import { operatingParameterValueJson } from './operating-parameters-value.json';
 import { ParameterValue } from './parameter-definitions.policy';
 
 export interface ParameterRow {
@@ -29,13 +30,21 @@ export class OperatingParametersRepo {
     await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${`operating-parameter:${key}`}, 0))`;
   }
 
+  /**
+   * The shared side of the lock of the key's change: what is created under the value takes it, so a change waits for the creation
+   * to commit and a creation waits for a change that is under way. Two holders never wait for each other.
+   */
+  async holdKey(tx: DbTx, key: string): Promise<void> {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock_shared(hashtextextended(${`operating-parameter:${key}`}, 0))`;
+  }
+
   async currentRows(client?: DbTx): Promise<ParameterRow[]> {
     const rows = await (client ?? this.prisma).parameterValue.findMany({
       where: { validTo: null },
       select: { key: true, value: true, validFrom: true, validTo: true, changedBy: true },
     });
 
-    return rows.map((row) => ({ ...row, value: row.value as ParameterValue }));
+    return rows.map((row) => ({ ...row, value: operatingParameterValueJson.decode(row.value) }));
   }
 
   /** The row of the key that was in force at `instant`: begun at or before it and not yet ended by it; null when none was. */
@@ -46,7 +55,7 @@ export class OperatingParametersRepo {
       orderBy: { validFrom: 'desc' },
     });
 
-    return row ? { ...row, value: row.value as ParameterValue } : null;
+    return row ? { ...row, value: operatingParameterValueJson.decode(row.value) } : null;
   }
 
   /** Every row of the key whose validity touches the span from `from` to `to`, oldest first: the values in force at any moment of it. */
@@ -57,7 +66,7 @@ export class OperatingParametersRepo {
       orderBy: [{ validFrom: 'asc' }, { id: 'asc' }],
     });
 
-    return rows.map((row) => ({ ...row, value: row.value as ParameterValue }));
+    return rows.map((row) => ({ ...row, value: operatingParameterValueJson.decode(row.value) }));
   }
 
   async history(key: string, limit: number): Promise<ParameterRow[]> {
@@ -68,7 +77,7 @@ export class OperatingParametersRepo {
       take: limit,
     });
 
-    return rows.map((row) => ({ ...row, value: row.value as ParameterValue }));
+    return rows.map((row) => ({ ...row, value: operatingParameterValueJson.decode(row.value) }));
   }
 
   async replaceCurrent(
@@ -80,7 +89,7 @@ export class OperatingParametersRepo {
       data: {
         organizationId: input.organizationId,
         key: input.key,
-        value: input.value,
+        value: operatingParameterValueJson.encode(input.value),
         validFrom: input.now,
         changedBy: input.changedBy,
       },

@@ -5,9 +5,11 @@ import type { DbTx } from '../../../../infrastructure/database/transaction-runne
 import { TransactionRunner } from '../../../../infrastructure/database/transaction-runner';
 import { AuditApi } from '../../../audit/public/audit.api';
 import { CatalogApi } from '../../../catalog/public/catalog.api';
-import { OrganizationApi } from '../../../organization/public/organization.api';
+import { OrganizationReadApi } from '../../../organization/public/organization-read.api';
+import { serviceAccountDueAlert, serviceAccountOverdueAlert } from '../../licensing-alerts.policy';
+import { LicensingAlerts } from '../../licensing-alerts.service';
 import { ResponsibleDeadlineHook } from '../../public/licensing.extension-points';
-import type { ServiceAccountDuty } from '../../public/licensing-service-account.types';
+import type { PendingPersonnelFile, ServiceAccountDuty } from '../../public/licensing-service-account.types';
 import { ServiceAccountDutyTooManyError } from '../service-account.errors';
 import type { ServiceAccountDutyWire } from './service-account.dto';
 import { ServiceAccountDutyRepo, type DutyRow } from './service-account-duty.repo';
@@ -21,7 +23,8 @@ const NOTICE_BATCH = 200;
  * The service accounts that wait for a person to answer for them (`US-03-08` AC-1, AC-5, AC-6; `US-03-01` AC-9; `US-03-04` AC-17).
  * A duty is read, not stored: it is an open service account whose person has a transfer or a departure that is not closed. The
  * accounts are listed with the day that binds them; when the day passes nothing is changed or taken away, and a reminder is written
- * once for the account and the day (the point the alert to the IT Admin is taken from).
+ * once for the account and the day with the alert in the inbox of the IT Admin in charge of the department that owns it (`US-12-15`
+ * line 13). The reminder before the day is told when the file is recorded or its day moves (`remind`).
  */
 @Injectable()
 export class ServiceAccountDutyService {
@@ -30,10 +33,11 @@ export class ServiceAccountDutyService {
   constructor(
     private readonly repo: ServiceAccountDutyRepo,
     private readonly deadlines: ResponsibleDeadlineHook,
-    private readonly organization: OrganizationApi,
+    private readonly organizationReads: OrganizationReadApi,
     private readonly catalog: CatalogApi,
     private readonly runner: TransactionRunner,
     private readonly audit: AuditApi,
+    private readonly alerts: LicensingAlerts,
   ) {}
 
   /** The open service accounts these people answer for: what keeps a transfer or a departure from being closed. */
@@ -51,7 +55,7 @@ export class ServiceAccountDutyService {
     page: number;
     pageSize: number;
   }): Promise<Page<ServiceAccountDutyWire>> {
-    const today = await this.organization.businessToday();
+    const today = await this.organizationReads.businessToday();
     const files = await this.filesOfPeopleAnswering({ ...(query.employeeId ? { employeeId: query.employeeId } : {}) });
     const { rows, total } = await this.repo.page(
       files,
@@ -68,9 +72,9 @@ export class ServiceAccountDutyService {
    * event the alert is taken from. Nothing is changed or revoked. Returns how many were written in this pass.
    */
   async noticeOverdue(now: Date = new Date()): Promise<number> {
-    const today = await this.organization.businessToday(now);
+    const today = await this.organizationReads.businessToday(now);
     const files = await this.filesOfPeopleAnswering({ dueBefore: today });
-    const organization = await this.organization.getOrganization();
+    const organization = await this.organizationReads.getOrganization();
     if (files.length === 0 || !organization) return 0;
     let told = 0;
     for (const row of await this.repo.unnoticed(files, NOTICE_BATCH)) {
@@ -92,6 +96,12 @@ export class ServiceAccountDutyService {
           },
           correlationId: row.fileId,
         });
+        await this.alerts.tell(
+          tx,
+          organization.id,
+          [await this.alerts.itAdminOfDepartment(row.owningDepartmentId, tx)],
+          serviceAccountOverdueAlert(row),
+        );
 
         return true;
       });
@@ -99,6 +109,32 @@ export class ServiceAccountDutyService {
     }
 
     return told;
+  }
+
+  /**
+   * Reminds the IT Admin in charge of each department that owns one of these accounts, in the caller's transaction, that the person
+   * who answers for them has a file that takes effect on a day (`US-03-08` AC-1, AC-5, `US-12-15` line 13): once for the file and
+   * the day, and again when the day moves. Accounts of a department with nobody in charge tell nobody. Returns how many were new.
+   */
+  async remind(
+    tx: DbTx,
+    organizationId: string,
+    file: PendingPersonnelFile,
+    duties: readonly ServiceAccountDuty[],
+  ): Promise<number> {
+    const counts = new Map<string, number>();
+    for (const duty of duties) counts.set(duty.owningDepartmentId, (counts.get(duty.owningDepartmentId) ?? 0) + 1);
+    const byItAdmin = new Map<string, number>();
+    for (const [departmentId, count] of counts) {
+      const itAdmin = await this.alerts.itAdminOfDepartment(departmentId, tx);
+      if (itAdmin) byItAdmin.set(itAdmin, (byItAdmin.get(itAdmin) ?? 0) + count);
+    }
+    let written = 0;
+    for (const [itAdmin, count] of byItAdmin) {
+      written += await this.alerts.tell(tx, organizationId, [itAdmin], serviceAccountDueAlert(file, count));
+    }
+
+    return written;
   }
 
   /**
@@ -123,8 +159,8 @@ export class ServiceAccountDutyService {
   /** The names a page shows, read once for the whole page. */
   private async named(rows: readonly DutyRow[], today: string): Promise<ServiceAccountDutyWire[]> {
     const [people, departments, plans] = await Promise.all([
-      this.organization.getEmployees([...new Set(rows.map((row) => row.employeeId))]),
-      this.organization.getDepartmentBriefs([
+      this.organizationReads.getEmployees([...new Set(rows.map((row) => row.employeeId))]),
+      this.organizationReads.getDepartmentBriefs([
         ...new Set(rows.flatMap((row) => (row.owningDepartmentId ? [row.owningDepartmentId] : []))),
       ]),
       this.catalog.getPlanSummaries([...new Set(rows.map((row) => row.planId))]),

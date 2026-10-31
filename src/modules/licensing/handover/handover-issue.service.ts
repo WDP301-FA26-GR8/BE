@@ -3,10 +3,11 @@ import type { BusinessDate } from '../../../core/business-date';
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import { AuditApi } from '../../audit/public/audit.api';
-import { OrganizationApi } from '../../organization/public/organization.api';
+import { OrganizationReadApi } from '../../organization/public/organization-read.api';
 import { AssignmentEndService } from '../assignment/assignment-end.service';
 import { licensingAuditEvent } from '../licensing-audit-event.mapper';
 import type { OperatorAuditActor } from '../public/licensing-handover.types';
+import { HandoverAlertService } from './handover-alert.service';
 import { confirmationCovers, requirementOf, takesOver, type SourceFact } from './handover-confirmer.policy';
 import { HandoverRepo, type DutyRecord } from './handover.repo';
 
@@ -35,15 +36,17 @@ export type Issued =
  * Makes the duty a seat is owed, once however many reasons ask for it (`US-07-09` AC-11, AC-12, AC-23, `QĐ-64a`): a duty that
  * still waits is kept, and given to the head who decided when the IT Admin had it; a confirmation of the right role already written
  * is relied on, so nobody is asked twice; a seat that needs none gets none. The seat is locked first, in the order of whoever works
- * a revocation (the subscription, then the assignment), so two sources never make two duties.
+ * a revocation (the subscription, then the assignment), so two sources never make two duties. A duty that opens, or falls to a new
+ * role, is told to the person it falls to and the IT Admin in charge in the same transaction (`US-12-15` line 12).
  */
 @Injectable()
 export class HandoverIssueService {
   constructor(
     private readonly repo: HandoverRepo,
     private readonly ending: AssignmentEndService,
-    private readonly organization: OrganizationApi,
+    private readonly organizationReads: OrganizationReadApi,
     private readonly audit: AuditApi,
+    private readonly alerts: HandoverAlertService,
   ) {}
 
   async ensure(tx: DbTx, actor: AuthenticatedPrincipal, input: IssueInput): Promise<Issued> {
@@ -51,7 +54,7 @@ export class HandoverIssueService {
     if (!required) return { outcome: 'NOT_REQUIRED' };
 
     await this.ending.lock(tx, input.assignmentId);
-    const organization = await this.organization.getOrganization(tx);
+    const organization = await this.organizationReads.getOrganization(tx);
     if (!organization) throw new Error('A handover was opened before installation');
 
     const open = await this.repo.lockOpenOf(tx, input.assignmentId);
@@ -79,7 +82,10 @@ export class HandoverIssueService {
         ),
       );
 
-      return { outcome: 'REUSED', duty: await this.repo.find(open.id, tx) };
+      const moved = await this.repo.find(open.id, tx);
+      if (moved) await this.alerts.tell(tx, 'DUE', moved);
+
+      return { outcome: 'REUSED', duty: moved };
     }
 
     const covered = (await this.repo.confirmedOf(tx, input.assignmentId)).find(
@@ -130,6 +136,7 @@ export class HandoverIssueService {
         input.operator,
       ),
     );
+    await this.alerts.tell(tx, 'DUE', duty);
 
     return { outcome: 'OPENED', duty };
   }

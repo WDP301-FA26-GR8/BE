@@ -2,7 +2,7 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import { AuditApi } from '../../audit/public/audit.api';
 import { LicensingServiceAccountApi } from '../../licensing/public/licensing-service-account.api';
-import { OrganizationApi } from '../../organization/public/organization.api';
+import { OrganizationReadApi } from '../../organization/public/organization-read.api';
 import { personnelSystemAuditEvent } from '../personnel-audit-event.mapper';
 import { PersonnelFileHookContributions, type PersonnelFileEvent } from '../public/personnel.extension-points';
 
@@ -15,7 +15,8 @@ const ACCOUNTS_NAMED = 50;
  * the accounts and the day. By its rules it never holds the record back (`QĐ-75e`, `QĐ-66i`): a person with no service account gets no
  * event, and a cancelled file stops the reminder by itself, because the list of duties reads only files that wait. (A failure of the
  * hook itself, a bug or a statement the database refuses, is not a rule: it rolls the record back like any failure inside the
- * transaction.) The event is the point the notification channel takes the reminder from (`g4-notification-delivery`).
+ * transaction.) The event goes with a notice in the inbox of the IT Admin in charge of the departments that own the accounts, once
+ * for the file and the day (`a03-license-inbox-alerts`).
  */
 @Injectable()
 export class ServiceAccountDutyHook implements OnModuleInit {
@@ -25,7 +26,7 @@ export class ServiceAccountDutyHook implements OnModuleInit {
   constructor(
     private readonly hooks: PersonnelFileHookContributions,
     private readonly licensingServiceAccounts: LicensingServiceAccountApi,
-    private readonly organization: OrganizationApi,
+    private readonly organizationReads: OrganizationReadApi,
     private readonly audit: AuditApi,
   ) {}
 
@@ -38,7 +39,7 @@ export class ServiceAccountDutyHook implements OnModuleInit {
 
   private async remind(tx: DbTx, event: PersonnelFileEvent): Promise<void> {
     const duties = await this.licensingServiceAccounts.listServiceAccountDuties([event.employeeId], tx);
-    const organization = await this.organization.getOrganization(tx);
+    const organization = await this.organizationReads.getOrganization(tx);
     if (duties.length === 0 || !organization) return;
 
     await this.audit.record(
@@ -60,5 +61,11 @@ export class ServiceAccountDutyHook implements OnModuleInit {
         },
       ),
     );
+    // The reminder reaches the inbox of the IT Admin in charge of the departments that own the accounts (`US-12-15` line 13).
+    await this.licensingServiceAccounts.remindServiceAccountDuties(tx, {
+      organizationId: organization.id,
+      file: { employeeId: event.employeeId, fileKind: event.fileKind, fileId: event.fileId, dueOn: event.dueOn },
+      duties,
+    });
   }
 }
