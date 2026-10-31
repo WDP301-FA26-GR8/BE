@@ -13,6 +13,9 @@ import { DelegatedRequestService } from './delegated-request/delegated-request.s
 import { DelegatedRequestsController } from './delegated-request/delegated-requests.controller';
 import { GrantQueueRepo } from './delegated-request/grant-queue.repo';
 import { GrantQueueService } from './delegated-request/grant-queue.service';
+import { AssessmentQueueController } from './assessment-queue/assessment-queue.controller';
+import { AssessmentQueueRepo } from './assessment-queue/assessment-queue.repo';
+import { AssessmentQueueService } from './assessment-queue/assessment-queue.service';
 import { RequestCommitmentReleaseGuard } from './spend/commitment-release.listener';
 import { RequestDraftService } from './draft/request-draft.service';
 import { RequestDraftSubmitService } from './draft/request-draft-submit.service';
@@ -25,7 +28,7 @@ import { AssessmentCompletionService } from './assessment/assessment-completion.
 import { AssessmentGate } from './assessment/assessment-gate.service';
 import { AssessmentPatchService } from './assessment/assessment-patch.service';
 import { AssessmentPricingService } from './assessment/assessment-pricing.service';
-import { AssessmentReader } from './assessment/assessment-reader.service';
+import { AssessmentQueryService } from './assessment/assessment-query.service';
 import { AssessmentRejectionService } from './assessment/assessment-rejection.service';
 import { AssessmentService } from './assessment/assessment.service';
 import { AssessmentViewService } from './assessment/assessment-view.service';
@@ -40,6 +43,9 @@ import { AccessRequestRepo } from './access-request/access-request.repo';
 import { AccessRequestService } from './request-intake/access-request.service';
 import { AccessRequestsController } from './request-submission/access-requests.controller';
 import { NeedDecisionController } from './need-decision/need-decision.controller';
+import { NeedDecisionQueueController } from './need-decision-queue/need-decision-queue.controller';
+import { NeedDecisionQueueRepo } from './need-decision-queue/need-decision-queue.repo';
+import { NeedDecisionQueueService } from './need-decision-queue/need-decision-queue.service';
 import { SimilarSeatsController } from './need-decision/similar-seats.controller';
 import { WithdrawalController } from './withdraw/withdrawal.controller';
 import { NeedDecisionEffects } from './need-decision/need-decision-effects.service';
@@ -108,6 +114,7 @@ import { BudgetInformationViewService } from './budget-information/budget-inform
 import { SpendApprovalQueueService } from './spend-approval-view/spend-approval-queue.service';
 import { SpendApprovalSourcesService } from './spend-approval-view/spend-approval-sources.service';
 import { SpendApprovalViewService } from './spend-approval-view/spend-approval-view.service';
+import { StepDueOnService } from './spend-approval-view/step-due-on.service';
 import { SpendApprovalsController } from './spend-approval/spend-approvals.controller';
 import { SpendBatchDecisionService } from './spend-approval/spend-batch-decision.service';
 import { SpendBatchRepo } from './spend/spend-batch.repo';
@@ -120,11 +127,11 @@ import { SpendEffectsService } from './budget-information/spend-effects.service'
 import { SpendEntryService } from './spend/spend-entry.service';
 import { SpendHeadService } from './spend-submission/spend-head.service';
 import { SpendQueueService } from './spend-submission/spend-queue.service';
-import { SpendReadSupport } from './spend/spend-read.service';
+import { SpendWireViewService } from './spend/spend-wire-view.service';
 import { SpendSubmissionController } from './spend-submission/spend-submission.controller';
 import { SupplementRepo } from './spend-submission/supplement.repo';
 import { SupplementPricing } from './spend-submission/supplement-pricing.service';
-import { SupplementReadService } from './spend-submission/supplement-read.service';
+import { SupplementQueryService } from './spend-submission/supplement-query.service';
 import { SupplementRecorder } from './spend-submission/supplement-recorder.service';
 import { SupplementService } from './spend-submission/supplement.service';
 import { RepricingService } from './assessment/repricing.service';
@@ -156,6 +163,10 @@ import { ServiceAccountBoundaryService } from './service-account-request/service
 import { ServiceAccountRequestRepo } from './service-account-request/service-account-request.repo';
 import { ServiceAccountRequestService } from './service-account-request/service-account-request.service';
 import { ServiceAccountRequestsController } from './service-account-request/service-account-requests.controller';
+import { MyRequestsController } from './my-requests/my-requests.controller';
+import { MyRequestsFactsRepo } from './my-requests/my-requests-facts.repo';
+import { MyRequestsRepo } from './my-requests/my-requests.repo';
+import { MyRequestsService } from './my-requests/my-requests.service';
 
 /**
  * The requests context (C4, ADR-0015): the request for access to software, the people it is for and the steps that decide
@@ -191,8 +202,10 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     FinanceReviewsController,
     SpendSubmissionController,
     SpendApprovalsController,
+    NeedDecisionQueueController,
     BudgetInformationController,
     DelegatedRequestsController,
+    AssessmentQueueController,
     ServiceAccountRequestsController,
     ReturnRequestsController,
     RenewalRequestsController,
@@ -202,6 +215,7 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     GroupRequestsController,
     GroupLinesController,
     GroupLineClosureController,
+    MyRequestsController,
   ],
   providers: [
     AccessRequestRepo,
@@ -221,7 +235,7 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     QuoteService,
     AssessmentViewService,
     AssessmentGate,
-    AssessmentReader,
+    AssessmentQueryService,
     AssessmentPatchService,
     AssessmentPricingService,
     AssessmentCompletionService,
@@ -261,7 +275,7 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     FinanceReviewService,
     SpendBudgetListener,
     RepricingService,
-    SpendReadSupport,
+    SpendWireViewService,
     SpendHeadService,
     PlanLineService,
     PlanLineRouteService,
@@ -273,7 +287,7 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     SupplementRepo,
     SupplementPricing,
     SupplementRecorder,
-    SupplementReadService,
+    SupplementQueryService,
     SupplementService,
     SpendDecisionRepo,
     SpendDecisionRecorder,
@@ -282,12 +296,17 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     SpendApprovalQueueService,
     SpendApprovalSourcesService,
     SpendApprovalViewService,
+    StepDueOnService,
+    NeedDecisionQueueRepo,
+    NeedDecisionQueueService,
     BudgetInformationRepo,
     BudgetInformationService,
     BudgetInformationViewService,
     DelegatedRequestService,
     GrantQueueRepo,
     GrantQueueService,
+    AssessmentQueueRepo,
+    AssessmentQueueService,
     ServiceAccountRequestRepo,
     ServiceAccountRequestService,
     ServiceAccountBoundaryService,
@@ -332,6 +351,9 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     GroupLineCloser,
     GroupLineClosureService,
     GroupSupplementService,
+    MyRequestsRepo,
+    MyRequestsFactsRepo,
+    MyRequestsService,
   ],
   exports: [RequestsApi, RequestOutcomeListeners],
 })

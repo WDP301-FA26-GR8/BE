@@ -1,19 +1,19 @@
 import { formatAmount } from '../../../core/money/money';
 import type { CatalogApi } from '../../catalog/public/catalog.api';
-import type { OrganizationApi } from '../../organization/public/organization.api';
+import type { OrganizationReadApi } from '../../organization/public/organization-read.api';
 import type { AccessRequestRecord } from '../access-request/access-request.types';
 import type { AssessmentRecord } from '../access-request/assessment-record.types';
 import type { BudgetCheckRepo } from '../spend/budget-check.repo';
 import { codesOf } from '../spend/budget-check.policy';
 import type { SpendDecisionRepo } from '../spend/spend-decision.repo';
-import type { SpendReadSupport } from '../spend/spend-read.service';
+import type { SpendWireViewService } from '../spend/spend-wire-view.service';
 import type { SpendStepRepo } from '../spend/spend-step.repo';
 import type { ApprovalDetailWire, ApprovalSummaryWire } from './spend-approval.dto';
 
 type OpenSpendRow = Awaited<ReturnType<SpendStepRepo['pageOpenSpendOf']>>['rows'][number];
-type People = Awaited<ReturnType<SpendReadSupport['people']>>;
+type People = Awaited<ReturnType<SpendWireViewService['people']>>;
 type PlanSummary = Awaited<ReturnType<CatalogApi['getPlanSummaries']>>[number];
-type CostCenter = Awaited<ReturnType<OrganizationApi['costCentersByIds']>>[number];
+type CostCenter = Awaited<ReturnType<OrganizationReadApi['costCentersByIds']>>[number];
 
 /** What the queue of the spending approver is read against: the check, the batch, the plan, the people, the currency and the Cost Center. */
 export interface QueueLookups {
@@ -23,6 +23,8 @@ export interface QueueLookups {
   people: People;
   units: Map<string, number>;
   centers: readonly CostCenter[];
+  /** The day each step is due, by step id. */
+  due: Map<string, string>;
 }
 
 function planOf(
@@ -61,6 +63,13 @@ function partiesOf(row: OpenSpendRow, lookups: QueueLookups) {
   return { requester, beneficiary, center };
 }
 
+function dueOf(row: OpenSpendRow, lookups: QueueLookups): string {
+  const due = lookups.due.get(row.id);
+  if (due === undefined) throw new Error(`The step ${row.id} has no deadline counted.`);
+
+  return due;
+}
+
 /** A row of the queue (`US-06-01` AC-1): what the request is, what it costs, the first code of its check, and who holds which step. */
 export function approvalSummaryOf(row: OpenSpendRow, lookups: QueueLookups): ApprovalSummaryWire {
   const { request } = row;
@@ -70,8 +79,10 @@ export function approvalSummaryOf(row: OpenSpendRow, lookups: QueueLookups): App
   return {
     requestId: row.requestId,
     stepId: row.id,
+    stepKind: 'SPEND_APPROVAL',
     openedAt: row.createdAt.toISOString(),
     slaWorkingDays: row.slaWorkingDays,
+    dueOn: dueOf(row, lookups),
     plan: planOf(lookups.plans, request.planId),
     softwareName: request.proposal?.softwareName ?? null,
     requester,
