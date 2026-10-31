@@ -29,9 +29,9 @@ Tác vụ lỗi được phân loại; lỗi vĩnh viễn hoặc hết lượt t
 
 ## Primary Story/AC
 
-| Story    | AC                    | Coverage | Phần còn lại thuộc                                                                                                                                               |
-| -------- | --------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| US-07-04 | AC-1→AC-3, AC-6→AC-14 | partial  | AC-3, AC-6, AC-12, AC-13: `g4-notification-delivery`; AC-4, AC-6, AC-12, AC-15: `g4-request-and-transfer-integration`; AC-5: `g3-downstream-finance-integration` |
+| Story    | AC                    | Coverage | Phần còn lại thuộc                                                                                                                                                                            |
+| -------- | --------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US-07-04 | AC-1→AC-3, AC-6→AC-14 | partial  | AC-3, AC-6, AC-12, AC-13: `g4-notification-delivery`; AC-4, AC-6, AC-12: `g4-request-and-transfer-integration`; AC-15: `g8-spend-basis-on-failure`; AC-5: `g3-downstream-finance-integration` |
 
 Phần `partial`, nói rõ vế đã làm và vế còn lại:
 

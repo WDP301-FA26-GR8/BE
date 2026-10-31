@@ -47,7 +47,7 @@ on:
       - '.prettierrc'
       - '.prettierignore'
   push:
-    branches: [main, dev]
+    branches: [main, dev, hien-dev]
     paths: *watched
   workflow_dispatch:
 

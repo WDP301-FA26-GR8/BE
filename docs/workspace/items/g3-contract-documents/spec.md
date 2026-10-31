@@ -24,9 +24,9 @@ IT Admin và Finance đính kèm tệp gốc vào hợp đồng và chứng từ
 
 ## Primary Story/AC
 
-| Story    | AC                           | Coverage | Phần còn lại thuộc                                                                          |
-| -------- | ---------------------------- | -------- | ------------------------------------------------------------------------------------------- |
-| US-04-04 | AC-1→AC-3, AC-6, AC-9, AC-10 | partial  | AC-4→AC-7, AC-11: `g3-downstream-finance-integration`; AC-8: `g4-device-dependent-features` |
+| Story    | AC                           | Coverage | Phần còn lại thuộc                                                                                                               |
+| -------- | ---------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| US-04-04 | AC-1→AC-3, AC-6, AC-9, AC-10 | partial  | AC-4, AC-7: `g8-invoice-recording`; AC-5, AC-6, AC-11: `g3-downstream-finance-integration`; AC-8: `g4-device-dependent-features` |
 
 Phần `partial`, nói rõ vế đã làm và vế còn lại:
 

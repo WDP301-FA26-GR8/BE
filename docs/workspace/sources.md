@@ -15,6 +15,25 @@ Spec G0/G1/G2 giữ nguồn đã pin khi thiết kế; tác động của `QĐ-7
 [baseline-impact-and-remediation-2026-10-17](items/baseline-impact-and-remediation-2026-10-17/spec.md); tác động của `QĐ-82` → `QĐ-86` lên G0–G4 ghi ở
 [business-baseline-impact-2026-10-22](items/business-baseline-impact-2026-10-22/spec.md).
 
+## Commit Docs `d6d868c` (30/10/2026, tới `QĐ-92`) — pin hiện hành cho đợt giao Dev B
+
+Docs `main` `d6d868c8b88a3da569b0d3d5119af8a9cae36660` (30/10/2026), working tree sạch lúc kiểm 31/10/2026. BRD **v3.57**, Phạm vi **v1.36**, sổ `QĐ-01` →
+`QĐ-92`, User Stories v0.15 — **157** mã Story, **144** đang dùng (`BASELINED` 134, `RESEARCH-DEPENDENT` 5, `DEFERRED` 5; `RETIRED` 13), **1 560** AC đang dùng,
+33 AC đã bỏ (`python -I -B BE-UserStory/tools/build_us.py --check`, parity OK), 18 câu hỏi `chặn-thiết-kế`, 0 `chặn-AC`. Hạng mục lập từ 31/10/2026 pin commit này;
+spec cũ giữ nguồn đã pin.
+
+BE tương ứng là `d6c2112` (= `origin/dev`). Audit [roadmap/API GAP](../reviews/roadmap-and-api-gaps-2026-10-31/README.md) ghi BE `eb41f9c`, nhưng object đó
+**không có** trong repo hiện tại nên không tái lập được; cần Owner xác nhận `d6c2112` chứa đúng nội dung đã audit. Các đường dẫn audit tới
+`Docs/Reviews/review2-main-flows-process-policy-2026-10-31`, `Prompts/` và `Tools/` không có trong checkout Dev B, nên quyết định phiên ở Review 2 chưa được dùng.
+
+SHA-256 của `git show d6d868c:<tệp>`, chuẩn hóa LF, bỏ BOM:
+
+| Tệp (tính từ gốc Docs)                 | SHA-256 (LF, không BOM)                                            |
+| -------------------------------------- | ------------------------------------------------------------------ |
+| Decisions/project-decisions.md         | `119c26f5e021137c04cb1db563cb9356fe51ad18875f4473feb4019df74b7a50` |
+| BE-UserStory/user-stories-and-epics.md | `79cdc00634a0a0d854dadfbc997f118966477ba6a8b3dcecf875811ea52c2699` |
+| ERD/logical/LOGICAL-ERD-INVENTORY.md   | `624fcee3c0f63b4b94efbbe0138adcbf86d9d5527c8fd8c362ff670348afc3c5` |
+
 ## Commit Docs `72e1480` (22/10/2026, tới `QĐ-86`) — pin hiện hành cho hạng mục mới
 
 Docs `main` `72e1480dd6efa7a8e34ba344aa5b44f09a169dc5` (22/10/2026, _update docs_) là commit đầu tiên chứa `QĐ-86a`

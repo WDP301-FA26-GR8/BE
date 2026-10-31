@@ -81,3 +81,13 @@ Ma trận trên là khung từ tiêu đề AC; tình huống cụ thể được
 
 22/10/2026: lập khung theo bản đồ phân rã G2 của [roadmap](../../../roadmap.md). Chưa thiết kế chi tiết, chưa code, chưa
 review, chưa nghiệm thu.
+
+## Re-audit 31/10/2026 (B-05)
+
+Trên BE `d6c2112`, Docs `d6d868c`; chỉ đọc source, chưa chạy test. Blocker G5/G6 của khung đã lỗi thời, trạng thái khung giữ `blocked` vì hai vế dưới.
+
+| Vế               | Kết luận                                                  | Bằng chứng                                                                                                            | Chủ                                     |
+| ---------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `US-01-04` AC-8  | **Chưa có** guard đổi tháng khi đã có phiên bản ngân sách | `OperatingParametersApi.set` không hỏi ngân sách                                                                      | B-01 (không thuộc phạm vi giao lần này) |
+| `US-01-04` AC-15 | Có, cần chạy lại test                                     | `requests/sla/step-sla.service.ts`, `sla-queue-age.service.ts`, `licensing/saas-issue/saas-issue-calendar.service.ts` | B-05, chỉ ghi bằng chứng                |
+| `US-03-06` AC-19 | Vế Request/nhân sự có listener; vế khuyến nghị chờ G7     | `department-open-requests.listener.ts`, `department-open-work.listener.ts`                                            | Owner (G7)                              |
