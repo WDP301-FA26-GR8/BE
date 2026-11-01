@@ -14,7 +14,8 @@
 #
 # The live docker-compose.prod.yml, Caddyfile and releases/current-image are one release state. Each attempt claims its own
 # <dir>/releases/<sha>/attempts/<id>/ (an existing one is refused, never rewritten) and keeps there, in replaced/, the
-# state it replaces. Each file is replaced by one rename, then `api`, `worker`, `caddy` are recreated. The release is a
+# state it replaces. Each file is replaced by one rename, then the old worker is stopped, the new API is checked ready,
+# and worker/Caddy are recreated without restarting that API. The release is a
 # success only when, within a bounded deadline, the API container runs the exact image and its readiness endpoint answers
 # 2xx, the worker runs the same image and Caddy the promoted Caddyfile, and all three stay the same running containers,
 # without a restart, for an observation window (H7-OPS-RV-04). Then releases/current-attempt names the attempt whose
@@ -165,7 +166,7 @@ export API_IMAGE="$IMAGE"
 # for every command of the candidate, the live file for the live containers. Set per command, never exported, so no later
 # Compose command inherits the candidate's path.
 candidate() { CADDYFILE_PATH="$RELEASE_DIR/Caddyfile" docker compose --project-directory "$APP_DIR" -f "$RELEASE_DIR/docker-compose.prod.yml" "$@"; }
-live() { CADDYFILE_PATH="$APP_DIR/Caddyfile" docker compose --project-directory "$APP_DIR" -f "$APP_DIR/docker-compose.prod.yml" "$@"; }
+live() { CADDYFILE_PATH="$APP_DIR/Caddyfile" timeout 120 docker compose --project-directory "$APP_DIR" -f "$APP_DIR/docker-compose.prod.yml" "$@"; }
 
 echo "🔎 Validating candidate $RELEASE with the live .env and .env.app..."
 candidate config --quiet ||
@@ -331,9 +332,9 @@ host_sample() (
 # answers 2xx. Prints "<service>=<container>#<restart count> ..." and returns 0, or prints why not and returns 1. Prints
 # no environment value: only names, states, images and container ids.
 look() {
-  local expected="$1" snapshot='' service ids count facts image status restarting restarts mounted wanted api=''
+  local expected="$1" services="${2:-api worker caddy}" snapshot='' service ids count facts image status restarting restarts mounted wanted api=''
   host_sample look > /dev/null 2>&1 || true
-  for service in api worker caddy; do
+  for service in $services; do
     ids="$(live_ps "$service" 2> /dev/null)" || {
       echo "$service: its container cannot be listed"
       return 1
@@ -415,12 +416,51 @@ changes() {
   done
 }
 
+# One Node application starts at a time. Stop the old worker too: leaving it polling the database while the new API
+# loads defeats the point of staging. --no-deps prevents Compose from implicitly recreating an already-ready API.
+# The full release check below still runs after worker/Caddy start; API readiness alone never commits a release.
+STARTED_API=''
+START_STEP=''
+RELEASE_READY_DEADLINE=0
+start_release() {
+  local expected="$1" what="$2" deadline first
+  STARTED_API=''
+  START_STEP='stopping the previous worker'
+  echo "⏹️ $what: stopping worker before API startup..." >&2
+  live stop worker || return 1
+  START_STEP='recreating api, worker and caddy'
+  echo "▶️ $what: starting API alone..." >&2
+  host_sample api-start > /dev/null 2>&1 || true
+  live up -d --no-deps --force-recreate api || return 1
+  START_STEP='checking that api, worker and caddy are ready'
+  RELEASE_READY_DEADLINE=$((SECONDS + READY_TIMEOUT))
+  deadline="$RELEASE_READY_DEADLINE"
+  until first="$(look "$expected" api)"; do
+    if [ "$SECONDS" -ge "$deadline" ]; then
+      echo "❌ $what is not ready after $READY_TIMEOUT s: $first" >&2
+      return 2
+    fi
+    sleep "$POLL_INTERVAL"
+  done
+  STARTED_API="$first"
+  echo "✅ $what: API answers ready; starting worker, then Caddy..." >&2
+  host_sample api-ready > /dev/null 2>&1 || true
+  START_STEP='recreating api, worker and caddy'
+  live up -d --no-deps --force-recreate worker || return 1
+  live up -d --no-deps --force-recreate caddy || return 1
+}
+
 # The release with image $1 ($2 names it) is ready: one good look within READY_TIMEOUT seconds (polling), then the same
 # containers, never restarted and still ready, at every look of a STABILITY_WINDOW-second window (at least two looks). A
 # crash-looping worker restarts within that window. Returns 1, saying why, otherwise.
 check_release() {
   local expected="$1" what="$2" deadline first now
-  deadline=$((SECONDS + READY_TIMEOUT))
+  # API-only readiness and the first full ready look share one startup budget, rather than silently doubling it.
+  if [ "$RELEASE_READY_DEADLINE" -gt 0 ]; then
+    deadline="$RELEASE_READY_DEADLINE"
+  else
+    deadline=$((SECONDS + READY_TIMEOUT))
+  fi
   until first="$(look "$expected")"; do
     if [ "$SECONDS" -ge "$deadline" ]; then
       echo "❌ $what is not ready after $READY_TIMEOUT s: $first" >&2
@@ -428,6 +468,11 @@ check_release() {
     fi
     sleep "$POLL_INTERVAL"
   done
+  # Retain the API identity/restart baseline from before the worker started, not just from the first full look.
+  if [ -n "$STARTED_API" ] && [ "${first%% *}" != "$STARTED_API" ]; then
+    echo "❌ $what did not stay the same: $(changes "$STARTED_API" "$first")" >&2
+    return 1
+  fi
   echo "✅ $what answers ready; watching it for $STABILITY_WINDOW s..."
   deadline=$((SECONDS + STABILITY_WINDOW))
   while :; do
@@ -506,6 +551,24 @@ way_back_open() {
 # Private, bounded evidence before rollback destroys the candidate containers. Raw application logs may contain
 # sensitive data: never print them to Actions, never dump inspect/config/environment, never upload automatically.
 # A subshell keeps permissions local; bounded tails are also capped at 1 MiB per file.
+capture_startup_timings() (
+  umask 077
+  [ -d "$DIAGNOSTICS_DIR" ] || exit 0
+  local service ids id
+  for service in api worker; do
+    ids=''
+    [ ! -f "$DIAGNOSTICS_DIR/$service-id.txt" ] || read -r ids < "$DIAGNOSTICS_DIR/$service-id.txt" || true
+    [ -n "$ids" ] || ids="$(live_ps "$service" 2> /dev/null)" || ids=''
+    read -r id <<< "$ids"
+    [ -n "$id" ] || continue
+    {
+      printf 'container=%s\n' "$id"
+      timeout 5 docker logs --timestamps --tail 2000 "$id" 2>&1 | grep '"context":"StartupTiming"'
+    } | head -c 65536 > "$DIAGNOSTICS_DIR/$service-startup.log"
+  done
+  return 0
+)
+
 capture_diagnostics() (
   umask 077
   local dir="$DIAGNOSTICS_DIR" service ids id status
@@ -537,6 +600,7 @@ capture_diagnostics() (
     status=${PIPESTATUS[0]}
     printf 'logs exit=%s\n' "$status" >> "$dir/$service-state.txt"
   done
+  capture_startup_timings || true
   return 0
 )
 
@@ -585,16 +649,20 @@ recover() {
     local ready=1
     if [ "$recreate" -eq 0 ]; then
       echo "ℹ️ containers: untouched, still the previous release." >&2
-    elif API_IMAGE="$PREVIOUS_IMAGE" CADDYFILE_PATH="$APP_DIR/Caddyfile" timeout 300 \
-      docker compose --project-directory "$APP_DIR" -f "$APP_DIR/docker-compose.prod.yml" up -d --force-recreate api worker caddy; then
+    elif API_IMAGE="$PREVIOUS_IMAGE" start_release "$PREVIOUS_IMAGE" "the previous release $PREVIOUS_IMAGE"; then
       echo "↩️ containers returned to the previous image $PREVIOUS_IMAGE." >&2
     else
-      echo "⚠️ containers NOT returned to the previous image $PREVIOUS_IMAGE (exit $?): recreate api, worker and caddy by hand (runbook)." >&2
-      ready=0
+      local start_status=$?
+      if [ "$start_status" -eq 2 ]; then
+        ready=2
+      else
+        echo "⚠️ containers NOT returned to the previous image $PREVIOUS_IMAGE (exit $start_status): recreate api, worker and caddy by hand (runbook)." >&2
+        ready=0
+      fi
     fi
     if [ "$ready" -eq 1 ] && check_release "$PREVIOUS_IMAGE" "the previous release $PREVIOUS_IMAGE" >&2; then
       echo "✅ RECOVERY: the previous release $PREVIOUS_IMAGE is ready." >&2
-    elif [ "$ready" -eq 1 ]; then
+    elif [ "$ready" -eq 1 ] || [ "$ready" -eq 2 ]; then
       echo "⚠️ RECOVERY: FAILED — the previous release $PREVIOUS_IMAGE is not ready (see above); bring it back by hand (runbook)." >&2
     else
       echo "⚠️ RECOVERY: FAILED — the previous containers could not be recreated." >&2
@@ -640,13 +708,15 @@ else
 fi
 host_sample before-recreate > /dev/null 2>&1 || true
 RECREATED=1
-live up -d --force-recreate api worker caddy || recover 'recreating api, worker and caddy'
+start_release "$API_IMAGE" "release $RELEASE" || recover "$START_STEP"
 
 # H7-OPS-RV-04: `up -d` returning 0 proves only that containers were created.
 echo "⏳ Checking that release $RELEASE is ready (at most $READY_TIMEOUT s, then $STABILITY_WINDOW s of observation)..."
 check_release "$API_IMAGE" "release $RELEASE" || recover 'checking that api, worker and caddy are ready'
+capture_startup_timings > /dev/null 2>&1 || true
 
 { printf '%s\n' "$MARK" > "$APP_DIR/releases/.current-attempt.promote"; } && mv -f "$APP_DIR/releases/.current-attempt.promote" "$CURRENT_ATTEMPT" || recover 'recording releases/current-attempt'
 
 echo "🎉 Release $RELEASE is live and ready (attempt $ATTEMPT); its way back: $MARK/replaced"
 [ ! -d "$DIAGNOSTICS_DIR" ] || echo "Host timeline (private): $DIAGNOSTICS_DIR/host-timeline.txt"
+[ ! -d "$DIAGNOSTICS_DIR" ] || echo "Startup timings (private): $DIAGNOSTICS_DIR/api-startup.log; $DIAGNOSTICS_DIR/worker-startup.log"
