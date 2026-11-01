@@ -162,6 +162,8 @@ case "$*" in
     if grep -qx 'ENV_GENERATION=pre-h7' "$project/.env"; then echo pre-h7; else echo h7; fi > "$state/env-$generation"
     echo "$generation" > "$state/generation" ;;
   *" ps -a -q "*)
+    # Daemon stops answering Compose listings after a candidate exec stalls. Recovery's new generation works.
+    if [ -e "$state/exec-stalled-$generation" ]; then exit 124; fi
     service="\${@: -1}"
     image_of "$generation"
     [ -n "$generation_image" ] || exit 0
@@ -192,6 +194,13 @@ case "$*" in
     echo "$image|$status|$restarting|$restarts" ;;
   "exec "*" node -e "*)
     IFS=- read -r _ service container _ <<< "$2"
+    if behaves "$service" "$container" execstall; then
+      count "exec-probes-$container"
+      if [ "$counted" -ge 2 ]; then
+        : > "$state/exec-stalled-$container"
+        exit 124
+      fi
+    fi
     # What releases/current-attempt said while the release was being checked (it must not have moved yet).
     if [ -f "$FAKE_APP/releases/current-attempt" ]; then
       value_of "$FAKE_APP/releases/current-attempt" ''
@@ -715,6 +724,12 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
     assert.ok(after.filter((call) => PROBE(1).test(call)).length >= 2);
     assert.ok(after.some((call) => call === 'exec fake-caddy-1 sha256sum /etc/caddy/Caddyfile'));
     assert.match(result.output, /Release [0-9a-f]{40} is live and ready \(attempt 40177719652-2\)/);
+    const timeline = readFileSync(
+      join(target.app, `.deploy-diagnostics-${RELEASE}-${ATTEMPT}`, 'host-timeline.txt'),
+      'utf8',
+    );
+    assert.match(timeline, /phase=before-recreate/);
+    assert.ok((timeline.match(/phase=look/g) ?? []).length >= 2);
     assert.equal(result.output.includes(SECRET), false);
   });
 
@@ -843,6 +858,39 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
     );
   });
 
+  it('keeps all candidate logs using cached IDs when Docker listings fail after an exec timeout', () => {
+    const target = host();
+    const result = deploy(target, { badNew: 'api:execstall' });
+    assert.equal(result.status, 1, result.output);
+    assert.match(result.output, /docker exec\/probe exceeded 15 s/);
+    assert.match(result.output, /RECOVERY: the previous release .* is ready/);
+    const dir = join(target.app, `.deploy-diagnostics-${RELEASE}-${ATTEMPT}`);
+    for (const service of ['api', 'worker', 'caddy']) {
+      assert.ok(readFileSync(join(dir, `${service}.log`), 'utf8').includes(SECRET));
+      assert.equal(readFileSync(join(dir, `${service}-id.txt`), 'utf8').trim(), `fake-${service}-1`);
+    }
+    const timeline = readFileSync(join(dir, 'host-timeline.txt'), 'utf8');
+    assert.match(timeline, /phase=before-recreate/);
+    assert.match(timeline, /phase=probe-failed/);
+    assert.match(readFileSync(join(dir, 'host-failure.txt'), 'utf8'), /phase=failure/);
+    assert.ok(Buffer.byteLength(timeline) <= 1048576);
+    assert.equal(result.output.includes(SECRET), false);
+    assert.deepEqual(live(target), LIVE);
+  });
+
+  it('leaves existing diagnostic evidence untouched and still recovers', () => {
+    const target = host();
+    const dir = join(target.app, `.deploy-diagnostics-${RELEASE}-${ATTEMPT}`);
+    mkdirSync(dir);
+    writeFileSync(join(dir, 'host-timeline.txt'), 'existing evidence');
+    const result = deploy(target, { badNew: 'api:notready' });
+    assert.equal(result.status, 1, result.output);
+    assert.match(result.output, /Diagnostics incomplete or unavailable/);
+    assert.match(result.output, /RECOVERY: the previous release .* is ready/);
+    assert.deepEqual(readdirSync(dir), ['host-timeline.txt']);
+    assert.equal(readFileSync(join(dir, 'host-timeline.txt'), 'utf8'), 'existing evidence');
+  });
+
   it('reports a recovery step that fails, with the previous release state still restored (H7-OPS-RV-02)', () => {
     const target = host();
     const result = deploy(target, { fail: '--force-recreate' });
@@ -878,7 +926,7 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
 
   describe('readiness after the recreation (H7-OPS-RV-04)', () => {
     for (const [what, badNew, reason] of [
-      ['the API never answers ready', 'api:notready', /api: .*did not answer 2xx/],
+      ['the API never answers ready', 'api:notready', /api: readiness probe failed/],
       ['the API runs another image', 'api:image', /api: runs ghcr\.io\/example\/slm-api:b{40}/],
       ['the worker crash-loops', 'worker:crashloop', /worker: restarted/],
       ['the worker keeps restarting', 'worker:restarting', /worker: restarting/],

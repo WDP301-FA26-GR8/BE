@@ -303,12 +303,36 @@ READY_PROBE='const s=(v,r)=>typeof v==="string"&&r.test(v)?v:"";fetch("http://12
 # Compose and Docker reads of the live release, each bounded so that no look can hang.
 live_ps() { CADDYFILE_PATH="$APP_DIR/Caddyfile" timeout 30 docker compose --project-directory "$APP_DIR" -f "$APP_DIR/docker-compose.prod.yml" ps -a -q "$1"; }
 
+# Host evidence must not depend on Docker responding. Sample cumulative counters at each look so deltas expose
+# CPU/steal, swap-in/out and I/O stalls across the actual failure, rather than only after rollback starts.
+DIAGNOSTICS_DIR=''
+host_sample() (
+  umask 077
+  [ -d "$DIAGNOSTICS_DIR" ] || exit 0
+  local file="$DIAGNOSTICS_DIR/host-timeline.txt" source
+  # Always retain the final host state even if a long startup exhausted the timeline's budget.
+  [ "$1" != failure ] || file="$DIAGNOSTICS_DIR/host-failure.txt"
+  # Leave room for one bounded sample without growing indefinitely during a slow startup.
+  [ ! -f "$file" ] || [ "$(wc -c < "$file")" -lt 983040 ] || exit 0
+  {
+    printf '\nphase=%s seconds=%s\n' "$1" "$SECONDS"
+    date -u +%Y-%m-%dT%H:%M:%SZ
+    for source in /proc/loadavg /proc/meminfo /proc/stat /proc/vmstat /proc/diskstats /proc/pressure/cpu /proc/pressure/io /proc/pressure/memory; do
+      if [ -r "$source" ]; then
+        printf '%s\n' "$source"
+        head -c 8192 "$source"
+      fi
+    done
+  } 2>&1 | head -c 65536 >> "$file"
+)
+
 # One look at the live release (H7-OPS-RV-04). Each of api, worker and caddy has exactly one container, running and not
 # restarting; api and worker run the image $1; Caddy mounts the live Caddyfile (same sha256); the API's readiness endpoint
 # answers 2xx. Prints "<service>=<container>#<restart count> ..." and returns 0, or prints why not and returns 1. Prints
 # no environment value: only names, states, images and container ids.
 look() {
   local expected="$1" snapshot='' service ids count facts image status restarting restarts mounted wanted api=''
+  host_sample look > /dev/null 2>&1 || true
   for service in api worker caddy; do
     ids="$(live_ps "$service" 2> /dev/null)" || {
       echo "$service: its container cannot be listed"
@@ -322,6 +346,10 @@ look() {
     if [ "$count" -ne 1 ]; then
       echo "$service: $count containers"
       return 1
+    fi
+    # look runs in command substitution: persist IDs privately, rather than lose shell variables in its subshell.
+    if [ -d "$DIAGNOSTICS_DIR" ]; then
+      (umask 077; printf '%s\n' "$ids" > "$DIAGNOSTICS_DIR/$service-id.txt") 2> /dev/null || true
     fi
     facts="$(timeout 30 docker inspect --format '{{.Config.Image}}|{{.State.Status}}|{{.State.Restarting}}|{{.RestartCount}}' "$ids" 2> /dev/null)" || {
       echo "$service: container $ids cannot be inspected"
@@ -358,10 +386,14 @@ look() {
   local probe_err='' probe_status=0
   probe_err="$(timeout 15 docker exec "$api" node -e "$READY_PROBE" 2>&1)" || probe_status=$?
   if [ "$probe_status" -ne 0 ]; then
+    host_sample probe-failed > /dev/null 2>&1 || true
     # One short line: the probe prints a status and codes only, but the exec around it can print its own errors (F93).
     probe_err="${probe_err//$'\n'/ }"
     probe_err="${probe_err:0:200}"
-    echo "api: its readiness endpoint did not answer 2xx (probe exit $probe_status; ${probe_err:-no output})"
+    echo "api: readiness probe failed (probe exit $probe_status; ${probe_err:-no output})"
+    if [ "$probe_status" -eq 124 ]; then
+      echo 'api: docker exec/probe exceeded 15 s; this alone does not establish an HTTP failure'
+    fi
     return 1
   fi
   echo "${snapshot# }"
@@ -476,17 +508,24 @@ way_back_open() {
 # A subshell keeps permissions local; bounded tails are also capped at 1 MiB per file.
 capture_diagnostics() (
   umask 077
-  local dir="$APP_DIR/.deploy-diagnostics-$RELEASE-$ATTEMPT" service ids id status
-  mkdir -m 700 "$dir" || exit 1
+  local dir="$DIAGNOSTICS_DIR" service ids id status
+  [ -n "$dir" ] && [ -d "$dir" ] || exit 1
+  host_sample failure || true
   {
     date -u
     timeout 3 uptime
     timeout 3 free -m
     timeout 3 df -h "$APP_DIR"
+    # Only command names, never arguments or environment (both can contain credentials).
+    timeout 3 ps -eo pid,ppid,stat,pcpu,pmem,rss,comm --sort=-pcpu
+    timeout 4 vmstat 1 2
     timeout 5 docker stats --no-stream
   } 2>&1 | head -c 1048576 > "$dir/resources.txt"
   for service in api worker caddy; do
-    ids="$(live_ps "$service" 2> /dev/null)" || ids=''
+    # Prefer IDs observed while verifying this release: avoid another 30 s Compose lookup during a daemon stall.
+    ids=''
+    [ ! -f "$dir/$service-id.txt" ] || read -r ids < "$dir/$service-id.txt" || true
+    [ -n "$ids" ] || ids="$(live_ps "$service" 2> /dev/null)" || ids=''
     # At most one container per service; record what exists even after a partial recreation.
     read -r id <<< "$ids"
     [ -n "$id" ] || continue
@@ -517,6 +556,8 @@ recover() {
       echo 'Diagnostics incomplete or unavailable; continuing recovery.' >&2
     fi
   fi
+  # Preserve candidate IDs/timeline: recovery checks must not overwrite them with the previous release.
+  DIAGNOSTICS_DIR=''
   rm -f "$APP_DIR/.docker-compose.prod.yml.promote" "$APP_DIR/.Caddyfile.promote" "$APP_DIR/releases/.current-image.promote" \
     "$APP_DIR/releases/.current-attempt.promote"
   restore "$REPLACED/docker-compose.prod.yml" "$APP_DIR/docker-compose.prod.yml" || restored=0
@@ -590,6 +631,14 @@ mv -f "$APP_DIR/.Caddyfile.promote" "$APP_DIR/Caddyfile" || recover 'replacing C
 mv -f "$APP_DIR/releases/.current-image.promote" "$CURRENT_IMAGE" || recover 'recording releases/current-image'
 
 echo "♻️ Recreating api, worker and caddy with $API_IMAGE..."
+# Per-attempt evidence also survives a successful deploy, for comparison with intermittent failures. No background
+# sampler or extra Node process is introduced; collection failures must never prevent a deploy or its recovery.
+if (umask 077; mkdir -m 700 "$APP_DIR/.deploy-diagnostics-$RELEASE-$ATTEMPT") 2> /dev/null; then
+  DIAGNOSTICS_DIR="$APP_DIR/.deploy-diagnostics-$RELEASE-$ATTEMPT"
+else
+  echo 'Host diagnostics unavailable: cannot create a new private directory; existing evidence is not overwritten.' >&2
+fi
+host_sample before-recreate > /dev/null 2>&1 || true
 RECREATED=1
 live up -d --force-recreate api worker caddy || recover 'recreating api, worker and caddy'
 
@@ -600,3 +649,4 @@ check_release "$API_IMAGE" "release $RELEASE" || recover 'checking that api, wor
 { printf '%s\n' "$MARK" > "$APP_DIR/releases/.current-attempt.promote"; } && mv -f "$APP_DIR/releases/.current-attempt.promote" "$CURRENT_ATTEMPT" || recover 'recording releases/current-attempt'
 
 echo "🎉 Release $RELEASE is live and ready (attempt $ATTEMPT); its way back: $MARK/replaced"
+[ ! -d "$DIAGNOSTICS_DIR" ] || echo "Host timeline (private): $DIAGNOSTICS_DIR/host-timeline.txt"
