@@ -91,6 +91,11 @@ export type BudgetCommitmentRelease = Prisma.BudgetCommitmentReleaseModel
  */
 export type BudgetVersionHistoryEntry = Prisma.BudgetVersionHistoryEntryModel
 /**
+ * Model BudgetAttachment
+ * 
+ */
+export type BudgetAttachment = Prisma.BudgetAttachmentModel
+/**
  * Model VendorGroup
  * 
  */
@@ -255,11 +260,6 @@ export type LoginThrottle = Prisma.LoginThrottleModel
  * 
  */
 export type AccountActionToken = Prisma.AccountActionTokenModel
-/**
- * Model ApprovalRoleHolder
- * 
- */
-export type ApprovalRoleHolder = Prisma.ApprovalRoleHolderModel
 /**
  * Model RecoveryTicket
  * 
