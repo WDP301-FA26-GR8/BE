@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import type { BusinessDate } from '../../../core/business-date';
 import { DbTx } from '../../../infrastructure/database/transaction-runner';
+import type {
+  EmployeeAccountDetail,
+  EmployeeAccountSummary,
+} from '../../organization/public/organization.extension-points';
 import {
   AccountListFilter,
   AccountRecord,
@@ -49,6 +53,18 @@ export class AccountRecordService {
   /** The account's row lock: the linearization point for everything that changes or depends on one account. */
   lockAppUser(tx: DbTx, appUserId: string, mode: 'SHARE' | 'UPDATE'): Promise<boolean> {
     return this.accounts.lockAppUser(tx, appUserId, mode);
+  }
+
+  /**
+   * Who, among these employees, holds the SPENDING_APPROVER role (QĐ-93a): the accounts of all of them are locked `FOR SHARE` first, in the
+   * order of their ids, and the grants are read in a statement of their own. The side that creates a Request calls it, so it and the
+   * grant of the role (which holds the account `FOR UPDATE`) wait on the same row. Null when none of them holds it.
+   */
+  async lockSpendingApproverAmong(tx: DbTx, employeeIds: readonly string[]): Promise<string | null> {
+    await this.accounts.lockAppUsersOfEmployees(tx, employeeIds);
+    const held = await this.grants.listHoldersAmong(employeeIds, ['SPENDING_APPROVER'], tx);
+
+    return [...held.keys()][0] ?? null;
   }
 
   readAccount(tx: DbTx, appUserId: string): Promise<AccountSnapshot | null> {
@@ -147,6 +163,16 @@ export class AccountRecordService {
   /** Ids of every Employee that already has an account, whatever its state (one per Employee, AC-8). */
   findEmployeeIdsWithAccount(): Promise<string[]> {
     return this.accounts.findEmployeeIdsWithAccount();
+  }
+
+  /** Summarizes accounts for list in one statement on app_users only. */
+  summarizeAccounts(employeeIds: readonly string[], tx?: DbTx): Promise<Map<string, EmployeeAccountSummary>> {
+    return this.accounts.summarizeAccounts(employeeIds, tx);
+  }
+
+  /** Describes account and active roles for detail in one statement, unlocked. */
+  describeAccount(employeeId: string, tx?: DbTx): Promise<EmployeeAccountDetail | null> {
+    return this.accounts.describeAccount(employeeId, tx);
   }
 
   /**
