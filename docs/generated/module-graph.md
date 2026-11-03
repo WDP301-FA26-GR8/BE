@@ -31,13 +31,13 @@ flowchart BT
     onboarding["onboarding"]
     installation["installation"]
   end
-  budgets -->|15| audit
-  budgets -->|6| catalog
-  budgets -->|7| finance
+  budgets -->|16| audit
+  budgets -->|7| catalog
+  budgets -->|9| finance
   budgets -->|2| identity_access
   budgets -->|3| notifications
-  budgets -->|2| operating_parameters
-  budgets -->|10| organization
+  budgets -->|3| operating_parameters
+  budgets -->|11| organization
   catalog -->|17| audit
   catalog -->|11| finance
   catalog -->|2| identity_access

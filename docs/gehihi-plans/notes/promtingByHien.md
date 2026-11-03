@@ -242,6 +242,14 @@ Làm xong thì dừng và báo cáo.
 
 `plan.md` của hạng mục dài thì chia tiếp bằng mẫu ở mục 2.
 
+**Sau chat 3, trước khi commit:** chạy đủ [lệnh tự chạy](#lệnh-tự-chạy-sau-mỗi-plan), kể cả `pnpm test:http` toàn bộ và
+integration. B07-10 từng ghi "verified" khi mới chạy unit và HTTP của riêng route mới, trong khi 3 suite `test/http/platform`
+và ESLint còn đỏ. Prompt chat 3 nên thêm dòng:
+
+```text
+Chỉ ghi verified khi pnpm check, pnpm test:http toàn bộ và test:integration của module đều xanh. Lệnh nào chưa chạy được thì ghi chưa chạy, kèm lý do.
+```
+
 **Lưu ý với các plan chưa chạy:** `QĐ-93` ở repo Docs đã đổi một phần nguồn. Trước khi chạy B08-6, hỏi Owner về pin Docs mới. Nếu Owner đồng ý, pull `../docs` rồi thêm vào prompt:
 
 ```text
@@ -306,6 +314,42 @@ Code B07-8 đã có. Lần này chỉ sửa các việc sau, không thêm tính 
 7. Sửa hết lỗi ESLint và Prettier ở các file B07-8, không thêm eslint-disable hay suppression.
 Chạy Verify, pnpm test:http toàn bộ và pnpm check. Ghi bằng chứng vào plan.md. Chưa commit.
 Làm xong thì dừng và báo cáo.
+```
+
+**B07-10, hoàn thiện code đã có (kiểm lại 03/11/2026):** bật Docker trước. Dùng Codex.
+
+```text
+Đọc docs/gehihi-plans/00-agent-rules.md, docs/gehihi-plans/b07-10-internal-cost-entry.md
+và docs/workspace/items/g8-internal-cost-entry/plan.md, mục "Kiểm lại code B07-10 ngày 03/11/2026".
+Thiết kế và code B07-10 đã có, xem bằng git diff. Lượt này là lượt code, bỏ qua câu "Dừng, không code" trong plan.
+Chỉ sửa các việc sau, không thêm tính năng:
+1. Đưa 4 route internalCostRecord, internalCostCancel, internalCostGet, internalCostList vào api-coverage-manifest,
+   SUCCESS_MESSAGES và openapi-example-route-codes-budgets; khai 422 VALIDATION_ERROR và 429 HTTP_TOO_MANY_REQUESTS
+   như các route khác, để 3 suite test/http/platform xanh.
+2. Sửa 43 lỗi ESLint và Prettier ở các file B07-10. Hạ complexity của prorateInternalCostForYears và
+   splitInternalCostAcrossPeriods bằng cách tách hàm, bỏ any ở internal-cost.service.ts, bỏ import thừa.
+   Không thêm eslint-disable hay suppression.
+3. Thêm vào internal-cost.integration-spec.ts các ca trong matrix spec còn thiếu: khóa đồng thời bằng
+   ConcurrencyHarness, rollback không ghi dở, audit INTERNAL_COST.RECORDED (AC-8b), báo cáo đã phát hành (AC-10).
+   Mỗi ca kiểm số spent thật.
+Chạy pnpm check, pnpm test:http, pnpm openapi:export, pnpm test:integration -- test/integration/budgets.
+Ghi bằng chứng vào plan.md của g8-internal-cost-entry, sửa dòng Triển khai, ghi đúng agent và model. Chưa commit.
+Làm xong thì dừng và báo cáo.
+```
+
+**Merge `origin/dev` vào `hien-dev`:** chạy sau khi B07-10 xanh và đã commit. Dùng Codex, bật Docker.
+
+```text
+Đọc AGENTS.md và docs/workspace/prompts/README.md, mục tích hợp khi dev đã đổi.
+Merge origin/dev vào hien-dev, không rebase, không force-push. Giữ cả phần việc của dev và của hien-dev.
+Giải conflict từng file. openapi.json và docs/generated không sửa tay, sinh lại bằng pnpm openapi:export, pnpm arch:graph, pnpm arch:routes.
+dev đã đổi BudgetSupportService thành BudgetFactsService và đổi các service -lookup, -directory, -reader, -support
+theo docs/rules/module-structure.md. Cập nhật toàn bộ code hóa đơn và chi phí nội bộ theo tên mới, kể cả file git
+không báo conflict và CatalogApi.lockApplicationShared.
+Không đổi nghiệp vụ, không nới test để cho xanh. Conflict nào phải đổi nghiệp vụ thì dừng và báo.
+Chạy pnpm check, pnpm test:http, pnpm test:integration -- test/integration/budgets,
+pnpm test:integration -- test/integration/requests --maxWorkers=4 và pnpm test:integration:serial.
+Ghi kết quả vào plan.md của g8-commitment-realization, ghi đúng agent và model. Để merge ở trạng thái chưa commit, dừng và báo cáo.
 ```
 
 **Chạy lại bằng chứng cho plan đã code xong mà chưa ghi:**

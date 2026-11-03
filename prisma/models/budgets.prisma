@@ -479,3 +479,32 @@ model CommitmentRealization {
   @@index([commitmentId])
   @@map("commitment_realizations")
 }
+
+model InternalCostEntry {
+  id                   String          @id @default(uuid(7)) @db.Uuid
+  organizationId       String          @map("organization_id") @db.Uuid
+  applicationId        String          @map("application_id") @db.Uuid
+  costCenterId         String          @map("cost_center_id") @db.Uuid
+  amountCurrency       String          @map("amount_currency") @db.Char(3)
+  periodStart          DateTime        @map("period_start") @db.Date
+  periodEnd            DateTime        @map("period_end") @db.Date
+  amountMinor          BigInt          @map("amount_minor")
+  amountRate           Decimal         @map("amount_rate") @db.Decimal(20, 10)
+  amountRateDate       DateTime        @map("amount_rate_date") @db.Date
+  amountRateSource     PriceRateSource @map("amount_rate_source")
+  amountReportingMinor BigInt          @map("amount_reporting_minor")
+  note                 String?         @db.Text
+  cancelReason         String?         @map("cancel_reason") @db.Text
+  recordedAt           DateTime        @default(now()) @map("recorded_at") @db.Timestamptz(3)
+  cancelledAt          DateTime?       @map("cancelled_at") @db.Timestamptz(3)
+  recordedByEmployeeId String          @map("recorded_by_employee_id") @db.Uuid
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  application  Application  @relation(fields: [applicationId], references: [id], onDelete: Restrict)
+  costCenter   CostCenter   @relation(fields: [costCenterId], references: [id], onDelete: Restrict)
+  currency     Currency     @relation(fields: [amountCurrency], references: [code], onDelete: Restrict)
+
+  @@index([applicationId, periodStart])
+  @@index([costCenterId, periodStart])
+  @@map("internal_cost_entries")
+}

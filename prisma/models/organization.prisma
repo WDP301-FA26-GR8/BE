@@ -104,6 +104,7 @@ model Organization {
   employeeLeaves                     EmployeeLeave[]
   offboardingCases                   OffboardingCase[]
   personnelNotices                   PersonnelNotice[]
+  internalCostEntries                InternalCostEntry[]
 
   @@map("organizations")
 }
@@ -123,15 +124,16 @@ model CostCenter {
   departmentId   String           @map("department_id") @db.Uuid
   linkedAt       DateTime         @map("linked_at") @db.Timestamptz(3)
 
-  organization       Organization              @relation(fields: [organizationId], references: [id])
-  department         Department                @relation("CostCenterDepartment", fields: [departmentId], references: [id], onDelete: Restrict)
-  departmentLink     CostCenterDepartmentLink?
-  licenseAssignments LicenseAssignment[]
-  accessRequests     AccessRequest[]
-  budgetProposals    BudgetProposal[]
-  budgetVersions     BudgetVersion[]
-  budgetCommitments  BudgetCommitment[]
-  invoiceLines       InvoiceLine[]
+  organization        Organization              @relation(fields: [organizationId], references: [id])
+  department          Department                @relation("CostCenterDepartment", fields: [departmentId], references: [id], onDelete: Restrict)
+  departmentLink      CostCenterDepartmentLink?
+  licenseAssignments  LicenseAssignment[]
+  accessRequests      AccessRequest[]
+  budgetProposals     BudgetProposal[]
+  budgetVersions      BudgetVersion[]
+  budgetCommitments   BudgetCommitment[]
+  invoiceLines        InvoiceLine[]
+  internalCostEntries InternalCostEntry[]
 
   @@unique([organizationId, code])
   @@map("cost_centers")

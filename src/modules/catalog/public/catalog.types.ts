@@ -1,3 +1,13 @@
+export type ApplicationKind = 'SAAS' | 'LICENSED' | 'INTERNAL';
+export type CatalogStatus = 'APPROVED' | 'RETIRED';
+
+export interface LockedApplication {
+  id: string;
+  name: string;
+  kind: ApplicationKind;
+  status: CatalogStatus;
+}
+
 /** What a seat is held against: a subscription of a paid plan, or an internal plan that has no subscription. */
 export type SeatTargetRef = { subscriptionId: string } | { planId: string };
 

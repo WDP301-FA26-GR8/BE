@@ -1,3 +1,7 @@
+import { InternalCostsController } from './internal-cost/internal-costs.controller';
+import { InternalCostService } from './internal-cost/internal-cost.service';
+import { InternalCostQueryService } from './internal-cost/internal-cost-query.service';
+import { InternalCostRepo } from './internal-cost/internal-cost.repo';
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../../infrastructure/database/database.module';
 import { AuditModule } from '../audit/audit.module';
@@ -27,6 +31,7 @@ import {
 import { BudgetCommitmentsController } from './commitment/budget-commitments.controller';
 import { CommitmentRepo } from './budget/commitment.repo';
 import { InvoiceSpendRepo } from './budget/invoice-spend.repo';
+import { InternalCostSpendRepo } from './budget/internal-cost-spend.repo';
 import { CommitmentService } from './commitment/commitment.service';
 import { DecisionRepo } from './budget/decision.repo';
 import { LineImportService } from './version/line-import.service';
@@ -82,6 +87,7 @@ import { InvoicesController } from './invoice/invoices.controller';
     OperatingParametersModule,
   ],
   controllers: [
+    InternalCostsController,
     InvoicesController,
     BudgetProposalsController,
     BudgetVersionsController,
@@ -90,6 +96,9 @@ import { InvoicesController } from './invoice/invoices.controller';
     BudgetCommitmentsController,
   ],
   providers: [
+    InternalCostService,
+    InternalCostQueryService,
+    InternalCostRepo,
     InvoiceRepo,
     InvoiceService,
     InvoiceDocumentService,
@@ -102,6 +111,7 @@ import { InvoicesController } from './invoice/invoices.controller';
     VersionHistoryRepo,
     DecisionRepo,
     InvoiceSpendRepo,
+    InternalCostSpendRepo,
     CommitmentRepo,
     BudgetYearLockRepo,
     BudgetSupportService,
