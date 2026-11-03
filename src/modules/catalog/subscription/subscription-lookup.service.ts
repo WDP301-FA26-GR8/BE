@@ -4,11 +4,16 @@ import type { Money } from '../../../core/money/money';
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import { SubscriptionRepo } from './subscription.repo';
 import type { SubscriptionKind } from './subscription.types';
+import type { SubscriptionSummary } from '../public/catalog.types';
 
 /** What the rules of another capability need to know of the subscriptions of some plans: their kind and their end. */
 @Injectable()
 export class SubscriptionLookupService {
   constructor(private readonly subscriptions: SubscriptionRepo) {}
+
+  summaries(ids: readonly string[], tx?: DbTx): Promise<SubscriptionSummary[]> {
+    return this.subscriptions.summaries(ids, tx);
+  }
 
   /**
    * What a plan is bought at for a department, from the newest priced active subscription that department owns; null when it

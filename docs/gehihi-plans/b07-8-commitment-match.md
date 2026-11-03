@@ -1,11 +1,11 @@
 # B07-8 — Finance khớp dòng hóa đơn với khoản cam kết
 
-| Gói  | Hạng mục                    | AC                                                   | Loại   | Cổng vào                               |
-| ---- | --------------------------- | ---------------------------------------------------- | ------ | -------------------------------------- |
-| B-07 | `g8-commitment-realization` | `US-06-06` AC-1, AC-5; `US-12-02` AC-4, AC-8, Task 4 | `CODE` | B07-7 xong; **D5, D5a, D6 có trả lời** |
+| Gói  | Hạng mục                    | AC                                                   | Loại   | Cổng vào                                     |
+| ---- | --------------------------- | ---------------------------------------------------- | ------ | -------------------------------------------- |
+| B-07 | `g8-commitment-realization` | `US-06-06` AC-1, AC-5; `US-12-02` AC-4, AC-8, Task 4 | `CODE` | B07-7 xong; D5, D5a, D6 tạm theo khuyến nghị |
 
-Plan viết theo gợi ý ở `02-owner-decisions.md`: Finance chọn theo dòng, số tiền tự tính, từ chối khác nhà cung cấp và khác năm, không
-có hủy khớp. Owner trả lời khác thì **dừng**, sửa spec và plan này trước.
+Plan viết theo khuyến nghị ở `02-owner-decisions.md`, Owner ủy quyền dùng tạm ngày 01/11/2026: Finance chọn theo dòng, số tiền tự tính, từ
+chối khác nhà cung cấp và khác năm, không có hủy khớp. Owner đổi khi review thì **dừng**, sửa spec và plan này trước.
 
 ## Đọc trước
 

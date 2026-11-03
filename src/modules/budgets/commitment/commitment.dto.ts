@@ -27,6 +27,7 @@ const commitmentSchema = z.strictObject({
   /** What the commitment was made for; `held` is what it holds now and `released` what went back to the budget. */
   amount: moneyView,
   released: moneyView,
+  realized: moneyView,
   held: moneyView,
   state: z.enum(['HELD', 'RELEASED', 'EXPENSED']),
   attached: z.boolean(),

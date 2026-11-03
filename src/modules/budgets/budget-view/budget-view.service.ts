@@ -104,9 +104,14 @@ export class BudgetViewService {
         const costCenter = centers.get(version.costCenterId);
         if (!costCenter) throw new Error(`The Cost Center ${version.costCenterId} of a version does not exist.`);
 
-        const { held: committed, spent } = held.get(heldKey(version.costCenterId, version.year)) ?? {
+        const {
+          held: committed,
+          spent,
+          deductibleVat,
+        } = held.get(heldKey(version.costCenterId, version.year)) ?? {
           held: 0n,
           spent: 0n,
+          deductibleVat: 0n,
         };
         const remaining = version.totalMinor - committed - spent;
 
@@ -118,6 +123,7 @@ export class BudgetViewService {
           total: money(version.totalMinor),
           committed: money(committed),
           spent: money(spent),
+          deductibleVat: money(deductibleVat),
           remaining: money(remaining),
           overCommitted: remaining < 0n,
         };

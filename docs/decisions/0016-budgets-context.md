@@ -18,7 +18,9 @@ vòng đời và người dùng khác Request (Finance và Người duyệt chi,
 
 1. Một module nghiệp vụ mới `budgets` (C5) sở hữu `budget_proposals`, `budget_proposal_lines`, `budget_versions`,
    `budget_version_lines`, `budget_version_line_changes` và các bảng ngân sách tiếp theo của G5 (bản ghi quyết phiên bản, khoản
-   cam kết). Đây là bounded context mới vì có bảng, nghiệp vụ và vai riêng ([module structure](../rules/module-structure.md)).
+   cam kết). Chú thích bổ sung (B07-2, B07-5): `budgets` đồng thời sở hữu hóa đơn và dòng thuế (`invoices`,
+   `invoice_lines`, `invoice_tax_lines`) theo kiến trúc phân tầng T5. Đây là bounded context mới vì có bảng, nghiệp vụ
+   và vai riêng ([module structure](../rules/module-structure.md)).
 2. **Hướng phụ thuộc:** `budgets → organization (Cost Center, trưởng phòng, ngày nghiệp vụ), identity-access (facade: ai giữ vai
 Người duyệt chi), finance (tiền tệ, định dạng tiền), operating-parameters, audit`. `budgets` không import `requests`, `catalog`
    hay `licensing`. Ngược lại `requests → budgets (facade)`: phép kiểm ngân sách của một Request (`US-06-12`) đọc số liệu qua

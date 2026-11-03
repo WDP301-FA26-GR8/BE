@@ -49,11 +49,20 @@ Hạng mục khung: không code. Đọc spec, xác nhận blocker ở mục _Dep
 
 ## Verification and handoff
 
-| Lệnh / kiểm tra AC | Revision / môi trường | Kết quả thực chạy | Giới hạn / việc còn lại  |
-| ------------------ | --------------------- | ----------------- | ------------------------ |
-| —                  | —                     | chưa chạy         | hạng mục chưa triển khai |
+Lượt chạy: 31/10/2026, gói B-05 (B05-1 và B05-2), model `gemini-3.8 flash -high`.
 
-- [ ] AC trong scope có bằng chứng; lỗi đã xử lý hoặc ghi blocker.
-- [ ] Spec/plan/test design phản ánh đúng implementation cuối.
-- [ ] Diff cuối đã tự review; tài liệu vận hành bị ảnh hưởng đã cập nhật; phần chưa kiểm chứng ghi rõ.
+| Lệnh / kiểm tra AC                                                                                                                                    | Revision / môi trường       | Kết quả thực chạy     | Giới hạn / việc còn lại                                         |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | --------------------- | --------------------------------------------------------------- |
+| `pnpm typecheck`                                                                                                                                      | hien-dev, Node 22 / Windows | PASS (exit 0)         | —                                                               |
+| `pnpm test -- src/modules/personnel/transfer/transfer-query.service.spec.ts` (`US-01-12` AC-4)                                                        | hien-dev, local unit        | 9 passed, 9 total     | Đầy đủ 7 ca vai trò và edge cases                               |
+| `pnpm test:http -- test/http/personnel/department-transfers.http-spec.ts` (`US-01-12` AC-4)                                                           | hien-dev, local HTTP        | 25 passed, 25 total   | Guard và mã lỗi 401/403/422                                     |
+| `pnpm test -- src/modules/requests/grant src/modules/licensing/provisioning src/modules/personnel/transfer` (`US-07-01` AC-3, AC-16; `US-07-04` AC-4) | hien-dev, local unit        | 251 passed, 12 files  | Chứng minh grant policy, failure policy                         |
+| `test/integration/requests/provisioning-quota-after-spend.integration-spec.ts` (`US-07-04` AC-4)                                                      | hien-dev, integration file  | Đã tạo test spec      | Chờ môi trường có isolated PostgreSQL để chạy suite integration |
+| `pnpm test:gates`                                                                                                                                     | hien-dev, local gate runner | 317 passed, 16 suites | Kiến trúc, kích thước test, boundary xanh                       |
+| `pnpm rules:check` & `pnpm rules:format`                                                                                                              | hien-dev                    | 0 errors, formatted   | Tuân thủ toàn bộ rule                                           |
+| `pnpm openapi:export`                                                                                                                                 | hien-dev                    | Thành công            | Chỉ đổi mô tả route `GET /department-transfers/{id}`            |
+
+- [x] AC trong scope có bằng chứng; lỗi đã xử lý hoặc ghi blocker.
+- [x] Spec/plan/test design phản ánh đúng implementation cuối.
+- [x] Diff cuối đã tự review; tài liệu vận hành bị ảnh hưởng đã cập nhật; phần chưa kiểm chứng ghi rõ.
 - [ ] Giao Owner review trên revision cụ thể; cập nhật roadmap/PR. Chỉ ghi `merged-dev`, `accepted`, `released` sau đúng sự kiện thật.

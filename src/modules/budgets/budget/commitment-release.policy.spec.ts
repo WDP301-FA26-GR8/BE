@@ -1,15 +1,35 @@
-import { planRelease, planRemainder, type CommitmentRow } from './commitment-release.policy';
+import { heldOf, planRelease, planRemainder, type CommitmentRow } from './commitment-release.policy';
 
-const held = (year: number, amountMinor: bigint, releasedMinor = 0n): CommitmentRow => ({
+const held = (year: number, amountMinor: bigint, releasedMinor = 0n, realizedMinor = 0n): CommitmentRow => ({
   id: `c${year}`,
   year,
   amountMinor,
   releasedMinor,
+  realizedMinor,
   state: 'HELD',
 });
 
 describe('the money that goes back to the budget', () => {
+  describe('heldOf', () => {
+    it('computes held amount with 21 amount, 0 released, 13 realized', () => {
+      expect(heldOf(held(2026, 21n, 0n, 13n))).toBe(8n);
+    });
+  });
+
   describe('planRelease', () => {
+    it('releases 8 when nothing named and realized is 13 of 21', () => {
+      expect(planRelease([held(2026, 21n, 0n, 13n)])).toEqual({
+        ok: true,
+        items: [{ id: 'c2026', year: 2026, takeMinor: 8n, leftMinor: 0n }],
+      });
+    });
+
+    it('refuses 9 when held is 8 (realized 13 of 21)', () => {
+      expect(planRelease([held(2026, 21n, 0n, 13n)], [{ year: 2026, amountMinor: 9n }])).toMatchObject({
+        ok: false,
+        refusal: 'EXCEEDS_HELD',
+      });
+    });
     it('gives back everything that is still held, in each year', () => {
       const plan = planRelease([held(2026, 2_400n), held(2027, 2_400n, 400n)]);
 

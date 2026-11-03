@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import { IdentityAccessApi } from '../../identity-access/public/identity-access.api';
+import { OrganizationHistoryApi } from '../../organization/public/organization-history.api';
 import { OrganizationApi } from '../../organization/public/organization.api';
 import { PersonnelAccessRefusedError } from '../public/personnel.errors';
 import { readAccessOf, type ReadAccess } from '../personnel-self-action.policy';
@@ -36,6 +37,7 @@ export class TransferQueryService {
   constructor(
     private readonly transfers: TransferRepo,
     private readonly organization: OrganizationApi,
+    private readonly history: OrganizationHistoryApi,
     private readonly identity: IdentityAccessApi,
   ) {}
 
@@ -57,14 +59,39 @@ export class TransferQueryService {
     );
   }
 
+  private async isRelevantDepartmentHead(actor: AuthenticatedPrincipal, record: TransferRecord): Promise<boolean> {
+    if (!actor.employeeId) return false;
+    const today = await this.organization.businessToday();
+    const periods = await this.history.getHeadPeriodsOf(actor.employeeId, today);
+    return periods.some(
+      (p) =>
+        (p.departmentId === record.fromDepartmentId || p.departmentId === record.toDepartmentId) &&
+        p.validFrom <= today &&
+        (p.validTo === null || p.validTo > today),
+    );
+  }
+
   async get(actor: AuthenticatedPrincipal, id: string): Promise<TransferDetailWire> {
-    const { access, departmentIds } = await this.scopeOf(actor);
     const record = await this.transfers.find(id);
+    if (!record) throw new TransferRefusedError('NOT_FOUND');
+
+    // US-01-12 AC-4 (BM-04): old and new department heads can view the full detail.
+    // If actor is a MANAGER, check active head period for from/to department; broader FULL view takes precedence.
+    if (actor.roles.includes('MANAGER')) {
+      const isHead = await this.isRelevantDepartmentHead(actor, record);
+      if (isHead) {
+        return this.detailOf(record, 'FULL');
+      }
+      if (!actor.roles.includes('SUPER_ADMIN') && !actor.roles.includes('IT_ADMIN')) {
+        throw new TransferRefusedError('NOT_FOUND');
+      }
+    }
+
+    const { access, departmentIds } = await this.scopeOf(actor);
     if (
-      !record ||
-      (departmentIds &&
-        !departmentIds.includes(record.fromDepartmentId) &&
-        !departmentIds.includes(record.toDepartmentId))
+      departmentIds &&
+      !departmentIds.includes(record.fromDepartmentId) &&
+      !departmentIds.includes(record.toDepartmentId)
     )
       throw new TransferRefusedError('NOT_FOUND');
 

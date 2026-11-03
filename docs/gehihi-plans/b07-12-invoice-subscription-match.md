@@ -1,10 +1,11 @@
 # B07-12 — So ba con số và phân loại chênh lệch
 
-| Gói  | Hạng mục                        | AC                                         | Loại     | Cổng vào                        |
-| ---- | ------------------------------- | ------------------------------------------ | -------- | ------------------------------- |
-| B-07 | `g8-invoice-subscription-match` | `US-12-02` AC-1→3, AC-5→7; `US-12-10` AC-8 | `DESIGN` | B07-4 xong; AC-2, AC-6 chờ Q-05 |
+| Gói  | Hạng mục                        | AC                                         | Loại     | Cổng vào                              |
+| ---- | ------------------------------- | ------------------------------------------ | -------- | ------------------------------------- |
+| B-07 | `g8-invoice-subscription-match` | `US-12-02` AC-1→3, AC-5→7; `US-12-10` AC-8 | `DESIGN` | B07-4 xong; Q-05 tạm theo khuyến nghị |
 
-Chỉ `US-12-02` AC-2, AC-6 cần mở `Discrepancy`. `US-07-07` thuộc G7 của Owner: chưa có trả lời Q-05 thì không tự tạo bảng `discrepancies`.
+Chỉ `US-12-02` AC-2, AC-6 cần mở `Discrepancy`. `US-07-07` thuộc G7 của Owner. Q-05 tạm theo khuyến nghị, Owner ủy quyền 01/11/2026: B làm
+phần tối thiểu ở `licensing` gồm bảng, mở hồ sơ idempotent theo dòng hóa đơn, đọc trạng thái; Owner giữ điều tra và đóng.
 
 ## Làm được ngay
 
@@ -17,7 +18,7 @@ Phần không cần `Discrepancy`, thiết kế trước rồi code ở lượt 
 
 Đây là cạnh mới `budgets → licensing`, tầng cho phép. Cập nhật module card và chạy `pnpm arch:graph`.
 
-## Thiết kế phần mở sai lệch, sau khi có Q-05
+## Thiết kế phần mở sai lệch
 
 | Chủ đề           | Câu hỏi                                                                                                             |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -32,4 +33,4 @@ AC-7 (đóng sai lệch) thuộc luồng của Owner; B chỉ cần hóa đơn g
 
 ## Đầu ra
 
-Lượt `DESIGN` cập nhật spec/plan, ghi rõ AC-2, AC-6 chờ Q-05. Dừng, không code.
+Lượt `DESIGN` cập nhật spec/plan, ghi Q-05 vào `## Owner dispositions` của spec. Dừng, không code.

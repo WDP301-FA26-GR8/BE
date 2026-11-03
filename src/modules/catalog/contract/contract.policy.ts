@@ -1,14 +1,16 @@
 import {
   ContractNameRequiredError,
-  DocumentAlreadyAttachedError,
   DocumentFileInvalidError,
-  DocumentNotReadyToAttachError,
-  DocumentPurposeForbiddenError,
   DocumentPurposeNotAvailableError,
   DocumentTooLargeError,
   DocumentTypeNotAllowedError,
   DocumentUploadMismatchError,
 } from './contract.errors';
+import {
+  DocumentAlreadyAttachedError,
+  DocumentNotReadyToAttachError,
+  DocumentPurposeForbiddenError,
+} from '../public/catalog.errors';
 
 export type DocumentPurpose =
   | 'CONTRACT_ATTACHMENT'
@@ -34,8 +36,39 @@ const PURPOSE_ROLES: Record<DocumentPurpose, readonly string[]> = {
   COST_STATEMENT: ['FINANCE'],
 };
 
-/** The purposes whose file is attached to a contract, the only record there is to attach to today. */
-const ATTACHES_TO_CONTRACT: ReadonlySet<DocumentPurpose> = new Set(['CONTRACT_ATTACHMENT', 'PURCHASE_DOCUMENT']);
+/** The purposes whose file is attached to a contract (`US-04-04`). */
+export const ATTACHES_TO_CONTRACT: ReadonlySet<DocumentPurpose> = new Set(['CONTRACT_ATTACHMENT', 'PURCHASE_DOCUMENT']);
+
+/** The purposes whose file is attached to an invoice (`US-04-04` F-17). */
+export const ATTACHES_TO_INVOICE: ReadonlySet<DocumentPurpose> = new Set(['PURCHASE_DOCUMENT', 'TAX_PAYMENT_PROOF']);
+
+export type DocumentAttachmentTarget = 'CONTRACT' | 'INVOICE' | 'contract' | 'invoice';
+
+const ATTACH_TARGET_ROLES: Record<string, Partial<Record<DocumentPurpose, readonly string[]>>> = {
+  CONTRACT: {
+    CONTRACT_ATTACHMENT: ['IT_ADMIN', 'FINANCE'],
+    PURCHASE_DOCUMENT: ['IT_ADMIN'],
+  },
+  INVOICE: {
+    PURCHASE_DOCUMENT: ['FINANCE'],
+    TAX_PAYMENT_PROOF: ['FINANCE'],
+  },
+};
+
+/**
+ * Throws DocumentPurposeForbiddenError when the role is not allowed to attach the file of this purpose to the target
+ * (`US-04-04` F-17, `US-01-12` AC-10).
+ */
+export function assertMayAttachTo(
+  purpose: DocumentPurpose,
+  target: DocumentAttachmentTarget,
+  roles: readonly string[],
+): void {
+  const allowed = ATTACH_TARGET_ROLES[target.toUpperCase()]?.[purpose];
+  if (!allowed || !roles.some((role) => allowed.includes(role))) {
+    throw new DocumentPurposeForbiddenError();
+  }
+}
 
 /** What is kept: each type with the extensions that go with it. A name that says otherwise is refused. */
 const ALLOWED_TYPES: Record<string, readonly string[]> = {
@@ -51,7 +84,9 @@ export function assertMayChoosePurpose(purpose: DocumentPurpose, roles: readonly
 
 /** The purposes with nowhere to be attached yet are refused, after the role is checked. Throws DocumentPurposeNotAvailableError. */
 export function assertPurposeAvailable(purpose: DocumentPurpose): void {
-  if (!ATTACHES_TO_CONTRACT.has(purpose)) throw new DocumentPurposeNotAvailableError(purpose);
+  if (!ATTACHES_TO_CONTRACT.has(purpose) && !ATTACHES_TO_INVOICE.has(purpose)) {
+    throw new DocumentPurposeNotAvailableError(purpose);
+  }
 }
 
 /**

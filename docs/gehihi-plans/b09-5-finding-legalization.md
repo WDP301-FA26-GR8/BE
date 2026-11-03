@@ -1,13 +1,13 @@
 # B09-5 — Quyết định hợp thức hóa
 
-| Gói  | Hạng mục                  | AC                 | Loại     | Cổng vào                                |
-| ---- | ------------------------- | ------------------ | -------- | --------------------------------------- |
-| B-09 | `g9-finding-legalization` | `US-13-06` AC-1→21 | `DESIGN` | B09-3, B09-4 xong; ca `OOS-24` chờ Q-07 |
+| Gói  | Hạng mục                  | AC                 | Loại     | Cổng vào          |
+| ---- | ------------------------- | ------------------ | -------- | ----------------- |
+| B-09 | `g9-finding-legalization` | `US-13-06` AC-1→21 | `DESIGN` | B09-3, B09-4 xong |
 
-Làm cho mọi ca thường. Q-07 chỉ chặn đúng một ca `OOS-24`: Người duyệt chi là người dùng hoặc người trả của hồ sơ. `QĐ-66ag` ghi không đặt
+Làm cho mọi ca thường. Q-07 chỉ liên quan một ca `OOS-24`: Người duyệt chi là người dùng hoặc người trả của hồ sơ. `QĐ-66ag` ghi không đặt
 người thay thế, và "không đặt ≠ cho phép tự duyệt". Không dẫn `US-06-08` cho ca này.
 
-Gợi ý chờ Owner: API từ chối bằng mã riêng, hồ sơ giữ mở, ghi là giới hạn. Lượt đầu chỉ thiết kế.
+Q-07 tạm theo khuyến nghị, Owner ủy quyền 01/11/2026: API từ chối bằng mã riêng, hồ sơ giữ mở, ghi là giới hạn. Lượt đầu chỉ thiết kế.
 
 ## Quy tắc
 
@@ -34,7 +34,7 @@ Gợi ý chờ Owner: API từ chối bằng mã riêng, hồ sơ giữ mở, gh
 
 ## Đầu ra
 
-Cập nhật spec, plan, test matrix đủ 21 AC, ghi rõ ca `OOS-24` chờ Q-07. Dừng, không code.
+Cập nhật spec, plan, test matrix đủ 21 AC, ghi ca `OOS-24` theo Q-07 là giới hạn. Dừng, không code.
 
 ## Verify
 

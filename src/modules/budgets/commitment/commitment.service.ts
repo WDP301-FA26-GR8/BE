@@ -16,7 +16,13 @@ import {
   BudgetCommitmentNotFoundError,
   BudgetCommitmentRefusedError,
 } from '../budget/budget.errors';
-import { planRelease, planRemainder, type PlannedRelease, type ReleasePlan } from '../budget/commitment-release.policy';
+import {
+  heldOf,
+  planRelease,
+  planRemainder,
+  type PlannedRelease,
+  type ReleasePlan,
+} from '../budget/commitment-release.policy';
 import { budgetAuditEvent, BudgetSupportService } from '../budget/budget-support.service';
 import { CommitmentRepo } from '../budget/commitment.repo';
 import type { CommitmentWire, ReleaseWire } from './commitment.dto';
@@ -43,7 +49,7 @@ export class CommitmentService {
    * stays one, and a request that holds nothing releases nothing. Throws BudgetCommitmentRefusedError.
    */
   async release(tx: DbTx, input: CommitmentReleaseInput): Promise<ReleasedCommitment[]> {
-    const rows = await this.commitments.ofRequest(tx, input.requestId);
+    const rows = await this.commitments.lockOfRequest(tx, input.requestId);
     const plan = planRelease(rows, input.amounts);
     if (!plan.ok) throw new BudgetCommitmentRefusedError(plan.refusal, plan.year ?? null);
 
@@ -116,6 +122,7 @@ export class CommitmentService {
       year: number;
       amountMinor: bigint;
       releasedMinor: bigint;
+      realizedMinor: bigint;
       state: 'HELD' | 'RELEASED' | 'EXPENSED';
       organizationId: string;
     },
@@ -225,9 +232,10 @@ export class CommitmentService {
         released: (money.get(row.currency) as (minor: bigint) => { amount: string; currency: string })(
           row.releasedMinor,
         ),
-        held: (money.get(row.currency) as (minor: bigint) => { amount: string; currency: string })(
-          row.state === 'RELEASED' ? 0n : row.amountMinor - row.releasedMinor,
+        realized: (money.get(row.currency) as (minor: bigint) => { amount: string; currency: string })(
+          row.realizedMinor,
         ),
+        held: (money.get(row.currency) as (minor: bigint) => { amount: string; currency: string })(heldOf(row)),
         state: row.state,
         attached: row.attachedVersionId !== null,
         attachedAt: row.attachedAt?.toISOString() ?? null,

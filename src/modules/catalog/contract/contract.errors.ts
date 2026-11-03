@@ -12,14 +12,6 @@ export class ContractNameRequiredError extends Error {
   }
 }
 
-/** The person may not choose this purpose for a file: each purpose belongs to the roles that file it. */
-export class DocumentPurposeForbiddenError extends Error {
-  constructor() {
-    super('This role may not choose this purpose for a file.');
-    this.name = 'DocumentPurposeForbiddenError';
-  }
-}
-
 /** The purpose is real but has nowhere to be attached yet: the record it belongs to is not built. */
 export class DocumentPurposeNotAvailableError extends Error {
   constructor(readonly purpose: string) {
@@ -61,14 +53,6 @@ export class DocumentUploadMismatchError extends Error {
   }
 }
 
-/** No such file for this person: it does not exist, is not uploaded yet, or belongs to someone who has not attached it. */
-export class DocumentNotFoundError extends Error {
-  constructor() {
-    super('The document does not exist.');
-    this.name = 'DocumentNotFoundError';
-  }
-}
-
 export class DocumentNotAwaitingUploadError extends Error {
   constructor() {
     super('The upload of this document is done already.');
@@ -89,20 +73,6 @@ export class DocumentUploadExpiredError extends Error {
   constructor() {
     super('The upload of this document never came and it was given up. Declare the file again.');
     this.name = 'DocumentUploadExpiredError';
-  }
-}
-
-export class DocumentAlreadyAttachedError extends Error {
-  constructor() {
-    super('The document has an owner already.');
-    this.name = 'DocumentAlreadyAttachedError';
-  }
-}
-
-export class DocumentNotReadyToAttachError extends Error {
-  constructor() {
-    super('The document is not uploaded yet.');
-    this.name = 'DocumentNotReadyToAttachError';
   }
 }
 

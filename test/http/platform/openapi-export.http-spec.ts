@@ -59,14 +59,18 @@ describe('OpenAPI export (spawned process)', () => {
     expect(findOpenApi30Violations(committed)).toEqual([]);
   });
 
-  it('pins only openapi.json to LF in the repository attributes (GATE-EOL=A)', () => {
+  it('pins only OpenAPI and the two operational templates to LF in the repository attributes', () => {
     const rules = readFileSync(join(PROJECT_ROOT, '.gitattributes'), 'utf8')
       .split('\n')
       .map((line) => line.trim())
       .filter((line) => line !== '' && !line.startsWith('#'));
 
-    // Exactly one narrow rule: no repository-wide `* text=auto eol=lf`, no renormalization of unrelated files.
-    expect(rules).toEqual(['openapi.json text eol=lf']);
+    // Exactly these file-specific rules: no repository-wide rule or renormalization of unrelated files.
+    expect(rules).toEqual([
+      'openapi.json text eol=lf',
+      '.env.bootstrap.example text eol=lf',
+      '.env.demo-dataset.example text eol=lf',
+    ]);
   });
 
   it(

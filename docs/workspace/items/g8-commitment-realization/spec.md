@@ -59,60 +59,77 @@ Finance khớp hóa đơn đã ghi với một khoản cam kết; phần chi ph�
 - `budgets` sở hữu cả hóa đơn lẫn khoản cam kết, nên thao tác khớp là một service nội bộ, không cần extension point hay facade mới; thêm bảng
   `commitment_realizations` và cột `budget_commitments.realized_minor`.
 - `requests` không đổi ở lát này: nó vẫn gọi `BudgetsApi.releaseForRequest`.
-- Operation mới: `POST /invoices/{id}/commitment-matches` (`FINANCE`), `GET /invoices/{id}/commitment-matches` (`FINANCE`). Mở rộng
-  `GET /budget-commitments`: thêm `realized`, giữ các trường cũ (tương thích thêm trường).
+- Operation mới: `POST /invoices/{id}/lines/{position}/commitment-match` (`FINANCE`, khớp một dòng vào một khoản, body `{ commitmentId }`, không có trường số tiền, F-09), `GET /invoices/{id}/commitment-matches` (`FINANCE`). Hỗ trợ `POST /invoices` nhận `commitmentId?` ở dòng để khớp cùng transaction (F-24). Mở rộng `GET /budget-commitments`: thêm `realized`, giữ các trường cũ (tương thích thêm trường).
+- Hook mới: `CommitmentVendorHook` trong `public/budgets.extension-points.ts`, `requests` bind qua `commitment-vendor.listener.ts` để tra nhà cung cấp từ `planId` qua `CatalogApi.getPlanVendorId` (F-22).
 
 ## Behavior and design
 
-**Công thức mới.** `heldMinor = amount − released − realized`. Trạng thái: còn `heldMinor > 0` là `HELD`; về 0 mà `realized > 0` là
-`EXPENSED`; về 0 mà `realized = 0` là `RELEASED`. `planRelease`, `planRemainder` và `CommitmentRepo.release` dùng công thức này;
-điều kiện lạc quan của `updateMany` thêm `realizedMinor`.
+**Thiết kế chốt cho thực chi và công thức mới.**
 
-**Thực chi có một nguồn.** Hiện `CommitmentRepo.totals` lấy `spent` từ khoản cam kết `EXPENSED` và `BudgetFactsRepo` trả nó thành `spentMinor`,
-nên `remaining = total − held − spent` (`requests/spend/budget-check.policy.ts`). Khi có hóa đơn, thực chi gồm cả hóa đơn không khớp cam kết,
-nên `spentMinor` đổi nguồn sang tổng chi phí thực chịu đọc từ repo hóa đơn của `budgets`, **không** cộng thêm `EXPENSED`. Chưa có hóa đơn thì trả 0,
-giữ đúng hành vi hiện tại. Đây là thay đổi rủi ro nhất của lát: khớp 21tr thì `held` giảm 21tr và `spent` tăng 21tr, _còn
-lại_ không đổi (`US-06-06` AC-1).
+```text
+spent(Cost Center, năm)        = tổng invoice_lines.cost_reporting_minor
+deductibleVat(Cost Center, năm) = tổng invoice_lines.deductible_vat_reporting_minor
+held(Cost Center, năm)         = tổng (amount − released − realized) của khoản HELD đã gắn ngân sách
+còn lại                        = ngân sách − spent − held
+```
 
-**Luồng khớp.** Finance chọn khoản cam kết và số tiền theo chi phí thực chịu. Transaction, theo thứ tự khóa: hàng hóa đơn → khóa năm ngân sách
-của Cost Center và năm → hàng khoản cam kết. Kiểm: khoản cam kết `HELD`; năm của chứng từ bằng năm khoản cam kết (`CERD5-16`); số tiền dương,
-không vượt `heldMinor`. Ghi `commitment_realizations`, tăng `realized_minor`, chuyển `EXPENSED` nếu hết, cập nhật `reconciliation_status`, audit
-`BUDGET_COMMITMENT.REALIZED`. Phần hóa đơn vượt khoản cam kết vẫn là thực chi và không tự mở khoản cam kết mới.
+Trạng thái khoản: còn `heldMinor > 0` là `HELD`; về 0 mà `realizedMinor > 0` là `EXPENSED`; về 0 mà `realizedMinor = 0` là `RELEASED` (F-02). `planRelease`, `planRemainder` và `CommitmentRepo.release` dùng công thức này; điều kiện lạc quan của `updateMany` thêm `realizedMinor`.
 
-**Thất bại sau khi đã chi một phần (`US-06-06` AC-9).** `releaseForRequest` với công thức mới tự nhả đúng phần chưa chi: 13tr giữ là chi phí, 8tr
-nhả. Không đổi `reportOutcome`; quy tắc giữ lại khi có chứng từ mua thuộc `g8-spend-basis-on-failure`.
+**Thực chi có một nguồn (F-03, F-04, F-05, F-06).**
+Hiện `CommitmentRepo.totals` lấy `spent` từ khoản cam kết `EXPENSED`, nay chuyển hẳn sang đọc từ `invoice_lines` qua repo `budget/invoice-spend.repo.ts` trong lõi `budget/` (F-04). `totals()` tính `held` = `amount - released - realized` (F-03) và gọi sang `invoice-spend.repo.ts` tuần tự. Cả `BudgetFactsRepo` và `BudgetViewService` đều đọc qua `totals()`. Hết rủi ro `totals` lọc `attachedVersionId` vì `spent` lấy từ dòng hóa đơn, không qua khoản cam kết (F-06). Dòng có `cost_center_id` null là _Chưa phân bổ_, không vào `spent` của Cost Center nào. Test fixture `spend-harness.ts` (`spec.spent`, `commit(..., 'EXPENSED')`) ghi kèm hóa đơn (F-05) để duy trì tính nhất quán mà không làm đỏ test cũ.
 
-**Credit note (`US-06-06` AC-11).** Theo `LD-06`: hóa đơn `kind = CREDIT_NOTE`, `credited_invoice_id`. Là sự kiện điều chỉnh riêng, giảm thực
-chi kỳ ghi nhận; không mở lại khoản cam kết, không đổi kết cục Request. Hủy khớp nhầm là gap của nguồn (xem D6).
+**Luồng khớp (F-07, F-08, F-09, F-10, F-21, F-22, F-24).**
+Khớp thực hiện theo dòng hóa đơn (`invoice_line_id`, F-21), không khớp ở cấp hóa đơn và không có trường số tiền (F-09). Số khớp tự tính: `min(line.costReportingMinor, heldOf(commitment))`. Bỏ `INVOICE_MATCH.EXCEEDS_HELD`. Phần chi phí vượt khoản cam kết vẫn là thực chi và không mở khoản mới (`US-12-09` AC-9).
+Transaction thực hiện theo thứ tự khóa: (1) hàng hóa đơn; (2) đọc không khóa Cost Center và năm của khoản, lấy khóa năm ngân sách (`BudgetYearLockRepo`); (3) hàng khoản cam kết bằng `lockById`.
+Kiểm tra:
 
-**Lỗi ổn định.** `INVOICE_MATCH.COMMITMENT_NOT_HELD`, `INVOICE_MATCH.YEAR_MISMATCH`, `INVOICE_MATCH.EXCEEDS_HELD`,
-`INVOICE_MATCH.INVOICE_NOT_MATCHABLE` (409); `VALIDATION_ERROR` (422).
+- Hóa đơn không phải `CREDIT_NOTE` và chi phí dòng > 0 (`INVOICE_NOT_MATCHABLE`).
+- Dòng chưa từng khớp (`LINE_ALREADY_MATCHED`).
+- Khoản cam kết đang `HELD` (`COMMITMENT_NOT_HELD`).
+- So `line.fiscalYear` với `commitment.year` trong policy (`YEAR_MISMATCH`), không dùng trigger năm (F-10, lệch so với Inventory).
+- Kiểm tra nhà cung cấp của khoản qua hook `CommitmentVendorHook` (`requests` trả vendor qua `CatalogApi.getPlanVendorId`, F-22); nếu khác vendor hóa đơn ném `VENDOR_MISMATCH`.
+  Ghi `commitment_realizations` (unique `invoice_line_id`, F-21), tăng `realized_minor`, chuyển `EXPENSED` nếu `heldMinor = 0`. Dòng `cost_center_id` null nhận Cost Center của khoản (F-21). Không cập nhật `reconciliation_status` vì trường này dành cho phân bổ sao kê ↔ hóa đơn (F-08). Sửa thuế sau khi khớp tính lại chi phí dòng, `spent` tự đúng, `realized` không đổi (F-07). Cho phép `POST /invoices` nhận `commitmentId` theo dòng để khớp ngay khi ghi trong cùng transaction (F-24). Hóa đơn đã ghi nhưng chưa khớp làm _còn lại_ tạm thấp hơn tới khi khớp. Đây là phía an toàn; dùng `commitmentId` lúc ghi thì không có khoảng này.
 
-**Đồng thời.** Cùng khóa năm với mọi người ghi ngân sách, nên khớp và kiểm tra ngân sách không đọc lệch. Khớp đua với nhả khi Request kết thúc:
-thứ tự toàn hệ thống là hàng Request trước, rồi năm; lát này không khóa hàng Request, nên `release` phải đọc lại hàng khoản cam kết sau khi giữ
-khóa và điều kiện lạc quan phải từ chối giá trị cũ. Test khóa tất định, không phải test đua một lần.
+**Thất bại sau khi đã chi một phần (`US-06-06` AC-9, F-02, F-11).**
+`CommitmentRepo.release` tính lại phần còn giữ: về 0 thì chuyển `EXPENSED` nếu `realized > 0`, `RELEASED` nếu không; `releasedAt` chỉ đặt khi `RELEASED` (F-02). `CommitmentService.release` gọi `lockOfRequest` (`ORDER BY year FOR UPDATE`) để khóa hàng và đọc số dư mới nhất (F-11), tránh đua lệnh ném lỗi 500 khi Request đóng. 13tr giữ là chi phí, 8tr nhả về ngân sách.
 
-**Migration.** Task riêng đi trước code: thêm `realized_minor BIGINT NOT NULL DEFAULT 0`, CHECK `released_minor + realized_minor <= amount_minor`,
-bảng `commitment_realizations` kèm CHECK và trigger năm theo Logical (cột `purchase_document_id` để lại cho `g8-spend-basis-on-failure`).
-Backfill không cần vì chưa có hàng `EXPENSED` nào. Tương thích ngược: API thêm trường, không bỏ trường.
+**Credit note (`US-06-06` AC-11).** Theo `LD-06`: hóa đơn `kind = CREDIT_NOTE`, `credited_invoice_id`. Giảm thực chi ở kỳ ghi nhận (chi phí dòng âm); không mở lại khoản cam kết, không đổi kết cục Request. Không có thao tác hủy khớp (D6).
 
-**Audit.** `BUDGET_COMMITMENT.REALIZED` có `requestId`, `year`, `invoiceId`, `amountMinor`, `heldMinor`, người thao tác. Jobs: không áp dụng.
+**Lỗi ổn định.** `INVOICE_MATCH.INVOICE_NOT_MATCHABLE`, `INVOICE_MATCH.COMMITMENT_NOT_HELD`, `INVOICE_MATCH.YEAR_MISMATCH`, `INVOICE_MATCH.VENDOR_MISMATCH`, `INVOICE_MATCH.LINE_ALREADY_MATCHED` (409); `VALIDATION_ERROR` (422).
+
+**Đồng thời.** Khớp giữ khóa năm ngân sách. Khớp đua với nhả: `release` dùng `lockOfRequest` có `ORDER BY year FOR UPDATE`, tuần tự hóa an toàn (F-11).
+
+**Migration (F-01, F-10, F-21).**
+
+1. Thêm `realized_minor BIGINT NOT NULL DEFAULT 0` vào `budget_commitments`.
+2. Tạm disable trigger guard, backfill `realized_minor = amount_minor - released_minor` cho các hàng cũ `EXPENSED` (nếu có), enable trigger guard.
+3. Thay CHECK `budget_commitments_release_check` theo ba trạng thái (F-01).
+4. `CREATE OR REPLACE FUNCTION budget_commitments_guard()`: giữ nguyên thân cũ, thêm chặn `NEW.realized_minor < OLD.realized_minor` (F-01).
+5. Tạo `commitment_realizations`: `id`, `commitment_id`, `invoice_line_id` NOT NULL UNIQUE (F-21), `amount_minor`, `recorded_at`, `recorded_by_employee_id`. Trigger cấm update/delete. Không tạo trigger năm (F-10).
+
+**Audit.** `BUDGET_COMMITMENT.REALIZED` có `requestId`, `year`, `invoiceId`, `position`, `amountMinor`, `heldMinor`, người thao tác.
 
 ## Test matrix
 
-| AC / rủi ro                  | Tình huống (gồm từ chối, edge case)                                   | Cấp test             | Kết quả mong đợi                                                    | Bằng chứng sau implement |
-| ---------------------------- | --------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- | ------------------------ |
-| US-06-06 AC-1                | `K1` 21tr; hóa đơn giá 20tr, GTGT 2tr khấu trừ, nộp thay 1tr; khớp đủ | integration          | `K1` `EXPENSED`; held −21tr, spent +21tr, còn lại không đổi         | chưa chạy                |
-| US-12-02 AC-4                | Hóa đơn tương ứng khớp `K1` 20tr                                      | integration          | `K1` `EXPENSED` theo chi phí thực chịu                              | chưa chạy                |
-| US-06-06 AC-5, US-12-02 AC-8 | Khớp 13tr rồi 8tr (và 13tr rồi 7tr)                                   | integration          | Sau đợt một còn giữ đúng; sau đợt hai `EXPENSED`; không trừ hai lần | chưa chạy                |
-| US-06-06 AC-9                | Đã khớp 13tr, IT Admin đóng tác vụ thất bại                           | integration          | 13tr giữ chi phí, 8tr `RELEASED` phần dư, Finance được báo          | chưa chạy                |
-| US-06-06 AC-11               | `R1` thất bại, `K1` `EXPENSED`, ghi credit note                       | integration          | Thực chi giảm ở kỳ ghi; `K1` và kết cục Request không đổi           | chưa chạy                |
-| Hồi quy `US-06-06` AC-4      | Đưa `EXPENSED` về `HELD`                                              | unit                 | Không có đường; `planRelease` từ chối `NOT_HELD`                    | chưa chạy                |
-| Hồi quy G5                   | Kiểm tra ngân sách khi chưa có hóa đơn nào                            | integration          | Mọi snapshot giống trước khi đổi nguồn `spentMinor`                 | chưa chạy                |
-| Đếm hai lần                  | Có hóa đơn không khớp cam kết và hóa đơn khớp                         | integration          | `spentMinor` = tổng chi phí thực chịu, không cộng `EXPENSED`        | chưa chạy                |
-| Từ chối                      | Vượt held; khác năm; khoản đã `RELEASED`; IT Admin gọi khớp           | HTTP + integration   | Đúng mã lỗi, số dư không đổi, không audit                           | chưa chạy                |
-| Khóa                         | Khớp đang giữ khóa năm, `release` chạy song song                      | integration (serial) | Tuần tự theo thứ tự khóa; tổng `released + realized ≤ amount`       | chưa chạy                |
-| Ràng buộc DB                 | Ghi trực tiếp `released + realized > amount`                          | integration          | CHECK từ chối                                                       | chưa chạy                |
+| AC / rủi ro             | Tình huống (gồm từ chối, edge case)                                                                | Cấp test             | Kết quả mong đợi                                                                | Bằng chứng sau implement |
+| ----------------------- | -------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------- | ------------------------ |
+| US-06-06 AC-1           | `K1` 21tr; giá 20tr, GTGT 2tr khấu trừ, nộp thay 1tr; ghi kèm `commitmentId`                       | integration          | `K1` `EXPENSED`; held −21tr, spent +21tr, còn lại không đổi                     | chưa chạy                |
+| F-24                    | Cùng ca trên, ghi trước rồi khớp sau                                                               | integration          | Trước khớp còn lại tạm thấp hơn 21tr; sau khớp như hàng trên                    | chưa chạy                |
+| US-12-02 AC-4           | `K1` 20tr khớp dòng chi phí 20tr                                                                   | integration          | `K1` `EXPENSED` theo chi phí thực chịu                                          | chưa chạy                |
+| US-06-06 AC-5           | Hai hóa đơn 13tr rồi 8tr                                                                           | integration          | Sau đợt một `HELD` 8tr; sau đợt hai `EXPENSED`, spent 21tr                      | chưa chạy                |
+| US-12-02 AC-8           | 13tr rồi 7tr trên `K1` 20tr                                                                        | integration          | Không trừ hai lần                                                               | chưa chạy                |
+| US-12-09 AC-9           | `K1` 21tr, chi phí thật 23tr                                                                       | integration          | realized 21tr, spent 23tr, `EXPENSED` (không có lỗi vượt held)                  | chưa chạy                |
+| Chi phí thấp hơn        | `K1` 21tr, chi phí 18tr                                                                            | integration          | `HELD` 3tr; Finance nhả phần dư sau                                             | chưa chạy                |
+| F-07                    | Khớp 21tr rồi đổi GTGT 2tr thành không khấu trừ                                                    | integration          | spent 23tr, realized 21tr, audit trước/sau                                      | chưa chạy                |
+| F-21                    | Dòng ngoài danh mục khớp `K1` của `CC-A`                                                           | integration          | Dòng nhận `CC-A`, `spent` của `CC-A` tăng                                       | chưa chạy                |
+| US-06-06 AC-9           | Đã khớp 13tr, IT Admin đóng tác vụ thất bại                                                        | integration          | 13tr giữ chi phí, 8tr `RELEASED` phần dư, Finance được báo                      | chưa chạy                |
+| US-06-06 AC-11          | `R1` thất bại, `K1` `EXPENSED`, ghi credit note                                                    | integration          | Thực chi giảm ở kỳ ghi; `K1` và kết cục Request không đổi                       | chưa chạy                |
+| Hồi quy `US-06-06` AC-4 | Đưa `EXPENSED` về `HELD` bằng SQL                                                                  | integration          | Trigger guard từ chối                                                           | chưa chạy                |
+| B07-7 ca tổng hợp       | Hóa đơn chưa khớp 10tr, dòng `cost_center_id` null, khác năm; `US-06-09` AC-12 GTGT khấu trừ 2tr   | integration          | `spent` 21tr, `deductibleVat` 2tr, `held` 0, còn lại giảm 21tr, không đếm 2 lần | chưa chạy                |
+| F-06                    | Khoản thành chi phí trước khi có ngân sách, rồi ngân sách duyệt                                    | integration          | `spent` đủ, `held` 0, không lỗi trigger                                         | chưa chạy                |
+| Từ chối                 | Dòng đã khớp; khác vendor; khác năm; khoản đã `RELEASED`; credit note; IT Admin / Manager gọi khớp | HTTP + integration   | Đúng mã lỗi (409/403), số dư không đổi, không audit                             | chưa chạy                |
+| Khóa                    | Khớp đang giữ khóa năm, `release` chạy song song (`lockOfRequest`)                                 | integration (serial) | Tuần tự theo thứ tự khóa; tổng `released + realized ≤ amount`, không lỗi 500    | chưa chạy                |
+| Ràng buộc DB            | Ghi trực tiếp `released + realized > amount`, giảm `realized_minor`, sửa/xóa realization           | integration          | CHECK / trigger từ chối                                                         | chưa chạy                |
 
 ## Definition of Done
 
@@ -122,7 +139,21 @@ Backfill không cần vì chưa có hàng `EXPENSED` nào. Tương thích ngư�
 - [ ] Không tăng legacy ledger kiến trúc; `pnpm arch:check` xanh, không thêm cạnh module.
 - [ ] Tài liệu vận hành/runbook bị ảnh hưởng đã cập nhật; phần chưa kiểm chứng ghi rõ.
 
+## Owner dispositions
+
+Owner nhắn Dev B ngày 01/11/2026, Dev B chuyển lại; nguyên văn và nghĩa của nhãn ở `docs/gehihi-plans/02-owner-decisions.md`. Owner ủy quyền dùng khuyến nghị và xem lại khi review, chưa xem từng điểm.
+
+| Mã  | Trạng thái                                      | Câu hỏi                              | Phương án                                                                                                                                                 |
+| --- | ----------------------------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| D5  | Tạm theo khuyến nghị, Owner ủy quyền 01/11/2026 | Ai chọn khoản cam kết để khớp        | Finance chọn cho từng dòng hóa đơn; số khớp tự tính = min(chi phí dòng, phần còn giữ); từ chối khác nhà cung cấp                                          |
+| D5a | Tạm theo khuyến nghị, Owner ủy quyền 01/11/2026 | Hóa đơn khác năm tài chính với khoản | Từ chối khớp; Finance nhả khoản cũ có lý do, hóa đơn tính vào năm của nó                                                                                  |
+| D6  | Tạm theo khuyến nghị, Owner ủy quyền 01/11/2026 | Khớp nhầm thì sửa thế nào            | Không có hủy khớp. Credit note không gỡ được khớp nhầm; khoản bị khớp nhầm chỉ nhả được phần dư sau khi Request kết thúc. Owner xem rủi ro này khi review |
+
 ## Changes and acceptance
+
+01/11/2026: ghi D5, D5a, D6 vào `## Owner dispositions`. Danh sách 31/10 bên dưới đã đóng tạm; câu "sửa bằng credit note" của D6 không còn đúng, theo dòng D6 ở bảng. Chưa review, chưa nghiệm thu.
+
+31/10/2026: áp F-01→F-03, F-05→F-11, F-21, F-22, F-24 từ `docs/gehihi-plans/01-design-corrections.md` (chốt công thức thực chi từ dòng hóa đơn, khớp theo dòng không truyền số tiền, thay CHECK và hàm guard, hook vendor, lockOfRequest, bỏ reconciliation_status và trigger năm); chưa Owner review.
 
 31/10/2026: lập thiết kế ở bước 01, trạng thái `draft`, chưa code, chưa review, chưa nghiệm thu. Quyết định chờ Owner:
 

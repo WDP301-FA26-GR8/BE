@@ -5,7 +5,7 @@ import { DbTx } from '../../../infrastructure/database/transaction-runner';
 import { isUniqueViolation } from '../../../infrastructure/database/unique-violation';
 import { CostCenterCodeTakenError, CostCenterDepartmentAlreadyLinkedError } from './cost-center.errors';
 import { CostCenterBrief, CreateCostCenterInput } from '../public/organization.types';
-import { CostCenterRecord } from './cost-center.types';
+import { CostCenterRecord, type CostCenterLinkPeriod } from './cost-center.types';
 import { CostCenterKind, CostCenterStatus } from '../organization-structure.types';
 
 interface CostCenterRow {
@@ -53,6 +53,14 @@ function toRecord(row: CostCenterRow): CostCenterRecord {
 @Injectable()
 export class CostCenterRepo {
   constructor(private readonly prisma: PrismaService) {}
+
+  /** All links of this department, newest first; current status must not hide historical cost attribution. */
+  linksOfDepartment(departmentId: string, tx?: DbTx): Promise<CostCenterLinkPeriod[]> {
+    return (tx ?? this.prisma).$queryRaw<CostCenterLinkPeriod[]>`
+      SELECT c.id, c.linked_at AS "linkedAt", c.deactivated_at AS "deactivatedAt", o.time_zone AS "timeZone"
+        FROM cost_centers c JOIN organizations o ON o.id = c.organization_id
+       WHERE c.department_id = ${departmentId}::uuid ORDER BY c.linked_at DESC, c.id`;
+  }
 
   /**
    * The installation's cost center: always a UNIT, created as given, for the department that exists already. Unlike

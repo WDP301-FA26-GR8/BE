@@ -307,8 +307,10 @@ const tableRowSchema = z.strictObject({
   total: moneyView,
   /** What is held against the budget by the commitments attached to it. */
   committed: moneyView,
-  /** What has become an expense, which a commitment is not any more (`FR-5.8`). */
+  /** What has become an expense from recorded invoice lines (FR-5.4). */
   spent: moneyView,
+  /** Deductible VAT on invoice lines (US-06-09 AC-12); tracked beside spent and not deducted from remaining. */
+  deductibleVat: moneyView,
   /** The budget less what is held and what is spent; negative when more was committed than the budget allows (`US-06-07` AC-3). */
   remaining: moneyView,
   overCommitted: z.boolean(),

@@ -9,6 +9,7 @@ export interface CommitmentRow {
   year: number;
   amountMinor: bigint;
   releasedMinor: bigint;
+  realizedMinor: bigint;
   state: 'HELD' | 'RELEASED' | 'EXPENSED';
 }
 
@@ -34,7 +35,7 @@ export interface PlannedRelease {
 
 export type ReleasePlan = { ok: true; items: PlannedRelease[] } | { ok: false; refusal: ReleaseRefusal; year?: number };
 
-export const heldOf = (row: CommitmentRow): bigint => row.amountMinor - row.releasedMinor;
+export const heldOf = (row: CommitmentRow): bigint => row.amountMinor - row.releasedMinor - row.realizedMinor;
 
 /** Everything still held, or the amounts named; the commitments that are not held are left as they are when nothing is named. */
 export function planRelease(

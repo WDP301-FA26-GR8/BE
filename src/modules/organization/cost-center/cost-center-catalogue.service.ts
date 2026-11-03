@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import type { BusinessDate } from '../../../core/business-date';
 import { DbTx } from '../../../infrastructure/database/transaction-runner';
 import { CostCenterBrief, CreateCostCenterInput } from '../public/organization.types';
 import { CostCenterRepo } from './cost-center.repo';
 import { CostCenterRecord } from './cost-center.types';
+import { costCenterLinkedOn } from './cost-center-link.policy';
 
 /**
  * The Cost Center catalogue as the organization facade needs it outside the catalogue's own HTTP use cases: the
@@ -12,6 +14,13 @@ import { CostCenterRecord } from './cost-center.types';
 @Injectable()
 export class CostCenterCatalogueService {
   constructor(private readonly repo: CostCenterRepo) {}
+
+  /** Day-based cost attribution: the link day is included and the retirement day excluded. */
+  async idOfDepartmentOn(departmentId: string, onDate: BusinessDate, tx?: DbTx): Promise<string | null> {
+    const periods = await this.repo.linksOfDepartment(departmentId, tx);
+
+    return periods.find((period) => costCenterLinkedOn(period, onDate, period.timeZone))?.id ?? null;
+  }
 
   createUnitForInstallation(tx: DbTx, input: CreateCostCenterInput): Promise<{ id: string }> {
     return this.repo.createCostCenter(tx, input);

@@ -4,6 +4,7 @@ import { formatRate, parseRate } from '../../../core/money/rate';
 import { Prisma } from '../../../generated/prisma/client';
 import { PrismaService } from '../../../infrastructure/database/prisma.service';
 import { DbTx } from '../../../infrastructure/database/transaction-runner';
+import type { SubscriptionSummary } from '../public/catalog.types';
 import type {
   NewSubscription,
   PriceSnapshotRecord,
@@ -115,6 +116,16 @@ function columnsOf(state: SubscriptionState) {
 @Injectable()
 export class SubscriptionRepo {
   constructor(private readonly prisma: PrismaService) {}
+
+  /** Minimal invoice reference facts, in one read regardless of the batch size. */
+  async summaries(ids: readonly string[], tx?: DbTx): Promise<SubscriptionSummary[]> {
+    if (ids.length === 0) return [];
+
+    return (tx ?? this.prisma).$queryRaw<SubscriptionSummary[]>`
+      SELECT s.id, a.vendor_id AS "vendorId", s.owner_department_id AS "ownerDepartmentId"
+        FROM subscriptions s JOIN plans p ON p.id = s.plan_id JOIN applications a ON a.id = p.application_id
+       WHERE s.id = ANY(${[...ids]}::uuid[]) ORDER BY s.id`;
+  }
 
   async insert(tx: DbTx, input: NewSubscription): Promise<SubscriptionRecord> {
     const { organizationId, planId, ownerDepartmentId, kind, ...state } = input;

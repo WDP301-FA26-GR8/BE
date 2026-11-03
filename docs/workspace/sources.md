@@ -24,7 +24,7 @@ spec cũ giữ nguồn đã pin.
 
 BE tương ứng là `d6c2112` (= `origin/dev`). Audit [roadmap/API GAP](../reviews/roadmap-and-api-gaps-2026-10-31/README.md) ghi BE `eb41f9c`, nhưng object đó
 **không có** trong repo hiện tại nên không tái lập được; cần Owner xác nhận `d6c2112` chứa đúng nội dung đã audit. Các đường dẫn audit tới
-`Docs/Reviews/review2-main-flows-process-policy-2026-10-31`, `Prompts/` và `Tools/` không có trong checkout Dev B, nên quyết định phiên ở Review 2 chưa được dùng.
+`Docs/Reviews/review2-main-flows-process-policy-2026-10-31`, `Prompts/` và `Tools/` không có trong checkout Dev B, nên quyết định phiên ở Review 2 chưa được dùng. Ngày 01/11/2026 Owner báo không có `REPORT.md` hay quyết định liên quan hóa đơn, cam kết, đối soát để cung cấp; làm theo nguồn đã pin.
 
 SHA-256 của `git show d6d868c:<tệp>`, chuẩn hóa LF, bỏ BOM:
 

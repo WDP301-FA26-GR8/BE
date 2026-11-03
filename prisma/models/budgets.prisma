@@ -287,6 +287,7 @@ model BudgetCommitment {
   // What went back to the budget so far; the commitment holds the amount less this, and it is released when none is left.
   releasedMinor     BigInt          @default(0) @map("released_minor")
   releasedAt        DateTime?       @map("released_at") @db.Timestamptz(3)
+  realizedMinor     BigInt          @default(0) @map("realized_minor")
   // The check the decision of the spending approver kept, which is the snapshot this commitment was made on (US-06-04 AC-1).
   snapshotCheckId   String?         @map("snapshot_check_id") @db.Uuid
   createdAt         DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
@@ -299,6 +300,7 @@ model BudgetCommitment {
   request         AccessRequest             @relation(fields: [requestId], references: [id], onDelete: Restrict)
   snapshotCheck   RequestBudgetCheck?       @relation(fields: [snapshotCheckId], references: [id], onDelete: Restrict)
   releases        BudgetCommitmentRelease[]
+  realizations    CommitmentRealization[]
 
   @@unique([requestId, year])
   @@index([costCenterId, year, state])
@@ -357,4 +359,123 @@ model BudgetVersionHistoryEntry {
 
   @@unique([versionId, seq])
   @@map("budget_version_history")
+}
+
+enum InvoiceKind {
+  INVOICE
+  CREDIT_NOTE
+}
+
+enum InvoiceReconStatus {
+  NONE
+  PARTIAL
+  FULL
+}
+
+enum InvoiceTaxPayer {
+  VENDOR_COLLECTS
+  BUYER_REMITS
+}
+
+model Invoice {
+  id                   String             @id @default(uuid(7)) @db.Uuid
+  organizationId       String             @map("organization_id") @db.Uuid
+  vendorId             String             @map("vendor_id") @db.Uuid
+  contractId           String?            @map("contract_id") @db.Uuid
+  creditedInvoiceId    String?            @map("credited_invoice_id") @db.Uuid
+  invoiceNumber        String             @map("invoice_number")
+  kind                 InvoiceKind
+  invoiceDate          DateTime           @map("invoice_date") @db.Date
+  amountMinor          BigInt             @map("amount_minor")
+  amountCurrency       String             @map("amount_currency") @db.Char(3)
+  amountRate           Decimal            @map("amount_rate") @db.Decimal(20, 10)
+  amountRateDate       DateTime           @map("amount_rate_date") @db.Date
+  amountRateSource     PriceRateSource    @map("amount_rate_source")
+  amountReportingMinor BigInt             @map("amount_reporting_minor")
+  reconciliationStatus InvoiceReconStatus @default(NONE) @map("reconciliation_status")
+  recordedAt           DateTime           @default(now()) @map("recorded_at") @db.Timestamptz(3)
+  recordedByEmployeeId String             @map("recorded_by_employee_id") @db.Uuid
+
+  organization    Organization         @relation(fields: [organizationId], references: [id])
+  vendor          Vendor               @relation(fields: [vendorId], references: [id], onDelete: Restrict)
+  contract        Contract?            @relation(fields: [contractId], references: [id], onDelete: Restrict)
+  creditedInvoice Invoice?             @relation("InvoiceCredited", fields: [creditedInvoiceId], references: [id], onDelete: Restrict)
+  creditNotes     Invoice[]            @relation("InvoiceCredited")
+  currencyRecord  Currency             @relation("InvoiceCurrency", fields: [amountCurrency], references: [code], onDelete: Restrict)
+  lines           InvoiceLine[]
+  taxLines        InvoiceTaxLine[]
+  documents       DocumentAttachment[]
+
+  @@unique([organizationId, vendorId, kind, invoiceNumber])
+  @@index([invoiceDate, vendorId])
+  @@map("invoices")
+}
+
+model InvoiceLine {
+  id                          String    @id @default(uuid(7)) @db.Uuid
+  invoiceId                   String    @map("invoice_id") @db.Uuid
+  position                    Int       @db.SmallInt
+  subscriptionId              String?   @map("subscription_id") @db.Uuid
+  description                 String
+  outOfCatalog                Boolean   @default(false) @map("out_of_catalog")
+  billedQuantity              Int?      @map("billed_quantity")
+  unitPriceMinor              BigInt?   @map("unit_price_minor")
+  servicePeriodStart          DateTime? @map("service_period_start") @db.Date
+  servicePeriodEnd            DateTime? @map("service_period_end") @db.Date
+  amountMinor                 BigInt    @map("amount_minor")
+  amountReportingMinor        BigInt    @map("amount_reporting_minor")
+  costCenterId                String?   @map("cost_center_id") @db.Uuid
+  fiscalYear                  Int       @map("fiscal_year")
+  costReportingMinor          BigInt    @map("cost_reporting_minor")
+  deductibleVatReportingMinor BigInt    @map("deductible_vat_reporting_minor")
+
+  invoice      Invoice                @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  subscription Subscription?          @relation(fields: [subscriptionId], references: [id], onDelete: Restrict)
+  costCenter   CostCenter?            @relation(fields: [costCenterId], references: [id], onDelete: Restrict)
+  realization  CommitmentRealization?
+
+  @@unique([invoiceId, position])
+  @@index([subscriptionId])
+  @@index([costCenterId, fiscalYear])
+  @@map("invoice_lines")
+}
+
+model InvoiceTaxLine {
+  invoiceId            String          @map("invoice_id") @db.Uuid
+  position             Int             @db.SmallInt
+  taxType              String          @map("tax_type")
+  rateBp               Int             @map("rate_bp")
+  amountMinor          BigInt          @map("amount_minor")
+  amountCurrency       String          @map("amount_currency") @db.Char(3)
+  amountRate           Decimal         @map("amount_rate") @db.Decimal(20, 10)
+  amountRateDate       DateTime        @map("amount_rate_date") @db.Date
+  amountRateSource     PriceRateSource @map("amount_rate_source")
+  amountReportingMinor BigInt          @map("amount_reporting_minor")
+  payer                InvoiceTaxPayer
+  deductible           Boolean
+  cardFeeOrFx          Boolean         @default(false) @map("card_fee_or_fx")
+  note                 String?
+  proofDocumentId      String?         @map("proof_document_id") @db.Uuid
+
+  invoice        Invoice             @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  currencyRecord Currency            @relation("InvoiceTaxLineCurrency", fields: [amountCurrency], references: [code], onDelete: Restrict)
+  proofDocument  DocumentAttachment? @relation(fields: [proofDocumentId], references: [id], onDelete: Restrict)
+
+  @@id([invoiceId, position])
+  @@map("invoice_tax_lines")
+}
+
+model CommitmentRealization {
+  id                   String   @id @default(uuid(7)) @db.Uuid
+  commitmentId         String   @map("commitment_id") @db.Uuid
+  invoiceLineId        String   @unique @map("invoice_line_id") @db.Uuid
+  amountMinor          BigInt   @map("amount_minor")
+  recordedAt           DateTime @default(now()) @map("recorded_at") @db.Timestamptz(3)
+  recordedByEmployeeId String   @map("recorded_by_employee_id") @db.Uuid
+
+  commitment  BudgetCommitment @relation(fields: [commitmentId], references: [id], onDelete: Restrict)
+  invoiceLine InvoiceLine      @relation(fields: [invoiceLineId], references: [id], onDelete: Restrict)
+
+  @@index([commitmentId])
+  @@map("commitment_realizations")
 }

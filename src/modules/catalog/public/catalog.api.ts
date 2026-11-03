@@ -2,15 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { DbTx } from '../../../infrastructure/database/transaction-runner';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import type {
+  AttachedDocument,
   CatalogOnboardingFacts,
   PlanRevocationInfo,
   PlanSummary,
   WorkspaceDuty,
   SeatTarget,
   SeatTargetRef,
+  SubscriptionSummary,
 } from './catalog.types';
 import { OnboardingFactsService } from '../subscription/onboarding-facts.service';
 import { ApplicationLookupService } from '../catalog-entry/application-lookup.service';
+import { DocumentService } from '../contract/document.service';
 import { PlanLookupService } from '../plan/plan-lookup.service';
 import { SubscriptionLookupService } from '../subscription/subscription-lookup.service';
 import { SeatTargetService } from '../subscription/seat-target.service';
@@ -34,6 +37,7 @@ export class CatalogApi {
     private readonly vendors: VendorLookupService,
     private readonly internalRegistration: InternalSoftwareRegistrationService,
     private readonly applicationLookup: ApplicationLookupService,
+    private readonly documents: DocumentService,
   ) {}
 
   /**
@@ -68,6 +72,16 @@ export class CatalogApi {
   /** The ids of every subscription and purchase a department owns, by id: for a module that finds what belongs to the department through them. */
   getSubscriptionIdsOwnedBy(departmentId: string, tx?: DbTx): Promise<string[]> {
     return this.subscriptions.idsOwnedBy(departmentId, tx);
+  }
+
+  /** The vendor and owning department of these subscriptions in one read; unknown ids are absent. */
+  getSubscriptionSummaries(ids: readonly string[], tx?: DbTx): Promise<SubscriptionSummary[]> {
+    return this.subscriptions.summaries(ids, tx);
+  }
+
+  /** Vendors have no retirement state: an existing vendor is usable for invoice recording. */
+  isVendorUsable(id: string, tx?: DbTx): Promise<boolean> {
+    return this.vendors.isUsable(id, tx);
   }
 
   /** The vendor of the application of the plan, null for internal software: whose tax profile estimates its price. */
@@ -128,5 +142,22 @@ export class CatalogApi {
    */
   lockSeatTarget(tx: DbTx, ref: SeatTargetRef): Promise<SeatTarget | null> {
     return this.seatTargets.lock(tx, ref);
+  }
+  /**
+   * Attaches an uploaded file to an invoice (`US-12-10` AC-5, `US-04-04` AC-4): only by the person who uploaded it,
+   * who holds the FINANCE role, and only once.
+   */
+  attachDocumentToInvoice(
+    tx: DbTx,
+    actor: AuthenticatedPrincipal,
+    documentId: string,
+    invoiceId: string,
+  ): Promise<AttachedDocument> {
+    return this.documents.attachToInvoice(tx, actor, documentId, invoiceId);
+  }
+
+  /** The files attached to an invoice, in the order they were declared. */
+  getInvoiceDocuments(invoiceId: string, tx?: DbTx): Promise<AttachedDocument[]> {
+    return this.documents.listForInvoice(invoiceId, tx);
   }
 }

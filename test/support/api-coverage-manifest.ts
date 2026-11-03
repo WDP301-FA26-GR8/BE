@@ -1,5 +1,15 @@
 /** Inventory of exported HTTP operations. Add entries and HTTP tests together. */
 export const API_COVERAGE_MANIFEST: readonly string[] = [
+  'POST /api/v1/invoices',
+  'GET /api/v1/invoices',
+  'GET /api/v1/invoices/{id}',
+  'GET /api/v1/invoices/{id}/lines',
+  'GET /api/v1/invoices/{id}/tax-lines',
+  'POST /api/v1/invoices/{id}/documents',
+  'GET /api/v1/invoices/{id}/documents',
+  'PUT /api/v1/invoices/{id}/tax-lines/{position}',
+  'POST /api/v1/invoices/{id}/lines/{position}/commitment-match',
+  'GET /api/v1/invoices/{id}/commitment-matches',
   'GET /api/v1/cost-centers',
   'GET /api/v1/currencies',
   'GET /api/v1/exchange-rates',

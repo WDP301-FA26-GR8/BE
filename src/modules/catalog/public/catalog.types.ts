@@ -73,6 +73,13 @@ export interface PlanSummary {
   applicationName: string;
 }
 
+/** The vendor and owning department of a subscription, for recording an invoice line. */
+export interface SubscriptionSummary {
+  id: string;
+  vendorId: string;
+  ownerDepartmentId: string;
+}
+
 /**
  * A workspace of a K2 plan that a person owns or administers (`QĐ-77d`, `US-03-04` AC-28): the plan and its application by name, and how
  * the person stands in it. The primary owner is named on the profile; a member is an owner or an administrator of the workspace.
@@ -85,4 +92,19 @@ export interface WorkspaceDuty {
   role: 'PRIMARY_OWNER' | 'OWNER' | 'ADMIN';
   /** The plan declares an emergency account: only that it exists, never its name, its holder or any secret. */
   emergencyAccountDeclared: boolean;
+}
+
+/** A file kept in the document repository that has been attached to a record (`US-04-04`). */
+export interface AttachedDocument {
+  id: string;
+  purpose: string;
+  status: string;
+  fileName: string;
+  contentType: string;
+  sizeBytes: number;
+  uploadedByAppUserId: string;
+  contractId: string | null;
+  invoiceId: string | null;
+  attachedAt: Date | null;
+  createdAt: Date;
 }

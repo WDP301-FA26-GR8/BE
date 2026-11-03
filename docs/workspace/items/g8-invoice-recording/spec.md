@@ -51,7 +51,7 @@ giữ tỷ giá đã chốt; người đúng quyền đọc được hóa đơn,
 ## Dependencies and blockers
 
 - Không có blocker cho phần nhập tay.
-- Dependency đã có: `FinanceApi.snapshotMoney`, `taxProfileOf`, `parseMoney`; luồng tải tệp `catalog/contract/document.service.ts` với
+- Dependency đã có: `FinanceApi.snapshotMoney`, `taxProfileOf`, `parseMoney`; `OrganizationApi` để đọc Cost Center của phòng, lịch sử sở hữu và ngày kinh doanh; luồng tải tệp `catalog/contract/document.service.ts` với
   mục đích `PURCHASE_DOCUMENT`, `TAX_PAYMENT_PROOF` (`prisma/models/catalog.prisma`).
 - `OQ-F-03` không chặn phần nhập tay; chỉ chặn import.
 
@@ -61,7 +61,7 @@ giữ tỷ giá đã chốt; người đúng quyền đọc được hóa đơn,
   việc mới vào module sở hữu dữ liệu; Conceptual và Logical ERD xếp `Invoice` cùng `BudgetCommitment` ở C7; `budgets` đã import `finance`, `catalog` nên
   không cần cạnh tầng mới. `finance` (T3) không dùng được vì không gọi được `budgets`. BRD 5.12.1 ghi `Invoice` ở C1 nhưng dòng thuế hóa đơn ở C7: lệch
   nguồn, ghi ở D8.
-- Bảng mới theo Logical ERD 7.103–7.105 trong `prisma/models/budgets.prisma`; không sửa bảng của module khác ngoài khóa ngoại chủ sở hữu trên tệp đính kèm.
+- Bảng mới theo Logical ERD Inventory lịch sử 7.103–7.105 trong `prisma/models/budgets.prisma` (đối chiếu qua `LOGICAL-ERD-MAPPING.md`), có bổ sung các cột theo F-04, F-14, F-15; không sửa bảng của module khác ngoài việc thay CHECK trên `document_attachments` (F-12).
 - Operation mới (tên chốt ở OpenAPI khi implement):
 
 | Operation                                 | Vai                   | Mục đích                                                                    |
@@ -72,25 +72,22 @@ giữ tỷ giá đã chốt; người đúng quyền đọc được hóa đơn,
 | `GET /invoices/{id}/lines`                | `FINANCE`, `IT_ADMIN` | Dòng hóa đơn, có phân trang                                                 |
 | `GET /invoices/{id}/tax-lines`            | `FINANCE`, `IT_ADMIN` | Dòng thuế (`US-12-10` AC-11: IT Admin xem được)                             |
 | `PUT /invoices/{id}/tax-lines/{position}` | `FINANCE`             | Sửa cờ khấu trừ/dòng thuế theo chứng từ (AC-3)                              |
-| `GET /vendors/{id}/tax-defaults`          | `FINANCE`             | Cờ mặc định theo hồ sơ thuế để điền sẵn (AC-2); không tạo dòng              |
+| `GET /vendors/{id}/tax-profile`           | `FINANCE`, `IT_ADMIN` | Đọc cờ mặc định theo hồ sơ thuế để điền sẵn (AC-2); không tạo dòng          |
 | Gắn tệp vào hóa đơn                       | `FINANCE`             | Dùng lại luồng tệp hiện có; route chốt sau khi đọc kỹ `document.service.ts` |
 
 ## Behavior and design
 
-**Luồng ghi.** Finance gửi đầu hóa đơn, các dòng, các dòng thuế. Trong một transaction: kiểm nhà cung cấp còn dùng được, quy đổi bằng
-`FinanceApi.snapshotMoney`, ghi ba bảng, ghi audit `INVOICE.RECORDED`. `reconciliation_status` khởi đầu `NONE` và không bao giờ mang
-nghĩa đã thanh toán.
+**Luồng ghi.** Finance gửi đầu hóa đơn, các dòng, các dòng thuế. Trong một transaction: kiểm nhà cung cấp còn dùng được, ép tổng số tiền các dòng bằng đầu hóa đơn (F-23), quy đổi bằng `FinanceApi.snapshotMoney` một lần ở đầu hóa đơn rồi dùng `splitAcrossLines` chia giá và thuế xuống từng dòng theo tỷ lệ số tiền dòng (phần dư làm tròn phân phối tất định). Bốn cột bổ sung ở `invoice_lines` (`cost_center_id`, `fiscal_year`, `cost_reporting_minor`, `deductible_vat_reporting_minor`) được chốt ngay khi ghi (F-04). Ghi ba bảng, ghi audit `INVOICE.RECORDED`. `reconciliation_status` khởi đầu `NONE` và không bao giờ mang nghĩa đã thanh toán.
 
 **Chi phí thực chịu** là hàm thuần `invoice-cost.policy.ts`: `giá trước thuế + tổng dòng thuế có deductible = false`; dòng
-`deductible = true` đi vào cột GTGT riêng. Không có dòng thuế thì chi phí bằng giá (AC-6). Hệ thống không tự sinh dòng thuế từ tỷ lệ
-ước tính (AC-10); cờ mặc định chỉ là gợi ý đọc từ hồ sơ thuế (AC-2).
+`deductible = true` đi vào cột GTGT riêng. Không có dòng thuế thì chi phí bằng giá (AC-6). Hàm để ngỏ thành phần phí thẻ / chênh lệch tỷ giá sao kê bổ sung ở B09-4 (F-19, `US-12-10` AC-12). Hệ thống không tự sinh dòng thuế từ tỷ lệ ước tính (AC-10); cờ mặc định chỉ là gợi ý đọc từ hồ sơ thuế (AC-2). Giá trị bên nộp (`payer`) dùng enum mới `InvoiceTaxPayer` (`VENDOR_COLLECTS`, `BUYER_REMITS`) theo `finance.types.ts`, lệch tên so với Inventory lịch sử (F-13).
 
 **Tiền và tỷ giá.** Lưu theo đơn vị nhỏ nhất và tiền tệ giao dịch, kèm `amount_reporting_minor`, tỷ giá, ngày và nguồn tỷ giá; không quy
-đổi lại khi đọc (AC-7). Dòng thuế khác tiền tệ quy đổi riêng khi ghi. Ngày tỷ giá là ngày ghi nhận theo chữ của AC-7 (xem D2). Thiếu tỷ
-giá đúng ngày thì từ chối, không lấy tỷ giá gần nhất (`QĐ-42b`).
+đổi lại khi đọc (AC-7). Dòng thuế có đủ bộ tiền tệ và tỷ giá riêng (`amount_currency`, `amount_rate`, `amount_rate_date`, `amount_rate_source`) để quy đổi khi khác tiền tệ đầu hóa đơn (F-14). Thêm `invoice_tax_lines.proof_document_id` nullable làm chứng từ thuế nộp thay (F-15). Ngày tỷ giá là ngày hóa đơn, áp cho đầu hóa đơn và dòng thuế, kể cả khi sửa (D2). Thiếu tỷ giá đúng ngày thì từ chối, không lấy tỷ giá gần nhất (`QĐ-42b`).
 
-**Sửa dòng thuế (AC-3).** Khóa hàng hóa đơn, đổi dòng, audit `INVOICE.TAX_LINE_CHANGED` có trước/sau. Hồ sơ thuế đổi sau đó không chạm
-hóa đơn đã ghi vì cờ và tỷ lệ được chép vào dòng.
+**Sửa dòng thuế (AC-3, F-07).** Khóa hàng hóa đơn, đổi dòng, tính lại `cost_reporting_minor` và `deductible_vat_reporting_minor` của từng dòng trong cùng transaction; `spent` tự đúng, `realized` không đổi. Audit `INVOICE.TAX_LINE_CHANGED` có trước/sau. Hồ sơ thuế đổi sau đó không chạm hóa đơn đã ghi vì cờ và tỷ lệ được chép vào dòng.
+
+**Gắn tệp và chứng từ (F-12, F-17).** `document_attachments` hiện có hai CHECK buộc READY ⇔ có `contract_id` và hạn chế mục đích. Migration thay hai CHECK (`document_attachments_owner_state` và `_purpose_fits_owner`); `budgets` kiểm tra hóa đơn rồi gọi facade `catalog` để gắn tệp; `catalog` không đọc bảng `invoices`. Áp dụng luật phân quyền theo cặp mục đích + đích gắn (`PURPOSE_ROLES`); sửa test `US-04-04` AC-9 sang gắn hóa đơn.
 
 **Lỗi ổn định.** `INVOICE.DUPLICATE` (409, trùng khóa `organization, vendor, kind, invoice_number`), `INVOICE.NOT_FOUND` (404),
 `INVOICE.RATE_MISSING` (409), `INVOICE.VENDOR_UNUSABLE` (409), `VALIDATION_ERROR` (422). Sai vai: 403 theo guard.
@@ -139,7 +136,21 @@ Bảng mới nên rollback được bằng migration đảo; không có tác đ�
 - [ ] Không tăng legacy ledger kiến trúc; module card `budgets` cập nhật, `arch:check` xanh.
 - [ ] Tài liệu vận hành/runbook bị ảnh hưởng đã cập nhật; phần chưa kiểm chứng ghi rõ.
 
+## Owner dispositions
+
+Owner nhắn Dev B ngày 01/11/2026, Dev B chuyển lại; nguyên văn và nghĩa của nhãn ở `docs/gehihi-plans/02-owner-decisions.md`.
+
+| Mã   | Trạng thái                                      | Câu hỏi                               | Phương án                                                                                                                                  |
+| ---- | ----------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| D2   | Owner trả lời 01/11/2026                        | Ngày tỷ giá của hóa đơn               | Ngày hóa đơn, áp cho đầu hóa đơn và dòng thuế, kể cả khi sửa. `US-12-10` AC-7 viết "thời điểm ghi nhận"; đồng bộ câu chữ ở lượt Docs sau   |
+| D3   | Tạm theo khuyến nghị, Owner ủy quyền 01/11/2026 | Tổng dòng có phải bằng giá trước thuế | Bắt buộc bằng; giảm giá hay làm tròn của nhà cung cấp ghi thành một dòng                                                                   |
+| Q-13 | Owner trả lời 01/11/2026                        | Quyết định Review 2 về hóa đơn        | Owner không có `REPORT.md` hay quyết định liên quan. Thiết kế theo nguồn đã pin, Review 2 chưa được dùng; có file về sau thì đối chiếu lại |
+
 ## Changes and acceptance
+
+01/11/2026: ghi trả lời của Owner vào `## Owner dispositions`, sửa ngày tỷ giá theo D2. D2 và D3 trong danh sách 31/10 bên dưới đã đóng. Chưa review, chưa nghiệm thu.
+
+31/10/2026: áp F-04, F-07, F-12→F-15, F-17, F-19, F-23 từ `docs/gehihi-plans/01-design-corrections.md` (bốn cột mới `invoice_lines`, enum payer, quy đổi dòng thuế, gắn tệp catalog thay 2 CHECK, `splitAcrossLines` chốt D3, bổ sung `organization` đọc); chưa Owner review.
 
 31/10/2026: lập thiết kế ở bước 01, trạng thái `draft`, chưa code, chưa review, chưa nghiệm thu. Quyết định chờ Owner:
 

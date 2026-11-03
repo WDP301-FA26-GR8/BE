@@ -22,6 +22,8 @@ operating-parameters, personnel, requests ([module-graph](../../../docs/generate
   - `emitChange` (báo thay đổi), `getProfileNotices`, `getOnboardingFacts`.
 - `OrganizationHistoryApi` ([public/organization-history.api.ts](public/organization-history.api.ts)): ghi lịch sử cho
   personnel và licensing (ADR-0017) — `lockDepartments`, `scheduleStructureChange`, `scheduleHeadHandover`, …
+  - `getCostCenterOfDepartmentOn(departmentId, onDate, tx?)` — id Cost Center của phòng tại ngày của tổ chức;
+    từ ngày liên kết đến trước ngày ngừng, kể cả bản ghi hiện đã ngừng. Không có liên kết hợp lệ thì trả `null`.
 - `CostCenterDirectionApi` (`public/cost-center-direction.api.ts`): `activate`, `link` — chỉ lệnh
   `pnpm ops:cost-center-direction`, qua `cost-center-direction/cost-center-direction.module.ts`.
 - `public/employee-placement.policy.ts` — phòng ban có nhận người không; dùng chung cho form tay, import, chuyển phòng.

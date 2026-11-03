@@ -89,6 +89,7 @@ model Organization {
   budgetProposals                    BudgetProposal[]
   budgetVersions                     BudgetVersion[]
   budgetCommitments                  BudgetCommitment[]
+  invoices                           Invoice[]
   applicationRetirementConfirmations ApplicationRetirementConfirmation[]
   contracts                          Contract[]
   documentAttachments                DocumentAttachment[]
@@ -130,6 +131,7 @@ model CostCenter {
   budgetProposals    BudgetProposal[]
   budgetVersions     BudgetVersion[]
   budgetCommitments  BudgetCommitment[]
+  invoiceLines       InvoiceLine[]
 
   @@unique([organizationId, code])
   @@map("cost_centers")
