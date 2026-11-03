@@ -12,6 +12,7 @@ type Call = (server: App) => request.Test;
 /** The roles the guard of each route lets through: the Super Admin writes (`QĐ-87a`), the IT Admin reads a minimal projection (F12). */
 const WRITERS = ['SUPER_ADMIN'] as const;
 const READERS = ['SUPER_ADMIN', 'IT_ADMIN'] as const;
+const DETAIL_READERS = ['SUPER_ADMIN', 'IT_ADMIN', 'MANAGER'] as const;
 
 const ROUTES: Array<[string, Call, readonly string[]]> = [
   [
@@ -23,7 +24,11 @@ const ROUTES: Array<[string, Call, readonly string[]]> = [
     WRITERS,
   ],
   ['GET /department-transfers', (server) => request(server).get('/api/v1/department-transfers'), READERS],
-  ['GET /department-transfers/{id}', (server) => request(server).get(`/api/v1/department-transfers/${ID}`), READERS],
+  [
+    'GET /department-transfers/{id}',
+    (server) => request(server).get(`/api/v1/department-transfers/${ID}`),
+    DETAIL_READERS,
+  ],
   [
     'GET /department-transfers/{id}/changes',
     (server) => request(server).get(`/api/v1/department-transfers/${ID}/changes`),
@@ -78,7 +83,8 @@ describe('department transfer routes (e2e, no database)', () => {
       ['the spending approver, whose role is derived', [], ['SPENDING_APPROVER']],
     ])('refuses %s on the routes it is not for with 403', async (_name, direct, derived) => {
       for (const [route, call, allowed] of ROUTES) {
-        if (allowed.some((role) => (direct as string[]).includes(role))) continue;
+        if (allowed.some((role) => (direct as string[]).includes(role) || (derived as string[]).includes(role)))
+          continue;
         const response = await call(app.getHttpServer())
           .set('Authorization', bearer(principal(direct, derived)))
           .expect(403);
@@ -92,6 +98,14 @@ describe('department transfer routes (e2e, no database)', () => {
         const refused = response.status === 403 && bodyOf(response).error.code === 'AUTHORIZATION.FORBIDDEN';
         expect({ route, refused }).toEqual({ route, refused: !allowed.includes('IT_ADMIN') });
       }
+    });
+
+    it('allows department head through guard on GET :id (US-01-12 AC-4)', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/api/v1/department-transfers/${ID}`)
+        .set('Authorization', bearer(principal([], ['MANAGER'])));
+
+      expect(response.status).not.toBe(403);
     });
   });
 

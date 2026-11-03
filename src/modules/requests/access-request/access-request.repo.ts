@@ -288,6 +288,17 @@ export class AccessRequestRepo {
     return new Set(rows.map((row) => row.employee_id));
   }
 
+  /** Reads the planId and organizationId of a request without loading its steps or children (F-22). */
+  async findPlanAndOrg(
+    id: string,
+    tx?: DbTx,
+  ): Promise<{ id: string; organizationId: string; planId: string | null } | null> {
+    return (tx ?? this.prisma).accessRequest.findUnique({
+      where: { id, state: { not: 'DRAFT' } },
+      select: { id: true, organizationId: true, planId: true },
+    });
+  }
+
   /**
    * A request that is being drafted (`DRAFT`, spec L.1) is written by the release after this one and is not read here: it is
    * answered as a request that does not exist, so no service of this release can see, list, decide or move it.

@@ -6,12 +6,8 @@ import {
   ContractNameRequiredError,
   ContractNotFoundError,
   DocumentAccessForbiddenError,
-  DocumentAlreadyAttachedError,
   DocumentFileInvalidError,
   DocumentNotAwaitingUploadError,
-  DocumentNotFoundError,
-  DocumentNotReadyToAttachError,
-  DocumentPurposeForbiddenError,
   DocumentPurposeNotAvailableError,
   DocumentTooLargeError,
   DocumentTypeNotAllowedError,
@@ -19,6 +15,12 @@ import {
   DocumentUploadMismatchError,
   DocumentUploadPendingError,
 } from './contract.errors';
+import {
+  DocumentAlreadyAttachedError,
+  DocumentNotFoundError,
+  DocumentNotReadyToAttachError,
+  DocumentPurposeForbiddenError,
+} from '../public/catalog.errors';
 
 const refuse = (status: HttpStatus, code: string, message: string, details?: Record<string, unknown>): ApiException =>
   new ApiException(status, { code, message, ...(details ? { details } : {}) });

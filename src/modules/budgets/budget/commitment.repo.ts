@@ -4,6 +4,8 @@ import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import type { CommitmentHoldInput, CommitmentReleaseReason, HeldCommitment } from '../public/budgets.types';
 import { BudgetYearLockRepo } from './budget-year-lock.repo';
 import type { CommitmentRow } from './commitment-release.policy';
+import { InvoiceSpendRepo } from './invoice-spend.repo';
+import { heldKey } from './commitment-key.policy';
 
 export interface AttachedCommitment {
   id: string;
@@ -22,6 +24,7 @@ export class CommitmentRepo {
   constructor(
     private readonly prisma: PrismaService,
     private readonly yearLock: BudgetYearLockRepo,
+    private readonly invoiceSpend: InvoiceSpendRepo,
   ) {}
 
   /**
@@ -104,10 +107,48 @@ export class CommitmentRepo {
       year: row.year,
       amountMinor: row.amountMinor,
       releasedMinor: row.releasedMinor,
+      realizedMinor: row.realizedMinor,
       state: row.state,
       organizationId: row.organizationId,
       costCenterId: row.costCenterId,
     }));
+  }
+
+  /**
+   * The commitments of the request, oldest year first, with row-level locks for update (F-11).
+   * Prevents race conditions with `realize` and other concurrent operations.
+   */
+  async lockOfRequest(tx: DbTx, requestId: string): Promise<CommitmentOfRequest[]> {
+    const locked = await tx.$queryRaw<
+      Array<{ id: string }>
+    >`SELECT id FROM budget_commitments WHERE request_id = ${requestId}::uuid ORDER BY year ASC FOR UPDATE`;
+    if (locked.length === 0) return [];
+
+    const rows = await tx.budgetCommitment.findMany({
+      where: { id: { in: locked.map((r) => r.id) } },
+      orderBy: { year: 'asc' },
+    });
+
+    return rows.map((row) => ({
+      id: row.id,
+      year: row.year,
+      amountMinor: row.amountMinor,
+      releasedMinor: row.releasedMinor,
+      realizedMinor: row.realizedMinor,
+      state: row.state,
+      organizationId: row.organizationId,
+      costCenterId: row.costCenterId,
+    }));
+  }
+
+  /** Reads the Cost Center and year of a commitment without locking (for advisory year lock acquisition). */
+  async findScope(tx: DbTx, id: string): Promise<{ costCenterId: string; year: number } | null> {
+    const row = await tx.budgetCommitment.findUnique({
+      where: { id },
+      select: { costCenterId: true, year: true },
+    });
+
+    return row ? { costCenterId: row.costCenterId, year: row.year } : null;
   }
 
   /** One commitment with its row locked, so that two releases of it queue. */
@@ -125,6 +166,7 @@ export class CommitmentRepo {
       year: row.year,
       amountMinor: row.amountMinor,
       releasedMinor: row.releasedMinor,
+      realizedMinor: row.realizedMinor,
       state: row.state,
       organizationId: row.organizationId,
       costCenterId: row.costCenterId,
@@ -147,10 +189,16 @@ export class CommitmentRepo {
     },
   ): Promise<{ released: boolean; heldMinor: bigint }> {
     const releasedMinor = row.releasedMinor + input.takeMinor;
-    const released = releasedMinor === row.amountMinor;
+    const heldMinor = row.amountMinor - releasedMinor - row.realizedMinor;
+    const ended = heldMinor === 0n;
+    const state = !ended ? 'HELD' : row.realizedMinor > 0n ? 'EXPENSED' : 'RELEASED';
     const changed = await tx.budgetCommitment.updateMany({
-      where: { id: row.id, state: 'HELD', releasedMinor: row.releasedMinor },
-      data: { releasedMinor, ...(released ? { state: 'RELEASED' as const, releasedAt: input.now } : {}) },
+      where: { id: row.id, state: 'HELD', releasedMinor: row.releasedMinor, realizedMinor: row.realizedMinor },
+      data: {
+        releasedMinor,
+        state,
+        releasedAt: state === 'RELEASED' ? input.now : null,
+      },
     });
     if (changed.count !== 1) throw new Error(`The commitment ${row.id} changed while it was being released.`);
     await tx.budgetCommitmentRelease.create({
@@ -164,7 +212,47 @@ export class CommitmentRepo {
       },
     });
 
-    return { released, heldMinor: row.amountMinor - releasedMinor };
+    return { released: ended, heldMinor };
+  }
+
+  /**
+   * Increases `realized_minor` by `takeMinor` and writes the realization to `commitment_realizations`.
+   * When held reaches 0, the state transitions to `EXPENSED`.
+   * Uses optimistic locking identical to `release` to prevent concurrent conflicts.
+   */
+  async realize(
+    tx: DbTx,
+    row: CommitmentRow,
+    input: {
+      takeMinor: bigint;
+      invoiceLineId: string;
+      employeeId: string;
+      now: Date;
+    },
+  ): Promise<{ expensed: boolean; heldMinor: bigint }> {
+    const realizedMinor = row.realizedMinor + input.takeMinor;
+    const heldMinor = row.amountMinor - row.releasedMinor - realizedMinor;
+    const ended = heldMinor === 0n;
+    const state = ended ? 'EXPENSED' : 'HELD';
+    const changed = await tx.budgetCommitment.updateMany({
+      where: { id: row.id, state: 'HELD', releasedMinor: row.releasedMinor, realizedMinor: row.realizedMinor },
+      data: {
+        realizedMinor,
+        state,
+      },
+    });
+    if (changed.count !== 1) throw new Error(`The commitment ${row.id} changed while it was being realized.`);
+    await tx.commitmentRealization.create({
+      data: {
+        commitmentId: row.id,
+        invoiceLineId: input.invoiceLineId,
+        amountMinor: input.takeMinor,
+        recordedByEmployeeId: input.employeeId,
+        recordedAt: input.now,
+      },
+    });
+
+    return { expensed: ended, heldMinor };
   }
 
   /** What went back to the budget from one commitment, the oldest first. */
@@ -234,8 +322,8 @@ export class CommitmentRepo {
   }
 
   /**
-   * What is held against the budget of each Cost Center and year and what has become an expense, from the commitments that
-   * are attached to it. A commitment is one or the other, never both, so the spend is not counted twice (`FR-5.8`).
+   * What is held against the budget of each Cost Center and year from attached commitments, and what has become an
+   * expense and deductible VAT from recorded invoice lines (FR-5.4, US-06-09 AC-12).
    */
   async totals(
     pairs: readonly { costCenterId: string; year: number }[],
@@ -243,26 +331,42 @@ export class CommitmentRepo {
   ): Promise<Map<string, CommitmentTotals>> {
     const totals = new Map<string, CommitmentTotals>();
     if (pairs.length === 0) return totals;
-    const groups = await (tx ?? this.prisma).budgetCommitment.groupBy({
-      by: ['costCenterId', 'year', 'state'],
-      where: {
-        state: { in: ['HELD', 'EXPENSED'] },
-        attachedVersionId: { not: null },
-        OR: pairs.map((pair) => ({ costCenterId: pair.costCenterId, year: pair.year })),
-      },
-      _sum: { amountMinor: true, releasedMinor: true },
-    });
-    for (const group of groups) {
-      const key = heldKey(group.costCenterId, group.year);
-      const entry = totals.get(key) ?? { held: 0n, spent: 0n };
-      // What went back to the budget is not held any more.
-      const amount = (group._sum.amountMinor ?? 0n) - (group._sum.releasedMinor ?? 0n);
-      if (group.state === 'HELD') entry.held += amount;
-      else entry.spent += amount;
-      totals.set(key, entry);
+
+    const heldMap = await this.heldTotals(pairs, tx);
+    const spendTotals = await this.invoiceSpend.totals(pairs, tx);
+    for (const pair of pairs) {
+      const key = heldKey(pair.costCenterId, pair.year);
+      const spend = spendTotals.get(key);
+      totals.set(key, {
+        held: heldMap.get(key) ?? 0n,
+        spent: spend?.spent ?? 0n,
+        deductibleVat: spend?.deductibleVat ?? 0n,
+      });
     }
 
     return totals;
+  }
+
+  private async heldTotals(
+    pairs: readonly { costCenterId: string; year: number }[],
+    tx?: DbTx,
+  ): Promise<Map<string, bigint>> {
+    const map = new Map<string, bigint>();
+    const db = tx ?? this.prisma;
+    const groups = await db.budgetCommitment.groupBy({
+      by: ['costCenterId', 'year'],
+      where: {
+        state: 'HELD',
+        attachedVersionId: { not: null },
+        OR: pairs.map((pair) => ({ costCenterId: pair.costCenterId, year: pair.year })),
+      },
+      _sum: { amountMinor: true, releasedMinor: true, realizedMinor: true },
+    });
+    for (const group of groups) {
+      const held = (group._sum.amountMinor ?? 0n) - (group._sum.releasedMinor ?? 0n) - (group._sum.realizedMinor ?? 0n);
+      map.set(heldKey(group.costCenterId, group.year), held);
+    }
+    return map;
   }
 
   /**
@@ -297,6 +401,5 @@ export interface CommitmentOfRequest extends CommitmentRow {
 export interface CommitmentTotals {
   held: bigint;
   spent: bigint;
+  deductibleVat: bigint;
 }
-
-export const heldKey = (costCenterId: string, year: number): string => `${costCenterId}:${year}`;

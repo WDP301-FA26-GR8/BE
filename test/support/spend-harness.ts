@@ -196,8 +196,8 @@ export class SpendHarness extends BudgetHarness {
   async commit(unit: Unit, versionId: string, year: number, amount: number, state: 'HELD' | 'EXPENSED'): Promise<void> {
     await this.ctx.sql.query(
       `INSERT INTO budget_commitments
-         (id, organization_id, request_id, cost_center_id, year, amount_minor, currency, state, attached_version_id, attached_at)
-       VALUES (gen_random_uuid(), $1, $8, $2, $3, $4, $5, $6::"CommitmentState", $7, now())`,
+         (id, organization_id, request_id, cost_center_id, year, amount_minor, currency, state, attached_version_id, attached_at, realized_minor)
+       VALUES (gen_random_uuid(), $1, $8, $2, $3, $4, $5, $6::"CommitmentState", $7, now(), $9)`,
       [
         this.seed.organizationId,
         unit.department.unitId,
@@ -207,8 +207,33 @@ export class SpendHarness extends BudgetHarness {
         state,
         versionId,
         await this.fixtureRequestId(),
+        state === 'EXPENSED' ? amount : 0,
       ],
     );
+
+    if (state === 'EXPENSED') {
+      let vendorId = (await this.ctx.sql.query<{ id: string }>('SELECT id FROM vendors LIMIT 1')).rows[0]?.id;
+      if (!vendorId) {
+        vendorId = (
+          await this.ctx.sql.query<{ id: string }>(
+            `INSERT INTO vendors (id, organization_id, name, normalized_name) VALUES (gen_random_uuid(), $1, 'Spend Harness Vendor', 'spend-harness-vendor') RETURNING id`,
+            [this.seed.organizationId],
+          )
+        ).rows[0].id;
+      }
+      const invDate = `${year}-01-15`;
+      const invNumber = `INV-SPEND-${Math.random().toString(36).slice(2, 10)}`;
+      const invoiceId = (
+        await this.ctx.sql.query<{ id: string }>(
+          `INSERT INTO invoices (id, organization_id, vendor_id, invoice_number, kind, invoice_date, amount_minor, amount_currency, amount_rate, amount_rate_date, amount_rate_source, amount_reporting_minor, reconciliation_status, recorded_by_employee_id) VALUES (gen_random_uuid(), $1, $2, $3, 'INVOICE', $4, $5, $6, 1, $4, 'MANUAL', $5, 'NONE', $7) RETURNING id`,
+          [this.seed.organizationId, vendorId, invNumber, invDate, amount, this.reporting, unit.head.employeeId],
+        )
+      ).rows[0].id;
+      await this.ctx.sql.query(
+        `INSERT INTO invoice_lines (id, invoice_id, position, description, out_of_catalog, amount_minor, amount_reporting_minor, cost_center_id, fiscal_year, cost_reporting_minor, deductible_vat_reporting_minor) VALUES (gen_random_uuid(), $1, 1, 'Spend harness line', true, $2, $2, $3, $4, $2, 0)`,
+        [invoiceId, amount, unit.department.unitId, year],
+      );
+    }
   }
 
   /**

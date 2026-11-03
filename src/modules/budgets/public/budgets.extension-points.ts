@@ -111,3 +111,19 @@ export class CommitmentReleaseGuardHook extends Hook<CommitmentReleaseGuard> {
     super('budgets.commitment-release-guard');
   }
 }
+
+/** A context that knows the vendor of the software a request holds a commitment for (F-22). */
+export interface CommitmentVendorReader {
+  getVendorId(requestId: string, tx?: DbTx): Promise<string | null>;
+}
+
+/**
+ * Finds the vendor of the software a request holds a commitment for (F-22), bound by the requests context,
+ * which knows the plan and its vendor in Catalog. Unbound, invoice commitment matching fails.
+ */
+@Injectable()
+export class CommitmentVendorHook extends Hook<CommitmentVendorReader> {
+  constructor() {
+    super('budgets.commitment-vendor');
+  }
+}

@@ -19,9 +19,14 @@ import { BudgetVersionsController } from './version/budget-versions.controller';
 import { BudgetViewService } from './budget-view/budget-view.service';
 import { BudgetsController } from './budget-view/budgets.controller';
 import { BudgetsApi } from './public/budgets.api';
-import { BudgetChangeListeners, CommitmentReleaseGuardHook } from './public/budgets.extension-points';
+import {
+  BudgetChangeListeners,
+  CommitmentReleaseGuardHook,
+  CommitmentVendorHook,
+} from './public/budgets.extension-points';
 import { BudgetCommitmentsController } from './commitment/budget-commitments.controller';
 import { CommitmentRepo } from './budget/commitment.repo';
+import { InvoiceSpendRepo } from './budget/invoice-spend.repo';
 import { CommitmentService } from './commitment/commitment.service';
 import { DecisionRepo } from './budget/decision.repo';
 import { LineImportService } from './version/line-import.service';
@@ -48,6 +53,13 @@ import { VersionService } from './version/version.service';
 import { VersionViewService } from './budget/version-view.service';
 import { BudgetYearEndService } from './year-end/year-end.service';
 import { BudgetYearEndSweeper } from './year-end/year-end.job';
+import { InvoiceRepo } from './invoice/invoice.repo';
+import { InvoiceService } from './invoice/invoice.service';
+import { InvoiceDocumentService } from './invoice/invoice-document.service';
+import { InvoiceMatchService } from './invoice/invoice-match.service';
+import { InvoiceQueryService } from './invoice/invoice-query.service';
+import { InvoiceTaxLineService } from './invoice/invoice-tax-line.service';
+import { InvoicesController } from './invoice/invoices.controller';
 
 /**
  * The budgets context (C5, ADR-0016): the proposals the heads of department send for a Cost Center and a fiscal year, and
@@ -70,6 +82,7 @@ import { BudgetYearEndSweeper } from './year-end/year-end.job';
     OperatingParametersModule,
   ],
   controllers: [
+    InvoicesController,
     BudgetProposalsController,
     BudgetVersionsController,
     BudgetVersionLinesController,
@@ -77,11 +90,18 @@ import { BudgetYearEndSweeper } from './year-end/year-end.job';
     BudgetCommitmentsController,
   ],
   providers: [
+    InvoiceRepo,
+    InvoiceService,
+    InvoiceDocumentService,
+    InvoiceMatchService,
+    InvoiceTaxLineService,
+    InvoiceQueryService,
     ProposalRepo,
     VersionRepo,
     VersionLineRepo,
     VersionHistoryRepo,
     DecisionRepo,
+    InvoiceSpendRepo,
     CommitmentRepo,
     BudgetYearLockRepo,
     BudgetSupportService,
@@ -110,11 +130,12 @@ import { BudgetYearEndSweeper } from './year-end/year-end.job';
     BudgetFactsRepo,
     BudgetChangeListeners,
     CommitmentReleaseGuardHook,
+    CommitmentVendorHook,
     BudgetCostCenterUseReader,
     BudgetHeadChangeListener,
     CommitmentService,
     BudgetsApi,
   ],
-  exports: [BudgetsApi, BudgetChangeListeners, CommitmentReleaseGuardHook],
+  exports: [BudgetsApi, BudgetChangeListeners, CommitmentReleaseGuardHook, CommitmentVendorHook],
 })
 export class BudgetsModule {}

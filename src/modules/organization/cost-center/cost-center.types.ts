@@ -16,6 +16,11 @@ export interface CostCenterRecord {
   linkedAt: Date | null;
 }
 
+/** The lifetime of a department link, including a retired Cost Center, in its organization's calendar. */
+export type CostCenterLinkPeriod = Pick<CostCenterRecord, 'id' | 'linkedAt' | 'deactivatedAt'> & {
+  timeZone: string;
+};
+
 /**
  * A Cost Center code: letters, digits, dot, underscore and hyphen, starting with a letter or digit. Public: a
  * department code follows the same format.

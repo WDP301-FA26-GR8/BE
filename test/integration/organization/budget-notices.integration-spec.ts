@@ -277,10 +277,11 @@ describe('the notices of the budget loops (integration, real PostgreSQL)', () =>
         await h.ctx.sql.query<{ id: string }>(
           // A released commitment gave all of its amount back (`budget_commitments_release_check`).
           `INSERT INTO budget_commitments (id, organization_id, request_id, cost_center_id, year, amount_minor, currency, state, unattached_reason,
-                                           released_minor, released_at)
+                                           released_minor, released_at, realized_minor)
            VALUES (gen_random_uuid(), $1, $2, $3, $4, 1000, $5, $6::"CommitmentState", 'NO_BUDGET',
                    CASE WHEN $6::"CommitmentState" = 'RELEASED' THEN 1000 ELSE 0 END,
-                   CASE WHEN $6::"CommitmentState" = 'RELEASED' THEN now() END) RETURNING id`,
+                   CASE WHEN $6::"CommitmentState" = 'RELEASED' THEN now() END,
+                   CASE WHEN $6::"CommitmentState" = 'EXPENSED' THEN 1000 ELSE 0 END) RETURNING id`,
           [h.seed.organizationId, await h.fixtureRequestId(), costCenterId, year, h.reporting, state],
         )
       ).rows[0].id;

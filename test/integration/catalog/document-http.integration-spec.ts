@@ -196,12 +196,13 @@ describe('the contracts and the files kept for them over HTTP (integration, real
 
   it('US-04-04 AC-9: the IT Admin files a quote and Finance an invoice as purchase documents; an employee may not', async () => {
     const contract = await h.contract();
+    const invoiceId = await h.invoice();
     const quote = await h.uploaded(h.it1, { ...PDF, fileName: 'bao-gia.pdf', purpose: 'PURCHASE_DOCUMENT' });
     const invoice = await h.uploaded(h.finance, { ...PDF, fileName: 'hoa-don.pdf', purpose: 'PURCHASE_DOCUMENT' });
     const before = await h.documentCount();
 
     await h.attachDocument(quote.id, { contractId: contract }).expect(200);
-    await h.attachDocument(invoice.id, { contractId: contract }, h.finance).expect(200);
+    await h.attachInvoiceDocument(invoiceId, { documentId: invoice.id }, h.finance).expect(201);
     expect(h.codeOf(await h.createDocument({ ...PDF, purpose: 'PURCHASE_DOCUMENT' }, h.employee).expect(403))).toBe(
       'AUTHORIZATION.FORBIDDEN',
     );

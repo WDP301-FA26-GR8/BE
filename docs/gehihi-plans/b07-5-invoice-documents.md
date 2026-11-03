@@ -83,8 +83,8 @@ Trong `src/modules/budgets/invoice/`, thêm service gắn tệp:
 IT Admin đính hóa đơn bị từ chối theo `US-01-12` AC-10 nhờ `@RequireRoles('FINANCE')`.
 
 **Test cũ phải đổi, có căn cứ:** ca `US-04-04 AC-9` ở `test/integration/catalog/document-http.integration-spec.ts` đang để Finance gắn tệp
-`PURCHASE_DOCUMENT` vào hợp đồng, vì lúc viết chưa có hóa đơn. Sửa ca đó sang gắn vào hóa đơn. Không sửa test nào khác của `catalog`; có
-test khác đỏ thì dừng.
+`PURCHASE_DOCUMENT` vào hợp đồng, vì lúc viết chưa có hóa đơn. Sửa ca đó sang gắn vào hóa đơn. Test khác của `catalog` đỏ thì xử lý theo
+luật sửa ngoài plan ở `00-agent-rules.md`.
 
 ## Test
 

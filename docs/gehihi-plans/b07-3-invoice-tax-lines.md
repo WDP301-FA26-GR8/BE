@@ -29,7 +29,7 @@ Transaction: khóa hàng hóa đơn → đọc dòng cũ → quy đổi lại n�
 `deductibleVatReportingMinor` của mọi dòng hóa đơn** bằng `invoiceCostOf` và `splitAcrossLines` → audit `INVOICE.TAX_LINE_CHANGED` kèm
 `before`, `after`.
 
-- Tỷ giá dòng sửa theo quy tắc D2 đã chốt ở B07-2. Với gợi ý ngày hóa đơn thì ngày tỷ giá không đổi khi sửa.
+- Tỷ giá dòng sửa theo D2: ngày tỷ giá là ngày hóa đơn, không đổi khi sửa.
 - Hệ thống không tự đổi cờ.
 
 ### 3. Sửa sau khi đã khớp cam kết (F-07)

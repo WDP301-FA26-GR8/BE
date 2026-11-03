@@ -220,7 +220,10 @@ describe('the money held for a request goes back to the budget over PostgreSQL (
       const u = await example();
       const id = await approved(u, 15 * M);
       const commitment = await commitmentOf(id);
-      await h.ctx.sql.query(`UPDATE budget_commitments SET state = 'EXPENSED' WHERE id = $1`, [commitment.id]);
+      await h.ctx.sql.query(
+        `UPDATE budget_commitments SET state = 'EXPENSED', realized_minor = amount_minor WHERE id = $1`,
+        [commitment.id],
+      );
 
       expect(await release(id)).toEqual([]);
       await expect(release(id, { amounts: [{ year: h.year, amountMinor: 1n }] })).rejects.toMatchObject({
@@ -340,7 +343,10 @@ describe('the money held for a request goes back to the budget over PostgreSQL (
 
       const spent = await approved(u, 5 * M);
       const expensed = await commitmentOf(spent);
-      await h.ctx.sql.query(`UPDATE budget_commitments SET state = 'EXPENSED' WHERE id = $1`, [expensed.id]);
+      await h.ctx.sql.query(
+        `UPDATE budget_commitments SET state = 'EXPENSED', realized_minor = amount_minor WHERE id = $1`,
+        [expensed.id],
+      );
       await setState(spent, 'COMPLETED');
       expect(h.codeOf(await remainder(expensed.id, { reason: 'Already spent' }).expect(409))).toBe(
         'BUDGET.COMMITMENT_NOT_HELD',

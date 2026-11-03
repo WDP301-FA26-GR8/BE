@@ -1,8 +1,8 @@
 # B07-2 — Ghi hóa đơn, chia chi phí và quy Cost Center
 
-| Gói  | Hạng mục               | AC                                                                   | Loại   | Cổng vào                            |
-| ---- | ---------------------- | -------------------------------------------------------------------- | ------ | ----------------------------------- |
-| B-07 | `g8-invoice-recording` | `US-12-10` AC-1, 4, 6, 7, 10, 11 (vế ghi); `US-12-02` AC-9, Task 2+3 | `CODE` | B07-1 xong; **D2 có trả lời**; Q-13 |
+| Gói  | Hạng mục               | AC                                                                   | Loại   | Cổng vào                                      |
+| ---- | ---------------------- | -------------------------------------------------------------------- | ------ | --------------------------------------------- |
+| B-07 | `g8-invoice-recording` | `US-12-10` AC-1, 4, 6, 7, 10, 11 (vế ghi); `US-12-02` AC-9, Task 2+3 | `CODE` | B07-1 xong; D2, Q-13 đã có trả lời 01/11/2026 |
 
 ## Đọc trước
 
@@ -89,7 +89,7 @@ Chỉ thêm, không sửa hàm cũ. Báo A phần `catalog` (Q-10).
 2. Đọc tiền bằng `FinanceApi.parseMoney`. Tiền đầu hóa đơn âm từ chối bằng `VALIDATION_ERROR`; dòng được âm để ghi giảm giá.
 3. Tổng `amountMinor` các dòng phải bằng đầu hóa đơn, sai thì `INVOICE.LINES_DO_NOT_ADD_UP`. Phải có ít nhất một dòng.
 4. `snapshotMoney(tx, money, rateDate)` cho **đầu hóa đơn** và **từng dòng thuế**. Dòng thuế có thể khác tiền tệ.
-   `MISSING_RATE` → `INVOICE.RATE_MISSING`, không ghi gì. `rateDate` theo D2.
+   `MISSING_RATE` → `INVOICE.RATE_MISSING`, không ghi gì. `rateDate` = `invoiceDate` (D2).
 5. Tính `invoiceCostOf`, rồi `splitAcrossLines` cho từng cột.
 6. Với từng dòng: `fiscalYear = fiscalYearOf(invoiceDate, startMonth)`. Có thuê bao thì `costCenterId` = Cost Center của phòng sở hữu
    tại `invoiceDate`, không có thì null. Dòng `outOfCatalog` để null.

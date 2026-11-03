@@ -6390,7 +6390,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The transfer with its basis, who follows the head of the old department, who recorded it (an account, or the controlled procedure) and how it ended. The IT Admin reads a minimal projection: no basis, no head handover and no reason of a cancellation.",
+            "description": "The transfer with its basis, who follows the head of the old department, who recorded it (an account, or the controlled procedure) and how it ended. The IT Admin reads a minimal projection: no basis, no head handover and no reason of a cancellation. Department heads of the old or new department read the full projection.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6456,7 +6456,7 @@
             }
           },
           "404": {
-            "description": "The transfer does not exist, or an IT Admin reads one of a department they are not in charge of (DEPARTMENT_TRANSFER.NOT_FOUND).",
+            "description": "The transfer does not exist, an IT Admin reads one of a department they are not in charge of, or a department head reads one outside their department (DEPARTMENT_TRANSFER.NOT_FOUND).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -6649,7 +6649,7 @@
             }
           },
           "404": {
-            "description": "The transfer does not exist, or an IT Admin reads one of a department they are not in charge of (DEPARTMENT_TRANSFER.NOT_FOUND).",
+            "description": "The transfer does not exist, an IT Admin reads one of a department they are not in charge of, or a department head reads one outside their department (DEPARTMENT_TRANSFER.NOT_FOUND).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -6860,7 +6860,7 @@
             }
           },
           "404": {
-            "description": "The transfer does not exist, or an IT Admin reads one of a department they are not in charge of (DEPARTMENT_TRANSFER.NOT_FOUND).",
+            "description": "The transfer does not exist, an IT Admin reads one of a department they are not in charge of, or a department head reads one outside their department (DEPARTMENT_TRANSFER.NOT_FOUND).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -7260,7 +7260,7 @@
             }
           },
           "404": {
-            "description": "The transfer does not exist, or an IT Admin reads one of a department they are not in charge of (DEPARTMENT_TRANSFER.NOT_FOUND).",
+            "description": "The transfer does not exist, an IT Admin reads one of a department they are not in charge of, or a department head reads one outside their department (DEPARTMENT_TRANSFER.NOT_FOUND).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -7565,7 +7565,7 @@
             }
           },
           "404": {
-            "description": "The transfer does not exist, or an IT Admin reads one of a department they are not in charge of (DEPARTMENT_TRANSFER.NOT_FOUND).",
+            "description": "The transfer does not exist, an IT Admin reads one of a department they are not in charge of, or a department head reads one outside their department (DEPARTMENT_TRANSFER.NOT_FOUND).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -50923,6 +50923,2487 @@
         "tags": ["group-requests"]
       }
     },
+    "/api/v1/invoices": {
+      "post": {
+        "operationId": "invoiceRecord",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RecordInvoiceBodyDto" },
+              "examples": {
+                "invoice": {
+                  "value": {
+                    "vendorId": "123e4567-e89b-42d3-a456-426614174000",
+                    "invoiceNumber": "INV-001",
+                    "invoiceDate": "2026-11-01",
+                    "amount": { "amount": "1000", "currency": "USD" },
+                    "lines": [{ "outOfCatalog": true, "description": "Software", "amount": "1000" }],
+                    "taxLines": [
+                      {
+                        "taxType": "GTGT",
+                        "rateBp": 1000,
+                        "amount": { "amount": "100", "currency": "USD" },
+                        "payer": "BUYER_REMITS",
+                        "deductible": true
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The invoice, its lines, tax snapshots and audit event are recorded atomically. Returns the invoice id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/RecordInvoiceResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.RECORDED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JSON body cannot be read: it is not valid JSON, it does not match its declared length, or its compressed content is corrupt (HTTP_BAD_REQUEST).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_BAD_REQUEST": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_BAD_REQUEST",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance records invoices.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A commitment selected for an invoice line was not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "BUDGET.COMMITMENT_NOT_FOUND": {
+                    "summary": "The commitment does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "BUDGET.COMMITMENT_NOT_FOUND",
+                        "message": "The commitment does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Duplicate invoice, missing exact-day rate, unavailable vendor, mismatched line vendor, unsupported reporting currency or refused commitment match.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.DUPLICATE": {
+                    "summary": "An invoice with this number, vendor and kind already exists in the organization.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.DUPLICATE",
+                        "message": "An invoice with this number, vendor and kind already exists in the organization.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.RATE_MISSING": {
+                    "summary": "The exchange rate required for the invoice is missing on the specified date.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.RATE_MISSING",
+                        "message": "The exchange rate required for the invoice is missing on the specified date.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.VENDOR_UNUSABLE": {
+                    "summary": "The vendor is not available for invoice recording.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.VENDOR_UNUSABLE",
+                        "message": "The vendor is not available for invoice recording.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.LINE_VENDOR_MISMATCH": {
+                    "summary": "An invoice line subscription belongs to a different vendor.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.LINE_VENDOR_MISMATCH",
+                        "message": "An invoice line subscription belongs to a different vendor.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "REPORTING_CURRENCY_NOT_SUPPORTED": {
+                    "summary": "The reporting currency XYZ is not in the currency table.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "REPORTING_CURRENCY_NOT_SUPPORTED",
+                        "message": "The reporting currency XYZ is not in the currency table.",
+                        "details": { "currency": "XYZ" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.INVOICE_NOT_MATCHABLE": {
+                    "summary": "The invoice line cannot be matched to the commitment: INVOICE_NOT_MATCHABLE.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.INVOICE_NOT_MATCHABLE",
+                        "message": "The invoice line cannot be matched to the commitment: INVOICE_NOT_MATCHABLE.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.COMMITMENT_NOT_HELD": {
+                    "summary": "The invoice line cannot be matched to the commitment: COMMITMENT_NOT_HELD.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.COMMITMENT_NOT_HELD",
+                        "message": "The invoice line cannot be matched to the commitment: COMMITMENT_NOT_HELD.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.YEAR_MISMATCH": {
+                    "summary": "The invoice line cannot be matched to the commitment: YEAR_MISMATCH.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.YEAR_MISMATCH",
+                        "message": "The invoice line cannot be matched to the commitment: YEAR_MISMATCH.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.VENDOR_MISMATCH": {
+                    "summary": "The invoice line cannot be matched to the commitment: VENDOR_MISMATCH.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.VENDOR_MISMATCH",
+                        "message": "The invoice line cannot be matched to the commitment: VENDOR_MISMATCH.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.LINE_ALREADY_MATCHED": {
+                    "summary": "The invoice line cannot be matched to the commitment: LINE_ALREADY_MATCHED.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.LINE_ALREADY_MATCHED",
+                        "message": "The invoice line cannot be matched to the commitment: LINE_ALREADY_MATCHED.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The JSON body is larger than 100 KiB; it is refused before it is read (HTTP_PAYLOAD_TOO_LARGE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_PAYLOAD_TOO_LARGE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_PAYLOAD_TOO_LARGE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "The JSON body declares a charset other than UTF, or a Content-Encoding other than gzip, deflate or br (HTTP_UNSUPPORTED_MEDIA_TYPE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_UNSUPPORTED_MEDIA_TYPE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_UNSUPPORTED_MEDIA_TYPE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid body or missing subscription, inconsistent line total, unsupported currency, excessive precision or amount out of range.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.LINES_DO_NOT_ADD_UP": {
+                    "summary": "The invoice line amounts must add up to the invoice amount.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.LINES_DO_NOT_ADD_UP",
+                        "message": "The invoice line amounts must add up to the invoice amount.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "CURRENCY_NOT_SUPPORTED": {
+                    "summary": "The currency XYZ is not supported.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "CURRENCY_NOT_SUPPORTED",
+                        "message": "The currency XYZ is not supported.",
+                        "details": { "currency": "XYZ" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "MONEY_SCALE_EXCEEDED": {
+                    "summary": "This currency allows at most 2 decimal digit(s).",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "MONEY_SCALE_EXCEEDED",
+                        "message": "This currency allows at most 2 decimal digit(s).",
+                        "details": { "allowedDecimals": 2 },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "MONEY_OUT_OF_RANGE": {
+                    "summary": "The amount is outside the range a money value may hold.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "MONEY_OUT_OF_RANGE",
+                        "message": "The amount is outside the range a money value may hold.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Record an invoice and its tax lines",
+        "tags": ["invoices"]
+      },
+      "get": {
+        "operationId": "invoiceList",
+        "parameters": [
+          { "name": "vendorId", "required": false, "in": "query", "schema": { "format": "uuid", "type": "string" } },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "A calendar date as YYYY-MM-DD; it must exist (2026-02-30 is refused).",
+            "schema": { "format": "date", "type": "string" }
+          },
+          {
+            "name": "to",
+            "required": false,
+            "in": "query",
+            "description": "A calendar date as YYYY-MM-DD; it must exist (2026-02-30 is refused).",
+            "schema": { "format": "date", "type": "string" }
+          },
+          {
+            "name": "reconciliationStatus",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string", "enum": ["NONE", "PARTIAL", "FULL"] }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maximum": 9007199254740991,
+              "exclusiveMinimum": true,
+              "default": 1,
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "maximum": 100, "exclusiveMinimum": true, "default": 20, "type": "integer", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists invoices with summary fields and pagination.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/ListInvoicesResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.LISTED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance views invoices.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid query.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "List invoices",
+        "tags": ["invoices"]
+      }
+    },
+    "/api/v1/invoices/{id}/documents": {
+      "post": {
+        "operationId": "invoiceDocumentAttach",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/AttachInvoiceDocumentBodyDto" } }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The document is attached to the invoice, and optionally linked to a buyer-remits tax line.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/AttachInvoiceDocumentResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.DOCUMENT_ATTACHED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JSON body cannot be read: it is not valid JSON, it does not match its declared length, or its compressed content is corrupt (HTTP_BAD_REQUEST).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_BAD_REQUEST": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_BAD_REQUEST",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance attaches documents to invoices.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice, tax line, or document not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.TAX_LINE_NOT_FOUND": {
+                    "summary": "The specified tax line position was not found on this invoice.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.TAX_LINE_NOT_FOUND",
+                        "message": "The specified tax line position was not found on this invoice.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DOCUMENT.NOT_FOUND": {
+                    "summary": "The document does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DOCUMENT.NOT_FOUND",
+                        "message": "The document does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Document already attached or not ready.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DOCUMENT.ALREADY_ATTACHED": {
+                    "summary": "The document has an owner already.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DOCUMENT.ALREADY_ATTACHED",
+                        "message": "The document has an owner already.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DOCUMENT.NOT_READY_TO_ATTACH": {
+                    "summary": "The document is not uploaded yet.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DOCUMENT.NOT_READY_TO_ATTACH",
+                        "message": "The document is not uploaded yet.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The JSON body is larger than 100 KiB; it is refused before it is read (HTTP_PAYLOAD_TOO_LARGE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_PAYLOAD_TOO_LARGE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_PAYLOAD_TOO_LARGE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "The JSON body declares a charset other than UTF, or a Content-Encoding other than gzip, deflate or br (HTTP_UNSUPPORTED_MEDIA_TYPE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_UNSUPPORTED_MEDIA_TYPE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_UNSUPPORTED_MEDIA_TYPE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input or tax line payer is not BUYER_REMITS.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.TAX_LINE_NOT_BUYER_REMITS": {
+                    "summary": "Only tax lines with buyer-remits payer can be linked to proof documents.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.TAX_LINE_NOT_BUYER_REMITS",
+                        "message": "Only tax lines with buyer-remits payer can be linked to proof documents.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Attach a document to an invoice",
+        "tags": ["invoices"]
+      },
+      "get": {
+        "operationId": "invoiceDocumentsList",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maximum": 9007199254740991,
+              "exclusiveMinimum": true,
+              "default": 1,
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "maximum": 100, "exclusiveMinimum": true, "default": 20, "type": "integer", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists all documents attached to this invoice, including tax proofs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/ListInvoiceDocumentsResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.DOCUMENTS_LISTED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance and IT Admin view invoice documents.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid parameters.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "List documents attached to an invoice",
+        "tags": ["invoices"]
+      }
+    },
+    "/api/v1/invoices/{id}": {
+      "get": {
+        "operationId": "invoiceGet",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieves invoice details including effective cost and deductible VAT.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/InvoiceDetailResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.RETRIEVED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance and IT Admin view invoice details.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid id.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Get invoice details",
+        "tags": ["invoices"]
+      }
+    },
+    "/api/v1/invoices/{id}/lines": {
+      "get": {
+        "operationId": "invoiceLinesList",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maximum": 9007199254740991,
+              "exclusiveMinimum": true,
+              "default": 1,
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "maximum": 100, "exclusiveMinimum": true, "default": 20, "type": "integer", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists invoice lines with pagination.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/ListInvoiceLinesResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.LINES_LISTED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance and IT Admin view invoice lines.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid parameters.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "List lines of an invoice",
+        "tags": ["invoices"]
+      }
+    },
+    "/api/v1/invoices/{id}/tax-lines": {
+      "get": {
+        "operationId": "invoiceTaxLinesList",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maximum": 9007199254740991,
+              "exclusiveMinimum": true,
+              "default": 1,
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "maximum": 100, "exclusiveMinimum": true, "default": 20, "type": "integer", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists invoice tax lines with pagination.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/ListInvoiceTaxLinesResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.TAX_LINES_LISTED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance and IT Admin view invoice tax lines.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid parameters.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "List tax lines of an invoice",
+        "tags": ["invoices"]
+      }
+    },
+    "/api/v1/invoices/{id}/tax-lines/{position}": {
+      "put": {
+        "operationId": "invoiceTaxLineSet",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } },
+          {
+            "name": "position",
+            "required": true,
+            "in": "path",
+            "schema": { "minimum": 1, "maximum": 32767, "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/UpdateInvoiceTaxLineBodyDto" } }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updates or creates a tax line on the invoice and recalculates cost reporting amounts across all lines.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/UpdateInvoiceTaxLineResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.TAX_LINE_SET" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JSON body cannot be read: it is not valid JSON, it does not match its declared length, or its compressed content is corrupt (HTTP_BAD_REQUEST).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_BAD_REQUEST": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_BAD_REQUEST",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance updates tax lines.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Missing exchange rate for invoice date.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.RATE_MISSING": {
+                    "summary": "The exchange rate required for the invoice is missing on the specified date.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.RATE_MISSING",
+                        "message": "The exchange rate required for the invoice is missing on the specified date.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The JSON body is larger than 100 KiB; it is refused before it is read (HTTP_PAYLOAD_TOO_LARGE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_PAYLOAD_TOO_LARGE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_PAYLOAD_TOO_LARGE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "The JSON body declares a charset other than UTF, or a Content-Encoding other than gzip, deflate or br (HTTP_UNSUPPORTED_MEDIA_TYPE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_UNSUPPORTED_MEDIA_TYPE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_UNSUPPORTED_MEDIA_TYPE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid position or body.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Update or create an invoice tax line",
+        "tags": ["invoices"]
+      }
+    },
+    "/api/v1/invoices/{id}/lines/{position}/commitment-match": {
+      "post": {
+        "operationId": "invoiceLineCommitmentMatch",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } },
+          {
+            "name": "position",
+            "required": true,
+            "in": "path",
+            "schema": { "minimum": 1, "maximum": 32767, "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MatchCommitmentBodyDto" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Matches an invoice line against a budget commitment held for a request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/CommitmentMatchResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.LINE_COMMITMENT_MATCHED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JSON body cannot be read: it is not valid JSON, it does not match its declared length, or its compressed content is corrupt (HTTP_BAD_REQUEST).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_BAD_REQUEST": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_BAD_REQUEST",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance matches invoice lines to commitments.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice, line position, or commitment not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.LINE_NOT_FOUND": {
+                    "summary": "The specified line position was not found on this invoice.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.LINE_NOT_FOUND",
+                        "message": "The specified line position was not found on this invoice.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "BUDGET.COMMITMENT_NOT_FOUND": {
+                    "summary": "The commitment does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "BUDGET.COMMITMENT_NOT_FOUND",
+                        "message": "The commitment does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The commitment or line cannot be matched.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE_MATCH.INVOICE_NOT_MATCHABLE": {
+                    "summary": "The invoice line cannot be matched to the commitment: INVOICE_NOT_MATCHABLE.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.INVOICE_NOT_MATCHABLE",
+                        "message": "The invoice line cannot be matched to the commitment: INVOICE_NOT_MATCHABLE.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.COMMITMENT_NOT_HELD": {
+                    "summary": "The invoice line cannot be matched to the commitment: COMMITMENT_NOT_HELD.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.COMMITMENT_NOT_HELD",
+                        "message": "The invoice line cannot be matched to the commitment: COMMITMENT_NOT_HELD.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.YEAR_MISMATCH": {
+                    "summary": "The invoice line cannot be matched to the commitment: YEAR_MISMATCH.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.YEAR_MISMATCH",
+                        "message": "The invoice line cannot be matched to the commitment: YEAR_MISMATCH.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.VENDOR_MISMATCH": {
+                    "summary": "The invoice line cannot be matched to the commitment: VENDOR_MISMATCH.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.VENDOR_MISMATCH",
+                        "message": "The invoice line cannot be matched to the commitment: VENDOR_MISMATCH.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE_MATCH.LINE_ALREADY_MATCHED": {
+                    "summary": "The invoice line cannot be matched to the commitment: LINE_ALREADY_MATCHED.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE_MATCH.LINE_ALREADY_MATCHED",
+                        "message": "The invoice line cannot be matched to the commitment: LINE_ALREADY_MATCHED.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The JSON body is larger than 100 KiB; it is refused before it is read (HTTP_PAYLOAD_TOO_LARGE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_PAYLOAD_TOO_LARGE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_PAYLOAD_TOO_LARGE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "The JSON body declares a charset other than UTF, or a Content-Encoding other than gzip, deflate or br (HTTP_UNSUPPORTED_MEDIA_TYPE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_UNSUPPORTED_MEDIA_TYPE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_UNSUPPORTED_MEDIA_TYPE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid parameters or body.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Match an invoice line to a budget commitment",
+        "tags": ["invoices"]
+      }
+    },
+    "/api/v1/invoices/{id}/commitment-matches": {
+      "get": {
+        "operationId": "invoiceCommitmentMatchesList",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maximum": 9007199254740991,
+              "exclusiveMinimum": true,
+              "default": 1,
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "maximum": 100, "exclusiveMinimum": true, "default": 20, "type": "integer", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists all commitment matches recorded for lines of this invoice.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/ListCommitmentMatchesResponseDto" },
+                    { "properties": { "message": { "example": "INVOICE.COMMITMENT_MATCHES_LISTED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only Finance views commitment matches.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invoice not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid parameters.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "List commitment matches of an invoice",
+        "tags": ["invoices"]
+      }
+    },
     "/api/v1/budget-proposals": {
       "post": {
         "operationId": "budgetProposalSubmit",
@@ -84595,6 +87076,763 @@
         "description": "A closing for a transfer (cause BENEFICIARY_TRANSFERRED) gives its reason in note.",
         "additionalProperties": false
       },
+      "RecordInvoiceBodyDto": {
+        "type": "object",
+        "properties": {
+          "vendorId": { "type": "string", "format": "uuid" },
+          "contractId": { "type": "string", "format": "uuid" },
+          "invoiceNumber": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "invoiceDate": {
+            "type": "string",
+            "format": "date",
+            "description": "A calendar date as YYYY-MM-DD; it must exist (2026-02-30 is refused)."
+          },
+          "amount": {
+            "type": "object",
+            "properties": {
+              "amount": { "type": "string", "maxLength": 40 },
+              "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+            },
+            "required": ["amount", "currency"],
+            "additionalProperties": false
+          },
+          "lines": {
+            "minItems": 1,
+            "maxItems": 500,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "commitmentId": { "type": "string", "format": "uuid" },
+                "subscriptionId": { "type": "string", "format": "uuid" },
+                "outOfCatalog": { "default": false, "type": "boolean" },
+                "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+                "amount": {
+                  "type": "string",
+                  "maxLength": 40,
+                  "description": "A decimal amount in the invoice currency; discounts may be negative."
+                },
+                "billedQuantity": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
+                "unitPrice": { "type": "string", "maxLength": 40 },
+                "servicePeriodStart": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "A calendar date as YYYY-MM-DD; it must exist (2026-02-30 is refused)."
+                },
+                "servicePeriodEnd": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "A calendar date as YYYY-MM-DD; it must exist (2026-02-30 is refused)."
+                }
+              },
+              "required": ["description", "amount"],
+              "additionalProperties": false
+            }
+          },
+          "taxLines": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "taxType": { "type": "string", "minLength": 1, "maxLength": 100 },
+                "rateBp": { "type": "integer", "minimum": 0, "maximum": 10000 },
+                "amount": {
+                  "type": "object",
+                  "properties": {
+                    "amount": { "type": "string", "maxLength": 40 },
+                    "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+                  },
+                  "required": ["amount", "currency"],
+                  "additionalProperties": false
+                },
+                "payer": { "type": "string", "enum": ["VENDOR_COLLECTS", "BUYER_REMITS"] },
+                "deductible": { "type": "boolean" },
+                "note": { "type": "string", "maxLength": 2000 }
+              },
+              "required": ["taxType", "rateBp", "amount", "payer", "deductible"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["vendorId", "invoiceNumber", "invoiceDate", "amount", "lines", "taxLines"],
+        "additionalProperties": false
+      },
+      "RecordInvoiceResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": { "id": { "type": "string", "format": "uuid" } },
+            "required": ["id"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "ListInvoicesResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "vendorId": { "type": "string", "format": "uuid" },
+                    "contractId": { "type": "string", "format": "uuid", "nullable": true },
+                    "creditedInvoiceId": { "type": "string", "format": "uuid", "nullable": true },
+                    "invoiceNumber": { "type": "string" },
+                    "kind": { "type": "string", "enum": ["INVOICE", "CREDIT_NOTE"] },
+                    "invoiceDate": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "A calendar date as YYYY-MM-DD."
+                    },
+                    "amount": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "amountReporting": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "reconciliationStatus": { "type": "string", "enum": ["NONE", "PARTIAL", "FULL"] },
+                    "recordedAt": { "type": "string", "format": "date-time" },
+                    "recordedByEmployeeId": { "type": "string", "format": "uuid" }
+                  },
+                  "required": [
+                    "id",
+                    "vendorId",
+                    "contractId",
+                    "creditedInvoiceId",
+                    "invoiceNumber",
+                    "kind",
+                    "invoiceDate",
+                    "amount",
+                    "amountReporting",
+                    "reconciliationStatus",
+                    "recordedAt",
+                    "recordedByEmployeeId"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": { "type": "integer", "exclusiveMinimum": true, "maximum": 9007199254740991, "minimum": 0 },
+                  "pageSize": {
+                    "type": "integer",
+                    "exclusiveMinimum": true,
+                    "maximum": 9007199254740991,
+                    "minimum": 0
+                  },
+                  "totalItems": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+                  "totalPages": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+                },
+                "required": ["page", "pageSize", "totalItems", "totalPages"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["items", "pagination"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "AttachInvoiceDocumentBodyDto": {
+        "type": "object",
+        "properties": {
+          "documentId": { "type": "string", "format": "uuid" },
+          "taxLinePosition": { "type": "integer", "minimum": 1, "maximum": 32767 }
+        },
+        "required": ["documentId"],
+        "additionalProperties": false
+      },
+      "AttachInvoiceDocumentResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "document": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string", "format": "uuid" },
+                  "purpose": { "type": "string" },
+                  "status": { "type": "string" },
+                  "fileName": { "type": "string" },
+                  "contentType": { "type": "string" },
+                  "sizeBytes": {
+                    "type": "integer",
+                    "exclusiveMinimum": true,
+                    "maximum": 9007199254740991,
+                    "minimum": 0
+                  },
+                  "uploadedBy": { "type": "string", "format": "uuid" },
+                  "createdAt": { "type": "string", "format": "date-time" },
+                  "contractId": { "type": "string", "format": "uuid", "nullable": true },
+                  "invoiceId": { "type": "string", "format": "uuid", "nullable": true },
+                  "attachedAt": { "type": "string", "format": "date-time", "nullable": true }
+                },
+                "required": [
+                  "id",
+                  "purpose",
+                  "status",
+                  "fileName",
+                  "contentType",
+                  "sizeBytes",
+                  "uploadedBy",
+                  "createdAt",
+                  "contractId",
+                  "invoiceId",
+                  "attachedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": ["document"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "ListInvoiceDocumentsResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "purpose": { "type": "string" },
+                    "status": { "type": "string" },
+                    "fileName": { "type": "string" },
+                    "contentType": { "type": "string" },
+                    "sizeBytes": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "maximum": 9007199254740991,
+                      "minimum": 0
+                    },
+                    "uploadedBy": { "type": "string", "format": "uuid" },
+                    "createdAt": { "type": "string", "format": "date-time" },
+                    "contractId": { "type": "string", "format": "uuid", "nullable": true },
+                    "invoiceId": { "type": "string", "format": "uuid", "nullable": true },
+                    "attachedAt": { "type": "string", "format": "date-time", "nullable": true }
+                  },
+                  "required": [
+                    "id",
+                    "purpose",
+                    "status",
+                    "fileName",
+                    "contentType",
+                    "sizeBytes",
+                    "uploadedBy",
+                    "createdAt",
+                    "contractId",
+                    "invoiceId",
+                    "attachedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": { "type": "integer", "exclusiveMinimum": true, "maximum": 9007199254740991, "minimum": 0 },
+                  "pageSize": {
+                    "type": "integer",
+                    "exclusiveMinimum": true,
+                    "maximum": 9007199254740991,
+                    "minimum": 0
+                  },
+                  "totalItems": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+                  "totalPages": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+                },
+                "required": ["page", "pageSize", "totalItems", "totalPages"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["items", "pagination"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "InvoiceDetailResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "invoice": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string", "format": "uuid" },
+                  "vendorId": { "type": "string", "format": "uuid" },
+                  "contractId": { "type": "string", "format": "uuid", "nullable": true },
+                  "creditedInvoiceId": { "type": "string", "format": "uuid", "nullable": true },
+                  "invoiceNumber": { "type": "string" },
+                  "kind": { "type": "string", "enum": ["INVOICE", "CREDIT_NOTE"] },
+                  "invoiceDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "A calendar date as YYYY-MM-DD."
+                  },
+                  "amount": {
+                    "type": "object",
+                    "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                    "required": ["amount", "currency"],
+                    "additionalProperties": false
+                  },
+                  "amountReporting": {
+                    "type": "object",
+                    "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                    "required": ["amount", "currency"],
+                    "additionalProperties": false
+                  },
+                  "amountRate": { "type": "string" },
+                  "amountRateDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "A calendar date as YYYY-MM-DD."
+                  },
+                  "amountRateSource": { "type": "string" },
+                  "effectiveCost": {
+                    "type": "object",
+                    "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                    "required": ["amount", "currency"],
+                    "additionalProperties": false
+                  },
+                  "deductibleVat": {
+                    "type": "object",
+                    "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                    "required": ["amount", "currency"],
+                    "additionalProperties": false
+                  },
+                  "reconciliationStatus": { "type": "string", "enum": ["NONE", "PARTIAL", "FULL"] },
+                  "recordedAt": { "type": "string", "format": "date-time" },
+                  "recordedByEmployeeId": { "type": "string", "format": "uuid" }
+                },
+                "required": [
+                  "id",
+                  "vendorId",
+                  "contractId",
+                  "creditedInvoiceId",
+                  "invoiceNumber",
+                  "kind",
+                  "invoiceDate",
+                  "amount",
+                  "amountReporting",
+                  "amountRate",
+                  "amountRateDate",
+                  "amountRateSource",
+                  "effectiveCost",
+                  "deductibleVat",
+                  "reconciliationStatus",
+                  "recordedAt",
+                  "recordedByEmployeeId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": ["invoice"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "ListInvoiceLinesResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "position": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+                    "subscriptionId": { "type": "string", "format": "uuid", "nullable": true },
+                    "description": { "type": "string" },
+                    "outOfCatalog": { "type": "boolean" },
+                    "billedQuantity": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991,
+                      "nullable": true
+                    },
+                    "unitPrice": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false,
+                      "nullable": true
+                    },
+                    "servicePeriodStart": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "A calendar date as YYYY-MM-DD.",
+                      "nullable": true
+                    },
+                    "servicePeriodEnd": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "A calendar date as YYYY-MM-DD.",
+                      "nullable": true
+                    },
+                    "amount": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "amountReporting": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "costReporting": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "deductibleVatReporting": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "costCenterId": { "type": "string", "format": "uuid", "nullable": true },
+                    "fiscalYear": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+                    "realizationId": { "type": "string", "format": "uuid", "nullable": true }
+                  },
+                  "required": [
+                    "id",
+                    "position",
+                    "subscriptionId",
+                    "description",
+                    "outOfCatalog",
+                    "billedQuantity",
+                    "unitPrice",
+                    "servicePeriodStart",
+                    "servicePeriodEnd",
+                    "amount",
+                    "amountReporting",
+                    "costReporting",
+                    "deductibleVatReporting",
+                    "costCenterId",
+                    "fiscalYear",
+                    "realizationId"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": { "type": "integer", "exclusiveMinimum": true, "maximum": 9007199254740991, "minimum": 0 },
+                  "pageSize": {
+                    "type": "integer",
+                    "exclusiveMinimum": true,
+                    "maximum": 9007199254740991,
+                    "minimum": 0
+                  },
+                  "totalItems": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+                  "totalPages": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+                },
+                "required": ["page", "pageSize", "totalItems", "totalPages"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["items", "pagination"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "ListInvoiceTaxLinesResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "position": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+                    "taxType": { "type": "string" },
+                    "rateBp": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+                    "amount": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "amountReporting": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "amountRate": { "type": "string" },
+                    "amountRateDate": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "A calendar date as YYYY-MM-DD."
+                    },
+                    "amountRateSource": { "type": "string" },
+                    "payer": { "type": "string", "enum": ["VENDOR_COLLECTS", "BUYER_REMITS"] },
+                    "deductible": { "type": "boolean" },
+                    "note": { "type": "string", "nullable": true },
+                    "proofDocumentId": { "type": "string", "format": "uuid", "nullable": true }
+                  },
+                  "required": [
+                    "position",
+                    "taxType",
+                    "rateBp",
+                    "amount",
+                    "amountReporting",
+                    "amountRate",
+                    "amountRateDate",
+                    "amountRateSource",
+                    "payer",
+                    "deductible",
+                    "note",
+                    "proofDocumentId"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": { "type": "integer", "exclusiveMinimum": true, "maximum": 9007199254740991, "minimum": 0 },
+                  "pageSize": {
+                    "type": "integer",
+                    "exclusiveMinimum": true,
+                    "maximum": 9007199254740991,
+                    "minimum": 0
+                  },
+                  "totalItems": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+                  "totalPages": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+                },
+                "required": ["page", "pageSize", "totalItems", "totalPages"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["items", "pagination"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "UpdateInvoiceTaxLineBodyDto": {
+        "type": "object",
+        "properties": {
+          "taxType": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "rateBp": { "type": "integer", "minimum": 0, "maximum": 10000 },
+          "amount": {
+            "type": "object",
+            "properties": {
+              "amount": { "type": "string", "maxLength": 40 },
+              "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+            },
+            "required": ["amount", "currency"],
+            "additionalProperties": false
+          },
+          "payer": { "type": "string", "enum": ["VENDOR_COLLECTS", "BUYER_REMITS"] },
+          "deductible": { "type": "boolean" },
+          "note": { "type": "string", "maxLength": 2000 }
+        },
+        "required": ["taxType", "rateBp", "amount", "payer", "deductible"],
+        "additionalProperties": false
+      },
+      "UpdateInvoiceTaxLineResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "position": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+              "taxType": { "type": "string" },
+              "rateBp": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+              "amount": {
+                "type": "object",
+                "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                "required": ["amount", "currency"],
+                "additionalProperties": false
+              },
+              "amountReporting": {
+                "type": "object",
+                "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                "required": ["amount", "currency"],
+                "additionalProperties": false
+              },
+              "payer": { "type": "string", "enum": ["VENDOR_COLLECTS", "BUYER_REMITS"] },
+              "deductible": { "type": "boolean" },
+              "note": { "type": "string", "nullable": true }
+            },
+            "required": ["position", "taxType", "rateBp", "amount", "amountReporting", "payer", "deductible", "note"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "MatchCommitmentBodyDto": {
+        "type": "object",
+        "properties": { "commitmentId": { "type": "string", "format": "uuid" } },
+        "required": ["commitmentId"],
+        "additionalProperties": false
+      },
+      "CommitmentMatchResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "commitmentId": { "type": "string", "format": "uuid" },
+              "invoiceId": { "type": "string", "format": "uuid" },
+              "invoiceLineId": { "type": "string", "format": "uuid" },
+              "position": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+              "matched": {
+                "type": "object",
+                "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                "required": ["amount", "currency"],
+                "additionalProperties": false
+              },
+              "held": {
+                "type": "object",
+                "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                "required": ["amount", "currency"],
+                "additionalProperties": false
+              },
+              "expensed": { "type": "boolean" }
+            },
+            "required": ["commitmentId", "invoiceId", "invoiceLineId", "position", "matched", "held", "expensed"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
+      "ListCommitmentMatchesResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "enum": [true] },
+          "message": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z0-9_]+)+$" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "commitmentId": { "type": "string", "format": "uuid" },
+                    "invoiceLineId": { "type": "string", "format": "uuid" },
+                    "position": { "type": "integer", "minimum": -9007199254740991, "maximum": 9007199254740991 },
+                    "amount": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
+                    "recordedAt": { "type": "string", "format": "date-time" },
+                    "recordedByEmployeeId": { "type": "string", "format": "uuid" }
+                  },
+                  "required": [
+                    "id",
+                    "commitmentId",
+                    "invoiceLineId",
+                    "position",
+                    "amount",
+                    "recordedAt",
+                    "recordedByEmployeeId"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": { "type": "integer", "exclusiveMinimum": true, "maximum": 9007199254740991, "minimum": 0 },
+                  "pageSize": {
+                    "type": "integer",
+                    "exclusiveMinimum": true,
+                    "maximum": 9007199254740991,
+                    "minimum": 0
+                  },
+                  "totalItems": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+                  "totalPages": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+                },
+                "required": ["page", "pageSize", "totalItems", "totalPages"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["items", "pagination"],
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "required": ["success", "message", "data"],
+        "additionalProperties": false
+      },
       "BudgetProposalBodyDto": {
         "type": "object",
         "properties": {
@@ -86193,6 +89431,12 @@
                       "required": ["amount", "currency"],
                       "additionalProperties": false
                     },
+                    "deductibleVat": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
                     "remaining": {
                       "type": "object",
                       "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
@@ -86209,6 +89453,7 @@
                     "total",
                     "committed",
                     "spent",
+                    "deductibleVat",
                     "remaining",
                     "overCommitted"
                   ],
@@ -86278,6 +89523,12 @@
                       "required": ["amount", "currency"],
                       "additionalProperties": false
                     },
+                    "realized": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false
+                    },
                     "held": {
                       "type": "object",
                       "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
@@ -86297,6 +89548,7 @@
                     "year",
                     "amount",
                     "released",
+                    "realized",
                     "held",
                     "state",
                     "attached",
@@ -86447,6 +89699,12 @@
                     "required": ["amount", "currency"],
                     "additionalProperties": false
                   },
+                  "realized": {
+                    "type": "object",
+                    "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                    "required": ["amount", "currency"],
+                    "additionalProperties": false
+                  },
                   "held": {
                     "type": "object",
                     "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
@@ -86466,6 +89724,7 @@
                   "year",
                   "amount",
                   "released",
+                  "realized",
                   "held",
                   "state",
                   "attached",

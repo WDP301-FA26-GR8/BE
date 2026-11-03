@@ -48,7 +48,7 @@ Chia chi phí theo tỷ lệ, chia theo ngày khi điều chuyển (đã bị `Q
 ## Behavior and design
 
 Chưa thiết kế — khung giữ chỗ cho scope map; thiết kế chi tiết khi tới lượt và khi blocker được gỡ. Đối chiếu Logical ERD ở Docs
-`d6d868c` trước khi tạo bảng.
+`d6d868c` trước khi tạo bảng. Cơ sở _theo dòng tiền_ (US-12-13 AC-3: Cost Center của phòng sở hữu tại ngày hóa đơn) đã được định hình ở cấp dòng hóa đơn trong hạng mục `g8-invoice-recording` (`invoice_lines.cost_center_id`), chốt khi ghi hóa đơn.
 
 ## Test matrix
 
@@ -76,5 +76,7 @@ Ma trận trên là khung từ tiêu đề AC; tình huống cụ thể được
 - [ ] Tài liệu vận hành/runbook bị ảnh hưởng đã cập nhật; phần chưa kiểm chứng ghi rõ.
 
 ## Changes and acceptance
+
+31/10/2026: ghi rõ cơ sở theo dòng tiền đã được giải quyết ở hạng mục `g8-invoice-recording` theo `docs/gehihi-plans/01-design-corrections.md`; chưa Owner review.
 
 31/10/2026: lập khung theo scope map G8 của [roadmap](../../../roadmap.md) ở bước 01. Chưa thiết kế chi tiết, chưa code, chưa review, chưa nghiệm thu.

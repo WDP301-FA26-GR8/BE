@@ -8,6 +8,57 @@ import type { RouteErrorStatus } from './openapi-example-manifest';
  */
 export const ROUTE_ERROR_CODES_BUDGETS: Readonly<Record<string, Partial<Record<RouteErrorStatus, readonly string[]>>>> =
   {
+    invoiceDocumentAttach: {
+      '404': ['INVOICE.NOT_FOUND', 'INVOICE.TAX_LINE_NOT_FOUND', 'DOCUMENT.NOT_FOUND'],
+      '409': ['DOCUMENT.ALREADY_ATTACHED', 'DOCUMENT.NOT_READY_TO_ATTACH'],
+      '422': ['INVOICE.TAX_LINE_NOT_BUYER_REMITS'],
+    },
+    invoiceDocumentsList: {
+      '404': ['INVOICE.NOT_FOUND'],
+    },
+    invoiceList: {},
+    invoiceGet: {
+      '404': ['INVOICE.NOT_FOUND'],
+    },
+    invoiceLinesList: {
+      '404': ['INVOICE.NOT_FOUND'],
+    },
+    invoiceTaxLinesList: {
+      '404': ['INVOICE.NOT_FOUND'],
+    },
+    invoiceTaxLineSet: {
+      '404': ['INVOICE.NOT_FOUND'],
+      '409': ['INVOICE.RATE_MISSING'],
+    },
+    invoiceLineCommitmentMatch: {
+      '404': ['INVOICE.NOT_FOUND', 'INVOICE.LINE_NOT_FOUND', 'BUDGET.COMMITMENT_NOT_FOUND'],
+      '409': [
+        'INVOICE_MATCH.INVOICE_NOT_MATCHABLE',
+        'INVOICE_MATCH.COMMITMENT_NOT_HELD',
+        'INVOICE_MATCH.YEAR_MISMATCH',
+        'INVOICE_MATCH.VENDOR_MISMATCH',
+        'INVOICE_MATCH.LINE_ALREADY_MATCHED',
+      ],
+    },
+    invoiceCommitmentMatchesList: {
+      '404': ['INVOICE.NOT_FOUND'],
+    },
+    invoiceRecord: {
+      '404': ['BUDGET.COMMITMENT_NOT_FOUND'],
+      '409': [
+        'INVOICE.DUPLICATE',
+        'INVOICE.RATE_MISSING',
+        'INVOICE.VENDOR_UNUSABLE',
+        'INVOICE.LINE_VENDOR_MISMATCH',
+        'REPORTING_CURRENCY_NOT_SUPPORTED',
+        'INVOICE_MATCH.INVOICE_NOT_MATCHABLE',
+        'INVOICE_MATCH.COMMITMENT_NOT_HELD',
+        'INVOICE_MATCH.YEAR_MISMATCH',
+        'INVOICE_MATCH.VENDOR_MISMATCH',
+        'INVOICE_MATCH.LINE_ALREADY_MATCHED',
+      ],
+      '422': ['INVOICE.LINES_DO_NOT_ADD_UP', 'CURRENCY_NOT_SUPPORTED', 'MONEY_SCALE_EXCEEDED', 'MONEY_OUT_OF_RANGE'],
+    },
     budgetCommitmentRelease: {
       '404': ['BUDGET.COMMITMENT_NOT_FOUND'],
       '409': ['BUDGET.COMMITMENT_NOT_HELD', 'BUDGET.COMMITMENT_REQUEST_OPEN'],

@@ -1,18 +1,21 @@
 import {
   ContractNameRequiredError,
-  DocumentAlreadyAttachedError,
   DocumentFileInvalidError,
-  DocumentNotReadyToAttachError,
-  DocumentPurposeForbiddenError,
   DocumentPurposeNotAvailableError,
   DocumentTooLargeError,
   DocumentTypeNotAllowedError,
   DocumentUploadMismatchError,
 } from './contract.errors';
 import {
+  DocumentAlreadyAttachedError,
+  DocumentNotReadyToAttachError,
+  DocumentPurposeForbiddenError,
+} from '../public/catalog.errors';
+import {
   LINK_TTL_SECONDS,
   assertAttachable,
   assertFileAllowed,
+  assertMayAttachTo,
   assertMayChoosePurpose,
   assertPurposeAvailable,
   assertUploadMatches,
@@ -62,14 +65,15 @@ describe('who chooses which purpose of a file (US-04-04 AC-6, AC-9)', () => {
 });
 
 describe('the purposes that have somewhere to be attached today', () => {
-  it('are the two that attach to a contract', () => {
+  it('are the three that attach to a contract or invoice', () => {
     expect(() => {
       assertPurposeAvailable('CONTRACT_ATTACHMENT');
       assertPurposeAvailable('PURCHASE_DOCUMENT');
+      assertPurposeAvailable('TAX_PAYMENT_PROOF');
     }).not.toThrow();
   });
 
-  it.each(['TAX_PAYMENT_PROOF', 'SIGNATURE_RECORD', 'IMPORT_SOURCE', 'COST_STATEMENT'] as const)(
+  it.each(['SIGNATURE_RECORD', 'IMPORT_SOURCE', 'COST_STATEMENT'] as const)(
     'are not yet for %s: its target does not exist',
     (purpose) => {
       expect(() => {
@@ -77,6 +81,58 @@ describe('the purposes that have somewhere to be attached today', () => {
       }).toThrow(DocumentPurposeNotAvailableError);
     },
   );
+});
+
+describe('attaching a file by purpose and target (US-04-04 F-17, US-01-12 AC-10)', () => {
+  it('lets IT_ADMIN and FINANCE attach CONTRACT_ATTACHMENT to CONTRACT', () => {
+    expect(() => assertMayAttachTo('CONTRACT_ATTACHMENT', 'CONTRACT', ['IT_ADMIN'])).not.toThrow();
+    expect(() => assertMayAttachTo('CONTRACT_ATTACHMENT', 'CONTRACT', ['FINANCE'])).not.toThrow();
+  });
+
+  it('lets IT_ADMIN attach PURCHASE_DOCUMENT to CONTRACT, and refuses FINANCE', () => {
+    expect(() => assertMayAttachTo('PURCHASE_DOCUMENT', 'CONTRACT', ['IT_ADMIN'])).not.toThrow();
+    expect(() => assertMayAttachTo('PURCHASE_DOCUMENT', 'CONTRACT', ['FINANCE'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+  });
+
+  it('lets FINANCE attach PURCHASE_DOCUMENT to INVOICE, and refuses IT_ADMIN', () => {
+    expect(() => assertMayAttachTo('PURCHASE_DOCUMENT', 'INVOICE', ['FINANCE'])).not.toThrow();
+    expect(() => assertMayAttachTo('PURCHASE_DOCUMENT', 'INVOICE', ['IT_ADMIN'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+  });
+
+  it('lets FINANCE attach TAX_PAYMENT_PROOF to INVOICE, and refuses IT_ADMIN', () => {
+    expect(() => assertMayAttachTo('TAX_PAYMENT_PROOF', 'INVOICE', ['FINANCE'])).not.toThrow();
+    expect(() => assertMayAttachTo('TAX_PAYMENT_PROOF', 'INVOICE', ['IT_ADMIN'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+  });
+
+  it('refuses CONTRACT_ATTACHMENT to INVOICE', () => {
+    expect(() => assertMayAttachTo('CONTRACT_ATTACHMENT', 'INVOICE', ['FINANCE'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+    expect(() => assertMayAttachTo('CONTRACT_ATTACHMENT', 'INVOICE', ['IT_ADMIN'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+  });
+
+  it('refuses TAX_PAYMENT_PROOF to CONTRACT', () => {
+    expect(() => assertMayAttachTo('TAX_PAYMENT_PROOF', 'CONTRACT', ['FINANCE'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+  });
+
+  it('refuses non-whitelisted roles', () => {
+    expect(() => assertMayAttachTo('PURCHASE_DOCUMENT', 'INVOICE', ['EMPLOYEE'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+    expect(() => assertMayAttachTo('CONTRACT_ATTACHMENT', 'CONTRACT', ['MANAGER'])).toThrow(
+      DocumentPurposeForbiddenError,
+    );
+  });
 });
 
 describe('the file that may be stored (US-04-04 AC-10)', () => {

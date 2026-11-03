@@ -16,15 +16,22 @@
   nhánh `hien-dev`, không force-push, không `git add .`.
 - `.vscode/settings.json`, `.github/workflows/ci.yml` có thay đổi sẵn, không thuộc phạm vi. Không stage, không sửa.
 - Không đọc `.env`, không chạm VPS hay database dùng chung, không dùng dữ liệu cá nhân thật.
-- Không sửa code ngoài danh sách file của plan. Cần thêm file thì giải thích ở bàn giao; cần đổi module khác thì dừng.
+- Chỉ sửa file của plan. Riêng khi code của plan làm hỏng service hoặc test ngoài plan, kể cả ở module khác, thì sửa luôn đúng phần bị ảnh
+  hưởng (Owner cho phép 01/11/2026). Việc khác ngoài plan thì không làm, kể cả lỗi tiện thấy.
+- Mỗi lần sửa ngoài plan phải ghi note ở `docs/gehihi-plans/notes/<số>-<tên>.md`: hỏng gì, vì sao, sửa gì, lệnh kiểm chứng và kết quả. Sửa vào
+  `catalog` hay phần của Dev A thì ghi rõ để Dev B báo A. Bàn giao nêu tên note để Owner review.
 - Không tự quyết nghiệp vụ. Không ghi `accepted`, `Owner approved`, `Owner duyệt`, `released`, `merged-dev`.
+- Mã đã có nhãn `Owner trả lời` hoặc `Tạm theo khuyến nghị` trong `02-owner-decisions.md` thì làm đúng phương án đó, tính là cổng đã thỏa.
+  Câu hỏi mới chưa có nhãn thì vẫn dừng và báo.
 - Không suy diễn từ tên biến khi AC nói khác. Nguồn AC: `../docs/BE-UserStory/src/EP-xx.md`, tìm theo mã `US-xx-yy`.
 
 ## Dừng và báo khi
 
 - Plan, spec, AC và code nói khác nhau, và khác biệt đó đổi hành vi.
-- Test đỏ mà nguyên nhân ngoài phạm vi plan.
-- Phải sửa test cũ, fixture hay gate mới xanh được, trừ khi plan cho phép đúng file đó và nói lý do.
+- Test đỏ mà không do code của plan gây ra.
+- Phải nới assert, tắt test hoặc đổi kỳ vọng nghiệp vụ của test cũ mới xanh được. Test cũ, fixture chỉ cần đổi theo thay đổi kỹ thuật thì sửa và
+  ghi note. Gate chỉ sửa khi plan cho phép đúng file đó và nói lý do.
+- Sửa phần ngoài plan mà phải đổi nghiệp vụ, quyền truy cập hoặc API công khai của service đó.
 - Phải thêm mục vào danh sách ngoại lệ, gồm `REQUESTS_CONTROLLER_IMPORTED`, `CORE_PRIMITIVES_OF_ONE_AREA`,
   `RUNTIME_TABLE_EXCEPTIONS`, `RUNTIME_SEQUENCE_EXCEPTIONS`, hoặc thêm `eslint-disable`.
 - Phải thêm cạnh module không có trong plan, hoặc import ngược tầng.
@@ -108,7 +115,7 @@ khi plan yêu cầu hoặc trước bàn giao gói.
 
 - Bằng chứng ghi vào `docs/workspace/items/<hạng-mục>/plan.md`, mục `Verification and handoff`: lệnh, revision hoặc
   fingerprint cây làm việc, môi trường, số test, AC đã chứng minh, giới hạn.
-- Ghi model thực dùng là `gemini-3.8 flash -high`; không ghi là Opus hay Sonnet.
+- Ghi đúng agent và model thực dùng của lượt đó, ví dụ Codex hoặc `gemini-3.8 flash -high`; không ghi là Opus hay Sonnet nếu không dùng.
 - Đổi hành vi so với spec thì cập nhật spec cùng lượt, kèm lý do. Đổi nghiệp vụ thì dừng hỏi.
 - Không chép log dài, không lưu token, password, connection string.
 

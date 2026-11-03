@@ -1,2 +1,4 @@
-# GATE-EOL=A (Owner, Prompt 09): only the generated OpenAPI artifact is pinned to LF; no repository-wide rule.
+# Pin the OpenAPI artifact and templates consumed by LF-only parsers; no repository-wide rule.
 openapi.json text eol=lf
+.env.bootstrap.example text eol=lf
+.env.demo-dataset.example text eol=lf

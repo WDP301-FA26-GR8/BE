@@ -1,6 +1,6 @@
 # Plan thực thi đợt giao Dev B (B-05, B-07, B-08, B-09, B-10)
 
-Bộ plan nhỏ để giao từng lượt cho agent `gemini-3.8 flash -high`, lập 31/10/2026 trên BE `d6c2112`, Docs `d6d868c`.
+Bộ plan nhỏ để giao từng lượt cho agent Codex hoặc `gemini-3.8 flash -high`, lập 31/10/2026 trên BE `d6c2112`, Docs `d6d868c`.
 Đường dẫn tính từ gốc repo BE. Repo Docs nằm ở `../docs`.
 
 **Bộ này không thay spec.** Nguồn chính vẫn là `docs/workspace/items/<hạng-mục>/spec.md` + `plan.md`, tiến độ ở
@@ -36,43 +36,43 @@ Một plan `DESIGN` xong phải được người phụ trách đọc, rồi m�
 
 Trạng thái dưới đây là lúc lập bộ plan, không phải tracker.
 
-| #   | Plan                                              | Gói  | Hạng mục                                          | Loại     | Phụ thuộc     | Cổng còn mở                  |
-| --- | ------------------------------------------------- | ---- | ------------------------------------------------- | -------- | ------------- | ---------------------------- |
-| 0   | [P00](p00-setup-baseline.md)                      | —    | môi trường và mốc                                 | `AUDIT`  | —             | Q-01, Q-03                   |
-| 1   | [P01](p01-spec-sync.md)                           | —    | áp sửa thiết kế vào spec                          | `DOCS`   | P00           | người phụ trách duyệt        |
-| 2   | [B05-1](b05-1-evidence-rerun.md)                  | B-05 | `g4-request-and-transfer-integration`             | `AUDIT`  | P00           | —                            |
-| 3   | [B05-2](b05-2-transfer-read-for-heads.md)         | B-05 | `g4-request-and-transfer-integration`             | `CODE`   | B05-1         | —                            |
-| 4   | [B10-1](b10-1-approval-api-gaps.md)               | B-10 | `g10-approval-api-gaps`                           | `AUDIT`  | P00           | Q-11                         |
-| 5   | [B07-1](b07-1-invoice-schema.md)                  | B-07 | `g8-invoice-recording`                            | `CODE`   | P01           | —                            |
-| 6   | [B07-2](b07-2-invoice-record.md)                  | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-1         | D2, Q-13                     |
-| 7   | [B07-3](b07-3-invoice-tax-lines.md)               | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-2         | —                            |
-| 8   | [B07-4](b07-4-invoice-read.md)                    | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-2         | —                            |
-| 9   | [B07-5](b07-5-invoice-documents.md)               | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-2         | Q-10                         |
-| 10  | [B07-6](b07-6-realization-schema-and-held.md)     | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-2         | —                            |
-| 11  | [B07-7](b07-7-spent-one-source.md)                | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-6         | —                            |
-| 12  | [B07-8](b07-8-commitment-match.md)                | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-7         | D5, D5a, D6                  |
-| 13  | [B07-9](b07-9-partial-failure-and-credit-note.md) | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-8         | —                            |
-| 14  | [B07-10](b07-10-internal-cost-entry.md)           | B-07 | `g8-internal-cost-entry`                          | `DESIGN` | B07-7         | —                            |
-| 15  | [B08-6](b08-6-process-performance-report.md)      | B-08 | `g8-process-performance-report`                   | `DESIGN` | P00           | —                            |
-| 16  | [B07-11](b07-11-spend-basis-on-failure.md)        | B-07 | `g8-spend-basis-on-failure`                       | `DESIGN` | B07-9         | Q-10                         |
-| 17  | [B08-1](b08-1-seat-cost-attribution.md)           | B-08 | `g8-seat-cost-attribution`                        | `DESIGN` | B07-7         | —                            |
-| 18  | [B08-2](b08-2-spend-summary.md)                   | B-08 | `g8-spend-summary`                                | `DESIGN` | B08-1, B07-10 | —                            |
-| 19  | [B09-0](b09-0-module-placement.md)                | B-09 | quyết định đặt module G9                          | `DESIGN` | B07-7         | Q-08                         |
-| 20  | [B09-1](b09-1-statement-import.md)                | B-09 | `g9-statement-import`                             | `DESIGN` | B09-0, B07-2  | Q-10                         |
-| 21  | [B09-2](b09-2-discovery-findings.md)              | B-09 | `g9-discovery-findings`                           | `DESIGN` | B09-1         | —                            |
-| 22  | [B09-3](b09-3-finding-investigation.md)           | B-09 | `g9-finding-investigation`                        | `DESIGN` | B09-2         | —                            |
-| 23  | [B09-4](b09-4-charge-reconciliation.md)           | B-09 | `g9-charge-reconciliation`                        | `DESIGN` | B09-1, B07-8  | —                            |
-| 24  | [B09-5](b09-5-finding-legalization.md)            | B-09 | `g9-finding-legalization`                         | `DESIGN` | B09-3, B09-4  | Q-07, chỉ ca `OOS-24`        |
-| 25  | [B08-3](b08-3-unallocated-cost-line.md)           | B-08 | `g8-unallocated-cost-line`                        | `DESIGN` | B09-4, B08-2  | —                            |
-| 26  | [B08-4](b08-4-period-close-report.md)             | B-08 | `g8-period-close-report`                          | `DESIGN` | B08-2         | —                            |
-| 27  | [B08-7](b08-7-data-quality-report.md)             | B-08 | `g8-data-quality-report`                          | `DESIGN` | B08-2         | vế usage chờ G7              |
-| 28  | [B08-9](b08-9-finance-dashboards.md)              | B-08 | `g8-finance-dashboards`                           | `DESIGN` | B08-2         | A-06, A-10                   |
-| 29  | [B07-12](b07-12-invoice-subscription-match.md)    | B-07 | `g8-invoice-subscription-match`                   | `DESIGN` | B07-4         | Q-05, chỉ AC-2, AC-6         |
-| 30  | [B08-5](b08-5-forecast.md)                        | B-08 | `g8-forecast`                                     | `DESIGN` | B08-2         | Q-02 và A-06, chỉ AC-5, AC-7 |
-| 31  | [B08-8](b08-8-savings-and-usage-reports.md)       | B-08 | `g8-savings-report`, `g8-usage-efficiency-report` | `GATED`  | B08-2         | G7, A-06                     |
+| #   | Plan                                              | Gói  | Hạng mục                                          | Loại     | Phụ thuộc     | Cổng còn mở           |
+| --- | ------------------------------------------------- | ---- | ------------------------------------------------- | -------- | ------------- | --------------------- |
+| 0   | [P00](p00-setup-baseline.md)                      | —    | môi trường và mốc                                 | `AUDIT`  | —             | Q-01, Q-03            |
+| 1   | [P01](p01-spec-sync.md)                           | —    | áp sửa thiết kế vào spec                          | `DOCS`   | P00           | người phụ trách duyệt |
+| 2   | [B05-1](b05-1-evidence-rerun.md)                  | B-05 | `g4-request-and-transfer-integration`             | `AUDIT`  | P00           | —                     |
+| 3   | [B05-2](b05-2-transfer-read-for-heads.md)         | B-05 | `g4-request-and-transfer-integration`             | `CODE`   | B05-1         | —                     |
+| 4   | [B10-1](b10-1-approval-api-gaps.md)               | B-10 | `g10-approval-api-gaps`                           | `AUDIT`  | P00           | Q-11                  |
+| 5   | [B07-1](b07-1-invoice-schema.md)                  | B-07 | `g8-invoice-recording`                            | `CODE`   | P01           | —                     |
+| 6   | [B07-2](b07-2-invoice-record.md)                  | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-1         | —                     |
+| 7   | [B07-3](b07-3-invoice-tax-lines.md)               | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-2         | —                     |
+| 8   | [B07-4](b07-4-invoice-read.md)                    | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-2         | —                     |
+| 9   | [B07-5](b07-5-invoice-documents.md)               | B-07 | `g8-invoice-recording`                            | `CODE`   | B07-2         | Q-10                  |
+| 10  | [B07-6](b07-6-realization-schema-and-held.md)     | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-2         | —                     |
+| 11  | [B07-7](b07-7-spent-one-source.md)                | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-6         | —                     |
+| 12  | [B07-8](b07-8-commitment-match.md)                | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-7         | —                     |
+| 13  | [B07-9](b07-9-partial-failure-and-credit-note.md) | B-07 | `g8-commitment-realization`                       | `CODE`   | B07-8         | —                     |
+| 14  | [B07-10](b07-10-internal-cost-entry.md)           | B-07 | `g8-internal-cost-entry`                          | `DESIGN` | B07-7         | —                     |
+| 15  | [B08-6](b08-6-process-performance-report.md)      | B-08 | `g8-process-performance-report`                   | `DESIGN` | P00           | —                     |
+| 16  | [B07-11](b07-11-spend-basis-on-failure.md)        | B-07 | `g8-spend-basis-on-failure`                       | `DESIGN` | B07-9         | Q-10                  |
+| 17  | [B08-1](b08-1-seat-cost-attribution.md)           | B-08 | `g8-seat-cost-attribution`                        | `DESIGN` | B07-7         | —                     |
+| 18  | [B08-2](b08-2-spend-summary.md)                   | B-08 | `g8-spend-summary`                                | `DESIGN` | B08-1, B07-10 | —                     |
+| 19  | [B09-0](b09-0-module-placement.md)                | B-09 | quyết định đặt module G9                          | `DESIGN` | B07-7         | —                     |
+| 20  | [B09-1](b09-1-statement-import.md)                | B-09 | `g9-statement-import`                             | `DESIGN` | B09-0, B07-2  | Q-10                  |
+| 21  | [B09-2](b09-2-discovery-findings.md)              | B-09 | `g9-discovery-findings`                           | `DESIGN` | B09-1         | —                     |
+| 22  | [B09-3](b09-3-finding-investigation.md)           | B-09 | `g9-finding-investigation`                        | `DESIGN` | B09-2         | —                     |
+| 23  | [B09-4](b09-4-charge-reconciliation.md)           | B-09 | `g9-charge-reconciliation`                        | `DESIGN` | B09-1, B07-8  | —                     |
+| 24  | [B09-5](b09-5-finding-legalization.md)            | B-09 | `g9-finding-legalization`                         | `DESIGN` | B09-3, B09-4  | —                     |
+| 25  | [B08-3](b08-3-unallocated-cost-line.md)           | B-08 | `g8-unallocated-cost-line`                        | `DESIGN` | B09-4, B08-2  | —                     |
+| 26  | [B08-4](b08-4-period-close-report.md)             | B-08 | `g8-period-close-report`                          | `DESIGN` | B08-2         | —                     |
+| 27  | [B08-7](b08-7-data-quality-report.md)             | B-08 | `g8-data-quality-report`                          | `DESIGN` | B08-2         | vế usage chờ G7       |
+| 28  | [B08-9](b08-9-finance-dashboards.md)              | B-08 | `g8-finance-dashboards`                           | `DESIGN` | B08-2         | A-06, A-10            |
+| 29  | [B07-12](b07-12-invoice-subscription-match.md)    | B-07 | `g8-invoice-subscription-match`                   | `DESIGN` | B07-4         | —                     |
+| 30  | [B08-5](b08-5-forecast.md)                        | B-08 | `g8-forecast`                                     | `DESIGN` | B08-2         | A-06, chỉ AC-5, AC-7  |
+| 31  | [B08-8](b08-8-savings-and-usage-reports.md)       | B-08 | `g8-savings-report`, `g8-usage-efficiency-report` | `GATED`  | B08-2         | G7, A-06              |
 
-Chưa có trả lời của Owner, agent vẫn chạy được P00, B05-1, B05-2, B10-1; P01 cần người phụ trách duyệt, rồi tới B07-1. Phần code tiếp
-theo chờ D2.
+Ngày 01/11/2026 Owner trả lời D2, Q-13 và ủy quyền dùng khuyến nghị cho các câu còn lại, xem [02-owner-decisions.md](02-owner-decisions.md).
+Cột `Cổng còn mở` nay chỉ còn việc của người khác hoặc câu khuyến nghị không thay được.
 
 ## Tài liệu dùng chung
 

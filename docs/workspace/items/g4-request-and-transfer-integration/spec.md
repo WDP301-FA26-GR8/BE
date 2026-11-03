@@ -118,9 +118,9 @@ lỗi thời. Kết quả dưới đây chỉ từ **đọc source và test**, c
 cho phòng cũ/phòng mới theo giai đoạn trưởng phòng; phòng khác trả `NOT_FOUND`. Xem đủ theo chữ AC-4 (D7). `GET` danh sách và `/changes` giữ nguyên.
 Thu hồi vai: kiểm lại mỗi request vì vai đọc từ PostgreSQL. Không migration.
 
-| AC / rủi ro     | Tình huống                                            | Cấp test           | Kết quả mong đợi                                              | Bằng chứng sau implement |
-| --------------- | ----------------------------------------------------- | ------------------ | ------------------------------------------------------------- | ------------------------ |
-| `US-01-12` AC-4 | Trưởng phòng cũ, mới mở; trưởng phòng thứ ba; Finance | HTTP + integration | Hai người đầu xem được; người thứ ba `NOT_FOUND`; Finance 403 | chưa chạy                |
-| `US-07-04` AC-4 | Request đã duyệt chi, nhà cung cấp báo vượt license   | integration        | Không thử lại, không có bước duyệt chi mới                    | chưa chạy                |
+| AC / rủi ro     | Tình huống                                            | Cấp test           | Kết quả mong đợi                                              | Bằng chứng sau implement                                                       |
+| --------------- | ----------------------------------------------------- | ------------------ | ------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `US-01-12` AC-4 | Trưởng phòng cũ, mới mở; trưởng phòng thứ ba; Finance | HTTP + unit        | Hai người đầu xem được; người thứ ba `NOT_FOUND`; Finance 403 | `transfer-query.service.spec.ts`, `department-transfers.http-spec.ts`          |
+| `US-07-04` AC-4 | Request đã duyệt chi, nhà cung cấp báo vượt license   | unit + integration | Không thử lại, không có bước duyệt chi mới                    | `failure.policy.spec.ts`, `provisioning-quota-after-spend.integration-spec.ts` |
 
-**Quyết định chờ Owner — D7:** trưởng phòng xem `BM-04` có thấy căn cứ và bản ghi xác minh không. AC-4 chỉ giới hạn IT Admin, nên thiết kế hiện cho xem đủ.
+**Quyết định chờ Owner — D7 (đã đóng):** trưởng phòng xem `BM-04` thấy đủ căn cứ và chi tiết theo BRD (`FULL`), chỉ IT Admin bị giới hạn (`MINIMAL`). Đã implement và chứng minh qua unit test và HTTP test.

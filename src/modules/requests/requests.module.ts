@@ -14,6 +14,7 @@ import { DelegatedRequestsController } from './delegated-request/delegated-reque
 import { GrantQueueRepo } from './delegated-request/grant-queue.repo';
 import { GrantQueueService } from './delegated-request/grant-queue.service';
 import { RequestCommitmentReleaseGuard } from './spend/commitment-release.listener';
+import { CommitmentVendorListener } from './spend/commitment-vendor.listener';
 import { RequestDraftService } from './draft/request-draft.service';
 import { RequestDraftSubmitService } from './draft/request-draft-submit.service';
 import { RequestDraftsController } from './draft/request-drafts.controller';
@@ -248,6 +249,7 @@ import { ServiceAccountRequestsController } from './service-account-request/serv
     SimilarSeatsService,
     AccessRequestGrantGate,
     RequestCommitmentReleaseGuard,
+    CommitmentVendorListener,
     SpendStepRepo,
     BudgetCheckRepo,
     FinanceReviewRepo,

@@ -11,6 +11,7 @@ import { App } from 'supertest/types';
 import { createHttpContractApp } from '../../support/http-contract-app';
 import { createOpenApiDocument } from '../../../src/app/configure-application';
 import { OPENAPI_DOCUMENT_BUDGET_MS } from '../../support/openapi-document-budget';
+import { API_COVERAGE_MANIFEST } from '../../support/api-coverage-manifest';
 import {
   BEARER_REQUIREMENT,
   BUSINESS_PATTERNS,
@@ -247,7 +248,7 @@ describe('API inventory (e2e): openapi presentation and wire messages', () => {
         })
         .map((operation) => operation.key);
 
-      expect(operations).toHaveLength(287);
+      expect(operations.map((operation) => operation.key).sort()).toEqual([...API_COVERAGE_MANIFEST].sort());
       expect(missing).toEqual([]);
     });
 

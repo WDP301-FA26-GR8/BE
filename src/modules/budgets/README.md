@@ -23,8 +23,8 @@ audit, notifications. Được dùng bởi: requests; gốc `src/app/app.module.
 
 - `budget_proposals`, `budget_proposal_lines`, `budget_versions`, `budget_version_lines`,
   `budget_version_line_changes`, `budget_version_decisions`, `budget_version_history`, `budget_commitments`,
-  `budget_commitment_releases` (`prisma/models/budgets.prisma`). Kiểm ngân sách của request
-  (`request_budget_checks`…) thuộc `requests`.
+  `budget_commitment_releases`, `invoices`, `invoice_lines`, `invoice_tax_lines` (`prisma/models/budgets.prisma`).
+  Kiểm ngân sách của request (`request_budget_checks`…) thuộc `requests`.
 
 ## Extension point
 
@@ -39,11 +39,15 @@ audit, notifications. Được dùng bởi: requests; gốc `src/app/app.module.
 
 ## Capability → file chính
 
-Một lõi `budget/` và năm capability cùng cấp với nó. Lõi giữ repo, policy, dto, lỗi và notifier dùng chung (`proposal.repo.ts`,
+Một lõi `budget/` và sáu capability cùng cấp với nó. Lõi giữ repo, policy, dto, lỗi và notifier dùng chung (`proposal.repo.ts`,
 `version.repo.ts`, `commitment.repo.ts`, `budget-year-lock.repo.ts`, `budget-facts.repo.ts`, `budget.policy.ts`,
 `budget-notifier.service.ts`, `version-view.service.ts`, `budget.dto.ts`); lõi không import capability nào, mỗi capability chỉ
 import lõi (`pnpm arch:capabilities --module budgets`: năm cạnh, không vòng).
 
+- `invoice/` — ghi nhận hóa đơn (`US-12-10`, `US-12-02`), gắn tệp gốc và chứng từ thuế nộp thay (`US-04-04`,
+  `US-01-12`), khớp dòng hóa đơn với khoản cam kết (`US-06-06`, `US-12-02`), đọc hóa đơn và dòng thuế (`US-12-10` AC-11);
+  `invoices.controller.ts`; `InvoiceService`, `InvoiceQueryService`, `InvoiceDocumentService`, `InvoiceMatchService`,
+  `InvoiceTaxLineService`, `InvoiceRepo`, `invoice-cost.policy.ts`, `invoice-match.policy.ts`.
 - `proposal/` — đề xuất của trưởng phòng: gửi, rút, Finance trả lại, gửi lại (US-06-10);
   `budget-proposals.controller.ts`; `ProposalService`, `ProposalViewService`.
 - `version/` — version: tạo, sửa dòng, import file dòng, gửi duyệt, quyết định, lịch sử (US-06-09, US-06-11);
@@ -63,6 +67,8 @@ import lõi (`pnpm arch:capabilities --module budgets`: năm cạnh, không vòn
 
 - Thứ tự khóa cố định: hàng proposal → hàng version của Cost Center và năm (theo id) → khóa năm, nhiều năm thì năm
   sớm trước; transaction của request khóa hàng request trước rồi mới khóa năm (`budget-year-lock.repo.ts`, F31).
+- Thứ tự khóa khi khớp hóa đơn với khoản cam kết: (1) hàng hóa đơn (`lockInvoice`); (2) khóa năm ngân sách
+  (`BudgetYearLockRepo`); (3) hàng khoản cam kết (`lockById`).
 - Một request giữ tối đa một commitment mỗi năm (`@@unique([requestId, year])`, `BudgetCommitmentExistsError`).
 - Proposal đã gửi không sửa tại chỗ; quyết định version là bản ghi không đổi và không quyết định sau khi năm tài
   chính đã hết (`BUDGET.YEAR_ENDED`, `version-decision.service.ts`).

@@ -14,6 +14,11 @@ personnel, onboarding, data-import (chỉ type); gốc `src/app/app.module.ts` v
     plan.
   - `getPlanPrice` — đơn giá plan cho một phòng ban, chỉ từ subscription phòng ban đó sở hữu.
   - `getSubscriptionIdsOwnedBy`, `getApplicationsOwnedBy`, `getWorkspaceDutiesOf` — thứ một phòng ban/người đang giữ.
+  - `getSubscriptionSummaries(ids, tx?)` — một truy vấn trả `{ id, vendorId, ownerDepartmentId }` cho thuê bao tồn tại,
+    theo id; `isVendorUsable(id, tx?)` — nhà cung cấp tồn tại thì dùng được, vì model chưa có trạng thái ngừng dùng.
+  - `attachDocumentToInvoice(tx, actor, documentId, invoiceId)` — gắn tệp đã tải lên vào hóa đơn (`US-12-10` AC-5,
+    `US-04-04` AC-4, `US-01-12` AC-10).
+  - `getInvoiceDocuments(invoiceId, tx?)` — danh sách tệp đính kèm hóa đơn (`US-04-04`).
   - `registerInternalSoftware` — đăng ký phần mềm nội bộ trong transaction của bên gọi (US-05-20).
   - `getVendorName`, `getOnboardingFacts` — tên vendor; số ứng dụng/plan/subscription cho checklist onboarding.
 - `SubscriptionOwnerAssignmentApi` (`public/subscription-owner-assignment.api.ts`) — `assign`: gán phòng ban sở hữu cho

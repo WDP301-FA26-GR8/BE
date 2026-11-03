@@ -99,6 +99,7 @@ model Vendor {
   applications    Application[]
   taxProfile      VendorTaxProfile?
   assessments     AccessRequestAssessment[]
+  invoices        Invoice[]
 
   @@unique([organizationId, normalizedName])
   @@unique([organizationId, dictionaryGroupId])
@@ -329,6 +330,7 @@ model Subscription {
   seatBaselineImports SeatBaselineImport[]
   licenseAssignments  LicenseAssignment[]
   licenseKeys         LicenseKey[]
+  invoiceLines        InvoiceLine[]
 
   @@index([planId])
   @@index([ownerDepartmentId])
@@ -460,6 +462,7 @@ model Contract {
 
   organization Organization         @relation(fields: [organizationId], references: [id])
   documents    DocumentAttachment[]
+  invoices     Invoice[]
 
   @@map("contracts")
 }
@@ -480,13 +483,17 @@ model DocumentAttachment {
   finalObjectKey      String?         @unique @map("final_object_key")
   uploadedByAppUserId String          @map("uploaded_by_app_user_id") @db.Uuid
   contractId          String?         @map("contract_id") @db.Uuid
+  invoiceId           String?         @map("invoice_id") @db.Uuid
   attachedAt          DateTime?       @map("attached_at") @db.Timestamptz(3)
   createdAt           DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
 
-  organization Organization @relation(fields: [organizationId], references: [id])
-  contract     Contract?    @relation(fields: [contractId], references: [id], onDelete: Restrict)
+  organization Organization     @relation(fields: [organizationId], references: [id])
+  contract     Contract?        @relation(fields: [contractId], references: [id], onDelete: Restrict)
+  invoice      Invoice?         @relation(fields: [invoiceId], references: [id], onDelete: Restrict)
+  taxLines     InvoiceTaxLine[]
 
   @@index([contractId])
+  @@index([invoiceId])
   @@index([uploadedByAppUserId, status])
   @@map("document_attachments")
 }

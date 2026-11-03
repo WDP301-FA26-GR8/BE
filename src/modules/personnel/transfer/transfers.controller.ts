@@ -48,7 +48,7 @@ const WRITE_COMMON = [UNAUTHENTICATED_RESPONSE, FORBIDDEN_WRITE, GUARDED_SERVICE
 const NOT_FOUND = {
   status: HttpStatus.NOT_FOUND,
   description:
-    'The transfer does not exist, or an IT Admin reads one of a department they are not in charge of (DEPARTMENT_TRANSFER.NOT_FOUND).',
+    'The transfer does not exist, an IT Admin reads one of a department they are not in charge of, or a department head reads one outside their department (DEPARTMENT_TRANSFER.NOT_FOUND).',
   examples: [EXAMPLES.NOT_FOUND],
 } as const;
 
@@ -155,12 +155,12 @@ export class TransfersController {
   }
 
   @Get(':id')
-  @RequireRoles('SUPER_ADMIN', 'IT_ADMIN')
+  @RequireRoles('SUPER_ADMIN', 'IT_ADMIN', 'MANAGER')
   @ApiOperation({ operationId: 'departmentTransferGet', summary: 'Read a transfer' })
   @ApiSuccessResponse(TransferDetailResponseDto, {
     message: 'DEPARTMENT_TRANSFER.RETRIEVED',
     description:
-      'The transfer with its basis, who follows the head of the old department, who recorded it (an account, or the controlled procedure) and how it ended. The IT Admin reads a minimal projection: no basis, no head handover and no reason of a cancellation.',
+      'The transfer with its basis, who follows the head of the old department, who recorded it (an account, or the controlled procedure) and how it ended. The IT Admin reads a minimal projection: no basis, no head handover and no reason of a cancellation. Department heads of the old or new department read the full projection.',
   })
   @ApiErrorResponses(...COMMON, NOT_FOUND, {
     status: HttpStatus.UNPROCESSABLE_ENTITY,

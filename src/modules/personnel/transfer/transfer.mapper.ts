@@ -35,7 +35,7 @@ export function toSummary(record: TransferSummaryRecord, names: TransferNames): 
 }
 
 /**
- * The transfer in full for the Super Admin; for the IT Admin only the minimal projection: the people, the departments, the day
+ * The transfer in full for the Super Admin and old/new department heads (US-01-12 AC-4, BM-04); for the IT Admin only the minimal projection: the people, the departments, the day
  * and the state the technical work needs, without the basis, the handover of the head or the reason of a cancellation.
  */
 export function toDetail(

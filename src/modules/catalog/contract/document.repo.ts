@@ -15,6 +15,7 @@ export interface DocumentRecord {
   finalObjectKey: string | null;
   uploadedByAppUserId: string;
   contractId: string | null;
+  invoiceId: string | null;
   attachedAt: Date | null;
   createdAt: Date;
 }
@@ -82,6 +83,21 @@ export class DocumentRepo {
     await tx.documentAttachment.update({
       where: { id },
       data: { status: 'READY', contractId, attachedAt: now },
+    });
+  }
+
+  async markAttachedToInvoice(tx: DbTx, id: string, invoiceId: string, now: Date): Promise<void> {
+    await tx.documentAttachment.update({
+      where: { id },
+      data: { status: 'READY', invoiceId, attachedAt: now },
+    });
+  }
+
+  /** The files attached to this invoice, in chronological order. */
+  async findByInvoiceId(invoiceId: string, tx?: DbTx): Promise<DocumentRecord[]> {
+    return (tx ?? this.prisma).documentAttachment.findMany({
+      where: { invoiceId, status: 'READY' },
+      orderBy: { createdAt: 'asc' },
     });
   }
 }

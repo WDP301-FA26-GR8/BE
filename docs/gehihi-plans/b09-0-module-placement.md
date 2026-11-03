@@ -1,10 +1,10 @@
 # B09-0 — Quyết định đặt G9 ở đâu
 
-| Gói  | Hạng mục                                | Loại     | Cổng vào                      |
-| ---- | --------------------------------------- | -------- | ----------------------------- |
-| B-09 | khung G9, chưa thuộc riêng hạng mục nào | `DESIGN` | B07-7 xong; Owner chốt ở Q-08 |
+| Gói  | Hạng mục                                | Loại     | Cổng vào                                |
+| ---- | --------------------------------------- | -------- | --------------------------------------- |
+| B-09 | khung G9, chưa thuộc riêng hạng mục nào | `DESIGN` | B07-7 xong; Q-08 tạm theo khuyến nghị A |
 
-Mọi plan G9 phụ thuộc quyết định này. Agent chỉ soạn phương án, **không tự chọn, không tạo module**.
+Mọi plan G9 phụ thuộc quyết định này. Q-08 tạm theo phương án A, Owner ủy quyền 01/11/2026. Agent chỉ soạn hồ sơ, **không tạo module**.
 
 ## Vì sao phải quyết trước
 
@@ -26,7 +26,7 @@ Hai chiều phụ thuộc đối nhau:
 | C. Tách đôi: sao kê và đối soát ở `budgets`, phát hiện và hợp thức hóa ở T6 | Số liệu tiền gần nguồn, luồng discovery tách                    | Hai nơi, ranh giới phải vẽ cẩn thận                                                                                                                                  |
 
 Khuyến nghị: A, tên `reconciliation`, tầng T6. G9 phải đọc `requests`, `budgets` và ghi `catalog`, `licensing`; chỉ T6 làm được mà không
-tạo cạnh ngược. Cần Owner quyết vì đổi bảng tầng.
+tạo cạnh ngược. Việc này đổi bảng tầng, nên ADR giữ `Proposed` tới khi Owner xem.
 
 Contract đề xuất, theo mẫu `DepartmentUseContributions` ở `organization/public/organization.extension-points.ts`:
 
@@ -48,7 +48,7 @@ interface SpendEvidenceReader {
 1. So sánh ba phương án trên bằng bằng chứng code: liệt kê chính xác hàm cần gọi cho từng Story, hàm nào đã có, hàm nào phải thêm.
 2. Nháp ADR ở `docs/decisions/`, trạng thái `Proposed`, theo mẫu ADR gần nhất.
 3. Danh sách sửa nếu chọn A: `scripts/arch/tiers.cjs`, bảng tầng ở `docs/rules/module-structure.md`, ADR-0019.
-4. Điền mục `Ownership` của năm spec G9, ghi rõ đang chờ Q-08.
+4. Điền mục `Ownership` của năm spec G9 theo phương án A, ghi rõ Q-08 đang tạm theo khuyến nghị.
 
 ## Không làm
 

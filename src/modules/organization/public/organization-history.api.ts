@@ -8,6 +8,7 @@ import { EmployeeDirectoryService } from '../employee/employee-directory.service
 import { toBrief } from '../organization-local-seed-fixture.mapper';
 import { HeadHandoverRefusedError } from './organization.errors';
 import { OrganizationApi } from './organization.api';
+import { CostCenterCatalogueService } from '../cost-center/cost-center-catalogue.service';
 import type {
   DepartmentBrief,
   EmployeeWorkState,
@@ -35,7 +36,13 @@ export class OrganizationHistoryApi {
     private readonly employees: EmployeeDirectoryService,
     private readonly departments: DepartmentDirectoryService,
     private readonly changes: OrganizationChangeService,
+    private readonly costCenters: CostCenterCatalogueService,
   ) {}
+
+  /** The department's Cost Center on the organization's calendar day; null before linkage or after retirement. */
+  getCostCenterOfDepartmentOn(departmentId: string, onDate: BusinessDate, tx?: DbTx): Promise<string | null> {
+    return this.costCenters.idOfDepartmentOn(departmentId, onDate, tx);
+  }
 
   /**
    * Locks the departments in id order, whatever order they are named in (`FOR UPDATE` for those that will have a head period

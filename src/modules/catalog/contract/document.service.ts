@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { TransactionRunner } from '../../../infrastructure/database/transaction-runner';
+import { TransactionRunner, type DbTx } from '../../../infrastructure/database/transaction-runner';
 import { ObjectKeyFactory } from '../../../infrastructure/object-storage/object-key.factory';
 import { ObjectStorageUnavailableError } from '../../../infrastructure/object-storage/object-storage.errors';
 import { OBJECT_STORAGE, type ObjectStoragePort } from '../../../infrastructure/object-storage/object-storage.port';
@@ -12,15 +12,16 @@ import {
   ContractNotFoundError,
   DocumentAccessForbiddenError,
   DocumentNotAwaitingUploadError,
-  DocumentNotFoundError,
   DocumentUploadExpiredError,
   DocumentUploadMismatchError,
   DocumentUploadPendingError,
 } from './contract.errors';
+import { DocumentNotFoundError } from '../public/catalog.errors';
 import {
   LINK_TTL_SECONDS,
   assertAttachable,
   assertFileAllowed,
+  assertMayAttachTo,
   assertMayChoosePurpose,
   assertPurposeAvailable,
   assertUploadMatches,
@@ -266,6 +267,7 @@ export class DocumentService {
     const organization = await this.requireOrganization();
     const current = await this.ownedBy(actor, id);
     assertMayChoosePurpose(current.purpose, actor.roles);
+    assertMayAttachTo(current.purpose, 'CONTRACT', actor.roles);
     if (!(await this.contracts.find(input.contractId))) throw new ContractNotFoundError();
     const now = new Date();
 
@@ -289,6 +291,48 @@ export class DocumentService {
 
       return (await this.documents.find(id, tx)) ?? locked;
     });
+  }
+
+  /**
+   * Attaches the file to an invoice (`US-12-10` AC-5, `US-04-04` AC-4): only by the person who uploaded it, who still
+   * holds a role that chooses its purpose and attaches it to an invoice, and only once.
+   */
+  async attachToInvoice(
+    tx: DbTx,
+    actor: AuthenticatedPrincipal,
+    id: string,
+    invoiceId: string,
+  ): Promise<DocumentRecord> {
+    const organization = await this.requireOrganization(tx);
+    const locked = await this.documents.lock(tx, id);
+    if (!locked || locked.uploadedByAppUserId !== actor.appUserId) {
+      throw new DocumentNotFoundError();
+    }
+    assertMayChoosePurpose(locked.purpose, actor.roles);
+    assertMayAttachTo(locked.purpose, 'INVOICE', actor.roles);
+    assertAttachable(locked.status);
+
+    const now = new Date();
+    await this.documents.markAttachedToInvoice(tx, id, invoiceId, now);
+    await this.audit.record(
+      tx,
+      catalogAuditEvent(
+        actor,
+        organization.id,
+        'DOCUMENT.ATTACHED',
+        'DocumentAttachment',
+        id,
+        { status: locked.status },
+        { status: 'READY', invoiceId },
+      ),
+    );
+
+    return (await this.documents.find(id, tx)) ?? locked;
+  }
+
+  /** The files attached to an invoice, in the order they were declared. */
+  async listForInvoice(invoiceId: string, tx?: DbTx): Promise<DocumentRecord[]> {
+    return this.documents.findByInvoiceId(invoiceId, tx);
   }
 
   /** A file as the person may see it; one they may not see is as if it did not exist. Throws DocumentNotFoundError. */
@@ -390,8 +434,8 @@ export class DocumentService {
     }
   }
 
-  private async requireOrganization() {
-    const organization = await this.organization.getOrganization();
+  private async requireOrganization(tx?: DbTx) {
+    const organization = await this.organization.getOrganization(tx);
     if (!organization) throw new Error('A document was kept before installation');
 
     return organization;

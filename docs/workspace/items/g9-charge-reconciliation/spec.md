@@ -41,7 +41,7 @@ Kết nối ngân hàng, thanh toán.
 
 ## Dependencies and blockers
 
-`g9-statement-import`, `g8-commitment-realization`.
+`g9-statement-import`, `g8-commitment-realization`. F-20: theo `US-06-06` AC-8 và `QĐ-83a`(4), sao kê khớp `K1` chưa có hóa đơn thì thực chi tăng nhưng _còn lại_ không đổi (phần cam kết đang giữ đưa vào phép tính giảm tương ứng; trạng thái khoản không đổi, áp dụng ở B09-4).
 
 ## Ownership: module, data, API
 
@@ -90,5 +90,7 @@ Ma trận trên là khung từ tiêu đề AC; tình huống cụ thể được
 - [ ] Tài liệu vận hành/runbook bị ảnh hưởng đã cập nhật; phần chưa kiểm chứng ghi rõ.
 
 ## Changes and acceptance
+
+31/10/2026: thêm F-20 từ `docs/gehihi-plans/01-design-corrections.md` vào Dependencies and blockers; chưa Owner review.
 
 31/10/2026: lập khung theo scope map G9, G8, G5 của [roadmap](../../../roadmap.md) ở bước 01. Chưa thiết kế chi tiết, chưa code, chưa review, chưa nghiệm thu.

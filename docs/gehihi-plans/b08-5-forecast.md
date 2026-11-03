@@ -1,16 +1,17 @@
 # B08-5 — Dự báo L1 và L3
 
-| Gói  | Hạng mục      | AC                | Loại     | Cổng vào                                       |
-| ---- | ------------- | ----------------- | -------- | ---------------------------------------------- |
-| B-08 | `g8-forecast` | `US-12-03` AC-1→7 | `DESIGN` | B08-2 xong; AC-5 chờ A-06; AC-7 chờ Q-02, A-06 |
+| Gói  | Hạng mục      | AC                | Loại     | Cổng vào                        |
+| ---- | ------------- | ----------------- | -------- | ------------------------------- |
+| B-08 | `g8-forecast` | `US-12-03` AC-1→7 | `DESIGN` | B08-2 xong; AC-5, AC-7 chờ A-06 |
 
-Chỉ AC-7 chờ F35 (Q-02); AC-5, AC-7 cần kết quả gia hạn của A-06. Lượt đầu chỉ thiết kế AC-1→AC-4, AC-6.
+AC-5, AC-7 cần kết quả gia hạn của A-06. Lượt đầu chỉ thiết kế AC-1→AC-4, AC-6.
 
 `src/modules/requests/access-request/pricing.policy.ts` đang đặt `binding: true` cho mọi kỳ giá catalog, trong khi `QĐ-84a`(4) đòi kỳ hủy
 được chỉ là dự báo. **Không tự đổi policy đó:** nó ảnh hưởng số tiền khoản cam kết G5.
 
 `P03-D10` = A đã hoãn F35 tới G8, và đổi về sau phải là quyết định Owner mới. Phương án B ghi sẵn: thêm số tháng cam kết vào bằng chứng giá.
-Gợi ý chờ Owner: với Request nhiều năm tài chính, kỳ sau `Subscription.endDate` có `binding = false`; không có `endDate` thì giữ ràng buộc.
+Q-02 tạm theo khuyến nghị, Owner ủy quyền 01/11/2026: với Request nhiều năm tài chính, kỳ sau `Subscription.endDate` có `binding = false`;
+không có `endDate` thì giữ ràng buộc. Việc này giảm số tiền khoản cam kết, nên Owner xem lại khi review trước khi sửa `pricing.policy.ts`.
 
 ## Thiết kế phải trả lời
 
