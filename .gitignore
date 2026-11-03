@@ -1,0 +1,77 @@
+# compiled output
+/dist
+/node_modules
+/build
+/src/generated
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+demo-dataset-reports/
+claude/worktrees/
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+/reports
+
+# Public model weights; download separately, never commit them.
+/.models/
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.env.*
+!.env.example
+!.env.bootstrap.example
+!.env.demo-dataset.example
+!.env.demo-dataset-local.example
+
+# Shared planning is versioned; only personal scratch is ignored.
+/docs/workspace/local/
+
+# Durable documentation under /docs/architecture, /docs/decisions and
+# /docs/guides remains versioned as shared project context.
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+*.pem
+*.key
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
