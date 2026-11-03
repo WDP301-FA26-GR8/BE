@@ -460,6 +460,7 @@ export type BudgetVersionWhereInput = {
   lines?: Prisma.BudgetVersionLineListRelationFilter
   decisions?: Prisma.BudgetVersionDecisionListRelationFilter
   attachedCommitments?: Prisma.BudgetCommitmentListRelationFilter
+  attachments?: Prisma.BudgetAttachmentListRelationFilter
 }
 
 export type BudgetVersionOrderByWithRelationInput = {
@@ -504,6 +505,7 @@ export type BudgetVersionOrderByWithRelationInput = {
   lines?: Prisma.BudgetVersionLineOrderByRelationAggregateInput
   decisions?: Prisma.BudgetVersionDecisionOrderByRelationAggregateInput
   attachedCommitments?: Prisma.BudgetCommitmentOrderByRelationAggregateInput
+  attachments?: Prisma.BudgetAttachmentOrderByRelationAggregateInput
 }
 
 export type BudgetVersionWhereUniqueInput = Prisma.AtLeast<{
@@ -552,6 +554,7 @@ export type BudgetVersionWhereUniqueInput = Prisma.AtLeast<{
   lines?: Prisma.BudgetVersionLineListRelationFilter
   decisions?: Prisma.BudgetVersionDecisionListRelationFilter
   attachedCommitments?: Prisma.BudgetCommitmentListRelationFilter
+  attachments?: Prisma.BudgetAttachmentListRelationFilter
 }, "id" | "rejectedPredecessorId" | "costCenterId_year_number">
 
 export type BudgetVersionOrderByWithAggregationInput = {
@@ -662,6 +665,7 @@ export type BudgetVersionCreateInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateInput = {
@@ -700,6 +704,7 @@ export type BudgetVersionUncheckedCreateInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUpdateInput = {
@@ -738,6 +743,7 @@ export type BudgetVersionUpdateInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateInput = {
@@ -776,6 +782,7 @@ export type BudgetVersionUncheckedUpdateInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionCreateManyInput = {
@@ -1244,6 +1251,22 @@ export type BudgetVersionUpdateOneRequiredWithoutHistoryNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BudgetVersionUpdateToOneWithWhereWithoutHistoryInput, Prisma.BudgetVersionUpdateWithoutHistoryInput>, Prisma.BudgetVersionUncheckedUpdateWithoutHistoryInput>
 }
 
+export type BudgetVersionCreateNestedOneWithoutAttachmentsInput = {
+  create?: Prisma.XOR<Prisma.BudgetVersionCreateWithoutAttachmentsInput, Prisma.BudgetVersionUncheckedCreateWithoutAttachmentsInput>
+  connectOrCreate?: Prisma.BudgetVersionCreateOrConnectWithoutAttachmentsInput
+  connect?: Prisma.BudgetVersionWhereUniqueInput
+}
+
+export type BudgetVersionUpdateOneWithoutAttachmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.BudgetVersionCreateWithoutAttachmentsInput, Prisma.BudgetVersionUncheckedCreateWithoutAttachmentsInput>
+  connectOrCreate?: Prisma.BudgetVersionCreateOrConnectWithoutAttachmentsInput
+  upsert?: Prisma.BudgetVersionUpsertWithoutAttachmentsInput
+  disconnect?: Prisma.BudgetVersionWhereInput | boolean
+  delete?: Prisma.BudgetVersionWhereInput | boolean
+  connect?: Prisma.BudgetVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BudgetVersionUpdateToOneWithWhereWithoutAttachmentsInput, Prisma.BudgetVersionUpdateWithoutAttachmentsInput>, Prisma.BudgetVersionUncheckedUpdateWithoutAttachmentsInput>
+}
+
 export type BudgetVersionCreateNestedManyWithoutCurrencyRecordInput = {
   create?: Prisma.XOR<Prisma.BudgetVersionCreateWithoutCurrencyRecordInput, Prisma.BudgetVersionUncheckedCreateWithoutCurrencyRecordInput> | Prisma.BudgetVersionCreateWithoutCurrencyRecordInput[] | Prisma.BudgetVersionUncheckedCreateWithoutCurrencyRecordInput[]
   connectOrCreate?: Prisma.BudgetVersionCreateOrConnectWithoutCurrencyRecordInput | Prisma.BudgetVersionCreateOrConnectWithoutCurrencyRecordInput[]
@@ -1405,6 +1428,7 @@ export type BudgetVersionCreateWithoutProposalInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutProposalInput = {
@@ -1442,6 +1466,7 @@ export type BudgetVersionUncheckedCreateWithoutProposalInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutProposalInput = {
@@ -1540,6 +1565,7 @@ export type BudgetVersionCreateWithoutRevisionsInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutRevisionsInput = {
@@ -1577,6 +1603,7 @@ export type BudgetVersionUncheckedCreateWithoutRevisionsInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutRevisionsInput = {
@@ -1619,6 +1646,7 @@ export type BudgetVersionCreateWithoutBasedOnInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutBasedOnInput = {
@@ -1656,6 +1684,7 @@ export type BudgetVersionUncheckedCreateWithoutBasedOnInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutBasedOnInput = {
@@ -1703,6 +1732,7 @@ export type BudgetVersionCreateWithoutFollowedByInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutFollowedByInput = {
@@ -1740,6 +1770,7 @@ export type BudgetVersionUncheckedCreateWithoutFollowedByInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutFollowedByInput = {
@@ -1782,6 +1813,7 @@ export type BudgetVersionCreateWithoutRejectedPredecessorInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutRejectedPredecessorInput = {
@@ -1819,6 +1851,7 @@ export type BudgetVersionUncheckedCreateWithoutRejectedPredecessorInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutRejectedPredecessorInput = {
@@ -1872,6 +1905,7 @@ export type BudgetVersionUpdateWithoutRevisionsInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutRevisionsInput = {
@@ -1909,6 +1943,7 @@ export type BudgetVersionUncheckedUpdateWithoutRevisionsInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUpsertWithWhereUniqueWithoutBasedOnInput = {
@@ -1973,6 +2008,7 @@ export type BudgetVersionUpdateWithoutFollowedByInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutFollowedByInput = {
@@ -2010,6 +2046,7 @@ export type BudgetVersionUncheckedUpdateWithoutFollowedByInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUpsertWithoutRejectedPredecessorInput = {
@@ -2058,6 +2095,7 @@ export type BudgetVersionUpdateWithoutRejectedPredecessorInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutRejectedPredecessorInput = {
@@ -2095,6 +2133,7 @@ export type BudgetVersionUncheckedUpdateWithoutRejectedPredecessorInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionCreateWithoutLinesInput = {
@@ -2132,6 +2171,7 @@ export type BudgetVersionCreateWithoutLinesInput = {
   history?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutLinesInput = {
@@ -2169,6 +2209,7 @@ export type BudgetVersionUncheckedCreateWithoutLinesInput = {
   history?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutLinesInput = {
@@ -2222,6 +2263,7 @@ export type BudgetVersionUpdateWithoutLinesInput = {
   history?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutLinesInput = {
@@ -2259,6 +2301,7 @@ export type BudgetVersionUncheckedUpdateWithoutLinesInput = {
   history?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionCreateWithoutDecisionsInput = {
@@ -2296,6 +2339,7 @@ export type BudgetVersionCreateWithoutDecisionsInput = {
   history?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutVersionInput
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutDecisionsInput = {
@@ -2333,6 +2377,7 @@ export type BudgetVersionUncheckedCreateWithoutDecisionsInput = {
   history?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutVersionInput
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutDecisionsInput = {
@@ -2386,6 +2431,7 @@ export type BudgetVersionUpdateWithoutDecisionsInput = {
   history?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutVersionNestedInput
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutDecisionsInput = {
@@ -2423,6 +2469,7 @@ export type BudgetVersionUncheckedUpdateWithoutDecisionsInput = {
   history?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutVersionNestedInput
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionCreateWithoutAttachedCommitmentsInput = {
@@ -2460,6 +2507,7 @@ export type BudgetVersionCreateWithoutAttachedCommitmentsInput = {
   history?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutVersionInput
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutAttachedCommitmentsInput = {
@@ -2497,6 +2545,7 @@ export type BudgetVersionUncheckedCreateWithoutAttachedCommitmentsInput = {
   history?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutVersionInput
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutAttachedCommitmentsInput = {
@@ -2550,6 +2599,7 @@ export type BudgetVersionUpdateWithoutAttachedCommitmentsInput = {
   history?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutVersionNestedInput
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutAttachedCommitmentsInput = {
@@ -2587,6 +2637,7 @@ export type BudgetVersionUncheckedUpdateWithoutAttachedCommitmentsInput = {
   history?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutVersionNestedInput
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionCreateWithoutHistoryInput = {
@@ -2624,6 +2675,7 @@ export type BudgetVersionCreateWithoutHistoryInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutHistoryInput = {
@@ -2661,6 +2713,7 @@ export type BudgetVersionUncheckedCreateWithoutHistoryInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutHistoryInput = {
@@ -2714,6 +2767,7 @@ export type BudgetVersionUpdateWithoutHistoryInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutHistoryInput = {
@@ -2748,6 +2802,175 @@ export type BudgetVersionUncheckedUpdateWithoutHistoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revisions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutBasedOnNestedInput
   followedBy?: Prisma.BudgetVersionUncheckedUpdateOneWithoutRejectedPredecessorNestedInput
+  lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
+  decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
+  attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
+}
+
+export type BudgetVersionCreateWithoutAttachmentsInput = {
+  id?: string
+  year: number
+  number: number
+  kind: $Enums.BudgetVersionKind
+  state: $Enums.BudgetVersionState
+  baseMinor: bigint | number
+  reserveMinor: bigint | number
+  totalMinor: bigint | number
+  highValuePercent: number
+  highValueAmountMinor?: bigint | number | null
+  q1Minor?: bigint | number | null
+  q2Minor?: bigint | number | null
+  q3Minor?: bigint | number | null
+  q4Minor?: bigint | number | null
+  reason?: string | null
+  createdByEmployeeId: string
+  createdAt?: Date | string
+  sentByEmployeeId?: string | null
+  sentAt?: Date | string | null
+  detachedAt?: Date | string | null
+  neverCurrent?: boolean
+  expiredAt?: Date | string | null
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutBudgetVersionsInput
+  costCenter: Prisma.CostCenterCreateNestedOneWithoutBudgetVersionsInput
+  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutBudgetVersionsInput
+  proposal?: Prisma.BudgetProposalCreateNestedOneWithoutVersionsInput
+  basedOn?: Prisma.BudgetVersionCreateNestedOneWithoutRevisionsInput
+  revisions?: Prisma.BudgetVersionCreateNestedManyWithoutBasedOnInput
+  rejectedPredecessor?: Prisma.BudgetVersionCreateNestedOneWithoutFollowedByInput
+  followedBy?: Prisma.BudgetVersionCreateNestedOneWithoutRejectedPredecessorInput
+  history?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutVersionInput
+  lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
+  decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
+  attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+}
+
+export type BudgetVersionUncheckedCreateWithoutAttachmentsInput = {
+  id?: string
+  organizationId: string
+  costCenterId: string
+  year: number
+  number: number
+  kind: $Enums.BudgetVersionKind
+  state: $Enums.BudgetVersionState
+  proposalId?: string | null
+  basedOnVersionId?: string | null
+  baseMinor: bigint | number
+  reserveMinor: bigint | number
+  totalMinor: bigint | number
+  currency: string
+  highValuePercent: number
+  highValueAmountMinor?: bigint | number | null
+  q1Minor?: bigint | number | null
+  q2Minor?: bigint | number | null
+  q3Minor?: bigint | number | null
+  q4Minor?: bigint | number | null
+  reason?: string | null
+  createdByEmployeeId: string
+  createdAt?: Date | string
+  sentByEmployeeId?: string | null
+  sentAt?: Date | string | null
+  detachedAt?: Date | string | null
+  neverCurrent?: boolean
+  expiredAt?: Date | string | null
+  rejectedPredecessorId?: string | null
+  updatedAt?: Date | string
+  revisions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutBasedOnInput
+  followedBy?: Prisma.BudgetVersionUncheckedCreateNestedOneWithoutRejectedPredecessorInput
+  history?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutVersionInput
+  lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
+  decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
+  attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+}
+
+export type BudgetVersionCreateOrConnectWithoutAttachmentsInput = {
+  where: Prisma.BudgetVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.BudgetVersionCreateWithoutAttachmentsInput, Prisma.BudgetVersionUncheckedCreateWithoutAttachmentsInput>
+}
+
+export type BudgetVersionUpsertWithoutAttachmentsInput = {
+  update: Prisma.XOR<Prisma.BudgetVersionUpdateWithoutAttachmentsInput, Prisma.BudgetVersionUncheckedUpdateWithoutAttachmentsInput>
+  create: Prisma.XOR<Prisma.BudgetVersionCreateWithoutAttachmentsInput, Prisma.BudgetVersionUncheckedCreateWithoutAttachmentsInput>
+  where?: Prisma.BudgetVersionWhereInput
+}
+
+export type BudgetVersionUpdateToOneWithWhereWithoutAttachmentsInput = {
+  where?: Prisma.BudgetVersionWhereInput
+  data: Prisma.XOR<Prisma.BudgetVersionUpdateWithoutAttachmentsInput, Prisma.BudgetVersionUncheckedUpdateWithoutAttachmentsInput>
+}
+
+export type BudgetVersionUpdateWithoutAttachmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  number?: Prisma.IntFieldUpdateOperationsInput | number
+  kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
+  state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
+  baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q3Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q4Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sentByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  detachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  neverCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  expiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetVersionsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneRequiredWithoutBudgetVersionsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutBudgetVersionsNestedInput
+  proposal?: Prisma.BudgetProposalUpdateOneWithoutVersionsNestedInput
+  basedOn?: Prisma.BudgetVersionUpdateOneWithoutRevisionsNestedInput
+  revisions?: Prisma.BudgetVersionUpdateManyWithoutBasedOnNestedInput
+  rejectedPredecessor?: Prisma.BudgetVersionUpdateOneWithoutFollowedByNestedInput
+  followedBy?: Prisma.BudgetVersionUpdateOneWithoutRejectedPredecessorNestedInput
+  history?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutVersionNestedInput
+  lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
+  decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
+  attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+}
+
+export type BudgetVersionUncheckedUpdateWithoutAttachmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  number?: Prisma.IntFieldUpdateOperationsInput | number
+  kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
+  state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
+  proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q3Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  q4Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sentByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  detachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  neverCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  expiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedPredecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  revisions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutBasedOnNestedInput
+  followedBy?: Prisma.BudgetVersionUncheckedUpdateOneWithoutRejectedPredecessorNestedInput
+  history?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutVersionNestedInput
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
@@ -2788,6 +3011,7 @@ export type BudgetVersionCreateWithoutCurrencyRecordInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutCurrencyRecordInput = {
@@ -2825,6 +3049,7 @@ export type BudgetVersionUncheckedCreateWithoutCurrencyRecordInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutCurrencyRecordInput = {
@@ -2888,6 +3113,7 @@ export type BudgetVersionCreateWithoutOrganizationInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutOrganizationInput = {
@@ -2925,6 +3151,7 @@ export type BudgetVersionUncheckedCreateWithoutOrganizationInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutOrganizationInput = {
@@ -2988,6 +3215,7 @@ export type BudgetVersionCreateWithoutCostCenterInput = {
   lines?: Prisma.BudgetVersionLineCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionUncheckedCreateWithoutCostCenterInput = {
@@ -3025,6 +3253,7 @@ export type BudgetVersionUncheckedCreateWithoutCostCenterInput = {
   lines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutVersionInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedCreateNestedManyWithoutVersionInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutAttachedVersionInput
+  attachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutVersionInput
 }
 
 export type BudgetVersionCreateOrConnectWithoutCostCenterInput = {
@@ -3119,6 +3348,7 @@ export type BudgetVersionUpdateWithoutProposalInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutProposalInput = {
@@ -3156,6 +3386,7 @@ export type BudgetVersionUncheckedUpdateWithoutProposalInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateManyWithoutProposalInput = {
@@ -3255,6 +3486,7 @@ export type BudgetVersionUpdateWithoutBasedOnInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutBasedOnInput = {
@@ -3292,6 +3524,7 @@ export type BudgetVersionUncheckedUpdateWithoutBasedOnInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateManyWithoutBasedOnInput = {
@@ -3391,6 +3624,7 @@ export type BudgetVersionUpdateWithoutCurrencyRecordInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutCurrencyRecordInput = {
@@ -3428,6 +3662,7 @@ export type BudgetVersionUncheckedUpdateWithoutCurrencyRecordInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordInput = {
@@ -3527,6 +3762,7 @@ export type BudgetVersionUpdateWithoutOrganizationInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutOrganizationInput = {
@@ -3564,6 +3800,7 @@ export type BudgetVersionUncheckedUpdateWithoutOrganizationInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateManyWithoutOrganizationInput = {
@@ -3663,6 +3900,7 @@ export type BudgetVersionUpdateWithoutCostCenterInput = {
   lines?: Prisma.BudgetVersionLineUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateWithoutCostCenterInput = {
@@ -3700,6 +3938,7 @@ export type BudgetVersionUncheckedUpdateWithoutCostCenterInput = {
   lines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutVersionNestedInput
   decisions?: Prisma.BudgetVersionDecisionUncheckedUpdateManyWithoutVersionNestedInput
   attachedCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionNestedInput
+  attachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutVersionNestedInput
 }
 
 export type BudgetVersionUncheckedUpdateManyWithoutCostCenterInput = {
@@ -3744,6 +3983,7 @@ export type BudgetVersionCountOutputType = {
   lines: number
   decisions: number
   attachedCommitments: number
+  attachments: number
 }
 
 export type BudgetVersionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3752,6 +3992,7 @@ export type BudgetVersionCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   lines?: boolean | BudgetVersionCountOutputTypeCountLinesArgs
   decisions?: boolean | BudgetVersionCountOutputTypeCountDecisionsArgs
   attachedCommitments?: boolean | BudgetVersionCountOutputTypeCountAttachedCommitmentsArgs
+  attachments?: boolean | BudgetVersionCountOutputTypeCountAttachmentsArgs
 }
 
 /**
@@ -3799,6 +4040,13 @@ export type BudgetVersionCountOutputTypeCountAttachedCommitmentsArgs<ExtArgs ext
   where?: Prisma.BudgetCommitmentWhereInput
 }
 
+/**
+ * BudgetVersionCountOutputType without action
+ */
+export type BudgetVersionCountOutputTypeCountAttachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetAttachmentWhereInput
+}
+
 
 export type BudgetVersionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3842,6 +4090,7 @@ export type BudgetVersionSelect<ExtArgs extends runtime.Types.Extensions.Interna
   lines?: boolean | Prisma.BudgetVersion$linesArgs<ExtArgs>
   decisions?: boolean | Prisma.BudgetVersion$decisionsArgs<ExtArgs>
   attachedCommitments?: boolean | Prisma.BudgetVersion$attachedCommitmentsArgs<ExtArgs>
+  attachments?: boolean | Prisma.BudgetVersion$attachmentsArgs<ExtArgs>
   _count?: boolean | Prisma.BudgetVersionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["budgetVersion"]>
 
@@ -3967,6 +4216,7 @@ export type BudgetVersionInclude<ExtArgs extends runtime.Types.Extensions.Intern
   lines?: boolean | Prisma.BudgetVersion$linesArgs<ExtArgs>
   decisions?: boolean | Prisma.BudgetVersion$decisionsArgs<ExtArgs>
   attachedCommitments?: boolean | Prisma.BudgetVersion$attachedCommitmentsArgs<ExtArgs>
+  attachments?: boolean | Prisma.BudgetVersion$attachmentsArgs<ExtArgs>
   _count?: boolean | Prisma.BudgetVersionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BudgetVersionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4001,6 +4251,7 @@ export type $BudgetVersionPayload<ExtArgs extends runtime.Types.Extensions.Inter
     lines: Prisma.$BudgetVersionLinePayload<ExtArgs>[]
     decisions: Prisma.$BudgetVersionDecisionPayload<ExtArgs>[]
     attachedCommitments: Prisma.$BudgetCommitmentPayload<ExtArgs>[]
+    attachments: Prisma.$BudgetAttachmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4438,6 +4689,7 @@ export interface Prisma__BudgetVersionClient<T, Null = never, ExtArgs extends ru
   lines<T extends Prisma.BudgetVersion$linesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetVersion$linesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetVersionLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   decisions<T extends Prisma.BudgetVersion$decisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetVersion$decisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetVersionDecisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attachedCommitments<T extends Prisma.BudgetVersion$attachedCommitmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetVersion$attachedCommitmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attachments<T extends Prisma.BudgetVersion$attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetVersion$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5090,6 +5342,30 @@ export type BudgetVersion$attachedCommitmentsArgs<ExtArgs extends runtime.Types.
   take?: number
   skip?: number
   distinct?: Prisma.BudgetCommitmentScalarFieldEnum | Prisma.BudgetCommitmentScalarFieldEnum[]
+}
+
+/**
+ * BudgetVersion.attachments
+ */
+export type BudgetVersion$attachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetAttachment
+   */
+  select?: Prisma.BudgetAttachmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetAttachment
+   */
+  omit?: Prisma.BudgetAttachmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetAttachmentInclude<ExtArgs> | null
+  where?: Prisma.BudgetAttachmentWhereInput
+  orderBy?: Prisma.BudgetAttachmentOrderByWithRelationInput | Prisma.BudgetAttachmentOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetAttachmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetAttachmentScalarFieldEnum | Prisma.BudgetAttachmentScalarFieldEnum[]
 }
 
 /**

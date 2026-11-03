@@ -29,6 +29,9 @@ export type OffboardingCaseMinAggregateOutputType = {
   organizationId: string | null
   employeeId: string | null
   departmentId: string | null
+  cancelledPlacementId: string | null
+  cancelledPlacementDepartmentId: string | null
+  cancelledPlacementFrom: Date | null
   state: $Enums.OffboardingState | null
   abrupt: boolean | null
   priorWorkState: $Enums.EmployeeWorkState | null
@@ -63,6 +66,9 @@ export type OffboardingCaseMaxAggregateOutputType = {
   organizationId: string | null
   employeeId: string | null
   departmentId: string | null
+  cancelledPlacementId: string | null
+  cancelledPlacementDepartmentId: string | null
+  cancelledPlacementFrom: Date | null
   state: $Enums.OffboardingState | null
   abrupt: boolean | null
   priorWorkState: $Enums.EmployeeWorkState | null
@@ -97,6 +103,9 @@ export type OffboardingCaseCountAggregateOutputType = {
   organizationId: number
   employeeId: number
   departmentId: number
+  cancelledPlacementId: number
+  cancelledPlacementDepartmentId: number
+  cancelledPlacementFrom: number
   state: number
   abrupt: number
   priorWorkState: number
@@ -135,6 +144,9 @@ export type OffboardingCaseMinAggregateInputType = {
   organizationId?: true
   employeeId?: true
   departmentId?: true
+  cancelledPlacementId?: true
+  cancelledPlacementDepartmentId?: true
+  cancelledPlacementFrom?: true
   state?: true
   abrupt?: true
   priorWorkState?: true
@@ -169,6 +181,9 @@ export type OffboardingCaseMaxAggregateInputType = {
   organizationId?: true
   employeeId?: true
   departmentId?: true
+  cancelledPlacementId?: true
+  cancelledPlacementDepartmentId?: true
+  cancelledPlacementFrom?: true
   state?: true
   abrupt?: true
   priorWorkState?: true
@@ -203,6 +218,9 @@ export type OffboardingCaseCountAggregateInputType = {
   organizationId?: true
   employeeId?: true
   departmentId?: true
+  cancelledPlacementId?: true
+  cancelledPlacementDepartmentId?: true
+  cancelledPlacementFrom?: true
   state?: true
   abrupt?: true
   priorWorkState?: true
@@ -311,7 +329,10 @@ export type OffboardingCaseGroupByOutputType = {
   id: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId: string | null
+  cancelledPlacementId: string | null
+  cancelledPlacementDepartmentId: string | null
+  cancelledPlacementFrom: Date | null
   state: $Enums.OffboardingState
   abrupt: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -368,7 +389,10 @@ export type OffboardingCaseWhereInput = {
   id?: Prisma.UuidFilter<"OffboardingCase"> | string
   organizationId?: Prisma.UuidFilter<"OffboardingCase"> | string
   employeeId?: Prisma.UuidFilter<"OffboardingCase"> | string
-  departmentId?: Prisma.UuidFilter<"OffboardingCase"> | string
+  departmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementDepartmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementFrom?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateFilter<"OffboardingCase"> | $Enums.OffboardingState
   abrupt?: Prisma.BoolFilter<"OffboardingCase"> | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
@@ -401,7 +425,8 @@ export type OffboardingCaseWhereInput = {
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   notice?: Prisma.XOR<Prisma.PersonnelNoticeNullableScalarRelationFilter, Prisma.PersonnelNoticeWhereInput> | null
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-  department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
+  cancelledPlacementDepartment?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   changes?: Prisma.OffboardingCaseChangeListRelationFilter
   recordedByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
   cancelledByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
@@ -411,7 +436,10 @@ export type OffboardingCaseOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledPlacementId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledPlacementDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledPlacementFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   state?: Prisma.SortOrder
   abrupt?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
@@ -445,6 +473,7 @@ export type OffboardingCaseOrderByWithRelationInput = {
   notice?: Prisma.PersonnelNoticeOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
   department?: Prisma.DepartmentOrderByWithRelationInput
+  cancelledPlacementDepartment?: Prisma.DepartmentOrderByWithRelationInput
   changes?: Prisma.OffboardingCaseChangeOrderByRelationAggregateInput
   recordedByTicket?: Prisma.SuperAdminEventTicketOrderByWithRelationInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketOrderByWithRelationInput
@@ -458,7 +487,10 @@ export type OffboardingCaseWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.OffboardingCaseWhereInput | Prisma.OffboardingCaseWhereInput[]
   organizationId?: Prisma.UuidFilter<"OffboardingCase"> | string
   employeeId?: Prisma.UuidFilter<"OffboardingCase"> | string
-  departmentId?: Prisma.UuidFilter<"OffboardingCase"> | string
+  departmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementDepartmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementFrom?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateFilter<"OffboardingCase"> | $Enums.OffboardingState
   abrupt?: Prisma.BoolFilter<"OffboardingCase"> | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
@@ -490,7 +522,8 @@ export type OffboardingCaseWhereUniqueInput = Prisma.AtLeast<{
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   notice?: Prisma.XOR<Prisma.PersonnelNoticeNullableScalarRelationFilter, Prisma.PersonnelNoticeWhereInput> | null
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-  department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
+  cancelledPlacementDepartment?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   changes?: Prisma.OffboardingCaseChangeListRelationFilter
   recordedByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
   cancelledByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
@@ -500,7 +533,10 @@ export type OffboardingCaseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledPlacementId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledPlacementDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledPlacementFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   state?: Prisma.SortOrder
   abrupt?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
@@ -542,7 +578,10 @@ export type OffboardingCaseScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"OffboardingCase"> | string
   organizationId?: Prisma.UuidWithAggregatesFilter<"OffboardingCase"> | string
   employeeId?: Prisma.UuidWithAggregatesFilter<"OffboardingCase"> | string
-  departmentId?: Prisma.UuidWithAggregatesFilter<"OffboardingCase"> | string
+  departmentId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
+  cancelledPlacementId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
+  cancelledPlacementDepartmentId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
+  cancelledPlacementFrom?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateWithAggregatesFilter<"OffboardingCase"> | $Enums.OffboardingState
   abrupt?: Prisma.BoolWithAggregatesFilter<"OffboardingCase"> | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateWithAggregatesFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
@@ -576,6 +615,8 @@ export type OffboardingCaseScalarWhereWithAggregatesInput = {
 
 export type OffboardingCaseCreateInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -605,7 +646,8 @@ export type OffboardingCaseCreateInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
   employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
-  department: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
@@ -615,7 +657,10 @@ export type OffboardingCaseUncheckedCreateInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -650,6 +695,8 @@ export type OffboardingCaseUncheckedCreateInput = {
 
 export type OffboardingCaseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -679,7 +726,8 @@ export type OffboardingCaseUpdateInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
@@ -689,7 +737,10 @@ export type OffboardingCaseUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -726,7 +777,10 @@ export type OffboardingCaseCreateManyInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -760,6 +814,8 @@ export type OffboardingCaseCreateManyInput = {
 
 export type OffboardingCaseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -792,7 +848,10 @@ export type OffboardingCaseUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -847,6 +906,9 @@ export type OffboardingCaseCountOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
+  cancelledPlacementId?: Prisma.SortOrder
+  cancelledPlacementDepartmentId?: Prisma.SortOrder
+  cancelledPlacementFrom?: Prisma.SortOrder
   state?: Prisma.SortOrder
   abrupt?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
@@ -883,6 +945,9 @@ export type OffboardingCaseMaxOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
+  cancelledPlacementId?: Prisma.SortOrder
+  cancelledPlacementDepartmentId?: Prisma.SortOrder
+  cancelledPlacementFrom?: Prisma.SortOrder
   state?: Prisma.SortOrder
   abrupt?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
@@ -917,6 +982,9 @@ export type OffboardingCaseMinOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
+  cancelledPlacementId?: Prisma.SortOrder
+  cancelledPlacementDepartmentId?: Prisma.SortOrder
+  cancelledPlacementFrom?: Prisma.SortOrder
   state?: Prisma.SortOrder
   abrupt?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
@@ -1005,10 +1073,24 @@ export type OffboardingCaseCreateNestedManyWithoutDepartmentInput = {
   connect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
 }
 
+export type OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput> | Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput[] | Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput[]
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput[]
+  createMany?: Prisma.OffboardingCaseCreateManyCancelledPlacementDepartmentInputEnvelope
+  connect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+}
+
 export type OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput = {
   create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutDepartmentInput> | Prisma.OffboardingCaseCreateWithoutDepartmentInput[] | Prisma.OffboardingCaseUncheckedCreateWithoutDepartmentInput[]
   connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutDepartmentInput | Prisma.OffboardingCaseCreateOrConnectWithoutDepartmentInput[]
   createMany?: Prisma.OffboardingCaseCreateManyDepartmentInputEnvelope
+  connect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+}
+
+export type OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput> | Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput[] | Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput[]
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput[]
+  createMany?: Prisma.OffboardingCaseCreateManyCancelledPlacementDepartmentInputEnvelope
   connect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
 }
 
@@ -1026,6 +1108,20 @@ export type OffboardingCaseUpdateManyWithoutDepartmentNestedInput = {
   deleteMany?: Prisma.OffboardingCaseScalarWhereInput | Prisma.OffboardingCaseScalarWhereInput[]
 }
 
+export type OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput> | Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput[] | Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput[]
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput[]
+  upsert?: Prisma.OffboardingCaseUpsertWithWhereUniqueWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseUpsertWithWhereUniqueWithoutCancelledPlacementDepartmentInput[]
+  createMany?: Prisma.OffboardingCaseCreateManyCancelledPlacementDepartmentInputEnvelope
+  set?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  disconnect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  delete?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  connect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  update?: Prisma.OffboardingCaseUpdateWithWhereUniqueWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseUpdateWithWhereUniqueWithoutCancelledPlacementDepartmentInput[]
+  updateMany?: Prisma.OffboardingCaseUpdateManyWithWhereWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseUpdateManyWithWhereWithoutCancelledPlacementDepartmentInput[]
+  deleteMany?: Prisma.OffboardingCaseScalarWhereInput | Prisma.OffboardingCaseScalarWhereInput[]
+}
+
 export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput = {
   create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutDepartmentInput> | Prisma.OffboardingCaseCreateWithoutDepartmentInput[] | Prisma.OffboardingCaseUncheckedCreateWithoutDepartmentInput[]
   connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutDepartmentInput | Prisma.OffboardingCaseCreateOrConnectWithoutDepartmentInput[]
@@ -1037,6 +1133,20 @@ export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput = {
   connect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
   update?: Prisma.OffboardingCaseUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.OffboardingCaseUpdateWithWhereUniqueWithoutDepartmentInput[]
   updateMany?: Prisma.OffboardingCaseUpdateManyWithWhereWithoutDepartmentInput | Prisma.OffboardingCaseUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.OffboardingCaseScalarWhereInput | Prisma.OffboardingCaseScalarWhereInput[]
+}
+
+export type OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput> | Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput[] | Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput[]
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput[]
+  upsert?: Prisma.OffboardingCaseUpsertWithWhereUniqueWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseUpsertWithWhereUniqueWithoutCancelledPlacementDepartmentInput[]
+  createMany?: Prisma.OffboardingCaseCreateManyCancelledPlacementDepartmentInputEnvelope
+  set?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  disconnect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  delete?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  connect?: Prisma.OffboardingCaseWhereUniqueInput | Prisma.OffboardingCaseWhereUniqueInput[]
+  update?: Prisma.OffboardingCaseUpdateWithWhereUniqueWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseUpdateWithWhereUniqueWithoutCancelledPlacementDepartmentInput[]
+  updateMany?: Prisma.OffboardingCaseUpdateManyWithWhereWithoutCancelledPlacementDepartmentInput | Prisma.OffboardingCaseUpdateManyWithWhereWithoutCancelledPlacementDepartmentInput[]
   deleteMany?: Prisma.OffboardingCaseScalarWhereInput | Prisma.OffboardingCaseScalarWhereInput[]
 }
 
@@ -1227,6 +1337,8 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketNestedInpu
 
 export type OffboardingCaseCreateWithoutOrganizationInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1255,7 +1367,8 @@ export type OffboardingCaseCreateWithoutOrganizationInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
   employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
-  department: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
@@ -1264,7 +1377,10 @@ export type OffboardingCaseCreateWithoutOrganizationInput = {
 export type OffboardingCaseUncheckedCreateWithoutOrganizationInput = {
   id?: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1330,7 +1446,10 @@ export type OffboardingCaseScalarWhereInput = {
   id?: Prisma.UuidFilter<"OffboardingCase"> | string
   organizationId?: Prisma.UuidFilter<"OffboardingCase"> | string
   employeeId?: Prisma.UuidFilter<"OffboardingCase"> | string
-  departmentId?: Prisma.UuidFilter<"OffboardingCase"> | string
+  departmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementDepartmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  cancelledPlacementFrom?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateFilter<"OffboardingCase"> | $Enums.OffboardingState
   abrupt?: Prisma.BoolFilter<"OffboardingCase"> | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
@@ -1364,6 +1483,8 @@ export type OffboardingCaseScalarWhereInput = {
 
 export type OffboardingCaseCreateWithoutDepartmentInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1393,6 +1514,7 @@ export type OffboardingCaseCreateWithoutDepartmentInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
   employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
@@ -1402,6 +1524,9 @@ export type OffboardingCaseUncheckedCreateWithoutDepartmentInput = {
   id?: string
   organizationId: string
   employeeId: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1444,24 +1569,10 @@ export type OffboardingCaseCreateManyDepartmentInputEnvelope = {
   skipDuplicates?: boolean
 }
 
-export type OffboardingCaseUpsertWithWhereUniqueWithoutDepartmentInput = {
-  where: Prisma.OffboardingCaseWhereUniqueInput
-  update: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedUpdateWithoutDepartmentInput>
-  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutDepartmentInput>
-}
-
-export type OffboardingCaseUpdateWithWhereUniqueWithoutDepartmentInput = {
-  where: Prisma.OffboardingCaseWhereUniqueInput
-  data: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedUpdateWithoutDepartmentInput>
-}
-
-export type OffboardingCaseUpdateManyWithWhereWithoutDepartmentInput = {
-  where: Prisma.OffboardingCaseScalarWhereInput
-  data: Prisma.XOR<Prisma.OffboardingCaseUpdateManyMutationInput, Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput>
-}
-
-export type OffboardingCaseCreateWithoutEmployeeInput = {
+export type OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1490,7 +1601,128 @@ export type OffboardingCaseCreateWithoutEmployeeInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
-  department: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+}
+
+export type OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput = {
+  id?: string
+  organizationId: string
+  employeeId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
+  state?: $Enums.OffboardingState
+  abrupt?: boolean
+  priorWorkState: $Enums.EmployeeWorkState
+  lastWorkingDay: Date | string
+  departureEffectiveOn: Date | string
+  handoverDueOn?: Date | string | null
+  groundsType: string
+  groundsReference: string
+  groundsIssuer: string
+  groundsIssuedOn: Date | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: string | null
+  leftOn?: Date | string | null
+  leftAt?: Date | string | null
+  leftByAppUserId?: string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledByTicketId?: string | null
+  cancelReason?: string | null
+  accountLockByAppUserId?: string | null
+  accountLockAt?: Date | string | null
+  accountLockNote?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  recordedByAppUserId?: string | null
+  recordedByTicketId?: string | null
+  recordedAt?: Date | string
+  roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: string | null
+  changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+}
+
+export type OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput = {
+  where: Prisma.OffboardingCaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput>
+}
+
+export type OffboardingCaseCreateManyCancelledPlacementDepartmentInputEnvelope = {
+  data: Prisma.OffboardingCaseCreateManyCancelledPlacementDepartmentInput | Prisma.OffboardingCaseCreateManyCancelledPlacementDepartmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type OffboardingCaseUpsertWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.OffboardingCaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedUpdateWithoutDepartmentInput>
+  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutDepartmentInput>
+}
+
+export type OffboardingCaseUpdateWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.OffboardingCaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutDepartmentInput, Prisma.OffboardingCaseUncheckedUpdateWithoutDepartmentInput>
+}
+
+export type OffboardingCaseUpdateManyWithWhereWithoutDepartmentInput = {
+  where: Prisma.OffboardingCaseScalarWhereInput
+  data: Prisma.XOR<Prisma.OffboardingCaseUpdateManyMutationInput, Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput>
+}
+
+export type OffboardingCaseUpsertWithWhereUniqueWithoutCancelledPlacementDepartmentInput = {
+  where: Prisma.OffboardingCaseWhereUniqueInput
+  update: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInput>
+  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput>
+}
+
+export type OffboardingCaseUpdateWithWhereUniqueWithoutCancelledPlacementDepartmentInput = {
+  where: Prisma.OffboardingCaseWhereUniqueInput
+  data: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutCancelledPlacementDepartmentInput, Prisma.OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInput>
+}
+
+export type OffboardingCaseUpdateManyWithWhereWithoutCancelledPlacementDepartmentInput = {
+  where: Prisma.OffboardingCaseScalarWhereInput
+  data: Prisma.XOR<Prisma.OffboardingCaseUpdateManyMutationInput, Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentInput>
+}
+
+export type OffboardingCaseCreateWithoutEmployeeInput = {
+  id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
+  state?: $Enums.OffboardingState
+  abrupt?: boolean
+  priorWorkState: $Enums.EmployeeWorkState
+  lastWorkingDay: Date | string
+  departureEffectiveOn: Date | string
+  handoverDueOn?: Date | string | null
+  groundsType: string
+  groundsReference: string
+  groundsIssuer: string
+  groundsIssuedOn: Date | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: string | null
+  leftOn?: Date | string | null
+  leftAt?: Date | string | null
+  leftByAppUserId?: string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelReason?: string | null
+  accountLockByAppUserId?: string | null
+  accountLockAt?: Date | string | null
+  accountLockNote?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  recordedByAppUserId?: string | null
+  recordedAt?: Date | string
+  roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
+  notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
@@ -1499,7 +1731,10 @@ export type OffboardingCaseCreateWithoutEmployeeInput = {
 export type OffboardingCaseUncheckedCreateWithoutEmployeeInput = {
   id?: string
   organizationId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1560,6 +1795,8 @@ export type OffboardingCaseUpdateManyWithWhereWithoutEmployeeInput = {
 
 export type OffboardingCaseCreateWithoutChangesInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1589,7 +1826,8 @@ export type OffboardingCaseCreateWithoutChangesInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
   employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
-  department: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
 }
@@ -1598,7 +1836,10 @@ export type OffboardingCaseUncheckedCreateWithoutChangesInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1648,6 +1889,8 @@ export type OffboardingCaseUpdateToOneWithWhereWithoutChangesInput = {
 
 export type OffboardingCaseUpdateWithoutChangesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -1677,7 +1920,8 @@ export type OffboardingCaseUpdateWithoutChangesInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
 }
@@ -1686,7 +1930,10 @@ export type OffboardingCaseUncheckedUpdateWithoutChangesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -1720,6 +1967,8 @@ export type OffboardingCaseUncheckedUpdateWithoutChangesInput = {
 
 export type OffboardingCaseCreateWithoutNoticeInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1748,7 +1997,8 @@ export type OffboardingCaseCreateWithoutNoticeInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
   employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
-  department: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
@@ -1758,7 +2008,10 @@ export type OffboardingCaseUncheckedCreateWithoutNoticeInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1808,6 +2061,8 @@ export type OffboardingCaseUpdateToOneWithWhereWithoutNoticeInput = {
 
 export type OffboardingCaseUpdateWithoutNoticeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -1836,7 +2091,8 @@ export type OffboardingCaseUpdateWithoutNoticeInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
@@ -1846,7 +2102,10 @@ export type OffboardingCaseUncheckedUpdateWithoutNoticeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -1880,6 +2139,8 @@ export type OffboardingCaseUncheckedUpdateWithoutNoticeInput = {
 
 export type OffboardingCaseCreateWithoutRecordedByTicketInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1909,7 +2170,8 @@ export type OffboardingCaseCreateWithoutRecordedByTicketInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
   employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
-  department: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
 }
@@ -1918,7 +2180,10 @@ export type OffboardingCaseUncheckedCreateWithoutRecordedByTicketInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1962,6 +2227,8 @@ export type OffboardingCaseCreateManyRecordedByTicketInputEnvelope = {
 
 export type OffboardingCaseCreateWithoutCancelledByTicketInput = {
   id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -1991,7 +2258,8 @@ export type OffboardingCaseCreateWithoutCancelledByTicketInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
   employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
-  department: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
 }
@@ -2000,7 +2268,10 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledByTicketInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -2077,7 +2348,10 @@ export type OffboardingCaseUpdateManyWithWhereWithoutCancelledByTicketInput = {
 export type OffboardingCaseCreateManyOrganizationInput = {
   id?: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -2111,6 +2385,8 @@ export type OffboardingCaseCreateManyOrganizationInput = {
 
 export type OffboardingCaseUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2139,7 +2415,8 @@ export type OffboardingCaseUpdateWithoutOrganizationInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
@@ -2148,7 +2425,10 @@ export type OffboardingCaseUpdateWithoutOrganizationInput = {
 export type OffboardingCaseUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2184,7 +2464,10 @@ export type OffboardingCaseUncheckedUpdateWithoutOrganizationInput = {
 export type OffboardingCaseUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2220,6 +2503,47 @@ export type OffboardingCaseCreateManyDepartmentInput = {
   id?: string
   organizationId: string
   employeeId: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
+  state?: $Enums.OffboardingState
+  abrupt?: boolean
+  priorWorkState: $Enums.EmployeeWorkState
+  lastWorkingDay: Date | string
+  departureEffectiveOn: Date | string
+  handoverDueOn?: Date | string | null
+  groundsType: string
+  groundsReference: string
+  groundsIssuer: string
+  groundsIssuedOn: Date | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: string | null
+  leftOn?: Date | string | null
+  leftAt?: Date | string | null
+  leftByAppUserId?: string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledByTicketId?: string | null
+  cancelReason?: string | null
+  accountLockByAppUserId?: string | null
+  accountLockAt?: Date | string | null
+  accountLockNote?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  recordedByAppUserId?: string | null
+  recordedByTicketId?: string | null
+  recordedAt?: Date | string
+  roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: string | null
+}
+
+export type OffboardingCaseCreateManyCancelledPlacementDepartmentInput = {
+  id?: string
+  organizationId: string
+  employeeId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -2253,6 +2577,8 @@ export type OffboardingCaseCreateManyDepartmentInput = {
 
 export type OffboardingCaseUpdateWithoutDepartmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2282,6 +2608,7 @@ export type OffboardingCaseUpdateWithoutDepartmentInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
@@ -2291,6 +2618,9 @@ export type OffboardingCaseUncheckedUpdateWithoutDepartmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2327,6 +2657,125 @@ export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
+  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type OffboardingCaseUpdateWithoutCancelledPlacementDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
+  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+}
+
+export type OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
+  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+}
+
+export type OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2361,7 +2810,10 @@ export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput = {
 export type OffboardingCaseCreateManyEmployeeInput = {
   id?: string
   organizationId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -2395,6 +2847,8 @@ export type OffboardingCaseCreateManyEmployeeInput = {
 
 export type OffboardingCaseUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2423,7 +2877,8 @@ export type OffboardingCaseUpdateWithoutEmployeeInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
@@ -2432,7 +2887,10 @@ export type OffboardingCaseUpdateWithoutEmployeeInput = {
 export type OffboardingCaseUncheckedUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2468,7 +2926,10 @@ export type OffboardingCaseUncheckedUpdateWithoutEmployeeInput = {
 export type OffboardingCaseUncheckedUpdateManyWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2504,7 +2965,10 @@ export type OffboardingCaseCreateManyRecordedByTicketInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -2539,7 +3003,10 @@ export type OffboardingCaseCreateManyCancelledByTicketInput = {
   id?: string
   organizationId: string
   employeeId: string
-  departmentId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
   abrupt?: boolean
   priorWorkState: $Enums.EmployeeWorkState
@@ -2572,6 +3039,8 @@ export type OffboardingCaseCreateManyCancelledByTicketInput = {
 
 export type OffboardingCaseUpdateWithoutRecordedByTicketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2601,7 +3070,8 @@ export type OffboardingCaseUpdateWithoutRecordedByTicketInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
 }
@@ -2610,7 +3080,10 @@ export type OffboardingCaseUncheckedUpdateWithoutRecordedByTicketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2646,7 +3119,10 @@ export type OffboardingCaseUncheckedUpdateManyWithoutRecordedByTicketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2679,6 +3155,8 @@ export type OffboardingCaseUncheckedUpdateManyWithoutRecordedByTicketInput = {
 
 export type OffboardingCaseUpdateWithoutCancelledByTicketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2708,7 +3186,8 @@ export type OffboardingCaseUpdateWithoutCancelledByTicketInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
 }
@@ -2717,7 +3196,10 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledByTicketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2753,7 +3235,10 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
   abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
@@ -2820,6 +3305,9 @@ export type OffboardingCaseSelect<ExtArgs extends runtime.Types.Extensions.Inter
   organizationId?: boolean
   employeeId?: boolean
   departmentId?: boolean
+  cancelledPlacementId?: boolean
+  cancelledPlacementDepartmentId?: boolean
+  cancelledPlacementFrom?: boolean
   state?: boolean
   abrupt?: boolean
   priorWorkState?: boolean
@@ -2852,7 +3340,8 @@ export type OffboardingCaseSelect<ExtArgs extends runtime.Types.Extensions.Inter
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.OffboardingCase$departmentArgs<ExtArgs>
+  cancelledPlacementDepartment?: boolean | Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs>
   changes?: boolean | Prisma.OffboardingCase$changesArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
@@ -2864,6 +3353,9 @@ export type OffboardingCaseSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   organizationId?: boolean
   employeeId?: boolean
   departmentId?: boolean
+  cancelledPlacementId?: boolean
+  cancelledPlacementDepartmentId?: boolean
+  cancelledPlacementFrom?: boolean
   state?: boolean
   abrupt?: boolean
   priorWorkState?: boolean
@@ -2896,7 +3388,8 @@ export type OffboardingCaseSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.OffboardingCase$departmentArgs<ExtArgs>
+  cancelledPlacementDepartment?: boolean | Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
 }, ExtArgs["result"]["offboardingCase"]>
@@ -2906,6 +3399,9 @@ export type OffboardingCaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   organizationId?: boolean
   employeeId?: boolean
   departmentId?: boolean
+  cancelledPlacementId?: boolean
+  cancelledPlacementDepartmentId?: boolean
+  cancelledPlacementFrom?: boolean
   state?: boolean
   abrupt?: boolean
   priorWorkState?: boolean
@@ -2938,7 +3434,8 @@ export type OffboardingCaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.OffboardingCase$departmentArgs<ExtArgs>
+  cancelledPlacementDepartment?: boolean | Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
 }, ExtArgs["result"]["offboardingCase"]>
@@ -2948,6 +3445,9 @@ export type OffboardingCaseSelectScalar = {
   organizationId?: boolean
   employeeId?: boolean
   departmentId?: boolean
+  cancelledPlacementId?: boolean
+  cancelledPlacementDepartmentId?: boolean
+  cancelledPlacementFrom?: boolean
   state?: boolean
   abrupt?: boolean
   priorWorkState?: boolean
@@ -2979,12 +3479,13 @@ export type OffboardingCaseSelectScalar = {
   noticeId?: boolean
 }
 
-export type OffboardingCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "departmentId" | "state" | "abrupt" | "priorWorkState" | "lastWorkingDay" | "departureEffectiveOn" | "handoverDueOn" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "headHandover" | "placementClosedId" | "leftOn" | "leftAt" | "leftByAppUserId" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelReason" | "accountLockByAppUserId" | "accountLockAt" | "accountLockNote" | "closedAt" | "closedByAppUserId" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "roleFlags" | "noticeId", ExtArgs["result"]["offboardingCase"]>
+export type OffboardingCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "departmentId" | "cancelledPlacementId" | "cancelledPlacementDepartmentId" | "cancelledPlacementFrom" | "state" | "abrupt" | "priorWorkState" | "lastWorkingDay" | "departureEffectiveOn" | "handoverDueOn" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "headHandover" | "placementClosedId" | "leftOn" | "leftAt" | "leftByAppUserId" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelReason" | "accountLockByAppUserId" | "accountLockAt" | "accountLockNote" | "closedAt" | "closedByAppUserId" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "roleFlags" | "noticeId", ExtArgs["result"]["offboardingCase"]>
 export type OffboardingCaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.OffboardingCase$departmentArgs<ExtArgs>
+  cancelledPlacementDepartment?: boolean | Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs>
   changes?: boolean | Prisma.OffboardingCase$changesArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
@@ -2994,7 +3495,8 @@ export type OffboardingCaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Ty
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.OffboardingCase$departmentArgs<ExtArgs>
+  cancelledPlacementDepartment?: boolean | Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
 }
@@ -3002,7 +3504,8 @@ export type OffboardingCaseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Ty
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.OffboardingCase$departmentArgs<ExtArgs>
+  cancelledPlacementDepartment?: boolean | Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
 }
@@ -3013,7 +3516,8 @@ export type $OffboardingCasePayload<ExtArgs extends runtime.Types.Extensions.Int
     organization: Prisma.$OrganizationPayload<ExtArgs>
     notice: Prisma.$PersonnelNoticePayload<ExtArgs> | null
     employee: Prisma.$EmployeePayload<ExtArgs>
-    department: Prisma.$DepartmentPayload<ExtArgs>
+    department: Prisma.$DepartmentPayload<ExtArgs> | null
+    cancelledPlacementDepartment: Prisma.$DepartmentPayload<ExtArgs> | null
     changes: Prisma.$OffboardingCaseChangePayload<ExtArgs>[]
     recordedByTicket: Prisma.$SuperAdminEventTicketPayload<ExtArgs> | null
     cancelledByTicket: Prisma.$SuperAdminEventTicketPayload<ExtArgs> | null
@@ -3022,7 +3526,10 @@ export type $OffboardingCasePayload<ExtArgs extends runtime.Types.Extensions.Int
     id: string
     organizationId: string
     employeeId: string
-    departmentId: string
+    departmentId: string | null
+    cancelledPlacementId: string | null
+    cancelledPlacementDepartmentId: string | null
+    cancelledPlacementFrom: Date | null
     state: $Enums.OffboardingState
     abrupt: boolean
     priorWorkState: $Enums.EmployeeWorkState
@@ -3449,7 +3956,8 @@ export interface Prisma__OffboardingCaseClient<T, Null = never, ExtArgs extends 
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   notice<T extends Prisma.OffboardingCase$noticeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$noticeArgs<ExtArgs>>): Prisma.Prisma__PersonnelNoticeClient<runtime.Types.Result.GetResult<Prisma.$PersonnelNoticePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  department<T extends Prisma.DepartmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  department<T extends Prisma.OffboardingCase$departmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$departmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  cancelledPlacementDepartment<T extends Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   changes<T extends Prisma.OffboardingCase$changesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$changesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OffboardingCaseChangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   recordedByTicket<T extends Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>>): Prisma.Prisma__SuperAdminEventTicketClient<runtime.Types.Result.GetResult<Prisma.$SuperAdminEventTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cancelledByTicket<T extends Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>>): Prisma.Prisma__SuperAdminEventTicketClient<runtime.Types.Result.GetResult<Prisma.$SuperAdminEventTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -3486,6 +3994,9 @@ export interface OffboardingCaseFieldRefs {
   readonly organizationId: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly employeeId: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly departmentId: Prisma.FieldRef<"OffboardingCase", 'String'>
+  readonly cancelledPlacementId: Prisma.FieldRef<"OffboardingCase", 'String'>
+  readonly cancelledPlacementDepartmentId: Prisma.FieldRef<"OffboardingCase", 'String'>
+  readonly cancelledPlacementFrom: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly state: Prisma.FieldRef<"OffboardingCase", 'OffboardingState'>
   readonly abrupt: Prisma.FieldRef<"OffboardingCase", 'Boolean'>
   readonly priorWorkState: Prisma.FieldRef<"OffboardingCase", 'EmployeeWorkState'>
@@ -3932,6 +4443,44 @@ export type OffboardingCase$noticeArgs<ExtArgs extends runtime.Types.Extensions.
    */
   include?: Prisma.PersonnelNoticeInclude<ExtArgs> | null
   where?: Prisma.PersonnelNoticeWhereInput
+}
+
+/**
+ * OffboardingCase.department
+ */
+export type OffboardingCase$departmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Department
+   */
+  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Department
+   */
+  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  where?: Prisma.DepartmentWhereInput
+}
+
+/**
+ * OffboardingCase.cancelledPlacementDepartment
+ */
+export type OffboardingCase$cancelledPlacementDepartmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Department
+   */
+  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Department
+   */
+  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  where?: Prisma.DepartmentWhereInput
 }
 
 /**

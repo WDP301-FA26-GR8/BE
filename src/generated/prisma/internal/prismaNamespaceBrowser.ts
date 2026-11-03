@@ -61,6 +61,7 @@ export const ModelName = {
   BudgetCommitment: 'BudgetCommitment',
   BudgetCommitmentRelease: 'BudgetCommitmentRelease',
   BudgetVersionHistoryEntry: 'BudgetVersionHistoryEntry',
+  BudgetAttachment: 'BudgetAttachment',
   VendorGroup: 'VendorGroup',
   VendorServiceLine: 'VendorServiceLine',
   VendorDictionaryProposal: 'VendorDictionaryProposal',
@@ -94,7 +95,6 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   LoginThrottle: 'LoginThrottle',
   AccountActionToken: 'AccountActionToken',
-  ApprovalRoleHolder: 'ApprovalRoleHolder',
   RecoveryTicket: 'RecoveryTicket',
   LicenseAssignment: 'LicenseAssignment',
   SeatBaselineState: 'SeatBaselineState',
@@ -384,6 +384,28 @@ export const BudgetVersionHistoryEntryScalarFieldEnum = {
 } as const
 
 export type BudgetVersionHistoryEntryScalarFieldEnum = (typeof BudgetVersionHistoryEntryScalarFieldEnum)[keyof typeof BudgetVersionHistoryEntryScalarFieldEnum]
+
+
+export const BudgetAttachmentScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  target: 'target',
+  status: 'status',
+  fileName: 'fileName',
+  contentType: 'contentType',
+  sizeBytes: 'sizeBytes',
+  objectKey: 'objectKey',
+  finalObjectKey: 'finalObjectKey',
+  uploadedByEmployeeId: 'uploadedByEmployeeId',
+  proposalId: 'proposalId',
+  versionId: 'versionId',
+  attachedAt: 'attachedAt',
+  removedAt: 'removedAt',
+  removedByEmployeeId: 'removedByEmployeeId',
+  createdAt: 'createdAt'
+} as const
+
+export type BudgetAttachmentScalarFieldEnum = (typeof BudgetAttachmentScalarFieldEnum)[keyof typeof BudgetAttachmentScalarFieldEnum]
 
 
 export const VendorGroupScalarFieldEnum = {
@@ -876,19 +898,6 @@ export const AccountActionTokenScalarFieldEnum = {
 } as const
 
 export type AccountActionTokenScalarFieldEnum = (typeof AccountActionTokenScalarFieldEnum)[keyof typeof AccountActionTokenScalarFieldEnum]
-
-
-export const ApprovalRoleHolderScalarFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  role: 'role',
-  employeeId: 'employeeId',
-  heldFrom: 'heldFrom',
-  heldUntil: 'heldUntil',
-  setBy: 'setBy'
-} as const
-
-export type ApprovalRoleHolderScalarFieldEnum = (typeof ApprovalRoleHolderScalarFieldEnum)[keyof typeof ApprovalRoleHolderScalarFieldEnum]
 
 
 export const RecoveryTicketScalarFieldEnum = {
@@ -1555,6 +1564,9 @@ export const OffboardingCaseScalarFieldEnum = {
   organizationId: 'organizationId',
   employeeId: 'employeeId',
   departmentId: 'departmentId',
+  cancelledPlacementId: 'cancelledPlacementId',
+  cancelledPlacementDepartmentId: 'cancelledPlacementDepartmentId',
+  cancelledPlacementFrom: 'cancelledPlacementFrom',
   state: 'state',
   abrupt: 'abrupt',
   priorWorkState: 'priorWorkState',

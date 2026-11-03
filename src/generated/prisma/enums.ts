@@ -94,10 +94,33 @@ export const BudgetVersionHistoryKind = {
   LINE_UPDATED: 'LINE_UPDATED',
   LINES_ADDED: 'LINES_ADDED',
   LINES_IMPORTED: 'LINES_IMPORTED',
-  WINDOW_MOVED: 'WINDOW_MOVED'
+  WINDOW_MOVED: 'WINDOW_MOVED',
+  ATTACHMENT_ADDED: 'ATTACHMENT_ADDED',
+  ATTACHMENT_REMOVED: 'ATTACHMENT_REMOVED'
 } as const
 
 export type BudgetVersionHistoryKind = (typeof BudgetVersionHistoryKind)[keyof typeof BudgetVersionHistoryKind]
+
+
+export const BudgetAttachmentTarget = {
+  PROPOSAL: 'PROPOSAL',
+  VERSION: 'VERSION'
+} as const
+
+export type BudgetAttachmentTarget = (typeof BudgetAttachmentTarget)[keyof typeof BudgetAttachmentTarget]
+
+
+export const BudgetAttachmentStatus = {
+  AWAITING_UPLOAD: 'AWAITING_UPLOAD',
+  UPLOADED: 'UPLOADED',
+  ATTACHED: 'ATTACHED',
+  REMOVED: 'REMOVED',
+  QUARANTINED: 'QUARANTINED',
+  EXPIRED: 'EXPIRED',
+  DISCARDED: 'DISCARDED'
+} as const
+
+export type BudgetAttachmentStatus = (typeof BudgetAttachmentStatus)[keyof typeof BudgetAttachmentStatus]
 
 
 export const VendorProposalStatus = {
@@ -344,15 +367,6 @@ export const AccountActionTokenRevokedReason = {
 } as const
 
 export type AccountActionTokenRevokedReason = (typeof AccountActionTokenRevokedReason)[keyof typeof AccountActionTokenRevokedReason]
-
-
-export const ApprovalRole = {
-  SPENDING_APPROVER: 'SPENDING_APPROVER',
-  CONFLICT_SUBSTITUTE: 'CONFLICT_SUBSTITUTE',
-  FALLBACK_APPROVER: 'FALLBACK_APPROVER'
-} as const
-
-export type ApprovalRole = (typeof ApprovalRole)[keyof typeof ApprovalRole]
 
 
 export const RecoveryMode = {
@@ -659,14 +673,6 @@ export const DepartmentStatus = {
 } as const
 
 export type DepartmentStatus = (typeof DepartmentStatus)[keyof typeof DepartmentStatus]
-
-
-export const ProjectStatus = {
-  RUNNING: 'RUNNING',
-  FINISHED: 'FINISHED'
-} as const
-
-export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
 
 
 export const EmploymentType = {

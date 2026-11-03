@@ -407,6 +407,7 @@ export const ModelName = {
   BudgetCommitment: 'BudgetCommitment',
   BudgetCommitmentRelease: 'BudgetCommitmentRelease',
   BudgetVersionHistoryEntry: 'BudgetVersionHistoryEntry',
+  BudgetAttachment: 'BudgetAttachment',
   VendorGroup: 'VendorGroup',
   VendorServiceLine: 'VendorServiceLine',
   VendorDictionaryProposal: 'VendorDictionaryProposal',
@@ -440,7 +441,6 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   LoginThrottle: 'LoginThrottle',
   AccountActionToken: 'AccountActionToken',
-  ApprovalRoleHolder: 'ApprovalRoleHolder',
   RecoveryTicket: 'RecoveryTicket',
   LicenseAssignment: 'LicenseAssignment',
   SeatBaselineState: 'SeatBaselineState',
@@ -524,7 +524,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "budgetVersionHistoryEntry" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "approvalRoleHolder" | "recoveryTicket" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident"
+    modelProps: "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "budgetVersionHistoryEntry" | "budgetAttachment" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1265,6 +1265,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BudgetVersionHistoryEntryCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BudgetVersionHistoryEntryCountAggregateOutputType> | number
+        }
+      }
+    }
+    BudgetAttachment: {
+      payload: Prisma.$BudgetAttachmentPayload<ExtArgs>
+      fields: Prisma.BudgetAttachmentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BudgetAttachmentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BudgetAttachmentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>
+        }
+        findFirst: {
+          args: Prisma.BudgetAttachmentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BudgetAttachmentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>
+        }
+        findMany: {
+          args: Prisma.BudgetAttachmentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>[]
+        }
+        create: {
+          args: Prisma.BudgetAttachmentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>
+        }
+        createMany: {
+          args: Prisma.BudgetAttachmentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BudgetAttachmentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>[]
+        }
+        delete: {
+          args: Prisma.BudgetAttachmentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>
+        }
+        update: {
+          args: Prisma.BudgetAttachmentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>
+        }
+        deleteMany: {
+          args: Prisma.BudgetAttachmentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BudgetAttachmentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BudgetAttachmentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>[]
+        }
+        upsert: {
+          args: Prisma.BudgetAttachmentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetAttachmentPayload>
+        }
+        aggregate: {
+          args: Prisma.BudgetAttachmentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBudgetAttachment>
+        }
+        groupBy: {
+          args: Prisma.BudgetAttachmentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetAttachmentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BudgetAttachmentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetAttachmentCountAggregateOutputType> | number
         }
       }
     }
@@ -3707,80 +3781,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AccountActionTokenCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AccountActionTokenCountAggregateOutputType> | number
-        }
-      }
-    }
-    ApprovalRoleHolder: {
-      payload: Prisma.$ApprovalRoleHolderPayload<ExtArgs>
-      fields: Prisma.ApprovalRoleHolderFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.ApprovalRoleHolderFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.ApprovalRoleHolderFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>
-        }
-        findFirst: {
-          args: Prisma.ApprovalRoleHolderFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.ApprovalRoleHolderFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>
-        }
-        findMany: {
-          args: Prisma.ApprovalRoleHolderFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>[]
-        }
-        create: {
-          args: Prisma.ApprovalRoleHolderCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>
-        }
-        createMany: {
-          args: Prisma.ApprovalRoleHolderCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.ApprovalRoleHolderCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>[]
-        }
-        delete: {
-          args: Prisma.ApprovalRoleHolderDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>
-        }
-        update: {
-          args: Prisma.ApprovalRoleHolderUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>
-        }
-        deleteMany: {
-          args: Prisma.ApprovalRoleHolderDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.ApprovalRoleHolderUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.ApprovalRoleHolderUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>[]
-        }
-        upsert: {
-          args: Prisma.ApprovalRoleHolderUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalRoleHolderPayload>
-        }
-        aggregate: {
-          args: Prisma.ApprovalRoleHolderAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateApprovalRoleHolder>
-        }
-        groupBy: {
-          args: Prisma.ApprovalRoleHolderGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ApprovalRoleHolderGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.ApprovalRoleHolderCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ApprovalRoleHolderCountAggregateOutputType> | number
         }
       }
     }
@@ -9060,6 +9060,28 @@ export const BudgetVersionHistoryEntryScalarFieldEnum = {
 export type BudgetVersionHistoryEntryScalarFieldEnum = (typeof BudgetVersionHistoryEntryScalarFieldEnum)[keyof typeof BudgetVersionHistoryEntryScalarFieldEnum]
 
 
+export const BudgetAttachmentScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  target: 'target',
+  status: 'status',
+  fileName: 'fileName',
+  contentType: 'contentType',
+  sizeBytes: 'sizeBytes',
+  objectKey: 'objectKey',
+  finalObjectKey: 'finalObjectKey',
+  uploadedByEmployeeId: 'uploadedByEmployeeId',
+  proposalId: 'proposalId',
+  versionId: 'versionId',
+  attachedAt: 'attachedAt',
+  removedAt: 'removedAt',
+  removedByEmployeeId: 'removedByEmployeeId',
+  createdAt: 'createdAt'
+} as const
+
+export type BudgetAttachmentScalarFieldEnum = (typeof BudgetAttachmentScalarFieldEnum)[keyof typeof BudgetAttachmentScalarFieldEnum]
+
+
 export const VendorGroupScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -9550,19 +9572,6 @@ export const AccountActionTokenScalarFieldEnum = {
 } as const
 
 export type AccountActionTokenScalarFieldEnum = (typeof AccountActionTokenScalarFieldEnum)[keyof typeof AccountActionTokenScalarFieldEnum]
-
-
-export const ApprovalRoleHolderScalarFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  role: 'role',
-  employeeId: 'employeeId',
-  heldFrom: 'heldFrom',
-  heldUntil: 'heldUntil',
-  setBy: 'setBy'
-} as const
-
-export type ApprovalRoleHolderScalarFieldEnum = (typeof ApprovalRoleHolderScalarFieldEnum)[keyof typeof ApprovalRoleHolderScalarFieldEnum]
 
 
 export const RecoveryTicketScalarFieldEnum = {
@@ -10229,6 +10238,9 @@ export const OffboardingCaseScalarFieldEnum = {
   organizationId: 'organizationId',
   employeeId: 'employeeId',
   departmentId: 'departmentId',
+  cancelledPlacementId: 'cancelledPlacementId',
+  cancelledPlacementDepartmentId: 'cancelledPlacementDepartmentId',
+  cancelledPlacementFrom: 'cancelledPlacementFrom',
   state: 'state',
   abrupt: 'abrupt',
   priorWorkState: 'priorWorkState',
@@ -11056,6 +11068,34 @@ export type ListEnumBudgetVersionHistoryKindFieldRefInput<$PrismaModel> = FieldR
 
 
 /**
+ * Reference to a field of type 'BudgetAttachmentTarget'
+ */
+export type EnumBudgetAttachmentTargetFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetAttachmentTarget'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetAttachmentTarget[]'
+ */
+export type ListEnumBudgetAttachmentTargetFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetAttachmentTarget[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetAttachmentStatus'
+ */
+export type EnumBudgetAttachmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetAttachmentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetAttachmentStatus[]'
+ */
+export type ListEnumBudgetAttachmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetAttachmentStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'VendorProposalStatus'
  */
 export type EnumVendorProposalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VendorProposalStatus'>
@@ -11444,20 +11484,6 @@ export type EnumAccountActionTokenRevokedReasonFieldRefInput<$PrismaModel> = Fie
  * Reference to a field of type 'AccountActionTokenRevokedReason[]'
  */
 export type ListEnumAccountActionTokenRevokedReasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountActionTokenRevokedReason[]'>
-    
-
-
-/**
- * Reference to a field of type 'ApprovalRole'
- */
-export type EnumApprovalRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalRole'>
-    
-
-
-/**
- * Reference to a field of type 'ApprovalRole[]'
- */
-export type ListEnumApprovalRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalRole[]'>
     
 
 
@@ -12797,6 +12823,7 @@ export type GlobalOmitConfig = {
   budgetCommitment?: Prisma.BudgetCommitmentOmit
   budgetCommitmentRelease?: Prisma.BudgetCommitmentReleaseOmit
   budgetVersionHistoryEntry?: Prisma.BudgetVersionHistoryEntryOmit
+  budgetAttachment?: Prisma.BudgetAttachmentOmit
   vendorGroup?: Prisma.VendorGroupOmit
   vendorServiceLine?: Prisma.VendorServiceLineOmit
   vendorDictionaryProposal?: Prisma.VendorDictionaryProposalOmit
@@ -12830,7 +12857,6 @@ export type GlobalOmitConfig = {
   refreshToken?: Prisma.RefreshTokenOmit
   loginThrottle?: Prisma.LoginThrottleOmit
   accountActionToken?: Prisma.AccountActionTokenOmit
-  approvalRoleHolder?: Prisma.ApprovalRoleHolderOmit
   recoveryTicket?: Prisma.RecoveryTicketOmit
   licenseAssignment?: Prisma.LicenseAssignmentOmit
   seatBaselineState?: Prisma.SeatBaselineStateOmit

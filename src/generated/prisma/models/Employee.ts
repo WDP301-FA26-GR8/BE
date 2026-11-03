@@ -251,7 +251,6 @@ export type EmployeeWhereInput = {
   appUser?: Prisma.XOR<Prisma.AppUserNullableScalarRelationFilter, Prisma.AppUserWhereInput> | null
   itAdminOf?: Prisma.DepartmentListRelationFilter
   headPeriods?: Prisma.DepartmentHeadPeriodListRelationFilter
-  approvalRoles?: Prisma.ApprovalRoleHolderListRelationFilter
   ownedApplications?: Prisma.ApplicationListRelationFilter
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileListRelationFilter
@@ -323,7 +322,6 @@ export type EmployeeOrderByWithRelationInput = {
   appUser?: Prisma.AppUserOrderByWithRelationInput
   itAdminOf?: Prisma.DepartmentOrderByRelationAggregateInput
   headPeriods?: Prisma.DepartmentHeadPeriodOrderByRelationAggregateInput
-  approvalRoles?: Prisma.ApprovalRoleHolderOrderByRelationAggregateInput
   ownedApplications?: Prisma.ApplicationOrderByRelationAggregateInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileOrderByRelationAggregateInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileOrderByRelationAggregateInput
@@ -400,7 +398,6 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   appUser?: Prisma.XOR<Prisma.AppUserNullableScalarRelationFilter, Prisma.AppUserWhereInput> | null
   itAdminOf?: Prisma.DepartmentListRelationFilter
   headPeriods?: Prisma.DepartmentHeadPeriodListRelationFilter
-  approvalRoles?: Prisma.ApprovalRoleHolderListRelationFilter
   ownedApplications?: Prisma.ApplicationListRelationFilter
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileListRelationFilter
@@ -509,7 +506,6 @@ export type EmployeeCreateInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -580,7 +576,6 @@ export type EmployeeUncheckedCreateInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -651,7 +646,6 @@ export type EmployeeUpdateInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -722,7 +716,6 @@ export type EmployeeUncheckedUpdateInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -1028,20 +1021,6 @@ export type EmployeeUpdateOneRequiredWithoutAppUserNestedInput = {
   upsert?: Prisma.EmployeeUpsertWithoutAppUserInput
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutAppUserInput, Prisma.EmployeeUpdateWithoutAppUserInput>, Prisma.EmployeeUncheckedUpdateWithoutAppUserInput>
-}
-
-export type EmployeeCreateNestedOneWithoutApprovalRolesInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutApprovalRolesInput, Prisma.EmployeeUncheckedCreateWithoutApprovalRolesInput>
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutApprovalRolesInput
-  connect?: Prisma.EmployeeWhereUniqueInput
-}
-
-export type EmployeeUpdateOneRequiredWithoutApprovalRolesNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutApprovalRolesInput, Prisma.EmployeeUncheckedCreateWithoutApprovalRolesInput>
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutApprovalRolesInput
-  upsert?: Prisma.EmployeeUpsertWithoutApprovalRolesInput
-  connect?: Prisma.EmployeeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutApprovalRolesInput, Prisma.EmployeeUpdateWithoutApprovalRolesInput>, Prisma.EmployeeUncheckedUpdateWithoutApprovalRolesInput>
 }
 
 export type EmployeeCreateNestedOneWithoutLicenseAssignmentsInput = {
@@ -1786,7 +1765,6 @@ export type EmployeeCreateWithoutCommitmentReleasesInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -1856,7 +1834,6 @@ export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -1942,7 +1919,6 @@ export type EmployeeUpdateWithoutCommitmentReleasesInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -2012,7 +1988,6 @@ export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -2082,7 +2057,6 @@ export type EmployeeCreateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
@@ -2152,7 +2126,6 @@ export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2238,7 +2211,6 @@ export type EmployeeUpdateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
@@ -2308,7 +2280,6 @@ export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2378,7 +2349,6 @@ export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
@@ -2448,7 +2418,6 @@ export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2523,7 +2492,6 @@ export type EmployeeCreateWithoutWorkspaceEmergencyHolderOfInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
@@ -2593,7 +2561,6 @@ export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2679,7 +2646,6 @@ export type EmployeeUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
@@ -2749,7 +2715,6 @@ export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2830,7 +2795,6 @@ export type EmployeeUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
@@ -2900,7 +2864,6 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2970,7 +2933,6 @@ export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -3040,7 +3002,6 @@ export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -3126,7 +3087,6 @@ export type EmployeeUpdateWithoutWorkspaceMembershipsInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -3196,7 +3156,6 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -3266,7 +3225,6 @@ export type EmployeeCreateWithoutPlanTermOpinionsInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -3336,7 +3294,6 @@ export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -3422,7 +3379,6 @@ export type EmployeeUpdateWithoutPlanTermOpinionsInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -3492,7 +3448,6 @@ export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -3562,7 +3517,6 @@ export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -3632,7 +3586,6 @@ export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -3718,7 +3671,6 @@ export type EmployeeUpdateWithoutApplicationBusinessOwnersInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -3788,7 +3740,6 @@ export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -3858,7 +3809,6 @@ export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -3928,7 +3878,6 @@ export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -4014,7 +3963,6 @@ export type EmployeeUpdateWithoutRetirementConfirmationsGivenInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -4084,7 +4032,6 @@ export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -4153,7 +4100,6 @@ export type EmployeeCreateWithoutAppUserInput = {
   placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -4223,7 +4169,6 @@ export type EmployeeUncheckedCreateWithoutAppUserInput = {
   placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -4309,7 +4254,6 @@ export type EmployeeUpdateWithoutAppUserInput = {
   placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -4377,303 +4321,6 @@ export type EmployeeUncheckedUpdateWithoutAppUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
-  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
-  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
-  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
-  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
-  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
-  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
-  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
-  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
-  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
-  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
-  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
-  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
-  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
-  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
-  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
-  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
-  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
-  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
-  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
-  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
-  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
-  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
-  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
-  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
-  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
-  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
-  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
-  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
-  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
-  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
-  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
-  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
-  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
-  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
-  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
-  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
-  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
-  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
-  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
-  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
-  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
-  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
-  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
-  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
-  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
-  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
-  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
-  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
-  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
-  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
-  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
-}
-
-export type EmployeeCreateWithoutApprovalRolesInput = {
-  id?: string
-  employeeCode: string
-  fullName: string
-  workEmail?: string | null
-  normalizedWorkEmail?: string | null
-  jobTitle?: string | null
-  employmentType: $Enums.EmploymentType
-  hireDate: Date | string
-  status?: $Enums.EmployeeStatus
-  workState?: $Enums.EmployeeWorkState
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
-  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
-  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
-  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
-  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
-  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
-  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
-  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
-  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
-  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
-  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
-  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
-  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
-  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
-  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
-  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
-  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
-  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
-  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
-  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
-  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
-  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
-  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
-  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
-  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
-  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
-  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
-  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
-  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
-  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
-  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
-  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
-  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
-  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
-  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
-  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
-  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
-  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
-  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
-  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
-  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
-  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
-  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
-  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
-  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
-  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
-  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
-  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
-  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
-  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
-  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
-  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
-  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
-}
-
-export type EmployeeUncheckedCreateWithoutApprovalRolesInput = {
-  id?: string
-  organizationId: string
-  employeeCode: string
-  fullName: string
-  workEmail?: string | null
-  normalizedWorkEmail?: string | null
-  jobTitle?: string | null
-  employmentType: $Enums.EmploymentType
-  hireDate: Date | string
-  status?: $Enums.EmployeeStatus
-  workState?: $Enums.EmployeeWorkState
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
-  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
-  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
-  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
-  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
-  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
-  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
-  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
-  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
-  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
-  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
-  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
-  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
-  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
-  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
-  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
-  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
-  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
-  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
-  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
-  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
-  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
-  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
-  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
-  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
-  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
-  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
-  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
-  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
-  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
-  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
-  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
-  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
-  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
-  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
-  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
-  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
-  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
-  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
-  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
-  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
-  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
-  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
-  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
-  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
-  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
-  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
-  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
-  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
-  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
-  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
-  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
-}
-
-export type EmployeeCreateOrConnectWithoutApprovalRolesInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutApprovalRolesInput, Prisma.EmployeeUncheckedCreateWithoutApprovalRolesInput>
-}
-
-export type EmployeeUpsertWithoutApprovalRolesInput = {
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutApprovalRolesInput, Prisma.EmployeeUncheckedUpdateWithoutApprovalRolesInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutApprovalRolesInput, Prisma.EmployeeUncheckedCreateWithoutApprovalRolesInput>
-  where?: Prisma.EmployeeWhereInput
-}
-
-export type EmployeeUpdateToOneWithWhereWithoutApprovalRolesInput = {
-  where?: Prisma.EmployeeWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutApprovalRolesInput, Prisma.EmployeeUncheckedUpdateWithoutApprovalRolesInput>
-}
-
-export type EmployeeUpdateWithoutApprovalRolesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
-  fullName?: Prisma.StringFieldUpdateOperationsInput | string
-  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
-  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
-  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
-  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
-  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
-  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
-  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
-  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
-  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
-  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
-  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
-  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
-  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
-  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
-  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
-  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
-  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
-  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
-  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
-  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
-  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
-  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
-  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
-  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
-  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
-  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
-  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
-  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
-  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
-  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
-  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
-  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
-  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
-  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
-  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
-  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
-  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
-  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
-  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
-  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
-  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
-  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
-  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
-  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
-  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
-  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
-  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
-  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
-  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
-  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
-  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
-  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
-  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
-  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
-  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
-}
-
-export type EmployeeUncheckedUpdateWithoutApprovalRolesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
-  fullName?: Prisma.StringFieldUpdateOperationsInput | string
-  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
-  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
-  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
-  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
@@ -4746,7 +4393,6 @@ export type EmployeeCreateWithoutLicenseAssignmentsInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -4816,7 +4462,6 @@ export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -4902,7 +4547,6 @@ export type EmployeeUpdateWithoutLicenseAssignmentsInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -4972,7 +4616,6 @@ export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -5042,7 +4685,6 @@ export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -5112,7 +4754,6 @@ export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -5198,7 +4839,6 @@ export type EmployeeUpdateWithoutProvisioningTasksInChargeInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -5268,7 +4908,6 @@ export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -5338,7 +4977,6 @@ export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -5408,7 +5046,6 @@ export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -5494,7 +5131,6 @@ export type EmployeeUpdateWithoutRevocationReasonsDecidedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -5564,7 +5200,6 @@ export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -5634,7 +5269,6 @@ export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -5704,7 +5338,6 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -5779,7 +5412,6 @@ export type EmployeeCreateWithoutHandoverDutiesFixedToInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -5849,7 +5481,6 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -5924,7 +5555,6 @@ export type EmployeeCreateWithoutHandoverDutiesConfirmedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -5994,7 +5624,6 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -6080,7 +5709,6 @@ export type EmployeeUpdateWithoutHandoverDutiesAboutInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -6150,7 +5778,6 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -6231,7 +5858,6 @@ export type EmployeeUpdateWithoutHandoverDutiesFixedToInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -6301,7 +5927,6 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -6382,7 +6007,6 @@ export type EmployeeUpdateWithoutHandoverDutiesConfirmedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -6452,7 +6076,6 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -6521,7 +6144,6 @@ export type EmployeeCreateWithoutOrganizationInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -6591,7 +6213,6 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -6706,7 +6327,6 @@ export type EmployeeCreateWithoutItAdminOfInput = {
   placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -6776,7 +6396,6 @@ export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
   placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -6862,7 +6481,6 @@ export type EmployeeUpdateWithoutItAdminOfInput = {
   placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -6932,7 +6550,6 @@ export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
   placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -7002,7 +6619,6 @@ export type EmployeeCreateWithoutHeadPeriodsInput = {
   placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -7072,7 +6688,6 @@ export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
   placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -7158,7 +6773,6 @@ export type EmployeeUpdateWithoutHeadPeriodsInput = {
   placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -7228,7 +6842,6 @@ export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
   placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -7298,7 +6911,6 @@ export type EmployeeCreateWithoutPlacementsInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -7368,7 +6980,6 @@ export type EmployeeUncheckedCreateWithoutPlacementsInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -7454,7 +7065,6 @@ export type EmployeeUpdateWithoutPlacementsInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -7524,7 +7134,6 @@ export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -7595,7 +7204,6 @@ export type EmployeeCreateWithoutDepartmentTransfersInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -7665,7 +7273,6 @@ export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -7751,7 +7358,6 @@ export type EmployeeUpdateWithoutDepartmentTransfersInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -7821,7 +7427,6 @@ export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -7891,7 +7496,6 @@ export type EmployeeCreateWithoutTransferReviewsAboutInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -7961,7 +7565,6 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -8047,7 +7650,6 @@ export type EmployeeUpdateWithoutTransferReviewsAboutInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -8117,7 +7719,6 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -8187,7 +7788,6 @@ export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -8257,7 +7857,6 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -8343,7 +7942,6 @@ export type EmployeeUpdateWithoutTransferReviewsDecidedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -8413,7 +8011,6 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -8483,7 +8080,6 @@ export type EmployeeCreateWithoutEmployeeLeavesInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -8553,7 +8149,6 @@ export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -8639,7 +8234,6 @@ export type EmployeeUpdateWithoutEmployeeLeavesInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -8709,7 +8303,6 @@ export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -8779,7 +8372,6 @@ export type EmployeeCreateWithoutOffboardingCasesInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -8849,7 +8441,6 @@ export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -8935,7 +8526,6 @@ export type EmployeeUpdateWithoutOffboardingCasesInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -9005,7 +8595,6 @@ export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -9075,7 +8664,6 @@ export type EmployeeCreateWithoutNoticesAboutInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -9145,7 +8733,6 @@ export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -9220,7 +8807,6 @@ export type EmployeeCreateWithoutNoticesSentInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -9290,7 +8876,6 @@ export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -9376,7 +8961,6 @@ export type EmployeeUpdateWithoutNoticesAboutInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -9446,7 +9030,6 @@ export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -9527,7 +9110,6 @@ export type EmployeeUpdateWithoutNoticesSentInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -9597,7 +9179,6 @@ export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -9667,7 +9248,6 @@ export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -9737,7 +9317,6 @@ export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -9823,7 +9402,6 @@ export type EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -9893,7 +9471,6 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -9963,7 +9540,6 @@ export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -10033,7 +9609,6 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -10108,7 +9683,6 @@ export type EmployeeCreateWithoutAccessRequestsWithdrawnInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -10178,7 +9752,6 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -10253,7 +9826,6 @@ export type EmployeeCreateWithoutAccessRequestsCancelledInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -10323,7 +9895,6 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -10409,7 +9980,6 @@ export type EmployeeUpdateWithoutAccessRequestsMadeInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -10479,7 +10049,6 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -10560,7 +10129,6 @@ export type EmployeeUpdateWithoutAccessRequestsWithdrawnInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -10630,7 +10198,6 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -10711,7 +10278,6 @@ export type EmployeeUpdateWithoutAccessRequestsCancelledInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -10781,7 +10347,6 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -10851,7 +10416,6 @@ export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -10921,7 +10485,6 @@ export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -11007,7 +10570,6 @@ export type EmployeeUpdateWithoutAccessRequestBeneficiariesInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -11077,7 +10639,6 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -11147,7 +10708,6 @@ export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -11217,7 +10777,6 @@ export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -11303,7 +10862,6 @@ export type EmployeeUpdateWithoutAccessRequestLinesEndedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -11373,7 +10931,6 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -11443,7 +11000,6 @@ export type EmployeeCreateWithoutLineDecisionsGivenInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -11513,7 +11069,6 @@ export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -11599,7 +11154,6 @@ export type EmployeeUpdateWithoutLineDecisionsGivenInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -11669,7 +11223,6 @@ export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -11739,7 +11292,6 @@ export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -11809,7 +11361,6 @@ export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -11895,7 +11446,6 @@ export type EmployeeUpdateWithoutAccessRequestStepsAssignedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -11965,7 +11515,6 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -12035,7 +11584,6 @@ export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -12105,7 +11653,6 @@ export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -12191,7 +11738,6 @@ export type EmployeeUpdateWithoutApprovalRecordsGivenInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -12261,7 +11807,6 @@ export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -12331,7 +11876,6 @@ export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -12401,7 +11945,6 @@ export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -12476,7 +12019,6 @@ export type EmployeeCreateWithoutAssessmentsRejectedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -12546,7 +12088,6 @@ export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -12621,7 +12162,6 @@ export type EmployeeCreateWithoutAssessmentsSavedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -12691,7 +12231,6 @@ export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -12766,7 +12305,6 @@ export type EmployeeCreateWithoutAssessmentsCompletedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -12836,7 +12374,6 @@ export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -12922,7 +12459,6 @@ export type EmployeeUpdateWithoutAssessmentsProposedOwnerInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -12992,7 +12528,6 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -13073,7 +12608,6 @@ export type EmployeeUpdateWithoutAssessmentsRejectedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -13143,7 +12677,6 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -13224,7 +12757,6 @@ export type EmployeeUpdateWithoutAssessmentsSavedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -13294,7 +12826,6 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -13375,7 +12906,6 @@ export type EmployeeUpdateWithoutAssessmentsCompletedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -13445,7 +12975,6 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -13515,7 +13044,6 @@ export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -13585,7 +13113,6 @@ export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -13671,7 +13198,6 @@ export type EmployeeUpdateWithoutRequestBudgetChecksRunInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -13741,7 +13267,6 @@ export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -13811,7 +13336,6 @@ export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -13881,7 +13405,6 @@ export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -13967,7 +13490,6 @@ export type EmployeeUpdateWithoutRequestFinanceReviewsGivenInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -14037,7 +13559,6 @@ export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -14107,7 +13628,6 @@ export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -14177,7 +13697,6 @@ export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -14263,7 +13782,6 @@ export type EmployeeUpdateWithoutSpendBatchesSubmittedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -14333,7 +13851,6 @@ export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -14403,7 +13920,6 @@ export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -14473,7 +13989,6 @@ export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -14559,7 +14074,6 @@ export type EmployeeUpdateWithoutRequestSupplementsMadeInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -14629,7 +14143,6 @@ export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -14699,7 +14212,6 @@ export type EmployeeCreateWithoutSupplementDropsAboutInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -14769,7 +14281,6 @@ export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -14855,7 +14366,6 @@ export type EmployeeUpdateWithoutSupplementDropsAboutInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -14925,7 +14435,6 @@ export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -14995,7 +14504,6 @@ export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -15065,7 +14573,6 @@ export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -15151,7 +14658,6 @@ export type EmployeeUpdateWithoutSpendDecisionsGivenInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -15221,7 +14727,6 @@ export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -15291,7 +14796,6 @@ export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -15361,7 +14865,6 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -15436,7 +14939,6 @@ export type EmployeeCreateWithoutBudgetQuestionsAnsweredInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -15506,7 +15008,6 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -15592,7 +15093,6 @@ export type EmployeeUpdateWithoutBudgetQuestionsAskedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -15662,7 +15162,6 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -15743,7 +15242,6 @@ export type EmployeeUpdateWithoutBudgetQuestionsAnsweredInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -15813,7 +15311,6 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -15883,7 +15380,6 @@ export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -15953,7 +15449,6 @@ export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -16028,7 +15523,6 @@ export type EmployeeCreateWithoutServiceAccountBoundariesDecidedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -16098,7 +15592,6 @@ export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput =
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -16184,7 +15677,6 @@ export type EmployeeUpdateWithoutServiceAccountsAnsweredForInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -16254,7 +15746,6 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -16335,7 +15826,6 @@ export type EmployeeUpdateWithoutServiceAccountBoundariesDecidedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -16405,7 +15895,6 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput =
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -16475,7 +15964,6 @@ export type EmployeeCreateWithoutReturnRequestsSentInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -16545,7 +16033,6 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -16620,7 +16107,6 @@ export type EmployeeCreateWithoutReturnRequestsHeldInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -16690,7 +16176,6 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -16765,7 +16250,6 @@ export type EmployeeCreateWithoutReturnHandoversConfirmedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -16835,7 +16319,6 @@ export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -16921,7 +16404,6 @@ export type EmployeeUpdateWithoutReturnRequestsSentInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -16991,7 +16473,6 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -17072,7 +16553,6 @@ export type EmployeeUpdateWithoutReturnRequestsHeldInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -17142,7 +16622,6 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -17223,7 +16702,6 @@ export type EmployeeUpdateWithoutReturnHandoversConfirmedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -17293,7 +16771,6 @@ export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -17363,7 +16840,6 @@ export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -17433,7 +16909,6 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -17519,7 +16994,6 @@ export type EmployeeUpdateWithoutStepSlaRemindersHeldInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -17589,7 +17063,6 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -17659,7 +17132,6 @@ export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -17729,7 +17201,6 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -17815,7 +17286,6 @@ export type EmployeeUpdateWithoutStepSlaRemindersReceivedInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -17885,7 +17355,6 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -17955,7 +17424,6 @@ export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
@@ -18025,7 +17493,6 @@ export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
@@ -18111,7 +17578,6 @@ export type EmployeeUpdateWithoutCongestionIncidentsAboutInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -18181,7 +17647,6 @@ export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -18265,7 +17730,6 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
@@ -18335,7 +17799,6 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
-  approvalRoles?: Prisma.ApprovalRoleHolderUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
@@ -18412,7 +17875,6 @@ export type EmployeeCountOutputType = {
   placements: number
   itAdminOf: number
   headPeriods: number
-  approvalRoles: number
   ownedApplications: number
   workspacePrimaryOwnerOf: number
   workspaceEmergencyHolderOf: number
@@ -18469,7 +17931,6 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   placements?: boolean | EmployeeCountOutputTypeCountPlacementsArgs
   itAdminOf?: boolean | EmployeeCountOutputTypeCountItAdminOfArgs
   headPeriods?: boolean | EmployeeCountOutputTypeCountHeadPeriodsArgs
-  approvalRoles?: boolean | EmployeeCountOutputTypeCountApprovalRolesArgs
   ownedApplications?: boolean | EmployeeCountOutputTypeCountOwnedApplicationsArgs
   workspacePrimaryOwnerOf?: boolean | EmployeeCountOutputTypeCountWorkspacePrimaryOwnerOfArgs
   workspaceEmergencyHolderOf?: boolean | EmployeeCountOutputTypeCountWorkspaceEmergencyHolderOfArgs
@@ -18551,13 +18012,6 @@ export type EmployeeCountOutputTypeCountItAdminOfArgs<ExtArgs extends runtime.Ty
  */
 export type EmployeeCountOutputTypeCountHeadPeriodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.DepartmentHeadPeriodWhereInput
-}
-
-/**
- * EmployeeCountOutputType without action
- */
-export type EmployeeCountOutputTypeCountApprovalRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ApprovalRoleHolderWhereInput
 }
 
 /**
@@ -18930,7 +18384,6 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   appUser?: boolean | Prisma.Employee$appUserArgs<ExtArgs>
   itAdminOf?: boolean | Prisma.Employee$itAdminOfArgs<ExtArgs>
   headPeriods?: boolean | Prisma.Employee$headPeriodsArgs<ExtArgs>
-  approvalRoles?: boolean | Prisma.Employee$approvalRolesArgs<ExtArgs>
   ownedApplications?: boolean | Prisma.Employee$ownedApplicationsArgs<ExtArgs>
   workspacePrimaryOwnerOf?: boolean | Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>
   workspaceEmergencyHolderOf?: boolean | Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>
@@ -19041,7 +18494,6 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   appUser?: boolean | Prisma.Employee$appUserArgs<ExtArgs>
   itAdminOf?: boolean | Prisma.Employee$itAdminOfArgs<ExtArgs>
   headPeriods?: boolean | Prisma.Employee$headPeriodsArgs<ExtArgs>
-  approvalRoles?: boolean | Prisma.Employee$approvalRolesArgs<ExtArgs>
   ownedApplications?: boolean | Prisma.Employee$ownedApplicationsArgs<ExtArgs>
   workspacePrimaryOwnerOf?: boolean | Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>
   workspaceEmergencyHolderOf?: boolean | Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>
@@ -19109,7 +18561,6 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     appUser: Prisma.$AppUserPayload<ExtArgs> | null
     itAdminOf: Prisma.$DepartmentPayload<ExtArgs>[]
     headPeriods: Prisma.$DepartmentHeadPeriodPayload<ExtArgs>[]
-    approvalRoles: Prisma.$ApprovalRoleHolderPayload<ExtArgs>[]
     ownedApplications: Prisma.$ApplicationPayload<ExtArgs>[]
     workspacePrimaryOwnerOf: Prisma.$PlanWorkspaceProfilePayload<ExtArgs>[]
     workspaceEmergencyHolderOf: Prisma.$PlanWorkspaceProfilePayload<ExtArgs>[]
@@ -19574,7 +19025,6 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   appUser<T extends Prisma.Employee$appUserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$appUserArgs<ExtArgs>>): Prisma.Prisma__AppUserClient<runtime.Types.Result.GetResult<Prisma.$AppUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   itAdminOf<T extends Prisma.Employee$itAdminOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$itAdminOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   headPeriods<T extends Prisma.Employee$headPeriodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$headPeriodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentHeadPeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  approvalRoles<T extends Prisma.Employee$approvalRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$approvalRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApprovalRoleHolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ownedApplications<T extends Prisma.Employee$ownedApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$ownedApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspacePrimaryOwnerOf<T extends Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspaceEmergencyHolderOf<T extends Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -20156,30 +19606,6 @@ export type Employee$headPeriodsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.DepartmentHeadPeriodScalarFieldEnum | Prisma.DepartmentHeadPeriodScalarFieldEnum[]
-}
-
-/**
- * Employee.approvalRoles
- */
-export type Employee$approvalRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ApprovalRoleHolder
-   */
-  select?: Prisma.ApprovalRoleHolderSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ApprovalRoleHolder
-   */
-  omit?: Prisma.ApprovalRoleHolderOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ApprovalRoleHolderInclude<ExtArgs> | null
-  where?: Prisma.ApprovalRoleHolderWhereInput
-  orderBy?: Prisma.ApprovalRoleHolderOrderByWithRelationInput | Prisma.ApprovalRoleHolderOrderByWithRelationInput[]
-  cursor?: Prisma.ApprovalRoleHolderWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ApprovalRoleHolderScalarFieldEnum | Prisma.ApprovalRoleHolderScalarFieldEnum[]
 }
 
 /**

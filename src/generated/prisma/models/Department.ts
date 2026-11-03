@@ -238,6 +238,7 @@ export type DepartmentWhereInput = {
   transfersTo?: Prisma.DepartmentTransferListRelationFilter
   transferReviews?: Prisma.TransferReviewListRelationFilter
   offboardingCases?: Prisma.OffboardingCaseListRelationFilter
+  cancelledOffboardingCases?: Prisma.OffboardingCaseListRelationFilter
   noticesTargeting?: Prisma.PersonnelNoticeListRelationFilter
   noticesSent?: Prisma.PersonnelNoticeListRelationFilter
   ownedSubscriptions?: Prisma.SubscriptionListRelationFilter
@@ -272,6 +273,7 @@ export type DepartmentOrderByWithRelationInput = {
   transfersTo?: Prisma.DepartmentTransferOrderByRelationAggregateInput
   transferReviews?: Prisma.TransferReviewOrderByRelationAggregateInput
   offboardingCases?: Prisma.OffboardingCaseOrderByRelationAggregateInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseOrderByRelationAggregateInput
   noticesTargeting?: Prisma.PersonnelNoticeOrderByRelationAggregateInput
   noticesSent?: Prisma.PersonnelNoticeOrderByRelationAggregateInput
   ownedSubscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
@@ -310,6 +312,7 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   transfersTo?: Prisma.DepartmentTransferListRelationFilter
   transferReviews?: Prisma.TransferReviewListRelationFilter
   offboardingCases?: Prisma.OffboardingCaseListRelationFilter
+  cancelledOffboardingCases?: Prisma.OffboardingCaseListRelationFilter
   noticesTargeting?: Prisma.PersonnelNoticeListRelationFilter
   noticesSent?: Prisma.PersonnelNoticeListRelationFilter
   ownedSubscriptions?: Prisma.SubscriptionListRelationFilter
@@ -374,6 +377,7 @@ export type DepartmentCreateInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -406,6 +410,7 @@ export type DepartmentUncheckedCreateInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -438,6 +443,7 @@ export type DepartmentUpdateInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -470,6 +476,7 @@ export type DepartmentUncheckedUpdateInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -844,12 +851,30 @@ export type DepartmentCreateNestedOneWithoutOffboardingCasesInput = {
   connect?: Prisma.DepartmentWhereUniqueInput
 }
 
-export type DepartmentUpdateOneRequiredWithoutOffboardingCasesNestedInput = {
+export type DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutCancelledOffboardingCasesInput, Prisma.DepartmentUncheckedCreateWithoutCancelledOffboardingCasesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutCancelledOffboardingCasesInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneWithoutOffboardingCasesNestedInput = {
   create?: Prisma.XOR<Prisma.DepartmentCreateWithoutOffboardingCasesInput, Prisma.DepartmentUncheckedCreateWithoutOffboardingCasesInput>
   connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutOffboardingCasesInput
   upsert?: Prisma.DepartmentUpsertWithoutOffboardingCasesInput
+  disconnect?: Prisma.DepartmentWhereInput | boolean
+  delete?: Prisma.DepartmentWhereInput | boolean
   connect?: Prisma.DepartmentWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutOffboardingCasesInput, Prisma.DepartmentUpdateWithoutOffboardingCasesInput>, Prisma.DepartmentUncheckedUpdateWithoutOffboardingCasesInput>
+}
+
+export type DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutCancelledOffboardingCasesInput, Prisma.DepartmentUncheckedCreateWithoutCancelledOffboardingCasesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutCancelledOffboardingCasesInput
+  upsert?: Prisma.DepartmentUpsertWithoutCancelledOffboardingCasesInput
+  disconnect?: Prisma.DepartmentWhereInput | boolean
+  delete?: Prisma.DepartmentWhereInput | boolean
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutCancelledOffboardingCasesInput, Prisma.DepartmentUpdateWithoutCancelledOffboardingCasesInput>, Prisma.DepartmentUncheckedUpdateWithoutCancelledOffboardingCasesInput>
 }
 
 export type DepartmentCreateNestedOneWithoutNoticesTargetingInput = {
@@ -963,6 +988,7 @@ export type DepartmentCreateWithoutOwnedSubscriptionsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutDepartmentInput
@@ -994,6 +1020,7 @@ export type DepartmentUncheckedCreateWithoutOwnedSubscriptionsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutDepartmentInput
@@ -1041,6 +1068,7 @@ export type DepartmentUpdateWithoutOwnedSubscriptionsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutDepartmentNestedInput
@@ -1072,6 +1100,7 @@ export type DepartmentUncheckedUpdateWithoutOwnedSubscriptionsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -1103,6 +1132,7 @@ export type DepartmentCreateWithoutOwnerAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -1134,6 +1164,7 @@ export type DepartmentUncheckedCreateWithoutOwnerAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -1181,6 +1212,7 @@ export type DepartmentUpdateWithoutOwnerAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1212,6 +1244,7 @@ export type DepartmentUncheckedUpdateWithoutOwnerAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1242,6 +1275,7 @@ export type DepartmentCreateWithoutOwnedServiceAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -1273,6 +1307,7 @@ export type DepartmentUncheckedCreateWithoutOwnedServiceAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -1320,6 +1355,7 @@ export type DepartmentUpdateWithoutOwnedServiceAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1351,6 +1387,7 @@ export type DepartmentUncheckedUpdateWithoutOwnedServiceAssignmentsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1382,6 +1419,7 @@ export type DepartmentCreateWithoutHandoverDutiesInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -1413,6 +1451,7 @@ export type DepartmentUncheckedCreateWithoutHandoverDutiesInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -1460,6 +1499,7 @@ export type DepartmentUpdateWithoutHandoverDutiesInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1491,6 +1531,7 @@ export type DepartmentUncheckedUpdateWithoutHandoverDutiesInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1523,6 +1564,7 @@ export type DepartmentCreateWithoutHeldNotificationsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -1554,6 +1596,7 @@ export type DepartmentUncheckedCreateWithoutHeldNotificationsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -1601,6 +1644,7 @@ export type DepartmentUpdateWithoutHeldNotificationsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1632,6 +1676,7 @@ export type DepartmentUncheckedUpdateWithoutHeldNotificationsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1662,6 +1707,7 @@ export type DepartmentCreateWithoutOrganizationInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -1693,6 +1739,7 @@ export type DepartmentUncheckedCreateWithoutOrganizationInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -1766,6 +1813,7 @@ export type DepartmentCreateWithoutCostCentersInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -1797,6 +1845,7 @@ export type DepartmentUncheckedCreateWithoutCostCentersInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -1844,6 +1893,7 @@ export type DepartmentUpdateWithoutCostCentersInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1875,6 +1925,7 @@ export type DepartmentUncheckedUpdateWithoutCostCentersInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -1906,6 +1957,7 @@ export type DepartmentCreateWithoutHeadPeriodsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -1937,6 +1989,7 @@ export type DepartmentUncheckedCreateWithoutHeadPeriodsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -1984,6 +2037,7 @@ export type DepartmentUpdateWithoutHeadPeriodsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2015,6 +2069,7 @@ export type DepartmentUncheckedUpdateWithoutHeadPeriodsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2046,6 +2101,7 @@ export type DepartmentCreateWithoutCostCenterLinksInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -2077,6 +2133,7 @@ export type DepartmentUncheckedCreateWithoutCostCenterLinksInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -2124,6 +2181,7 @@ export type DepartmentUpdateWithoutCostCenterLinksInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2155,6 +2213,7 @@ export type DepartmentUncheckedUpdateWithoutCostCenterLinksInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2186,6 +2245,7 @@ export type DepartmentCreateWithoutItAdminInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -2217,6 +2277,7 @@ export type DepartmentUncheckedCreateWithoutItAdminInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -2274,6 +2335,7 @@ export type DepartmentCreateWithoutPlacementsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -2305,6 +2367,7 @@ export type DepartmentUncheckedCreateWithoutPlacementsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -2352,6 +2415,7 @@ export type DepartmentUpdateWithoutPlacementsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2383,6 +2447,7 @@ export type DepartmentUncheckedUpdateWithoutPlacementsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2414,6 +2479,7 @@ export type DepartmentCreateWithoutTransfersFromInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -2445,6 +2511,7 @@ export type DepartmentUncheckedCreateWithoutTransfersFromInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -2481,6 +2548,7 @@ export type DepartmentCreateWithoutTransfersToInput = {
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -2512,6 +2580,7 @@ export type DepartmentUncheckedCreateWithoutTransfersToInput = {
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -2559,6 +2628,7 @@ export type DepartmentUpdateWithoutTransfersFromInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2590,6 +2660,7 @@ export type DepartmentUncheckedUpdateWithoutTransfersFromInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2632,6 +2703,7 @@ export type DepartmentUpdateWithoutTransfersToInput = {
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2663,6 +2735,7 @@ export type DepartmentUncheckedUpdateWithoutTransfersToInput = {
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2694,6 +2767,7 @@ export type DepartmentCreateWithoutTransferReviewsInput = {
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -2725,6 +2799,7 @@ export type DepartmentUncheckedCreateWithoutTransferReviewsInput = {
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -2772,6 +2847,7 @@ export type DepartmentUpdateWithoutTransferReviewsInput = {
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2803,6 +2879,7 @@ export type DepartmentUncheckedUpdateWithoutTransferReviewsInput = {
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2834,6 +2911,7 @@ export type DepartmentCreateWithoutOffboardingCasesInput = {
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -2865,6 +2943,7 @@ export type DepartmentUncheckedCreateWithoutOffboardingCasesInput = {
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -2875,6 +2954,75 @@ export type DepartmentUncheckedCreateWithoutOffboardingCasesInput = {
 export type DepartmentCreateOrConnectWithoutOffboardingCasesInput = {
   where: Prisma.DepartmentWhereUniqueInput
   create: Prisma.XOR<Prisma.DepartmentCreateWithoutOffboardingCasesInput, Prisma.DepartmentUncheckedCreateWithoutOffboardingCasesInput>
+}
+
+export type DepartmentCreateWithoutCancelledOffboardingCasesInput = {
+  id?: string
+  code: string
+  name: string
+  functionDescription?: string | null
+  status?: $Enums.DepartmentStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deactivatedAt?: Date | string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutDepartmentInput
+  itAdmin?: Prisma.EmployeeCreateNestedOneWithoutItAdminOfInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutDepartmentInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutDepartmentInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOwningDepartmentInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
+  transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
+  transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
+  ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutDepartmentInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutCancelledOffboardingCasesInput = {
+  id?: string
+  organizationId: string
+  code: string
+  name: string
+  functionDescription?: string | null
+  status?: $Enums.DepartmentStatus
+  itAdminEmployeeId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deactivatedAt?: Date | string | null
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutDepartmentInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutDepartmentInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOwningDepartmentInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
+  transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
+  transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
+  ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutDepartmentInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutCancelledOffboardingCasesInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutCancelledOffboardingCasesInput, Prisma.DepartmentUncheckedCreateWithoutCancelledOffboardingCasesInput>
 }
 
 export type DepartmentUpsertWithoutOffboardingCasesInput = {
@@ -2912,6 +3060,7 @@ export type DepartmentUpdateWithoutOffboardingCasesInput = {
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2943,6 +3092,82 @@ export type DepartmentUncheckedUpdateWithoutOffboardingCasesInput = {
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
+  noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
+  ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUpsertWithoutCancelledOffboardingCasesInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutCancelledOffboardingCasesInput, Prisma.DepartmentUncheckedUpdateWithoutCancelledOffboardingCasesInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutCancelledOffboardingCasesInput, Prisma.DepartmentUncheckedCreateWithoutCancelledOffboardingCasesInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutCancelledOffboardingCasesInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutCancelledOffboardingCasesInput, Prisma.DepartmentUncheckedUpdateWithoutCancelledOffboardingCasesInput>
+}
+
+export type DepartmentUpdateWithoutCancelledOffboardingCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  functionDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumDepartmentStatusFieldUpdateOperationsInput | $Enums.DepartmentStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deactivatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutDepartmentNestedInput
+  itAdmin?: Prisma.EmployeeUpdateOneWithoutItAdminOfNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutDepartmentNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutDepartmentNestedInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOwningDepartmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
+  transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
+  transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
+  ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutDepartmentNestedInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutCancelledOffboardingCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  functionDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumDepartmentStatusFieldUpdateOperationsInput | $Enums.DepartmentStatus
+  itAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deactivatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutDepartmentNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutDepartmentNestedInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOwningDepartmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
+  transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
+  transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -2975,6 +3200,7 @@ export type DepartmentCreateWithoutNoticesTargetingInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutDepartmentInput
@@ -3006,6 +3232,7 @@ export type DepartmentUncheckedCreateWithoutNoticesTargetingInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3042,6 +3269,7 @@ export type DepartmentCreateWithoutNoticesSentInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutDepartmentInput
@@ -3073,6 +3301,7 @@ export type DepartmentUncheckedCreateWithoutNoticesSentInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3120,6 +3349,7 @@ export type DepartmentUpdateWithoutNoticesTargetingInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutDepartmentNestedInput
@@ -3151,6 +3381,7 @@ export type DepartmentUncheckedUpdateWithoutNoticesTargetingInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -3193,6 +3424,7 @@ export type DepartmentUpdateWithoutNoticesSentInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutDepartmentNestedInput
@@ -3224,6 +3456,7 @@ export type DepartmentUncheckedUpdateWithoutNoticesSentInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
   ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -3254,6 +3487,7 @@ export type DepartmentCreateWithoutAccessRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -3285,6 +3519,7 @@ export type DepartmentUncheckedCreateWithoutAccessRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -3332,6 +3567,7 @@ export type DepartmentUpdateWithoutAccessRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3363,6 +3599,7 @@ export type DepartmentUncheckedUpdateWithoutAccessRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3394,6 +3631,7 @@ export type DepartmentCreateWithoutApprovalRecordsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -3425,6 +3663,7 @@ export type DepartmentUncheckedCreateWithoutApprovalRecordsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -3472,6 +3711,7 @@ export type DepartmentUpdateWithoutApprovalRecordsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3503,6 +3743,7 @@ export type DepartmentUncheckedUpdateWithoutApprovalRecordsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3534,6 +3775,7 @@ export type DepartmentCreateWithoutSpendBatchesInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -3565,6 +3807,7 @@ export type DepartmentUncheckedCreateWithoutSpendBatchesInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -3612,6 +3855,7 @@ export type DepartmentUpdateWithoutSpendBatchesInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3643,6 +3887,7 @@ export type DepartmentUncheckedUpdateWithoutSpendBatchesInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3674,6 +3919,7 @@ export type DepartmentCreateWithoutReturnRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
@@ -3705,6 +3951,7 @@ export type DepartmentUncheckedCreateWithoutReturnRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
@@ -3752,6 +3999,7 @@ export type DepartmentUpdateWithoutReturnRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3783,6 +4031,7 @@ export type DepartmentUncheckedUpdateWithoutReturnRequestsInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3826,6 +4075,7 @@ export type DepartmentUpdateWithoutOrganizationInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3857,6 +4107,7 @@ export type DepartmentUncheckedUpdateWithoutOrganizationInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3912,6 +4163,7 @@ export type DepartmentUpdateWithoutItAdminInput = {
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3943,6 +4195,7 @@ export type DepartmentUncheckedUpdateWithoutItAdminInput = {
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
   noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
   ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
@@ -3982,6 +4235,7 @@ export type DepartmentCountOutputType = {
   transfersTo: number
   transferReviews: number
   offboardingCases: number
+  cancelledOffboardingCases: number
   noticesTargeting: number
   noticesSent: number
   ownedSubscriptions: number
@@ -4004,6 +4258,7 @@ export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   transfersTo?: boolean | DepartmentCountOutputTypeCountTransfersToArgs
   transferReviews?: boolean | DepartmentCountOutputTypeCountTransferReviewsArgs
   offboardingCases?: boolean | DepartmentCountOutputTypeCountOffboardingCasesArgs
+  cancelledOffboardingCases?: boolean | DepartmentCountOutputTypeCountCancelledOffboardingCasesArgs
   noticesTargeting?: boolean | DepartmentCountOutputTypeCountNoticesTargetingArgs
   noticesSent?: boolean | DepartmentCountOutputTypeCountNoticesSentArgs
   ownedSubscriptions?: boolean | DepartmentCountOutputTypeCountOwnedSubscriptionsArgs
@@ -4122,6 +4377,13 @@ export type DepartmentCountOutputTypeCountOffboardingCasesArgs<ExtArgs extends r
 /**
  * DepartmentCountOutputType without action
  */
+export type DepartmentCountOutputTypeCountCancelledOffboardingCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OffboardingCaseWhereInput
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
 export type DepartmentCountOutputTypeCountNoticesTargetingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PersonnelNoticeWhereInput
 }
@@ -4182,6 +4444,7 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   transfersTo?: boolean | Prisma.Department$transfersToArgs<ExtArgs>
   transferReviews?: boolean | Prisma.Department$transferReviewsArgs<ExtArgs>
   offboardingCases?: boolean | Prisma.Department$offboardingCasesArgs<ExtArgs>
+  cancelledOffboardingCases?: boolean | Prisma.Department$cancelledOffboardingCasesArgs<ExtArgs>
   noticesTargeting?: boolean | Prisma.Department$noticesTargetingArgs<ExtArgs>
   noticesSent?: boolean | Prisma.Department$noticesSentArgs<ExtArgs>
   ownedSubscriptions?: boolean | Prisma.Department$ownedSubscriptionsArgs<ExtArgs>
@@ -4251,6 +4514,7 @@ export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   transfersTo?: boolean | Prisma.Department$transfersToArgs<ExtArgs>
   transferReviews?: boolean | Prisma.Department$transferReviewsArgs<ExtArgs>
   offboardingCases?: boolean | Prisma.Department$offboardingCasesArgs<ExtArgs>
+  cancelledOffboardingCases?: boolean | Prisma.Department$cancelledOffboardingCasesArgs<ExtArgs>
   noticesTargeting?: boolean | Prisma.Department$noticesTargetingArgs<ExtArgs>
   noticesSent?: boolean | Prisma.Department$noticesSentArgs<ExtArgs>
   ownedSubscriptions?: boolean | Prisma.Department$ownedSubscriptionsArgs<ExtArgs>
@@ -4286,6 +4550,7 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     transfersTo: Prisma.$DepartmentTransferPayload<ExtArgs>[]
     transferReviews: Prisma.$TransferReviewPayload<ExtArgs>[]
     offboardingCases: Prisma.$OffboardingCasePayload<ExtArgs>[]
+    cancelledOffboardingCases: Prisma.$OffboardingCasePayload<ExtArgs>[]
     noticesTargeting: Prisma.$PersonnelNoticePayload<ExtArgs>[]
     noticesSent: Prisma.$PersonnelNoticePayload<ExtArgs>[]
     ownedSubscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
@@ -4713,6 +4978,7 @@ export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runti
   transfersTo<T extends Prisma.Department$transfersToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$transfersToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transferReviews<T extends Prisma.Department$transferReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$transferReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransferReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   offboardingCases<T extends Prisma.Department$offboardingCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$offboardingCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OffboardingCasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cancelledOffboardingCases<T extends Prisma.Department$cancelledOffboardingCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$cancelledOffboardingCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OffboardingCasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   noticesTargeting<T extends Prisma.Department$noticesTargetingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$noticesTargetingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonnelNoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   noticesSent<T extends Prisma.Department$noticesSentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$noticesSentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonnelNoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ownedSubscriptions<T extends Prisma.Department$ownedSubscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$ownedSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -5492,6 +5758,30 @@ export type Department$transferReviewsArgs<ExtArgs extends runtime.Types.Extensi
  * Department.offboardingCases
  */
 export type Department$offboardingCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OffboardingCase
+   */
+  select?: Prisma.OffboardingCaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OffboardingCase
+   */
+  omit?: Prisma.OffboardingCaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OffboardingCaseInclude<ExtArgs> | null
+  where?: Prisma.OffboardingCaseWhereInput
+  orderBy?: Prisma.OffboardingCaseOrderByWithRelationInput | Prisma.OffboardingCaseOrderByWithRelationInput[]
+  cursor?: Prisma.OffboardingCaseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OffboardingCaseScalarFieldEnum | Prisma.OffboardingCaseScalarFieldEnum[]
+}
+
+/**
+ * Department.cancelledOffboardingCases
+ */
+export type Department$cancelledOffboardingCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the OffboardingCase
    */
