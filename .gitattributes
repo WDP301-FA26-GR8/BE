@@ -1,2 +1,0 @@
-# GATE-EOL=A (Owner, Prompt 09): only the generated OpenAPI artifact is pinned to LF; no repository-wide rule.
-openapi.json text eol=lf
