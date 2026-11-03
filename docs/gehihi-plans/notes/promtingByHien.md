@@ -9,7 +9,8 @@ File này chỉ giữ prompt. Tiến độ và bằng chứng ghi ở `plan.md` 
 1. Mỗi plan, hoặc mỗi phần của plan dài, là **một chat mới**.
 2. Mỗi lúc chỉ chạy **một agent**. Các plan sửa chung file, chạy song song sẽ đè nhau.
 3. Chạy đúng thứ tự trong [README](../README.md). Không nhảy cóc: B07-8 cần B07-7 xong.
-4. Xong mỗi plan: đọc bàn giao, chạy `pnpm check`, audit nếu plan chạm tiền hoặc khóa, rồi bạn mới commit.
+4. Xong mỗi plan: đọc bàn giao, chạy `pnpm typecheck` và unit test của module, audit nếu plan chạm tiền hoặc khóa, rồi
+   bạn mới commit. Từ 03/11/2026 chỉ cần unit test, HTTP và integration dồn vào [đợt test cuối](#đợt-test-cuối).
 5. Prompt mặc định có `Chưa commit`. Bạn tự commit sau khi đọc diff.
 6. Agent dừng vì cổng chưa thỏa là đúng. Đừng bảo agent giả định, mang câu hỏi về xin khuyến nghị rồi ghi vào `02-owner-decisions.md`.
 
@@ -54,10 +55,10 @@ Dùng cho: P00, B05-1, B05-2, B10-1, B07-1, B07-3, B07-4, B07-7, B07-9.
 ```text
 Đọc docs/gehihi-plans/00-agent-rules.md, rồi làm đúng docs/gehihi-plans/<file-plan>.md.
 Chỉ làm plan này. Không sửa plan khác. Nếu Cổng vào chưa thỏa thì dừng và báo, không tự giả định.
-Viết test đỏ trước, chạy thấy đỏ đúng lý do rồi mới sửa.
-Chạy các lệnh ở mục Verify, thêm pnpm test:http -- test/http/platform và pnpm exec eslint trên các file đã sửa.
-Không thêm eslint-disable hay suppression.
-Ghi bằng chứng vào mục Verification and handoff trong plan.md của hạng mục. Chưa commit.
+Viết unit test đỏ trước, chạy thấy đỏ đúng lý do rồi mới sửa.
+Chỉ chạy pnpm typecheck và pnpm test -- <thư mục module đã sửa>, theo mục Verify chung của 00-agent-rules.md.
+Không viết hay chạy test HTTP, integration, E2E ở lượt này; dòng đó trong bảng Test để dành cho đợt test cuối.
+Ghi bằng chứng vào mục Verification and handoff trong plan.md của hạng mục, ghi rõ HTTP và integration hoãn. Chưa commit.
 Làm xong thì dừng và báo cáo theo mẫu bàn giao trong 00-agent-rules.md.
 ```
 
@@ -82,12 +83,14 @@ Mẫu chung:
 Đọc docs/gehihi-plans/00-agent-rules.md và docs/gehihi-plans/<file-plan>.md.
 Phần đã làm ở lượt trước: <chưa có / tên phần>. Xem bằng git diff, không làm lại.
 Lần này CHỈ làm: <phần của lượt>. Các phần khác để lượt sau, không làm trước.
-Cuối lượt chạy pnpm typecheck và test của đúng phần này. Giữ code build được, test đang xanh không bị đỏ.
+Cuối lượt chạy pnpm typecheck và unit test của đúng phần này. Giữ code build được, unit test đang xanh không bị đỏ.
 Ghi phần đã xong vào plan.md của hạng mục. Chưa commit.
 Dừng và báo cáo ngay sau phần này.
 ```
 
-Chỉ lượt cuối mới chạy đủ Verify và `pnpm check`. Lượt giữa có thể chưa xanh hết.
+Mỗi lượt, kể cả lượt cuối, chỉ chạy typecheck và unit test. Các câu "chạy các lệnh ở mục Verify" trong prompt bên dưới
+hiểu theo mục `Verify chung` của `00-agent-rules.md`, không chạy HTTP hay integration. Prompt B07-2 → B07-8 dưới đây là
+bản đã dùng trước 03/11/2026, giữ để tra lại.
 
 ### B07-2: 3 chat
 
@@ -235,19 +238,18 @@ Chỉ audit và sửa spec, plan, test matrix. Không code. Chưa commit.
 ```text
 Đọc docs/gehihi-plans/00-agent-rules.md và docs/gehihi-plans/<file-plan>.md.
 Thiết kế của hạng mục <hạng-mục> đã xong. Lượt này là lượt code, bỏ qua câu "Dừng, không code" trong plan.
-Làm theo Tasks trong docs/workspace/items/<hạng-mục>/plan.md, viết test đỏ trước.
-Chạy các lệnh Verify ghi trong plan.md của hạng mục. Chưa commit.
+Làm theo Tasks trong docs/workspace/items/<hạng-mục>/plan.md, viết unit test đỏ trước.
+Chỉ chạy pnpm typecheck và unit test của module. Test HTTP, integration trong plan.md để dành cho đợt test cuối. Chưa commit.
 Làm xong thì dừng và báo cáo.
 ```
 
 `plan.md` của hạng mục dài thì chia tiếp bằng mẫu ở mục 2.
 
-**Sau chat 3, trước khi commit:** chạy đủ [lệnh tự chạy](#lệnh-tự-chạy-sau-mỗi-plan), kể cả `pnpm test:http` toàn bộ và
-integration. B07-10 từng ghi "verified" khi mới chạy unit và HTTP của riêng route mới, trong khi 3 suite `test/http/platform`
-và ESLint còn đỏ. Prompt chat 3 nên thêm dòng:
+**Sau chat 3, trước khi commit:** chạy [lệnh tự chạy](#lệnh-tự-chạy-sau-mỗi-plan). B07-10 từng ghi "verified" khi mới chạy
+unit, trong khi HTTP `platform` và integration còn đỏ. Prompt chat 3 nên thêm dòng:
 
 ```text
-Chỉ ghi verified khi pnpm check, pnpm test:http toàn bộ và test:integration của module đều xanh. Lệnh nào chưa chạy được thì ghi chưa chạy, kèm lý do.
+Ghi "unit pass; HTTP, integration hoãn tới đợt test cuối". Không ghi verified.
 ```
 
 **Lưu ý với các plan chưa chạy:** `QĐ-93` ở repo Docs đã đổi một phần nguồn. Trước khi chạy B08-6, hỏi Owner về pin Docs mới. Nếu Owner đồng ý, pull `../docs` rồi thêm vào prompt:
@@ -316,28 +318,10 @@ Chạy Verify, pnpm test:http toàn bộ và pnpm check. Ghi bằng chứng vào
 Làm xong thì dừng và báo cáo.
 ```
 
-**B07-10, hoàn thiện code đã có (kiểm lại 03/11/2026):** bật Docker trước. Dùng Codex.
+**B07-10:** typecheck và unit đã xanh (513 pass) nên đủ mức của từng plan, commit được. Các việc đỏ còn lại thuộc đợt
+test cuối, prompt ở [mục Đợt test cuối](#đợt-test-cuối).
 
-```text
-Đọc docs/gehihi-plans/00-agent-rules.md, docs/gehihi-plans/b07-10-internal-cost-entry.md
-và docs/workspace/items/g8-internal-cost-entry/plan.md, mục "Kiểm lại code B07-10 ngày 03/11/2026".
-Thiết kế và code B07-10 đã có, xem bằng git diff. Lượt này là lượt code, bỏ qua câu "Dừng, không code" trong plan.
-Chỉ sửa các việc sau, không thêm tính năng:
-1. Đưa 4 route internalCostRecord, internalCostCancel, internalCostGet, internalCostList vào api-coverage-manifest,
-   SUCCESS_MESSAGES và openapi-example-route-codes-budgets; khai 422 VALIDATION_ERROR và 429 HTTP_TOO_MANY_REQUESTS
-   như các route khác, để 3 suite test/http/platform xanh.
-2. Sửa 43 lỗi ESLint và Prettier ở các file B07-10. Hạ complexity của prorateInternalCostForYears và
-   splitInternalCostAcrossPeriods bằng cách tách hàm, bỏ any ở internal-cost.service.ts, bỏ import thừa.
-   Không thêm eslint-disable hay suppression.
-3. Thêm vào internal-cost.integration-spec.ts các ca trong matrix spec còn thiếu: khóa đồng thời bằng
-   ConcurrencyHarness, rollback không ghi dở, audit INTERNAL_COST.RECORDED (AC-8b), báo cáo đã phát hành (AC-10).
-   Mỗi ca kiểm số spent thật.
-Chạy pnpm check, pnpm test:http, pnpm openapi:export, pnpm test:integration -- test/integration/budgets.
-Ghi bằng chứng vào plan.md của g8-internal-cost-entry, sửa dòng Triển khai, ghi đúng agent và model. Chưa commit.
-Làm xong thì dừng và báo cáo.
-```
-
-**Merge `origin/dev` vào `hien-dev`:** chạy sau khi B07-10 xanh và đã commit. Dùng Codex, bật Docker.
+**Merge `origin/dev` vào `hien-dev`:** chạy sau khi đã commit B07-10. Dùng Codex.
 
 ```text
 Đọc AGENTS.md và docs/workspace/prompts/README.md, mục tích hợp khi dev đã đổi.
@@ -347,8 +331,7 @@ dev đã đổi BudgetSupportService thành BudgetFactsService và đổi các s
 theo docs/rules/module-structure.md. Cập nhật toàn bộ code hóa đơn và chi phí nội bộ theo tên mới, kể cả file git
 không báo conflict và CatalogApi.lockApplicationShared.
 Không đổi nghiệp vụ, không nới test để cho xanh. Conflict nào phải đổi nghiệp vụ thì dừng và báo.
-Chạy pnpm check, pnpm test:http, pnpm test:integration -- test/integration/budgets,
-pnpm test:integration -- test/integration/requests --maxWorkers=4 và pnpm test:integration:serial.
+Chạy pnpm typecheck và pnpm test. HTTP và integration để dành cho đợt test cuối.
 Ghi kết quả vào plan.md của g8-commitment-realization, ghi đúng agent và model. Để merge ở trạng thái chưa commit, dừng và báo cáo.
 ```
 
@@ -357,7 +340,7 @@ Ghi kết quả vào plan.md của g8-commitment-realization, ghi đúng agent v
 ```text
 Đọc docs/gehihi-plans/00-agent-rules.md và docs/gehihi-plans/<file-plan>.md.
 Không viết thêm tính năng. Code đã có nhưng plan.md của <hạng-mục> chưa có bằng chứng phần này.
-Chạy các lệnh ở mục Verify, gồm cả test:integration trên database riêng theo test/README.md.
+Chạy pnpm typecheck và unit test của module.
 Ghi bằng chứng vào mục Verification and handoff của plan.md, nêu rõ AC đã và chưa chứng minh.
 Nếu test đỏ thì báo nguyên nhân, chưa sửa. Chưa commit.
 ```
@@ -458,10 +441,32 @@ A có đang sửa contract.policy.ts, document.service.ts hay bảng document_at
 ## Lệnh tự chạy sau mỗi plan
 
 ```powershell
-pnpm check
-pnpm test:http
-pnpm test:integration -- test/integration/budgets
-pnpm test:integration -- test/integration/requests --maxWorkers=4
+pnpm typecheck
+pnpm test -- src/modules/<module đã sửa>
 ```
 
-Test integration cần Docker đang chạy và database riêng theo [test guide](../../../test/README.md). Plan chỉ sửa tài liệu thì chạy `pnpm rules:check` và `pnpm rules:format`.
+Plan chỉ sửa tài liệu thì chạy `pnpm rules:check` và `pnpm rules:format`.
+
+## Đợt test cuối
+
+Chạy một lần khi đã xong hết feature, trước khi xin Owner merge vào `dev`. Cần Docker và database riêng theo
+[test guide](../../../test/README.md).
+
+```powershell
+pnpm check
+pnpm test:http
+pnpm test:integration
+pnpm test:integration:serial
+pnpm test:e2e
+```
+
+Lỗi đã biết phải sửa ở đợt này, kiểm ngày 03/11/2026 (chi tiết ở [gehihi-done.md](gehihi-done.md#lỗi-đỏ-đã-biết)):
+
+```text
+Đọc docs/gehihi-plans/00-agent-rules.md, mục Đợt test cuối, và docs/gehihi-plans/notes/gehihi-done.md, mục Lỗi đỏ đã biết.
+Đây là đợt test cuối. Sửa từng lỗi trong danh sách, không thêm tính năng, không đổi nghiệp vụ.
+Không thêm eslint-disable, không .skip, không nới assert.
+Chạy pnpm check, pnpm test:http, pnpm test:integration, pnpm test:integration:serial, pnpm test:e2e.
+Lỗi mới ngoài danh sách thì tìm plan gây ra, sửa và ghi vào plan.md của hạng mục đó. Ghi đúng agent và model. Chưa commit.
+Làm xong thì dừng và báo cáo.
+```

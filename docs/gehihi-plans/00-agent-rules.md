@@ -93,28 +93,40 @@ Báo theo mẫu: đã làm gì, dừng ở đâu, bằng chứng (lệnh, kết 
 
 ## Verify chung
 
-Cuối mỗi plan có code:
+**Dev B quyết định ngày 03/11/2026:** trong lúc làm từng plan chỉ cần unit test. Các tầng test khác dồn vào **đợt test
+cuối**, chạy một lần khi đã xong hết feature. Luật này ghi đè mục `Verify` và bảng `Test` trong từng file plan.
+
+Cuối mỗi plan có code, chỉ chạy:
+
+```powershell
+pnpm typecheck
+pnpm test -- <thư mục module đã sửa>
+```
+
+- Viết unit test đỏ trước cho policy, mapper, service, rồi mới sửa code.
+- Không bắt buộc viết hay chạy test HTTP, integration, tuần tự, E2E. Plan có các dòng đó trong bảng `Test` thì giữ nguyên
+  làm danh sách cho đợt test cuối. File test đã có thì giữ, không xóa, không `.skip`.
+- Vẫn chạy generator khi đổi route hoặc module: `pnpm openapi:export`, `pnpm arch:routes`, `pnpm arch:graph`.
+- Plan chỉ sửa tài liệu: `pnpm rules:check`, `pnpm rules:format`.
+
+**Đợt test cuối**, chạy trước khi xin Owner merge vào `dev`:
 
 ```powershell
 pnpm check
+pnpm test:http
+pnpm test:integration
+pnpm test:integration:serial
+pnpm test:e2e
 ```
 
-Thêm theo tác động:
-
-| Thay đổi                 | Lệnh                                                             |
-| ------------------------ | ---------------------------------------------------------------- |
-| HTTP, DTO, guard         | `pnpm test:http`, `pnpm openapi:export`, xem diff `openapi.json` |
-| Route, module            | `pnpm arch:routes`, `pnpm arch:graph`                            |
-| SQL, schema, transaction | `pnpm test:integration -- test/integration/<module>`             |
-| Chỉ tài liệu             | `pnpm rules:check`, `pnpm rules:format`                          |
-
-Regression toàn gói (`pnpm test:http`, `pnpm test:integration`, `pnpm test:integration:serial`, `pnpm test:e2e`) chỉ chạy
-khi plan yêu cầu hoặc trước bàn giao gói.
+Lỗi gặp ở đợt này sửa theo từng plan gây ra, ghi vào `plan.md` của hạng mục đó.
 
 ## Ghi lại và bàn giao
 
 - Bằng chứng ghi vào `docs/workspace/items/<hạng-mục>/plan.md`, mục `Verification and handoff`: lệnh, revision hoặc
   fingerprint cây làm việc, môi trường, số test, AC đã chứng minh, giới hạn.
+- Ghi đúng mức đã kiểm: `unit pass; HTTP, integration hoãn tới đợt test cuối`. Không ghi `verified` khi chưa qua đợt test
+  cuối. AC chỉ có bằng chứng HTTP hoặc integration thì ghi là chưa chứng minh.
 - Ghi đúng agent và model thực dùng của lượt đó, ví dụ Codex hoặc `gemini-3.8 flash -high`; không ghi là Opus hay Sonnet nếu không dùng.
 - Đổi hành vi so với spec thì cập nhật spec cùng lượt, kèm lý do. Đổi nghiệp vụ thì dừng hỏi.
 - Không chép log dài, không lưu token, password, connection string.
