@@ -10,7 +10,8 @@ Bộ plan nhỏ để giao từng lượt cho agent Codex hoặc `gemini-3.8 fla
 
 1. Agent đọc [luật chung](00-agent-rules.md), rồi **đúng một** file plan.
 2. Kiểm tra `Cổng vào` của plan. Cổng chưa thỏa thì dừng và báo, không làm.
-3. Làm hết plan, chạy `Verify`, ghi bằng chứng vào `plan.md` của hạng mục, dừng và bàn giao.
+3. Làm hết plan, chạy typecheck và unit test theo mục `Verify chung` của [luật chung](00-agent-rules.md#verify-chung),
+   ghi bằng chứng vào `plan.md` của hạng mục, dừng và bàn giao. HTTP, integration, E2E dồn vào đợt test cuối.
 4. Người phụ trách đọc bàn giao rồi mới mở lượt plan tiếp theo.
 
 Mẫu câu lệnh cho agent:
