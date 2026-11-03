@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../infrastructure/database/prisma.service';
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
-import { heldKey } from './commitment.repo';
+import { heldKey } from './commitment-key.policy';
 
 export interface InvoiceSpendTotals {
   spent: bigint;

@@ -3,7 +3,6 @@ import type { AuthenticatedPrincipal } from '../../../infrastructure/security/to
 import type { AuditApi } from '../../audit/public/audit.api';
 import type { BudgetSupportService } from '../budget/budget-support.service';
 import { BudgetCommitmentNotFoundError, BudgetNotFinanceError } from '../budget/budget.errors';
-import type { BudgetYearLockRepo } from '../budget/budget-year-lock.repo';
 import type { CommitmentRepo } from '../budget/commitment.repo';
 import { CommitmentVendorHook } from '../public/budgets.extension-points';
 import { InvoiceLineNotFoundError, InvoiceMatchRefusedError, InvoiceNotFoundError } from './invoice.errors';
@@ -26,7 +25,7 @@ describe('InvoiceMatchService (B07-8 Step 5)', () => {
     realize: jest.Mock;
   };
   let yearLock: { lock: jest.Mock };
-  let support: { requireFinance: jest.Mock };
+  let support: { requireFinance: jest.Mock; reportingCurrency: jest.Mock; formatter: jest.Mock };
   let audit: { record: jest.Mock };
   let vendorHook: CommitmentVendorHook;
   let vendorReader: { getVendorId: jest.Mock };
@@ -95,6 +94,8 @@ describe('InvoiceMatchService (B07-8 Step 5)', () => {
       lock: jest.fn().mockResolvedValue(undefined),
     };
     support = {
+      reportingCurrency: jest.fn().mockResolvedValue('VND'),
+      formatter: jest.fn().mockResolvedValue((minor: bigint) => ({ amount: minor.toString(), currency: 'VND' })),
       requireFinance: jest.fn((actor: AuthenticatedPrincipal) => {
         if (!actor.roles.includes('FINANCE')) throw new BudgetNotFinanceError();
       }),
@@ -112,7 +113,7 @@ describe('InvoiceMatchService (B07-8 Step 5)', () => {
       runner as unknown as TransactionRunner,
       invoiceRepo as unknown as InvoiceRepo,
       commitments as unknown as CommitmentRepo,
-      yearLock as unknown as BudgetYearLockRepo,
+      yearLock,
       support as unknown as BudgetSupportService,
       audit as unknown as AuditApi,
       vendorHook,
@@ -199,8 +200,8 @@ describe('InvoiceMatchService (B07-8 Step 5)', () => {
         invoiceId: 'inv-1',
         invoiceLineId: 'line-1',
         position: 1,
-        matchedMinor: 20_000_000n,
-        heldMinor: 1_000_000n,
+        matched: { amount: '20000000', currency: 'VND' },
+        held: { amount: '1000000', currency: 'VND' },
         expensed: false,
       });
 
@@ -243,7 +244,7 @@ describe('InvoiceMatchService (B07-8 Step 5)', () => {
 
       const result = await service.match(financeActor, 'inv-1', 1, 'comm-1');
 
-      expect(result.matchedMinor).toBe(20_000_000n);
+      expect(result.matched).toEqual({ amount: '20000000', currency: 'VND' });
       expect(invoiceRepo.setLineCostCenterIfNull).not.toHaveBeenCalled();
 
       expect(audit.record).toHaveBeenCalledWith(
@@ -295,7 +296,14 @@ describe('InvoiceMatchService (B07-8 Step 5)', () => {
 
       const result = await service.listMatches(financeActor, 'inv-1', { page: 1, pageSize: 20 });
 
-      expect(result.items).toEqual(matchRecords);
+      const { amountMinor, recordedAt, ...record } = matchRecords[0];
+      expect(result.items).toEqual([
+        {
+          ...record,
+          amount: { amount: amountMinor.toString(), currency: 'VND' },
+          recordedAt: recordedAt.toISOString(),
+        },
+      ]);
       expect(result.pagination).toEqual({ page: 1, pageSize: 20, totalItems: 1, totalPages: 1 });
       expect(invoiceRepo.findMatches).toHaveBeenCalledWith('inv-1', { skip: 0, take: 20 });
     });

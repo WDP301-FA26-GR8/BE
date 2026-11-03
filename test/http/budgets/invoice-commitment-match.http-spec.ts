@@ -93,8 +93,8 @@ describe('invoice commitment match routes (HTTP contract, B07-8)', () => {
         invoiceId,
         invoiceLineId,
         position,
-        matchedMinor: 20_000_000n,
-        heldMinor: 1_000_000n,
+        matched: { amount: '20000000', currency: 'VND' },
+        held: { amount: '1000000', currency: 'VND' },
         expensed: false,
       });
 
@@ -110,8 +110,8 @@ describe('invoice commitment match routes (HTTP contract, B07-8)', () => {
         invoiceId,
         invoiceLineId,
         position,
-        matchedMinor: '20000000',
-        heldMinor: '1000000',
+        matched: { amount: '20000000', currency: 'VND' },
+        held: { amount: '1000000', currency: 'VND' },
         expensed: false,
       });
     });
@@ -194,7 +194,7 @@ describe('invoice commitment match routes (HTTP contract, B07-8)', () => {
         commitmentId: randomUUID(),
         invoiceLineId: randomUUID(),
         position: 1,
-        amountMinor: 20_000_000n,
+        amount: { amount: '20000000', currency: 'VND' },
         recordedAt: new Date().toISOString(),
         recordedByEmployeeId: randomUUID(),
       };
@@ -213,7 +213,7 @@ describe('invoice commitment match routes (HTTP contract, B07-8)', () => {
         items: [
           {
             ...matchRow,
-            amountMinor: '20000000',
+            amount: { amount: '20000000', currency: 'VND' },
           },
         ],
         pagination: { page: 1, pageSize: 20, totalItems: 1, totalPages: 1 },

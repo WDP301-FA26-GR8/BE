@@ -7,7 +7,7 @@ import type { AuthenticatedPrincipal } from '../../../infrastructure/security/to
 import { AuditApi } from '../../audit/public/audit.api';
 import { FinanceApi } from '../../finance/public/finance.api';
 import type { ConversionSnapshot } from '../../finance/public/finance.types';
-import { budgetAuditEvent, BudgetSupportService } from '../budget/budget-support.service';
+import { budgetAuditEvent, BudgetSupportService, type MoneyView } from '../budget/budget-support.service';
 import { invoiceCostOf, splitAcrossLines } from './invoice-cost.policy';
 import type { UpdateInvoiceTaxLineInput } from './invoice.dto';
 import { InvoiceNotFoundError, InvoiceRateMissingError } from './invoice.errors';
@@ -17,9 +17,8 @@ export interface UpdatedInvoiceTaxLineWire {
   position: number;
   taxType: string;
   rateBp: number;
-  amountMinor: string;
-  amountCurrency: string;
-  amountReportingMinor: string;
+  amount: MoneyView;
+  amountReporting: MoneyView;
   payer: 'VENDOR_COLLECTS' | 'BUYER_REMITS';
   deductible: boolean;
   note: string | null;
@@ -91,13 +90,14 @@ export class InvoiceTaxLineService {
         oldTaxLine,
       });
 
+      const formatAmount = await this.support.formatter(money.currency);
+      const formatReporting = await this.support.formatter(await this.support.reportingCurrency(tx));
       return {
         position,
         taxType: input.taxType,
         rateBp: input.rateBp,
-        amountMinor: money.amountMinor.toString(),
-        amountCurrency: money.currency,
-        amountReportingMinor: snapshot.reportingAmountMinor.toString(),
+        amount: formatAmount(money.amountMinor),
+        amountReporting: formatReporting(snapshot.reportingAmountMinor),
         payer: input.payer,
         deductible: input.deductible,
         note: input.note ?? null,

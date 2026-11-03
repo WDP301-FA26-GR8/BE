@@ -4,10 +4,11 @@ import type { AuditValue } from '../../audit/public/audit.types';
 import { AuditApi } from '../../audit/public/audit.api';
 import { TransactionRunner, type DbTx } from '../../../infrastructure/database/transaction-runner';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
-import { budgetAuditEvent, BudgetSupportService } from '../budget/budget-support.service';
+import { budgetAuditEvent, BudgetSupportService, type MoneyView } from '../budget/budget-support.service';
 import { BudgetCommitmentNotFoundError } from '../budget/budget.errors';
 import { BudgetYearLockRepo } from '../budget/budget-year-lock.repo';
 import { CommitmentRepo } from '../budget/commitment.repo';
+import type { CommitmentRow } from '../budget/commitment-release.policy';
 import { CommitmentVendorHook } from '../public/budgets.extension-points';
 import { matchInvoiceLine } from './invoice-match.policy';
 import { InvoiceLineNotFoundError, InvoiceMatchRefusedError, InvoiceNotFoundError } from './invoice.errors';
@@ -18,8 +19,8 @@ export interface CommitmentMatchResult {
   invoiceId: string;
   invoiceLineId: string;
   position: number;
-  matchedMinor: bigint;
-  heldMinor: bigint;
+  matched: MoneyView;
+  held: MoneyView;
   expensed: boolean;
 }
 
@@ -28,8 +29,8 @@ export interface CommitmentMatchRecord {
   commitmentId: string;
   invoiceLineId: string;
   position: number;
-  amountMinor: bigint;
-  recordedAt: Date;
+  amount: MoneyView;
+  recordedAt: string;
   recordedByEmployeeId: string;
 }
 
@@ -161,16 +162,7 @@ export class InvoiceMatchService {
     actor: AuthenticatedPrincipal,
     invoice: { id: string; organizationId: string },
     line: { id: string; position: number; costCenterId: string | null },
-    commitment: {
-      id: string;
-      requestId: string;
-      year: number;
-      costCenterId: string;
-      amountMinor: bigint;
-      releasedMinor: bigint;
-      realizedMinor: bigint;
-      state: string;
-    },
+    commitment: CommitmentRow & { requestId: string; costCenterId: string },
     matchedMinor: bigint,
     now: Date,
   ): Promise<CommitmentMatchResult> {
@@ -210,13 +202,14 @@ export class InvoiceMatchService {
       ),
     );
 
+    const format = await this.support.formatter(await this.support.reportingCurrency(tx));
     return {
       commitmentId: commitment.id,
       invoiceId: invoice.id,
       invoiceLineId: line.id,
       position: line.position,
-      matchedMinor,
-      heldMinor: realization.heldMinor,
+      matched: format(matchedMinor),
+      held: format(realization.heldMinor),
       expensed: realization.expensed,
     };
   }
@@ -236,6 +229,16 @@ export class InvoiceMatchService {
     const skip = (query.page - 1) * query.pageSize;
     const { items, total } = await this.invoiceRepo.findMatches(invoiceId, { skip, take: query.pageSize });
 
-    return pageOf(items, total, query.page, query.pageSize);
+    const format = await this.support.formatter(await this.support.reportingCurrency());
+    return pageOf(
+      items.map(({ amountMinor, recordedAt, ...item }) => ({
+        ...item,
+        amount: format(amountMinor),
+        recordedAt: recordedAt.toISOString(),
+      })),
+      total,
+      query.page,
+      query.pageSize,
+    );
   }
 }

@@ -5,6 +5,7 @@ import type { CommitmentHoldInput, CommitmentReleaseReason, HeldCommitment } fro
 import { BudgetYearLockRepo } from './budget-year-lock.repo';
 import type { CommitmentRow } from './commitment-release.policy';
 import { InvoiceSpendRepo } from './invoice-spend.repo';
+import { heldKey } from './commitment-key.policy';
 
 export interface AttachedCommitment {
   id: string;
@@ -402,5 +403,3 @@ export interface CommitmentTotals {
   spent: bigint;
   deductibleVat: bigint;
 }
-
-export const heldKey = (costCenterId: string, year: number): string => `${costCenterId}:${year}`;

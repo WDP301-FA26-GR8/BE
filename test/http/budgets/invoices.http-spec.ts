@@ -3,7 +3,12 @@ import { randomUUID } from 'node:crypto';
 import request from 'supertest';
 import { App } from 'supertest/types';
 import { InvoiceService } from '../../../src/modules/budgets/invoice/invoice.service';
-import { InvoiceDuplicateError, InvoiceRateMissingError } from '../../../src/modules/budgets/invoice/invoice.errors';
+import {
+  InvoiceDuplicateError,
+  InvoiceRateMissingError,
+  InvoiceMatchRefusedError,
+} from '../../../src/modules/budgets/invoice/invoice.errors';
+import { BudgetCommitmentNotFoundError } from '../../../src/modules/budgets/budget/budget.errors';
 import { bodyOf } from '../../support/api-body';
 import { bearer, createHttpContractApp, principal } from '../../support/http-contract-app';
 
@@ -88,6 +93,11 @@ describe('record invoices (HTTP contract, US-12-02 AC-9, US-12-10 AC-11)', () =>
   it.each([
     ['INVOICE.DUPLICATE', new InvoiceDuplicateError()],
     ['INVOICE.RATE_MISSING', new InvoiceRateMissingError()],
+    ['INVOICE_MATCH.INVOICE_NOT_MATCHABLE', new InvoiceMatchRefusedError('INVOICE_NOT_MATCHABLE')],
+    ['INVOICE_MATCH.COMMITMENT_NOT_HELD', new InvoiceMatchRefusedError('COMMITMENT_NOT_HELD')],
+    ['INVOICE_MATCH.YEAR_MISMATCH', new InvoiceMatchRefusedError('YEAR_MISMATCH')],
+    ['INVOICE_MATCH.VENDOR_MISMATCH', new InvoiceMatchRefusedError('VENDOR_MISMATCH')],
+    ['INVOICE_MATCH.LINE_ALREADY_MATCHED', new InvoiceMatchRefusedError('LINE_ALREADY_MATCHED')],
   ])('maps a domain conflict to %s', async (code, error) => {
     record.mockRejectedValue(error);
     const response = await request(app.getHttpServer())
@@ -96,5 +106,15 @@ describe('record invoices (HTTP contract, US-12-02 AC-9, US-12-10 AC-11)', () =>
       .send(BODY)
       .expect(409);
     expect(bodyOf(response).error.code).toBe(code);
+  });
+
+  it('maps a missing commitment selected during recording to 404', async () => {
+    record.mockRejectedValue(new BudgetCommitmentNotFoundError());
+    const response = await request(app.getHttpServer())
+      .post('/api/v1/invoices')
+      .set('Authorization', bearer(principal(['FINANCE'])))
+      .send({ ...BODY, lines: [{ ...BODY.lines[0], commitmentId: randomUUID() }] })
+      .expect(404);
+    expect(bodyOf(response).error.code).toBe('BUDGET.COMMITMENT_NOT_FOUND');
   });
 });

@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { BudgetHarness } from '../../support/budget-harness';
-import { CommitmentRepo, heldKey } from '../../../src/modules/budgets/budget/commitment.repo';
+import { CommitmentRepo } from '../../../src/modules/budgets/budget/commitment.repo';
+import { heldKey } from '../../../src/modules/budgets/budget/commitment-key.policy';
 
 const h = new BudgetHarness();
 

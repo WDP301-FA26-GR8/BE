@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { BudgetHarness } from '../../support/budget-harness';
-import { CommitmentRepo, heldKey } from '../../../src/modules/budgets/budget/commitment.repo';
+import { CommitmentRepo } from '../../../src/modules/budgets/budget/commitment.repo';
+import { heldKey } from '../../../src/modules/budgets/budget/commitment-key.policy';
 import { InvoiceRepo } from '../../../src/modules/budgets/invoice/invoice.repo';
 import { TransactionRunner } from '../../../src/infrastructure/database/transaction-runner';
 import type { CommitmentRow } from '../../../src/modules/budgets/budget/commitment-release.policy';

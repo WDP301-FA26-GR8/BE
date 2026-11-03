@@ -10,6 +10,7 @@ import {
 import { ApiSuccessResponse } from '../../../infrastructure/http/decorators/api-success-response.decorator';
 import { RequireRoles } from '../../../infrastructure/security/decorators/access.decorators';
 import { CurrentPrincipal } from '../../../infrastructure/security/models/current-principal';
+import { BudgetCommitmentNotFoundError } from '../budget/budget.errors';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import {
   AttachInvoiceDocumentBodyDto,
@@ -78,10 +79,15 @@ export class InvoicesController {
     GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
     { status: HttpStatus.FORBIDDEN, description: 'Only Finance records invoices.', examples: [FORBIDDEN_EXAMPLE] },
     {
+      status: HttpStatus.NOT_FOUND,
+      description: 'A commitment selected for an invoice line was not found.',
+      examples: [invoiceExample(new BudgetCommitmentNotFoundError())],
+    },
+    {
       status: HttpStatus.CONFLICT,
       description:
-        'Duplicate invoice, missing exact-day rate, unavailable vendor, mismatched line vendor or unsupported reporting currency.',
-      examples: RECORD_CONFLICT_EXAMPLES,
+        'Duplicate invoice, missing exact-day rate, unavailable vendor, mismatched line vendor, unsupported reporting currency or refused commitment match.',
+      examples: [...RECORD_CONFLICT_EXAMPLES, ...MATCH_LINE_CONFLICT_EXAMPLES],
     },
     {
       status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -386,16 +392,7 @@ export class InvoicesController {
     @Body() body: MatchCommitmentBodyDto,
   ) {
     try {
-      const result = await this.matchService.match(actor, params.id, params.position, body.commitmentId);
-      return {
-        commitmentId: result.commitmentId,
-        invoiceId: result.invoiceId,
-        invoiceLineId: result.invoiceLineId,
-        position: result.position,
-        matchedMinor: result.matchedMinor.toString(),
-        heldMinor: result.heldMinor.toString(),
-        expensed: result.expensed,
-      };
+      return await this.matchService.match(actor, params.id, params.position, body.commitmentId);
     } catch (error) {
       throw mapInvoiceError(error);
     }
@@ -434,14 +431,7 @@ export class InvoicesController {
     @Query() query: ListCommitmentMatchesQueryDto,
   ) {
     try {
-      const page = await this.matchService.listMatches(actor, params.id, query);
-      return {
-        ...page,
-        items: page.items.map((item) => ({
-          ...item,
-          amountMinor: item.amountMinor.toString(),
-        })),
-      };
+      return await this.matchService.listMatches(actor, params.id, query);
     } catch (error) {
       throw mapInvoiceError(error);
     }

@@ -1,15 +1,18 @@
 import { randomUUID } from 'node:crypto';
 import { TransactionRunner } from '../../../src/infrastructure/database/transaction-runner';
-import { CommitmentRepo, heldKey } from '../../../src/modules/budgets/budget/commitment.repo';
+import { BudgetViewService } from '../../../src/modules/budgets/budget-view/budget-view.service';
+import { CommitmentRepo } from '../../../src/modules/budgets/budget/commitment.repo';
+import { heldKey } from '../../../src/modules/budgets/budget/commitment-key.policy';
 import { CommitmentService } from '../../../src/modules/budgets/commitment/commitment.service';
 import { InvoiceService } from '../../../src/modules/budgets/invoice/invoice.service';
 import { InvoiceTaxLineService } from '../../../src/modules/budgets/invoice/invoice-tax-line.service';
 import { InvoiceMatchService } from '../../../src/modules/budgets/invoice/invoice-match.service';
+import { BudgetCommitmentNotFoundError } from '../../../src/modules/budgets/budget/budget.errors';
 import { InvoiceMatchRefusedError } from '../../../src/modules/budgets/invoice/invoice.errors';
-import { BudgetHarness } from '../../support/budget-harness';
+import { InvoiceMatchHarness } from '../../support/invoice-match-harness';
 import { Barrier } from '../../support/concurrency-harness';
 
-const h = new BudgetHarness();
+const h = new InvoiceMatchHarness();
 
 describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)', () => {
   let employeeId: string;
@@ -27,21 +30,8 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
   const financeActor = () => h.principalOf(h.finance, ['FINANCE']);
 
-  const insertApprovedBudget = async (year = 2026, totalMinor = 100_000_000, ccId = costCenterId) => {
-    const proposalId = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO budget_proposals (id, organization_id, cost_center_id, year, state, total_minor, currency, submitted_by_employee_id)
-       VALUES ($1, $2, $3, $4, 'REVIEWED', $5, 'VND', $6)`,
-      [proposalId, h.seed.organizationId, ccId, year, totalMinor, employeeId],
-    );
-    const versionId = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO budget_versions (id, organization_id, cost_center_id, year, number, kind, state, proposal_id, base_minor, reserve_minor, total_minor, currency, high_value_percent, created_by_employee_id, sent_at, sent_by_employee_id)
-       VALUES ($1, $2, $3, $4, 1, 'INITIAL', 'APPROVED', $5, $6, 0, $6, 'VND', 10, $7, now(), $7)`,
-      [versionId, h.seed.organizationId, ccId, year, proposalId, totalMinor, employeeId],
-    );
-    return { versionId, totalMinor: BigInt(totalMinor) };
-  };
+  const insertApprovedBudget = (year = 2026, totalMinor = 100_000_000, ccId = costCenterId) =>
+    h.approvedBudget(ccId, employeeId, year, totalMinor);
 
   beforeAll(async () => {
     await h.start();
@@ -52,55 +42,41 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     matchService = h.ctx.app.get(InvoiceMatchService);
     taxLineService = h.ctx.app.get(InvoiceTaxLineService);
 
-    const unit = await h.departmentWithHead('P-MATCH');
-    employeeId = unit.head.employeeId;
-    costCenterId = unit.department.unitId;
-    departmentId = unit.department.id;
-
     defaultVendorId = randomUUID();
     await h.ctx.sql.query(
       `INSERT INTO vendors (id, organization_id, name, normalized_name)
        VALUES ($1, $2, 'Default Match Vendor', 'default-match-vendor')`,
       [defaultVendorId, h.seed.organizationId],
     );
+  }, 240000);
 
-    const budget = await insertApprovedBudget(2026, 100_000_000);
+  let caseNumber = 0;
+  beforeEach(async () => {
+    const unit = await h.departmentWithHead(`P-MATCH-${++caseNumber}`);
+    employeeId = unit.head.employeeId;
+    costCenterId = unit.department.unitId;
+    departmentId = unit.department.id;
+    const budget = await insertApprovedBudget();
     approvedVersionId = budget.versionId;
     approvedBudgetTotalMinor = budget.totalMinor;
-  }, 240000);
+  });
 
   afterAll(async () => {
     await h.stop();
   });
 
-  const insertCommitment = async (over: Record<string, unknown> = {}) => {
-    const id = (over.id as string) ?? randomUUID();
-    const hasAttachment = Boolean(over.attached_version_id);
-    const row = {
-      id,
-      organization_id: h.seed.organizationId,
-      request_id: (over.request_id as string) ?? (await h.fixtureRequestId()),
-      cost_center_id: (over.cost_center_id as string) ?? costCenterId,
-      year: (over.year as number) ?? 2026,
-      amount_minor: 21_000_000n,
-      currency: 'VND',
-      state: 'HELD',
-      attached_version_id: null,
-      attached_at: hasAttachment ? new Date().toISOString() : null,
-      unattached_reason: hasAttachment ? null : 'NO_BUDGET',
-      released_minor: 0n,
-      realized_minor: 0n,
-      released_at: null,
-      ...over,
+  const insertCommitment = (over: Record<string, unknown> = {}) => h.commitment(costCenterId, approvedVersionId, over);
+
+  const balances = async (year = 2026) => {
+    const table = await h.ctx.app.get(BudgetViewService).table({ year, page: 1, pageSize: 100 });
+    const row = table.items.find((item) => item.costCenter.id === costCenterId);
+    if (!row) throw new Error('Missing budget table row');
+    return {
+      held: BigInt(row.committed.amount),
+      spent: BigInt(row.spent.amount),
+      remaining: BigInt(row.remaining.amount),
+      deductibleVat: BigInt(row.deductibleVat.amount),
     };
-
-    const keys = Object.keys(row);
-    const cols = keys.map((k) => `"${k}"`).join(', ');
-    const params = keys.map((_, i) => `$${i + 1}`).join(', ');
-    const values = Object.values(row);
-
-    await h.ctx.sql.query(`INSERT INTO budget_commitments (${cols}) VALUES (${params})`, values);
-    return { id, requestId: row.request_id, amountMinor: BigInt(row.amount_minor) };
   };
 
   it('US-06-06 AC-1: K1 21; price 20, deductible VAT 2, buyer-remits 1; recorded with commitmentId -> EXPENSED; held -21, spent +21, remaining unchanged', async () => {
@@ -109,6 +85,8 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       attached_version_id: approvedVersionId,
       amount_minor: 21_000_000n,
     });
+
+    expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
 
     // Before invoice: held is 21m, spent is 0, remaining is 100m - 21m = 79m
     const beforeTotals = await commitmentRepo.totals([{ costCenterId, year: 2026 }]);
@@ -167,6 +145,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     // Remaining: 100m - 0 - 21m = 79m (unchanged compared to before recording!)
     const remaining = totalMinor - (entry?.held ?? 0n) - (entry?.spent ?? 0n);
     expect(remaining).toBe(79_000_000n);
+    expect(await balances()).toMatchObject({ spent: 21_000_000n, remaining: 79_000_000n });
 
     // Commitment realization row created
     const real = (
@@ -187,27 +166,9 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       amount_minor: 21_000_000n,
     });
 
-    const planId = randomUUID();
-    const appId = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO applications (
-         id, organization_id, vendor_id, name, normalized_name,
-         kind, business_owner_employee_id, data_sensitivity,
-         comm_person_to_person_messaging, comm_calls_or_meetings, comm_mailbox, is_communication_service
-       ) VALUES ($1, $2, $3, 'App F24', 'app-f24', 'SAAS', $4, 'LOW', false, false, false, false)`,
-      [appId, h.seed.organizationId, defaultVendorId, employeeId],
-    );
-    await h.ctx.sql.query(
-      `INSERT INTO plans (id, organization_id, application_id, name, normalized_name, provisioning_type, pricing_model, control_level)
-       VALUES ($1, $2, $3, 'Plan F24', 'plan-f24', 'K2', 'PER_SEAT', 'FULL')`,
-      [planId, h.seed.organizationId, appId],
-    );
-    const subId = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO subscriptions (id, organization_id, plan_id, kind, status, owner_department_id)
-       VALUES ($1, $2, $3, 'TERM', 'DRAFT', $4)`,
-      [subId, h.seed.organizationId, planId, departmentId],
-    );
+    const subId = await h.matchSubscription(defaultVendorId, employeeId, departmentId);
+
+    expect(await balances(2028)).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
 
     // Record invoice without commitmentId
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
@@ -218,6 +179,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       lines: [
         {
           subscriptionId: subId,
+          outOfCatalog: false,
           description: 'Deferred match tool',
           amount: '20000000',
         },
@@ -247,10 +209,12 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(interimEntry?.spent).toBe(21_000_000n);
     expect(totalMinor - (interimEntry?.held ?? 0n) - (interimEntry?.spent ?? 0n)).toBe(58_000_000n);
 
+    expect(await balances(2028)).toMatchObject({ spent: 21_000_000n, remaining: 58_000_000n });
+
     // Now match line position 1 to comm.id
     const matchRes = await matchService.match(financeActor(), invoiceId, 1, comm.id);
     expect(matchRes.expensed).toBe(true);
-    expect(matchRes.matchedMinor).toBe(21_000_000n);
+    expect(matchRes.matched).toEqual({ amount: '21000000', currency: 'VND' });
 
     // After match: held is 0, spent is 21m -> remaining recovers to 79m!
     const finalTotals = await commitmentRepo.totals([{ costCenterId, year: 2028 }]);
@@ -258,10 +222,12 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(finalEntry?.held).toBe(0n);
     expect(finalEntry?.spent).toBe(21_000_000n);
     expect(totalMinor - (finalEntry?.held ?? 0n) - (finalEntry?.spent ?? 0n)).toBe(79_000_000n);
+    expect(await balances(2028)).toMatchObject({ spent: 21_000_000n, remaining: 79_000_000n });
   });
 
   it('US-12-02 AC-4: K1 20m matches line cost of 20m -> commitment transitions to EXPENSED', async () => {
     const comm = await insertCommitment({ amount_minor: 20_000_000n });
+    expect(await balances()).toMatchObject({ held: 20_000_000n, spent: 0n, remaining: 80_000_000n });
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC4-${randomUUID().slice(0, 8)}`,
@@ -273,17 +239,20 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
     const res = await matchService.match(financeActor(), invoiceId, 1, comm.id);
     expect(res.expensed).toBe(true);
-    expect(res.heldMinor).toBe(0n);
-    expect(res.matchedMinor).toBe(20_000_000n);
+    expect(res.held).toEqual({ amount: '0', currency: 'VND' });
+    expect(res.matched).toEqual({ amount: '20000000', currency: 'VND' });
 
     const row = (
       await h.ctx.sql.query<{ state: string }>('SELECT state FROM budget_commitments WHERE id = $1', [comm.id])
     ).rows[0];
     expect(row.state).toBe('EXPENSED');
+    expect(await balances()).toMatchObject({ held: 0n, spent: 20_000_000n, remaining: 80_000_000n });
   });
 
   it('US-06-06 AC-5: two invoices of 13m and 8m against K1 21m -> after first HELD 8m; after second EXPENSED', async () => {
     const comm = await insertCommitment({ amount_minor: 21_000_000n });
+
+    expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
 
     const { id: inv1 } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
@@ -293,19 +262,10 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       lines: [{ outOfCatalog: true, description: 'Part 1', amount: '13000000' }],
       taxLines: [],
     });
-    const { id: inv2 } = await invoiceService.record(financeActor(), {
-      vendorId: defaultVendorId,
-      invoiceNumber: `INV-AC5-2-${randomUUID().slice(0, 8)}`,
-      invoiceDate: '2026-11-01',
-      amount: { amount: '8000000', currency: 'VND' },
-      lines: [{ outOfCatalog: true, description: 'Part 2', amount: '8000000' }],
-      taxLines: [],
-    });
-
     // First match: 13m
     const res1 = await matchService.match(financeActor(), inv1, 1, comm.id);
     expect(res1.expensed).toBe(false);
-    expect(res1.heldMinor).toBe(8_000_000n);
+    expect(res1.held).toEqual({ amount: '8000000', currency: 'VND' });
 
     const commAfter1 = (
       await h.ctx.sql.query<{ state: string; realized_minor: string }>(
@@ -316,10 +276,21 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(commAfter1.state).toBe('HELD');
     expect(commAfter1.realized_minor).toBe('13000000');
 
+    expect(await balances()).toMatchObject({ held: 8_000_000n, spent: 13_000_000n, remaining: 79_000_000n });
+
+    const { id: inv2 } = await invoiceService.record(financeActor(), {
+      vendorId: defaultVendorId,
+      invoiceNumber: `INV-AC5-2-${randomUUID().slice(0, 8)}`,
+      invoiceDate: '2026-11-01',
+      amount: { amount: '8000000', currency: 'VND' },
+      lines: [{ outOfCatalog: true, description: 'Part 2', amount: '8000000' }],
+      taxLines: [],
+    });
+
     // Second match: 8m
     const res2 = await matchService.match(financeActor(), inv2, 1, comm.id);
     expect(res2.expensed).toBe(true);
-    expect(res2.heldMinor).toBe(0n);
+    expect(res2.held).toEqual({ amount: '0', currency: 'VND' });
 
     const commAfter2 = (
       await h.ctx.sql.query<{ state: string; realized_minor: string }>(
@@ -329,10 +300,12 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     ).rows[0];
     expect(commAfter2.state).toBe('EXPENSED');
     expect(commAfter2.realized_minor).toBe('21000000');
+    expect(await balances()).toMatchObject({ held: 0n, spent: 21_000_000n, remaining: 79_000_000n });
   });
 
   it('US-12-02 AC-8: two partial matches 13m and 7m on K1 20m do not deduct twice', async () => {
     const comm = await insertCommitment({ amount_minor: 20_000_000n });
+    expect(await balances()).toMatchObject({ held: 20_000_000n, spent: 0n, remaining: 80_000_000n });
 
     const { id: inv1 } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
@@ -342,6 +315,8 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       lines: [{ outOfCatalog: true, description: 'Batch 1', amount: '13000000' }],
       taxLines: [],
     });
+    await matchService.match(financeActor(), inv1, 1, comm.id);
+    expect(await balances()).toMatchObject({ held: 7_000_000n, spent: 13_000_000n, remaining: 80_000_000n });
     const { id: inv2 } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC8-2-${randomUUID().slice(0, 8)}`,
@@ -351,8 +326,8 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       taxLines: [],
     });
 
-    await matchService.match(financeActor(), inv1, 1, comm.id);
     await matchService.match(financeActor(), inv2, 1, comm.id);
+    expect(await balances()).toMatchObject({ held: 0n, spent: 20_000_000n, remaining: 80_000_000n });
 
     const realizations = (
       await h.ctx.sql.query<{ amount_minor: string }>(
@@ -367,6 +342,8 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
   it('US-12-09 AC-9: K1 21m, actual cost 23m -> realized 21m, spent 23m, EXPENSED (no excess error)', async () => {
     const comm = await insertCommitment({ amount_minor: 21_000_000n });
+    expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
+
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC9-${randomUUID().slice(0, 8)}`,
@@ -378,7 +355,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
     const res = await matchService.match(financeActor(), invoiceId, 1, comm.id);
     expect(res.expensed).toBe(true);
-    expect(res.matchedMinor).toBe(21_000_000n); // capped to 21m held
+    expect(res.matched).toEqual({ amount: '21000000', currency: 'VND' }); // capped to 21m held
 
     const row = (
       await h.ctx.sql.query<{ state: string; realized_minor: string }>(
@@ -388,10 +365,13 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     ).rows[0];
     expect(row.state).toBe('EXPENSED');
     expect(row.realized_minor).toBe('21000000');
+    expect(await balances()).toMatchObject({ held: 0n, spent: 23_000_000n, remaining: 77_000_000n });
   });
 
   it('lower cost: K1 21m, cost 18m -> HELD 3m, Finance releases remainder later', async () => {
     const comm = await insertCommitment({ amount_minor: 21_000_000n });
+    expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
+
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
       invoiceNumber: `INV-LOWER-${randomUUID().slice(0, 8)}`,
@@ -403,7 +383,8 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
     const res = await matchService.match(financeActor(), invoiceId, 1, comm.id);
     expect(res.expensed).toBe(false);
-    expect(res.heldMinor).toBe(3_000_000n);
+    expect(res.held).toEqual({ amount: '3000000', currency: 'VND' });
+    expect(await balances()).toMatchObject({ held: 3_000_000n, spent: 18_000_000n, remaining: 79_000_000n });
 
     // Insert a need step and complete request so releaseRemainder succeeds
     await h.ctx.sql.query(
@@ -419,10 +400,13 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     const released = await commitmentService.releaseRemainder(financeActor(), comm.id, 'Invoice came lower');
     expect(released.state).toBe('EXPENSED');
     expect(released.held.amount).toBe('0');
+    expect(await balances()).toMatchObject({ held: 0n, spent: 18_000_000n, remaining: 82_000_000n });
   });
 
   it('F-07: matched 21m then editing tax line to non-deductible -> spent increases to 23m, realized stays 21m', async () => {
     const comm = await insertCommitment({ amount_minor: 21_000_000n });
+    expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
+
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
       invoiceNumber: `INV-F07-${randomUUID().slice(0, 8)}`,
@@ -441,6 +425,8 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     });
 
     await matchService.match(financeActor(), invoiceId, 1, comm.id);
+
+    expect(await balances()).toMatchObject({ held: 0n, spent: 21_000_000n, remaining: 79_000_000n });
 
     // Edit tax line 1: deductible becomes false
     await taxLineService.update(financeActor(), invoiceId, 1, {
@@ -464,7 +450,15 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
         [invoiceId],
       )
     ).rows[0];
-    expect(lineDb.cost_reporting_minor).toBe('23000000'); // effective cost updated to 23m!
+    expect(lineDb.cost_reporting_minor).toBe('23000000');
+    expect(await balances()).toMatchObject({ held: 0n, spent: 23_000_000n, remaining: 77_000_000n });
+    const audit = await h.ctx.sql.query<{ before: { deductible: boolean }; after: { deductible: boolean } }>(
+      `SELECT before, after FROM audit_events WHERE resource_id = $1 AND action = 'INVOICE.TAX_LINE_CHANGED'`,
+      [invoiceId],
+    );
+    expect(audit.rows).toHaveLength(1);
+    expect(audit.rows[0].before.deductible).toBe(true);
+    expect(audit.rows[0].after.deductible).toBe(false);
   });
 
   it('F-21: out of catalog line with costCenterId null receives commitment Cost Center', async () => {
@@ -486,6 +480,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       )
     ).rows[0];
     expect(beforeLine.cost_center_id).toBeNull();
+    expect(await balances()).toMatchObject({ held: 5_000_000n, spent: 0n, remaining: 95_000_000n });
 
     await matchService.match(financeActor(), invoiceId, 1, comm.id);
 
@@ -497,6 +492,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       )
     ).rows[0];
     expect(afterLine.cost_center_id).toBe(costCenterId);
+    expect(await balances()).toMatchObject({ held: 0n, spent: 5_000_000n, remaining: 95_000_000n });
   });
 
   it('rejects duplicate match on same line with LINE_ALREADY_MATCHED', async () => {
@@ -514,9 +510,13 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
     await matchService.match(financeActor(), invoiceId, 1, comm1.id);
 
+    const before = await balances();
+    const auditBefore = await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id');
     await expect(matchService.match(financeActor(), invoiceId, 1, comm2.id)).rejects.toThrow(
       new InvoiceMatchRefusedError('LINE_ALREADY_MATCHED'),
     );
+    expect(await balances()).toEqual(before);
+    expect((await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id')).rows).toEqual(auditBefore.rows);
   });
 
   it('rejects commitment of different vendor with VENDOR_MISMATCH', async () => {
@@ -526,21 +526,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       `INSERT INTO vendors (id, organization_id, name, normalized_name) VALUES ($1, $2, 'Vendor B', 'vendor-b')`,
       [vendorB, h.seed.organizationId],
     );
-    const appId = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO applications (
-         id, organization_id, vendor_id, name, normalized_name,
-         kind, business_owner_employee_id, data_sensitivity,
-         comm_person_to_person_messaging, comm_calls_or_meetings, comm_mailbox, is_communication_service
-       ) VALUES ($1, $2, $3, 'App B', 'app-b', 'SAAS', $4, 'LOW', false, false, false, false)`,
-      [appId, h.seed.organizationId, vendorB, employeeId],
-    );
-    const planB = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO plans (id, organization_id, application_id, name, normalized_name, provisioning_type, pricing_model, control_level)
-       VALUES ($1, $2, $3, 'Plan B', 'plan-b', 'K2', 'PER_SEAT', 'FULL')`,
-      [planB, h.seed.organizationId, appId],
-    );
+    const planB = await h.vendorPlan(vendorB, employeeId);
 
     const reqB = await h.fixtureRequestId();
     await h.ctx.sql.query('UPDATE access_requests SET plan_id = $2 WHERE id = $1', [reqB, planB]);
@@ -557,13 +543,22 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       taxLines: [],
     });
 
+    const before = await balances();
+    const auditBefore = await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id');
     await expect(matchService.match(financeActor(), invoiceId, 1, commB.id)).rejects.toThrow(
       new InvoiceMatchRefusedError('VENDOR_MISMATCH'),
     );
+    expect(await balances()).toEqual(before);
+    expect((await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id')).rows).toEqual(auditBefore.rows);
   });
 
   it('rejects commitment of different fiscal year with YEAR_MISMATCH', async () => {
-    const comm2027 = await insertCommitment({ year: 2027, amount_minor: 10_000_000n });
+    const budget2027 = await insertApprovedBudget(2027);
+    const comm2027 = await insertCommitment({
+      year: 2027,
+      attached_version_id: budget2027.versionId,
+      amount_minor: 10_000_000n,
+    });
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
       vendorId: defaultVendorId,
       invoiceNumber: `INV-YR-${randomUUID().slice(0, 8)}`,
@@ -573,9 +568,13 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       taxLines: [],
     });
 
+    const before = await balances();
+    const auditBefore = await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id');
     await expect(matchService.match(financeActor(), invoiceId, 1, comm2027.id)).rejects.toThrow(
       new InvoiceMatchRefusedError('YEAR_MISMATCH'),
     );
+    expect(await balances()).toEqual(before);
+    expect((await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id')).rows).toEqual(auditBefore.rows);
   });
 
   it('rejects commitment in state RELEASED with COMMITMENT_NOT_HELD', async () => {
@@ -595,40 +594,93 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       taxLines: [],
     });
 
+    const before = await balances();
+    const auditBefore = await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id');
     await expect(matchService.match(financeActor(), invoiceId, 1, comm.id)).rejects.toThrow(
       new InvoiceMatchRefusedError('COMMITMENT_NOT_HELD'),
     );
+    expect(await balances()).toEqual(before);
+    expect((await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id')).rows).toEqual(auditBefore.rows);
   });
 
   it('rejects matching a credit note line with INVOICE_NOT_MATCHABLE', async () => {
     const comm = await insertCommitment({ amount_minor: 10_000_000n });
 
-    const credId = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO invoices (
-         id, organization_id, vendor_id, invoice_number, kind, invoice_date,
-         amount_minor, amount_currency, amount_rate, amount_rate_date,
-         amount_rate_source, amount_reporting_minor, reconciliation_status,
-         recorded_by_employee_id
-       ) VALUES ($1, $2, $3, $4, 'CREDIT_NOTE', '2026-11-01',
-                 10000000, 'VND', 1, '2026-11-01', 'MANUAL', 10000000, 'NONE', $5)`,
-      [credId, h.seed.organizationId, defaultVendorId, `CN-${randomUUID().slice(0, 8)}`, employeeId],
-    );
+    const credId = await h.creditNote(defaultVendorId, employeeId, costCenterId);
 
-    const lineId = randomUUID();
-    await h.ctx.sql.query(
-      `INSERT INTO invoice_lines (
-         id, invoice_id, position, description, out_of_catalog,
-         amount_minor, amount_reporting_minor, cost_center_id, fiscal_year,
-         cost_reporting_minor, deductible_vat_reporting_minor
-       ) VALUES ($1, $2, 1, 'Credit item', true,
-                 -10000000, -10000000, $3, 2026, -10000000, 0)`,
-      [lineId, credId, costCenterId],
-    );
-
+    const before = await balances();
+    const auditBefore = await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id');
     await expect(matchService.match(financeActor(), credId, 1, comm.id)).rejects.toThrow(
       new InvoiceMatchRefusedError('INVOICE_NOT_MATCHABLE'),
     );
+    expect(await balances()).toEqual(before);
+    expect((await h.ctx.sql.query('SELECT id FROM audit_events ORDER BY id')).rows).toEqual(auditBefore.rows);
+  });
+
+  it('refuses a zero-cost line without changing spend, remaining or audit', async () => {
+    const comm = await insertCommitment({ amount_minor: 10_000_000n });
+    const { id } = await invoiceService.record(financeActor(), {
+      vendorId: defaultVendorId,
+      invoiceNumber: `INV-ZERO-${randomUUID()}`,
+      invoiceDate: '2026-11-01',
+      amount: { amount: '0', currency: 'VND' },
+      lines: [{ outOfCatalog: true, description: 'Free line', amount: '0' }],
+      taxLines: [],
+    });
+    const artifacts = await h.matchArtifactCounts();
+    expect(await balances()).toMatchObject({ held: 10_000_000n, spent: 0n, remaining: 90_000_000n });
+    await expect(matchService.match(financeActor(), id, 1, comm.id)).rejects.toThrow(
+      new InvoiceMatchRefusedError('INVOICE_NOT_MATCHABLE'),
+    );
+    expect(await balances()).toMatchObject({ held: 10_000_000n, spent: 0n, remaining: 90_000_000n });
+    expect(await h.matchArtifactCounts()).toEqual(artifacts);
+  });
+
+  it.each(['missing commitment', 'wrong year'])('F-24: rolls back recording and all matches on %s', async (failure) => {
+    const comm = await insertCommitment();
+    const secondId =
+      failure === 'missing commitment'
+        ? randomUUID()
+        : (
+            await insertCommitment({
+              year: 2027,
+              attached_version_id: (await insertApprovedBudget(2027)).versionId,
+            })
+          ).id;
+    const artifacts = await h.matchArtifactCounts();
+    expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
+    await expect(
+      invoiceService.record(financeActor(), {
+        vendorId: defaultVendorId,
+        invoiceNumber: `INV-ROLLBACK-${randomUUID()}`,
+        invoiceDate: '2026-11-01',
+        amount: { amount: '20000000', currency: 'VND' },
+        lines: [
+          { outOfCatalog: true, description: 'First', amount: '10000000', commitmentId: comm.id },
+          { outOfCatalog: true, description: 'Second', amount: '10000000', commitmentId: secondId },
+        ],
+        taxLines: [
+          {
+            taxType: 'GTGT',
+            rateBp: 1000,
+            amount: { amount: '2000000', currency: 'VND' },
+            payer: 'VENDOR_COLLECTS',
+            deductible: true,
+          },
+        ],
+      }),
+    ).rejects.toThrow(
+      failure === 'missing commitment'
+        ? new BudgetCommitmentNotFoundError()
+        : new InvoiceMatchRefusedError('YEAR_MISMATCH'),
+    );
+    expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
+    expect(await h.matchArtifactCounts()).toEqual(artifacts);
+    const row = await h.ctx.sql.query<{ state: string; realized_minor: string }>(
+      'SELECT state, realized_minor FROM budget_commitments WHERE id = $1',
+      [comm.id],
+    );
+    expect(row.rows[0]).toEqual({ state: 'HELD', realized_minor: '0' });
   });
 
   it('US-06-06 AC-4 regression: moving EXPENSED back to HELD via SQL is refused by trigger', async () => {
@@ -638,72 +690,60 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       state: 'EXPENSED',
     });
 
+    const before = await balances();
     await expect(
       h.ctx.sql.query('UPDATE budget_commitments SET state = $2::"CommitmentState" WHERE id = $1', [comm.id, 'HELD']),
-    ).rejects.toThrow();
+    ).rejects.toMatchObject({ code: '23001' });
+    expect(await balances()).toEqual(before);
   });
 
   describe('concurrency: realize holds lock, release runs in parallel (F-11)', () => {
     it('serializes realize and release: release waits, released + realized <= amount, and no 500', async () => {
       const comm = await insertCommitment();
 
-      const invoiceId = randomUUID();
-      await h.ctx.sql.query(
-        `INSERT INTO invoices (
-           id, organization_id, vendor_id, invoice_number, kind, invoice_date,
-           amount_minor, amount_currency, amount_rate, amount_rate_date,
-           amount_rate_source, amount_reporting_minor, reconciliation_status,
-           recorded_by_employee_id
-         ) VALUES ($1, $2, $3, 'INV-LOCK-1', 'INVOICE', '2026-11-01',
-                   13000000, 'VND', 1, '2026-11-01', 'MANUAL', 13000000, 'NONE', $4)`,
-        [invoiceId, h.seed.organizationId, defaultVendorId, employeeId],
-      );
-
-      const lineId = randomUUID();
-      await h.ctx.sql.query(
-        `INSERT INTO invoice_lines (
-           id, invoice_id, position, description, out_of_catalog,
-           amount_minor, amount_reporting_minor, cost_center_id, fiscal_year,
-           cost_reporting_minor, deductible_vat_reporting_minor
-         ) VALUES ($1, $2, 1, 'Matched tool', true,
-                   13000000, 13000000, $3, 2026, 13000000, 0)`,
-        [lineId, invoiceId, costCenterId],
-      );
-
-      const barrier = new Barrier(2);
-
-      // Thread 1: realize (takes 13m)
-      const threadRealize = runner.run(async (tx) => {
-        const row = await commitmentRepo.lockById(tx, comm.id);
-        if (!row) throw new Error('Commitment not found');
-
-        // Signal barrier that realize holds the row lock
-        await barrier.wait();
-
-        return commitmentRepo.realize(tx, row, {
-          takeMinor: 13_000_000n,
-          invoiceLineId: lineId,
-          employeeId,
-          now: new Date(),
-        });
+      expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
+      const { id: invoiceId } = await invoiceService.record(financeActor(), {
+        vendorId: defaultVendorId,
+        invoiceNumber: `INV-LOCK-${randomUUID()}`,
+        invoiceDate: '2026-11-01',
+        amount: { amount: '13000000', currency: 'VND' },
+        lines: [{ outOfCatalog: true, description: 'Matched tool', amount: '13000000' }],
+        taxLines: [],
       });
-
-      // Thread 2: release (runs in parallel, waits on barrier then calls release)
-      const threadRelease = (async () => {
-        await barrier.wait();
-        return runner.run((tx) =>
-          commitmentService.release(tx, {
-            requestId: comm.requestId,
-            reason: 'REQUEST_WITHDRAWN',
-            now: new Date(),
-          }),
+      const locked = new Barrier(2);
+      const realize = commitmentRepo.realize.bind(commitmentRepo);
+      let blockedPid = 0;
+      const spy = jest.spyOn(commitmentRepo, 'realize').mockImplementationOnce(async (tx, row, input) => {
+        const [{ pid }] = await tx.$queryRaw<{ pid: number }[]>`SELECT pg_backend_pid() AS pid`;
+        const locks = await h.ctx.sql.query<{ held: boolean }>(
+          `SELECT EXISTS (SELECT 1 FROM pg_locks WHERE pid = $1 AND locktype = 'advisory' AND granted) AS held`,
+          [pid],
         );
-      })();
-
-      const [realizeResult, releaseResult] = await Promise.all([threadRealize, threadRelease]);
-
-      expect(realizeResult).toBeDefined();
-      expect(releaseResult).toBeDefined();
+        expect(locks.rows[0].held).toBe(true);
+        await locked.wait();
+        blockedPid = await h.waitForBlockedBy(pid);
+        return realize(tx, row, input);
+      });
+      try {
+        const matching = matchService.match(financeActor(), invoiceId, 1, comm.id);
+        const releasing = (async () => {
+          await locked.wait();
+          return runner.run((tx) =>
+            commitmentService.release(tx, {
+              requestId: comm.requestId,
+              reason: 'REQUEST_WITHDRAWN',
+              now: new Date(),
+            }),
+          );
+        })();
+        const [match, released] = await Promise.all([matching, releasing]);
+        expect(blockedPid).toBeGreaterThan(0);
+        expect(match.matched).toEqual({ amount: '13000000', currency: 'VND' });
+        expect(released).toHaveLength(1);
+      } finally {
+        spy.mockRestore();
+      }
+      expect(await balances()).toMatchObject({ held: 0n, spent: 13_000_000n, remaining: 87_000_000n });
 
       const finalRow = (
         await h.ctx.sql.query<{

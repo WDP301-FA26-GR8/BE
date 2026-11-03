@@ -31,9 +31,9 @@ flowchart BT
     onboarding["onboarding"]
     installation["installation"]
   end
-  budgets -->|12| audit
-  budgets -->|7| catalog
-  budgets -->|5| finance
+  budgets -->|15| audit
+  budgets -->|6| catalog
+  budgets -->|7| finance
   budgets -->|2| identity_access
   budgets -->|3| notifications
   budgets -->|2| operating_parameters
@@ -81,9 +81,9 @@ flowchart BT
   personnel -->|4| operating_parameters
   personnel -->|76| organization
   personnel -->|5| requests
-  requests -->|60| audit
-  requests -->|16| budgets
-  requests -->|21| catalog
+  requests -->|61| audit
+  requests -->|17| budgets
+  requests -->|22| catalog
   requests -->|7| finance
   requests -->|16| identity_access
   requests -->|37| licensing
