@@ -3,6 +3,7 @@ import { DbTx } from '../../../infrastructure/database/transaction-runner';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import type {
   AttachedDocument,
+  LockedApplication,
   CatalogOnboardingFacts,
   PlanRevocationInfo,
   PlanSummary,
@@ -29,6 +30,14 @@ import {
  */
 @Injectable()
 export class CatalogApi {
+  /**
+   * Locks the application FOR SHARE until the transaction ends, null if absent.
+   * Used when recording internal cost entries (US-12-11) to check application kind and status.
+   */
+  async lockApplicationShared(tx: DbTx, applicationId: string): Promise<LockedApplication | null> {
+    return this.applicationLookup.lockShared(tx, applicationId);
+  }
+
   constructor(
     private readonly seatTargets: SeatTargetService,
     private readonly onboarding: OnboardingFactsService,

@@ -21,6 +21,7 @@ model Currency {
   invoices             Invoice[]                 @relation("InvoiceCurrency")
   invoiceTaxLines      InvoiceTaxLine[]          @relation("InvoiceTaxLineCurrency")
   organizations        Organization[]            @relation("OrganizationReportingCurrency")
+  internalCostEntries  InternalCostEntry[]
 
   @@map("currencies")
 }

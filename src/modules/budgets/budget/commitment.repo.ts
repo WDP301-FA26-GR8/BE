@@ -5,6 +5,7 @@ import type { CommitmentHoldInput, CommitmentReleaseReason, HeldCommitment } fro
 import { BudgetYearLockRepo } from './budget-year-lock.repo';
 import type { CommitmentRow } from './commitment-release.policy';
 import { InvoiceSpendRepo } from './invoice-spend.repo';
+import { InternalCostSpendRepo } from './internal-cost-spend.repo';
 import { heldKey } from './commitment-key.policy';
 
 export interface AttachedCommitment {
@@ -25,6 +26,7 @@ export class CommitmentRepo {
     private readonly prisma: PrismaService,
     private readonly yearLock: BudgetYearLockRepo,
     private readonly invoiceSpend: InvoiceSpendRepo,
+    private readonly internalCostSpend: InternalCostSpendRepo,
   ) {}
 
   /**
