@@ -70,7 +70,6 @@ export class InternalCostsController {
         INTERNAL_COST_ERROR_EXAMPLES.VALIDATION_ERROR,
         INTERNAL_COST_ERROR_EXAMPLES.COST_CENTER_INVALID,
         INTERNAL_COST_ERROR_EXAMPLES.APPLICATION_NOT_INTERNAL,
-        INTERNAL_COST_ERROR_EXAMPLES.PERIOD_INVALID,
       ],
     },
   )
@@ -91,11 +90,16 @@ export class InternalCostsController {
     message: 'INTERNAL_COST.LISTED',
     description: 'List of internal software costs; department heads only see their own department cost centers.',
   })
-  @ApiErrorResponses(UNAUTHENTICATED_RESPONSE, GUARDED_SERVICE_UNAVAILABLE_RESPONSE, {
-    status: HttpStatus.FORBIDDEN,
-    description: 'Forbidden role.',
-    examples: [FORBIDDEN_EXAMPLE],
-  })
+  @ApiErrorResponses(
+    UNAUTHENTICATED_RESPONSE,
+    GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
+    { status: HttpStatus.FORBIDDEN, description: 'Forbidden role.', examples: [FORBIDDEN_EXAMPLE] },
+    {
+      status: HttpStatus.UNPROCESSABLE_ENTITY,
+      description: 'Invalid query.',
+      examples: [INTERNAL_COST_ERROR_EXAMPLES.VALIDATION_ERROR],
+    },
+  )
   async list(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Query() query: ListInternalCostsQueryDto) {
     try {
       return await this.queryService.list(actor, query);
@@ -121,6 +125,11 @@ export class InternalCostsController {
       status: HttpStatus.NOT_FOUND,
       description: 'Internal cost not found.',
       examples: [INTERNAL_COST_ERROR_EXAMPLES.NOT_FOUND],
+    },
+    {
+      status: HttpStatus.UNPROCESSABLE_ENTITY,
+      description: 'Invalid internal cost ID.',
+      examples: [INTERNAL_COST_ERROR_EXAMPLES.VALIDATION_ERROR],
     },
   )
   async getById(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Param() param: InternalCostIdParamDto) {
@@ -161,8 +170,8 @@ export class InternalCostsController {
     },
     {
       status: HttpStatus.UNPROCESSABLE_ENTITY,
-      description: 'Reason required.',
-      examples: [INTERNAL_COST_ERROR_EXAMPLES.REASON_REQUIRED],
+      description: 'Invalid internal cost ID or cancellation reason.',
+      examples: [INTERNAL_COST_ERROR_EXAMPLES.VALIDATION_ERROR],
     },
   )
   async cancel(

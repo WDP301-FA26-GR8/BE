@@ -18,6 +18,46 @@ function overlapDays(s1: BusinessDate, e1: BusinessDate, s2: BusinessDate, e2: B
   return daysBetween(start, end);
 }
 
+function allocatePeriodOverlaps(
+  overlaps: readonly { id: string; days: number }[],
+  totalDays: number,
+  totalAmountMinor: bigint,
+): Map<string, bigint> {
+  const result = new Map<string, bigint>();
+  let lastIndex = -1;
+  for (let index = overlaps.length - 1; index >= 0; index -= 1) {
+    if (overlaps[index].days > 0) {
+      lastIndex = index;
+      break;
+    }
+  }
+
+  let allocated = 0n;
+  for (let index = 0; index < overlaps.length; index += 1) {
+    const { id, days } = overlaps[index];
+    if (days <= 0) {
+      result.set(id, 0n);
+      continue;
+    }
+    if (days === totalDays) {
+      result.set(id, totalAmountMinor);
+      allocated += totalAmountMinor;
+      continue;
+    }
+    if (index === lastIndex) {
+      const remainder = totalAmountMinor - allocated;
+      result.set(id, remainder > 0n ? remainder : 0n);
+      allocated += remainder;
+    } else {
+      const share = (totalAmountMinor * BigInt(days)) / BigInt(totalDays);
+      result.set(id, share);
+      allocated += share;
+    }
+  }
+
+  return result;
+}
+
 /**
  * Splits an internal cost entry evenly by time across the reporting periods it covers (US-12-11 AC-11, FR-5.3).
  * Residual minor units are assigned deterministically to the last covered period.
@@ -35,42 +75,10 @@ export function splitInternalCostAcrossPeriods(
     return result;
   }
 
-  const overlaps: { id: string; days: number }[] = [];
-  for (const p of periods) {
-    const days = overlapDays(entry.periodStart, entry.periodEnd, p.start, p.end);
-    overlaps.push({ id: p.id, days });
-  }
+  const overlaps = periods.map((period) => ({
+    id: period.id,
+    days: overlapDays(entry.periodStart, entry.periodEnd, period.start, period.end),
+  }));
 
-  let lastIndex = -1;
-  for (let i = overlaps.length - 1; i >= 0; i--) {
-    if (overlaps[i].days > 0) {
-      lastIndex = i;
-      break;
-    }
-  }
-
-  let allocated = 0n;
-  for (let i = 0; i < overlaps.length; i++) {
-    const { id, days } = overlaps[i];
-    if (days <= 0) {
-      result.set(id, 0n);
-      continue;
-    }
-    if (days === totalDays) {
-      result.set(id, entry.amountReportingMinor);
-      allocated += entry.amountReportingMinor;
-      continue;
-    }
-    if (i === lastIndex) {
-      const remainder = entry.amountReportingMinor - allocated;
-      result.set(id, remainder > 0n ? remainder : 0n);
-      allocated += remainder;
-    } else {
-      const share = (entry.amountReportingMinor * BigInt(days)) / BigInt(totalDays);
-      result.set(id, share);
-      allocated += share;
-    }
-  }
-
-  return result;
+  return allocatePeriodOverlaps(overlaps, totalDays, entry.amountReportingMinor);
 }

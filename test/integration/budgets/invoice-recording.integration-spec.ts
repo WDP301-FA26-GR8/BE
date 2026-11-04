@@ -90,6 +90,7 @@ describe('invoice recording (PostgreSQL, B07-2)', () => {
 
   function input(over: Partial<RecordInvoiceInput> = {}): RecordInvoiceInput {
     return {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-${randomUUID()}`,
       invoiceDate: DAY,

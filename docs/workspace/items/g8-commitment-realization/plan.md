@@ -3,7 +3,7 @@
 - [Spec](spec.md); revision đầu vào: Docs `d6d868c`, BE `d6c2112`.
 - Phụ trách: Dev B (nhánh `hien-dev`). Thiết kế ban đầu bởi: AI theo giao việc của Dev B (31/10/2026).
 - Owner review: chưa review. Peer review: tùy chọn.
-- Triển khai: `in-progress` (B07-6 và B07-7 verified local 02/11/2026 trên cây chưa commit nhánh `hien-dev`; B07-8 verified local 03/11/2026; B07-9 chưa triển khai). PR: chưa có.
+- Triển khai: `in-progress` (B07-6 và B07-7 verified local 02/11/2026 trên cây chưa commit nhánh `hien-dev`; B07-8 verified local 03/11/2026; B07-9 in-progress 04/11/2026). PR: chưa có.
 
 ## Before coding
 
@@ -47,14 +47,14 @@
 
 - Files: test ở `test/integration/requests/`; sửa nguồn chỉ nếu test đỏ cho thấy thiếu.
 - Depends on: Task 4.
-- Acceptance: `US-06-06` AC-9; Finance được báo.
+- Acceptance: `US-06-06` AC-9 (vế nhả tiền khi thất bại: công thức heldOf và release đơn đã đúng; vế nhóm gặp EXCEEDS_HELD dừng báo; vế Finance được báo dừng hỏi theo luật).
 - Verify: `pnpm test:integration -- test/integration/requests`.
 
 ### Task 6: credit note
 
 - Files: `src/modules/budgets/invoice/*`.
 - Depends on: Task 4.
-- Acceptance: `US-06-06` AC-11.
+- Acceptance: `US-06-06` AC-11 (xong ở mức unit: DTO refine, Cost Center inheritance policy, negative cost allocation, audit kind).
 - Verify: integration module `budgets`.
 
 ### Checkpoint
@@ -126,3 +126,42 @@ Kiểm tra chỉ đọc sau integration: cluster test còn 2 database tên `slm_
 File thay đổi trong lượt này: `src/modules/budgets/budget/{commitment-key.policy.ts,commitment.repo.ts,invoice-spend.repo.ts,budget-facts.repo.ts}`, `budget-view/budget-view.service.ts`, `invoice/{invoice-match.service.ts,invoice-match.service.spec.ts,invoice-tax-line.service.ts,invoice.dto.ts,invoices.controller.ts}`; xóa `budget/commitment-lock-concurrency.spec.ts`; `test/support/{invoice-match-harness.ts,openapi-example-route-codes-budgets.ts}`; `test/http/budgets/{invoices.http-spec.ts,invoice-commitment-match.http-spec.ts,invoice-tax-lines.http-spec.ts}`; `test/integration/budgets/{invoice-commitment-match.integration-spec.ts,commitment-totals.integration-spec.ts,commitment-realization-constraints.integration-spec.ts}`; `openapi.json`, `docs/generated/{module-graph.md,routes.md}` và spec/plan hạng mục này. Không đổi migration trong lượt này.
 
 Tự review cuối B07-8: đối chiếu đủ 7 việc được giao với source, DTO, manifest, OpenAPI và bảng Test của plan; không thêm nghiệp vụ, cạnh module, migration hay suppression. `git diff --check` xanh, index không có file stage. `pnpm rules:check` và `pnpm rules:format` kiểm lại tài liệu sau cập nhật bằng chứng. Fingerprint source/test/generated cuối trùng giá trị ở trên. B07-8 đã verified local; hạng mục tổng thể còn B07-9 và các giới hạn trong matrix, chưa nghiệm thu. Dừng tại đây, không chuyển sang plan kế tiếp.
+
+### B07-9 tiếp tục ngày 04/11/2026
+
+Agent: **AG/GEMINI-3.8-FLASH-HIGH**.
+
+Môi trường: Linux (`linux 7.0.0-42-generic`), Node **24.13.0**, npm. Nhánh `hien-dev`, revision gốc `ad437aaad4887a4bc0d89d665fdf4ca48ea4c9d0`. Lệnh chạy theo quy tắc Verify chung: unit test và typecheck qua Node directly.
+
+| Lệnh                                                                                                    | Kết quả thực chạy                                              |
+| ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `node node_modules/typescript/bin/tsc --noEmit -p tsconfig.json`                                        | Exit 0, sạch toàn repo                                         |
+| `node node_modules/eslint/bin/eslint.js "src/modules/budgets/invoice/*.ts"`                             | Exit 0, 0 lỗi                                                  |
+| `node node_modules/jest/bin/jest.js src/modules/budgets/invoice/invoice.dto.spec.ts --runInBand`        | 1 suite, 5/5 pass (refine `kind` và `creditedInvoiceId`)       |
+| `node node_modules/jest/bin/jest.js src/modules/budgets/invoice/credit-note-cost-center.policy.spec.ts` | 1 suite, 5/5 pass (kế thừa Cost Center)                        |
+| `node node_modules/jest/bin/jest.js src/modules/budgets/invoice/credit-note.policy.spec.ts`             | 1 suite, 3/3 pass (kiểm tra hóa đơn gốc khác vendor/sai kind)  |
+| `node node_modules/jest/bin/jest.js src/modules/budgets/invoice/invoice-cost.policy.spec.ts`            | 1 suite, 21/21 pass (chi phí âm credit note)                   |
+| `node node_modules/jest/bin/jest.js src/modules/budgets/invoice/invoice.http-errors.spec.ts`            | 1 suite, 19/19 pass (ánh xạ lỗi domain/validation)             |
+| `node node_modules/jest/bin/jest.js src/modules/budgets/budget/commitment-release.policy.spec.ts`       | 1 suite, 19/19 pass (gồm ca chứng minh `EXCEEDS_HELD` vế nhóm) |
+| `node node_modules/jest/bin/jest.js src/modules/budgets --runInBand`                                    | 17 suites, 233/233 pass                                        |
+| `node scripts/arch/routes.mjs`                                                                          | Exit 0, 301 operations                                         |
+| `node scripts/arch/graph.mjs`                                                                           | Exit 0, sinh lại `module-graph.md`                             |
+| `node node_modules/ts-node/dist/bin.js scripts/dev/export-openapi.ts`                                   | Exit 0, sinh lại `openapi.json`                                |
+| `node scripts/check-rules.mjs`                                                                          | Exit 0, 374 files, 3051 links, 0 errors                        |
+
+Bằng chứng chi tiết:
+
+- **Đỏ trước, xanh sau thực sự ở unit test:**
+  - `invoice.dto.spec.ts`: kiểm tra validation refine bắt buộc/cấm `creditedInvoiceId` theo `kind`.
+  - `credit-note-cost-center.policy.spec.ts`: kiểm tra quy tắc thuần kế thừa Cost Center (cùng/khác/null/rỗng).
+  - `credit-note.policy.spec.ts`: kiểm tra hàm thuần `assertCreditedInvoiceValid` (từ chối hóa đơn gốc khác vendor hoặc không phải `INVOICE`).
+- **Unit test bổ sung hành vi/ánh xạ:**
+  - `invoice-cost.policy.spec.ts`: phân bổ số âm cho credit note.
+  - `invoice.http-errors.spec.ts`: ánh xạ `InvoiceReferenceInvalidError` sang 422 `VALIDATION_ERROR`.
+  - `commitment-release.policy.spec.ts`: ca test mô tả hành vi hiện tại từ chối `EXCEEDS_HELD` khi số tiền nhả vượt phần còn giữ sau khi realization trên dữ liệu giả (chưa kiểm chứng luồng nhóm thật trên CSDL).
+- **Phần chờ đợt test cuối (hoãn integration theo luật):** Hóa đơn gốc không tồn tại (404), kiểm tra hóa đơn gốc qua DB transaction, truyền `kind` và `creditedInvoiceId` qua persistence/audit, Cost Center kế thừa áp vào dòng thật, `K1` `EXPENSED` không đổi, khớp credit note bị từ chối `INVOICE_NOT_MATCHABLE`, credit note giảm `spent`.
+- **Giới hạn hiện hành:** Chưa kiểm tra ràng buộc ngày credit note so với hóa đơn gốc hay tổng tiền credit note so với hóa đơn gốc (AC không yêu cầu).
+- **Lưu ý nghiệp vụ:** Khi hóa đơn gốc có nhiều Cost Center hoặc có dòng null, credit note có dòng không thuê bao sẽ mang `costCenterId = null` và không làm giảm `spent` của phòng ban cụ thể nào (khớp với hướng xử lý dòng chi phí chưa phân bổ của B08-3).
+- **Sửa ngoài plan:** Bổ sung `kind: 'INVOICE'` cho 4 file test integration trong `test/integration/budgets/` để thỏa mãn kiểu nghiêm ngặt `z.infer`, ghi nhận tại `docs/gehihi-plans/notes/04-integration-fixture-invoice-kind.md`.
+
+Task 6 hoàn thành ở mức unit. Task 5 dừng ở vế nhóm và vế thông báo Finance theo luật `00-agent-rules.md`.

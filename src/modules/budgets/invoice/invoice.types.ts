@@ -7,7 +7,10 @@ export interface InvoiceMoney {
   snapshot: ConversionSnapshot;
 }
 
-export type NewInvoice = Pick<RecordInvoiceInput, 'vendorId' | 'contractId' | 'invoiceNumber' | 'invoiceDate'> &
+export type NewInvoice = Pick<
+  RecordInvoiceInput,
+  'vendorId' | 'contractId' | 'invoiceNumber' | 'invoiceDate' | 'kind' | 'creditedInvoiceId'
+> &
   InvoiceMoney & {
     organizationId: string;
     recordedByEmployeeId: string;

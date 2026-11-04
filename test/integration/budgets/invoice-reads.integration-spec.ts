@@ -46,6 +46,7 @@ describe('invoice reads (B07-4, integration PostgreSQL)', () => {
 
   it('two invoices on the same date have a stable order across pages (invoice_date DESC, id DESC)', async () => {
     const inv1 = await service.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-PAGE-1-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -55,6 +56,7 @@ describe('invoice reads (B07-4, integration PostgreSQL)', () => {
     });
 
     const inv2 = await service.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-PAGE-2-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -100,6 +102,7 @@ describe('invoice reads (B07-4, integration PostgreSQL)', () => {
 
     // Record USD invoice at rate 25,000 on 2026-11-01
     const { id: invoiceId } = await service.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-RATE-FREEZE-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',

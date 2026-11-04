@@ -64,6 +64,7 @@ describe('invoice tax lines editing and defaults (B07-3, integration PostgreSQL)
   it('US-12-10 AC-3: edits tax line, changes deductible to false -> effective cost increases, audit recorded', async () => {
     // Record invoice with base 1,000, GTGT 100 (deductible=true), TNDN 50 (deductible=false)
     const { id: invoiceId } = await service.record(actor(), {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-TL-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -139,6 +140,7 @@ describe('invoice tax lines editing and defaults (B07-3, integration PostgreSQL)
 
   it('US-12-10 AC-11: non-Finance roles cannot update tax lines', async () => {
     const { id: invoiceId } = await service.record(actor(), {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-AUTH-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -162,6 +164,7 @@ describe('invoice tax lines editing and defaults (B07-3, integration PostgreSQL)
 
   it('US-12-09 AC-5: changing vendor tax profile later does not change recorded invoice tax lines', async () => {
     const { id: invoiceId } = await service.record(actor(), {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-VER-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -214,6 +217,7 @@ describe('invoice tax lines editing and defaults (B07-3, integration PostgreSQL)
 
   it('multi-line invoice: changing tax line redistributes effective cost so sum of lines equals total', async () => {
     const { id: invoiceId } = await service.record(actor(), {
+      kind: 'INVOICE',
       vendorId,
       invoiceNumber: `INV-MULTI-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',

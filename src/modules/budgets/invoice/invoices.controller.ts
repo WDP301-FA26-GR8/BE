@@ -80,8 +80,8 @@ export class InvoicesController {
     { status: HttpStatus.FORBIDDEN, description: 'Only Finance records invoices.', examples: [FORBIDDEN_EXAMPLE] },
     {
       status: HttpStatus.NOT_FOUND,
-      description: 'A commitment selected for an invoice line was not found.',
-      examples: [invoiceExample(new BudgetCommitmentNotFoundError())],
+      description: 'A commitment selected for an invoice line or a credited invoice was not found.',
+      examples: [invoiceExample(new BudgetCommitmentNotFoundError()), invoiceExample(new InvoiceNotFoundError())],
     },
     {
       status: HttpStatus.CONFLICT,

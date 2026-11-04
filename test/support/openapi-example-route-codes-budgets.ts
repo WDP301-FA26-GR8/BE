@@ -8,6 +8,16 @@ import type { RouteErrorStatus } from './openapi-example-manifest';
  */
 export const ROUTE_ERROR_CODES_BUDGETS: Readonly<Record<string, Partial<Record<RouteErrorStatus, readonly string[]>>>> =
   {
+    internalCostRecord: {
+      '404': ['INTERNAL_COST.APPLICATION_NOT_FOUND', 'INTERNAL_COST.COST_CENTER_NOT_FOUND'],
+      '409': ['INTERNAL_COST.COST_CENTER_INACTIVE', 'INTERNAL_COST.RATE_MISSING'],
+      '422': ['INTERNAL_COST.APPLICATION_NOT_INTERNAL', 'INTERNAL_COST.COST_CENTER_INVALID'],
+    },
+    internalCostGet: { '404': ['INTERNAL_COST.NOT_FOUND'] },
+    internalCostCancel: {
+      '404': ['INTERNAL_COST.NOT_FOUND'],
+      '409': ['INTERNAL_COST.ALREADY_CANCELLED'],
+    },
     invoiceDocumentAttach: {
       '404': ['INVOICE.NOT_FOUND', 'INVOICE.TAX_LINE_NOT_FOUND', 'DOCUMENT.NOT_FOUND'],
       '409': ['DOCUMENT.ALREADY_ATTACHED', 'DOCUMENT.NOT_READY_TO_ATTACH'],
@@ -44,7 +54,7 @@ export const ROUTE_ERROR_CODES_BUDGETS: Readonly<Record<string, Partial<Record<R
       '404': ['INVOICE.NOT_FOUND'],
     },
     invoiceRecord: {
-      '404': ['BUDGET.COMMITMENT_NOT_FOUND'],
+      '404': ['BUDGET.COMMITMENT_NOT_FOUND', 'INVOICE.NOT_FOUND'],
       '409': [
         'INVOICE.DUPLICATE',
         'INVOICE.RATE_MISSING',

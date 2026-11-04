@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { fromDateColumn } from '../../../core/business-date';
 import { formatAmount } from '../../../core/money/money';
+import { formatRate } from '../../../core/money/rate';
 import { TransactionRunner } from '../../../infrastructure/database/transaction-runner';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import { AuditApi } from '../../audit/public/audit.api';
@@ -83,7 +84,7 @@ export class InternalCostService {
         periodStart: input.periodStart,
         periodEnd: input.periodEnd,
         amountMinor: money.amountMinor,
-        amountRate: snapshot.snapshot.rate as any,
+        amountRate: formatRate(snapshot.snapshot.rate),
         amountRateDate: snapshot.snapshot.rateDate,
         amountRateSource: snapshot.snapshot.rateSource,
         amountReportingMinor: snapshot.snapshot.reportingAmountMinor,

@@ -47,7 +47,7 @@ import lõi (`pnpm arch:capabilities --module budgets`: năm cạnh, không vòn
 - `invoice/` — ghi nhận hóa đơn (`US-12-10`, `US-12-02`), gắn tệp gốc và chứng từ thuế nộp thay (`US-04-04`,
   `US-01-12`), khớp dòng hóa đơn với khoản cam kết (`US-06-06`, `US-12-02`), đọc hóa đơn và dòng thuế (`US-12-10` AC-11);
   `invoices.controller.ts`; `InvoiceService`, `InvoiceQueryService`, `InvoiceDocumentService`, `InvoiceMatchService`,
-  `InvoiceTaxLineService`, `InvoiceRepo`, `invoice-cost.policy.ts`, `invoice-match.policy.ts`.
+  `InvoiceTaxLineService`, `InvoiceRepo`, `CreditedInvoiceRepo`, `invoice-cost.policy.ts`, `invoice-match.policy.ts`, `credit-note-cost-center.policy.ts`, `credit-note.policy.ts`.
 - `proposal/` — đề xuất của trưởng phòng: gửi, rút, Finance trả lại, gửi lại (US-06-10);
   `budget-proposals.controller.ts`; `ProposalService`, `ProposalViewService`.
 - `version/` — version: tạo, sửa dòng, import file dòng, gửi duyệt, quyết định, lịch sử (US-06-09, US-06-11);

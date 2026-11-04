@@ -7,7 +7,6 @@ import { heldKey } from '../../../src/modules/budgets/budget/commitment-key.poli
 import { InternalCostService } from '../../../src/modules/budgets/internal-cost/internal-cost.service';
 import {
   InternalCostApplicationNotInternalError,
-  InternalCostCostCenterInvalidError,
   InternalCostCostCenterNotFoundError,
   InternalCostRateMissingError,
 } from '../../../src/modules/budgets/internal-cost/internal-cost.errors';
@@ -82,7 +81,10 @@ describe('internal cost entry (PostgreSQL, US-12-11, B07-10)', () => {
     expect(result.costCenterCode).toBeDefined();
 
     // Verify DB row
-    const res = await h.ctx.sql.query(`SELECT * FROM internal_cost_entries WHERE id = $1`, [result.id]);
+    const res = await h.ctx.sql.query<{
+      amount_reporting_minor: string;
+      cancelled_at: string | null;
+    }>(`SELECT * FROM internal_cost_entries WHERE id = $1`, [result.id]);
     expect(res.rows).toHaveLength(1);
     expect(res.rows[0].amount_reporting_minor).toBe('40000000');
     expect(res.rows[0].cancelled_at).toBeNull();
@@ -93,10 +95,11 @@ describe('internal cost entry (PostgreSQL, US-12-11, B07-10)', () => {
     expect(afterSpent - beforeSpent).toBe(40_000_000n);
 
     // Verify no invoice, subscription or commitment created
-    const invRes = await h.ctx.sql.query(`SELECT count(*)::int as count FROM invoices WHERE organization_id = $1`, [
-      h.seed.organizationId,
-    ]);
-    const comRes = await h.ctx.sql.query(
+    const invRes = await h.ctx.sql.query<{ count: number }>(
+      `SELECT count(*)::int as count FROM invoices WHERE organization_id = $1`,
+      [h.seed.organizationId],
+    );
+    const comRes = await h.ctx.sql.query<{ count: number }>(
       `SELECT count(*)::int as count FROM budget_commitments WHERE cost_center_id = $1`,
       [costCenterEngId],
     );

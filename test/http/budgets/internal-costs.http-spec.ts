@@ -216,6 +216,24 @@ describe('internal costs HTTP contract (US-12-11)', () => {
   describe('GET /api/v1/internal-costs and GET /api/v1/internal-costs/:id', () => {
     const id = randomUUID();
 
+    it('rejects an invalid list query before calling the service', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/api/v1/internal-costs?page=0')
+        .set('Authorization', bearer(principal(['FINANCE'])))
+        .expect(422);
+      expect(bodyOf(response).error.code).toBe('VALIDATION_ERROR');
+      expect(list).not.toHaveBeenCalled();
+    });
+
+    it('rejects an invalid ID before calling the service', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/api/v1/internal-costs/not-a-uuid')
+        .set('Authorization', bearer(principal(['FINANCE'])))
+        .expect(422);
+      expect(bodyOf(response).error.code).toBe('VALIDATION_ERROR');
+      expect(getById).not.toHaveBeenCalled();
+    });
+
     it('allows Finance to list internal costs', async () => {
       list.mockResolvedValue({ items: [], pagination: { page: 1, pageSize: 20, totalItems: 0, totalPages: 0 } });
 

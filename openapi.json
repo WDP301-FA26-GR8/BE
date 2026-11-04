@@ -51164,17 +51164,6 @@
                         "requestId": "req_example"
                       }
                     }
-                  },
-                  "INTERNAL_COST.PERIOD_INVALID": {
-                    "summary": "The end date of the period must not precede the start date.",
-                    "value": {
-                      "success": false,
-                      "error": {
-                        "code": "INTERNAL_COST.PERIOD_INVALID",
-                        "message": "The end date of the period must not precede the start date.",
-                        "requestId": "req_example"
-                      }
-                    }
                   }
                 }
               }
@@ -51359,6 +51348,28 @@
               }
             }
           },
+          "422": {
+            "description": "Invalid query.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "429": {
             "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
             "content": {
@@ -51504,6 +51515,28 @@
                       "error": {
                         "code": "INTERNAL_COST.NOT_FOUND",
                         "message": "The internal cost entry does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid internal cost ID.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
                         "requestId": "req_example"
                       }
                     }
@@ -51754,18 +51787,19 @@
             }
           },
           "422": {
-            "description": "Reason required.",
+            "description": "Invalid internal cost ID or cancellation reason.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
-                  "INTERNAL_COST.REASON_REQUIRED": {
-                    "summary": "A non-empty cancellation reason is required.",
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
                     "value": {
                       "success": false,
                       "error": {
-                        "code": "INTERNAL_COST.REASON_REQUIRED",
-                        "message": "A non-empty cancellation reason is required.",
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
                         "requestId": "req_example"
                       }
                     }
@@ -51954,7 +51988,7 @@
             }
           },
           "404": {
-            "description": "A commitment selected for an invoice line was not found.",
+            "description": "A commitment selected for an invoice line or a credited invoice was not found.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -51966,6 +52000,17 @@
                       "error": {
                         "code": "BUDGET.COMMITMENT_NOT_FOUND",
                         "message": "The commitment does not exist.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVOICE.NOT_FOUND": {
+                    "summary": "The invoice does not exist.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVOICE.NOT_FOUND",
+                        "message": "The invoice does not exist.",
                         "requestId": "req_example"
                       }
                     }
@@ -88269,6 +88314,8 @@
       "RecordInvoiceBodyDto": {
         "type": "object",
         "properties": {
+          "kind": { "default": "INVOICE", "type": "string", "enum": ["INVOICE", "CREDIT_NOTE"] },
+          "creditedInvoiceId": { "type": "string", "format": "uuid" },
           "vendorId": { "type": "string", "format": "uuid" },
           "contractId": { "type": "string", "format": "uuid" },
           "invoiceNumber": { "type": "string", "minLength": 1, "maxLength": 200 },

@@ -66,6 +66,18 @@ describe('the money that goes back to the budget', () => {
       });
     });
 
+    it('refuses release with EXCEEDS_HELD under current policy when requested amount exceeds remaining held after realization (open question on group release)', () => {
+      // Current behavior test (synthetic data):
+      // Group commitment: 40m, 20m previously released (person A), 13m realized. Remaining held = 7m.
+      // Person B attempts to release full original share of 20m:
+      // Under current policy, planRelease rejects with EXCEEDS_HELD because named.amountMinor > heldOf(row).
+      // Open question for Owner/G5: system group withdrawal/failure path may need clamping takeMinor to heldOf
+      // and skipping/handling rows that are no longer HELD (state = EXPENSED, heldOf = 0) without failing.
+      const row = held(2026, 40_000_000n, 20_000_000n, 13_000_000n);
+      const plan = planRelease([row], [{ year: 2026, amountMinor: 20_000_000n }]);
+      expect(plan).toEqual({ ok: false, refusal: 'EXCEEDS_HELD', year: 2026 });
+    });
+
     it.each([
       ['a year with no commitment', [{ year: 2030, amountMinor: 1n }], 'NO_COMMITMENT'],
       ['nothing', [{ year: 2026, amountMinor: 0n }], 'AMOUNT_NOT_POSITIVE'],

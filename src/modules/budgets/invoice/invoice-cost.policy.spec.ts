@@ -56,6 +56,20 @@ describe('invoiceCostOf', () => {
     ).toEqual({ effectiveCostMinor: -1_075n, deductibleVatMinor: -100n });
   });
 
+  it('produces negative effective cost and negative deductible VAT for credit note with deductible tax', () => {
+    const cost = invoiceCostOf({
+      kind: 'CREDIT_NOTE',
+      amountReportingMinor: 20_000_000n,
+      taxLines: [
+        { amountReportingMinor: 2_000_000n, deductible: true },
+        { amountReportingMinor: 1_000_000n, deductible: false },
+      ],
+      markedFeeReportingMinor: 0n,
+    });
+    expect(cost.effectiveCostMinor).toBe(-21_000_000n);
+    expect(cost.deductibleVatMinor).toBe(-2_000_000n);
+  });
+
   it('keeps minor units exact above the safe integer range', () => {
     expect(
       invoiceCostOf({

@@ -40,6 +40,46 @@ function overlapDays(s1: BusinessDate, e1: BusinessDate, s2: BusinessDate, e2: B
   return daysBetween(start, end);
 }
 
+function allocateProratedOverlaps(
+  overlaps: readonly { year: number; days: number }[],
+  totalDays: number,
+  totalAmountMinor: bigint,
+): Map<number, bigint> {
+  const result = new Map<number, bigint>();
+  let lastOverlappingYearIndex = -1;
+  for (let index = overlaps.length - 1; index >= 0; index -= 1) {
+    if (overlaps[index].days > 0) {
+      lastOverlappingYearIndex = index;
+      break;
+    }
+  }
+
+  let allocated = 0n;
+  for (let index = 0; index < overlaps.length; index += 1) {
+    const { year, days } = overlaps[index];
+    if (days <= 0) {
+      result.set(year, 0n);
+      continue;
+    }
+    if (days === totalDays) {
+      result.set(year, totalAmountMinor);
+      allocated += totalAmountMinor;
+      continue;
+    }
+    if (index === lastOverlappingYearIndex) {
+      const remainder = totalAmountMinor - allocated;
+      result.set(year, remainder > 0n ? remainder : 0n);
+      allocated += remainder;
+    } else {
+      const share = (totalAmountMinor * BigInt(days)) / BigInt(totalDays);
+      result.set(year, share);
+      allocated += share;
+    }
+  }
+
+  return result;
+}
+
 /**
  * Prorates an internal cost entry across multiple fiscal years based on calendar day overlap.
  * Residual minor units are assigned deterministically to the last overlapping fiscal year.
@@ -59,48 +99,13 @@ export function prorateInternalCostForYears(
   }
 
   const sortedYears = [...new Set(targetYears)].sort((a, b) => a - b);
-  const overlaps: { year: number; days: number }[] = [];
-
-  for (const year of sortedYears) {
+  const overlaps = sortedYears.map((year) => {
     const range = fiscalYearDateRange(year, startMonth);
     const days = overlapDays(entry.periodStart, entry.periodEnd, range.start, range.end);
-    overlaps.push({ year, days });
-  }
+    return { year, days };
+  });
 
-  // Find last overlapping year among target years
-  let lastOverlappingYearIndex = -1;
-  for (let i = overlaps.length - 1; i >= 0; i--) {
-    if (overlaps[i].days > 0) {
-      lastOverlappingYearIndex = i;
-      break;
-    }
-  }
-
-  let allocated = 0n;
-  for (let i = 0; i < overlaps.length; i++) {
-    const { year, days } = overlaps[i];
-    if (days <= 0) {
-      result.set(year, 0n);
-      continue;
-    }
-    if (days === totalDays) {
-      result.set(year, entry.amountReportingMinor);
-      allocated += entry.amountReportingMinor;
-      continue;
-    }
-    if (i === lastOverlappingYearIndex) {
-      // Last overlapping year gets remainder to guarantee exact sum
-      const remainder = entry.amountReportingMinor - allocated;
-      result.set(year, remainder > 0n ? remainder : 0n);
-      allocated += remainder;
-    } else {
-      const share = (entry.amountReportingMinor * BigInt(days)) / BigInt(totalDays);
-      result.set(year, share);
-      allocated += share;
-    }
-  }
-
-  return result;
+  return allocateProratedOverlaps(overlaps, totalDays, entry.amountReportingMinor);
 }
 
 /**

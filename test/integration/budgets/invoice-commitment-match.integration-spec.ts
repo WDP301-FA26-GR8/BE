@@ -95,6 +95,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
     // Record invoice with base 20m, deductible VAT 2m, buyer-remits tax 1m -> cost is 21m
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC1-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -172,6 +173,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
     // Record invoice without commitmentId
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-F24-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2028-06-01',
@@ -229,6 +231,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     const comm = await insertCommitment({ amount_minor: 20_000_000n });
     expect(await balances()).toMatchObject({ held: 20_000_000n, spent: 0n, remaining: 80_000_000n });
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC4-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -255,6 +258,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
 
     const { id: inv1 } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC5-1-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -279,6 +283,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(await balances()).toMatchObject({ held: 8_000_000n, spent: 13_000_000n, remaining: 79_000_000n });
 
     const { id: inv2 } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC5-2-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -308,6 +313,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(await balances()).toMatchObject({ held: 20_000_000n, spent: 0n, remaining: 80_000_000n });
 
     const { id: inv1 } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC8-1-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -318,6 +324,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     await matchService.match(financeActor(), inv1, 1, comm.id);
     expect(await balances()).toMatchObject({ held: 7_000_000n, spent: 13_000_000n, remaining: 80_000_000n });
     const { id: inv2 } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC8-2-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -345,6 +352,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
 
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-AC9-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -373,6 +381,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
 
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-LOWER-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -408,6 +417,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
 
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-F07-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -464,6 +474,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
   it('F-21: out of catalog line with costCenterId null receives commitment Cost Center', async () => {
     const comm = await insertCommitment({ amount_minor: 5_000_000n, cost_center_id: costCenterId });
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-F21-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -500,6 +511,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     const comm2 = await insertCommitment({ amount_minor: 5_000_000n });
 
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-DUP-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -535,6 +547,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
     // Invoice has defaultVendorId
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-VEND-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -560,6 +573,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
       amount_minor: 10_000_000n,
     });
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-YR-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01', // fiscal year 2026
@@ -586,6 +600,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     });
 
     const { id: invoiceId } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-NOTHELD-${randomUUID().slice(0, 8)}`,
       invoiceDate: '2026-11-01',
@@ -620,6 +635,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
   it('refuses a zero-cost line without changing spend, remaining or audit', async () => {
     const comm = await insertCommitment({ amount_minor: 10_000_000n });
     const { id } = await invoiceService.record(financeActor(), {
+      kind: 'INVOICE',
       vendorId: defaultVendorId,
       invoiceNumber: `INV-ZERO-${randomUUID()}`,
       invoiceDate: '2026-11-01',
@@ -651,6 +667,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
     expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
     await expect(
       invoiceService.record(financeActor(), {
+        kind: 'INVOICE',
         vendorId: defaultVendorId,
         invoiceNumber: `INV-ROLLBACK-${randomUUID()}`,
         invoiceDate: '2026-11-01',
@@ -703,6 +720,7 @@ describe('invoice commitment match & concurrency (B07-8, integration PostgreSQL)
 
       expect(await balances()).toMatchObject({ held: 21_000_000n, spent: 0n, remaining: 79_000_000n });
       const { id: invoiceId } = await invoiceService.record(financeActor(), {
+        kind: 'INVOICE',
         vendorId: defaultVendorId,
         invoiceNumber: `INV-LOCK-${randomUUID()}`,
         invoiceDate: '2026-11-01',

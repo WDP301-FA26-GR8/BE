@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import type { Prisma } from '../../../generated/prisma/client';
-import { fromDateColumn, toDateColumn, type BusinessDate } from '../../../core/business-date';
+import { toDateColumn, type BusinessDate } from '../../../core/business-date';
 import { PrismaService } from '../../../infrastructure/database/prisma.service';
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 
@@ -12,7 +12,7 @@ export interface CreateInternalCostRecord {
   periodStart: BusinessDate;
   periodEnd: BusinessDate;
   amountMinor: bigint;
-  amountRate: Prisma.Decimal;
+  amountRate: Prisma.Decimal | string;
   amountRateDate: BusinessDate;
   amountRateSource: 'MANUAL' | 'SAME_CURRENCY';
   amountReportingMinor: bigint;

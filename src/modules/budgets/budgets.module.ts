@@ -59,6 +59,7 @@ import { VersionViewService } from './budget/version-view.service';
 import { BudgetYearEndService } from './year-end/year-end.service';
 import { BudgetYearEndSweeper } from './year-end/year-end.job';
 import { InvoiceRepo } from './invoice/invoice.repo';
+import { CreditedInvoiceRepo } from './invoice/credited-invoice.repo';
 import { InvoiceService } from './invoice/invoice.service';
 import { InvoiceDocumentService } from './invoice/invoice-document.service';
 import { InvoiceMatchService } from './invoice/invoice-match.service';
@@ -100,6 +101,7 @@ import { InvoicesController } from './invoice/invoices.controller';
     InternalCostQueryService,
     InternalCostRepo,
     InvoiceRepo,
+    CreditedInvoiceRepo,
     InvoiceService,
     InvoiceDocumentService,
     InvoiceMatchService,

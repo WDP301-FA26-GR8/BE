@@ -9,6 +9,8 @@ import { CatalogApi } from '../../catalog/public/catalog.api';
 import { FinanceApi } from '../../finance/public/finance.api';
 import { OrganizationHistoryApi } from '../../organization/public/organization-history.api';
 import { budgetAuditEvent, BudgetSupportService } from '../budget/budget-support.service';
+import { assertCreditedInvoiceValid } from './credit-note.policy';
+import { inheritedCostCenterOf } from './credit-note-cost-center.policy';
 import { invoiceCostOf, splitAcrossLines } from './invoice-cost.policy';
 import type { RecordInvoiceInput } from './invoice.dto';
 import {
@@ -16,6 +18,7 @@ import {
   InvoiceLineVendorMismatchError,
   InvoiceRateMissingError,
   InvoiceVendorUnusableError,
+  InvoiceNotFoundError,
 } from './invoice.errors';
 import { InvoiceMatchService } from './invoice-match.service';
 import { InvoiceRepo } from './invoice.repo';
@@ -25,6 +28,7 @@ import type { InvoiceMoney, NewInvoiceLine, NewInvoiceTaxLine, ParsedInvoiceLine
 /**
  * Records the document and audit atomically. Lock order: organizations FOR SHARE, acquired by snapshotMoney and held until commit.
  * The invoice day fixes every rate (D2); no tax profile estimate creates or changes a document's tax lines.
+ * Credited invoice lookup is read without FOR UPDATE lock because recording a credit note does not modify the original invoice.
  */
 @Injectable()
 export class InvoiceService {
@@ -43,6 +47,7 @@ export class InvoiceService {
     this.support.requireFinance(actor);
     const startMonth = await this.support.fiscalYearStartMonth();
     return this.transactions.run(async (tx) => {
+      const inheritedCostCenterId = await this.resolveCreditedCostCenter(tx, input);
       const owners = await this.owners(tx, input);
       const money = await this.finance.parseMoney(input.amount, tx);
       if (money.amountMinor < 0n || input.lines.length === 0) throw new MoneyMalformedError();
@@ -52,7 +57,7 @@ export class InvoiceService {
       }
       const header = await this.snapshot(tx, money, input.invoiceDate);
       const taxes = await this.taxLines(tx, input);
-      const lines = await this.allocate(tx, input, parsed, header, taxes, owners, startMonth);
+      const lines = await this.allocate(tx, input, parsed, header, taxes, owners, startMonth, inheritedCostCenterId);
       const organizationId = await this.support.organizationId(tx);
       const invoice = await this.repo.insert(tx, {
         ...input,
@@ -70,7 +75,7 @@ export class InvoiceService {
       await this.matchService.matchDuringRecord(
         tx,
         actor,
-        { ...invoice, organizationId, vendorId: input.vendorId, kind: 'INVOICE' },
+        { ...invoice, organizationId, vendorId: input.vendorId, kind: input.kind },
         linesToMatch,
       );
 
@@ -80,6 +85,8 @@ export class InvoiceService {
           vendorId: input.vendorId,
           invoiceNumber: input.invoiceNumber,
           invoiceDate: input.invoiceDate,
+          kind: input.kind,
+          ...(input.creditedInvoiceId ? { creditedInvoiceId: input.creditedInvoiceId } : {}),
           amountMinor: money.amountMinor.toString(),
           amountCurrency: money.currency,
           amountReportingMinor: header.snapshot.reportingAmountMinor.toString(),
@@ -89,6 +96,17 @@ export class InvoiceService {
       );
       return invoice;
     });
+  }
+
+  private async resolveCreditedCostCenter(tx: DbTx, input: RecordInvoiceInput): Promise<string | null> {
+    if (input.kind !== 'CREDIT_NOTE') return null;
+    if (!input.creditedInvoiceId) {
+      throw new InvoiceReferenceInvalidError('A credit note must name the credited invoice.');
+    }
+    const credited = await this.repo.findCreditedInvoice(tx, input.creditedInvoiceId);
+    if (!credited) throw new InvoiceNotFoundError();
+    assertCreditedInvoiceValid(credited, input.vendorId);
+    return inheritedCostCenterOf(credited.lines);
   }
 
   private async owners(tx: DbTx, input: RecordInvoiceInput): Promise<Map<string, string>> {
@@ -157,12 +175,13 @@ export class InvoiceService {
     taxes: NewInvoiceTaxLine[],
     owners: Map<string, string>,
     startMonth: number,
+    inheritedCostCenterId: string | null = null,
   ): Promise<NewInvoiceLine[]> {
     const [first, ...rest] = lines;
     if (!first) throw new MoneyMalformedError();
     const weights: [ParsedInvoiceLine, ...ParsedInvoiceLine[]] = [first, ...rest];
     const cost = invoiceCostOf({
-      kind: 'INVOICE',
+      kind: input.kind,
       amountReportingMinor: header.snapshot.reportingAmountMinor,
       taxLines: taxes.map((line) => ({
         amountReportingMinor: line.snapshot.reportingAmountMinor,
@@ -183,7 +202,9 @@ export class InvoiceService {
       costReportingMinor: costs[index].amountMinor,
       deductibleVatReportingMinor: vat[index].amountMinor,
       fiscalYear: fiscalYearOf(input.invoiceDate, startMonth),
-      costCenterId: line.subscriptionId ? (centers.get(owners.get(line.subscriptionId) ?? '') ?? null) : null,
+      costCenterId: line.subscriptionId
+        ? (centers.get(owners.get(line.subscriptionId) ?? '') ?? null)
+        : inheritedCostCenterId,
     }));
   }
 }

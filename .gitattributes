@@ -1,4 +1,5 @@
-# Pin the OpenAPI artifact and templates consumed by LF-only parsers; no repository-wide rule.
+# Pin the OpenAPI artifact, templates, and shell scripts consumed by LF-only parsers.
 openapi.json text eol=lf
 .env.bootstrap.example text eol=lf
 .env.demo-dataset.example text eol=lf
+scripts/ops/*.sh text eol=lf

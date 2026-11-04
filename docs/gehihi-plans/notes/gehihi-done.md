@@ -1,12 +1,11 @@
 # Bộ plan B: đã xong và chưa xong
 
-Cập nhật 03/11/2026, đối chiếu `plan.md` của từng hạng mục với git. Đây là ảnh chụp để Dev B theo dõi, không thay roadmap hay
+Cập nhật 04/11/2026, đối chiếu `plan.md` của từng hạng mục với git. Đây là ảnh chụp để Dev B theo dõi, không thay roadmap hay
 `plan.md`. Chưa có plan nào được Owner review hay `accepted`.
 
-**Tóm lại:** 32 plan. Xong local 13, đang làm 1 (B07-10, đạt mức unit), chưa làm 18.
+**Tóm lại:** 32 plan. Xong local 13, đang làm 2 (B07-10 đạt mức unit; B07-9 đạt mức unit Task 6, dừng hỏi Task 5), chưa làm 17.
 
-Git: commit `1f91c5a` (P00 → B07-8 và sổ prompt) đã push lên `origin/hien-dev`. Code B07-10 chưa commit. Chưa merge
-`origin/dev`.
+Git: B07-10 đã commit ở `1a579bb` và đã có trên `origin/hien-dev`; chỉ code B07-9 còn chưa commit. Chưa merge `origin/dev`.
 
 ## Đã xong local
 
@@ -21,9 +20,10 @@ Git: commit `1f91c5a` (P00 → B07-8 và sổ prompt) đã push lên `origin/hie
 
 ## Đang làm
 
-| Plan   | Hạng mục                 | Tình trạng                                                                                                                                        |
-| ------ | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| B07-10 | `g8-internal-cost-entry` | Thiết kế và audit xong (`review-02.md`, F-01→F-06). Code có, **đạt mức unit**: typecheck xanh, unit 513/513 pass. Lỗi còn lại thuộc đợt test cuối |
+| Plan   | Hạng mục                    | Tình trạng                                                                                                                                                                                                                                                                                                                                           |
+| ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| B07-10 | `g8-internal-cost-entry`    | Thiết kế và audit xong (`review-02.md`, F-01→F-06). Code có, **đạt mức unit**: typecheck xanh, unit 533/533 pass (budgets + catalog), ESLint 0 lỗi. Lỗi còn lại thuộc đợt test cuối                                                                                                                                                                  |
+| B07-9  | `g8-commitment-realization` | AC-11 (Credit note) xong ở mức unit (DTO refine, policy kế thừa Cost Center, policy kiểm tra hóa đơn gốc, chi phí âm, audit). Task 6 xong mức unit. Task 5 dừng ở vế nhóm (`EXCEEDS_HELD`) và vế Finance được báo. Typecheck xanh, unit 233/233 pass, ESLint 0 lỗi trên `src/modules/budgets/invoice`; toàn budgets còn lỗi của B07-10 (mục Lỗi đỏ). |
 
 ## Cách test từ 03/11/2026
 
@@ -33,43 +33,20 @@ tuần tự, E2E chạy **một lần ở đợt test cuối**, khi đã xong h�
 
 ## Lỗi đỏ đã biết
 
-Kiểm 03/11/2026 trên HEAD `1f91c5a` cộng code B07-10 chưa commit; Node 24.13.0, pnpm 11.1.3, PostgreSQL 17 trong
-`slm-test-db`. Tất cả lỗi dưới đây đều ở code B07-10; phần code cũ không đỏ.
+Kiểm ngày 03/11 và rà soát lại 04/11/2026 (HEAD `ad437aa`, commit `1a579bb` của B07-10 đã trên `origin/hien-dev`; Node 24.13.0, npm).
+Tất cả lỗi dưới đây đều ở code B07-10; phần code mới B07-9 (`src/modules/budgets/invoice`) không có lỗi.
 
-**Đã chạy và xanh:** `prisma:validate`, `prisma:generate`, `typecheck`, `test` (285 suites, 4.104 pass), `test:gates`
-(317), `arch:check`, `arch:docs:check`, `test:scripts`, `test:discovery`, `build`, integration `budgets` trừ suite mới
-(15 suites, 215 pass), integration `requests` (84 suites, 1.132 pass), HTTP `internal-costs` (27 pass).
+**Đã chạy và xanh ngày 04/11:** `typecheck` (exit 0), unit test `src/modules/budgets` (17 suites, 233/233 pass).
 
-**Chưa chạy:** `pnpm test:http` toàn bộ (lượt chạy bị dừng giữa chừng), `test:integration` toàn bộ, `test:integration:serial`,
-`test:e2e`.
+**Chưa chạy lại ngày 04/11:** `pnpm test:http` toàn bộ, `test:integration` toàn bộ, `test:integration:serial`, `test:e2e`.
 
-### 1. Prettier, `pnpm format:check` đỏ
+### 1. Prettier
 
-`pnpm check` dừng ở bước này. Năm file cũ dùng xuống dòng `CRLF`, các dòng B07-10 thêm vào dùng `LF`, `prettier`
-(`endOfLine: auto`) đòi thêm `␍`:
+33 lỗi thiếu CRLF trước đây đã hết sau khi chuẩn hóa LF và format lại (chạy `prettier --check` xanh exit 0 trên toàn bộ `src/modules/budgets`).
 
-| File                                              | Dòng `LF` lẫn vào |
-| ------------------------------------------------- | ----------------- |
-| `src/modules/budgets/budget/commitment.repo.ts`   | 2                 |
-| `src/modules/budgets/budgets.module.ts`           | 10                |
-| `src/modules/catalog/public/catalog.api.ts`       | 10                |
-| `src/modules/catalog/public/catalog.types.ts`     | 10                |
-| `test/gates/architecture-boundaries.gate-spec.ts` | 1                 |
+### 2. ESLint
 
-Tổng 33 dòng, đúng 33 lỗi `prettier/prettier` của ESLint. File mới của B07-10 toàn `LF`, không lỗi.
-
-### 2. ESLint, `pnpm lint` đỏ: 10 lỗi ngoài Prettier
-
-| File                                                              | Dòng             | Lỗi                                                    |
-| ----------------------------------------------------------------- | ---------------- | ------------------------------------------------------ |
-| `src/modules/budgets/budget/internal-cost-spend.policy.ts`        | 47               | `prorateInternalCostForYears` complexity 13, tối đa 12 |
-| `src/modules/budgets/internal-cost/internal-cost-split.policy.ts` | 25               | `splitInternalCostAcrossPeriods` complexity 13         |
-| `src/modules/budgets/internal-cost/internal-cost.repo.ts`         | 3                | import thừa `fromDateColumn`                           |
-| `src/modules/budgets/internal-cost/internal-cost.service.ts`      | 86               | `any`: `no-explicit-any`, `no-unsafe-assignment`       |
-| `test/integration/budgets/internal-cost.integration-spec.ts`      | 10               | import thừa `InternalCostCostCenterInvalidError`       |
-| `test/integration/budgets/internal-cost.integration-spec.ts`      | 87, 88, 103, 104 | truy cập thuộc tính trên giá trị `any`                 |
-
-Lint toàn repo chỉ có 43 lỗi này.
+10 lỗi ESLint của B07-10 (complexity, import thừa, type any) đã được xử lý xong ngày 04/11; chạy ESLint trên toàn bộ `src/modules/budgets` và test integration `internal-cost` đạt 0 lỗi.
 
 ### 3. HTTP `test/http/platform`: 5 test đỏ
 
@@ -84,11 +61,11 @@ Cả 5 đều do 4 route mới `POST /internal-costs`, `GET /internal-costs`, `G
 | `openapi-response-examples` | message thành công khớp decorator | 4 message `INTERNAL_COST.*` chưa có trong `SUCCESS_MESSAGES`           |
 | `openapi-response-examples` | mã lỗi ví dụ khớp mã reachable    | 7 cặp route/status chưa có trong `openapi-example-route-codes-budgets` |
 
-Bảy cặp ở dòng cuối: `internalCostRecord` 404, 409, 422; `internalCostGet` 404; `internalCostCancel` 404, 409, 422.
+Chưa chạy lại ngày 04/11. Bảy cặp ở dòng cuối: `internalCostRecord` 404, 409, 422; `internalCostGet` 404; `internalCostCancel` 404, 409, 422.
 
 ### 4. Integration `internal-cost.integration-spec.ts`: 11/11 đỏ
 
-Cả 11 ca hỏng ở `beforeAll`, dòng 27 `h.start()`, trước khi tới code B07-10. Chuỗi bằng chứng:
+Chưa chạy lại ngày 04/11. Cả 11 ca hỏng ở `beforeAll`, dòng 27 `h.start()`, trước khi tới code B07-10. Chuỗi bằng chứng:
 
 1. Lỗi là `AggregateError` từ `pg-pool` khi mở transaction đầu tiên của harness. Chạy lại vẫn vậy.
 2. Nạp file chẩn đoán ngoài repo để in lỗi con: app kết nối `localhost:5432`, DB `software_license_management_test`,
@@ -109,12 +86,11 @@ cáo đã phát hành (AC-10).
 ### 6. Việc phối hợp, không phải lỗi test
 
 - Note 03 chưa ghi đã gửi Dev A (Q-10).
+- Note 04 ghi nhận bổ sung `kind: 'INVOICE'` cho 4 fixture integration trong `test/integration/budgets/` để thỏa mãn kiểu nghiêm ngặt `z.infer`.
 - `CatalogApi.lockApplicationShared` gọi `ApplicationLookupService`; `origin/dev` đã đổi tên các service `-lookup`, nên sẽ lỗi
   compile khi merge.
 
 ## Chưa làm
-
-B07-9 (lỗi một phần và credit note): plan code, chưa bắt đầu. Đóng `US-06-06` AC-9, AC-11.
 
 16 plan thiết kế còn là khung `plan.md` 39 dòng:
 
@@ -128,18 +104,19 @@ B08-8 (tiết kiệm và hiệu quả sử dụng): `GATED`, chờ G7 và A-06.
 
 Cổng còn chờ người khác:
 
-| Plan          | Đang chờ                                                                               |
-| ------------- | -------------------------------------------------------------------------------------- |
-| B07-11, B09-1 | Dev A trả lời Q-10                                                                     |
-| B08-5, B08-9  | A-06, A-10                                                                             |
-| B08-7         | Vế usage chờ G7                                                                        |
-| B08-6         | Owner xác nhận pin Docs mới có `QĐ-93`; bản đó bỏ chỉ số "số bước giao người thay thế" |
-| B09-5         | Ca `OOS-24` phải hỏi Owner trước khi code                                              |
+| Plan          | Đang chờ                                                                                                                                                                                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| B07-11, B09-1 | Dev A trả lời Q-10                                                                                                                                                                                                                                                                |
+| B08-5, B08-9  | A-06, A-10                                                                                                                                                                                                                                                                        |
+| B08-7         | Vế usage chờ G7                                                                                                                                                                                                                                                                   |
+| B08-6         | Owner xác nhận pin Docs mới có `QĐ-93`; bản đó bỏ chỉ số "số bước giao người thay thế"                                                                                                                                                                                            |
+| B09-5         | Ca `OOS-24` phải hỏi Owner trước khi code                                                                                                                                                                                                                                         |
+| B07-9         | 1. Kẹp `takeMinor` về `min(named, heldOf)` và bỏ qua khoản đã `EXPENSED` cho nhóm<br>2. Phê duyệt bổ sung `BudgetsApi.requestHasSpent` và thông báo Finance khi thất bại sau khi chi<br>3. Xác nhận quy tắc Cost Center null cho credit note khi hóa đơn gốc có nhiều Cost Center |
 
 ## Thứ tự tiếp theo
 
-1. Commit B07-10: đã đạt mức unit.
+1. Dev B commit B07-9 sau khi đọc diff (Task 6 xong mức unit; Task 5 còn lại chờ Owner trả lời Q-14, Q-15).
 2. Merge `origin/dev`: 9 file conflict, đổi import `budget-support.service` và các service `-lookup` theo tên mới, gồm cả
    `CatalogApi.lockApplicationShared`.
-3. B07-9, rồi B09-0, B08-1 → B08-2 và các plan còn lại, mỗi plan chỉ unit test.
+3. B09-0, B08-1 → B08-2 và các plan còn lại (sau khi B07-9 Task 5 có câu trả lời), mỗi plan chỉ unit test.
 4. Đợt test cuối: sửa hết mục [Lỗi đỏ đã biết](#lỗi-đỏ-đã-biết) và lỗi mới, rồi xin Owner merge.

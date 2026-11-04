@@ -12,7 +12,8 @@ import {
   InvoiceTaxLineNotFoundError,
   InvoiceTaxLineNotBuyerRemitsError,
 } from './invoice.errors';
-import { toInvoiceApiException } from './invoice.http-errors';
+import { InvoiceReferenceInvalidError } from './invoice-record.errors';
+import { mapInvoiceError, toInvoiceApiException } from './invoice.http-errors';
 
 describe('invoice error mapping (B07-2 step 2, B07-8)', () => {
   it.each([
@@ -53,5 +54,13 @@ describe('invoice error mapping (B07-2 step 2, B07-8)', () => {
     const error = new Error('Unexpected failure.');
     error.name = 'InvoiceDuplicateError';
     expect(toInvoiceApiException(error)).toBe(error);
+  });
+
+  it('maps InvoiceReferenceInvalidError to 422 VALIDATION_ERROR', () => {
+    const error = new InvoiceReferenceInvalidError('The credited invoice must be an invoice of the same vendor.');
+    const mapped = mapInvoiceError(error);
+    expect(mapped).toBeInstanceOf(ApiException);
+    expect((mapped as ApiException).getStatus()).toBe(422);
+    expect((mapped as ApiException).getResponse()).toEqual({ code: 'VALIDATION_ERROR', message: error.message });
   });
 });

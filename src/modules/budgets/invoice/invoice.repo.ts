@@ -7,6 +7,7 @@ import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import { isUniqueViolation } from '../../../infrastructure/database/unique-violation';
 import { InvoiceDuplicateError } from './invoice.errors';
 import { InvoiceReferenceInvalidError } from './invoice-record.errors';
+import { CreditedInvoiceRepo } from './credited-invoice.repo';
 import type { InvoiceMoney, NewInvoice, NewInvoiceLine, NewInvoiceTaxLine } from './invoice.types';
 
 function moneyColumns({ money, snapshot }: InvoiceMoney) {
@@ -23,7 +24,14 @@ function moneyColumns({ money, snapshot }: InvoiceMoney) {
 /** All invoice persistence uses the caller's transaction, including the header's unique constraint. */
 @Injectable()
 export class InvoiceRepo {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly credited: CreditedInvoiceRepo,
+  ) {}
+
+  findCreditedInvoice(tx: DbTx, id: string) {
+    return this.credited.findCreditedInvoice(tx, id);
+  }
   async insert(tx: DbTx, input: NewInvoice): Promise<{ id: string }> {
     try {
       return await tx.invoice.create({
@@ -32,7 +40,8 @@ export class InvoiceRepo {
           vendorId: input.vendorId,
           contractId: input.contractId,
           invoiceNumber: input.invoiceNumber,
-          kind: 'INVOICE',
+          kind: input.kind,
+          creditedInvoiceId: input.creditedInvoiceId ?? null,
           invoiceDate: toDateColumn(input.invoiceDate),
           recordedByEmployeeId: input.recordedByEmployeeId,
           reconciliationStatus: 'NONE',
@@ -88,7 +97,7 @@ export class InvoiceRepo {
         id: string;
         organization_id: string;
         vendor_id: string;
-        kind: string;
+        kind: 'INVOICE' | 'CREDIT_NOTE';
         invoice_date: Date;
         amount_reporting_minor: bigint;
       }[]
@@ -101,7 +110,7 @@ export class InvoiceRepo {
       id: locked[0].id,
       organizationId: locked[0].organization_id,
       vendorId: locked[0].vendor_id,
-      kind: locked[0].kind as 'INVOICE' | 'CREDIT_NOTE',
+      kind: locked[0].kind,
       invoiceDate: locked[0].invoice_date,
       amountReportingMinor: BigInt(locked[0].amount_reporting_minor),
     };

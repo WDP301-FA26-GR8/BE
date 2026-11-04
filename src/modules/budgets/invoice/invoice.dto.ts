@@ -46,15 +46,26 @@ const taxLine = z.strictObject({
   note: z.string().trim().max(2000).optional(),
 });
 
-export const recordInvoiceSchema = z.strictObject({
-  vendorId: z.uuid(),
-  contractId: z.uuid().optional(),
-  invoiceNumber: z.string().trim().min(1).max(200),
-  invoiceDate: businessDate,
-  amount: money,
-  lines: z.array(line).min(1).max(500),
-  taxLines: z.array(taxLine).max(100),
-});
+export const invoiceKindSchema = z.enum(['INVOICE', 'CREDIT_NOTE']);
+
+export const recordInvoiceSchema = z
+  .strictObject({
+    kind: invoiceKindSchema.default('INVOICE'),
+    creditedInvoiceId: z.uuid().optional(),
+    vendorId: z.uuid(),
+    contractId: z.uuid().optional(),
+    invoiceNumber: z.string().trim().min(1).max(200),
+    invoiceDate: businessDate,
+    amount: money,
+    lines: z.array(line).min(1).max(500),
+    taxLines: z.array(taxLine).max(100),
+  })
+  .refine((data) => data.kind !== 'CREDIT_NOTE' || Boolean(data.creditedInvoiceId), {
+    message: 'A credit note must name the credited invoice.',
+  })
+  .refine((data) => data.kind !== 'INVOICE' || data.creditedInvoiceId === undefined, {
+    message: 'An invoice cannot reference a credited invoice.',
+  });
 
 export type RecordInvoiceInput = z.infer<typeof recordInvoiceSchema>;
 export class RecordInvoiceBodyDto extends createZodDto(recordInvoiceSchema) {}

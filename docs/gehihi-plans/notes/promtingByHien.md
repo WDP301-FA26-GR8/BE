@@ -10,6 +10,7 @@ File này chỉ giữ prompt. Tiến độ và bằng chứng ghi ở `plan.md` 
 2. Mỗi lúc chỉ chạy **một agent**. Các plan sửa chung file, chạy song song sẽ đè nhau.
 3. Chạy đúng thứ tự trong [README](../README.md). Không nhảy cóc: B07-8 cần B07-7 xong.
 4. Xong mỗi plan: đọc bàn giao, chạy `pnpm typecheck` và unit test của module, audit nếu plan chạm tiền hoặc khóa, rồi
+
    bạn mới commit. Từ 03/11/2026 chỉ cần unit test, HTTP và integration dồn vào [đợt test cuối](#đợt-test-cuối).
 5. Prompt mặc định có `Chưa commit`. Bạn tự commit sau khi đọc diff.
 6. Agent dừng vì cổng chưa thỏa là đúng. Đừng bảo agent giả định, mang câu hỏi về xin khuyến nghị rồi ghi vào `02-owner-decisions.md`.
@@ -321,7 +322,7 @@ Làm xong thì dừng và báo cáo.
 **B07-10:** typecheck và unit đã xanh (513 pass) nên đủ mức của từng plan, commit được. Các việc đỏ còn lại thuộc đợt
 test cuối, prompt ở [mục Đợt test cuối](#đợt-test-cuối).
 
-**Merge `origin/dev` vào `hien-dev`:** chạy sau khi đã commit B07-10. Dùng Codex.
+**Merge** `origin/dev` **vào** `hien-dev`**:** chạy sau khi đã commit B07-10. Dùng Codex.
 
 ```text
 Đọc AGENTS.md và docs/workspace/prompts/README.md, mục tích hợp khi dev đã đổi.
@@ -418,7 +419,7 @@ Ghi <mã> vào bảng Owner dispositions của spec: trạng thái "Tạm theo k
 Không ghi là Owner duyệt hay accepted. Sau đó làm tiếp <phần>. Chưa commit.
 ```
 
-**Báo Dev A trước khi sửa `catalog` (Q-10):** gửi xong là qua cổng, không cần chờ trả lời, trừ khi A phản đối.
+**Báo Dev A trước khi sửa** `catalog` **(Q-10):** gửi xong là qua cổng, không cần chờ trả lời, trừ khi A phản đối.
 
 ```text
 Chào A, gói B-07 của mình sẽ đụng catalog, mình báo trước. Code ở nhánh hien-dev.

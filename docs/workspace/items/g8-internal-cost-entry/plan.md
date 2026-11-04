@@ -4,8 +4,8 @@
 - [Audit thiết kế (Bước 02)](review-02.md).
 - Phụ trách: Dev B (nhánh `hien-dev`). Thiết kế ban đầu bởi: AI theo giao việc của Dev B (31/10/2026); hoàn thiện kế hoạch B07-10 ngày 03/11/2026.
 - Owner review: chưa review. Peer review: tùy chọn.
-- Triển khai: `in-progress`. Đã có code B07-10 trên cây chưa commit, **chưa verified**: ESLint, Prettier và 3 suite HTTP
-  `platform` còn đỏ, integration chưa chạy (xem mục kiểm lại 03/11/2026). PR: chưa có.
+- Triển khai: `in-progress`. Code B07-10 đã ở commit `1a579bb` (`origin/hien-dev`), **chưa verified** (xem mục kiểm lại 03/11
+  và 04/11/2026). PR: chưa có.
 
 ## Before coding
 
@@ -104,16 +104,28 @@ Người kiểm: Claude (Opus 5.5), theo yêu cầu Dev B; không sửa source. 
 | `pnpm exec prettier --check`                                                          | **Đỏ** ở `commitment.repo.ts`, `budgets.module.ts`, `catalog.api.ts`, `catalog.types.ts`, `architecture-boundaries.gate-spec.ts` |
 | `pnpm test:integration -- test/integration/budgets/internal-cost.integration-spec.ts` | Chưa chạy, Docker tắt                                                                                                            |
 
+### Kiểm lại ngày 04/11/2026
+
+Người kiểm: AG/GEMINI-3.8-FLASH-HIGH, theo yêu cầu Dev B; sửa 10 lỗi ESLint của code B07-10. Nhánh `hien-dev`, HEAD `ad437aa`, code B07-10 đã ở commit `1a579bb` trên `origin/hien-dev`. Node 24.13.0, npm, Linux.
+Lượt này gồm một sửa đổi hành vi logic cho `amountRate`: thay `snapshot.snapshot.rate as any` bằng `formatRate(snapshot.snapshot.rate)` để tỷ giá được lưu dưới dạng chuỗi thập phân chuẩn thay vì bigint thô, kèm unit test `internal-cost.service.spec.ts` (xem chi tiết tại [Note 05](../../../gehihi-plans/notes/05-internal-cost-amount-rate.md)).
+
+| Lệnh                                                                                                                       | Kết quả thực chạy                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `node node_modules/typescript/bin/tsc --noEmit -p tsconfig.json`                                                           | Exit 0, xanh toàn repo                                                                                                                          |
+| `node node_modules/eslint/bin/eslint.js src/modules/budgets test/integration/budgets/internal-cost.integration-spec.ts`    | **Xanh**: 0 lỗi (đã giải quyết toàn bộ 10 lỗi ESLint của B07-10: tách helper giảm complexity, bỏ import thừa, gỡ bỏ any và thay bằng kiểu thật) |
+| `node node_modules/jest/bin/jest.js src/modules/budgets src/modules/catalog --runInBand`                                   | 34 suites, 533/533 pass (gồm toàn bộ unit tests budgets và catalog)                                                                             |
+| `node node_modules/prettier/bin/prettier.cjs --check "src/modules/budgets/**/*.{ts,mjs,cjs}"`                              | Exit 0, xanh toàn bộ `budgets`                                                                                                                  |
+| `pnpm test:http -- test/http/platform` và `test:integration -- test/integration/budgets/internal-cost.integration-spec.ts` | Chưa chạy lại ngày 04/11/2026                                                                                                                   |
+
 Việc phải sửa trước khi coi là verified:
 
 1. HTTP `platform`: 4 route `internalCostRecord`, `internalCostCancel`, `internalCostGet`, `internalCostList` chưa có trong
    `api-coverage-manifest`, `SUCCESS_MESSAGES` và `openapi-example-route-codes-budgets`; thiếu khai `422 VALIDATION_ERROR` và
    `429 HTTP_TOO_MANY_REQUESTS`.
-2. ESLint: `complexity` 13 ở `prorateInternalCostForYears` và `splitInternalCostAcrossPeriods`; `any` ở
-   `internal-cost.service.ts:86`; import thừa `fromDateColumn` ở `internal-cost.repo.ts`; import thừa và truy cập `any` ở
-   `internal-cost.integration-spec.ts`.
-3. Integration chưa có ca khóa đồng thời và rollback (F-06 trong [review-02](review-02.md)), audit (AC-8b) và báo cáo đã phát
+2. Lỗi ESLint của B07-10 đã được xử lý xong ngày 04/11 (0 lỗi).
+3. Đợt test cuối cần chạy kiểm chứng PostgreSQL thật cho `test/integration/budgets/internal-cost.integration-spec.ts` (trong đó assert `amountRate` tại dòng ~199 chưa chạy).
+4. Integration chưa có ca khóa đồng thời và rollback (F-06 trong [review-02](review-02.md)), audit (AC-8b) và báo cáo đã phát
    hành (AC-10), dù matrix ở spec có.
-4. Note [03](../../../gehihi-plans/notes/03-catalog-application-kind.md) mới ghi sẵn nội dung, chưa ghi đã gửi Dev A (Q-10).
+5. Note [03](../../../gehihi-plans/notes/03-catalog-application-kind.md) mới ghi sẵn nội dung, chưa ghi đã gửi Dev A (Q-10).
    `CatalogApi.lockApplicationShared` gọi `ApplicationLookupService`, mà `origin/dev` đã đổi tên các service `-lookup`, nên
    khi merge phải sửa theo.
