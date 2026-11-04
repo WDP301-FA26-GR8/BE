@@ -59,7 +59,7 @@ describe('OpenAPI export (spawned process)', () => {
     expect(findOpenApi30Violations(committed)).toEqual([]);
   });
 
-  it('pins only OpenAPI and the two operational templates to LF in the repository attributes', () => {
+  it('pins OpenAPI, operational templates and shell scripts to LF in the repository attributes', () => {
     const rules = readFileSync(join(PROJECT_ROOT, '.gitattributes'), 'utf8')
       .split('\n')
       .map((line) => line.trim())
@@ -70,6 +70,7 @@ describe('OpenAPI export (spawned process)', () => {
       'openapi.json text eol=lf',
       '.env.bootstrap.example text eol=lf',
       '.env.demo-dataset.example text eol=lf',
+      'scripts/ops/*.sh text eol=lf',
     ]);
   });
 
