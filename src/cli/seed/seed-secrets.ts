@@ -1,5 +1,5 @@
 import { checkPasswordPolicy } from '../../modules/identity-access/public/password.policy';
-import { INSTALLATION } from './fixture/shared-demo-v2/installation';
+import { INSTALLATION } from './fixture/shared-demo-v3/installation';
 import type { Readable } from 'node:stream';
 
 /**
@@ -134,8 +134,11 @@ export function readDemoSecrets(
 }
 
 /** No hashing or database access: both passwords must pass before starting any graph. */
-export function seedSecretsProblem(secrets: DemoSecrets): string | null {
-  const problem = checkPasswordPolicy(secrets.superAdminPassword, INSTALLATION.loginEmail);
+export function seedSecretsProblem(
+  secrets: DemoSecrets,
+  superAdminEmail: string = INSTALLATION.loginEmail,
+): string | null {
+  const problem = checkPasswordPolicy(secrets.superAdminPassword, superAdminEmail);
   if (problem) return problem;
   const length = [...secrets.demoAccountPassword].length;
   return length < 12 || length > 128 ? 'DEMO_LENGTH' : null;

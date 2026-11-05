@@ -532,12 +532,12 @@ export type SubscriptionRenewalOrderByWithRelationInput = {
 
 export type SubscriptionRenewalWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  subscriptionId?: string
   nextSubscriptionId?: string
   AND?: Prisma.SubscriptionRenewalWhereInput | Prisma.SubscriptionRenewalWhereInput[]
   OR?: Prisma.SubscriptionRenewalWhereInput[]
   NOT?: Prisma.SubscriptionRenewalWhereInput | Prisma.SubscriptionRenewalWhereInput[]
   organizationId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
+  subscriptionId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
   state?: Prisma.EnumRenewalStateFilter<"SubscriptionRenewal"> | $Enums.RenewalState
   noticeBasis?: Prisma.EnumRenewalNoticeBasisFilter<"SubscriptionRenewal"> | $Enums.RenewalNoticeBasis
   noticeBaseDate?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
@@ -575,7 +575,7 @@ export type SubscriptionRenewalWhereUniqueInput = Prisma.AtLeast<{
   subscription?: Prisma.XOR<Prisma.SubscriptionScalarRelationFilter, Prisma.SubscriptionWhereInput>
   nextSubscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatListRelationFilter
-}, "id" | "subscriptionId" | "nextSubscriptionId">
+}, "id" | "nextSubscriptionId">
 
 export type SubscriptionRenewalOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -701,7 +701,7 @@ export type SubscriptionRenewalCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionRenewalsInput
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCaseInput
+  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCasesInput
   nextSubscription?: Prisma.SubscriptionCreateNestedOneWithoutRenewalNextOfInput
   releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatCreateNestedManyWithoutRenewalInput
 }
@@ -783,7 +783,7 @@ export type SubscriptionRenewalUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionRenewalsNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCaseNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCasesNestedInput
   nextSubscription?: Prisma.SubscriptionUpdateOneWithoutRenewalNextOfNestedInput
   releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatUpdateManyWithoutRenewalNestedInput
 }
@@ -946,9 +946,19 @@ export type SubscriptionRenewalUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type SubscriptionRenewalListRelationFilter = {
+  every?: Prisma.SubscriptionRenewalWhereInput
+  some?: Prisma.SubscriptionRenewalWhereInput
+  none?: Prisma.SubscriptionRenewalWhereInput
+}
+
 export type SubscriptionRenewalNullableScalarRelationFilter = {
   is?: Prisma.SubscriptionRenewalWhereInput | null
   isNot?: Prisma.SubscriptionRenewalWhereInput | null
+}
+
+export type SubscriptionRenewalOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type SubscriptionRenewalCountOrderByAggregateInput = {
@@ -1088,20 +1098,11 @@ export type SubscriptionRenewalScalarRelationFilter = {
   isNot?: Prisma.SubscriptionRenewalWhereInput
 }
 
-export type SubscriptionRenewalListRelationFilter = {
-  every?: Prisma.SubscriptionRenewalWhereInput
-  some?: Prisma.SubscriptionRenewalWhereInput
-  none?: Prisma.SubscriptionRenewalWhereInput
-}
-
-export type SubscriptionRenewalOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput
-  connect?: Prisma.SubscriptionRenewalWhereUniqueInput
+export type SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput> | Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput[] | Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput[]
+  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput | Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput[]
+  createMany?: Prisma.SubscriptionRenewalCreateManySubscriptionInputEnvelope
+  connect?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
 }
 
 export type SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput = {
@@ -1110,10 +1111,11 @@ export type SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput = {
   connect?: Prisma.SubscriptionRenewalWhereUniqueInput
 }
 
-export type SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput
-  connect?: Prisma.SubscriptionRenewalWhereUniqueInput
+export type SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput> | Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput[] | Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput[]
+  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput | Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput[]
+  createMany?: Prisma.SubscriptionRenewalCreateManySubscriptionInputEnvelope
+  connect?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
 }
 
 export type SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput = {
@@ -1122,14 +1124,18 @@ export type SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionIn
   connect?: Prisma.SubscriptionRenewalWhereUniqueInput
 }
 
-export type SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput
-  upsert?: Prisma.SubscriptionRenewalUpsertWithoutSubscriptionInput
-  disconnect?: Prisma.SubscriptionRenewalWhereInput | boolean
-  delete?: Prisma.SubscriptionRenewalWhereInput | boolean
-  connect?: Prisma.SubscriptionRenewalWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SubscriptionRenewalUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.SubscriptionRenewalUpdateWithoutSubscriptionInput>, Prisma.SubscriptionRenewalUncheckedUpdateWithoutSubscriptionInput>
+export type SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput> | Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput[] | Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput[]
+  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput | Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput[]
+  upsert?: Prisma.SubscriptionRenewalUpsertWithWhereUniqueWithoutSubscriptionInput | Prisma.SubscriptionRenewalUpsertWithWhereUniqueWithoutSubscriptionInput[]
+  createMany?: Prisma.SubscriptionRenewalCreateManySubscriptionInputEnvelope
+  set?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  disconnect?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  delete?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  connect?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  update?: Prisma.SubscriptionRenewalUpdateWithWhereUniqueWithoutSubscriptionInput | Prisma.SubscriptionRenewalUpdateWithWhereUniqueWithoutSubscriptionInput[]
+  updateMany?: Prisma.SubscriptionRenewalUpdateManyWithWhereWithoutSubscriptionInput | Prisma.SubscriptionRenewalUpdateManyWithWhereWithoutSubscriptionInput[]
+  deleteMany?: Prisma.SubscriptionRenewalScalarWhereInput | Prisma.SubscriptionRenewalScalarWhereInput[]
 }
 
 export type SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput = {
@@ -1142,14 +1148,18 @@ export type SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SubscriptionRenewalUpdateToOneWithWhereWithoutNextSubscriptionInput, Prisma.SubscriptionRenewalUpdateWithoutNextSubscriptionInput>, Prisma.SubscriptionRenewalUncheckedUpdateWithoutNextSubscriptionInput>
 }
 
-export type SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput
-  upsert?: Prisma.SubscriptionRenewalUpsertWithoutSubscriptionInput
-  disconnect?: Prisma.SubscriptionRenewalWhereInput | boolean
-  delete?: Prisma.SubscriptionRenewalWhereInput | boolean
-  connect?: Prisma.SubscriptionRenewalWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SubscriptionRenewalUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.SubscriptionRenewalUpdateWithoutSubscriptionInput>, Prisma.SubscriptionRenewalUncheckedUpdateWithoutSubscriptionInput>
+export type SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput> | Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput[] | Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput[]
+  connectOrCreate?: Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput | Prisma.SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput[]
+  upsert?: Prisma.SubscriptionRenewalUpsertWithWhereUniqueWithoutSubscriptionInput | Prisma.SubscriptionRenewalUpsertWithWhereUniqueWithoutSubscriptionInput[]
+  createMany?: Prisma.SubscriptionRenewalCreateManySubscriptionInputEnvelope
+  set?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  disconnect?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  delete?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  connect?: Prisma.SubscriptionRenewalWhereUniqueInput | Prisma.SubscriptionRenewalWhereUniqueInput[]
+  update?: Prisma.SubscriptionRenewalUpdateWithWhereUniqueWithoutSubscriptionInput | Prisma.SubscriptionRenewalUpdateWithWhereUniqueWithoutSubscriptionInput[]
+  updateMany?: Prisma.SubscriptionRenewalUpdateManyWithWhereWithoutSubscriptionInput | Prisma.SubscriptionRenewalUpdateManyWithWhereWithoutSubscriptionInput[]
+  deleteMany?: Prisma.SubscriptionRenewalScalarWhereInput | Prisma.SubscriptionRenewalScalarWhereInput[]
 }
 
 export type SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput = {
@@ -1327,6 +1337,11 @@ export type SubscriptionRenewalCreateOrConnectWithoutSubscriptionInput = {
   create: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput>
 }
 
+export type SubscriptionRenewalCreateManySubscriptionInputEnvelope = {
+  data: Prisma.SubscriptionRenewalCreateManySubscriptionInput | Prisma.SubscriptionRenewalCreateManySubscriptionInput[]
+  skipDuplicates?: boolean
+}
+
 export type SubscriptionRenewalCreateWithoutNextSubscriptionInput = {
   id?: string
   state?: $Enums.RenewalState
@@ -1363,7 +1378,7 @@ export type SubscriptionRenewalCreateWithoutNextSubscriptionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionRenewalsInput
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCaseInput
+  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCasesInput
   releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatCreateNestedManyWithoutRenewalInput
 }
 
@@ -1412,95 +1427,63 @@ export type SubscriptionRenewalCreateOrConnectWithoutNextSubscriptionInput = {
   create: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutNextSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutNextSubscriptionInput>
 }
 
-export type SubscriptionRenewalUpsertWithoutSubscriptionInput = {
+export type SubscriptionRenewalUpsertWithWhereUniqueWithoutSubscriptionInput = {
+  where: Prisma.SubscriptionRenewalWhereUniqueInput
   update: Prisma.XOR<Prisma.SubscriptionRenewalUpdateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedUpdateWithoutSubscriptionInput>
   create: Prisma.XOR<Prisma.SubscriptionRenewalCreateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedCreateWithoutSubscriptionInput>
-  where?: Prisma.SubscriptionRenewalWhereInput
 }
 
-export type SubscriptionRenewalUpdateToOneWithWhereWithoutSubscriptionInput = {
-  where?: Prisma.SubscriptionRenewalWhereInput
+export type SubscriptionRenewalUpdateWithWhereUniqueWithoutSubscriptionInput = {
+  where: Prisma.SubscriptionRenewalWhereUniqueInput
   data: Prisma.XOR<Prisma.SubscriptionRenewalUpdateWithoutSubscriptionInput, Prisma.SubscriptionRenewalUncheckedUpdateWithoutSubscriptionInput>
 }
 
-export type SubscriptionRenewalUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.EnumRenewalStateFieldUpdateOperationsInput | $Enums.RenewalState
-  noticeBasis?: Prisma.EnumRenewalNoticeBasisFieldUpdateOperationsInput | $Enums.RenewalNoticeBasis
-  noticeBaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  proposedChoice?: Prisma.EnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice
-  proposedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  proposalNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  businessOwnerOpinion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  proposedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  proposedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
-  proposedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  decidedChoice?: Prisma.NullableEnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice | null
-  decidedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  decisionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  decidedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  deciderRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  decidedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  decidedAfterDeadline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  executionPoint?: Prisma.NullableEnumRenewalExecutionPointFieldUpdateOperationsInput | $Enums.RenewalExecutionPoint | null
-  activeSeatsAtDecision?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  decisionSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  lateFlaggedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  outcome?: Prisma.NullableEnumRenewalOutcomeFieldUpdateOperationsInput | $Enums.RenewalOutcome | null
-  outcomeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  outcomeRecordedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  outcomeRecordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  outcomeRecordedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  vendorFollowUpOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  realisedSavingsMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  realisedSavingsCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionRenewalsNestedInput
-  nextSubscription?: Prisma.SubscriptionUpdateOneWithoutRenewalNextOfNestedInput
-  releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatUpdateManyWithoutRenewalNestedInput
+export type SubscriptionRenewalUpdateManyWithWhereWithoutSubscriptionInput = {
+  where: Prisma.SubscriptionRenewalScalarWhereInput
+  data: Prisma.XOR<Prisma.SubscriptionRenewalUpdateManyMutationInput, Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionInput>
 }
 
-export type SubscriptionRenewalUncheckedUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.EnumRenewalStateFieldUpdateOperationsInput | $Enums.RenewalState
-  noticeBasis?: Prisma.EnumRenewalNoticeBasisFieldUpdateOperationsInput | $Enums.RenewalNoticeBasis
-  noticeBaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  proposedChoice?: Prisma.EnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice
-  proposedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  proposalNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  businessOwnerOpinion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  proposedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
-  proposedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
-  proposedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  decidedChoice?: Prisma.NullableEnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice | null
-  decidedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  decisionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  decidedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  deciderRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  decidedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  decidedAfterDeadline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  executionPoint?: Prisma.NullableEnumRenewalExecutionPointFieldUpdateOperationsInput | $Enums.RenewalExecutionPoint | null
-  activeSeatsAtDecision?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  decisionSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  lateFlaggedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  outcome?: Prisma.NullableEnumRenewalOutcomeFieldUpdateOperationsInput | $Enums.RenewalOutcome | null
-  outcomeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  outcomeRecordedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  outcomeRecordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  outcomeRecordedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  vendorFollowUpOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  nextSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  realisedSavingsMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  realisedSavingsCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatUncheckedUpdateManyWithoutRenewalNestedInput
+export type SubscriptionRenewalScalarWhereInput = {
+  AND?: Prisma.SubscriptionRenewalScalarWhereInput | Prisma.SubscriptionRenewalScalarWhereInput[]
+  OR?: Prisma.SubscriptionRenewalScalarWhereInput[]
+  NOT?: Prisma.SubscriptionRenewalScalarWhereInput | Prisma.SubscriptionRenewalScalarWhereInput[]
+  id?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
+  organizationId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
+  subscriptionId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
+  state?: Prisma.EnumRenewalStateFilter<"SubscriptionRenewal"> | $Enums.RenewalState
+  noticeBasis?: Prisma.EnumRenewalNoticeBasisFilter<"SubscriptionRenewal"> | $Enums.RenewalNoticeBasis
+  noticeBaseDate?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
+  proposedChoice?: Prisma.EnumRenewalChoiceFilter<"SubscriptionRenewal"> | $Enums.RenewalChoice
+  proposedQuantity?: Prisma.IntNullableFilter<"SubscriptionRenewal"> | number | null
+  proposalNote?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
+  businessOwnerOpinion?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
+  proposedByEmployeeId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
+  proposedByAppUserId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
+  proposedAt?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
+  decidedChoice?: Prisma.EnumRenewalChoiceNullableFilter<"SubscriptionRenewal"> | $Enums.RenewalChoice | null
+  decidedQuantity?: Prisma.IntNullableFilter<"SubscriptionRenewal"> | number | null
+  decisionReason?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
+  decidedByEmployeeId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
+  decidedByAppUserId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
+  deciderRole?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
+  decidedAt?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
+  decidedOn?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
+  decidedAfterDeadline?: Prisma.BoolNullableFilter<"SubscriptionRenewal"> | boolean | null
+  executionPoint?: Prisma.EnumRenewalExecutionPointNullableFilter<"SubscriptionRenewal"> | $Enums.RenewalExecutionPoint | null
+  activeSeatsAtDecision?: Prisma.IntNullableFilter<"SubscriptionRenewal"> | number | null
+  decisionSnapshot?: Prisma.JsonNullableFilter<"SubscriptionRenewal">
+  lateFlaggedAt?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
+  outcome?: Prisma.EnumRenewalOutcomeNullableFilter<"SubscriptionRenewal"> | $Enums.RenewalOutcome | null
+  outcomeNote?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
+  outcomeRecordedByEmployeeId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
+  outcomeRecordedByAppUserId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
+  outcomeRecordedAt?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
+  vendorFollowUpOpen?: Prisma.BoolFilter<"SubscriptionRenewal"> | boolean
+  nextSubscriptionId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
+  realisedSavingsMinor?: Prisma.BigIntNullableFilter<"SubscriptionRenewal"> | bigint | number | null
+  realisedSavingsCurrency?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
 }
 
 export type SubscriptionRenewalUpsertWithoutNextSubscriptionInput = {
@@ -1550,7 +1533,7 @@ export type SubscriptionRenewalUpdateWithoutNextSubscriptionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionRenewalsNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCaseNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCasesNestedInput
   releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatUpdateManyWithoutRenewalNestedInput
 }
 
@@ -1630,7 +1613,7 @@ export type SubscriptionRenewalCreateWithoutReleasedSeatsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionRenewalsInput
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCaseInput
+  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCasesInput
   nextSubscription?: Prisma.SubscriptionCreateNestedOneWithoutRenewalNextOfInput
 }
 
@@ -1726,7 +1709,7 @@ export type SubscriptionRenewalUpdateWithoutReleasedSeatsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionRenewalsNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCaseNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCasesNestedInput
   nextSubscription?: Prisma.SubscriptionUpdateOneWithoutRenewalNextOfNestedInput
 }
 
@@ -1805,7 +1788,7 @@ export type SubscriptionRenewalCreateWithoutOrganizationInput = {
   realisedSavingsCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCaseInput
+  subscription: Prisma.SubscriptionCreateNestedOneWithoutRenewalCasesInput
   nextSubscription?: Prisma.SubscriptionCreateNestedOneWithoutRenewalNextOfInput
   releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatCreateNestedManyWithoutRenewalInput
 }
@@ -1876,47 +1859,162 @@ export type SubscriptionRenewalUpdateManyWithWhereWithoutOrganizationInput = {
   data: Prisma.XOR<Prisma.SubscriptionRenewalUpdateManyMutationInput, Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationInput>
 }
 
-export type SubscriptionRenewalScalarWhereInput = {
-  AND?: Prisma.SubscriptionRenewalScalarWhereInput | Prisma.SubscriptionRenewalScalarWhereInput[]
-  OR?: Prisma.SubscriptionRenewalScalarWhereInput[]
-  NOT?: Prisma.SubscriptionRenewalScalarWhereInput | Prisma.SubscriptionRenewalScalarWhereInput[]
-  id?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
-  organizationId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
-  subscriptionId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
-  state?: Prisma.EnumRenewalStateFilter<"SubscriptionRenewal"> | $Enums.RenewalState
-  noticeBasis?: Prisma.EnumRenewalNoticeBasisFilter<"SubscriptionRenewal"> | $Enums.RenewalNoticeBasis
-  noticeBaseDate?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
-  proposedChoice?: Prisma.EnumRenewalChoiceFilter<"SubscriptionRenewal"> | $Enums.RenewalChoice
-  proposedQuantity?: Prisma.IntNullableFilter<"SubscriptionRenewal"> | number | null
-  proposalNote?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
-  businessOwnerOpinion?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
-  proposedByEmployeeId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
-  proposedByAppUserId?: Prisma.UuidFilter<"SubscriptionRenewal"> | string
-  proposedAt?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
-  decidedChoice?: Prisma.EnumRenewalChoiceNullableFilter<"SubscriptionRenewal"> | $Enums.RenewalChoice | null
-  decidedQuantity?: Prisma.IntNullableFilter<"SubscriptionRenewal"> | number | null
-  decisionReason?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
-  decidedByEmployeeId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
-  decidedByAppUserId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
-  deciderRole?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
-  decidedAt?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
-  decidedOn?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
-  decidedAfterDeadline?: Prisma.BoolNullableFilter<"SubscriptionRenewal"> | boolean | null
-  executionPoint?: Prisma.EnumRenewalExecutionPointNullableFilter<"SubscriptionRenewal"> | $Enums.RenewalExecutionPoint | null
-  activeSeatsAtDecision?: Prisma.IntNullableFilter<"SubscriptionRenewal"> | number | null
-  decisionSnapshot?: Prisma.JsonNullableFilter<"SubscriptionRenewal">
-  lateFlaggedAt?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
-  outcome?: Prisma.EnumRenewalOutcomeNullableFilter<"SubscriptionRenewal"> | $Enums.RenewalOutcome | null
-  outcomeNote?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
-  outcomeRecordedByEmployeeId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
-  outcomeRecordedByAppUserId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
-  outcomeRecordedAt?: Prisma.DateTimeNullableFilter<"SubscriptionRenewal"> | Date | string | null
-  vendorFollowUpOpen?: Prisma.BoolFilter<"SubscriptionRenewal"> | boolean
-  nextSubscriptionId?: Prisma.UuidNullableFilter<"SubscriptionRenewal"> | string | null
-  realisedSavingsMinor?: Prisma.BigIntNullableFilter<"SubscriptionRenewal"> | bigint | number | null
-  realisedSavingsCurrency?: Prisma.StringNullableFilter<"SubscriptionRenewal"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"SubscriptionRenewal"> | Date | string
+export type SubscriptionRenewalCreateManySubscriptionInput = {
+  id?: string
+  organizationId: string
+  state?: $Enums.RenewalState
+  noticeBasis: $Enums.RenewalNoticeBasis
+  noticeBaseDate: Date | string
+  proposedChoice: $Enums.RenewalChoice
+  proposedQuantity?: number | null
+  proposalNote?: string | null
+  businessOwnerOpinion?: string | null
+  proposedByEmployeeId: string
+  proposedByAppUserId: string
+  proposedAt?: Date | string
+  decidedChoice?: $Enums.RenewalChoice | null
+  decidedQuantity?: number | null
+  decisionReason?: string | null
+  decidedByEmployeeId?: string | null
+  decidedByAppUserId?: string | null
+  deciderRole?: string | null
+  decidedAt?: Date | string | null
+  decidedOn?: Date | string | null
+  decidedAfterDeadline?: boolean | null
+  executionPoint?: $Enums.RenewalExecutionPoint | null
+  activeSeatsAtDecision?: number | null
+  decisionSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lateFlaggedAt?: Date | string | null
+  outcome?: $Enums.RenewalOutcome | null
+  outcomeNote?: string | null
+  outcomeRecordedByEmployeeId?: string | null
+  outcomeRecordedByAppUserId?: string | null
+  outcomeRecordedAt?: Date | string | null
+  vendorFollowUpOpen?: boolean
+  nextSubscriptionId?: string | null
+  realisedSavingsMinor?: bigint | number | null
+  realisedSavingsCurrency?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SubscriptionRenewalUpdateWithoutSubscriptionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.EnumRenewalStateFieldUpdateOperationsInput | $Enums.RenewalState
+  noticeBasis?: Prisma.EnumRenewalNoticeBasisFieldUpdateOperationsInput | $Enums.RenewalNoticeBasis
+  noticeBaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proposedChoice?: Prisma.EnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice
+  proposedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  proposalNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessOwnerOpinion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  proposedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  proposedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  decidedChoice?: Prisma.NullableEnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice | null
+  decidedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  decisionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deciderRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedAfterDeadline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  executionPoint?: Prisma.NullableEnumRenewalExecutionPointFieldUpdateOperationsInput | $Enums.RenewalExecutionPoint | null
+  activeSeatsAtDecision?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  decisionSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lateFlaggedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  outcome?: Prisma.NullableEnumRenewalOutcomeFieldUpdateOperationsInput | $Enums.RenewalOutcome | null
+  outcomeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vendorFollowUpOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  realisedSavingsMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  realisedSavingsCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionRenewalsNestedInput
+  nextSubscription?: Prisma.SubscriptionUpdateOneWithoutRenewalNextOfNestedInput
+  releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatUpdateManyWithoutRenewalNestedInput
+}
+
+export type SubscriptionRenewalUncheckedUpdateWithoutSubscriptionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.EnumRenewalStateFieldUpdateOperationsInput | $Enums.RenewalState
+  noticeBasis?: Prisma.EnumRenewalNoticeBasisFieldUpdateOperationsInput | $Enums.RenewalNoticeBasis
+  noticeBaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proposedChoice?: Prisma.EnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice
+  proposedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  proposalNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessOwnerOpinion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  proposedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  proposedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  decidedChoice?: Prisma.NullableEnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice | null
+  decidedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  decisionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deciderRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedAfterDeadline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  executionPoint?: Prisma.NullableEnumRenewalExecutionPointFieldUpdateOperationsInput | $Enums.RenewalExecutionPoint | null
+  activeSeatsAtDecision?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  decisionSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lateFlaggedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  outcome?: Prisma.NullableEnumRenewalOutcomeFieldUpdateOperationsInput | $Enums.RenewalOutcome | null
+  outcomeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vendorFollowUpOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nextSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  realisedSavingsMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  realisedSavingsCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatUncheckedUpdateManyWithoutRenewalNestedInput
+}
+
+export type SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.EnumRenewalStateFieldUpdateOperationsInput | $Enums.RenewalState
+  noticeBasis?: Prisma.EnumRenewalNoticeBasisFieldUpdateOperationsInput | $Enums.RenewalNoticeBasis
+  noticeBaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proposedChoice?: Prisma.EnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice
+  proposedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  proposalNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessOwnerOpinion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  proposedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  proposedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  decidedChoice?: Prisma.NullableEnumRenewalChoiceFieldUpdateOperationsInput | $Enums.RenewalChoice | null
+  decidedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  decisionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deciderRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedAfterDeadline?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  executionPoint?: Prisma.NullableEnumRenewalExecutionPointFieldUpdateOperationsInput | $Enums.RenewalExecutionPoint | null
+  activeSeatsAtDecision?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  decisionSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lateFlaggedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  outcome?: Prisma.NullableEnumRenewalOutcomeFieldUpdateOperationsInput | $Enums.RenewalOutcome | null
+  outcomeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outcomeRecordedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vendorFollowUpOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nextSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  realisedSavingsMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  realisedSavingsCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SubscriptionRenewalCreateManyOrganizationInput = {
@@ -1993,7 +2091,7 @@ export type SubscriptionRenewalUpdateWithoutOrganizationInput = {
   realisedSavingsCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCaseNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutRenewalCasesNestedInput
   nextSubscription?: Prisma.SubscriptionUpdateOneWithoutRenewalNextOfNestedInput
   releasedSeats?: Prisma.SubscriptionRenewalReleasedSeatUpdateManyWithoutRenewalNestedInput
 }

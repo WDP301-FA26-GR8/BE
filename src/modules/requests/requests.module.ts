@@ -10,10 +10,9 @@ import { IdentityAccessFacadeModule } from '../identity-access/identity-access-f
 import { OperatingParametersModule } from '../operating-parameters/operating-parameters.module';
 import { OrganizationModule } from '../organization/organization.module';
 import { AccessRequestGrantGate } from './grant/access-request-grant.listener';
-import { DelegatedRequestService } from './delegated-request/delegated-request.service';
-import { DelegatedRequestsController } from './delegated-request/delegated-requests.controller';
-import { GrantQueueRepo } from './delegated-request/grant-queue.repo';
-import { GrantQueueService } from './delegated-request/grant-queue.service';
+import { GrantQueueController } from './grant-queue/grant-queue.controller';
+import { GrantQueueRepo } from './grant-queue/grant-queue.repo';
+import { GrantQueueService } from './grant-queue/grant-queue.service';
 import { AssessmentQueueController } from './assessment-queue/assessment-queue.controller';
 import { AssessmentQueueRepo } from './assessment-queue/assessment-queue.repo';
 import { AssessmentQueueService } from './assessment-queue/assessment-queue.service';
@@ -52,7 +51,6 @@ import { SimilarSeatsController } from './need-decision/similar-seats.controller
 import { WithdrawalController } from './withdraw/withdrawal.controller';
 import { NeedDecisionEffects } from './need-decision/need-decision-effects.service';
 import { NeedDecisionService } from './need-decision/need-decision.service';
-import { NeedSpendService } from './assessment/need-spend.service';
 import { WithdrawalPreconditions } from './withdraw/withdrawal-preconditions.service';
 import { WithdrawalWriter } from './withdraw/withdrawal-writer.service';
 import { WithdrawalService } from './withdraw/withdrawal.service';
@@ -65,6 +63,7 @@ import { DepartmentOpenRequestsReader } from './access-request/open-request/depa
 import { RequestUseRepo } from './access-request/open-request/request-use.repo';
 import { RequestEndService } from './request-end/request-end.service';
 import { RequestsApi } from './public/requests.api';
+import { RequestsAiSourceApi } from './public/requests-ai-source.api';
 import { PricingViewService } from './request-view/pricing-view.service';
 import { RequestFactsService } from './access-request/request-facts.service';
 import { RequestPreviewService } from './request-submission/request-preview.service';
@@ -107,8 +106,6 @@ import { FinanceReviewRepo } from './spend/finance-review.repo';
 import { FinanceReviewWriter } from './finance-review/finance-review-writer.service';
 import { FinanceReviewService } from './finance-review/finance-review.service';
 import { FinanceReviewsController } from './finance-review/finance-reviews.controller';
-import { PlanLineRouteService } from './spend-submission/plan-line-route.service';
-import { PlanLineService } from './plan-line/plan-line.service';
 import { BudgetInformationController } from './budget-questions/budget-information.controller';
 import { BudgetInformationRepo } from './budget-information/budget-information.repo';
 import { BudgetInformationService } from './budget-information/budget-information.service';
@@ -178,7 +175,8 @@ import { MyRequestsService } from './my-requests/my-requests.service';
  * yet; the part the worker runs (the reassignment of steps when the organization or a role changes) is
  * `RequestsWorkFacadeModule`, which this module imports for who a step is given to and the queue of the steps that wait.
  * It exports its facade `RequestsApi`, which gives the personnel context the requests of a person who leaves that are still open,
- * and the extension point `RequestOutcomeListeners` the personnel context listens to.
+ * and the extension point `RequestOutcomeListeners` the personnel context listens to. `RequestsAiSourceApi` gives the summary of the
+ * queue of a person the steps that wait for them (`US-15-05`).
  */
 @Module({
   imports: [
@@ -207,7 +205,7 @@ import { MyRequestsService } from './my-requests/my-requests.service';
     SpendApprovalsController,
     NeedDecisionQueueController,
     BudgetInformationController,
-    DelegatedRequestsController,
+    GrantQueueController,
     AssessmentQueueController,
     ServiceAccountRequestsController,
     ReturnRequestsController,
@@ -250,7 +248,6 @@ import { MyRequestsService } from './my-requests/my-requests.service';
     AccessRequestQueryService,
     NeedDecisionEffects,
     NeedDecisionService,
-    NeedSpendService,
     RequestEndService,
     WithdrawalPreconditions,
     WithdrawalWriter,
@@ -281,8 +278,6 @@ import { MyRequestsService } from './my-requests/my-requests.service';
     RepricingService,
     SpendWireViewService,
     SpendHeadService,
-    PlanLineService,
-    PlanLineRouteService,
     SpendEntryService,
     SpendBatchRepo,
     SpendBatchService,
@@ -306,7 +301,6 @@ import { MyRequestsService } from './my-requests/my-requests.service';
     BudgetInformationRepo,
     BudgetInformationService,
     BudgetInformationViewService,
-    DelegatedRequestService,
     GrantQueueRepo,
     GrantQueueService,
     AssessmentQueueRepo,
@@ -360,7 +354,8 @@ import { MyRequestsService } from './my-requests/my-requests.service';
     MyRequestsFactsRepo,
     MyRequestsService,
     RequestsDashboardApi,
+    RequestsAiSourceApi,
   ],
-  exports: [RequestsApi, RequestOutcomeListeners, RequestsDashboardApi],
+  exports: [RequestsApi, RequestOutcomeListeners, RequestsDashboardApi, RequestsAiSourceApi],
 })
 export class RequestsModule {}

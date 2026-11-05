@@ -346,6 +346,35 @@ const NESTED_ARRAYS_SECOND_HALF: readonly NestedArrayEntry[] = [
     rationale: 'The directly granted roles of the employee account.',
     removeWhen: 'Review when AppRole changes.',
   },
+  {
+    key: 'aiAccessRequestSummaryGet#lines',
+    classification: 'bounded',
+    findings: ['LD-14'],
+    owner: 'ai-assist-queue-summary-be',
+    businessMaximum: {
+      maxItems: 20,
+      source:
+        'QUEUE_MAX_REQUESTS in ai-service.types.ts, the maxItems of the schema in queue-summary.dto.ts: a summary covers the first 20 steps of the queue',
+    },
+    rationale:
+      'The checked lines of the AI summary of the approval queue of the caller: one summary, never paged; the steps past the first 20 are only counted in omittedCount.',
+    removeWhen:
+      'Review when QUEUE_MAX_REQUESTS changes or the summary covers a longer queue. Added without an Owner decision: it needs the agreement of the Owner, and a refusal moves the lines to a paged subresource.',
+  },
+  {
+    key: 'deviceSessionGet#allowlist.entries',
+    classification: 'bounded',
+    findings: ['LD-14'],
+    owner: 'g7-ai-usage-intake',
+    businessMaximum: {
+      maxItems: 3,
+      source:
+        'AI_TOOL_KEYS in allowlist.policy.ts, the maxItems of the schema in credential-session.dto.ts: one entry for each AI tool',
+    },
+    rationale: 'The tools a collector is told to report: one session, never paged; a tool appears once.',
+    removeWhen:
+      'Review when AI_TOOL_KEYS changes or the allowlist takes another kind of entry. The Owner agreed on 05/11/2026: a session lists at most the three tools a collector may report, so it needs no pages.',
+  },
 ];
 
 /**

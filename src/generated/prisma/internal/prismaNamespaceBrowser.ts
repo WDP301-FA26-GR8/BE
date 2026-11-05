@@ -51,6 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  AiInvocation: 'AiInvocation',
+  AiInvocationContent: 'AiInvocationContent',
   AuditEvent: 'AuditEvent',
   BudgetProposal: 'BudgetProposal',
   BudgetProposalLine: 'BudgetProposalLine',
@@ -83,6 +85,15 @@ export const ModelName = {
   EmployeeImportRow: 'EmployeeImportRow',
   SeatBaselineImport: 'SeatBaselineImport',
   SeatBaselineImportRow: 'SeatBaselineImportRow',
+  ManagedDevice: 'ManagedDevice',
+  DeviceRegistration: 'DeviceRegistration',
+  MonitoringNoticeVersion: 'MonitoringNoticeVersion',
+  DeviceSignatureRecord: 'DeviceSignatureRecord',
+  DeviceAcknowledgement: 'DeviceAcknowledgement',
+  DeviceStopRequest: 'DeviceStopRequest',
+  DeviceEnrollmentCode: 'DeviceEnrollmentCode',
+  DeviceEnrollmentUse: 'DeviceEnrollmentUse',
+  DeviceCredential: 'DeviceCredential',
   Currency: 'Currency',
   ExchangeRate: 'ExchangeRate',
   VendorTaxProfile: 'VendorTaxProfile',
@@ -96,6 +107,7 @@ export const ModelName = {
   LoginThrottle: 'LoginThrottle',
   AccountActionToken: 'AccountActionToken',
   RecoveryTicket: 'RecoveryTicket',
+  EmployeeAccessBlock: 'EmployeeAccessBlock',
   LicenseAssignment: 'LicenseAssignment',
   SeatBaselineState: 'SeatBaselineState',
   ProvisioningTask: 'ProvisioningTask',
@@ -162,7 +174,13 @@ export const ModelName = {
   RequestStatusCursor: 'RequestStatusCursor',
   StepSlaReminder: 'StepSlaReminder',
   StepSlaReminderRecipient: 'StepSlaReminderRecipient',
-  CongestionIncident: 'CongestionIncident'
+  CongestionIncident: 'CongestionIncident',
+  CollectorAllowlistVersion: 'CollectorAllowlistVersion',
+  CollectorAllowlistEntry: 'CollectorAllowlistEntry',
+  AiUsageDay: 'AiUsageDay',
+  ToolStatusSnapshot: 'ToolStatusSnapshot',
+  ToolStatusWindow: 'ToolStatusWindow',
+  IntakeRejection: 'IntakeRejection'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -179,6 +197,44 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const AiInvocationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  feature: 'feature',
+  actorAppUserId: 'actorAppUserId',
+  actorEmployeeId: 'actorEmployeeId',
+  status: 'status',
+  sourceRevision: 'sourceRevision',
+  configHash: 'configHash',
+  modelId: 'modelId',
+  modelRevision: 'modelRevision',
+  promptVersion: 'promptVersion',
+  schemaVersion: 'schemaVersion',
+  latencyMs: 'latencyMs',
+  promptTokens: 'promptTokens',
+  completionTokens: 'completionTokens',
+  errorCode: 'errorCode',
+  createdAt: 'createdAt',
+  startedAt: 'startedAt',
+  finishedAt: 'finishedAt'
+} as const
+
+export type AiInvocationScalarFieldEnum = (typeof AiInvocationScalarFieldEnum)[keyof typeof AiInvocationScalarFieldEnum]
+
+
+export const AiInvocationContentScalarFieldEnum = {
+  invocationId: 'invocationId',
+  context: 'context',
+  promptText: 'promptText',
+  rawResponse: 'rawResponse',
+  parsed: 'parsed',
+  result: 'result',
+  createdAt: 'createdAt'
+} as const
+
+export type AiInvocationContentScalarFieldEnum = (typeof AiInvocationContentScalarFieldEnum)[keyof typeof AiInvocationContentScalarFieldEnum]
 
 
 export const AuditEventScalarFieldEnum = {
@@ -254,6 +310,8 @@ export const BudgetVersionScalarFieldEnum = {
   basedOnVersionId: 'basedOnVersionId',
   baseMinor: 'baseMinor',
   reserveMinor: 'reserveMinor',
+  reservePercent: 'reservePercent',
+  reserveReason: 'reserveReason',
   totalMinor: 'totalMinor',
   currency: 'currency',
   highValuePercent: 'highValuePercent',
@@ -673,6 +731,7 @@ export const DocumentAttachmentScalarFieldEnum = {
   finalObjectKey: 'finalObjectKey',
   uploadedByAppUserId: 'uploadedByAppUserId',
   contractId: 'contractId',
+  signerEmployeeId: 'signerEmployeeId',
   attachedAt: 'attachedAt',
   createdAt: 'createdAt'
 } as const
@@ -745,6 +804,154 @@ export const SeatBaselineImportRowScalarFieldEnum = {
 } as const
 
 export type SeatBaselineImportRowScalarFieldEnum = (typeof SeatBaselineImportRowScalarFieldEnum)[keyof typeof SeatBaselineImportRowScalarFieldEnum]
+
+
+export const ManagedDeviceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  assetCode: 'assetCode',
+  normalizedAssetCode: 'normalizedAssetCode',
+  hostname: 'hostname',
+  os: 'os',
+  retiredAt: 'retiredAt',
+  retirementReason: 'retirementReason',
+  createdByAppUserId: 'createdByAppUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ManagedDeviceScalarFieldEnum = (typeof ManagedDeviceScalarFieldEnum)[keyof typeof ManagedDeviceScalarFieldEnum]
+
+
+export const DeviceRegistrationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  deviceId: 'deviceId',
+  holderEmployeeId: 'holderEmployeeId',
+  validFrom: 'validFrom',
+  validUntil: 'validUntil',
+  endedAt: 'endedAt',
+  endCause: 'endCause',
+  acknowledgedFrom: 'acknowledgedFrom',
+  collectionStoppedAt: 'collectionStoppedAt',
+  createdByAppUserId: 'createdByAppUserId',
+  createdAt: 'createdAt'
+} as const
+
+export type DeviceRegistrationScalarFieldEnum = (typeof DeviceRegistrationScalarFieldEnum)[keyof typeof DeviceRegistrationScalarFieldEnum]
+
+
+export const MonitoringNoticeVersionScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  versionNumber: 'versionNumber',
+  collected: 'collected',
+  notCollected: 'notCollected',
+  purpose: 'purpose',
+  retention: 'retention',
+  stopRight: 'stopRight',
+  includesToolStatus: 'includesToolStatus',
+  requiresReacknowledgement: 'requiresReacknowledgement',
+  publishedByAppUserId: 'publishedByAppUserId',
+  publishedAt: 'publishedAt'
+} as const
+
+export type MonitoringNoticeVersionScalarFieldEnum = (typeof MonitoringNoticeVersionScalarFieldEnum)[keyof typeof MonitoringNoticeVersionScalarFieldEnum]
+
+
+export const DeviceSignatureRecordScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  registrationId: 'registrationId',
+  documentId: 'documentId',
+  noticeVersionId: 'noticeVersionId',
+  signerEmployeeId: 'signerEmployeeId',
+  recordedByAppUserId: 'recordedByAppUserId',
+  recordedAt: 'recordedAt'
+} as const
+
+export type DeviceSignatureRecordScalarFieldEnum = (typeof DeviceSignatureRecordScalarFieldEnum)[keyof typeof DeviceSignatureRecordScalarFieldEnum]
+
+
+export const DeviceAcknowledgementScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  registrationId: 'registrationId',
+  noticeVersionId: 'noticeVersionId',
+  employeeId: 'employeeId',
+  appUserId: 'appUserId',
+  acknowledgedAt: 'acknowledgedAt'
+} as const
+
+export type DeviceAcknowledgementScalarFieldEnum = (typeof DeviceAcknowledgementScalarFieldEnum)[keyof typeof DeviceAcknowledgementScalarFieldEnum]
+
+
+export const DeviceStopRequestScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  registrationId: 'registrationId',
+  requesterEmployeeId: 'requesterEmployeeId',
+  requestedAt: 'requestedAt',
+  dueAt: 'dueAt',
+  state: 'state',
+  invalidReason: 'invalidReason',
+  invalidNote: 'invalidNote',
+  handledByAppUserId: 'handledByAppUserId',
+  handledAt: 'handledAt',
+  selfHandled: 'selfHandled',
+  overdueNoticedAt: 'overdueNoticedAt'
+} as const
+
+export type DeviceStopRequestScalarFieldEnum = (typeof DeviceStopRequestScalarFieldEnum)[keyof typeof DeviceStopRequestScalarFieldEnum]
+
+
+export const DeviceEnrollmentCodeScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  registrationId: 'registrationId',
+  collectorKind: 'collectorKind',
+  codeHash: 'codeHash',
+  maxUses: 'maxUses',
+  uses: 'uses',
+  expiresAt: 'expiresAt',
+  createdByAppUserId: 'createdByAppUserId',
+  createdAt: 'createdAt'
+} as const
+
+export type DeviceEnrollmentCodeScalarFieldEnum = (typeof DeviceEnrollmentCodeScalarFieldEnum)[keyof typeof DeviceEnrollmentCodeScalarFieldEnum]
+
+
+export const DeviceEnrollmentUseScalarFieldEnum = {
+  id: 'id',
+  codeId: 'codeId',
+  idempotencyKeyHash: 'idempotencyKeyHash',
+  credentialId: 'credentialId',
+  usedAt: 'usedAt'
+} as const
+
+export type DeviceEnrollmentUseScalarFieldEnum = (typeof DeviceEnrollmentUseScalarFieldEnum)[keyof typeof DeviceEnrollmentUseScalarFieldEnum]
+
+
+export const DeviceCredentialScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  registrationId: 'registrationId',
+  deviceId: 'deviceId',
+  collectorKind: 'collectorKind',
+  secretHash: 'secretHash',
+  secretUsedAt: 'secretUsedAt',
+  previousSecretHash: 'previousSecretHash',
+  previousValidUntil: 'previousValidUntil',
+  issuedAt: 'issuedAt',
+  expiresAt: 'expiresAt',
+  lastAcceptedAt: 'lastAcceptedAt',
+  revokedAt: 'revokedAt',
+  revocationCause: 'revocationCause',
+  revocationReason: 'revocationReason',
+  revokedByAppUserId: 'revokedByAppUserId'
+} as const
+
+export type DeviceCredentialScalarFieldEnum = (typeof DeviceCredentialScalarFieldEnum)[keyof typeof DeviceCredentialScalarFieldEnum]
 
 
 export const CurrencyScalarFieldEnum = {
@@ -920,6 +1127,20 @@ export const RecoveryTicketScalarFieldEnum = {
 } as const
 
 export type RecoveryTicketScalarFieldEnum = (typeof RecoveryTicketScalarFieldEnum)[keyof typeof RecoveryTicketScalarFieldEnum]
+
+
+export const EmployeeAccessBlockScalarFieldEnum = {
+  employeeId: 'employeeId',
+  organizationId: 'organizationId',
+  blockedFrom: 'blockedFrom',
+  cause: 'cause',
+  sourceCaseId: 'sourceCaseId',
+  releasable: 'releasable',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeAccessBlockScalarFieldEnum = (typeof EmployeeAccessBlockScalarFieldEnum)[keyof typeof EmployeeAccessBlockScalarFieldEnum]
 
 
 export const LicenseAssignmentScalarFieldEnum = {
@@ -1509,6 +1730,7 @@ export const TransferReviewItemScalarFieldEnum = {
   decidedByEmployeeId: 'decidedByEmployeeId',
   decidedAt: 'decidedAt',
   newToolNote: 'newToolNote',
+  reason: 'reason',
   revocationTaskId: 'revocationTaskId'
 } as const
 
@@ -1568,7 +1790,7 @@ export const OffboardingCaseScalarFieldEnum = {
   cancelledPlacementDepartmentId: 'cancelledPlacementDepartmentId',
   cancelledPlacementFrom: 'cancelledPlacementFrom',
   state: 'state',
-  abrupt: 'abrupt',
+  accessBlockMode: 'accessBlockMode',
   priorWorkState: 'priorWorkState',
   lastWorkingDay: 'lastWorkingDay',
   departureEffectiveOn: 'departureEffectiveOn',
@@ -2136,12 +2358,103 @@ export const CongestionIncidentScalarFieldEnum = {
 export type CongestionIncidentScalarFieldEnum = (typeof CongestionIncidentScalarFieldEnum)[keyof typeof CongestionIncidentScalarFieldEnum]
 
 
+export const CollectorAllowlistVersionScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  versionNumber: 'versionNumber',
+  reason: 'reason',
+  publishedByAppUserId: 'publishedByAppUserId',
+  publishedAt: 'publishedAt'
+} as const
+
+export type CollectorAllowlistVersionScalarFieldEnum = (typeof CollectorAllowlistVersionScalarFieldEnum)[keyof typeof CollectorAllowlistVersionScalarFieldEnum]
+
+
+export const CollectorAllowlistEntryScalarFieldEnum = {
+  id: 'id',
+  versionId: 'versionId',
+  kind: 'kind',
+  key: 'key',
+  applicationId: 'applicationId'
+} as const
+
+export type CollectorAllowlistEntryScalarFieldEnum = (typeof CollectorAllowlistEntryScalarFieldEnum)[keyof typeof CollectorAllowlistEntryScalarFieldEnum]
+
+
+export const AiUsageDayScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  deviceId: 'deviceId',
+  registrationId: 'registrationId',
+  credentialId: 'credentialId',
+  tool: 'tool',
+  applicationId: 'applicationId',
+  usageDate: 'usageDate',
+  coverage: 'coverage',
+  responses: 'responses',
+  totalTokens: 'totalTokens',
+  generatedAt: 'generatedAt',
+  contentHash: 'contentHash',
+  receivedAt: 'receivedAt'
+} as const
+
+export type AiUsageDayScalarFieldEnum = (typeof AiUsageDayScalarFieldEnum)[keyof typeof AiUsageDayScalarFieldEnum]
+
+
+export const ToolStatusSnapshotScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  deviceId: 'deviceId',
+  registrationId: 'registrationId',
+  credentialId: 'credentialId',
+  tool: 'tool',
+  observedAt: 'observedAt',
+  authStatus: 'authStatus',
+  quotaStatus: 'quotaStatus',
+  receivedAt: 'receivedAt'
+} as const
+
+export type ToolStatusSnapshotScalarFieldEnum = (typeof ToolStatusSnapshotScalarFieldEnum)[keyof typeof ToolStatusSnapshotScalarFieldEnum]
+
+
+export const ToolStatusWindowScalarFieldEnum = {
+  snapshotId: 'snapshotId',
+  code: 'code',
+  usedPercent: 'usedPercent',
+  resetsAt: 'resetsAt'
+} as const
+
+export type ToolStatusWindowScalarFieldEnum = (typeof ToolStatusWindowScalarFieldEnum)[keyof typeof ToolStatusWindowScalarFieldEnum]
+
+
+export const IntakeRejectionScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  deviceId: 'deviceId',
+  registrationId: 'registrationId',
+  credentialId: 'credentialId',
+  endpoint: 'endpoint',
+  usageDate: 'usageDate',
+  reasonCode: 'reasonCode',
+  rejectedAt: 'rejectedAt'
+} as const
+
+export type IntakeRejectionScalarFieldEnum = (typeof IntakeRejectionScalarFieldEnum)[keyof typeof IntakeRejectionScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullableJsonNullValueInput = {
@@ -2152,19 +2465,20 @@ export const NullableJsonNullValueInput = {
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
-export const JsonNullValueInput = {
-  JsonNull: JsonNull
-} as const
-
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const JsonNullValueFilter = {
@@ -2174,12 +2488,4 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

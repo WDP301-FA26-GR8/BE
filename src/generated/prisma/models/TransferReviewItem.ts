@@ -44,6 +44,7 @@ export type TransferReviewItemMinAggregateOutputType = {
   decidedByEmployeeId: string | null
   decidedAt: Date | null
   newToolNote: string | null
+  reason: string | null
   revocationTaskId: string | null
 }
 
@@ -57,6 +58,7 @@ export type TransferReviewItemMaxAggregateOutputType = {
   decidedByEmployeeId: string | null
   decidedAt: Date | null
   newToolNote: string | null
+  reason: string | null
   revocationTaskId: string | null
 }
 
@@ -70,6 +72,7 @@ export type TransferReviewItemCountAggregateOutputType = {
   decidedByEmployeeId: number
   decidedAt: number
   newToolNote: number
+  reason: number
   revocationTaskId: number
   _all: number
 }
@@ -93,6 +96,7 @@ export type TransferReviewItemMinAggregateInputType = {
   decidedByEmployeeId?: true
   decidedAt?: true
   newToolNote?: true
+  reason?: true
   revocationTaskId?: true
 }
 
@@ -106,6 +110,7 @@ export type TransferReviewItemMaxAggregateInputType = {
   decidedByEmployeeId?: true
   decidedAt?: true
   newToolNote?: true
+  reason?: true
   revocationTaskId?: true
 }
 
@@ -119,6 +124,7 @@ export type TransferReviewItemCountAggregateInputType = {
   decidedByEmployeeId?: true
   decidedAt?: true
   newToolNote?: true
+  reason?: true
   revocationTaskId?: true
   _all?: true
 }
@@ -219,6 +225,7 @@ export type TransferReviewItemGroupByOutputType = {
   decidedByEmployeeId: string | null
   decidedAt: Date | null
   newToolNote: string | null
+  reason: string | null
   revocationTaskId: string | null
   _count: TransferReviewItemCountAggregateOutputType | null
   _avg: TransferReviewItemAvgAggregateOutputType | null
@@ -255,6 +262,7 @@ export type TransferReviewItemWhereInput = {
   decidedByEmployeeId?: Prisma.UuidNullableFilter<"TransferReviewItem"> | string | null
   decidedAt?: Prisma.DateTimeNullableFilter<"TransferReviewItem"> | Date | string | null
   newToolNote?: Prisma.StringNullableFilter<"TransferReviewItem"> | string | null
+  reason?: Prisma.StringNullableFilter<"TransferReviewItem"> | string | null
   revocationTaskId?: Prisma.UuidNullableFilter<"TransferReviewItem"> | string | null
   review?: Prisma.XOR<Prisma.TransferReviewScalarRelationFilter, Prisma.TransferReviewWhereInput>
   assignment?: Prisma.XOR<Prisma.LicenseAssignmentScalarRelationFilter, Prisma.LicenseAssignmentWhereInput>
@@ -272,6 +280,7 @@ export type TransferReviewItemOrderByWithRelationInput = {
   decidedByEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   decidedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   newToolNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
   revocationTaskId?: Prisma.SortOrderInput | Prisma.SortOrder
   review?: Prisma.TransferReviewOrderByWithRelationInput
   assignment?: Prisma.LicenseAssignmentOrderByWithRelationInput
@@ -293,6 +302,7 @@ export type TransferReviewItemWhereUniqueInput = Prisma.AtLeast<{
   decidedByEmployeeId?: Prisma.UuidNullableFilter<"TransferReviewItem"> | string | null
   decidedAt?: Prisma.DateTimeNullableFilter<"TransferReviewItem"> | Date | string | null
   newToolNote?: Prisma.StringNullableFilter<"TransferReviewItem"> | string | null
+  reason?: Prisma.StringNullableFilter<"TransferReviewItem"> | string | null
   revocationTaskId?: Prisma.UuidNullableFilter<"TransferReviewItem"> | string | null
   review?: Prisma.XOR<Prisma.TransferReviewScalarRelationFilter, Prisma.TransferReviewWhereInput>
   assignment?: Prisma.XOR<Prisma.LicenseAssignmentScalarRelationFilter, Prisma.LicenseAssignmentWhereInput>
@@ -310,6 +320,7 @@ export type TransferReviewItemOrderByWithAggregationInput = {
   decidedByEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   decidedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   newToolNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
   revocationTaskId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TransferReviewItemCountOrderByAggregateInput
   _avg?: Prisma.TransferReviewItemAvgOrderByAggregateInput
@@ -331,6 +342,7 @@ export type TransferReviewItemScalarWhereWithAggregatesInput = {
   decidedByEmployeeId?: Prisma.UuidNullableWithAggregatesFilter<"TransferReviewItem"> | string | null
   decidedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TransferReviewItem"> | Date | string | null
   newToolNote?: Prisma.StringNullableWithAggregatesFilter<"TransferReviewItem"> | string | null
+  reason?: Prisma.StringNullableWithAggregatesFilter<"TransferReviewItem"> | string | null
   revocationTaskId?: Prisma.UuidNullableWithAggregatesFilter<"TransferReviewItem"> | string | null
 }
 
@@ -341,6 +353,7 @@ export type TransferReviewItemCreateInput = {
   decision?: $Enums.TransferReviewDecision
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   review: Prisma.TransferReviewCreateNestedOneWithoutItemsInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutTransferReviewItemsInput
   decidedBy?: Prisma.EmployeeCreateNestedOneWithoutTransferReviewsDecidedInput
@@ -357,6 +370,7 @@ export type TransferReviewItemUncheckedCreateInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -367,6 +381,7 @@ export type TransferReviewItemUpdateInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   review?: Prisma.TransferReviewUpdateOneRequiredWithoutItemsNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutTransferReviewItemsNestedInput
   decidedBy?: Prisma.EmployeeUpdateOneWithoutTransferReviewsDecidedNestedInput
@@ -383,6 +398,7 @@ export type TransferReviewItemUncheckedUpdateInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -396,6 +412,7 @@ export type TransferReviewItemCreateManyInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -406,6 +423,7 @@ export type TransferReviewItemUpdateManyMutationInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransferReviewItemUncheckedUpdateManyInput = {
@@ -418,6 +436,7 @@ export type TransferReviewItemUncheckedUpdateManyInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -446,6 +465,7 @@ export type TransferReviewItemCountOrderByAggregateInput = {
   decidedByEmployeeId?: Prisma.SortOrder
   decidedAt?: Prisma.SortOrder
   newToolNote?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   revocationTaskId?: Prisma.SortOrder
 }
 
@@ -463,6 +483,7 @@ export type TransferReviewItemMaxOrderByAggregateInput = {
   decidedByEmployeeId?: Prisma.SortOrder
   decidedAt?: Prisma.SortOrder
   newToolNote?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   revocationTaskId?: Prisma.SortOrder
 }
 
@@ -476,6 +497,7 @@ export type TransferReviewItemMinOrderByAggregateInput = {
   decidedByEmployeeId?: Prisma.SortOrder
   decidedAt?: Prisma.SortOrder
   newToolNote?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   revocationTaskId?: Prisma.SortOrder
 }
 
@@ -662,6 +684,7 @@ export type TransferReviewItemCreateWithoutAssignmentInput = {
   decision?: $Enums.TransferReviewDecision
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   review: Prisma.TransferReviewCreateNestedOneWithoutItemsInput
   decidedBy?: Prisma.EmployeeCreateNestedOneWithoutTransferReviewsDecidedInput
   revocationTask?: Prisma.ProvisioningTaskCreateNestedOneWithoutTransferReviewItemsInput
@@ -676,6 +699,7 @@ export type TransferReviewItemUncheckedCreateWithoutAssignmentInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -718,6 +742,7 @@ export type TransferReviewItemScalarWhereInput = {
   decidedByEmployeeId?: Prisma.UuidNullableFilter<"TransferReviewItem"> | string | null
   decidedAt?: Prisma.DateTimeNullableFilter<"TransferReviewItem"> | Date | string | null
   newToolNote?: Prisma.StringNullableFilter<"TransferReviewItem"> | string | null
+  reason?: Prisma.StringNullableFilter<"TransferReviewItem"> | string | null
   revocationTaskId?: Prisma.UuidNullableFilter<"TransferReviewItem"> | string | null
 }
 
@@ -728,6 +753,7 @@ export type TransferReviewItemCreateWithoutRevocationTaskInput = {
   decision?: $Enums.TransferReviewDecision
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   review: Prisma.TransferReviewCreateNestedOneWithoutItemsInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutTransferReviewItemsInput
   decidedBy?: Prisma.EmployeeCreateNestedOneWithoutTransferReviewsDecidedInput
@@ -743,6 +769,7 @@ export type TransferReviewItemUncheckedCreateWithoutRevocationTaskInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
 }
 
 export type TransferReviewItemCreateOrConnectWithoutRevocationTaskInput = {
@@ -778,6 +805,7 @@ export type TransferReviewItemCreateWithoutDecidedByInput = {
   decision?: $Enums.TransferReviewDecision
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   review: Prisma.TransferReviewCreateNestedOneWithoutItemsInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutTransferReviewItemsInput
   revocationTask?: Prisma.ProvisioningTaskCreateNestedOneWithoutTransferReviewItemsInput
@@ -792,6 +820,7 @@ export type TransferReviewItemUncheckedCreateWithoutDecidedByInput = {
   decision?: $Enums.TransferReviewDecision
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -828,6 +857,7 @@ export type TransferReviewItemCreateWithoutReviewInput = {
   decision?: $Enums.TransferReviewDecision
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutTransferReviewItemsInput
   decidedBy?: Prisma.EmployeeCreateNestedOneWithoutTransferReviewsDecidedInput
   revocationTask?: Prisma.ProvisioningTaskCreateNestedOneWithoutTransferReviewItemsInput
@@ -842,6 +872,7 @@ export type TransferReviewItemUncheckedCreateWithoutReviewInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -880,6 +911,7 @@ export type TransferReviewItemCreateManyAssignmentInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -890,6 +922,7 @@ export type TransferReviewItemUpdateWithoutAssignmentInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   review?: Prisma.TransferReviewUpdateOneRequiredWithoutItemsNestedInput
   decidedBy?: Prisma.EmployeeUpdateOneWithoutTransferReviewsDecidedNestedInput
   revocationTask?: Prisma.ProvisioningTaskUpdateOneWithoutTransferReviewItemsNestedInput
@@ -904,6 +937,7 @@ export type TransferReviewItemUncheckedUpdateWithoutAssignmentInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -916,6 +950,7 @@ export type TransferReviewItemUncheckedUpdateManyWithoutAssignmentInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -929,6 +964,7 @@ export type TransferReviewItemCreateManyRevocationTaskInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
 }
 
 export type TransferReviewItemUpdateWithoutRevocationTaskInput = {
@@ -938,6 +974,7 @@ export type TransferReviewItemUpdateWithoutRevocationTaskInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   review?: Prisma.TransferReviewUpdateOneRequiredWithoutItemsNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutTransferReviewItemsNestedInput
   decidedBy?: Prisma.EmployeeUpdateOneWithoutTransferReviewsDecidedNestedInput
@@ -953,6 +990,7 @@ export type TransferReviewItemUncheckedUpdateWithoutRevocationTaskInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskInput = {
@@ -965,6 +1003,7 @@ export type TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransferReviewItemCreateManyDecidedByInput = {
@@ -976,6 +1015,7 @@ export type TransferReviewItemCreateManyDecidedByInput = {
   decision?: $Enums.TransferReviewDecision
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -986,6 +1026,7 @@ export type TransferReviewItemUpdateWithoutDecidedByInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   review?: Prisma.TransferReviewUpdateOneRequiredWithoutItemsNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutTransferReviewItemsNestedInput
   revocationTask?: Prisma.ProvisioningTaskUpdateOneWithoutTransferReviewItemsNestedInput
@@ -1000,6 +1041,7 @@ export type TransferReviewItemUncheckedUpdateWithoutDecidedByInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -1012,6 +1054,7 @@ export type TransferReviewItemUncheckedUpdateManyWithoutDecidedByInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -1024,6 +1067,7 @@ export type TransferReviewItemCreateManyReviewInput = {
   decidedByEmployeeId?: string | null
   decidedAt?: Date | string | null
   newToolNote?: string | null
+  reason?: string | null
   revocationTaskId?: string | null
 }
 
@@ -1034,6 +1078,7 @@ export type TransferReviewItemUpdateWithoutReviewInput = {
   decision?: Prisma.EnumTransferReviewDecisionFieldUpdateOperationsInput | $Enums.TransferReviewDecision
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutTransferReviewItemsNestedInput
   decidedBy?: Prisma.EmployeeUpdateOneWithoutTransferReviewsDecidedNestedInput
   revocationTask?: Prisma.ProvisioningTaskUpdateOneWithoutTransferReviewItemsNestedInput
@@ -1048,6 +1093,7 @@ export type TransferReviewItemUncheckedUpdateWithoutReviewInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -1060,6 +1106,7 @@ export type TransferReviewItemUncheckedUpdateManyWithoutReviewInput = {
   decidedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   newToolNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revocationTaskId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -1075,6 +1122,7 @@ export type TransferReviewItemSelect<ExtArgs extends runtime.Types.Extensions.In
   decidedByEmployeeId?: boolean
   decidedAt?: boolean
   newToolNote?: boolean
+  reason?: boolean
   revocationTaskId?: boolean
   review?: boolean | Prisma.TransferReviewDefaultArgs<ExtArgs>
   assignment?: boolean | Prisma.LicenseAssignmentDefaultArgs<ExtArgs>
@@ -1092,6 +1140,7 @@ export type TransferReviewItemSelectCreateManyAndReturn<ExtArgs extends runtime.
   decidedByEmployeeId?: boolean
   decidedAt?: boolean
   newToolNote?: boolean
+  reason?: boolean
   revocationTaskId?: boolean
   review?: boolean | Prisma.TransferReviewDefaultArgs<ExtArgs>
   assignment?: boolean | Prisma.LicenseAssignmentDefaultArgs<ExtArgs>
@@ -1109,6 +1158,7 @@ export type TransferReviewItemSelectUpdateManyAndReturn<ExtArgs extends runtime.
   decidedByEmployeeId?: boolean
   decidedAt?: boolean
   newToolNote?: boolean
+  reason?: boolean
   revocationTaskId?: boolean
   review?: boolean | Prisma.TransferReviewDefaultArgs<ExtArgs>
   assignment?: boolean | Prisma.LicenseAssignmentDefaultArgs<ExtArgs>
@@ -1126,10 +1176,11 @@ export type TransferReviewItemSelectScalar = {
   decidedByEmployeeId?: boolean
   decidedAt?: boolean
   newToolNote?: boolean
+  reason?: boolean
   revocationTaskId?: boolean
 }
 
-export type TransferReviewItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"reviewId" | "assignmentId" | "planId" | "position" | "grantReason" | "decision" | "decidedByEmployeeId" | "decidedAt" | "newToolNote" | "revocationTaskId", ExtArgs["result"]["transferReviewItem"]>
+export type TransferReviewItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"reviewId" | "assignmentId" | "planId" | "position" | "grantReason" | "decision" | "decidedByEmployeeId" | "decidedAt" | "newToolNote" | "reason" | "revocationTaskId", ExtArgs["result"]["transferReviewItem"]>
 export type TransferReviewItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   review?: boolean | Prisma.TransferReviewDefaultArgs<ExtArgs>
   assignment?: boolean | Prisma.LicenseAssignmentDefaultArgs<ExtArgs>
@@ -1167,6 +1218,7 @@ export type $TransferReviewItemPayload<ExtArgs extends runtime.Types.Extensions.
     decidedByEmployeeId: string | null
     decidedAt: Date | null
     newToolNote: string | null
+    reason: string | null
     revocationTaskId: string | null
   }, ExtArgs["result"]["transferReviewItem"]>
   composites: {}
@@ -1604,6 +1656,7 @@ export interface TransferReviewItemFieldRefs {
   readonly decidedByEmployeeId: Prisma.FieldRef<"TransferReviewItem", 'String'>
   readonly decidedAt: Prisma.FieldRef<"TransferReviewItem", 'DateTime'>
   readonly newToolNote: Prisma.FieldRef<"TransferReviewItem", 'String'>
+  readonly reason: Prisma.FieldRef<"TransferReviewItem", 'String'>
   readonly revocationTaskId: Prisma.FieldRef<"TransferReviewItem", 'String'>
 }
     

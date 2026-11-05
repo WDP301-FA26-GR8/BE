@@ -764,10 +764,6 @@ export type BigIntFieldUpdateOperationsInput = {
   divide?: bigint | number
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type BudgetProposalUpdateOneWithoutNextNestedInput = {
   create?: Prisma.XOR<Prisma.BudgetProposalCreateWithoutNextInput, Prisma.BudgetProposalUncheckedCreateWithoutNextInput>
   connectOrCreate?: Prisma.BudgetProposalCreateOrConnectWithoutNextInput

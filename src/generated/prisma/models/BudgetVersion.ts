@@ -31,6 +31,7 @@ export type BudgetVersionAvgAggregateOutputType = {
   number: number | null
   baseMinor: number | null
   reserveMinor: number | null
+  reservePercent: number | null
   totalMinor: number | null
   highValuePercent: number | null
   highValueAmountMinor: number | null
@@ -45,6 +46,7 @@ export type BudgetVersionSumAggregateOutputType = {
   number: number | null
   baseMinor: bigint | null
   reserveMinor: bigint | null
+  reservePercent: number | null
   totalMinor: bigint | null
   highValuePercent: number | null
   highValueAmountMinor: bigint | null
@@ -66,6 +68,8 @@ export type BudgetVersionMinAggregateOutputType = {
   basedOnVersionId: string | null
   baseMinor: bigint | null
   reserveMinor: bigint | null
+  reservePercent: number | null
+  reserveReason: string | null
   totalMinor: bigint | null
   currency: string | null
   highValuePercent: number | null
@@ -98,6 +102,8 @@ export type BudgetVersionMaxAggregateOutputType = {
   basedOnVersionId: string | null
   baseMinor: bigint | null
   reserveMinor: bigint | null
+  reservePercent: number | null
+  reserveReason: string | null
   totalMinor: bigint | null
   currency: string | null
   highValuePercent: number | null
@@ -130,6 +136,8 @@ export type BudgetVersionCountAggregateOutputType = {
   basedOnVersionId: number
   baseMinor: number
   reserveMinor: number
+  reservePercent: number
+  reserveReason: number
   totalMinor: number
   currency: number
   highValuePercent: number
@@ -157,6 +165,7 @@ export type BudgetVersionAvgAggregateInputType = {
   number?: true
   baseMinor?: true
   reserveMinor?: true
+  reservePercent?: true
   totalMinor?: true
   highValuePercent?: true
   highValueAmountMinor?: true
@@ -171,6 +180,7 @@ export type BudgetVersionSumAggregateInputType = {
   number?: true
   baseMinor?: true
   reserveMinor?: true
+  reservePercent?: true
   totalMinor?: true
   highValuePercent?: true
   highValueAmountMinor?: true
@@ -192,6 +202,8 @@ export type BudgetVersionMinAggregateInputType = {
   basedOnVersionId?: true
   baseMinor?: true
   reserveMinor?: true
+  reservePercent?: true
+  reserveReason?: true
   totalMinor?: true
   currency?: true
   highValuePercent?: true
@@ -224,6 +236,8 @@ export type BudgetVersionMaxAggregateInputType = {
   basedOnVersionId?: true
   baseMinor?: true
   reserveMinor?: true
+  reservePercent?: true
+  reserveReason?: true
   totalMinor?: true
   currency?: true
   highValuePercent?: true
@@ -256,6 +270,8 @@ export type BudgetVersionCountAggregateInputType = {
   basedOnVersionId?: true
   baseMinor?: true
   reserveMinor?: true
+  reservePercent?: true
+  reserveReason?: true
   totalMinor?: true
   currency?: true
   highValuePercent?: true
@@ -375,9 +391,11 @@ export type BudgetVersionGroupByOutputType = {
   basedOnVersionId: string | null
   baseMinor: bigint
   reserveMinor: bigint
+  reservePercent: number | null
+  reserveReason: string | null
   totalMinor: bigint
   currency: string
-  highValuePercent: number
+  highValuePercent: number | null
   highValueAmountMinor: bigint | null
   q1Minor: bigint | null
   q2Minor: bigint | null
@@ -430,9 +448,11 @@ export type BudgetVersionWhereInput = {
   basedOnVersionId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   reserveMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
+  reservePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
+  reserveReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
   totalMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   currency?: Prisma.StringFilter<"BudgetVersion"> | string
-  highValuePercent?: Prisma.IntFilter<"BudgetVersion"> | number
+  highValuePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
   highValueAmountMinor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
   q1Minor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
   q2Minor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
@@ -475,9 +495,11 @@ export type BudgetVersionOrderByWithRelationInput = {
   basedOnVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
+  reservePercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  reserveReason?: Prisma.SortOrderInput | Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
-  highValuePercent?: Prisma.SortOrder
+  highValuePercent?: Prisma.SortOrderInput | Prisma.SortOrder
   highValueAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   q1Minor?: Prisma.SortOrderInput | Prisma.SortOrder
   q2Minor?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -525,9 +547,11 @@ export type BudgetVersionWhereUniqueInput = Prisma.AtLeast<{
   basedOnVersionId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   reserveMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
+  reservePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
+  reserveReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
   totalMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   currency?: Prisma.StringFilter<"BudgetVersion"> | string
-  highValuePercent?: Prisma.IntFilter<"BudgetVersion"> | number
+  highValuePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
   highValueAmountMinor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
   q1Minor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
   q2Minor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
@@ -569,9 +593,11 @@ export type BudgetVersionOrderByWithAggregationInput = {
   basedOnVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
+  reservePercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  reserveReason?: Prisma.SortOrderInput | Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
-  highValuePercent?: Prisma.SortOrder
+  highValuePercent?: Prisma.SortOrderInput | Prisma.SortOrder
   highValueAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   q1Minor?: Prisma.SortOrderInput | Prisma.SortOrder
   q2Minor?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -609,9 +635,11 @@ export type BudgetVersionScalarWhereWithAggregatesInput = {
   basedOnVersionId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetVersion"> | bigint | number
   reserveMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetVersion"> | bigint | number
+  reservePercent?: Prisma.IntNullableWithAggregatesFilter<"BudgetVersion"> | number | null
+  reserveReason?: Prisma.StringNullableWithAggregatesFilter<"BudgetVersion"> | string | null
   totalMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetVersion"> | bigint | number
   currency?: Prisma.StringWithAggregatesFilter<"BudgetVersion"> | string
-  highValuePercent?: Prisma.IntWithAggregatesFilter<"BudgetVersion"> | number
+  highValuePercent?: Prisma.IntNullableWithAggregatesFilter<"BudgetVersion"> | number | null
   highValueAmountMinor?: Prisma.BigIntNullableWithAggregatesFilter<"BudgetVersion"> | bigint | number | null
   q1Minor?: Prisma.BigIntNullableWithAggregatesFilter<"BudgetVersion"> | bigint | number | null
   q2Minor?: Prisma.BigIntNullableWithAggregatesFilter<"BudgetVersion"> | bigint | number | null
@@ -637,8 +665,10 @@ export type BudgetVersionCreateInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -680,9 +710,11 @@ export type BudgetVersionUncheckedCreateInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -715,8 +747,10 @@ export type BudgetVersionUpdateInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -758,9 +792,11 @@ export type BudgetVersionUncheckedUpdateInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -797,9 +833,11 @@ export type BudgetVersionCreateManyInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -825,8 +863,10 @@ export type BudgetVersionUpdateManyMutationInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -855,9 +895,11 @@ export type BudgetVersionUncheckedUpdateManyInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -908,6 +950,8 @@ export type BudgetVersionCountOrderByAggregateInput = {
   basedOnVersionId?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
+  reservePercent?: Prisma.SortOrder
+  reserveReason?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   highValuePercent?: Prisma.SortOrder
@@ -933,6 +977,7 @@ export type BudgetVersionAvgOrderByAggregateInput = {
   number?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
+  reservePercent?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
   highValuePercent?: Prisma.SortOrder
   highValueAmountMinor?: Prisma.SortOrder
@@ -954,6 +999,8 @@ export type BudgetVersionMaxOrderByAggregateInput = {
   basedOnVersionId?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
+  reservePercent?: Prisma.SortOrder
+  reserveReason?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   highValuePercent?: Prisma.SortOrder
@@ -986,6 +1033,8 @@ export type BudgetVersionMinOrderByAggregateInput = {
   basedOnVersionId?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
+  reservePercent?: Prisma.SortOrder
+  reserveReason?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   highValuePercent?: Prisma.SortOrder
@@ -1011,6 +1060,7 @@ export type BudgetVersionSumOrderByAggregateInput = {
   number?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
+  reservePercent?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
   highValuePercent?: Prisma.SortOrder
   highValueAmountMinor?: Prisma.SortOrder
@@ -1401,8 +1451,10 @@ export type BudgetVersionCreateWithoutProposalInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1442,9 +1494,11 @@ export type BudgetVersionUncheckedCreateWithoutProposalInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1510,9 +1564,11 @@ export type BudgetVersionScalarWhereInput = {
   basedOnVersionId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   reserveMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
+  reservePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
+  reserveReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
   totalMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   currency?: Prisma.StringFilter<"BudgetVersion"> | string
-  highValuePercent?: Prisma.IntFilter<"BudgetVersion"> | number
+  highValuePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
   highValueAmountMinor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
   q1Minor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
   q2Minor?: Prisma.BigIntNullableFilter<"BudgetVersion"> | bigint | number | null
@@ -1538,8 +1594,10 @@ export type BudgetVersionCreateWithoutRevisionsInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1580,9 +1638,11 @@ export type BudgetVersionUncheckedCreateWithoutRevisionsInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1619,8 +1679,10 @@ export type BudgetVersionCreateWithoutBasedOnInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1660,9 +1722,11 @@ export type BudgetVersionUncheckedCreateWithoutBasedOnInput = {
   proposalId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1705,8 +1769,10 @@ export type BudgetVersionCreateWithoutFollowedByInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1747,9 +1813,11 @@ export type BudgetVersionUncheckedCreateWithoutFollowedByInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1786,8 +1854,10 @@ export type BudgetVersionCreateWithoutRejectedPredecessorInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1828,9 +1898,11 @@ export type BudgetVersionUncheckedCreateWithoutRejectedPredecessorInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -1878,8 +1950,10 @@ export type BudgetVersionUpdateWithoutRevisionsInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1920,9 +1994,11 @@ export type BudgetVersionUncheckedUpdateWithoutRevisionsInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1981,8 +2057,10 @@ export type BudgetVersionUpdateWithoutFollowedByInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2023,9 +2101,11 @@ export type BudgetVersionUncheckedUpdateWithoutFollowedByInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2068,8 +2148,10 @@ export type BudgetVersionUpdateWithoutRejectedPredecessorInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2110,9 +2192,11 @@ export type BudgetVersionUncheckedUpdateWithoutRejectedPredecessorInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2144,8 +2228,10 @@ export type BudgetVersionCreateWithoutLinesInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2186,9 +2272,11 @@ export type BudgetVersionUncheckedCreateWithoutLinesInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2236,8 +2324,10 @@ export type BudgetVersionUpdateWithoutLinesInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2278,9 +2368,11 @@ export type BudgetVersionUncheckedUpdateWithoutLinesInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2312,8 +2404,10 @@ export type BudgetVersionCreateWithoutDecisionsInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2354,9 +2448,11 @@ export type BudgetVersionUncheckedCreateWithoutDecisionsInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2404,8 +2500,10 @@ export type BudgetVersionUpdateWithoutDecisionsInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2446,9 +2544,11 @@ export type BudgetVersionUncheckedUpdateWithoutDecisionsInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2480,8 +2580,10 @@ export type BudgetVersionCreateWithoutAttachedCommitmentsInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2522,9 +2624,11 @@ export type BudgetVersionUncheckedCreateWithoutAttachedCommitmentsInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2572,8 +2676,10 @@ export type BudgetVersionUpdateWithoutAttachedCommitmentsInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2614,9 +2720,11 @@ export type BudgetVersionUncheckedUpdateWithoutAttachedCommitmentsInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2648,8 +2756,10 @@ export type BudgetVersionCreateWithoutHistoryInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2690,9 +2800,11 @@ export type BudgetVersionUncheckedCreateWithoutHistoryInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2740,8 +2852,10 @@ export type BudgetVersionUpdateWithoutHistoryInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2782,9 +2896,11 @@ export type BudgetVersionUncheckedUpdateWithoutHistoryInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2816,8 +2932,10 @@ export type BudgetVersionCreateWithoutAttachmentsInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2858,9 +2976,11 @@ export type BudgetVersionUncheckedCreateWithoutAttachmentsInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -2908,8 +3028,10 @@ export type BudgetVersionUpdateWithoutAttachmentsInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2950,9 +3072,11 @@ export type BudgetVersionUncheckedUpdateWithoutAttachmentsInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -2984,8 +3108,10 @@ export type BudgetVersionCreateWithoutCurrencyRecordInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3026,8 +3152,10 @@ export type BudgetVersionUncheckedCreateWithoutCurrencyRecordInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3086,8 +3214,10 @@ export type BudgetVersionCreateWithoutOrganizationInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3127,9 +3257,11 @@ export type BudgetVersionUncheckedCreateWithoutOrganizationInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3188,8 +3320,10 @@ export type BudgetVersionCreateWithoutCostCenterInput = {
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3229,9 +3363,11 @@ export type BudgetVersionUncheckedCreateWithoutCostCenterInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3293,9 +3429,11 @@ export type BudgetVersionCreateManyProposalInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3321,8 +3459,10 @@ export type BudgetVersionUpdateWithoutProposalInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3362,9 +3502,11 @@ export type BudgetVersionUncheckedUpdateWithoutProposalInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3400,9 +3542,11 @@ export type BudgetVersionUncheckedUpdateManyWithoutProposalInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3431,9 +3575,11 @@ export type BudgetVersionCreateManyBasedOnInput = {
   proposalId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3459,8 +3605,10 @@ export type BudgetVersionUpdateWithoutBasedOnInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3500,9 +3648,11 @@ export type BudgetVersionUncheckedUpdateWithoutBasedOnInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3538,9 +3688,11 @@ export type BudgetVersionUncheckedUpdateManyWithoutBasedOnInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3570,8 +3722,10 @@ export type BudgetVersionCreateManyCurrencyRecordInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3597,8 +3751,10 @@ export type BudgetVersionUpdateWithoutCurrencyRecordInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3639,8 +3795,10 @@ export type BudgetVersionUncheckedUpdateWithoutCurrencyRecordInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3677,8 +3835,10 @@ export type BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3707,9 +3867,11 @@ export type BudgetVersionCreateManyOrganizationInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3735,8 +3897,10 @@ export type BudgetVersionUpdateWithoutOrganizationInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3776,9 +3940,11 @@ export type BudgetVersionUncheckedUpdateWithoutOrganizationInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3814,9 +3980,11 @@ export type BudgetVersionUncheckedUpdateManyWithoutOrganizationInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3845,9 +4013,11 @@ export type BudgetVersionCreateManyCostCenterInput = {
   basedOnVersionId?: string | null
   baseMinor: bigint | number
   reserveMinor: bigint | number
+  reservePercent?: number | null
+  reserveReason?: string | null
   totalMinor: bigint | number
   currency: string
-  highValuePercent: number
+  highValuePercent?: number | null
   highValueAmountMinor?: bigint | number | null
   q1Minor?: bigint | number | null
   q2Minor?: bigint | number | null
@@ -3873,8 +4043,10 @@ export type BudgetVersionUpdateWithoutCostCenterInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3914,9 +4086,11 @@ export type BudgetVersionUncheckedUpdateWithoutCostCenterInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -3952,9 +4126,11 @@ export type BudgetVersionUncheckedUpdateManyWithoutCostCenterInput = {
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
-  highValuePercent?: Prisma.IntFieldUpdateOperationsInput | number
+  highValuePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   highValueAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q1Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   q2Minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -4060,6 +4236,8 @@ export type BudgetVersionSelect<ExtArgs extends runtime.Types.Extensions.Interna
   basedOnVersionId?: boolean
   baseMinor?: boolean
   reserveMinor?: boolean
+  reservePercent?: boolean
+  reserveReason?: boolean
   totalMinor?: boolean
   currency?: boolean
   highValuePercent?: boolean
@@ -4106,6 +4284,8 @@ export type BudgetVersionSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   basedOnVersionId?: boolean
   baseMinor?: boolean
   reserveMinor?: boolean
+  reservePercent?: boolean
+  reserveReason?: boolean
   totalMinor?: boolean
   currency?: boolean
   highValuePercent?: boolean
@@ -4144,6 +4324,8 @@ export type BudgetVersionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   basedOnVersionId?: boolean
   baseMinor?: boolean
   reserveMinor?: boolean
+  reservePercent?: boolean
+  reserveReason?: boolean
   totalMinor?: boolean
   currency?: boolean
   highValuePercent?: boolean
@@ -4182,6 +4364,8 @@ export type BudgetVersionSelectScalar = {
   basedOnVersionId?: boolean
   baseMinor?: boolean
   reserveMinor?: boolean
+  reservePercent?: boolean
+  reserveReason?: boolean
   totalMinor?: boolean
   currency?: boolean
   highValuePercent?: boolean
@@ -4202,7 +4386,7 @@ export type BudgetVersionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type BudgetVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "costCenterId" | "year" | "number" | "kind" | "state" | "proposalId" | "basedOnVersionId" | "baseMinor" | "reserveMinor" | "totalMinor" | "currency" | "highValuePercent" | "highValueAmountMinor" | "q1Minor" | "q2Minor" | "q3Minor" | "q4Minor" | "reason" | "createdByEmployeeId" | "createdAt" | "sentByEmployeeId" | "sentAt" | "detachedAt" | "neverCurrent" | "expiredAt" | "rejectedPredecessorId" | "updatedAt", ExtArgs["result"]["budgetVersion"]>
+export type BudgetVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "costCenterId" | "year" | "number" | "kind" | "state" | "proposalId" | "basedOnVersionId" | "baseMinor" | "reserveMinor" | "reservePercent" | "reserveReason" | "totalMinor" | "currency" | "highValuePercent" | "highValueAmountMinor" | "q1Minor" | "q2Minor" | "q3Minor" | "q4Minor" | "reason" | "createdByEmployeeId" | "createdAt" | "sentByEmployeeId" | "sentAt" | "detachedAt" | "neverCurrent" | "expiredAt" | "rejectedPredecessorId" | "updatedAt", ExtArgs["result"]["budgetVersion"]>
 export type BudgetVersionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.CostCenterDefaultArgs<ExtArgs>
@@ -4265,9 +4449,11 @@ export type $BudgetVersionPayload<ExtArgs extends runtime.Types.Extensions.Inter
     basedOnVersionId: string | null
     baseMinor: bigint
     reserveMinor: bigint
+    reservePercent: number | null
+    reserveReason: string | null
     totalMinor: bigint
     currency: string
-    highValuePercent: number
+    highValuePercent: number | null
     highValueAmountMinor: bigint | null
     q1Minor: bigint | null
     q2Minor: bigint | null
@@ -4730,6 +4916,8 @@ export interface BudgetVersionFieldRefs {
   readonly basedOnVersionId: Prisma.FieldRef<"BudgetVersion", 'String'>
   readonly baseMinor: Prisma.FieldRef<"BudgetVersion", 'BigInt'>
   readonly reserveMinor: Prisma.FieldRef<"BudgetVersion", 'BigInt'>
+  readonly reservePercent: Prisma.FieldRef<"BudgetVersion", 'Int'>
+  readonly reserveReason: Prisma.FieldRef<"BudgetVersion", 'String'>
   readonly totalMinor: Prisma.FieldRef<"BudgetVersion", 'BigInt'>
   readonly currency: Prisma.FieldRef<"BudgetVersion", 'String'>
   readonly highValuePercent: Prisma.FieldRef<"BudgetVersion", 'Int'>

@@ -9,10 +9,30 @@
 * 🟢 You can import this file directly.
 */
 
+export const AiFeature = {
+  ACCESS_REQUEST_QUEUE_SUMMARY: 'ACCESS_REQUEST_QUEUE_SUMMARY'
+} as const
+
+export type AiFeature = (typeof AiFeature)[keyof typeof AiFeature]
+
+
+export const AiInvocationStatus = {
+  PENDING: 'PENDING',
+  RUNNING: 'RUNNING',
+  COMPLETED: 'COMPLETED',
+  NO_VALID_OUTPUT: 'NO_VALID_OUTPUT',
+  STALE: 'STALE',
+  FAILED: 'FAILED'
+} as const
+
+export type AiInvocationStatus = (typeof AiInvocationStatus)[keyof typeof AiInvocationStatus]
+
+
 export const AuditActorKind = {
   USER: 'USER',
   SYSTEM: 'SYSTEM',
-  OPERATOR: 'OPERATOR'
+  OPERATOR: 'OPERATOR',
+  DEVICE: 'DEVICE'
 } as const
 
 export type AuditActorKind = (typeof AuditActorKind)[keyof typeof AuditActorKind]
@@ -286,6 +306,52 @@ export const SeatBaselineImportStatus = {
 } as const
 
 export type SeatBaselineImportStatus = (typeof SeatBaselineImportStatus)[keyof typeof SeatBaselineImportStatus]
+
+
+export const DeviceRegistrationEndCause = {
+  HOLDER_CHANGED: 'HOLDER_CHANGED',
+  DEVICE_RETIRED: 'DEVICE_RETIRED',
+  DEPARTURE: 'DEPARTURE',
+  EMPLOYEE_LEFT: 'EMPLOYEE_LEFT'
+} as const
+
+export type DeviceRegistrationEndCause = (typeof DeviceRegistrationEndCause)[keyof typeof DeviceRegistrationEndCause]
+
+
+export const DeviceCollectorKind = {
+  AI_COLLECTOR: 'AI_COLLECTOR',
+  BROWSER_EXTENSION: 'BROWSER_EXTENSION'
+} as const
+
+export type DeviceCollectorKind = (typeof DeviceCollectorKind)[keyof typeof DeviceCollectorKind]
+
+
+export const DeviceCredentialRevocationCause = {
+  IT_ADMIN: 'IT_ADMIN',
+  REGISTRATION_ENDED: 'REGISTRATION_ENDED',
+  REPLACED: 'REPLACED'
+} as const
+
+export type DeviceCredentialRevocationCause = (typeof DeviceCredentialRevocationCause)[keyof typeof DeviceCredentialRevocationCause]
+
+
+export const DeviceStopRequestState = {
+  OPEN: 'OPEN',
+  COMPLETED: 'COMPLETED',
+  INVALID: 'INVALID'
+} as const
+
+export type DeviceStopRequestState = (typeof DeviceStopRequestState)[keyof typeof DeviceStopRequestState]
+
+
+export const DeviceStopInvalidReason = {
+  DUPLICATE: 'DUPLICATE',
+  ALREADY_STOPPED: 'ALREADY_STOPPED',
+  REGISTRATION_ENDED: 'REGISTRATION_ENDED',
+  IT_ADMIN: 'IT_ADMIN'
+} as const
+
+export type DeviceStopInvalidReason = (typeof DeviceStopInvalidReason)[keyof typeof DeviceStopInvalidReason]
 
 
 export const ExchangeRateSource = {
@@ -599,7 +665,8 @@ export type RenewalChoice = (typeof RenewalChoice)[keyof typeof RenewalChoice]
 export const RenewalState = {
   PROPOSED: 'PROPOSED',
   DECIDED: 'DECIDED',
-  OUTCOME_RECORDED: 'OUTCOME_RECORDED'
+  OUTCOME_RECORDED: 'OUTCOME_RECORDED',
+  STALE: 'STALE'
 } as const
 
 export type RenewalState = (typeof RenewalState)[keyof typeof RenewalState]
@@ -774,6 +841,14 @@ export const EmployeeLeaveChangeKind = {
 } as const
 
 export type EmployeeLeaveChangeKind = (typeof EmployeeLeaveChangeKind)[keyof typeof EmployeeLeaveChangeKind]
+
+
+export const OffboardingAccessBlockMode = {
+  WITH_LAST_DAY: 'WITH_LAST_DAY',
+  BLOCK_NOW: 'BLOCK_NOW'
+} as const
+
+export type OffboardingAccessBlockMode = (typeof OffboardingAccessBlockMode)[keyof typeof OffboardingAccessBlockMode]
 
 
 export const OffboardingState = {
@@ -1174,3 +1249,84 @@ export const SlaReminderRole = {
 } as const
 
 export type SlaReminderRole = (typeof SlaReminderRole)[keyof typeof SlaReminderRole]
+
+
+export const AiToolKey = {
+  CLAUDE_CODE: 'CLAUDE_CODE',
+  CODEX: 'CODEX',
+  ANTIGRAVITY_CLI: 'ANTIGRAVITY_CLI'
+} as const
+
+export type AiToolKey = (typeof AiToolKey)[keyof typeof AiToolKey]
+
+
+export const UsageCoverage = {
+  COVERED: 'COVERED',
+  PARTIAL: 'PARTIAL',
+  NOT_OBSERVABLE: 'NOT_OBSERVABLE'
+} as const
+
+export type UsageCoverage = (typeof UsageCoverage)[keyof typeof UsageCoverage]
+
+
+export const CollectorAllowlistEntryKind = {
+  AI_TOOL: 'AI_TOOL'
+} as const
+
+export type CollectorAllowlistEntryKind = (typeof CollectorAllowlistEntryKind)[keyof typeof CollectorAllowlistEntryKind]
+
+
+export const ToolAuthStatus = {
+  LOGGED_IN: 'LOGGED_IN',
+  LOGGED_OUT: 'LOGGED_OUT',
+  UNKNOWN: 'UNKNOWN',
+  NOT_SUPPORTED: 'NOT_SUPPORTED'
+} as const
+
+export type ToolAuthStatus = (typeof ToolAuthStatus)[keyof typeof ToolAuthStatus]
+
+
+export const ToolQuotaStatus = {
+  OK: 'OK',
+  NOT_SUPPORTED: 'NOT_SUPPORTED',
+  FAILED: 'FAILED'
+} as const
+
+export type ToolQuotaStatus = (typeof ToolQuotaStatus)[keyof typeof ToolQuotaStatus]
+
+
+export const ToolQuotaWindowCode = {
+  PRIMARY: 'PRIMARY',
+  SECONDARY: 'SECONDARY',
+  SESSION: 'SESSION',
+  WEEKLY_ALL: 'WEEKLY_ALL',
+  WEEKLY_MODEL: 'WEEKLY_MODEL',
+  FIVE_HOUR: 'FIVE_HOUR',
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY'
+} as const
+
+export type ToolQuotaWindowCode = (typeof ToolQuotaWindowCode)[keyof typeof ToolQuotaWindowCode]
+
+
+export const IntakeEndpoint = {
+  AI_USAGE_BATCH: 'AI_USAGE_BATCH',
+  AI_TOOL_STATUS_SNAPSHOT: 'AI_TOOL_STATUS_SNAPSHOT'
+} as const
+
+export type IntakeEndpoint = (typeof IntakeEndpoint)[keyof typeof IntakeEndpoint]
+
+
+export const IntakeRejectionReason = {
+  NOT_ACKNOWLEDGED: 'NOT_ACKNOWLEDGED',
+  COLLECTION_STOPPED: 'COLLECTION_STOPPED',
+  TOOL_STATUS_NOT_ACKNOWLEDGED: 'TOOL_STATUS_NOT_ACKNOWLEDGED',
+  OUTSIDE_WINDOW: 'OUTSIDE_WINDOW',
+  NOT_IN_ALLOWLIST: 'NOT_IN_ALLOWLIST',
+  FUTURE_GENERATED_AT: 'FUTURE_GENERATED_AT',
+  FUTURE_OBSERVED_AT: 'FUTURE_OBSERVED_AT',
+  INVALID_COVERAGE: 'INVALID_COVERAGE',
+  INVALID_QUOTA: 'INVALID_QUOTA'
+} as const
+
+export type IntakeRejectionReason = (typeof IntakeRejectionReason)[keyof typeof IntakeRejectionReason]
