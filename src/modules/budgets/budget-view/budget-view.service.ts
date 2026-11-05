@@ -9,13 +9,7 @@ import { ProposalRepo } from '../budget/proposal.repo';
 import { VersionLineRepo } from '../budget/version-line.repo';
 import { VersionRepo } from '../budget/version.repo';
 import { VersionViewService } from '../budget/version-view.service';
-import type {
-  BudgetSummaryWire,
-  MineVersionSummaryWire,
-  MineWire,
-  TableRowWire,
-  VersionLineWire,
-} from '../budget/budget.dto';
+import type { MineVersionSummaryWire, MineWire, TableRowWire, VersionLineWire } from '../budget/budget.dto';
 
 /**
  * What is read of the budgets themselves (`US-06-09` AC-5, `US-06-10` AC-7). A head of department reads the budget of the
@@ -121,8 +115,6 @@ export class BudgetViewService {
           year: version.year,
           versionId: version.id,
           number: version.number,
-          base: money(version.baseMinor),
-          reserve: money(version.reserveMinor),
           total: money(version.totalMinor),
           committed: money(committed),
           spent: money(spent),
@@ -133,52 +125,6 @@ export class BudgetViewService {
     );
 
     return pageOf(rows, total, query.page, query.pageSize);
-  }
-
-  /**
-   * The company-wide figures of a year, added up for each currency, for Finance only. A Cost Center is over budget when what is
-   * held and spent against it is more than its budget; the spent figure is brought up to date whenever an invoice is recorded.
-   */
-  async summary(year: number): Promise<BudgetSummaryWire> {
-    const versions = await this.versions.referenceFiguresOfYear(year);
-    const held = await this.commitments.totals(
-      versions.map((version) => ({ costCenterId: version.costCenterId, year: version.year })),
-    );
-    const sums = new Map<string, SummarySums>();
-    for (const version of versions) {
-      const { held: committed, spent } = held.get(heldKey(version.costCenterId, version.year)) ?? {
-        held: 0n,
-        spent: 0n,
-      };
-      const sum = sums.get(version.currency) ?? emptySums();
-      sum.base += version.baseMinor;
-      sum.reserve += version.reserveMinor;
-      sum.total += version.totalMinor;
-      sum.committed += committed;
-      sum.spent += spent;
-      sum.costCenterCount += 1;
-      if (version.totalMinor - committed - spent < 0n) sum.overBudgetCount += 1;
-      sums.set(version.currency, sum);
-    }
-
-    const totals: BudgetSummaryWire['totals'] = {};
-    for (const [currency, sum] of sums) {
-      const money = await this.facts.formatter(currency);
-      totals[currency] = {
-        currency,
-        base: money(sum.base),
-        reserve: money(sum.reserve),
-        total: money(sum.total),
-        committed: money(sum.committed),
-        spent: money(sum.spent),
-        remaining: money(sum.total - sum.committed - sum.spent),
-        costCenterCount: sum.costCenterCount,
-        overBudgetCount: sum.overBudgetCount,
-      };
-    }
-
-    // No invoice is recorded yet, so the spent figure has never been brought up to date.
-    return { year, totals, lastInvoiceRecordedAt: null };
   }
 
   async mineVersions(
@@ -210,23 +156,3 @@ export class BudgetViewService {
     return own;
   }
 }
-
-interface SummarySums {
-  base: bigint;
-  reserve: bigint;
-  total: bigint;
-  committed: bigint;
-  spent: bigint;
-  costCenterCount: number;
-  overBudgetCount: number;
-}
-
-const emptySums = (): SummarySums => ({
-  base: 0n,
-  reserve: 0n,
-  total: 0n,
-  committed: 0n,
-  spent: 0n,
-  costCenterCount: 0,
-  overBudgetCount: 0,
-});
