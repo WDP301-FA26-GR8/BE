@@ -119,7 +119,6 @@ export const SUCCESS_MESSAGES: Readonly<Record<string, string>> = {
   budgetProposalReturn: 'BUDGET_PROPOSAL.RETURNED',
   budgetProposalSubmit: 'BUDGET_PROPOSAL.SUBMITTED',
   budgetProposalWithdraw: 'BUDGET_PROPOSAL.WITHDRAWN',
-  budgetSummary: 'BUDGET.SUMMARY_FETCHED',
   budgetTable: 'BUDGET.LISTED',
   budgetVersionAttachmentDeclare: 'BUDGET_ATTACHMENT.DECLARED',
   budgetVersionAttachmentList: 'BUDGET_ATTACHMENT.LISTED',
