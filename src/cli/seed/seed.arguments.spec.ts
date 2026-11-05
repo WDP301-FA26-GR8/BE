@@ -1,9 +1,10 @@
+import { INSTALLATION, installationWith } from './fixture/shared-demo-v3/installation';
 import { SeedArgumentError, parseSeedArguments } from './seed.arguments';
 
 const valid = [
   'plan',
   '--fixture',
-  'shared-demo-v2',
+  'shared-demo-v3',
   '--api-url',
   'http://slm-api:3000',
   '--operator-reference',
@@ -19,7 +20,7 @@ describe('ops:seed arguments', () => {
       help: false,
       command: {
         mode: 'plan',
-        fixture: 'shared-demo-v2',
+        fixture: 'shared-demo-v3',
         apiUrl: 'http://slm-api:3000',
         operator: 'CHG-42',
         environment: 'SHARED',
@@ -32,11 +33,36 @@ describe('ops:seed arguments', () => {
 
   it('checks without API credentials and keeps explicit bootstrap authorization', () => {
     expect(parseSeedArguments(['check', '--environment', 'LOCAL_TEST'])).toMatchObject({
-      command: { mode: 'check', fixture: 'shared-demo-v2', secretsStdin: false },
+      command: { mode: 'check', fixture: 'shared-demo-v3', secretsStdin: false },
     });
     expect(parseSeedArguments([...valid, '--allow-bootstrap'])).toMatchObject({ command: { allowBootstrap: true } });
     expect(() => parseSeedArguments([...valid, '--organization', 'Other'])).toThrow('Unknown option');
     expect(() => parseSeedArguments([...valid, '--operator', 'Old'])).toThrow('Unknown option');
+  });
+
+  it('takes the Super Admin email of a bootstrap, or none, and refuses an invalid one', () => {
+    expect(parseSeedArguments(valid)).not.toHaveProperty('command.superAdminEmail');
+    expect(parseSeedArguments([...valid, '--super-admin-email', ' owner@example.com '])).toMatchObject({
+      command: { superAdminEmail: 'owner@example.com' },
+    });
+    expect(parseSeedArguments(['check', '--environment', 'SHARED', '--super-admin-email', 'a@b.vn'])).toMatchObject({
+      command: { superAdminEmail: 'a@b.vn' },
+    });
+    for (const bad of ['not-an-email', 'a@b', `${'x'.repeat(250)}@b.vn`]) {
+      expect(() => parseSeedArguments([...valid, '--super-admin-email', bad])).toThrow(
+        '--super-admin-email is not a valid email.',
+      );
+    }
+  });
+
+  it('puts the chosen email on both the account and the employee of the installation, nothing else', () => {
+    expect(installationWith()).toEqual(INSTALLATION);
+    const chosen = installationWith('owner@example.com');
+    expect(chosen.loginEmail).toBe('owner@example.com');
+    expect(chosen.superAdmin.workEmail).toBe('owner@example.com');
+    expect({ ...chosen, loginEmail: INSTALLATION.loginEmail, superAdmin: INSTALLATION.superAdmin }).toEqual(
+      INSTALLATION,
+    );
   });
 
   it('answers --help without asking for anything else', () => {

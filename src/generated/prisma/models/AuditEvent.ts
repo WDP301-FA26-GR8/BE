@@ -475,20 +475,8 @@ export type AuditEventCreateactorRolesInput = {
   set: string[]
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type EnumAuditActorKindFieldUpdateOperationsInput = {
   set?: $Enums.AuditActorKind
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
 }
 
 export type AuditEventUpdateactorRolesInput = {

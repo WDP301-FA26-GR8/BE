@@ -115,6 +115,7 @@ const EXPECTED_KEYS = [
   'SPEND_SUBMISSION_WAIT_WORKING_DAYS',
   'FISCAL_YEAR_START_MONTH',
   'FORECAST_ERROR_THRESHOLD_PERCENT',
+  'BUDGET_RESERVE_DEFAULT_PERCENT',
   'TRANSFER_REVIEW_WORKING_DAYS',
   'PERSONNEL_NOTICE_REVIEW_WORKING_DAYS',
   'ABRUPT_DEPARTURE_HOLD_WORKING_DAYS',
@@ -130,10 +131,12 @@ const EXPECTED_KEYS = [
   'DETECTION_THRESHOLD_DAYS',
   'RULE_SCHEDULE_G1_G2',
   'RULE_SCHEDULE_G3_G4',
+  'AI_ENABLED',
+  'AI_ACCESS_REQUEST_SUMMARY_ENABLED',
 ];
 
 describe('operating parameter labels and groups (QĐ93-PARAM-LABEL)', () => {
-  it('pins the twenty keys, ordered by group and, inside a group, as the spec table lists them', () => {
+  it('pins the twenty-three keys, ordered by group and, inside a group, as the spec table lists them', () => {
     expect(PARAMETER_DEFINITIONS.map((definition) => definition.key)).toEqual(EXPECTED_KEYS);
   });
 
@@ -160,6 +163,7 @@ describe('operating parameter labels and groups (QĐ93-PARAM-LABEL)', () => {
       'DOCUMENT',
       'SUBSCRIPTION',
       'USAGE',
+      'AI',
     ]);
     expect(GROUP_LABELS).toEqual({
       WORKFLOW: 'Phê duyệt và quy trình',
@@ -170,6 +174,7 @@ describe('operating parameter labels and groups (QĐ93-PARAM-LABEL)', () => {
       DOCUMENT: 'Tài liệu',
       SUBSCRIPTION: 'Thuê bao và gia hạn',
       USAGE: 'Sử dụng và lãng phí',
+      AI: 'Trợ lý AI',
     });
     const runs = PARAMETER_DEFINITIONS.map((definition) => definition.group).filter(
       (group, index, all) => index === 0 || group !== all[index - 1],
@@ -193,6 +198,7 @@ describe('operating parameter labels and groups (QĐ93-PARAM-LABEL)', () => {
       ['SPEND_SUBMISSION_WAIT_WORKING_DAYS', 'Hạn chờ trình duyệt chi', 'WORKFLOW', 'working days', 'ngày làm việc'],
       ['FISCAL_YEAR_START_MONTH', 'Tháng bắt đầu năm tài chính', 'BUDGET', 'month of the year', 'tháng trong năm'],
       ['FORECAST_ERROR_THRESHOLD_PERCENT', 'Ngưỡng sai số dự báo chi phí', 'BUDGET', 'percent', '%'],
+      ['BUDGET_RESERVE_DEFAULT_PERCENT', 'Tỷ lệ dự phòng mặc định của ngân sách năm', 'BUDGET', 'percent', '%'],
       [
         'TRANSFER_REVIEW_WORKING_DAYS',
         'Hạn rà soát quyền sau điều chuyển',
@@ -238,20 +244,49 @@ describe('operating parameter labels and groups (QĐ93-PARAM-LABEL)', () => {
       ['DETECTION_THRESHOLD_DAYS', 'Ngưỡng ngày không dùng của ghế', 'USAGE', 'days', 'ngày'],
       ['RULE_SCHEDULE_G1_G2', 'Lịch chạy luật lãng phí (dữ liệu nội bộ)', 'USAGE', 'schedule', 'lịch'],
       ['RULE_SCHEDULE_G3_G4', 'Lịch chạy luật lãng phí (dữ liệu usage)', 'USAGE', 'schedule', 'lịch'],
+      ['AI_ENABLED', 'Công tắc tổng của các tính năng AI', 'AI', 'switch', 'công tắc'],
+      ['AI_ACCESS_REQUEST_SUMMARY_ENABLED', 'Tóm tắt hàng chờ duyệt bằng AI', 'AI', 'switch', 'công tắc'],
     ]);
   });
 
   it('labels every option of an enum parameter, no more and no fewer, within the bound the registry records', () => {
     const enums = PARAMETER_DEFINITIONS.filter((definition) => definition.shape.kind === 'enum');
 
-    expect(enums.map((definition) => definition.key)).toEqual(['RULE_SCHEDULE_G1_G2', 'RULE_SCHEDULE_G3_G4']);
+    expect(enums.map((definition) => definition.key)).toEqual([
+      'RULE_SCHEDULE_G1_G2',
+      'RULE_SCHEDULE_G3_G4',
+      'AI_ENABLED',
+      'AI_ACCESS_REQUEST_SUMMARY_ENABLED',
+    ]);
     expect(ENUM_OPTIONS_MAX).toBe(10);
     for (const definition of enums) {
       if (definition.shape.kind !== 'enum') continue;
       expect(Object.keys(definition.shape.optionLabels).sort()).toEqual([...definition.shape.options].sort());
       expect(definition.shape.options.length).toBeLessThanOrEqual(ENUM_OPTIONS_MAX);
-      expect(definition.shape.optionLabels).toEqual({ DAILY: 'Hằng ngày', WEEKLY: 'Hằng tuần' });
+      expect(definition.shape.optionLabels).toEqual(
+        definition.group === 'AI' ? { ON: 'Bật', OFF: 'Tắt' } : { DAILY: 'Hằng ngày', WEEKLY: 'Hằng tuần' },
+      );
     }
+  });
+
+  it('keeps the two AI switches off until the Super Admin turns them on, and takes nothing but ON or OFF', () => {
+    const keys = ['AI_ENABLED', 'AI_ACCESS_REQUEST_SUMMARY_ENABLED'];
+
+    for (const key of keys) {
+      const definition = definitionOf(key);
+
+      expect(definition?.group).toBe('AI');
+      expect(definition?.shape).toMatchObject({ kind: 'enum', options: ['ON', 'OFF'] });
+      expect(definition?.default).toBe('OFF');
+      expect(defaultValues()[key]).toBe('OFF');
+      expect(definition?.description.length).toBeGreaterThan(10);
+      expect(validateParameterValue(key, 'ON', defaultValues())).toEqual({ ok: true });
+      expect(validateParameterValue(key, 'OFF', defaultValues())).toEqual({ ok: true });
+      for (const value of ['on', 'TRUE', true, 1, null]) {
+        expect(validateParameterValue(key, value, defaultValues())).toMatchObject({ ok: false });
+      }
+    }
+    expect(definitionOf('AI_FINANCE_NARRATIVE_ENABLED')).toBeUndefined();
   });
 
   it('describes the notice review as the Super Admin task and the transfer review as every right a person holds (API-DOC-F07)', () => {

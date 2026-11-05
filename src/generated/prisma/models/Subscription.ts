@@ -413,7 +413,7 @@ export type SubscriptionWhereInput = {
   ownerDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   renewedFrom?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   renewedBy?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
-  renewalCase?: Prisma.XOR<Prisma.SubscriptionRenewalNullableScalarRelationFilter, Prisma.SubscriptionRenewalWhereInput> | null
+  renewalCases?: Prisma.SubscriptionRenewalListRelationFilter
   renewalNextOf?: Prisma.XOR<Prisma.SubscriptionRenewalNullableScalarRelationFilter, Prisma.SubscriptionRenewalWhereInput> | null
   deadlineEvent?: Prisma.XOR<Prisma.SubscriptionDeadlineEventNullableScalarRelationFilter, Prisma.SubscriptionDeadlineEventWhereInput> | null
   ownerAssignment?: Prisma.XOR<Prisma.SubscriptionOwnerAssignmentNullableScalarRelationFilter, Prisma.SubscriptionOwnerAssignmentWhereInput> | null
@@ -457,7 +457,7 @@ export type SubscriptionOrderByWithRelationInput = {
   ownerDepartment?: Prisma.DepartmentOrderByWithRelationInput
   renewedFrom?: Prisma.SubscriptionOrderByWithRelationInput
   renewedBy?: Prisma.SubscriptionOrderByWithRelationInput
-  renewalCase?: Prisma.SubscriptionRenewalOrderByWithRelationInput
+  renewalCases?: Prisma.SubscriptionRenewalOrderByRelationAggregateInput
   renewalNextOf?: Prisma.SubscriptionRenewalOrderByWithRelationInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventOrderByWithRelationInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentOrderByWithRelationInput
@@ -504,7 +504,7 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
   ownerDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   renewedFrom?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   renewedBy?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
-  renewalCase?: Prisma.XOR<Prisma.SubscriptionRenewalNullableScalarRelationFilter, Prisma.SubscriptionRenewalWhereInput> | null
+  renewalCases?: Prisma.SubscriptionRenewalListRelationFilter
   renewalNextOf?: Prisma.XOR<Prisma.SubscriptionRenewalNullableScalarRelationFilter, Prisma.SubscriptionRenewalWhereInput> | null
   deadlineEvent?: Prisma.XOR<Prisma.SubscriptionDeadlineEventNullableScalarRelationFilter, Prisma.SubscriptionDeadlineEventWhereInput> | null
   ownerAssignment?: Prisma.XOR<Prisma.SubscriptionOwnerAssignmentNullableScalarRelationFilter, Prisma.SubscriptionOwnerAssignmentWhereInput> | null
@@ -610,7 +610,7 @@ export type SubscriptionCreateInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -650,7 +650,7 @@ export type SubscriptionUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -686,7 +686,7 @@ export type SubscriptionUpdateInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -726,7 +726,7 @@ export type SubscriptionUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -1203,9 +1203,9 @@ export type SubscriptionUpdateOneRequiredWithoutLicenseKeysNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SubscriptionUpdateToOneWithWhereWithoutLicenseKeysInput, Prisma.SubscriptionUpdateWithoutLicenseKeysInput>, Prisma.SubscriptionUncheckedUpdateWithoutLicenseKeysInput>
 }
 
-export type SubscriptionCreateNestedOneWithoutRenewalCaseInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCaseInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCaseInput>
-  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutRenewalCaseInput
+export type SubscriptionCreateNestedOneWithoutRenewalCasesInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCasesInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCasesInput>
+  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutRenewalCasesInput
   connect?: Prisma.SubscriptionWhereUniqueInput
 }
 
@@ -1215,12 +1215,12 @@ export type SubscriptionCreateNestedOneWithoutRenewalNextOfInput = {
   connect?: Prisma.SubscriptionWhereUniqueInput
 }
 
-export type SubscriptionUpdateOneRequiredWithoutRenewalCaseNestedInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCaseInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCaseInput>
-  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutRenewalCaseInput
-  upsert?: Prisma.SubscriptionUpsertWithoutRenewalCaseInput
+export type SubscriptionUpdateOneRequiredWithoutRenewalCasesNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCasesInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCasesInput>
+  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutRenewalCasesInput
+  upsert?: Prisma.SubscriptionUpsertWithoutRenewalCasesInput
   connect?: Prisma.SubscriptionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SubscriptionUpdateToOneWithWhereWithoutRenewalCaseInput, Prisma.SubscriptionUpdateWithoutRenewalCaseInput>, Prisma.SubscriptionUncheckedUpdateWithoutRenewalCaseInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SubscriptionUpdateToOneWithWhereWithoutRenewalCasesInput, Prisma.SubscriptionUpdateWithoutRenewalCasesInput>, Prisma.SubscriptionUncheckedUpdateWithoutRenewalCasesInput>
 }
 
 export type SubscriptionUpdateOneWithoutRenewalNextOfNestedInput = {
@@ -1357,7 +1357,7 @@ export type SubscriptionCreateWithoutPlanInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -1396,7 +1396,7 @@ export type SubscriptionUncheckedCreateWithoutPlanInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -1490,7 +1490,7 @@ export type SubscriptionCreateWithoutRenewedByInput = {
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -1529,7 +1529,7 @@ export type SubscriptionUncheckedCreateWithoutRenewedByInput = {
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -1569,7 +1569,7 @@ export type SubscriptionCreateWithoutRenewedFromInput = {
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -1608,7 +1608,7 @@ export type SubscriptionUncheckedCreateWithoutRenewedFromInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -1659,7 +1659,7 @@ export type SubscriptionUpdateWithoutRenewedByInput = {
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -1698,7 +1698,7 @@ export type SubscriptionUncheckedUpdateWithoutRenewedByInput = {
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -1744,7 +1744,7 @@ export type SubscriptionUpdateWithoutRenewedFromInput = {
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -1783,7 +1783,7 @@ export type SubscriptionUncheckedUpdateWithoutRenewedFromInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -1819,7 +1819,7 @@ export type SubscriptionCreateWithoutOwnerAssignmentInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   priceCurrency?: Prisma.CurrencyCreateNestedOneWithoutSubscriptionsInput
@@ -1858,7 +1858,7 @@ export type SubscriptionUncheckedCreateWithoutOwnerAssignmentInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutSubscriptionInput
@@ -1909,7 +1909,7 @@ export type SubscriptionUpdateWithoutOwnerAssignmentInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   priceCurrency?: Prisma.CurrencyUpdateOneWithoutSubscriptionsNestedInput
@@ -1948,7 +1948,7 @@ export type SubscriptionUncheckedUpdateWithoutOwnerAssignmentInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutSubscriptionNestedInput
@@ -1983,7 +1983,7 @@ export type SubscriptionCreateWithoutSeatBaselineImportsInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -2022,7 +2022,7 @@ export type SubscriptionUncheckedCreateWithoutSeatBaselineImportsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -2073,7 +2073,7 @@ export type SubscriptionUpdateWithoutSeatBaselineImportsInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -2112,7 +2112,7 @@ export type SubscriptionUncheckedUpdateWithoutSeatBaselineImportsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -2147,7 +2147,7 @@ export type SubscriptionCreateWithoutPriceCurrencyInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -2185,7 +2185,7 @@ export type SubscriptionUncheckedCreateWithoutPriceCurrencyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -2247,7 +2247,7 @@ export type SubscriptionCreateWithoutExchangeRateInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -2285,7 +2285,7 @@ export type SubscriptionUncheckedCreateWithoutExchangeRateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -2347,7 +2347,7 @@ export type SubscriptionCreateWithoutLicenseAssignmentsInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -2386,7 +2386,7 @@ export type SubscriptionUncheckedCreateWithoutLicenseAssignmentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -2437,7 +2437,7 @@ export type SubscriptionUpdateWithoutLicenseAssignmentsInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -2476,7 +2476,7 @@ export type SubscriptionUncheckedUpdateWithoutLicenseAssignmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -2511,7 +2511,7 @@ export type SubscriptionCreateWithoutLicenseKeysInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -2550,7 +2550,7 @@ export type SubscriptionUncheckedCreateWithoutLicenseKeysInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -2601,7 +2601,7 @@ export type SubscriptionUpdateWithoutLicenseKeysInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -2640,7 +2640,7 @@ export type SubscriptionUncheckedUpdateWithoutLicenseKeysInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -2648,7 +2648,7 @@ export type SubscriptionUncheckedUpdateWithoutLicenseKeysInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutSubscriptionNestedInput
 }
 
-export type SubscriptionCreateWithoutRenewalCaseInput = {
+export type SubscriptionCreateWithoutRenewalCasesInput = {
   id?: string
   kind: $Enums.SubscriptionKind
   status?: $Enums.SubscriptionStatus
@@ -2685,7 +2685,7 @@ export type SubscriptionCreateWithoutRenewalCaseInput = {
   licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutSubscriptionInput
 }
 
-export type SubscriptionUncheckedCreateWithoutRenewalCaseInput = {
+export type SubscriptionUncheckedCreateWithoutRenewalCasesInput = {
   id?: string
   organizationId: string
   planId: string
@@ -2722,9 +2722,9 @@ export type SubscriptionUncheckedCreateWithoutRenewalCaseInput = {
   licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutSubscriptionInput
 }
 
-export type SubscriptionCreateOrConnectWithoutRenewalCaseInput = {
+export type SubscriptionCreateOrConnectWithoutRenewalCasesInput = {
   where: Prisma.SubscriptionWhereUniqueInput
-  create: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCaseInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCaseInput>
+  create: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCasesInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCasesInput>
 }
 
 export type SubscriptionCreateWithoutRenewalNextOfInput = {
@@ -2754,7 +2754,7 @@ export type SubscriptionCreateWithoutRenewalNextOfInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
   priceCurrency?: Prisma.CurrencyCreateNestedOneWithoutSubscriptionsInput
@@ -2793,7 +2793,7 @@ export type SubscriptionUncheckedCreateWithoutRenewalNextOfInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutSubscriptionInput
@@ -2806,18 +2806,18 @@ export type SubscriptionCreateOrConnectWithoutRenewalNextOfInput = {
   create: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalNextOfInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalNextOfInput>
 }
 
-export type SubscriptionUpsertWithoutRenewalCaseInput = {
-  update: Prisma.XOR<Prisma.SubscriptionUpdateWithoutRenewalCaseInput, Prisma.SubscriptionUncheckedUpdateWithoutRenewalCaseInput>
-  create: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCaseInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCaseInput>
+export type SubscriptionUpsertWithoutRenewalCasesInput = {
+  update: Prisma.XOR<Prisma.SubscriptionUpdateWithoutRenewalCasesInput, Prisma.SubscriptionUncheckedUpdateWithoutRenewalCasesInput>
+  create: Prisma.XOR<Prisma.SubscriptionCreateWithoutRenewalCasesInput, Prisma.SubscriptionUncheckedCreateWithoutRenewalCasesInput>
   where?: Prisma.SubscriptionWhereInput
 }
 
-export type SubscriptionUpdateToOneWithWhereWithoutRenewalCaseInput = {
+export type SubscriptionUpdateToOneWithWhereWithoutRenewalCasesInput = {
   where?: Prisma.SubscriptionWhereInput
-  data: Prisma.XOR<Prisma.SubscriptionUpdateWithoutRenewalCaseInput, Prisma.SubscriptionUncheckedUpdateWithoutRenewalCaseInput>
+  data: Prisma.XOR<Prisma.SubscriptionUpdateWithoutRenewalCasesInput, Prisma.SubscriptionUncheckedUpdateWithoutRenewalCasesInput>
 }
 
-export type SubscriptionUpdateWithoutRenewalCaseInput = {
+export type SubscriptionUpdateWithoutRenewalCasesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumSubscriptionKindFieldUpdateOperationsInput | $Enums.SubscriptionKind
   status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
@@ -2854,7 +2854,7 @@ export type SubscriptionUpdateWithoutRenewalCaseInput = {
   licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutSubscriptionNestedInput
 }
 
-export type SubscriptionUncheckedUpdateWithoutRenewalCaseInput = {
+export type SubscriptionUncheckedUpdateWithoutRenewalCasesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   planId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2929,7 +2929,7 @@ export type SubscriptionUpdateWithoutRenewalNextOfInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
   priceCurrency?: Prisma.CurrencyUpdateOneWithoutSubscriptionsNestedInput
@@ -2968,7 +2968,7 @@ export type SubscriptionUncheckedUpdateWithoutRenewalNextOfInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutSubscriptionNestedInput
@@ -3003,7 +3003,7 @@ export type SubscriptionCreateWithoutDeadlineEventInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
   priceCurrency?: Prisma.CurrencyCreateNestedOneWithoutSubscriptionsInput
@@ -3042,7 +3042,7 @@ export type SubscriptionUncheckedCreateWithoutDeadlineEventInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutSubscriptionInput
@@ -3093,7 +3093,7 @@ export type SubscriptionUpdateWithoutDeadlineEventInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
   priceCurrency?: Prisma.CurrencyUpdateOneWithoutSubscriptionsNestedInput
@@ -3132,7 +3132,7 @@ export type SubscriptionUncheckedUpdateWithoutDeadlineEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutSubscriptionNestedInput
@@ -3166,7 +3166,7 @@ export type SubscriptionCreateWithoutOrganizationInput = {
   ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -3205,7 +3205,7 @@ export type SubscriptionUncheckedCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -3266,7 +3266,7 @@ export type SubscriptionCreateWithoutOwnerDepartmentInput = {
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
@@ -3305,7 +3305,7 @@ export type SubscriptionUncheckedCreateWithoutOwnerDepartmentInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutSubscriptionInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
@@ -3395,7 +3395,7 @@ export type SubscriptionUpdateWithoutPlanInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -3434,7 +3434,7 @@ export type SubscriptionUncheckedUpdateWithoutPlanInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -3528,7 +3528,7 @@ export type SubscriptionUpdateWithoutPriceCurrencyInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -3566,7 +3566,7 @@ export type SubscriptionUncheckedUpdateWithoutPriceCurrencyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -3660,7 +3660,7 @@ export type SubscriptionUpdateWithoutExchangeRateInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -3698,7 +3698,7 @@ export type SubscriptionUncheckedUpdateWithoutExchangeRateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -3791,7 +3791,7 @@ export type SubscriptionUpdateWithoutOrganizationInput = {
   ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -3830,7 +3830,7 @@ export type SubscriptionUncheckedUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -3923,7 +3923,7 @@ export type SubscriptionUpdateWithoutOwnerDepartmentInput = {
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
@@ -3962,7 +3962,7 @@ export type SubscriptionUncheckedUpdateWithoutOwnerDepartmentInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
-  renewalCase?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutSubscriptionNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
   deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
   ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
@@ -4006,12 +4006,14 @@ export type SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentInput = {
  */
 
 export type SubscriptionCountOutputType = {
+  renewalCases: number
   seatBaselineImports: number
   licenseAssignments: number
   licenseKeys: number
 }
 
 export type SubscriptionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  renewalCases?: boolean | SubscriptionCountOutputTypeCountRenewalCasesArgs
   seatBaselineImports?: boolean | SubscriptionCountOutputTypeCountSeatBaselineImportsArgs
   licenseAssignments?: boolean | SubscriptionCountOutputTypeCountLicenseAssignmentsArgs
   licenseKeys?: boolean | SubscriptionCountOutputTypeCountLicenseKeysArgs
@@ -4025,6 +4027,13 @@ export type SubscriptionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
    * Select specific fields to fetch from the SubscriptionCountOutputType
    */
   select?: Prisma.SubscriptionCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SubscriptionCountOutputType without action
+ */
+export type SubscriptionCountOutputTypeCountRenewalCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionRenewalWhereInput
 }
 
 /**
@@ -4082,7 +4091,7 @@ export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   renewedBy?: boolean | Prisma.Subscription$renewedByArgs<ExtArgs>
-  renewalCase?: boolean | Prisma.Subscription$renewalCaseArgs<ExtArgs>
+  renewalCases?: boolean | Prisma.Subscription$renewalCasesArgs<ExtArgs>
   renewalNextOf?: boolean | Prisma.Subscription$renewalNextOfArgs<ExtArgs>
   deadlineEvent?: boolean | Prisma.Subscription$deadlineEventArgs<ExtArgs>
   ownerAssignment?: boolean | Prisma.Subscription$ownerAssignmentArgs<ExtArgs>
@@ -4203,7 +4212,7 @@ export type SubscriptionInclude<ExtArgs extends runtime.Types.Extensions.Interna
   ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   renewedBy?: boolean | Prisma.Subscription$renewedByArgs<ExtArgs>
-  renewalCase?: boolean | Prisma.Subscription$renewalCaseArgs<ExtArgs>
+  renewalCases?: boolean | Prisma.Subscription$renewalCasesArgs<ExtArgs>
   renewalNextOf?: boolean | Prisma.Subscription$renewalNextOfArgs<ExtArgs>
   deadlineEvent?: boolean | Prisma.Subscription$deadlineEventArgs<ExtArgs>
   ownerAssignment?: boolean | Prisma.Subscription$ownerAssignmentArgs<ExtArgs>
@@ -4239,7 +4248,7 @@ export type $SubscriptionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     ownerDepartment: Prisma.$DepartmentPayload<ExtArgs>
     renewedFrom: Prisma.$SubscriptionPayload<ExtArgs> | null
     renewedBy: Prisma.$SubscriptionPayload<ExtArgs> | null
-    renewalCase: Prisma.$SubscriptionRenewalPayload<ExtArgs> | null
+    renewalCases: Prisma.$SubscriptionRenewalPayload<ExtArgs>[]
     renewalNextOf: Prisma.$SubscriptionRenewalPayload<ExtArgs> | null
     deadlineEvent: Prisma.$SubscriptionDeadlineEventPayload<ExtArgs> | null
     ownerAssignment: Prisma.$SubscriptionOwnerAssignmentPayload<ExtArgs> | null
@@ -4676,7 +4685,7 @@ export interface Prisma__SubscriptionClient<T, Null = never, ExtArgs extends run
   ownerDepartment<T extends Prisma.DepartmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   renewedFrom<T extends Prisma.Subscription$renewedFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewedFromArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   renewedBy<T extends Prisma.Subscription$renewedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewedByArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  renewalCase<T extends Prisma.Subscription$renewalCaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewalCaseArgs<ExtArgs>>): Prisma.Prisma__SubscriptionRenewalClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionRenewalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  renewalCases<T extends Prisma.Subscription$renewalCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewalCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionRenewalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   renewalNextOf<T extends Prisma.Subscription$renewalNextOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewalNextOfArgs<ExtArgs>>): Prisma.Prisma__SubscriptionRenewalClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionRenewalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   deadlineEvent<T extends Prisma.Subscription$deadlineEventArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$deadlineEventArgs<ExtArgs>>): Prisma.Prisma__SubscriptionDeadlineEventClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionDeadlineEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   ownerAssignment<T extends Prisma.Subscription$ownerAssignmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$ownerAssignmentArgs<ExtArgs>>): Prisma.Prisma__SubscriptionOwnerAssignmentClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionOwnerAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -5180,9 +5189,9 @@ export type Subscription$renewedByArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * Subscription.renewalCase
+ * Subscription.renewalCases
  */
-export type Subscription$renewalCaseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Subscription$renewalCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the SubscriptionRenewal
    */
@@ -5196,6 +5205,11 @@ export type Subscription$renewalCaseArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.SubscriptionRenewalInclude<ExtArgs> | null
   where?: Prisma.SubscriptionRenewalWhereInput
+  orderBy?: Prisma.SubscriptionRenewalOrderByWithRelationInput | Prisma.SubscriptionRenewalOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionRenewalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionRenewalScalarFieldEnum | Prisma.SubscriptionRenewalScalarFieldEnum[]
 }
 
 /**

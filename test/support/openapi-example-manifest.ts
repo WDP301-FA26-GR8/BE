@@ -16,9 +16,12 @@
  *   its examples and removes the entry.
  */
 
+import { ROUTE_ERROR_CODES_AI_ASSIST } from './openapi-example-route-codes-ai-assist';
 import { ROUTE_ERROR_CODES_BUDGETS } from './openapi-example-route-codes-budgets';
 import { ROUTE_ERROR_CODES_CATALOG } from './openapi-example-route-codes-catalog';
 import { ROUTE_ERROR_CODES_DATA_IMPORT } from './openapi-example-route-codes-data-import';
+import { SUCCESS_MESSAGES_DEVICES } from './openapi-example-messages-devices';
+import { ROUTE_ERROR_CODES_DEVICES } from './openapi-example-route-codes-devices';
 import { ROUTE_ERROR_CODES_FINANCE } from './openapi-example-route-codes-finance';
 import { ROUTE_ERROR_CODES_HEALTH } from './openapi-example-route-codes-health';
 import { ROUTE_ERROR_CODES_IDENTITY_ACCESS } from './openapi-example-route-codes-identity-access';
@@ -32,6 +35,7 @@ import { ROUTE_ERROR_CODES_REQUESTS_SPEND } from './openapi-example-route-codes-
 export type RouteErrorStatus = '400' | '401' | '403' | '404' | '409' | '413' | '422' | '429' | '500' | '503';
 
 export const SUCCESS_MESSAGES: Readonly<Record<string, string>> = {
+  ...SUCCESS_MESSAGES_DEVICES,
   accessRequestAssessmentComplete: 'ACCESS_REQUEST.ASSESSMENT_COMPLETED',
   accessRequestAssessmentGet: 'ACCESS_REQUEST.ASSESSMENT_FETCHED',
   accessRequestAssessmentReject: 'ACCESS_REQUEST.ASSESSMENT_REJECTED',
@@ -49,8 +53,6 @@ export const SUCCESS_MESSAGES: Readonly<Record<string, string>> = {
   accessRequestLineNeedDecide: 'GROUP_REQUEST.NEED_DECIDED',
   accessRequestLineWithdraw: 'GROUP_REQUEST.LINE_WITHDRAWN',
   accessRequestNeedDecide: 'ACCESS_REQUEST.NEED_DECIDED',
-  accessRequestPlanLineSet: 'ACCESS_REQUEST.PLAN_LINE_SET',
-  accessRequestPlanLineSuggestionList: 'ACCESS_REQUEST.PLAN_LINE_SUGGESTIONS_LISTED',
   accessRequestPreview: 'ACCESS_REQUEST.PREVIEWED',
   accessRequestPropose: 'ACCESS_REQUEST.PROPOSED',
   accessRequestRenewalSubmit: 'ACCESS_REQUEST.RENEWAL_SUBMITTED',
@@ -63,6 +65,10 @@ export const SUCCESS_MESSAGES: Readonly<Record<string, string>> = {
   accessRequestTimingsGet: 'ACCESS_REQUEST.TIMINGS_FETCHED',
   accessRequestWithdraw: 'ACCESS_REQUEST.WITHDRAWN',
   accountCandidatesList: 'APP_USER.CANDIDATES_LISTED',
+  aiAccessRequestSummaryCreate: 'AI.SUMMARY_ACCEPTED',
+  aiAccessRequestSummaryGet: 'AI.SUMMARY_READ',
+  aiAccessRequestSummarySource: 'AI.SUMMARY_SOURCE_READ',
+  aiInvocationContentGet: 'AI.CONTENT_READ',
   appUserCreate: 'APP_USER.CREATED',
   appUserGet: 'APP_USER.RETRIEVED',
   appUserChangeRole: 'ROLE.CHANGED',
@@ -113,6 +119,7 @@ export const SUCCESS_MESSAGES: Readonly<Record<string, string>> = {
   budgetProposalReturn: 'BUDGET_PROPOSAL.RETURNED',
   budgetProposalSubmit: 'BUDGET_PROPOSAL.SUBMITTED',
   budgetProposalWithdraw: 'BUDGET_PROPOSAL.WITHDRAWN',
+  budgetSummary: 'BUDGET.SUMMARY_FETCHED',
   budgetTable: 'BUDGET.LISTED',
   budgetVersionAttachmentDeclare: 'BUDGET_ATTACHMENT.DECLARED',
   budgetVersionAttachmentList: 'BUDGET_ATTACHMENT.LISTED',
@@ -123,12 +130,9 @@ export const SUCCESS_MESSAGES: Readonly<Record<string, string>> = {
   budgetVersionHistoryList: 'BUDGET_VERSION.HISTORY_LISTED',
   budgetVersionImport: 'BUDGET_VERSION.LINES_IMPORTED',
   budgetVersionLineAdd: 'BUDGET_VERSION.LINES_ADDED',
-  budgetVersionLineChangeList: 'BUDGET_VERSION.CHANGES_LISTED',
   budgetVersionLineList: 'BUDGET_VERSION.LINES_LISTED',
   budgetVersionLineUpdate: 'BUDGET_VERSION.LINE_CHANGED',
-  budgetVersionLineWindow: 'BUDGET_VERSION.WINDOW_MOVED',
   budgetVersionList: 'BUDGET_VERSION.LISTED',
-  budgetVersionRevise: 'BUDGET_VERSION.REVISION_CREATED',
   budgetVersionSend: 'BUDGET_VERSION.SENT',
   budgetVersionUpdate: 'BUDGET_VERSION.UPDATED',
   businessOwnerWarningList: 'BUSINESS_OWNER_WARNING.LISTED',
@@ -141,14 +145,16 @@ export const SUCCESS_MESSAGES: Readonly<Record<string, string>> = {
   costCenterList: 'COST_CENTER.LISTED',
   costCenterRename: 'COST_CENTER.RENAMED',
   currencyList: 'CURRENCY.LISTED',
-  delegatedRequestSend: 'DELEGATED_REQUEST.SENT',
   departmentCreate: 'DEPARTMENT.CREATED',
   departmentDeactivate: 'DEPARTMENT.DEACTIVATED',
   departmentGet: 'DEPARTMENT.FETCHED',
   departmentHeadAssign: 'DEPARTMENT.HEAD_ASSIGNED',
   departmentHeadVacate: 'DEPARTMENT.HEAD_VACATED',
   departmentList: 'DEPARTMENT.LISTED',
+  departmentMemberGet: 'DEPARTMENT_MEMBER.READ',
   departmentMemberList: 'DEPARTMENT.MEMBERS_LISTED',
+  departmentMemberOpenRequestList: 'DEPARTMENT_MEMBER.OPEN_REQUESTS_LISTED',
+  departmentMemberSoftwareRightList: 'DEPARTMENT_MEMBER.SOFTWARE_RIGHTS_LISTED',
   departmentSuccessorClear: 'DEPARTMENT.SUCCESSOR_CLEARED',
   departmentSuccessorDesignate: 'DEPARTMENT.SUCCESSOR_DESIGNATED',
   departmentTechnicalMemberList: 'DEPARTMENT.TECHNICAL_MEMBERS_LISTED',
@@ -355,9 +361,11 @@ export const NO_EXAMPLE_RESPONSES: Readonly<Record<string, string>> = {};
  * routes do not fit one file has a second named by its area. An operationId listed twice is a mistake the inventory test reports.
  */
 const PARTS = [
+  ROUTE_ERROR_CODES_AI_ASSIST,
   ROUTE_ERROR_CODES_BUDGETS,
   ROUTE_ERROR_CODES_CATALOG,
   ROUTE_ERROR_CODES_DATA_IMPORT,
+  ROUTE_ERROR_CODES_DEVICES,
   ROUTE_ERROR_CODES_FINANCE,
   ROUTE_ERROR_CODES_HEALTH,
   ROUTE_ERROR_CODES_IDENTITY_ACCESS,

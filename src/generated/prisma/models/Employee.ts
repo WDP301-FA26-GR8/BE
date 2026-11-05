@@ -271,6 +271,7 @@ export type EmployeeWhereInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestListRelationFilter
   handoverDutiesAbout?: Prisma.HandoverDutyListRelationFilter
   handoverDutiesFixedTo?: Prisma.HandoverDutyListRelationFilter
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationListRelationFilter
   handoverDutiesConfirmed?: Prisma.HandoverDutyListRelationFilter
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryListRelationFilter
   accessRequestLinesEnded?: Prisma.AccessRequestLineListRelationFilter
@@ -301,6 +302,7 @@ export type EmployeeWhereInput = {
   noticesAbout?: Prisma.PersonnelNoticeListRelationFilter
   noticesSent?: Prisma.PersonnelNoticeListRelationFilter
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketListRelationFilter
+  accessBlock?: Prisma.XOR<Prisma.EmployeeAccessBlockNullableScalarRelationFilter, Prisma.EmployeeAccessBlockWhereInput> | null
 }
 
 export type EmployeeOrderByWithRelationInput = {
@@ -342,6 +344,7 @@ export type EmployeeOrderByWithRelationInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestOrderByRelationAggregateInput
   handoverDutiesAbout?: Prisma.HandoverDutyOrderByRelationAggregateInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyOrderByRelationAggregateInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationOrderByRelationAggregateInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyOrderByRelationAggregateInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryOrderByRelationAggregateInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineOrderByRelationAggregateInput
@@ -372,6 +375,7 @@ export type EmployeeOrderByWithRelationInput = {
   noticesAbout?: Prisma.PersonnelNoticeOrderByRelationAggregateInput
   noticesSent?: Prisma.PersonnelNoticeOrderByRelationAggregateInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketOrderByRelationAggregateInput
+  accessBlock?: Prisma.EmployeeAccessBlockOrderByWithRelationInput
 }
 
 export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -418,6 +422,7 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   returnHandoversConfirmed?: Prisma.ReturnRequestListRelationFilter
   handoverDutiesAbout?: Prisma.HandoverDutyListRelationFilter
   handoverDutiesFixedTo?: Prisma.HandoverDutyListRelationFilter
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationListRelationFilter
   handoverDutiesConfirmed?: Prisma.HandoverDutyListRelationFilter
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryListRelationFilter
   accessRequestLinesEnded?: Prisma.AccessRequestLineListRelationFilter
@@ -448,6 +453,7 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   noticesAbout?: Prisma.PersonnelNoticeListRelationFilter
   noticesSent?: Prisma.PersonnelNoticeListRelationFilter
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketListRelationFilter
+  accessBlock?: Prisma.XOR<Prisma.EmployeeAccessBlockNullableScalarRelationFilter, Prisma.EmployeeAccessBlockWhereInput> | null
 }, "id" | "organizationId_employeeCode" | "organizationId_normalizedWorkEmail">
 
 export type EmployeeOrderByWithAggregationInput = {
@@ -526,6 +532,7 @@ export type EmployeeCreateInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -556,6 +563,7 @@ export type EmployeeCreateInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateInput = {
@@ -596,6 +604,7 @@ export type EmployeeUncheckedCreateInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -626,6 +635,7 @@ export type EmployeeUncheckedCreateInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUpdateInput = {
@@ -666,6 +676,7 @@ export type EmployeeUpdateInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -696,6 +707,7 @@ export type EmployeeUpdateInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateInput = {
@@ -736,6 +748,7 @@ export type EmployeeUncheckedUpdateInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -766,6 +779,7 @@ export type EmployeeUncheckedUpdateInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateManyInput = {
@@ -1009,6 +1023,20 @@ export type EmployeeUpdateOneRequiredWithoutRetirementConfirmationsGivenNestedIn
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutRetirementConfirmationsGivenInput, Prisma.EmployeeUpdateWithoutRetirementConfirmationsGivenInput>, Prisma.EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput>
 }
 
+export type EmployeeCreateNestedOneWithoutDeviceRegistrationsHeldInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutDeviceRegistrationsHeldInput, Prisma.EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutDeviceRegistrationsHeldInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutDeviceRegistrationsHeldNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutDeviceRegistrationsHeldInput, Prisma.EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutDeviceRegistrationsHeldInput
+  upsert?: Prisma.EmployeeUpsertWithoutDeviceRegistrationsHeldInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutDeviceRegistrationsHeldInput, Prisma.EmployeeUpdateWithoutDeviceRegistrationsHeldInput>, Prisma.EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput>
+}
+
 export type EmployeeCreateNestedOneWithoutAppUserInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutAppUserInput, Prisma.EmployeeUncheckedCreateWithoutAppUserInput>
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutAppUserInput
@@ -1021,6 +1049,20 @@ export type EmployeeUpdateOneRequiredWithoutAppUserNestedInput = {
   upsert?: Prisma.EmployeeUpsertWithoutAppUserInput
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutAppUserInput, Prisma.EmployeeUpdateWithoutAppUserInput>, Prisma.EmployeeUncheckedUpdateWithoutAppUserInput>
+}
+
+export type EmployeeCreateNestedOneWithoutAccessBlockInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutAccessBlockInput, Prisma.EmployeeUncheckedCreateWithoutAccessBlockInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutAccessBlockInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutAccessBlockNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutAccessBlockInput, Prisma.EmployeeUncheckedCreateWithoutAccessBlockInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutAccessBlockInput
+  upsert?: Prisma.EmployeeUpsertWithoutAccessBlockInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutAccessBlockInput, Prisma.EmployeeUpdateWithoutAccessBlockInput>, Prisma.EmployeeUncheckedUpdateWithoutAccessBlockInput>
 }
 
 export type EmployeeCreateNestedOneWithoutLicenseAssignmentsInput = {
@@ -1785,6 +1827,7 @@ export type EmployeeCreateWithoutCommitmentReleasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -1814,6 +1857,7 @@ export type EmployeeCreateWithoutCommitmentReleasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
@@ -1854,6 +1898,7 @@ export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -1883,6 +1928,7 @@ export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutCommitmentReleasesInput = {
@@ -1939,6 +1985,7 @@ export type EmployeeUpdateWithoutCommitmentReleasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -1968,6 +2015,7 @@ export type EmployeeUpdateWithoutCommitmentReleasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
@@ -2008,6 +2056,7 @@ export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -2037,6 +2086,7 @@ export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutOwnedApplicationsInput = {
@@ -2076,6 +2126,7 @@ export type EmployeeCreateWithoutOwnedApplicationsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -2106,6 +2157,7 @@ export type EmployeeCreateWithoutOwnedApplicationsInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
@@ -2145,6 +2197,7 @@ export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -2175,6 +2228,7 @@ export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutOwnedApplicationsInput = {
@@ -2230,6 +2284,7 @@ export type EmployeeUpdateWithoutOwnedApplicationsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -2260,6 +2315,7 @@ export type EmployeeUpdateWithoutOwnedApplicationsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
@@ -2299,6 +2355,7 @@ export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -2329,6 +2386,7 @@ export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
@@ -2368,6 +2426,7 @@ export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -2398,6 +2457,7 @@ export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
@@ -2437,6 +2497,7 @@ export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -2467,6 +2528,7 @@ export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutWorkspacePrimaryOwnerOfInput = {
@@ -2511,6 +2573,7 @@ export type EmployeeCreateWithoutWorkspaceEmergencyHolderOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -2541,6 +2604,7 @@ export type EmployeeCreateWithoutWorkspaceEmergencyHolderOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
@@ -2580,6 +2644,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -2610,6 +2675,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutWorkspaceEmergencyHolderOfInput = {
@@ -2665,6 +2731,7 @@ export type EmployeeUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -2695,6 +2762,7 @@ export type EmployeeUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
@@ -2734,6 +2802,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -2764,6 +2833,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutWorkspaceEmergencyHolderOfInput = {
@@ -2814,6 +2884,7 @@ export type EmployeeUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -2844,6 +2915,7 @@ export type EmployeeUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
@@ -2883,6 +2955,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -2913,6 +2986,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
@@ -2952,6 +3026,7 @@ export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -2982,6 +3057,7 @@ export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
@@ -3021,6 +3097,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -3051,6 +3128,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutWorkspaceMembershipsInput = {
@@ -3106,6 +3184,7 @@ export type EmployeeUpdateWithoutWorkspaceMembershipsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -3136,6 +3215,7 @@ export type EmployeeUpdateWithoutWorkspaceMembershipsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
@@ -3175,6 +3255,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -3205,6 +3286,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutPlanTermOpinionsInput = {
@@ -3244,6 +3326,7 @@ export type EmployeeCreateWithoutPlanTermOpinionsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -3274,6 +3357,7 @@ export type EmployeeCreateWithoutPlanTermOpinionsInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
@@ -3313,6 +3397,7 @@ export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -3343,6 +3428,7 @@ export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutPlanTermOpinionsInput = {
@@ -3398,6 +3484,7 @@ export type EmployeeUpdateWithoutPlanTermOpinionsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -3428,6 +3515,7 @@ export type EmployeeUpdateWithoutPlanTermOpinionsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
@@ -3467,6 +3555,7 @@ export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -3497,6 +3586,7 @@ export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
@@ -3536,6 +3626,7 @@ export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -3566,6 +3657,7 @@ export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
@@ -3605,6 +3697,7 @@ export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -3635,6 +3728,7 @@ export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutApplicationBusinessOwnersInput = {
@@ -3690,6 +3784,7 @@ export type EmployeeUpdateWithoutApplicationBusinessOwnersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -3720,6 +3815,7 @@ export type EmployeeUpdateWithoutApplicationBusinessOwnersInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
@@ -3759,6 +3855,7 @@ export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -3789,6 +3886,7 @@ export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
@@ -3828,6 +3926,7 @@ export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -3858,6 +3957,7 @@ export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
@@ -3897,6 +3997,7 @@ export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -3927,6 +4028,7 @@ export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutRetirementConfirmationsGivenInput = {
@@ -3982,6 +4084,7 @@ export type EmployeeUpdateWithoutRetirementConfirmationsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -4012,6 +4115,7 @@ export type EmployeeUpdateWithoutRetirementConfirmationsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
@@ -4051,6 +4155,7 @@ export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -4081,9 +4186,10 @@ export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
-export type EmployeeCreateWithoutAppUserInput = {
+export type EmployeeCreateWithoutDeviceRegistrationsHeldInput = {
   id?: string
   employeeCode: string
   fullName: string
@@ -4098,6 +4204,7 @@ export type EmployeeCreateWithoutAppUserInput = {
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
@@ -4150,9 +4257,10 @@ export type EmployeeCreateWithoutAppUserInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
-export type EmployeeUncheckedCreateWithoutAppUserInput = {
+export type EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput = {
   id?: string
   organizationId: string
   employeeCode: string
@@ -4167,6 +4275,7 @@ export type EmployeeUncheckedCreateWithoutAppUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
@@ -4219,6 +4328,307 @@ export type EmployeeUncheckedCreateWithoutAppUserInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutDeviceRegistrationsHeldInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutDeviceRegistrationsHeldInput, Prisma.EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput>
+}
+
+export type EmployeeUpsertWithoutDeviceRegistrationsHeldInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutDeviceRegistrationsHeldInput, Prisma.EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutDeviceRegistrationsHeldInput, Prisma.EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutDeviceRegistrationsHeldInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutDeviceRegistrationsHeldInput, Prisma.EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput>
+}
+
+export type EmployeeUpdateWithoutDeviceRegistrationsHeldInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeCreateWithoutAppUserInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutAppUserInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAppUserInput = {
@@ -4274,6 +4684,7 @@ export type EmployeeUpdateWithoutAppUserInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -4304,6 +4715,7 @@ export type EmployeeUpdateWithoutAppUserInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAppUserInput = {
@@ -4343,6 +4755,308 @@ export type EmployeeUncheckedUpdateWithoutAppUserInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeCreateWithoutAccessBlockInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+}
+
+export type EmployeeUncheckedCreateWithoutAccessBlockInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+}
+
+export type EmployeeCreateOrConnectWithoutAccessBlockInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutAccessBlockInput, Prisma.EmployeeUncheckedCreateWithoutAccessBlockInput>
+}
+
+export type EmployeeUpsertWithoutAccessBlockInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutAccessBlockInput, Prisma.EmployeeUncheckedUpdateWithoutAccessBlockInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutAccessBlockInput, Prisma.EmployeeUncheckedCreateWithoutAccessBlockInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutAccessBlockInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutAccessBlockInput, Prisma.EmployeeUncheckedUpdateWithoutAccessBlockInput>
+}
+
+export type EmployeeUpdateWithoutAccessBlockInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutAccessBlockInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -4412,6 +5126,7 @@ export type EmployeeCreateWithoutLicenseAssignmentsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -4442,6 +5157,7 @@ export type EmployeeCreateWithoutLicenseAssignmentsInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
@@ -4481,6 +5197,7 @@ export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -4511,6 +5228,7 @@ export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutLicenseAssignmentsInput = {
@@ -4566,6 +5284,7 @@ export type EmployeeUpdateWithoutLicenseAssignmentsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -4596,6 +5315,7 @@ export type EmployeeUpdateWithoutLicenseAssignmentsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
@@ -4635,6 +5355,7 @@ export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -4665,6 +5386,7 @@ export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
@@ -4704,6 +5426,7 @@ export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -4734,6 +5457,7 @@ export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
@@ -4773,6 +5497,7 @@ export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -4803,6 +5528,7 @@ export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutProvisioningTasksInChargeInput = {
@@ -4858,6 +5584,7 @@ export type EmployeeUpdateWithoutProvisioningTasksInChargeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -4888,6 +5615,7 @@ export type EmployeeUpdateWithoutProvisioningTasksInChargeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
@@ -4927,6 +5655,7 @@ export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -4957,6 +5686,7 @@ export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
@@ -4996,6 +5726,7 @@ export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -5026,6 +5757,7 @@ export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
@@ -5065,6 +5797,7 @@ export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -5095,6 +5828,7 @@ export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutRevocationReasonsDecidedInput = {
@@ -5150,6 +5884,7 @@ export type EmployeeUpdateWithoutRevocationReasonsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -5180,6 +5915,7 @@ export type EmployeeUpdateWithoutRevocationReasonsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
@@ -5219,6 +5955,7 @@ export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -5249,6 +5986,7 @@ export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
@@ -5288,6 +6026,7 @@ export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
   returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -5318,6 +6057,7 @@ export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
@@ -5357,6 +6097,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -5387,6 +6128,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutHandoverDutiesAboutInput = {
@@ -5431,6 +6173,7 @@ export type EmployeeCreateWithoutHandoverDutiesFixedToInput = {
   returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -5461,6 +6204,7 @@ export type EmployeeCreateWithoutHandoverDutiesFixedToInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
@@ -5500,6 +6244,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -5530,6 +6275,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutHandoverDutiesFixedToInput = {
@@ -5575,6 +6321,7 @@ export type EmployeeCreateWithoutHandoverDutiesConfirmedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
@@ -5604,6 +6351,7 @@ export type EmployeeCreateWithoutHandoverDutiesConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
@@ -5644,6 +6392,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
@@ -5673,6 +6422,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutHandoverDutiesConfirmedInput = {
@@ -5728,6 +6478,7 @@ export type EmployeeUpdateWithoutHandoverDutiesAboutInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -5758,6 +6509,7 @@ export type EmployeeUpdateWithoutHandoverDutiesAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
@@ -5797,6 +6549,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -5827,6 +6580,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutHandoverDutiesFixedToInput = {
@@ -5877,6 +6631,7 @@ export type EmployeeUpdateWithoutHandoverDutiesFixedToInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -5907,6 +6662,7 @@ export type EmployeeUpdateWithoutHandoverDutiesFixedToInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
@@ -5946,6 +6702,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -5976,6 +6733,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutHandoverDutiesConfirmedInput = {
@@ -6027,6 +6785,7 @@ export type EmployeeUpdateWithoutHandoverDutiesConfirmedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
@@ -6056,6 +6815,7 @@ export type EmployeeUpdateWithoutHandoverDutiesConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
@@ -6096,6 +6856,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
@@ -6125,6 +6886,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutOrganizationInput = {
@@ -6164,6 +6926,7 @@ export type EmployeeCreateWithoutOrganizationInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -6194,6 +6957,7 @@ export type EmployeeCreateWithoutOrganizationInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutOrganizationInput = {
@@ -6233,6 +6997,7 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -6263,6 +7028,7 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutOrganizationInput = {
@@ -6347,6 +7113,7 @@ export type EmployeeCreateWithoutItAdminOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -6377,6 +7144,7 @@ export type EmployeeCreateWithoutItAdminOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
@@ -6416,6 +7184,7 @@ export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -6446,6 +7215,7 @@ export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutItAdminOfInput = {
@@ -6501,6 +7271,7 @@ export type EmployeeUpdateWithoutItAdminOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -6531,6 +7302,7 @@ export type EmployeeUpdateWithoutItAdminOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
@@ -6570,6 +7342,7 @@ export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -6600,6 +7373,7 @@ export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutHeadPeriodsInput = {
@@ -6639,6 +7413,7 @@ export type EmployeeCreateWithoutHeadPeriodsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -6669,6 +7444,7 @@ export type EmployeeCreateWithoutHeadPeriodsInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
@@ -6708,6 +7484,7 @@ export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -6738,6 +7515,7 @@ export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutHeadPeriodsInput = {
@@ -6793,6 +7571,7 @@ export type EmployeeUpdateWithoutHeadPeriodsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -6823,6 +7602,7 @@ export type EmployeeUpdateWithoutHeadPeriodsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
@@ -6862,6 +7642,7 @@ export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -6892,6 +7673,7 @@ export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutPlacementsInput = {
@@ -6931,6 +7713,7 @@ export type EmployeeCreateWithoutPlacementsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -6961,6 +7744,7 @@ export type EmployeeCreateWithoutPlacementsInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutPlacementsInput = {
@@ -7000,6 +7784,7 @@ export type EmployeeUncheckedCreateWithoutPlacementsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -7030,6 +7815,7 @@ export type EmployeeUncheckedCreateWithoutPlacementsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutPlacementsInput = {
@@ -7085,6 +7871,7 @@ export type EmployeeUpdateWithoutPlacementsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -7115,6 +7902,7 @@ export type EmployeeUpdateWithoutPlacementsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
@@ -7154,6 +7942,7 @@ export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -7184,6 +7973,7 @@ export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutDepartmentTransfersInput = {
@@ -7224,6 +8014,7 @@ export type EmployeeCreateWithoutDepartmentTransfersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -7253,6 +8044,7 @@ export type EmployeeCreateWithoutDepartmentTransfersInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
@@ -7293,6 +8085,7 @@ export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -7322,6 +8115,7 @@ export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutDepartmentTransfersInput = {
@@ -7378,6 +8172,7 @@ export type EmployeeUpdateWithoutDepartmentTransfersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -7407,6 +8202,7 @@ export type EmployeeUpdateWithoutDepartmentTransfersInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
@@ -7447,6 +8243,7 @@ export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -7476,6 +8273,7 @@ export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutTransferReviewsAboutInput = {
@@ -7516,6 +8314,7 @@ export type EmployeeCreateWithoutTransferReviewsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -7545,6 +8344,7 @@ export type EmployeeCreateWithoutTransferReviewsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
@@ -7585,6 +8385,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -7614,6 +8415,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutTransferReviewsAboutInput = {
@@ -7670,6 +8472,7 @@ export type EmployeeUpdateWithoutTransferReviewsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -7699,6 +8502,7 @@ export type EmployeeUpdateWithoutTransferReviewsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
@@ -7739,6 +8543,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -7768,6 +8573,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
@@ -7808,6 +8614,7 @@ export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -7837,6 +8644,7 @@ export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
@@ -7877,6 +8685,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -7906,6 +8715,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutTransferReviewsDecidedInput = {
@@ -7962,6 +8772,7 @@ export type EmployeeUpdateWithoutTransferReviewsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -7991,6 +8802,7 @@ export type EmployeeUpdateWithoutTransferReviewsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
@@ -8031,6 +8843,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -8060,6 +8873,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutEmployeeLeavesInput = {
@@ -8100,6 +8914,7 @@ export type EmployeeCreateWithoutEmployeeLeavesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -8129,6 +8944,7 @@ export type EmployeeCreateWithoutEmployeeLeavesInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
@@ -8169,6 +8985,7 @@ export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -8198,6 +9015,7 @@ export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutEmployeeLeavesInput = {
@@ -8254,6 +9072,7 @@ export type EmployeeUpdateWithoutEmployeeLeavesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -8283,6 +9102,7 @@ export type EmployeeUpdateWithoutEmployeeLeavesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
@@ -8323,6 +9143,7 @@ export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -8352,6 +9173,7 @@ export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutOffboardingCasesInput = {
@@ -8392,6 +9214,7 @@ export type EmployeeCreateWithoutOffboardingCasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -8421,6 +9244,7 @@ export type EmployeeCreateWithoutOffboardingCasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
@@ -8461,6 +9285,7 @@ export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -8490,6 +9315,7 @@ export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutOffboardingCasesInput = {
@@ -8546,6 +9372,7 @@ export type EmployeeUpdateWithoutOffboardingCasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -8575,6 +9402,7 @@ export type EmployeeUpdateWithoutOffboardingCasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
@@ -8615,6 +9443,7 @@ export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -8644,6 +9473,7 @@ export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutNoticesAboutInput = {
@@ -8684,6 +9514,7 @@ export type EmployeeCreateWithoutNoticesAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -8713,6 +9544,7 @@ export type EmployeeCreateWithoutNoticesAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
@@ -8753,6 +9585,7 @@ export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -8782,6 +9615,7 @@ export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutNoticesAboutInput = {
@@ -8827,6 +9661,7 @@ export type EmployeeCreateWithoutNoticesSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -8856,6 +9691,7 @@ export type EmployeeCreateWithoutNoticesSentInput = {
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
@@ -8896,6 +9732,7 @@ export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -8925,6 +9762,7 @@ export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutNoticesSentInput = {
@@ -8981,6 +9819,7 @@ export type EmployeeUpdateWithoutNoticesAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -9010,6 +9849,7 @@ export type EmployeeUpdateWithoutNoticesAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
@@ -9050,6 +9890,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -9079,6 +9920,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutNoticesSentInput = {
@@ -9130,6 +9972,7 @@ export type EmployeeUpdateWithoutNoticesSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -9159,6 +10002,7 @@ export type EmployeeUpdateWithoutNoticesSentInput = {
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
@@ -9199,6 +10043,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -9228,6 +10073,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
@@ -9268,6 +10114,7 @@ export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -9297,6 +10144,7 @@ export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
@@ -9337,6 +10185,7 @@ export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -9366,6 +10215,7 @@ export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutSuperAdminEventTicketsAboutInput = {
@@ -9422,6 +10272,7 @@ export type EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -9451,6 +10302,7 @@ export type EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
@@ -9491,6 +10343,7 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -9520,6 +10373,7 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutAccessRequestsMadeInput = {
@@ -9559,6 +10413,7 @@ export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -9589,6 +10444,7 @@ export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
@@ -9628,6 +10484,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -9658,6 +10515,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAccessRequestsMadeInput = {
@@ -9702,6 +10560,7 @@ export type EmployeeCreateWithoutAccessRequestsWithdrawnInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -9732,6 +10591,7 @@ export type EmployeeCreateWithoutAccessRequestsWithdrawnInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
@@ -9771,6 +10631,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -9801,6 +10662,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAccessRequestsWithdrawnInput = {
@@ -9845,6 +10707,7 @@ export type EmployeeCreateWithoutAccessRequestsCancelledInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -9875,6 +10738,7 @@ export type EmployeeCreateWithoutAccessRequestsCancelledInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
@@ -9914,6 +10778,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -9944,6 +10809,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAccessRequestsCancelledInput = {
@@ -9999,6 +10865,7 @@ export type EmployeeUpdateWithoutAccessRequestsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -10029,6 +10896,7 @@ export type EmployeeUpdateWithoutAccessRequestsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
@@ -10068,6 +10936,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -10098,6 +10967,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutAccessRequestsWithdrawnInput = {
@@ -10148,6 +11018,7 @@ export type EmployeeUpdateWithoutAccessRequestsWithdrawnInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -10178,6 +11049,7 @@ export type EmployeeUpdateWithoutAccessRequestsWithdrawnInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
@@ -10217,6 +11089,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -10247,6 +11120,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutAccessRequestsCancelledInput = {
@@ -10297,6 +11171,7 @@ export type EmployeeUpdateWithoutAccessRequestsCancelledInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -10327,6 +11202,7 @@ export type EmployeeUpdateWithoutAccessRequestsCancelledInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
@@ -10366,6 +11242,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -10396,6 +11273,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
@@ -10436,6 +11314,7 @@ export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
@@ -10465,6 +11344,7 @@ export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
@@ -10505,6 +11385,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
@@ -10534,6 +11415,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAccessRequestBeneficiariesInput = {
@@ -10590,6 +11472,7 @@ export type EmployeeUpdateWithoutAccessRequestBeneficiariesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
@@ -10619,6 +11502,7 @@ export type EmployeeUpdateWithoutAccessRequestBeneficiariesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
@@ -10659,6 +11543,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
@@ -10688,6 +11573,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
@@ -10728,6 +11614,7 @@ export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
@@ -10757,6 +11644,7 @@ export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
@@ -10797,6 +11685,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
@@ -10826,6 +11715,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAccessRequestLinesEndedInput = {
@@ -10882,6 +11772,7 @@ export type EmployeeUpdateWithoutAccessRequestLinesEndedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
@@ -10911,6 +11802,7 @@ export type EmployeeUpdateWithoutAccessRequestLinesEndedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
@@ -10951,6 +11843,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
@@ -10980,6 +11873,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutLineDecisionsGivenInput = {
@@ -11020,6 +11914,7 @@ export type EmployeeCreateWithoutLineDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -11049,6 +11944,7 @@ export type EmployeeCreateWithoutLineDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
@@ -11089,6 +11985,7 @@ export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -11118,6 +12015,7 @@ export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutLineDecisionsGivenInput = {
@@ -11174,6 +12072,7 @@ export type EmployeeUpdateWithoutLineDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -11203,6 +12102,7 @@ export type EmployeeUpdateWithoutLineDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
@@ -11243,6 +12143,7 @@ export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -11272,6 +12173,7 @@ export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
@@ -11312,6 +12214,7 @@ export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -11341,6 +12244,7 @@ export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
@@ -11381,6 +12285,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -11410,6 +12315,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAccessRequestStepsAssignedInput = {
@@ -11466,6 +12372,7 @@ export type EmployeeUpdateWithoutAccessRequestStepsAssignedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -11495,6 +12402,7 @@ export type EmployeeUpdateWithoutAccessRequestStepsAssignedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
@@ -11535,6 +12443,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -11564,6 +12473,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
@@ -11604,6 +12514,7 @@ export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -11633,6 +12544,7 @@ export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
@@ -11673,6 +12585,7 @@ export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -11702,6 +12615,7 @@ export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutApprovalRecordsGivenInput = {
@@ -11758,6 +12672,7 @@ export type EmployeeUpdateWithoutApprovalRecordsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -11787,6 +12702,7 @@ export type EmployeeUpdateWithoutApprovalRecordsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
@@ -11827,6 +12743,7 @@ export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -11856,6 +12773,7 @@ export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
@@ -11896,6 +12814,7 @@ export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -11925,6 +12844,7 @@ export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
@@ -11965,6 +12885,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -11994,6 +12915,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAssessmentsProposedOwnerInput = {
@@ -12039,6 +12961,7 @@ export type EmployeeCreateWithoutAssessmentsRejectedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -12068,6 +12991,7 @@ export type EmployeeCreateWithoutAssessmentsRejectedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
@@ -12108,6 +13032,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -12137,6 +13062,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAssessmentsRejectedInput = {
@@ -12182,6 +13108,7 @@ export type EmployeeCreateWithoutAssessmentsSavedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -12211,6 +13138,7 @@ export type EmployeeCreateWithoutAssessmentsSavedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
@@ -12251,6 +13179,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -12280,6 +13209,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAssessmentsSavedInput = {
@@ -12325,6 +13255,7 @@ export type EmployeeCreateWithoutAssessmentsCompletedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -12354,6 +13285,7 @@ export type EmployeeCreateWithoutAssessmentsCompletedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
@@ -12394,6 +13326,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -12423,6 +13356,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAssessmentsCompletedInput = {
@@ -12479,6 +13413,7 @@ export type EmployeeUpdateWithoutAssessmentsProposedOwnerInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -12508,6 +13443,7 @@ export type EmployeeUpdateWithoutAssessmentsProposedOwnerInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
@@ -12548,6 +13484,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -12577,6 +13514,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutAssessmentsRejectedInput = {
@@ -12628,6 +13566,7 @@ export type EmployeeUpdateWithoutAssessmentsRejectedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -12657,6 +13596,7 @@ export type EmployeeUpdateWithoutAssessmentsRejectedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
@@ -12697,6 +13637,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -12726,6 +13667,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutAssessmentsSavedInput = {
@@ -12777,6 +13719,7 @@ export type EmployeeUpdateWithoutAssessmentsSavedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -12806,6 +13749,7 @@ export type EmployeeUpdateWithoutAssessmentsSavedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
@@ -12846,6 +13790,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -12875,6 +13820,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutAssessmentsCompletedInput = {
@@ -12926,6 +13872,7 @@ export type EmployeeUpdateWithoutAssessmentsCompletedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -12955,6 +13902,7 @@ export type EmployeeUpdateWithoutAssessmentsCompletedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
@@ -12995,6 +13943,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -13024,6 +13973,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
@@ -13064,6 +14014,7 @@ export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -13093,6 +14044,7 @@ export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
@@ -13133,6 +14085,7 @@ export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -13162,6 +14115,7 @@ export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutRequestBudgetChecksRunInput = {
@@ -13218,6 +14172,7 @@ export type EmployeeUpdateWithoutRequestBudgetChecksRunInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -13247,6 +14202,7 @@ export type EmployeeUpdateWithoutRequestBudgetChecksRunInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
@@ -13287,6 +14243,7 @@ export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -13316,6 +14273,7 @@ export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
@@ -13356,6 +14314,7 @@ export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -13385,6 +14344,7 @@ export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
@@ -13425,6 +14385,7 @@ export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -13454,6 +14415,7 @@ export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutRequestFinanceReviewsGivenInput = {
@@ -13510,6 +14472,7 @@ export type EmployeeUpdateWithoutRequestFinanceReviewsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -13539,6 +14502,7 @@ export type EmployeeUpdateWithoutRequestFinanceReviewsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
@@ -13579,6 +14543,7 @@ export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -13608,6 +14573,7 @@ export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
@@ -13648,6 +14614,7 @@ export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -13677,6 +14644,7 @@ export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
@@ -13717,6 +14685,7 @@ export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -13746,6 +14715,7 @@ export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutSpendBatchesSubmittedInput = {
@@ -13802,6 +14772,7 @@ export type EmployeeUpdateWithoutSpendBatchesSubmittedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -13831,6 +14802,7 @@ export type EmployeeUpdateWithoutSpendBatchesSubmittedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
@@ -13871,6 +14843,7 @@ export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -13900,6 +14873,7 @@ export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
@@ -13940,6 +14914,7 @@ export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -13969,6 +14944,7 @@ export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
@@ -14009,6 +14985,7 @@ export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -14038,6 +15015,7 @@ export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutRequestSupplementsMadeInput = {
@@ -14094,6 +15072,7 @@ export type EmployeeUpdateWithoutRequestSupplementsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -14123,6 +15102,7 @@ export type EmployeeUpdateWithoutRequestSupplementsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
@@ -14163,6 +15143,7 @@ export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -14192,6 +15173,7 @@ export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutSupplementDropsAboutInput = {
@@ -14232,6 +15214,7 @@ export type EmployeeCreateWithoutSupplementDropsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -14261,6 +15244,7 @@ export type EmployeeCreateWithoutSupplementDropsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
@@ -14301,6 +15285,7 @@ export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -14330,6 +15315,7 @@ export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutSupplementDropsAboutInput = {
@@ -14386,6 +15372,7 @@ export type EmployeeUpdateWithoutSupplementDropsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -14415,6 +15402,7 @@ export type EmployeeUpdateWithoutSupplementDropsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
@@ -14455,6 +15443,7 @@ export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -14484,6 +15473,7 @@ export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
@@ -14524,6 +15514,7 @@ export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -14553,6 +15544,7 @@ export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
@@ -14593,6 +15585,7 @@ export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -14622,6 +15615,7 @@ export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutSpendDecisionsGivenInput = {
@@ -14678,6 +15672,7 @@ export type EmployeeUpdateWithoutSpendDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -14707,6 +15702,7 @@ export type EmployeeUpdateWithoutSpendDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
@@ -14747,6 +15743,7 @@ export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -14776,6 +15773,7 @@ export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
@@ -14816,6 +15814,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -14845,6 +15844,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
@@ -14885,6 +15885,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -14914,6 +15915,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutBudgetQuestionsAskedInput = {
@@ -14959,6 +15961,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAnsweredInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -14988,6 +15991,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAnsweredInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
@@ -15028,6 +16032,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -15057,6 +16062,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutBudgetQuestionsAnsweredInput = {
@@ -15113,6 +16119,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAskedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -15142,6 +16149,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAskedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
@@ -15182,6 +16190,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -15211,6 +16220,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutBudgetQuestionsAnsweredInput = {
@@ -15262,6 +16272,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAnsweredInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -15291,6 +16302,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAnsweredInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
@@ -15331,6 +16343,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -15360,6 +16373,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
@@ -15399,6 +16413,7 @@ export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -15429,6 +16444,7 @@ export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
@@ -15468,6 +16484,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -15498,6 +16515,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutServiceAccountsAnsweredForInput = {
@@ -15542,6 +16560,7 @@ export type EmployeeCreateWithoutServiceAccountBoundariesDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -15572,6 +16591,7 @@ export type EmployeeCreateWithoutServiceAccountBoundariesDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput = {
@@ -15611,6 +16631,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput =
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -15641,6 +16662,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput =
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutServiceAccountBoundariesDecidedInput = {
@@ -15696,6 +16718,7 @@ export type EmployeeUpdateWithoutServiceAccountsAnsweredForInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -15726,6 +16749,7 @@ export type EmployeeUpdateWithoutServiceAccountsAnsweredForInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
@@ -15765,6 +16789,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -15795,6 +16820,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutServiceAccountBoundariesDecidedInput = {
@@ -15845,6 +16871,7 @@ export type EmployeeUpdateWithoutServiceAccountBoundariesDecidedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -15875,6 +16902,7 @@ export type EmployeeUpdateWithoutServiceAccountBoundariesDecidedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput = {
@@ -15914,6 +16942,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput =
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -15944,6 +16973,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput =
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutReturnRequestsSentInput = {
@@ -15983,6 +17013,7 @@ export type EmployeeCreateWithoutReturnRequestsSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -16013,6 +17044,7 @@ export type EmployeeCreateWithoutReturnRequestsSentInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
@@ -16052,6 +17084,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -16082,6 +17115,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutReturnRequestsSentInput = {
@@ -16126,6 +17160,7 @@ export type EmployeeCreateWithoutReturnRequestsHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -16156,6 +17191,7 @@ export type EmployeeCreateWithoutReturnRequestsHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
@@ -16195,6 +17231,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -16225,6 +17262,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutReturnRequestsHeldInput = {
@@ -16269,6 +17307,7 @@ export type EmployeeCreateWithoutReturnHandoversConfirmedInput = {
   returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -16299,6 +17338,7 @@ export type EmployeeCreateWithoutReturnHandoversConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
@@ -16338,6 +17378,7 @@ export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -16368,6 +17409,7 @@ export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutReturnHandoversConfirmedInput = {
@@ -16423,6 +17465,7 @@ export type EmployeeUpdateWithoutReturnRequestsSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -16453,6 +17496,7 @@ export type EmployeeUpdateWithoutReturnRequestsSentInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
@@ -16492,6 +17536,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -16522,6 +17567,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutReturnRequestsHeldInput = {
@@ -16572,6 +17618,7 @@ export type EmployeeUpdateWithoutReturnRequestsHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -16602,6 +17649,7 @@ export type EmployeeUpdateWithoutReturnRequestsHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
@@ -16641,6 +17689,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -16671,6 +17720,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUpsertWithoutReturnHandoversConfirmedInput = {
@@ -16721,6 +17771,7 @@ export type EmployeeUpdateWithoutReturnHandoversConfirmedInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -16751,6 +17802,7 @@ export type EmployeeUpdateWithoutReturnHandoversConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
@@ -16790,6 +17842,7 @@ export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
   returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -16820,6 +17873,7 @@ export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
@@ -16860,6 +17914,7 @@ export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -16889,6 +17944,7 @@ export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
@@ -16929,6 +17985,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -16958,6 +18015,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutStepSlaRemindersHeldInput = {
@@ -17014,6 +18072,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -17043,6 +18102,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
@@ -17083,6 +18143,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -17112,6 +18173,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
@@ -17152,6 +18214,7 @@ export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -17181,6 +18244,7 @@ export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
@@ -17221,6 +18285,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -17250,6 +18315,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutStepSlaRemindersReceivedInput = {
@@ -17306,6 +18372,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersReceivedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -17335,6 +18402,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersReceivedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
@@ -17375,6 +18443,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -17404,6 +18473,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
@@ -17444,6 +18514,7 @@ export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
@@ -17473,6 +18544,7 @@ export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
@@ -17513,6 +18585,7 @@ export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
@@ -17542,6 +18615,7 @@ export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutCongestionIncidentsAboutInput = {
@@ -17598,6 +18672,7 @@ export type EmployeeUpdateWithoutCongestionIncidentsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -17627,6 +18702,7 @@ export type EmployeeUpdateWithoutCongestionIncidentsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
@@ -17667,6 +18743,7 @@ export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -17696,6 +18773,7 @@ export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateManyOrganizationInput = {
@@ -17750,6 +18828,7 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
@@ -17780,6 +18859,7 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
@@ -17819,6 +18899,7 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
   handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
   handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
   handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
   accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
   accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
@@ -17849,6 +18930,7 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
   noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
   superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateManyWithoutOrganizationInput = {
@@ -17895,6 +18977,7 @@ export type EmployeeCountOutputType = {
   returnHandoversConfirmed: number
   handoverDutiesAbout: number
   handoverDutiesFixedTo: number
+  deviceRegistrationsHeld: number
   handoverDutiesConfirmed: number
   accessRequestBeneficiaries: number
   accessRequestLinesEnded: number
@@ -17951,6 +19034,7 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   returnHandoversConfirmed?: boolean | EmployeeCountOutputTypeCountReturnHandoversConfirmedArgs
   handoverDutiesAbout?: boolean | EmployeeCountOutputTypeCountHandoverDutiesAboutArgs
   handoverDutiesFixedTo?: boolean | EmployeeCountOutputTypeCountHandoverDutiesFixedToArgs
+  deviceRegistrationsHeld?: boolean | EmployeeCountOutputTypeCountDeviceRegistrationsHeldArgs
   handoverDutiesConfirmed?: boolean | EmployeeCountOutputTypeCountHandoverDutiesConfirmedArgs
   accessRequestBeneficiaries?: boolean | EmployeeCountOutputTypeCountAccessRequestBeneficiariesArgs
   accessRequestLinesEnded?: boolean | EmployeeCountOutputTypeCountAccessRequestLinesEndedArgs
@@ -18152,6 +19236,13 @@ export type EmployeeCountOutputTypeCountHandoverDutiesAboutArgs<ExtArgs extends 
  */
 export type EmployeeCountOutputTypeCountHandoverDutiesFixedToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.HandoverDutyWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountDeviceRegistrationsHeldArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceRegistrationWhereInput
 }
 
 /**
@@ -18404,6 +19495,7 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   returnHandoversConfirmed?: boolean | Prisma.Employee$returnHandoversConfirmedArgs<ExtArgs>
   handoverDutiesAbout?: boolean | Prisma.Employee$handoverDutiesAboutArgs<ExtArgs>
   handoverDutiesFixedTo?: boolean | Prisma.Employee$handoverDutiesFixedToArgs<ExtArgs>
+  deviceRegistrationsHeld?: boolean | Prisma.Employee$deviceRegistrationsHeldArgs<ExtArgs>
   handoverDutiesConfirmed?: boolean | Prisma.Employee$handoverDutiesConfirmedArgs<ExtArgs>
   accessRequestBeneficiaries?: boolean | Prisma.Employee$accessRequestBeneficiariesArgs<ExtArgs>
   accessRequestLinesEnded?: boolean | Prisma.Employee$accessRequestLinesEndedArgs<ExtArgs>
@@ -18434,6 +19526,7 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   noticesAbout?: boolean | Prisma.Employee$noticesAboutArgs<ExtArgs>
   noticesSent?: boolean | Prisma.Employee$noticesSentArgs<ExtArgs>
   superAdminEventTicketsAbout?: boolean | Prisma.Employee$superAdminEventTicketsAboutArgs<ExtArgs>
+  accessBlock?: boolean | Prisma.Employee$accessBlockArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employee"]>
 
@@ -18514,6 +19607,7 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   returnHandoversConfirmed?: boolean | Prisma.Employee$returnHandoversConfirmedArgs<ExtArgs>
   handoverDutiesAbout?: boolean | Prisma.Employee$handoverDutiesAboutArgs<ExtArgs>
   handoverDutiesFixedTo?: boolean | Prisma.Employee$handoverDutiesFixedToArgs<ExtArgs>
+  deviceRegistrationsHeld?: boolean | Prisma.Employee$deviceRegistrationsHeldArgs<ExtArgs>
   handoverDutiesConfirmed?: boolean | Prisma.Employee$handoverDutiesConfirmedArgs<ExtArgs>
   accessRequestBeneficiaries?: boolean | Prisma.Employee$accessRequestBeneficiariesArgs<ExtArgs>
   accessRequestLinesEnded?: boolean | Prisma.Employee$accessRequestLinesEndedArgs<ExtArgs>
@@ -18544,6 +19638,7 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   noticesAbout?: boolean | Prisma.Employee$noticesAboutArgs<ExtArgs>
   noticesSent?: boolean | Prisma.Employee$noticesSentArgs<ExtArgs>
   superAdminEventTicketsAbout?: boolean | Prisma.Employee$superAdminEventTicketsAboutArgs<ExtArgs>
+  accessBlock?: boolean | Prisma.Employee$accessBlockArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -18581,6 +19676,7 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     returnHandoversConfirmed: Prisma.$ReturnRequestPayload<ExtArgs>[]
     handoverDutiesAbout: Prisma.$HandoverDutyPayload<ExtArgs>[]
     handoverDutiesFixedTo: Prisma.$HandoverDutyPayload<ExtArgs>[]
+    deviceRegistrationsHeld: Prisma.$DeviceRegistrationPayload<ExtArgs>[]
     handoverDutiesConfirmed: Prisma.$HandoverDutyPayload<ExtArgs>[]
     accessRequestBeneficiaries: Prisma.$AccessRequestBeneficiaryPayload<ExtArgs>[]
     accessRequestLinesEnded: Prisma.$AccessRequestLinePayload<ExtArgs>[]
@@ -18611,6 +19707,7 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     noticesAbout: Prisma.$PersonnelNoticePayload<ExtArgs>[]
     noticesSent: Prisma.$PersonnelNoticePayload<ExtArgs>[]
     superAdminEventTicketsAbout: Prisma.$SuperAdminEventTicketPayload<ExtArgs>[]
+    accessBlock: Prisma.$EmployeeAccessBlockPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -19045,6 +20142,7 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   returnHandoversConfirmed<T extends Prisma.Employee$returnHandoversConfirmedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$returnHandoversConfirmedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   handoverDutiesAbout<T extends Prisma.Employee$handoverDutiesAboutArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$handoverDutiesAboutArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HandoverDutyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   handoverDutiesFixedTo<T extends Prisma.Employee$handoverDutiesFixedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$handoverDutiesFixedToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HandoverDutyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  deviceRegistrationsHeld<T extends Prisma.Employee$deviceRegistrationsHeldArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$deviceRegistrationsHeldArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   handoverDutiesConfirmed<T extends Prisma.Employee$handoverDutiesConfirmedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$handoverDutiesConfirmedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HandoverDutyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessRequestBeneficiaries<T extends Prisma.Employee$accessRequestBeneficiariesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$accessRequestBeneficiariesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestBeneficiaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessRequestLinesEnded<T extends Prisma.Employee$accessRequestLinesEndedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$accessRequestLinesEndedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -19075,6 +20173,7 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   noticesAbout<T extends Prisma.Employee$noticesAboutArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$noticesAboutArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonnelNoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   noticesSent<T extends Prisma.Employee$noticesSentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$noticesSentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonnelNoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   superAdminEventTicketsAbout<T extends Prisma.Employee$superAdminEventTicketsAboutArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$superAdminEventTicketsAboutArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SuperAdminEventTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessBlock<T extends Prisma.Employee$accessBlockArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$accessBlockArgs<ExtArgs>>): Prisma.Prisma__EmployeeAccessBlockClient<runtime.Types.Result.GetResult<Prisma.$EmployeeAccessBlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20089,6 +21188,30 @@ export type Employee$handoverDutiesFixedToArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
+ * Employee.deviceRegistrationsHeld
+ */
+export type Employee$deviceRegistrationsHeldArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeviceRegistration
+   */
+  select?: Prisma.DeviceRegistrationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeviceRegistration
+   */
+  omit?: Prisma.DeviceRegistrationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceRegistrationInclude<ExtArgs> | null
+  where?: Prisma.DeviceRegistrationWhereInput
+  orderBy?: Prisma.DeviceRegistrationOrderByWithRelationInput | Prisma.DeviceRegistrationOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceRegistrationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceRegistrationScalarFieldEnum | Prisma.DeviceRegistrationScalarFieldEnum[]
+}
+
+/**
  * Employee.handoverDutiesConfirmed
  */
 export type Employee$handoverDutiesConfirmedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -20806,6 +21929,25 @@ export type Employee$superAdminEventTicketsAboutArgs<ExtArgs extends runtime.Typ
   take?: number
   skip?: number
   distinct?: Prisma.SuperAdminEventTicketScalarFieldEnum | Prisma.SuperAdminEventTicketScalarFieldEnum[]
+}
+
+/**
+ * Employee.accessBlock
+ */
+export type Employee$accessBlockArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmployeeAccessBlock
+   */
+  select?: Prisma.EmployeeAccessBlockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmployeeAccessBlock
+   */
+  omit?: Prisma.EmployeeAccessBlockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeAccessBlockInclude<ExtArgs> | null
+  where?: Prisma.EmployeeAccessBlockWhereInput
 }
 
 /**

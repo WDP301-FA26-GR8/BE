@@ -18,6 +18,16 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model AiInvocation
+ * 
+ */
+export type AiInvocation = Prisma.AiInvocationModel
+/**
+ * Model AiInvocationContent
+ * 
+ */
+export type AiInvocationContent = Prisma.AiInvocationContentModel
+/**
  * Model AuditEvent
  * 
  */
@@ -179,6 +189,51 @@ export type SeatBaselineImport = Prisma.SeatBaselineImportModel
  */
 export type SeatBaselineImportRow = Prisma.SeatBaselineImportRowModel
 /**
+ * Model ManagedDevice
+ * 
+ */
+export type ManagedDevice = Prisma.ManagedDeviceModel
+/**
+ * Model DeviceRegistration
+ * 
+ */
+export type DeviceRegistration = Prisma.DeviceRegistrationModel
+/**
+ * Model MonitoringNoticeVersion
+ * 
+ */
+export type MonitoringNoticeVersion = Prisma.MonitoringNoticeVersionModel
+/**
+ * Model DeviceSignatureRecord
+ * 
+ */
+export type DeviceSignatureRecord = Prisma.DeviceSignatureRecordModel
+/**
+ * Model DeviceAcknowledgement
+ * 
+ */
+export type DeviceAcknowledgement = Prisma.DeviceAcknowledgementModel
+/**
+ * Model DeviceStopRequest
+ * 
+ */
+export type DeviceStopRequest = Prisma.DeviceStopRequestModel
+/**
+ * Model DeviceEnrollmentCode
+ * 
+ */
+export type DeviceEnrollmentCode = Prisma.DeviceEnrollmentCodeModel
+/**
+ * Model DeviceEnrollmentUse
+ * 
+ */
+export type DeviceEnrollmentUse = Prisma.DeviceEnrollmentUseModel
+/**
+ * Model DeviceCredential
+ * 
+ */
+export type DeviceCredential = Prisma.DeviceCredentialModel
+/**
  * Model Currency
  * 
  */
@@ -243,6 +298,11 @@ export type AccountActionToken = Prisma.AccountActionTokenModel
  * 
  */
 export type RecoveryTicket = Prisma.RecoveryTicketModel
+/**
+ * Model EmployeeAccessBlock
+ * 
+ */
+export type EmployeeAccessBlock = Prisma.EmployeeAccessBlockModel
 /**
  * Model LicenseAssignment
  * 
@@ -586,3 +646,33 @@ export type StepSlaReminderRecipient = Prisma.StepSlaReminderRecipientModel
  * audit trail keeps its actors.
  */
 export type CongestionIncident = Prisma.CongestionIncidentModel
+/**
+ * Model CollectorAllowlistVersion
+ * 
+ */
+export type CollectorAllowlistVersion = Prisma.CollectorAllowlistVersionModel
+/**
+ * Model CollectorAllowlistEntry
+ * 
+ */
+export type CollectorAllowlistEntry = Prisma.CollectorAllowlistEntryModel
+/**
+ * Model AiUsageDay
+ * 
+ */
+export type AiUsageDay = Prisma.AiUsageDayModel
+/**
+ * Model ToolStatusSnapshot
+ * 
+ */
+export type ToolStatusSnapshot = Prisma.ToolStatusSnapshotModel
+/**
+ * Model ToolStatusWindow
+ * 
+ */
+export type ToolStatusWindow = Prisma.ToolStatusWindowModel
+/**
+ * Model IntakeRejection
+ * 
+ */
+export type IntakeRejection = Prisma.IntakeRejectionModel

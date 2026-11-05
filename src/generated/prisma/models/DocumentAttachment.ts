@@ -46,6 +46,7 @@ export type DocumentAttachmentMinAggregateOutputType = {
   finalObjectKey: string | null
   uploadedByAppUserId: string | null
   contractId: string | null
+  signerEmployeeId: string | null
   attachedAt: Date | null
   createdAt: Date | null
 }
@@ -62,6 +63,7 @@ export type DocumentAttachmentMaxAggregateOutputType = {
   finalObjectKey: string | null
   uploadedByAppUserId: string | null
   contractId: string | null
+  signerEmployeeId: string | null
   attachedAt: Date | null
   createdAt: Date | null
 }
@@ -78,6 +80,7 @@ export type DocumentAttachmentCountAggregateOutputType = {
   finalObjectKey: number
   uploadedByAppUserId: number
   contractId: number
+  signerEmployeeId: number
   attachedAt: number
   createdAt: number
   _all: number
@@ -104,6 +107,7 @@ export type DocumentAttachmentMinAggregateInputType = {
   finalObjectKey?: true
   uploadedByAppUserId?: true
   contractId?: true
+  signerEmployeeId?: true
   attachedAt?: true
   createdAt?: true
 }
@@ -120,6 +124,7 @@ export type DocumentAttachmentMaxAggregateInputType = {
   finalObjectKey?: true
   uploadedByAppUserId?: true
   contractId?: true
+  signerEmployeeId?: true
   attachedAt?: true
   createdAt?: true
 }
@@ -136,6 +141,7 @@ export type DocumentAttachmentCountAggregateInputType = {
   finalObjectKey?: true
   uploadedByAppUserId?: true
   contractId?: true
+  signerEmployeeId?: true
   attachedAt?: true
   createdAt?: true
   _all?: true
@@ -239,6 +245,7 @@ export type DocumentAttachmentGroupByOutputType = {
   finalObjectKey: string | null
   uploadedByAppUserId: string
   contractId: string | null
+  signerEmployeeId: string | null
   attachedAt: Date | null
   createdAt: Date
   _count: DocumentAttachmentCountAggregateOutputType | null
@@ -278,6 +285,7 @@ export type DocumentAttachmentWhereInput = {
   finalObjectKey?: Prisma.StringNullableFilter<"DocumentAttachment"> | string | null
   uploadedByAppUserId?: Prisma.UuidFilter<"DocumentAttachment"> | string
   contractId?: Prisma.UuidNullableFilter<"DocumentAttachment"> | string | null
+  signerEmployeeId?: Prisma.UuidNullableFilter<"DocumentAttachment"> | string | null
   attachedAt?: Prisma.DateTimeNullableFilter<"DocumentAttachment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"DocumentAttachment"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -296,6 +304,7 @@ export type DocumentAttachmentOrderByWithRelationInput = {
   finalObjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedByAppUserId?: Prisma.SortOrder
   contractId?: Prisma.SortOrderInput | Prisma.SortOrder
+  signerEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   attachedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -317,6 +326,7 @@ export type DocumentAttachmentWhereUniqueInput = Prisma.AtLeast<{
   sizeBytes?: Prisma.IntFilter<"DocumentAttachment"> | number
   uploadedByAppUserId?: Prisma.UuidFilter<"DocumentAttachment"> | string
   contractId?: Prisma.UuidNullableFilter<"DocumentAttachment"> | string | null
+  signerEmployeeId?: Prisma.UuidNullableFilter<"DocumentAttachment"> | string | null
   attachedAt?: Prisma.DateTimeNullableFilter<"DocumentAttachment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"DocumentAttachment"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -335,6 +345,7 @@ export type DocumentAttachmentOrderByWithAggregationInput = {
   finalObjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedByAppUserId?: Prisma.SortOrder
   contractId?: Prisma.SortOrderInput | Prisma.SortOrder
+  signerEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   attachedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.DocumentAttachmentCountOrderByAggregateInput
@@ -359,6 +370,7 @@ export type DocumentAttachmentScalarWhereWithAggregatesInput = {
   finalObjectKey?: Prisma.StringNullableWithAggregatesFilter<"DocumentAttachment"> | string | null
   uploadedByAppUserId?: Prisma.UuidWithAggregatesFilter<"DocumentAttachment"> | string
   contractId?: Prisma.UuidNullableWithAggregatesFilter<"DocumentAttachment"> | string | null
+  signerEmployeeId?: Prisma.UuidNullableWithAggregatesFilter<"DocumentAttachment"> | string | null
   attachedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DocumentAttachment"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"DocumentAttachment"> | Date | string
 }
@@ -373,6 +385,7 @@ export type DocumentAttachmentCreateInput = {
   objectKey: string
   finalObjectKey?: string | null
   uploadedByAppUserId: string
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutDocumentAttachmentsInput
@@ -391,6 +404,7 @@ export type DocumentAttachmentUncheckedCreateInput = {
   finalObjectKey?: string | null
   uploadedByAppUserId: string
   contractId?: string | null
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -405,6 +419,7 @@ export type DocumentAttachmentUpdateInput = {
   objectKey?: Prisma.StringFieldUpdateOperationsInput | string
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDocumentAttachmentsNestedInput
@@ -423,6 +438,7 @@ export type DocumentAttachmentUncheckedUpdateInput = {
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -439,6 +455,7 @@ export type DocumentAttachmentCreateManyInput = {
   finalObjectKey?: string | null
   uploadedByAppUserId: string
   contractId?: string | null
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -453,6 +470,7 @@ export type DocumentAttachmentUpdateManyMutationInput = {
   objectKey?: Prisma.StringFieldUpdateOperationsInput | string
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -469,6 +487,7 @@ export type DocumentAttachmentUncheckedUpdateManyInput = {
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -495,6 +514,7 @@ export type DocumentAttachmentCountOrderByAggregateInput = {
   finalObjectKey?: Prisma.SortOrder
   uploadedByAppUserId?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
+  signerEmployeeId?: Prisma.SortOrder
   attachedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -515,6 +535,7 @@ export type DocumentAttachmentMaxOrderByAggregateInput = {
   finalObjectKey?: Prisma.SortOrder
   uploadedByAppUserId?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
+  signerEmployeeId?: Prisma.SortOrder
   attachedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -531,6 +552,7 @@ export type DocumentAttachmentMinOrderByAggregateInput = {
   finalObjectKey?: Prisma.SortOrder
   uploadedByAppUserId?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
+  signerEmployeeId?: Prisma.SortOrder
   attachedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -641,6 +663,7 @@ export type DocumentAttachmentCreateWithoutContractInput = {
   objectKey: string
   finalObjectKey?: string | null
   uploadedByAppUserId: string
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutDocumentAttachmentsInput
@@ -657,6 +680,7 @@ export type DocumentAttachmentUncheckedCreateWithoutContractInput = {
   objectKey: string
   finalObjectKey?: string | null
   uploadedByAppUserId: string
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -702,6 +726,7 @@ export type DocumentAttachmentScalarWhereInput = {
   finalObjectKey?: Prisma.StringNullableFilter<"DocumentAttachment"> | string | null
   uploadedByAppUserId?: Prisma.UuidFilter<"DocumentAttachment"> | string
   contractId?: Prisma.UuidNullableFilter<"DocumentAttachment"> | string | null
+  signerEmployeeId?: Prisma.UuidNullableFilter<"DocumentAttachment"> | string | null
   attachedAt?: Prisma.DateTimeNullableFilter<"DocumentAttachment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"DocumentAttachment"> | Date | string
 }
@@ -716,6 +741,7 @@ export type DocumentAttachmentCreateWithoutOrganizationInput = {
   objectKey: string
   finalObjectKey?: string | null
   uploadedByAppUserId: string
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
   contract?: Prisma.ContractCreateNestedOneWithoutDocumentsInput
@@ -732,6 +758,7 @@ export type DocumentAttachmentUncheckedCreateWithoutOrganizationInput = {
   finalObjectKey?: string | null
   uploadedByAppUserId: string
   contractId?: string | null
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -773,6 +800,7 @@ export type DocumentAttachmentCreateManyContractInput = {
   objectKey: string
   finalObjectKey?: string | null
   uploadedByAppUserId: string
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -787,6 +815,7 @@ export type DocumentAttachmentUpdateWithoutContractInput = {
   objectKey?: Prisma.StringFieldUpdateOperationsInput | string
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDocumentAttachmentsNestedInput
@@ -803,6 +832,7 @@ export type DocumentAttachmentUncheckedUpdateWithoutContractInput = {
   objectKey?: Prisma.StringFieldUpdateOperationsInput | string
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -818,6 +848,7 @@ export type DocumentAttachmentUncheckedUpdateManyWithoutContractInput = {
   objectKey?: Prisma.StringFieldUpdateOperationsInput | string
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -833,6 +864,7 @@ export type DocumentAttachmentCreateManyOrganizationInput = {
   finalObjectKey?: string | null
   uploadedByAppUserId: string
   contractId?: string | null
+  signerEmployeeId?: string | null
   attachedAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -847,6 +879,7 @@ export type DocumentAttachmentUpdateWithoutOrganizationInput = {
   objectKey?: Prisma.StringFieldUpdateOperationsInput | string
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   contract?: Prisma.ContractUpdateOneWithoutDocumentsNestedInput
@@ -863,6 +896,7 @@ export type DocumentAttachmentUncheckedUpdateWithoutOrganizationInput = {
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -878,6 +912,7 @@ export type DocumentAttachmentUncheckedUpdateManyWithoutOrganizationInput = {
   finalObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -896,6 +931,7 @@ export type DocumentAttachmentSelect<ExtArgs extends runtime.Types.Extensions.In
   finalObjectKey?: boolean
   uploadedByAppUserId?: boolean
   contractId?: boolean
+  signerEmployeeId?: boolean
   attachedAt?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -914,6 +950,7 @@ export type DocumentAttachmentSelectCreateManyAndReturn<ExtArgs extends runtime.
   finalObjectKey?: boolean
   uploadedByAppUserId?: boolean
   contractId?: boolean
+  signerEmployeeId?: boolean
   attachedAt?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -932,6 +969,7 @@ export type DocumentAttachmentSelectUpdateManyAndReturn<ExtArgs extends runtime.
   finalObjectKey?: boolean
   uploadedByAppUserId?: boolean
   contractId?: boolean
+  signerEmployeeId?: boolean
   attachedAt?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -950,11 +988,12 @@ export type DocumentAttachmentSelectScalar = {
   finalObjectKey?: boolean
   uploadedByAppUserId?: boolean
   contractId?: boolean
+  signerEmployeeId?: boolean
   attachedAt?: boolean
   createdAt?: boolean
 }
 
-export type DocumentAttachmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "purpose" | "status" | "fileName" | "contentType" | "sizeBytes" | "objectKey" | "finalObjectKey" | "uploadedByAppUserId" | "contractId" | "attachedAt" | "createdAt", ExtArgs["result"]["documentAttachment"]>
+export type DocumentAttachmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "purpose" | "status" | "fileName" | "contentType" | "sizeBytes" | "objectKey" | "finalObjectKey" | "uploadedByAppUserId" | "contractId" | "signerEmployeeId" | "attachedAt" | "createdAt", ExtArgs["result"]["documentAttachment"]>
 export type DocumentAttachmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   contract?: boolean | Prisma.DocumentAttachment$contractArgs<ExtArgs>
@@ -986,6 +1025,7 @@ export type $DocumentAttachmentPayload<ExtArgs extends runtime.Types.Extensions.
     finalObjectKey: string | null
     uploadedByAppUserId: string
     contractId: string | null
+    signerEmployeeId: string | null
     attachedAt: Date | null
     createdAt: Date
   }, ExtArgs["result"]["documentAttachment"]>
@@ -1424,6 +1464,7 @@ export interface DocumentAttachmentFieldRefs {
   readonly finalObjectKey: Prisma.FieldRef<"DocumentAttachment", 'String'>
   readonly uploadedByAppUserId: Prisma.FieldRef<"DocumentAttachment", 'String'>
   readonly contractId: Prisma.FieldRef<"DocumentAttachment", 'String'>
+  readonly signerEmployeeId: Prisma.FieldRef<"DocumentAttachment", 'String'>
   readonly attachedAt: Prisma.FieldRef<"DocumentAttachment", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"DocumentAttachment", 'DateTime'>
 }

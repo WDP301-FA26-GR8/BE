@@ -33,7 +33,7 @@ export type OffboardingCaseMinAggregateOutputType = {
   cancelledPlacementDepartmentId: string | null
   cancelledPlacementFrom: Date | null
   state: $Enums.OffboardingState | null
-  abrupt: boolean | null
+  accessBlockMode: $Enums.OffboardingAccessBlockMode | null
   priorWorkState: $Enums.EmployeeWorkState | null
   lastWorkingDay: Date | null
   departureEffectiveOn: Date | null
@@ -70,7 +70,7 @@ export type OffboardingCaseMaxAggregateOutputType = {
   cancelledPlacementDepartmentId: string | null
   cancelledPlacementFrom: Date | null
   state: $Enums.OffboardingState | null
-  abrupt: boolean | null
+  accessBlockMode: $Enums.OffboardingAccessBlockMode | null
   priorWorkState: $Enums.EmployeeWorkState | null
   lastWorkingDay: Date | null
   departureEffectiveOn: Date | null
@@ -107,7 +107,7 @@ export type OffboardingCaseCountAggregateOutputType = {
   cancelledPlacementDepartmentId: number
   cancelledPlacementFrom: number
   state: number
-  abrupt: number
+  accessBlockMode: number
   priorWorkState: number
   lastWorkingDay: number
   departureEffectiveOn: number
@@ -148,7 +148,7 @@ export type OffboardingCaseMinAggregateInputType = {
   cancelledPlacementDepartmentId?: true
   cancelledPlacementFrom?: true
   state?: true
-  abrupt?: true
+  accessBlockMode?: true
   priorWorkState?: true
   lastWorkingDay?: true
   departureEffectiveOn?: true
@@ -185,7 +185,7 @@ export type OffboardingCaseMaxAggregateInputType = {
   cancelledPlacementDepartmentId?: true
   cancelledPlacementFrom?: true
   state?: true
-  abrupt?: true
+  accessBlockMode?: true
   priorWorkState?: true
   lastWorkingDay?: true
   departureEffectiveOn?: true
@@ -222,7 +222,7 @@ export type OffboardingCaseCountAggregateInputType = {
   cancelledPlacementDepartmentId?: true
   cancelledPlacementFrom?: true
   state?: true
-  abrupt?: true
+  accessBlockMode?: true
   priorWorkState?: true
   lastWorkingDay?: true
   departureEffectiveOn?: true
@@ -334,7 +334,7 @@ export type OffboardingCaseGroupByOutputType = {
   cancelledPlacementDepartmentId: string | null
   cancelledPlacementFrom: Date | null
   state: $Enums.OffboardingState
-  abrupt: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date
   departureEffectiveOn: Date
@@ -394,7 +394,7 @@ export type OffboardingCaseWhereInput = {
   cancelledPlacementDepartmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   cancelledPlacementFrom?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateFilter<"OffboardingCase"> | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFilter<"OffboardingCase"> | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFilter<"OffboardingCase"> | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
@@ -441,7 +441,7 @@ export type OffboardingCaseOrderByWithRelationInput = {
   cancelledPlacementDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledPlacementFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   state?: Prisma.SortOrder
-  abrupt?: Prisma.SortOrder
+  accessBlockMode?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
@@ -492,7 +492,7 @@ export type OffboardingCaseWhereUniqueInput = Prisma.AtLeast<{
   cancelledPlacementDepartmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   cancelledPlacementFrom?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateFilter<"OffboardingCase"> | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFilter<"OffboardingCase"> | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFilter<"OffboardingCase"> | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
@@ -538,7 +538,7 @@ export type OffboardingCaseOrderByWithAggregationInput = {
   cancelledPlacementDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledPlacementFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   state?: Prisma.SortOrder
-  abrupt?: Prisma.SortOrder
+  accessBlockMode?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
@@ -583,7 +583,7 @@ export type OffboardingCaseScalarWhereWithAggregatesInput = {
   cancelledPlacementDepartmentId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
   cancelledPlacementFrom?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateWithAggregatesFilter<"OffboardingCase"> | $Enums.OffboardingState
-  abrupt?: Prisma.BoolWithAggregatesFilter<"OffboardingCase"> | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeWithAggregatesFilter<"OffboardingCase"> | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateWithAggregatesFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeWithAggregatesFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeWithAggregatesFilter<"OffboardingCase"> | Date | string
@@ -618,7 +618,7 @@ export type OffboardingCaseCreateInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -662,7 +662,7 @@ export type OffboardingCaseUncheckedCreateInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -698,7 +698,7 @@ export type OffboardingCaseUpdateInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -742,7 +742,7 @@ export type OffboardingCaseUncheckedUpdateInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -782,7 +782,7 @@ export type OffboardingCaseCreateManyInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -817,7 +817,7 @@ export type OffboardingCaseUpdateManyMutationInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -853,7 +853,7 @@ export type OffboardingCaseUncheckedUpdateManyInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -910,7 +910,7 @@ export type OffboardingCaseCountOrderByAggregateInput = {
   cancelledPlacementDepartmentId?: Prisma.SortOrder
   cancelledPlacementFrom?: Prisma.SortOrder
   state?: Prisma.SortOrder
-  abrupt?: Prisma.SortOrder
+  accessBlockMode?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
@@ -949,7 +949,7 @@ export type OffboardingCaseMaxOrderByAggregateInput = {
   cancelledPlacementDepartmentId?: Prisma.SortOrder
   cancelledPlacementFrom?: Prisma.SortOrder
   state?: Prisma.SortOrder
-  abrupt?: Prisma.SortOrder
+  accessBlockMode?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
@@ -986,7 +986,7 @@ export type OffboardingCaseMinOrderByAggregateInput = {
   cancelledPlacementDepartmentId?: Prisma.SortOrder
   cancelledPlacementFrom?: Prisma.SortOrder
   state?: Prisma.SortOrder
-  abrupt?: Prisma.SortOrder
+  accessBlockMode?: Prisma.SortOrder
   priorWorkState?: Prisma.SortOrder
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
@@ -1200,6 +1200,10 @@ export type EnumOffboardingStateFieldUpdateOperationsInput = {
   set?: $Enums.OffboardingState
 }
 
+export type EnumOffboardingAccessBlockModeFieldUpdateOperationsInput = {
+  set?: $Enums.OffboardingAccessBlockMode
+}
+
 export type OffboardingCaseUpdateroleFlagsInput = {
   set?: $Enums.OffboardingRoleFlag[]
   push?: $Enums.OffboardingRoleFlag | $Enums.OffboardingRoleFlag[]
@@ -1340,7 +1344,7 @@ export type OffboardingCaseCreateWithoutOrganizationInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1382,7 +1386,7 @@ export type OffboardingCaseUncheckedCreateWithoutOrganizationInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1451,7 +1455,7 @@ export type OffboardingCaseScalarWhereInput = {
   cancelledPlacementDepartmentId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   cancelledPlacementFrom?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   state?: Prisma.EnumOffboardingStateFilter<"OffboardingCase"> | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFilter<"OffboardingCase"> | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFilter<"OffboardingCase"> | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFilter<"OffboardingCase"> | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
@@ -1486,7 +1490,7 @@ export type OffboardingCaseCreateWithoutDepartmentInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1528,7 +1532,7 @@ export type OffboardingCaseUncheckedCreateWithoutDepartmentInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1574,7 +1578,7 @@ export type OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1616,7 +1620,7 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInp
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1694,7 +1698,7 @@ export type OffboardingCaseCreateWithoutEmployeeInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1736,7 +1740,7 @@ export type OffboardingCaseUncheckedCreateWithoutEmployeeInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1798,7 +1802,7 @@ export type OffboardingCaseCreateWithoutChangesInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1841,7 +1845,7 @@ export type OffboardingCaseUncheckedCreateWithoutChangesInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -1892,7 +1896,7 @@ export type OffboardingCaseUpdateWithoutChangesInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1935,7 +1939,7 @@ export type OffboardingCaseUncheckedUpdateWithoutChangesInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1970,7 +1974,7 @@ export type OffboardingCaseCreateWithoutNoticeInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2013,7 +2017,7 @@ export type OffboardingCaseUncheckedCreateWithoutNoticeInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2064,7 +2068,7 @@ export type OffboardingCaseUpdateWithoutNoticeInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2107,7 +2111,7 @@ export type OffboardingCaseUncheckedUpdateWithoutNoticeInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2142,7 +2146,7 @@ export type OffboardingCaseCreateWithoutRecordedByTicketInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2185,7 +2189,7 @@ export type OffboardingCaseUncheckedCreateWithoutRecordedByTicketInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2230,7 +2234,7 @@ export type OffboardingCaseCreateWithoutCancelledByTicketInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2273,7 +2277,7 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledByTicketInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2353,7 +2357,7 @@ export type OffboardingCaseCreateManyOrganizationInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2388,7 +2392,7 @@ export type OffboardingCaseUpdateWithoutOrganizationInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2430,7 +2434,7 @@ export type OffboardingCaseUncheckedUpdateWithoutOrganizationInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2469,7 +2473,7 @@ export type OffboardingCaseUncheckedUpdateManyWithoutOrganizationInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2507,7 +2511,7 @@ export type OffboardingCaseCreateManyDepartmentInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2545,7 +2549,7 @@ export type OffboardingCaseCreateManyCancelledPlacementDepartmentInput = {
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2580,7 +2584,7 @@ export type OffboardingCaseUpdateWithoutDepartmentInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2622,7 +2626,7 @@ export type OffboardingCaseUncheckedUpdateWithoutDepartmentInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2661,7 +2665,7 @@ export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2696,7 +2700,7 @@ export type OffboardingCaseUpdateWithoutCancelledPlacementDepartmentInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2738,7 +2742,7 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInp
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2777,7 +2781,7 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmen
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2815,7 +2819,7 @@ export type OffboardingCaseCreateManyEmployeeInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -2850,7 +2854,7 @@ export type OffboardingCaseUpdateWithoutEmployeeInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2892,7 +2896,7 @@ export type OffboardingCaseUncheckedUpdateWithoutEmployeeInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2931,7 +2935,7 @@ export type OffboardingCaseUncheckedUpdateManyWithoutEmployeeInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2970,7 +2974,7 @@ export type OffboardingCaseCreateManyRecordedByTicketInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -3008,7 +3012,7 @@ export type OffboardingCaseCreateManyCancelledByTicketInput = {
   cancelledPlacementDepartmentId?: string | null
   cancelledPlacementFrom?: Date | string | null
   state?: $Enums.OffboardingState
-  abrupt?: boolean
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
   priorWorkState: $Enums.EmployeeWorkState
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
@@ -3042,7 +3046,7 @@ export type OffboardingCaseUpdateWithoutRecordedByTicketInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3085,7 +3089,7 @@ export type OffboardingCaseUncheckedUpdateWithoutRecordedByTicketInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3124,7 +3128,7 @@ export type OffboardingCaseUncheckedUpdateManyWithoutRecordedByTicketInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3158,7 +3162,7 @@ export type OffboardingCaseUpdateWithoutCancelledByTicketInput = {
   cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3201,7 +3205,7 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledByTicketInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3240,7 +3244,7 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketInput = {
   cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
-  abrupt?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
   priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3309,7 +3313,7 @@ export type OffboardingCaseSelect<ExtArgs extends runtime.Types.Extensions.Inter
   cancelledPlacementDepartmentId?: boolean
   cancelledPlacementFrom?: boolean
   state?: boolean
-  abrupt?: boolean
+  accessBlockMode?: boolean
   priorWorkState?: boolean
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
@@ -3357,7 +3361,7 @@ export type OffboardingCaseSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   cancelledPlacementDepartmentId?: boolean
   cancelledPlacementFrom?: boolean
   state?: boolean
-  abrupt?: boolean
+  accessBlockMode?: boolean
   priorWorkState?: boolean
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
@@ -3403,7 +3407,7 @@ export type OffboardingCaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   cancelledPlacementDepartmentId?: boolean
   cancelledPlacementFrom?: boolean
   state?: boolean
-  abrupt?: boolean
+  accessBlockMode?: boolean
   priorWorkState?: boolean
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
@@ -3449,7 +3453,7 @@ export type OffboardingCaseSelectScalar = {
   cancelledPlacementDepartmentId?: boolean
   cancelledPlacementFrom?: boolean
   state?: boolean
-  abrupt?: boolean
+  accessBlockMode?: boolean
   priorWorkState?: boolean
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
@@ -3479,7 +3483,7 @@ export type OffboardingCaseSelectScalar = {
   noticeId?: boolean
 }
 
-export type OffboardingCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "departmentId" | "cancelledPlacementId" | "cancelledPlacementDepartmentId" | "cancelledPlacementFrom" | "state" | "abrupt" | "priorWorkState" | "lastWorkingDay" | "departureEffectiveOn" | "handoverDueOn" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "headHandover" | "placementClosedId" | "leftOn" | "leftAt" | "leftByAppUserId" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelReason" | "accountLockByAppUserId" | "accountLockAt" | "accountLockNote" | "closedAt" | "closedByAppUserId" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "roleFlags" | "noticeId", ExtArgs["result"]["offboardingCase"]>
+export type OffboardingCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "departmentId" | "cancelledPlacementId" | "cancelledPlacementDepartmentId" | "cancelledPlacementFrom" | "state" | "accessBlockMode" | "priorWorkState" | "lastWorkingDay" | "departureEffectiveOn" | "handoverDueOn" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "headHandover" | "placementClosedId" | "leftOn" | "leftAt" | "leftByAppUserId" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelReason" | "accountLockByAppUserId" | "accountLockAt" | "accountLockNote" | "closedAt" | "closedByAppUserId" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "roleFlags" | "noticeId", ExtArgs["result"]["offboardingCase"]>
 export type OffboardingCaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
@@ -3531,7 +3535,7 @@ export type $OffboardingCasePayload<ExtArgs extends runtime.Types.Extensions.Int
     cancelledPlacementDepartmentId: string | null
     cancelledPlacementFrom: Date | null
     state: $Enums.OffboardingState
-    abrupt: boolean
+    accessBlockMode: $Enums.OffboardingAccessBlockMode
     priorWorkState: $Enums.EmployeeWorkState
     lastWorkingDay: Date
     departureEffectiveOn: Date
@@ -3998,7 +4002,7 @@ export interface OffboardingCaseFieldRefs {
   readonly cancelledPlacementDepartmentId: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly cancelledPlacementFrom: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly state: Prisma.FieldRef<"OffboardingCase", 'OffboardingState'>
-  readonly abrupt: Prisma.FieldRef<"OffboardingCase", 'Boolean'>
+  readonly accessBlockMode: Prisma.FieldRef<"OffboardingCase", 'OffboardingAccessBlockMode'>
   readonly priorWorkState: Prisma.FieldRef<"OffboardingCase", 'EmployeeWorkState'>
   readonly lastWorkingDay: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly departureEffectiveOn: Prisma.FieldRef<"OffboardingCase", 'DateTime'>

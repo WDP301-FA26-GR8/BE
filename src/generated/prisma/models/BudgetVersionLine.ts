@@ -264,10 +264,10 @@ export type BudgetVersionLineGroupByOutputType = {
   planId: string | null
   seats: number | null
   amountMinor: bigint
-  windowFrom: Date
-  windowTo: Date
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom: Date | null
+  windowTo: Date | null
+  servicePeriodMonths: number | null
+  repeatCycle: $Enums.BudgetRepeatCycle | null
   quoteValidUntil: Date | null
   financeComment: string | null
   adjustmentReason: string | null
@@ -305,10 +305,10 @@ export type BudgetVersionLineWhereInput = {
   planId?: Prisma.UuidNullableFilter<"BudgetVersionLine"> | string | null
   seats?: Prisma.IntNullableFilter<"BudgetVersionLine"> | number | null
   amountMinor?: Prisma.BigIntFilter<"BudgetVersionLine"> | bigint | number
-  windowFrom?: Prisma.DateTimeFilter<"BudgetVersionLine"> | Date | string
-  windowTo?: Prisma.DateTimeFilter<"BudgetVersionLine"> | Date | string
-  servicePeriodMonths?: Prisma.IntFilter<"BudgetVersionLine"> | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
+  windowTo?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
+  servicePeriodMonths?: Prisma.IntNullableFilter<"BudgetVersionLine"> | number | null
+  repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
   financeComment?: Prisma.StringNullableFilter<"BudgetVersionLine"> | string | null
   adjustmentReason?: Prisma.StringNullableFilter<"BudgetVersionLine"> | string | null
@@ -327,10 +327,10 @@ export type BudgetVersionLineOrderByWithRelationInput = {
   planId?: Prisma.SortOrderInput | Prisma.SortOrder
   seats?: Prisma.SortOrderInput | Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
-  windowFrom?: Prisma.SortOrder
-  windowTo?: Prisma.SortOrder
-  servicePeriodMonths?: Prisma.SortOrder
-  repeatCycle?: Prisma.SortOrder
+  windowFrom?: Prisma.SortOrderInput | Prisma.SortOrder
+  windowTo?: Prisma.SortOrderInput | Prisma.SortOrder
+  servicePeriodMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  repeatCycle?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   financeComment?: Prisma.SortOrderInput | Prisma.SortOrder
   adjustmentReason?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -353,10 +353,10 @@ export type BudgetVersionLineWhereUniqueInput = Prisma.AtLeast<{
   planId?: Prisma.UuidNullableFilter<"BudgetVersionLine"> | string | null
   seats?: Prisma.IntNullableFilter<"BudgetVersionLine"> | number | null
   amountMinor?: Prisma.BigIntFilter<"BudgetVersionLine"> | bigint | number
-  windowFrom?: Prisma.DateTimeFilter<"BudgetVersionLine"> | Date | string
-  windowTo?: Prisma.DateTimeFilter<"BudgetVersionLine"> | Date | string
-  servicePeriodMonths?: Prisma.IntFilter<"BudgetVersionLine"> | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
+  windowTo?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
+  servicePeriodMonths?: Prisma.IntNullableFilter<"BudgetVersionLine"> | number | null
+  repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
   financeComment?: Prisma.StringNullableFilter<"BudgetVersionLine"> | string | null
   adjustmentReason?: Prisma.StringNullableFilter<"BudgetVersionLine"> | string | null
@@ -375,10 +375,10 @@ export type BudgetVersionLineOrderByWithAggregationInput = {
   planId?: Prisma.SortOrderInput | Prisma.SortOrder
   seats?: Prisma.SortOrderInput | Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
-  windowFrom?: Prisma.SortOrder
-  windowTo?: Prisma.SortOrder
-  servicePeriodMonths?: Prisma.SortOrder
-  repeatCycle?: Prisma.SortOrder
+  windowFrom?: Prisma.SortOrderInput | Prisma.SortOrder
+  windowTo?: Prisma.SortOrderInput | Prisma.SortOrder
+  servicePeriodMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  repeatCycle?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   financeComment?: Prisma.SortOrderInput | Prisma.SortOrder
   adjustmentReason?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -401,10 +401,10 @@ export type BudgetVersionLineScalarWhereWithAggregatesInput = {
   planId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetVersionLine"> | string | null
   seats?: Prisma.IntNullableWithAggregatesFilter<"BudgetVersionLine"> | number | null
   amountMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetVersionLine"> | bigint | number
-  windowFrom?: Prisma.DateTimeWithAggregatesFilter<"BudgetVersionLine"> | Date | string
-  windowTo?: Prisma.DateTimeWithAggregatesFilter<"BudgetVersionLine"> | Date | string
-  servicePeriodMonths?: Prisma.IntWithAggregatesFilter<"BudgetVersionLine"> | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleWithAggregatesFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.DateTimeNullableWithAggregatesFilter<"BudgetVersionLine"> | Date | string | null
+  windowTo?: Prisma.DateTimeNullableWithAggregatesFilter<"BudgetVersionLine"> | Date | string | null
+  servicePeriodMonths?: Prisma.IntNullableWithAggregatesFilter<"BudgetVersionLine"> | number | null
+  repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableWithAggregatesFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"BudgetVersionLine"> | Date | string | null
   financeComment?: Prisma.StringNullableWithAggregatesFilter<"BudgetVersionLine"> | string | null
   adjustmentReason?: Prisma.StringNullableWithAggregatesFilter<"BudgetVersionLine"> | string | null
@@ -415,10 +415,10 @@ export type BudgetVersionLineCreateInput = {
   description: string
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -437,10 +437,10 @@ export type BudgetVersionLineUncheckedCreateInput = {
   planId?: string | null
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -452,10 +452,10 @@ export type BudgetVersionLineUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -474,10 +474,10 @@ export type BudgetVersionLineUncheckedUpdateInput = {
   planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -493,10 +493,10 @@ export type BudgetVersionLineCreateManyInput = {
   planId?: string | null
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -507,10 +507,10 @@ export type BudgetVersionLineUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -525,10 +525,10 @@ export type BudgetVersionLineUncheckedUpdateManyInput = {
   planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -769,10 +769,10 @@ export type BudgetVersionLineCreateWithoutProposalLineInput = {
   description: string
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -788,10 +788,10 @@ export type BudgetVersionLineUncheckedCreateWithoutProposalLineInput = {
   planId?: string | null
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -836,10 +836,10 @@ export type BudgetVersionLineScalarWhereInput = {
   planId?: Prisma.UuidNullableFilter<"BudgetVersionLine"> | string | null
   seats?: Prisma.IntNullableFilter<"BudgetVersionLine"> | number | null
   amountMinor?: Prisma.BigIntFilter<"BudgetVersionLine"> | bigint | number
-  windowFrom?: Prisma.DateTimeFilter<"BudgetVersionLine"> | Date | string
-  windowTo?: Prisma.DateTimeFilter<"BudgetVersionLine"> | Date | string
-  servicePeriodMonths?: Prisma.IntFilter<"BudgetVersionLine"> | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
+  windowTo?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
+  servicePeriodMonths?: Prisma.IntNullableFilter<"BudgetVersionLine"> | number | null
+  repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableFilter<"BudgetVersionLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"BudgetVersionLine"> | Date | string | null
   financeComment?: Prisma.StringNullableFilter<"BudgetVersionLine"> | string | null
   adjustmentReason?: Prisma.StringNullableFilter<"BudgetVersionLine"> | string | null
@@ -850,10 +850,10 @@ export type BudgetVersionLineCreateWithoutVersionInput = {
   description: string
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -870,10 +870,10 @@ export type BudgetVersionLineUncheckedCreateWithoutVersionInput = {
   planId?: string | null
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -911,10 +911,10 @@ export type BudgetVersionLineCreateWithoutChangesInput = {
   description: string
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -932,10 +932,10 @@ export type BudgetVersionLineUncheckedCreateWithoutChangesInput = {
   planId?: string | null
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -962,10 +962,10 @@ export type BudgetVersionLineUpdateWithoutChangesInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -983,10 +983,10 @@ export type BudgetVersionLineUncheckedUpdateWithoutChangesInput = {
   planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -997,10 +997,10 @@ export type BudgetVersionLineCreateWithoutPlanInput = {
   description: string
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -1017,10 +1017,10 @@ export type BudgetVersionLineUncheckedCreateWithoutPlanInput = {
   description: string
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -1060,10 +1060,10 @@ export type BudgetVersionLineCreateManyProposalLineInput = {
   planId?: string | null
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -1074,10 +1074,10 @@ export type BudgetVersionLineUpdateWithoutProposalLineInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1093,10 +1093,10 @@ export type BudgetVersionLineUncheckedUpdateWithoutProposalLineInput = {
   planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1110,10 +1110,10 @@ export type BudgetVersionLineUncheckedUpdateManyWithoutProposalLineInput = {
   planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1127,10 +1127,10 @@ export type BudgetVersionLineCreateManyVersionInput = {
   planId?: string | null
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -1141,10 +1141,10 @@ export type BudgetVersionLineUpdateWithoutVersionInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1161,10 +1161,10 @@ export type BudgetVersionLineUncheckedUpdateWithoutVersionInput = {
   planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1179,10 +1179,10 @@ export type BudgetVersionLineUncheckedUpdateManyWithoutVersionInput = {
   planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1196,10 +1196,10 @@ export type BudgetVersionLineCreateManyPlanInput = {
   description: string
   seats?: number | null
   amountMinor: bigint | number
-  windowFrom: Date | string
-  windowTo: Date | string
-  servicePeriodMonths: number
-  repeatCycle: $Enums.BudgetRepeatCycle
+  windowFrom?: Date | string | null
+  windowTo?: Date | string | null
+  servicePeriodMonths?: number | null
+  repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
@@ -1210,10 +1210,10 @@ export type BudgetVersionLineUpdateWithoutPlanInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1230,10 +1230,10 @@ export type BudgetVersionLineUncheckedUpdateWithoutPlanInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1248,10 +1248,10 @@ export type BudgetVersionLineUncheckedUpdateManyWithoutPlanInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  windowFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  windowTo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servicePeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number
-  repeatCycle?: Prisma.EnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle
+  windowFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  windowTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicePeriodMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   financeComment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1407,10 +1407,10 @@ export type $BudgetVersionLinePayload<ExtArgs extends runtime.Types.Extensions.I
     planId: string | null
     seats: number | null
     amountMinor: bigint
-    windowFrom: Date
-    windowTo: Date
-    servicePeriodMonths: number
-    repeatCycle: $Enums.BudgetRepeatCycle
+    windowFrom: Date | null
+    windowTo: Date | null
+    servicePeriodMonths: number | null
+    repeatCycle: $Enums.BudgetRepeatCycle | null
     quoteValidUntil: Date | null
     financeComment: string | null
     adjustmentReason: string | null
