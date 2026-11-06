@@ -109,6 +109,15 @@ export const CommitmentReleaseReason = {
 export type CommitmentReleaseReason = (typeof CommitmentReleaseReason)[keyof typeof CommitmentReleaseReason]
 
 
+export const InvoiceMatchResult = {
+  MATCHED: 'MATCHED',
+  TAX_ONLY: 'TAX_ONLY',
+  PRICE_QUANTITY_EXCEPTION: 'PRICE_QUANTITY_EXCEPTION'
+} as const
+
+export type InvoiceMatchResult = (typeof InvoiceMatchResult)[keyof typeof InvoiceMatchResult]
+
+
 export const BudgetVersionHistoryKind = {
   FIGURES_UPDATED: 'FIGURES_UPDATED',
   LINE_UPDATED: 'LINE_UPDATED',

@@ -203,6 +203,7 @@ export type VendorWhereInput = {
   applications?: Prisma.ApplicationListRelationFilter
   taxProfile?: Prisma.XOR<Prisma.VendorTaxProfileNullableScalarRelationFilter, Prisma.VendorTaxProfileWhereInput> | null
   assessments?: Prisma.AccessRequestAssessmentListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
 }
 
 export type VendorOrderByWithRelationInput = {
@@ -218,6 +219,7 @@ export type VendorOrderByWithRelationInput = {
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
   taxProfile?: Prisma.VendorTaxProfileOrderByWithRelationInput
   assessments?: Prisma.AccessRequestAssessmentOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
 }
 
 export type VendorWhereUniqueInput = Prisma.AtLeast<{
@@ -238,6 +240,7 @@ export type VendorWhereUniqueInput = Prisma.AtLeast<{
   applications?: Prisma.ApplicationListRelationFilter
   taxProfile?: Prisma.XOR<Prisma.VendorTaxProfileNullableScalarRelationFilter, Prisma.VendorTaxProfileWhereInput> | null
   assessments?: Prisma.AccessRequestAssessmentListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
 }, "id" | "organizationId_normalizedName" | "organizationId_dictionaryGroupId">
 
 export type VendorOrderByWithAggregationInput = {
@@ -277,6 +280,7 @@ export type VendorCreateInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateInput = {
@@ -290,6 +294,7 @@ export type VendorUncheckedCreateInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUpdateInput = {
@@ -303,6 +308,7 @@ export type VendorUpdateInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateInput = {
@@ -316,6 +322,7 @@ export type VendorUncheckedUpdateInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateManyInput = {
@@ -344,6 +351,11 @@ export type VendorUncheckedUpdateManyInput = {
   dictionaryGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type VendorScalarRelationFilter = {
+  is?: Prisma.VendorWhereInput
+  isNot?: Prisma.VendorWhereInput
 }
 
 export type VendorListRelationFilter = {
@@ -401,9 +413,18 @@ export type VendorNullableScalarRelationFilter = {
   isNot?: Prisma.VendorWhereInput | null
 }
 
-export type VendorScalarRelationFilter = {
-  is?: Prisma.VendorWhereInput
-  isNot?: Prisma.VendorWhereInput
+export type VendorCreateNestedOneWithoutInvoicesInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutInvoicesInput, Prisma.VendorUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutInvoicesInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneRequiredWithoutInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutInvoicesInput, Prisma.VendorUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutInvoicesInput
+  upsert?: Prisma.VendorUpsertWithoutInvoicesInput
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutInvoicesInput, Prisma.VendorUpdateWithoutInvoicesInput>, Prisma.VendorUncheckedUpdateWithoutInvoicesInput>
 }
 
 export type VendorCreateNestedManyWithoutDictionaryGroupInput = {
@@ -536,6 +557,74 @@ export type VendorUpdateOneWithoutAssessmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutAssessmentsInput, Prisma.VendorUpdateWithoutAssessmentsInput>, Prisma.VendorUncheckedUpdateWithoutAssessmentsInput>
 }
 
+export type VendorCreateWithoutInvoicesInput = {
+  id?: string
+  name: string
+  normalizedName: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutVendorsInput
+  dictionaryGroup?: Prisma.VendorGroupCreateNestedOneWithoutVendorsInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutVendorInput
+  taxProfile?: Prisma.VendorTaxProfileCreateNestedOneWithoutVendorInput
+  assessments?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutVendorInput
+}
+
+export type VendorUncheckedCreateWithoutInvoicesInput = {
+  id?: string
+  organizationId: string
+  name: string
+  normalizedName: string
+  dictionaryGroupId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutVendorInput
+  taxProfile?: Prisma.VendorTaxProfileUncheckedCreateNestedOneWithoutVendorInput
+  assessments?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutVendorInput
+}
+
+export type VendorCreateOrConnectWithoutInvoicesInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutInvoicesInput, Prisma.VendorUncheckedCreateWithoutInvoicesInput>
+}
+
+export type VendorUpsertWithoutInvoicesInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutInvoicesInput, Prisma.VendorUncheckedUpdateWithoutInvoicesInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutInvoicesInput, Prisma.VendorUncheckedCreateWithoutInvoicesInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutInvoicesInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutInvoicesInput, Prisma.VendorUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type VendorUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutVendorsNestedInput
+  dictionaryGroup?: Prisma.VendorGroupUpdateOneWithoutVendorsNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutVendorNestedInput
+  taxProfile?: Prisma.VendorTaxProfileUpdateOneWithoutVendorNestedInput
+  assessments?: Prisma.AccessRequestAssessmentUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dictionaryGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutVendorNestedInput
+  taxProfile?: Prisma.VendorTaxProfileUncheckedUpdateOneWithoutVendorNestedInput
+  assessments?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutVendorNestedInput
+}
+
 export type VendorCreateWithoutDictionaryGroupInput = {
   id?: string
   name: string
@@ -546,6 +635,7 @@ export type VendorCreateWithoutDictionaryGroupInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutDictionaryGroupInput = {
@@ -558,6 +648,7 @@ export type VendorUncheckedCreateWithoutDictionaryGroupInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutDictionaryGroupInput = {
@@ -609,6 +700,7 @@ export type VendorCreateWithoutApplicationsInput = {
   dictionaryGroup?: Prisma.VendorGroupCreateNestedOneWithoutVendorsInput
   taxProfile?: Prisma.VendorTaxProfileCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutApplicationsInput = {
@@ -621,6 +713,7 @@ export type VendorUncheckedCreateWithoutApplicationsInput = {
   updatedAt?: Date | string
   taxProfile?: Prisma.VendorTaxProfileUncheckedCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutApplicationsInput = {
@@ -649,6 +742,7 @@ export type VendorUpdateWithoutApplicationsInput = {
   dictionaryGroup?: Prisma.VendorGroupUpdateOneWithoutVendorsNestedInput
   taxProfile?: Prisma.VendorTaxProfileUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutApplicationsInput = {
@@ -661,6 +755,7 @@ export type VendorUncheckedUpdateWithoutApplicationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   taxProfile?: Prisma.VendorTaxProfileUncheckedUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutTaxProfileInput = {
@@ -673,6 +768,7 @@ export type VendorCreateWithoutTaxProfileInput = {
   dictionaryGroup?: Prisma.VendorGroupCreateNestedOneWithoutVendorsInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutTaxProfileInput = {
@@ -685,6 +781,7 @@ export type VendorUncheckedCreateWithoutTaxProfileInput = {
   updatedAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutTaxProfileInput = {
@@ -713,6 +810,7 @@ export type VendorUpdateWithoutTaxProfileInput = {
   dictionaryGroup?: Prisma.VendorGroupUpdateOneWithoutVendorsNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutTaxProfileInput = {
@@ -725,6 +823,7 @@ export type VendorUncheckedUpdateWithoutTaxProfileInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutOrganizationInput = {
@@ -737,6 +836,7 @@ export type VendorCreateWithoutOrganizationInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutOrganizationInput = {
@@ -749,6 +849,7 @@ export type VendorUncheckedCreateWithoutOrganizationInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedCreateNestedOneWithoutVendorInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutVendorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutOrganizationInput = {
@@ -787,6 +888,7 @@ export type VendorCreateWithoutAssessmentsInput = {
   dictionaryGroup?: Prisma.VendorGroupCreateNestedOneWithoutVendorsInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileCreateNestedOneWithoutVendorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutAssessmentsInput = {
@@ -799,6 +901,7 @@ export type VendorUncheckedCreateWithoutAssessmentsInput = {
   updatedAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutVendorInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedCreateNestedOneWithoutVendorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutAssessmentsInput = {
@@ -827,6 +930,7 @@ export type VendorUpdateWithoutAssessmentsInput = {
   dictionaryGroup?: Prisma.VendorGroupUpdateOneWithoutVendorsNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUpdateOneWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutAssessmentsInput = {
@@ -839,6 +943,7 @@ export type VendorUncheckedUpdateWithoutAssessmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedUpdateOneWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateManyDictionaryGroupInput = {
@@ -860,6 +965,7 @@ export type VendorUpdateWithoutDictionaryGroupInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutDictionaryGroupInput = {
@@ -872,6 +978,7 @@ export type VendorUncheckedUpdateWithoutDictionaryGroupInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateManyWithoutDictionaryGroupInput = {
@@ -902,6 +1009,7 @@ export type VendorUpdateWithoutOrganizationInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutOrganizationInput = {
@@ -914,6 +1022,7 @@ export type VendorUncheckedUpdateWithoutOrganizationInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutVendorNestedInput
   taxProfile?: Prisma.VendorTaxProfileUncheckedUpdateOneWithoutVendorNestedInput
   assessments?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutVendorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateManyWithoutOrganizationInput = {
@@ -933,11 +1042,13 @@ export type VendorUncheckedUpdateManyWithoutOrganizationInput = {
 export type VendorCountOutputType = {
   applications: number
   assessments: number
+  invoices: number
 }
 
 export type VendorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   applications?: boolean | VendorCountOutputTypeCountApplicationsArgs
   assessments?: boolean | VendorCountOutputTypeCountAssessmentsArgs
+  invoices?: boolean | VendorCountOutputTypeCountInvoicesArgs
 }
 
 /**
@@ -964,6 +1075,13 @@ export type VendorCountOutputTypeCountAssessmentsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.AccessRequestAssessmentWhereInput
 }
 
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceWhereInput
+}
+
 
 export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -978,6 +1096,7 @@ export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   applications?: boolean | Prisma.Vendor$applicationsArgs<ExtArgs>
   taxProfile?: boolean | Prisma.Vendor$taxProfileArgs<ExtArgs>
   assessments?: boolean | Prisma.Vendor$assessmentsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Vendor$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vendor"]>
 
@@ -1022,6 +1141,7 @@ export type VendorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   applications?: boolean | Prisma.Vendor$applicationsArgs<ExtArgs>
   taxProfile?: boolean | Prisma.Vendor$taxProfileArgs<ExtArgs>
   assessments?: boolean | Prisma.Vendor$assessmentsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Vendor$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VendorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1041,6 +1161,7 @@ export type $VendorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     applications: Prisma.$ApplicationPayload<ExtArgs>[]
     taxProfile: Prisma.$VendorTaxProfilePayload<ExtArgs> | null
     assessments: Prisma.$AccessRequestAssessmentPayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1449,6 +1570,7 @@ export interface Prisma__VendorClient<T, Null = never, ExtArgs extends runtime.T
   applications<T extends Prisma.Vendor$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   taxProfile<T extends Prisma.Vendor$taxProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$taxProfileArgs<ExtArgs>>): Prisma.Prisma__VendorTaxProfileClient<runtime.Types.Result.GetResult<Prisma.$VendorTaxProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   assessments<T extends Prisma.Vendor$assessmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$assessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.Vendor$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1969,6 +2091,30 @@ export type Vendor$assessmentsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.AccessRequestAssessmentScalarFieldEnum | Prisma.AccessRequestAssessmentScalarFieldEnum[]
+}
+
+/**
+ * Vendor.invoices
+ */
+export type Vendor$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invoice
+   */
+  select?: Prisma.InvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invoice
+   */
+  omit?: Prisma.InvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceInclude<ExtArgs> | null
+  where?: Prisma.InvoiceWhereInput
+  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
 }
 
 /**

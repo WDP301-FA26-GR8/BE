@@ -210,6 +210,7 @@ export type CurrencyWhereInput = {
   budgetProposals?: Prisma.BudgetProposalListRelationFilter
   budgetVersions?: Prisma.BudgetVersionListRelationFilter
   budgetCommitments?: Prisma.BudgetCommitmentListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
   organizations?: Prisma.OrganizationListRelationFilter
 }
 
@@ -227,6 +228,7 @@ export type CurrencyOrderByWithRelationInput = {
   budgetProposals?: Prisma.BudgetProposalOrderByRelationAggregateInput
   budgetVersions?: Prisma.BudgetVersionOrderByRelationAggregateInput
   budgetCommitments?: Prisma.BudgetCommitmentOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   organizations?: Prisma.OrganizationOrderByRelationAggregateInput
 }
 
@@ -247,6 +249,7 @@ export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
   budgetProposals?: Prisma.BudgetProposalListRelationFilter
   budgetVersions?: Prisma.BudgetVersionListRelationFilter
   budgetCommitments?: Prisma.BudgetCommitmentListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
   organizations?: Prisma.OrganizationListRelationFilter
 }, "code">
 
@@ -284,6 +287,7 @@ export type CurrencyCreateInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -301,6 +305,7 @@ export type CurrencyUncheckedCreateInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -318,6 +323,7 @@ export type CurrencyUpdateInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -335,6 +341,7 @@ export type CurrencyUncheckedUpdateInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -432,6 +439,20 @@ export type CurrencyUpdateOneRequiredWithoutBudgetCommitmentsNestedInput = {
   upsert?: Prisma.CurrencyUpsertWithoutBudgetCommitmentsInput
   connect?: Prisma.CurrencyWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutBudgetCommitmentsInput, Prisma.CurrencyUpdateWithoutBudgetCommitmentsInput>, Prisma.CurrencyUncheckedUpdateWithoutBudgetCommitmentsInput>
+}
+
+export type CurrencyCreateNestedOneWithoutInvoicesInput = {
+  create?: Prisma.XOR<Prisma.CurrencyCreateWithoutInvoicesInput, Prisma.CurrencyUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutInvoicesInput
+  connect?: Prisma.CurrencyWhereUniqueInput
+}
+
+export type CurrencyUpdateOneRequiredWithoutInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.CurrencyCreateWithoutInvoicesInput, Prisma.CurrencyUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutInvoicesInput
+  upsert?: Prisma.CurrencyUpsertWithoutInvoicesInput
+  connect?: Prisma.CurrencyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutInvoicesInput, Prisma.CurrencyUpdateWithoutInvoicesInput>, Prisma.CurrencyUncheckedUpdateWithoutInvoicesInput>
 }
 
 export type CurrencyCreateNestedOneWithoutSubscriptionsInput = {
@@ -565,6 +586,7 @@ export type CurrencyCreateWithoutBudgetProposalsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -581,6 +603,7 @@ export type CurrencyUncheckedCreateWithoutBudgetProposalsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -613,6 +636,7 @@ export type CurrencyUpdateWithoutBudgetProposalsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -629,6 +653,7 @@ export type CurrencyUncheckedUpdateWithoutBudgetProposalsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -645,6 +670,7 @@ export type CurrencyCreateWithoutBudgetVersionsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -661,6 +687,7 @@ export type CurrencyUncheckedCreateWithoutBudgetVersionsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -693,6 +720,7 @@ export type CurrencyUpdateWithoutBudgetVersionsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -709,6 +737,7 @@ export type CurrencyUncheckedUpdateWithoutBudgetVersionsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -725,6 +754,7 @@ export type CurrencyCreateWithoutBudgetCommitmentsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -741,6 +771,7 @@ export type CurrencyUncheckedCreateWithoutBudgetCommitmentsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -773,6 +804,7 @@ export type CurrencyUpdateWithoutBudgetCommitmentsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -789,6 +821,91 @@ export type CurrencyUncheckedUpdateWithoutBudgetCommitmentsInput = {
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
+}
+
+export type CurrencyCreateWithoutInvoicesInput = {
+  code: string
+  name: string
+  minorUnit: number
+  rates?: Prisma.ExchangeRateCreateNestedManyWithoutCurrencyRefInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
+  accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
+  lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
+}
+
+export type CurrencyUncheckedCreateWithoutInvoicesInput = {
+  code: string
+  name: string
+  minorUnit: number
+  rates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutCurrencyRefInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
+  accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
+}
+
+export type CurrencyCreateOrConnectWithoutInvoicesInput = {
+  where: Prisma.CurrencyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CurrencyCreateWithoutInvoicesInput, Prisma.CurrencyUncheckedCreateWithoutInvoicesInput>
+}
+
+export type CurrencyUpsertWithoutInvoicesInput = {
+  update: Prisma.XOR<Prisma.CurrencyUpdateWithoutInvoicesInput, Prisma.CurrencyUncheckedUpdateWithoutInvoicesInput>
+  create: Prisma.XOR<Prisma.CurrencyCreateWithoutInvoicesInput, Prisma.CurrencyUncheckedCreateWithoutInvoicesInput>
+  where?: Prisma.CurrencyWhereInput
+}
+
+export type CurrencyUpdateToOneWithWhereWithoutInvoicesInput = {
+  where?: Prisma.CurrencyWhereInput
+  data: Prisma.XOR<Prisma.CurrencyUpdateWithoutInvoicesInput, Prisma.CurrencyUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type CurrencyUpdateWithoutInvoicesInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  minorUnit?: Prisma.IntFieldUpdateOperationsInput | number
+  rates?: Prisma.ExchangeRateUpdateManyWithoutCurrencyRefNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
+  accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
+}
+
+export type CurrencyUncheckedUpdateWithoutInvoicesInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  minorUnit?: Prisma.IntFieldUpdateOperationsInput | number
+  rates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutCurrencyRefNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
+  accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -805,6 +922,7 @@ export type CurrencyCreateWithoutSubscriptionsInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -821,6 +939,7 @@ export type CurrencyUncheckedCreateWithoutSubscriptionsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -853,6 +972,7 @@ export type CurrencyUpdateWithoutSubscriptionsInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -869,6 +989,7 @@ export type CurrencyUncheckedUpdateWithoutSubscriptionsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -885,6 +1006,7 @@ export type CurrencyCreateWithoutRatesInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -901,6 +1023,7 @@ export type CurrencyUncheckedCreateWithoutRatesInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -933,6 +1056,7 @@ export type CurrencyUpdateWithoutRatesInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -949,6 +1073,7 @@ export type CurrencyUncheckedUpdateWithoutRatesInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -966,6 +1091,7 @@ export type CurrencyCreateWithoutOrganizationsInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
 }
 
 export type CurrencyUncheckedCreateWithoutOrganizationsInput = {
@@ -982,6 +1108,7 @@ export type CurrencyUncheckedCreateWithoutOrganizationsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
 }
 
 export type CurrencyCreateOrConnectWithoutOrganizationsInput = {
@@ -1014,6 +1141,7 @@ export type CurrencyUpdateWithoutOrganizationsInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
 }
 
 export type CurrencyUncheckedUpdateWithoutOrganizationsInput = {
@@ -1030,6 +1158,7 @@ export type CurrencyUncheckedUpdateWithoutOrganizationsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
 }
 
 export type CurrencyCreateWithoutAccessRequestAmountsInput = {
@@ -1045,6 +1174,7 @@ export type CurrencyCreateWithoutAccessRequestAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1061,6 +1191,7 @@ export type CurrencyUncheckedCreateWithoutAccessRequestAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1093,6 +1224,7 @@ export type CurrencyUpdateWithoutAccessRequestAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1109,6 +1241,7 @@ export type CurrencyUncheckedUpdateWithoutAccessRequestAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1125,6 +1258,7 @@ export type CurrencyCreateWithoutLineAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1141,6 +1275,7 @@ export type CurrencyUncheckedCreateWithoutLineAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1173,6 +1308,7 @@ export type CurrencyUpdateWithoutLineAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1189,6 +1325,7 @@ export type CurrencyUncheckedUpdateWithoutLineAmountsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1205,6 +1342,7 @@ export type CurrencyCreateWithoutAssessmentQuotesInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1221,6 +1359,7 @@ export type CurrencyUncheckedCreateWithoutAssessmentQuotesInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1253,6 +1392,7 @@ export type CurrencyUpdateWithoutAssessmentQuotesInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1269,6 +1409,7 @@ export type CurrencyUncheckedUpdateWithoutAssessmentQuotesInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1285,6 +1426,7 @@ export type CurrencyCreateWithoutRequestBudgetChecksInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1301,6 +1443,7 @@ export type CurrencyUncheckedCreateWithoutRequestBudgetChecksInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1333,6 +1476,7 @@ export type CurrencyUpdateWithoutRequestBudgetChecksInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1349,6 +1493,7 @@ export type CurrencyUncheckedUpdateWithoutRequestBudgetChecksInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1365,6 +1510,7 @@ export type CurrencyCreateWithoutRequestSupplementsInput = {
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1381,6 +1527,7 @@ export type CurrencyUncheckedCreateWithoutRequestSupplementsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
   organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
 }
 
@@ -1413,6 +1560,7 @@ export type CurrencyUpdateWithoutRequestSupplementsInput = {
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1429,6 +1577,7 @@ export type CurrencyUncheckedUpdateWithoutRequestSupplementsInput = {
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
 }
 
@@ -1448,6 +1597,7 @@ export type CurrencyCountOutputType = {
   budgetProposals: number
   budgetVersions: number
   budgetCommitments: number
+  invoices: number
   organizations: number
 }
 
@@ -1462,6 +1612,7 @@ export type CurrencyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   budgetProposals?: boolean | CurrencyCountOutputTypeCountBudgetProposalsArgs
   budgetVersions?: boolean | CurrencyCountOutputTypeCountBudgetVersionsArgs
   budgetCommitments?: boolean | CurrencyCountOutputTypeCountBudgetCommitmentsArgs
+  invoices?: boolean | CurrencyCountOutputTypeCountInvoicesArgs
   organizations?: boolean | CurrencyCountOutputTypeCountOrganizationsArgs
 }
 
@@ -1548,6 +1699,13 @@ export type CurrencyCountOutputTypeCountBudgetCommitmentsArgs<ExtArgs extends ru
 /**
  * CurrencyCountOutputType without action
  */
+export type CurrencyCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * CurrencyCountOutputType without action
+ */
 export type CurrencyCountOutputTypeCountOrganizationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.OrganizationWhereInput
 }
@@ -1567,6 +1725,7 @@ export type CurrencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   budgetProposals?: boolean | Prisma.Currency$budgetProposalsArgs<ExtArgs>
   budgetVersions?: boolean | Prisma.Currency$budgetVersionsArgs<ExtArgs>
   budgetCommitments?: boolean | Prisma.Currency$budgetCommitmentsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Currency$invoicesArgs<ExtArgs>
   organizations?: boolean | Prisma.Currency$organizationsArgs<ExtArgs>
   _count?: boolean | Prisma.CurrencyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["currency"]>
@@ -1601,6 +1760,7 @@ export type CurrencyInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   budgetProposals?: boolean | Prisma.Currency$budgetProposalsArgs<ExtArgs>
   budgetVersions?: boolean | Prisma.Currency$budgetVersionsArgs<ExtArgs>
   budgetCommitments?: boolean | Prisma.Currency$budgetCommitmentsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Currency$invoicesArgs<ExtArgs>
   organizations?: boolean | Prisma.Currency$organizationsArgs<ExtArgs>
   _count?: boolean | Prisma.CurrencyCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1620,6 +1780,7 @@ export type $CurrencyPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     budgetProposals: Prisma.$BudgetProposalPayload<ExtArgs>[]
     budgetVersions: Prisma.$BudgetVersionPayload<ExtArgs>[]
     budgetCommitments: Prisma.$BudgetCommitmentPayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
     organizations: Prisma.$OrganizationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2030,6 +2191,7 @@ export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends runtime
   budgetProposals<T extends Prisma.Currency$budgetProposalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$budgetProposalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetProposalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetVersions<T extends Prisma.Currency$budgetVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$budgetVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetCommitments<T extends Prisma.Currency$budgetCommitmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$budgetCommitmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.Currency$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   organizations<T extends Prisma.Currency$organizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$organizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2693,6 +2855,30 @@ export type Currency$budgetCommitmentsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.BudgetCommitmentScalarFieldEnum | Prisma.BudgetCommitmentScalarFieldEnum[]
+}
+
+/**
+ * Currency.invoices
+ */
+export type Currency$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invoice
+   */
+  select?: Prisma.InvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invoice
+   */
+  omit?: Prisma.InvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceInclude<ExtArgs> | null
+  where?: Prisma.InvoiceWhereInput
+  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
 }
 
 /**

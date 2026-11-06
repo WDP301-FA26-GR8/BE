@@ -74,6 +74,13 @@ export type BudgetCommitment = Prisma.BudgetCommitmentModel
  */
 export type BudgetCommitmentRelease = Prisma.BudgetCommitmentReleaseModel
 /**
+ * Model Invoice
+ * An invoice Finance recorded against a commitment (US-12-02): the price before tax, the tax that can be deducted (shown apart, not
+ * an expense) and the tax that cannot (an expense), and what of the price took the commitment down. It is never changed or deleted
+ * (INV-05). The vendor is the one of the request behind the commitment; a vendor's number is recorded once.
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
  * Model BudgetVersionHistoryEntry
  * 
  */

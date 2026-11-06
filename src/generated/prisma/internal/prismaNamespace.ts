@@ -408,6 +408,7 @@ export const ModelName = {
   BudgetVersionDecision: 'BudgetVersionDecision',
   BudgetCommitment: 'BudgetCommitment',
   BudgetCommitmentRelease: 'BudgetCommitmentRelease',
+  Invoice: 'Invoice',
   BudgetVersionHistoryEntry: 'BudgetVersionHistoryEntry',
   BudgetAttachment: 'BudgetAttachment',
   VendorGroup: 'VendorGroup',
@@ -542,7 +543,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aiInvocation" | "aiInvocationContent" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "budgetVersionHistoryEntry" | "budgetAttachment" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection"
+    modelProps: "aiInvocation" | "aiInvocationContent" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1357,6 +1358,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BudgetCommitmentReleaseCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BudgetCommitmentReleaseCountAggregateOutputType> | number
+        }
+      }
+    }
+    Invoice: {
+      payload: Prisma.$InvoicePayload<ExtArgs>
+      fields: Prisma.InvoiceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InvoiceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InvoiceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>
+        }
+        findFirst: {
+          args: Prisma.InvoiceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InvoiceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>
+        }
+        findMany: {
+          args: Prisma.InvoiceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>[]
+        }
+        create: {
+          args: Prisma.InvoiceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>
+        }
+        createMany: {
+          args: Prisma.InvoiceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InvoiceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>[]
+        }
+        delete: {
+          args: Prisma.InvoiceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>
+        }
+        update: {
+          args: Prisma.InvoiceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>
+        }
+        deleteMany: {
+          args: Prisma.InvoiceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InvoiceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InvoiceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>[]
+        }
+        upsert: {
+          args: Prisma.InvoiceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InvoicePayload>
+        }
+        aggregate: {
+          args: Prisma.InvoiceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInvoice>
+        }
+        groupBy: {
+          args: Prisma.InvoiceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InvoiceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InvoiceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InvoiceCountAggregateOutputType> | number
         }
       }
     }
@@ -10409,6 +10484,7 @@ export const BudgetCommitmentScalarFieldEnum = {
   attachedAt: 'attachedAt',
   releasedMinor: 'releasedMinor',
   releasedAt: 'releasedAt',
+  appliedMinor: 'appliedMinor',
   snapshotCheckId: 'snapshotCheckId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -10428,6 +10504,28 @@ export const BudgetCommitmentReleaseScalarFieldEnum = {
 } as const
 
 export type BudgetCommitmentReleaseScalarFieldEnum = (typeof BudgetCommitmentReleaseScalarFieldEnum)[keyof typeof BudgetCommitmentReleaseScalarFieldEnum]
+
+
+export const InvoiceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  commitmentId: 'commitmentId',
+  vendorId: 'vendorId',
+  number: 'number',
+  issuedOn: 'issuedOn',
+  currency: 'currency',
+  netMinor: 'netMinor',
+  deductibleTaxMinor: 'deductibleTaxMinor',
+  nonDeductibleTaxMinor: 'nonDeductibleTaxMinor',
+  actualCostMinor: 'actualCostMinor',
+  appliedMinor: 'appliedMinor',
+  matchResult: 'matchResult',
+  note: 'note',
+  recordedByEmployeeId: 'recordedByEmployeeId',
+  recordedAt: 'recordedAt'
+} as const
+
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
 export const BudgetVersionHistoryEntryScalarFieldEnum = {
@@ -12720,6 +12818,20 @@ export type ListEnumCommitmentReleaseReasonFieldRefInput<$PrismaModel> = FieldRe
 
 
 /**
+ * Reference to a field of type 'InvoiceMatchResult'
+ */
+export type EnumInvoiceMatchResultFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InvoiceMatchResult'>
+    
+
+
+/**
+ * Reference to a field of type 'InvoiceMatchResult[]'
+ */
+export type ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InvoiceMatchResult[]'>
+    
+
+
+/**
  * Reference to a field of type 'BudgetVersionHistoryKind'
  */
 export type EnumBudgetVersionHistoryKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetVersionHistoryKind'>
@@ -14686,6 +14798,7 @@ export type GlobalOmitConfig = {
   budgetVersionDecision?: Prisma.BudgetVersionDecisionOmit
   budgetCommitment?: Prisma.BudgetCommitmentOmit
   budgetCommitmentRelease?: Prisma.BudgetCommitmentReleaseOmit
+  invoice?: Prisma.InvoiceOmit
   budgetVersionHistoryEntry?: Prisma.BudgetVersionHistoryEntryOmit
   budgetAttachment?: Prisma.BudgetAttachmentOmit
   vendorGroup?: Prisma.VendorGroupOmit
