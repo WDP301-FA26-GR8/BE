@@ -30,12 +30,14 @@ export type BudgetCommitmentAvgAggregateOutputType = {
   year: number | null
   amountMinor: number | null
   releasedMinor: number | null
+  appliedMinor: number | null
 }
 
 export type BudgetCommitmentSumAggregateOutputType = {
   year: number | null
   amountMinor: bigint | null
   releasedMinor: bigint | null
+  appliedMinor: bigint | null
 }
 
 export type BudgetCommitmentMinAggregateOutputType = {
@@ -52,6 +54,7 @@ export type BudgetCommitmentMinAggregateOutputType = {
   attachedAt: Date | null
   releasedMinor: bigint | null
   releasedAt: Date | null
+  appliedMinor: bigint | null
   snapshotCheckId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -71,6 +74,7 @@ export type BudgetCommitmentMaxAggregateOutputType = {
   attachedAt: Date | null
   releasedMinor: bigint | null
   releasedAt: Date | null
+  appliedMinor: bigint | null
   snapshotCheckId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -90,6 +94,7 @@ export type BudgetCommitmentCountAggregateOutputType = {
   attachedAt: number
   releasedMinor: number
   releasedAt: number
+  appliedMinor: number
   snapshotCheckId: number
   createdAt: number
   updatedAt: number
@@ -101,12 +106,14 @@ export type BudgetCommitmentAvgAggregateInputType = {
   year?: true
   amountMinor?: true
   releasedMinor?: true
+  appliedMinor?: true
 }
 
 export type BudgetCommitmentSumAggregateInputType = {
   year?: true
   amountMinor?: true
   releasedMinor?: true
+  appliedMinor?: true
 }
 
 export type BudgetCommitmentMinAggregateInputType = {
@@ -123,6 +130,7 @@ export type BudgetCommitmentMinAggregateInputType = {
   attachedAt?: true
   releasedMinor?: true
   releasedAt?: true
+  appliedMinor?: true
   snapshotCheckId?: true
   createdAt?: true
   updatedAt?: true
@@ -142,6 +150,7 @@ export type BudgetCommitmentMaxAggregateInputType = {
   attachedAt?: true
   releasedMinor?: true
   releasedAt?: true
+  appliedMinor?: true
   snapshotCheckId?: true
   createdAt?: true
   updatedAt?: true
@@ -161,6 +170,7 @@ export type BudgetCommitmentCountAggregateInputType = {
   attachedAt?: true
   releasedMinor?: true
   releasedAt?: true
+  appliedMinor?: true
   snapshotCheckId?: true
   createdAt?: true
   updatedAt?: true
@@ -267,6 +277,7 @@ export type BudgetCommitmentGroupByOutputType = {
   attachedAt: Date | null
   releasedMinor: bigint
   releasedAt: Date | null
+  appliedMinor: bigint
   snapshotCheckId: string | null
   createdAt: Date
   updatedAt: Date
@@ -309,6 +320,7 @@ export type BudgetCommitmentWhereInput = {
   attachedAt?: Prisma.DateTimeNullableFilter<"BudgetCommitment"> | Date | string | null
   releasedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   releasedAt?: Prisma.DateTimeNullableFilter<"BudgetCommitment"> | Date | string | null
+  appliedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   snapshotCheckId?: Prisma.UuidNullableFilter<"BudgetCommitment"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
@@ -319,6 +331,7 @@ export type BudgetCommitmentWhereInput = {
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   snapshotCheck?: Prisma.XOR<Prisma.RequestBudgetCheckNullableScalarRelationFilter, Prisma.RequestBudgetCheckWhereInput> | null
   releases?: Prisma.BudgetCommitmentReleaseListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
 }
 
 export type BudgetCommitmentOrderByWithRelationInput = {
@@ -335,6 +348,7 @@ export type BudgetCommitmentOrderByWithRelationInput = {
   attachedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   releasedMinor?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  appliedMinor?: Prisma.SortOrder
   snapshotCheckId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -345,6 +359,7 @@ export type BudgetCommitmentOrderByWithRelationInput = {
   request?: Prisma.AccessRequestOrderByWithRelationInput
   snapshotCheck?: Prisma.RequestBudgetCheckOrderByWithRelationInput
   releases?: Prisma.BudgetCommitmentReleaseOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
 }
 
 export type BudgetCommitmentWhereUniqueInput = Prisma.AtLeast<{
@@ -365,6 +380,7 @@ export type BudgetCommitmentWhereUniqueInput = Prisma.AtLeast<{
   attachedAt?: Prisma.DateTimeNullableFilter<"BudgetCommitment"> | Date | string | null
   releasedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   releasedAt?: Prisma.DateTimeNullableFilter<"BudgetCommitment"> | Date | string | null
+  appliedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   snapshotCheckId?: Prisma.UuidNullableFilter<"BudgetCommitment"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
@@ -375,6 +391,7 @@ export type BudgetCommitmentWhereUniqueInput = Prisma.AtLeast<{
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   snapshotCheck?: Prisma.XOR<Prisma.RequestBudgetCheckNullableScalarRelationFilter, Prisma.RequestBudgetCheckWhereInput> | null
   releases?: Prisma.BudgetCommitmentReleaseListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
 }, "id" | "requestId_year">
 
 export type BudgetCommitmentOrderByWithAggregationInput = {
@@ -391,6 +408,7 @@ export type BudgetCommitmentOrderByWithAggregationInput = {
   attachedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   releasedMinor?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  appliedMinor?: Prisma.SortOrder
   snapshotCheckId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -418,6 +436,7 @@ export type BudgetCommitmentScalarWhereWithAggregatesInput = {
   attachedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"BudgetCommitment"> | Date | string | null
   releasedMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetCommitment"> | bigint | number
   releasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"BudgetCommitment"> | Date | string | null
+  appliedMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetCommitment"> | bigint | number
   snapshotCheckId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetCommitment"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BudgetCommitment"> | Date | string
@@ -432,6 +451,7 @@ export type BudgetCommitmentCreateInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -441,6 +461,7 @@ export type BudgetCommitmentCreateInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateInput = {
@@ -457,10 +478,12 @@ export type BudgetCommitmentUncheckedCreateInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUpdateInput = {
@@ -472,6 +495,7 @@ export type BudgetCommitmentUpdateInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -481,6 +505,7 @@ export type BudgetCommitmentUpdateInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateInput = {
@@ -497,10 +522,12 @@ export type BudgetCommitmentUncheckedUpdateInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentCreateManyInput = {
@@ -517,6 +544,7 @@ export type BudgetCommitmentCreateManyInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -531,6 +559,7 @@ export type BudgetCommitmentUpdateManyMutationInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -549,6 +578,7 @@ export type BudgetCommitmentUncheckedUpdateManyInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -583,6 +613,7 @@ export type BudgetCommitmentCountOrderByAggregateInput = {
   attachedAt?: Prisma.SortOrder
   releasedMinor?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrder
+  appliedMinor?: Prisma.SortOrder
   snapshotCheckId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -592,6 +623,7 @@ export type BudgetCommitmentAvgOrderByAggregateInput = {
   year?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   releasedMinor?: Prisma.SortOrder
+  appliedMinor?: Prisma.SortOrder
 }
 
 export type BudgetCommitmentMaxOrderByAggregateInput = {
@@ -608,6 +640,7 @@ export type BudgetCommitmentMaxOrderByAggregateInput = {
   attachedAt?: Prisma.SortOrder
   releasedMinor?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrder
+  appliedMinor?: Prisma.SortOrder
   snapshotCheckId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -627,6 +660,7 @@ export type BudgetCommitmentMinOrderByAggregateInput = {
   attachedAt?: Prisma.SortOrder
   releasedMinor?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrder
+  appliedMinor?: Prisma.SortOrder
   snapshotCheckId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -636,6 +670,7 @@ export type BudgetCommitmentSumOrderByAggregateInput = {
   year?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   releasedMinor?: Prisma.SortOrder
+  appliedMinor?: Prisma.SortOrder
 }
 
 export type BudgetCommitmentScalarRelationFilter = {
@@ -701,6 +736,20 @@ export type BudgetCommitmentUpdateOneRequiredWithoutReleasesNestedInput = {
   upsert?: Prisma.BudgetCommitmentUpsertWithoutReleasesInput
   connect?: Prisma.BudgetCommitmentWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.BudgetCommitmentUpdateToOneWithWhereWithoutReleasesInput, Prisma.BudgetCommitmentUpdateWithoutReleasesInput>, Prisma.BudgetCommitmentUncheckedUpdateWithoutReleasesInput>
+}
+
+export type BudgetCommitmentCreateNestedOneWithoutInvoicesInput = {
+  create?: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutInvoicesInput, Prisma.BudgetCommitmentUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.BudgetCommitmentCreateOrConnectWithoutInvoicesInput
+  connect?: Prisma.BudgetCommitmentWhereUniqueInput
+}
+
+export type BudgetCommitmentUpdateOneRequiredWithoutInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutInvoicesInput, Prisma.BudgetCommitmentUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.BudgetCommitmentCreateOrConnectWithoutInvoicesInput
+  upsert?: Prisma.BudgetCommitmentUpsertWithoutInvoicesInput
+  connect?: Prisma.BudgetCommitmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BudgetCommitmentUpdateToOneWithWhereWithoutInvoicesInput, Prisma.BudgetCommitmentUpdateWithoutInvoicesInput>, Prisma.BudgetCommitmentUncheckedUpdateWithoutInvoicesInput>
 }
 
 export type BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput = {
@@ -922,6 +971,7 @@ export type BudgetCommitmentCreateWithoutAttachedVersionInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -930,6 +980,7 @@ export type BudgetCommitmentCreateWithoutAttachedVersionInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutAttachedVersionInput = {
@@ -945,10 +996,12 @@ export type BudgetCommitmentUncheckedCreateWithoutAttachedVersionInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutAttachedVersionInput = {
@@ -994,6 +1047,7 @@ export type BudgetCommitmentScalarWhereInput = {
   attachedAt?: Prisma.DateTimeNullableFilter<"BudgetCommitment"> | Date | string | null
   releasedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   releasedAt?: Prisma.DateTimeNullableFilter<"BudgetCommitment"> | Date | string | null
+  appliedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   snapshotCheckId?: Prisma.UuidNullableFilter<"BudgetCommitment"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
@@ -1008,6 +1062,7 @@ export type BudgetCommitmentCreateWithoutReleasesInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1016,6 +1071,7 @@ export type BudgetCommitmentCreateWithoutReleasesInput = {
   attachedVersion?: Prisma.BudgetVersionCreateNestedOneWithoutAttachedCommitmentsInput
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutReleasesInput = {
@@ -1032,9 +1088,11 @@ export type BudgetCommitmentUncheckedCreateWithoutReleasesInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutReleasesInput = {
@@ -1062,6 +1120,7 @@ export type BudgetCommitmentUpdateWithoutReleasesInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1070,6 +1129,7 @@ export type BudgetCommitmentUpdateWithoutReleasesInput = {
   attachedVersion?: Prisma.BudgetVersionUpdateOneWithoutAttachedCommitmentsNestedInput
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutReleasesInput = {
@@ -1086,9 +1146,111 @@ export type BudgetCommitmentUncheckedUpdateWithoutReleasesInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+}
+
+export type BudgetCommitmentCreateWithoutInvoicesInput = {
+  id?: string
+  year: number
+  amountMinor: bigint | number
+  state?: $Enums.CommitmentState
+  unattachedReason?: string | null
+  attachedAt?: Date | string | null
+  releasedMinor?: bigint | number
+  releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
+  costCenter: Prisma.CostCenterCreateNestedOneWithoutBudgetCommitmentsInput
+  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutBudgetCommitmentsInput
+  attachedVersion?: Prisma.BudgetVersionCreateNestedOneWithoutAttachedCommitmentsInput
+  request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
+  snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
+  releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+}
+
+export type BudgetCommitmentUncheckedCreateWithoutInvoicesInput = {
+  id?: string
+  organizationId: string
+  requestId: string
+  costCenterId: string
+  year: number
+  amountMinor: bigint | number
+  currency: string
+  state?: $Enums.CommitmentState
+  unattachedReason?: string | null
+  attachedVersionId?: string | null
+  attachedAt?: Date | string | null
+  releasedMinor?: bigint | number
+  releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
+  snapshotCheckId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+}
+
+export type BudgetCommitmentCreateOrConnectWithoutInvoicesInput = {
+  where: Prisma.BudgetCommitmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutInvoicesInput, Prisma.BudgetCommitmentUncheckedCreateWithoutInvoicesInput>
+}
+
+export type BudgetCommitmentUpsertWithoutInvoicesInput = {
+  update: Prisma.XOR<Prisma.BudgetCommitmentUpdateWithoutInvoicesInput, Prisma.BudgetCommitmentUncheckedUpdateWithoutInvoicesInput>
+  create: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutInvoicesInput, Prisma.BudgetCommitmentUncheckedCreateWithoutInvoicesInput>
+  where?: Prisma.BudgetCommitmentWhereInput
+}
+
+export type BudgetCommitmentUpdateToOneWithWhereWithoutInvoicesInput = {
+  where?: Prisma.BudgetCommitmentWhereInput
+  data: Prisma.XOR<Prisma.BudgetCommitmentUpdateWithoutInvoicesInput, Prisma.BudgetCommitmentUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type BudgetCommitmentUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  state?: Prisma.EnumCommitmentStateFieldUpdateOperationsInput | $Enums.CommitmentState
+  unattachedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  attachedVersion?: Prisma.BudgetVersionUpdateOneWithoutAttachedCommitmentsNestedInput
+  request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
+  releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+}
+
+export type BudgetCommitmentUncheckedUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.EnumCommitmentStateFieldUpdateOperationsInput | $Enums.CommitmentState
+  unattachedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentCreateWithoutCurrencyRecordInput = {
@@ -1100,6 +1262,7 @@ export type BudgetCommitmentCreateWithoutCurrencyRecordInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1108,6 +1271,7 @@ export type BudgetCommitmentCreateWithoutCurrencyRecordInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutCurrencyRecordInput = {
@@ -1123,10 +1287,12 @@ export type BudgetCommitmentUncheckedCreateWithoutCurrencyRecordInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutCurrencyRecordInput = {
@@ -1164,6 +1330,7 @@ export type BudgetCommitmentCreateWithoutOrganizationInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   costCenter: Prisma.CostCenterCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1172,6 +1339,7 @@ export type BudgetCommitmentCreateWithoutOrganizationInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutOrganizationInput = {
@@ -1187,10 +1355,12 @@ export type BudgetCommitmentUncheckedCreateWithoutOrganizationInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutOrganizationInput = {
@@ -1228,6 +1398,7 @@ export type BudgetCommitmentCreateWithoutCostCenterInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1236,6 +1407,7 @@ export type BudgetCommitmentCreateWithoutCostCenterInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutCostCenterInput = {
@@ -1251,10 +1423,12 @@ export type BudgetCommitmentUncheckedCreateWithoutCostCenterInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutCostCenterInput = {
@@ -1292,6 +1466,7 @@ export type BudgetCommitmentCreateWithoutRequestInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1300,6 +1475,7 @@ export type BudgetCommitmentCreateWithoutRequestInput = {
   attachedVersion?: Prisma.BudgetVersionCreateNestedOneWithoutAttachedCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutRequestInput = {
@@ -1315,10 +1491,12 @@ export type BudgetCommitmentUncheckedCreateWithoutRequestInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutRequestInput = {
@@ -1356,6 +1534,7 @@ export type BudgetCommitmentCreateWithoutSnapshotCheckInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1364,6 +1543,7 @@ export type BudgetCommitmentCreateWithoutSnapshotCheckInput = {
   attachedVersion?: Prisma.BudgetVersionCreateNestedOneWithoutAttachedCommitmentsInput
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutSnapshotCheckInput = {
@@ -1380,9 +1560,11 @@ export type BudgetCommitmentUncheckedCreateWithoutSnapshotCheckInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutSnapshotCheckInput = {
@@ -1424,6 +1606,7 @@ export type BudgetCommitmentCreateManyAttachedVersionInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1438,6 +1621,7 @@ export type BudgetCommitmentUpdateWithoutAttachedVersionInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1446,6 +1630,7 @@ export type BudgetCommitmentUpdateWithoutAttachedVersionInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutAttachedVersionInput = {
@@ -1461,10 +1646,12 @@ export type BudgetCommitmentUncheckedUpdateWithoutAttachedVersionInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionInput = {
@@ -1480,6 +1667,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1498,6 +1686,7 @@ export type BudgetCommitmentCreateManyCurrencyRecordInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1512,6 +1701,7 @@ export type BudgetCommitmentUpdateWithoutCurrencyRecordInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1520,6 +1710,7 @@ export type BudgetCommitmentUpdateWithoutCurrencyRecordInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutCurrencyRecordInput = {
@@ -1535,10 +1726,12 @@ export type BudgetCommitmentUncheckedUpdateWithoutCurrencyRecordInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordInput = {
@@ -1554,6 +1747,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1572,6 +1766,7 @@ export type BudgetCommitmentCreateManyOrganizationInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1586,6 +1781,7 @@ export type BudgetCommitmentUpdateWithoutOrganizationInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   costCenter?: Prisma.CostCenterUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1594,6 +1790,7 @@ export type BudgetCommitmentUpdateWithoutOrganizationInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutOrganizationInput = {
@@ -1609,10 +1806,12 @@ export type BudgetCommitmentUncheckedUpdateWithoutOrganizationInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1628,6 +1827,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutOrganizationInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1646,6 +1846,7 @@ export type BudgetCommitmentCreateManyCostCenterInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1660,6 +1861,7 @@ export type BudgetCommitmentUpdateWithoutCostCenterInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1668,6 +1870,7 @@ export type BudgetCommitmentUpdateWithoutCostCenterInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutCostCenterInput = {
@@ -1683,10 +1886,12 @@ export type BudgetCommitmentUncheckedUpdateWithoutCostCenterInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutCostCenterInput = {
@@ -1702,6 +1907,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutCostCenterInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1720,6 +1926,7 @@ export type BudgetCommitmentCreateManyRequestInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   snapshotCheckId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1734,6 +1941,7 @@ export type BudgetCommitmentUpdateWithoutRequestInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1742,6 +1950,7 @@ export type BudgetCommitmentUpdateWithoutRequestInput = {
   attachedVersion?: Prisma.BudgetVersionUpdateOneWithoutAttachedCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutRequestInput = {
@@ -1757,10 +1966,12 @@ export type BudgetCommitmentUncheckedUpdateWithoutRequestInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutRequestInput = {
@@ -1776,6 +1987,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutRequestInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1795,6 +2007,7 @@ export type BudgetCommitmentCreateManySnapshotCheckInput = {
   attachedAt?: Date | string | null
   releasedMinor?: bigint | number
   releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1808,6 +2021,7 @@ export type BudgetCommitmentUpdateWithoutSnapshotCheckInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1816,6 +2030,7 @@ export type BudgetCommitmentUpdateWithoutSnapshotCheckInput = {
   attachedVersion?: Prisma.BudgetVersionUpdateOneWithoutAttachedCommitmentsNestedInput
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutSnapshotCheckInput = {
@@ -1832,9 +2047,11 @@ export type BudgetCommitmentUncheckedUpdateWithoutSnapshotCheckInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckInput = {
@@ -1851,6 +2068,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckInput = {
   attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1862,10 +2080,12 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckInput = {
 
 export type BudgetCommitmentCountOutputType = {
   releases: number
+  invoices: number
 }
 
 export type BudgetCommitmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   releases?: boolean | BudgetCommitmentCountOutputTypeCountReleasesArgs
+  invoices?: boolean | BudgetCommitmentCountOutputTypeCountInvoicesArgs
 }
 
 /**
@@ -1885,6 +2105,13 @@ export type BudgetCommitmentCountOutputTypeCountReleasesArgs<ExtArgs extends run
   where?: Prisma.BudgetCommitmentReleaseWhereInput
 }
 
+/**
+ * BudgetCommitmentCountOutputType without action
+ */
+export type BudgetCommitmentCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceWhereInput
+}
+
 
 export type BudgetCommitmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1900,6 +2127,7 @@ export type BudgetCommitmentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   attachedAt?: boolean
   releasedMinor?: boolean
   releasedAt?: boolean
+  appliedMinor?: boolean
   snapshotCheckId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1910,6 +2138,7 @@ export type BudgetCommitmentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   snapshotCheck?: boolean | Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs>
   releases?: boolean | Prisma.BudgetCommitment$releasesArgs<ExtArgs>
+  invoices?: boolean | Prisma.BudgetCommitment$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.BudgetCommitmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["budgetCommitment"]>
 
@@ -1927,6 +2156,7 @@ export type BudgetCommitmentSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   attachedAt?: boolean
   releasedMinor?: boolean
   releasedAt?: boolean
+  appliedMinor?: boolean
   snapshotCheckId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1952,6 +2182,7 @@ export type BudgetCommitmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   attachedAt?: boolean
   releasedMinor?: boolean
   releasedAt?: boolean
+  appliedMinor?: boolean
   snapshotCheckId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1977,12 +2208,13 @@ export type BudgetCommitmentSelectScalar = {
   attachedAt?: boolean
   releasedMinor?: boolean
   releasedAt?: boolean
+  appliedMinor?: boolean
   snapshotCheckId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BudgetCommitmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "costCenterId" | "year" | "amountMinor" | "currency" | "state" | "unattachedReason" | "attachedVersionId" | "attachedAt" | "releasedMinor" | "releasedAt" | "snapshotCheckId" | "createdAt" | "updatedAt", ExtArgs["result"]["budgetCommitment"]>
+export type BudgetCommitmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "costCenterId" | "year" | "amountMinor" | "currency" | "state" | "unattachedReason" | "attachedVersionId" | "attachedAt" | "releasedMinor" | "releasedAt" | "appliedMinor" | "snapshotCheckId" | "createdAt" | "updatedAt", ExtArgs["result"]["budgetCommitment"]>
 export type BudgetCommitmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.CostCenterDefaultArgs<ExtArgs>
@@ -1991,6 +2223,7 @@ export type BudgetCommitmentInclude<ExtArgs extends runtime.Types.Extensions.Int
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   snapshotCheck?: boolean | Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs>
   releases?: boolean | Prisma.BudgetCommitment$releasesArgs<ExtArgs>
+  invoices?: boolean | Prisma.BudgetCommitment$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.BudgetCommitmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BudgetCommitmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2020,6 +2253,7 @@ export type $BudgetCommitmentPayload<ExtArgs extends runtime.Types.Extensions.In
     request: Prisma.$AccessRequestPayload<ExtArgs>
     snapshotCheck: Prisma.$RequestBudgetCheckPayload<ExtArgs> | null
     releases: Prisma.$BudgetCommitmentReleasePayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2035,6 +2269,7 @@ export type $BudgetCommitmentPayload<ExtArgs extends runtime.Types.Extensions.In
     attachedAt: Date | null
     releasedMinor: bigint
     releasedAt: Date | null
+    appliedMinor: bigint
     snapshotCheckId: string | null
     createdAt: Date
     updatedAt: Date
@@ -2439,6 +2674,7 @@ export interface Prisma__BudgetCommitmentClient<T, Null = never, ExtArgs extends
   request<T extends Prisma.AccessRequestDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestDefaultArgs<ExtArgs>>): Prisma.Prisma__AccessRequestClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   snapshotCheck<T extends Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs>>): Prisma.Prisma__RequestBudgetCheckClient<runtime.Types.Result.GetResult<Prisma.$RequestBudgetCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   releases<T extends Prisma.BudgetCommitment$releasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$releasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.BudgetCommitment$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2481,6 +2717,7 @@ export interface BudgetCommitmentFieldRefs {
   readonly attachedAt: Prisma.FieldRef<"BudgetCommitment", 'DateTime'>
   readonly releasedMinor: Prisma.FieldRef<"BudgetCommitment", 'BigInt'>
   readonly releasedAt: Prisma.FieldRef<"BudgetCommitment", 'DateTime'>
+  readonly appliedMinor: Prisma.FieldRef<"BudgetCommitment", 'BigInt'>
   readonly snapshotCheckId: Prisma.FieldRef<"BudgetCommitment", 'String'>
   readonly createdAt: Prisma.FieldRef<"BudgetCommitment", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BudgetCommitment", 'DateTime'>
@@ -2944,6 +3181,30 @@ export type BudgetCommitment$releasesArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.BudgetCommitmentReleaseScalarFieldEnum | Prisma.BudgetCommitmentReleaseScalarFieldEnum[]
+}
+
+/**
+ * BudgetCommitment.invoices
+ */
+export type BudgetCommitment$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invoice
+   */
+  select?: Prisma.InvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invoice
+   */
+  omit?: Prisma.InvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceInclude<ExtArgs> | null
+  where?: Prisma.InvoiceWhereInput
+  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
 }
 
 /**

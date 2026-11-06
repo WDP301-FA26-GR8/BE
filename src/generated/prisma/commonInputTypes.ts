@@ -582,6 +582,23 @@ export type EnumCommitmentReleaseReasonWithAggregatesFilter<$PrismaModel = never
   _max?: Prisma.NestedEnumCommitmentReleaseReasonFilter<$PrismaModel>
 }
 
+export type EnumInvoiceMatchResultFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvoiceMatchResult | Prisma.EnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  in?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvoiceMatchResultFilter<$PrismaModel> | $Enums.InvoiceMatchResult
+}
+
+export type EnumInvoiceMatchResultWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvoiceMatchResult | Prisma.EnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  in?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvoiceMatchResultWithAggregatesFilter<$PrismaModel> | $Enums.InvoiceMatchResult
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumInvoiceMatchResultFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumInvoiceMatchResultFilter<$PrismaModel>
+}
+
 export type EnumBudgetVersionHistoryKindFilter<$PrismaModel = never> = {
   equals?: $Enums.BudgetVersionHistoryKind | Prisma.EnumBudgetVersionHistoryKindFieldRefInput<$PrismaModel>
   in?: $Enums.BudgetVersionHistoryKind[] | Prisma.ListEnumBudgetVersionHistoryKindFieldRefInput<$PrismaModel>
@@ -3431,6 +3448,23 @@ export type NestedEnumCommitmentReleaseReasonWithAggregatesFilter<$PrismaModel =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumCommitmentReleaseReasonFilter<$PrismaModel>
   _max?: Prisma.NestedEnumCommitmentReleaseReasonFilter<$PrismaModel>
+}
+
+export type NestedEnumInvoiceMatchResultFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvoiceMatchResult | Prisma.EnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  in?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvoiceMatchResultFilter<$PrismaModel> | $Enums.InvoiceMatchResult
+}
+
+export type NestedEnumInvoiceMatchResultWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvoiceMatchResult | Prisma.EnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  in?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvoiceMatchResult[] | Prisma.ListEnumInvoiceMatchResultFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvoiceMatchResultWithAggregatesFilter<$PrismaModel> | $Enums.InvoiceMatchResult
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumInvoiceMatchResultFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumInvoiceMatchResultFilter<$PrismaModel>
 }
 
 export type NestedEnumBudgetVersionHistoryKindFilter<$PrismaModel = never> = {

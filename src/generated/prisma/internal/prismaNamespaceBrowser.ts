@@ -62,6 +62,7 @@ export const ModelName = {
   BudgetVersionDecision: 'BudgetVersionDecision',
   BudgetCommitment: 'BudgetCommitment',
   BudgetCommitmentRelease: 'BudgetCommitmentRelease',
+  Invoice: 'Invoice',
   BudgetVersionHistoryEntry: 'BudgetVersionHistoryEntry',
   BudgetAttachment: 'BudgetAttachment',
   VendorGroup: 'VendorGroup',
@@ -403,6 +404,7 @@ export const BudgetCommitmentScalarFieldEnum = {
   attachedAt: 'attachedAt',
   releasedMinor: 'releasedMinor',
   releasedAt: 'releasedAt',
+  appliedMinor: 'appliedMinor',
   snapshotCheckId: 'snapshotCheckId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -422,6 +424,28 @@ export const BudgetCommitmentReleaseScalarFieldEnum = {
 } as const
 
 export type BudgetCommitmentReleaseScalarFieldEnum = (typeof BudgetCommitmentReleaseScalarFieldEnum)[keyof typeof BudgetCommitmentReleaseScalarFieldEnum]
+
+
+export const InvoiceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  commitmentId: 'commitmentId',
+  vendorId: 'vendorId',
+  number: 'number',
+  issuedOn: 'issuedOn',
+  currency: 'currency',
+  netMinor: 'netMinor',
+  deductibleTaxMinor: 'deductibleTaxMinor',
+  nonDeductibleTaxMinor: 'nonDeductibleTaxMinor',
+  actualCostMinor: 'actualCostMinor',
+  appliedMinor: 'appliedMinor',
+  matchResult: 'matchResult',
+  note: 'note',
+  recordedByEmployeeId: 'recordedByEmployeeId',
+  recordedAt: 'recordedAt'
+} as const
+
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
 export const BudgetVersionHistoryEntryScalarFieldEnum = {
