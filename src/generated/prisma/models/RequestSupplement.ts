@@ -56,6 +56,8 @@ export type RequestSupplementMinAggregateOutputType = {
   afterBudgetYear: number | null
   beforeAmountMinor: bigint | null
   afterAmountMinor: bigint | null
+  beforeExpectedEndDate: Date | null
+  afterExpectedEndDate: Date | null
   currency: string | null
 }
 
@@ -73,6 +75,8 @@ export type RequestSupplementMaxAggregateOutputType = {
   afterBudgetYear: number | null
   beforeAmountMinor: bigint | null
   afterAmountMinor: bigint | null
+  beforeExpectedEndDate: Date | null
+  afterExpectedEndDate: Date | null
   currency: string | null
 }
 
@@ -90,6 +94,8 @@ export type RequestSupplementCountAggregateOutputType = {
   afterBudgetYear: number
   beforeAmountMinor: number
   afterAmountMinor: number
+  beforeExpectedEndDate: number
+  afterExpectedEndDate: number
   currency: number
   _all: number
 }
@@ -125,6 +131,8 @@ export type RequestSupplementMinAggregateInputType = {
   afterBudgetYear?: true
   beforeAmountMinor?: true
   afterAmountMinor?: true
+  beforeExpectedEndDate?: true
+  afterExpectedEndDate?: true
   currency?: true
 }
 
@@ -142,6 +150,8 @@ export type RequestSupplementMaxAggregateInputType = {
   afterBudgetYear?: true
   beforeAmountMinor?: true
   afterAmountMinor?: true
+  beforeExpectedEndDate?: true
+  afterExpectedEndDate?: true
   currency?: true
 }
 
@@ -159,6 +169,8 @@ export type RequestSupplementCountAggregateInputType = {
   afterBudgetYear?: true
   beforeAmountMinor?: true
   afterAmountMinor?: true
+  beforeExpectedEndDate?: true
+  afterExpectedEndDate?: true
   currency?: true
   _all?: true
 }
@@ -257,13 +269,15 @@ export type RequestSupplementGroupByOutputType = {
   reason: string
   changedByEmployeeId: string
   createdAt: Date
-  beforeExpectedSpendOn: Date
-  afterExpectedSpendOn: Date
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint
-  afterAmountMinor: bigint
-  currency: string
+  beforeExpectedSpendOn: Date | null
+  afterExpectedSpendOn: Date | null
+  beforeBudgetYear: number | null
+  afterBudgetYear: number | null
+  beforeAmountMinor: bigint | null
+  afterAmountMinor: bigint | null
+  beforeExpectedEndDate: Date | null
+  afterExpectedEndDate: Date | null
+  currency: string | null
   _count: RequestSupplementCountAggregateOutputType | null
   _avg: RequestSupplementAvgAggregateOutputType | null
   _sum: RequestSupplementSumAggregateOutputType | null
@@ -297,17 +311,19 @@ export type RequestSupplementWhereInput = {
   reason?: Prisma.StringFilter<"RequestSupplement"> | string
   changedByEmployeeId?: Prisma.UuidFilter<"RequestSupplement"> | string
   createdAt?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  beforeBudgetYear?: Prisma.IntFilter<"RequestSupplement"> | number
-  afterBudgetYear?: Prisma.IntFilter<"RequestSupplement"> | number
-  beforeAmountMinor?: Prisma.BigIntFilter<"RequestSupplement"> | bigint | number
-  afterAmountMinor?: Prisma.BigIntFilter<"RequestSupplement"> | bigint | number
-  currency?: Prisma.StringFilter<"RequestSupplement"> | string
+  beforeExpectedSpendOn?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedSpendOn?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  beforeBudgetYear?: Prisma.IntNullableFilter<"RequestSupplement"> | number | null
+  afterBudgetYear?: Prisma.IntNullableFilter<"RequestSupplement"> | number | null
+  beforeAmountMinor?: Prisma.BigIntNullableFilter<"RequestSupplement"> | bigint | number | null
+  afterAmountMinor?: Prisma.BigIntNullableFilter<"RequestSupplement"> | bigint | number | null
+  beforeExpectedEndDate?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedEndDate?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  currency?: Prisma.StringNullableFilter<"RequestSupplement"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   changedBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-  currencyRecord?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  currencyRecord?: Prisma.XOR<Prisma.CurrencyNullableScalarRelationFilter, Prisma.CurrencyWhereInput> | null
   drops?: Prisma.RequestSupplementDropListRelationFilter
 }
 
@@ -319,13 +335,15 @@ export type RequestSupplementOrderByWithRelationInput = {
   reason?: Prisma.SortOrder
   changedByEmployeeId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  beforeExpectedSpendOn?: Prisma.SortOrder
-  afterExpectedSpendOn?: Prisma.SortOrder
-  beforeBudgetYear?: Prisma.SortOrder
-  afterBudgetYear?: Prisma.SortOrder
-  beforeAmountMinor?: Prisma.SortOrder
-  afterAmountMinor?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
+  beforeExpectedSpendOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterExpectedSpendOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeBudgetYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterBudgetYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeExpectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterExpectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  currency?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   request?: Prisma.AccessRequestOrderByWithRelationInput
   changedBy?: Prisma.EmployeeOrderByWithRelationInput
@@ -345,17 +363,19 @@ export type RequestSupplementWhereUniqueInput = Prisma.AtLeast<{
   reason?: Prisma.StringFilter<"RequestSupplement"> | string
   changedByEmployeeId?: Prisma.UuidFilter<"RequestSupplement"> | string
   createdAt?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  beforeBudgetYear?: Prisma.IntFilter<"RequestSupplement"> | number
-  afterBudgetYear?: Prisma.IntFilter<"RequestSupplement"> | number
-  beforeAmountMinor?: Prisma.BigIntFilter<"RequestSupplement"> | bigint | number
-  afterAmountMinor?: Prisma.BigIntFilter<"RequestSupplement"> | bigint | number
-  currency?: Prisma.StringFilter<"RequestSupplement"> | string
+  beforeExpectedSpendOn?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedSpendOn?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  beforeBudgetYear?: Prisma.IntNullableFilter<"RequestSupplement"> | number | null
+  afterBudgetYear?: Prisma.IntNullableFilter<"RequestSupplement"> | number | null
+  beforeAmountMinor?: Prisma.BigIntNullableFilter<"RequestSupplement"> | bigint | number | null
+  afterAmountMinor?: Prisma.BigIntNullableFilter<"RequestSupplement"> | bigint | number | null
+  beforeExpectedEndDate?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedEndDate?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  currency?: Prisma.StringNullableFilter<"RequestSupplement"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   changedBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-  currencyRecord?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  currencyRecord?: Prisma.XOR<Prisma.CurrencyNullableScalarRelationFilter, Prisma.CurrencyWhereInput> | null
   drops?: Prisma.RequestSupplementDropListRelationFilter
 }, "id" | "requestId_number">
 
@@ -367,13 +387,15 @@ export type RequestSupplementOrderByWithAggregationInput = {
   reason?: Prisma.SortOrder
   changedByEmployeeId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  beforeExpectedSpendOn?: Prisma.SortOrder
-  afterExpectedSpendOn?: Prisma.SortOrder
-  beforeBudgetYear?: Prisma.SortOrder
-  afterBudgetYear?: Prisma.SortOrder
-  beforeAmountMinor?: Prisma.SortOrder
-  afterAmountMinor?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
+  beforeExpectedSpendOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterExpectedSpendOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeBudgetYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterBudgetYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeExpectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterExpectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  currency?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RequestSupplementCountOrderByAggregateInput
   _avg?: Prisma.RequestSupplementAvgOrderByAggregateInput
   _max?: Prisma.RequestSupplementMaxOrderByAggregateInput
@@ -392,13 +414,15 @@ export type RequestSupplementScalarWhereWithAggregatesInput = {
   reason?: Prisma.StringWithAggregatesFilter<"RequestSupplement"> | string
   changedByEmployeeId?: Prisma.UuidWithAggregatesFilter<"RequestSupplement"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RequestSupplement"> | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeWithAggregatesFilter<"RequestSupplement"> | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeWithAggregatesFilter<"RequestSupplement"> | Date | string
-  beforeBudgetYear?: Prisma.IntWithAggregatesFilter<"RequestSupplement"> | number
-  afterBudgetYear?: Prisma.IntWithAggregatesFilter<"RequestSupplement"> | number
-  beforeAmountMinor?: Prisma.BigIntWithAggregatesFilter<"RequestSupplement"> | bigint | number
-  afterAmountMinor?: Prisma.BigIntWithAggregatesFilter<"RequestSupplement"> | bigint | number
-  currency?: Prisma.StringWithAggregatesFilter<"RequestSupplement"> | string
+  beforeExpectedSpendOn?: Prisma.DateTimeNullableWithAggregatesFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedSpendOn?: Prisma.DateTimeNullableWithAggregatesFilter<"RequestSupplement"> | Date | string | null
+  beforeBudgetYear?: Prisma.IntNullableWithAggregatesFilter<"RequestSupplement"> | number | null
+  afterBudgetYear?: Prisma.IntNullableWithAggregatesFilter<"RequestSupplement"> | number | null
+  beforeAmountMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestSupplement"> | bigint | number | null
+  afterAmountMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestSupplement"> | bigint | number | null
+  beforeExpectedEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"RequestSupplement"> | Date | string | null
+  currency?: Prisma.StringNullableWithAggregatesFilter<"RequestSupplement"> | string | null
 }
 
 export type RequestSupplementCreateInput = {
@@ -406,16 +430,18 @@ export type RequestSupplementCreateInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestSupplementsInput
   request: Prisma.AccessRequestCreateNestedOneWithoutSupplementsInput
   changedBy: Prisma.EmployeeCreateNestedOneWithoutRequestSupplementsMadeInput
-  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
+  currencyRecord?: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
   drops?: Prisma.RequestSupplementDropCreateNestedManyWithoutSupplementInput
 }
 
@@ -427,13 +453,15 @@ export type RequestSupplementUncheckedCreateInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
   drops?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutSupplementInput
 }
 
@@ -442,16 +470,18 @@ export type RequestSupplementUpdateInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestSupplementsNestedInput
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutSupplementsNestedInput
   changedBy?: Prisma.EmployeeUpdateOneRequiredWithoutRequestSupplementsMadeNestedInput
-  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutRequestSupplementsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneWithoutRequestSupplementsNestedInput
   drops?: Prisma.RequestSupplementDropUpdateManyWithoutSupplementNestedInput
 }
 
@@ -463,13 +493,15 @@ export type RequestSupplementUncheckedUpdateInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   drops?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutSupplementNestedInput
 }
 
@@ -481,13 +513,15 @@ export type RequestSupplementCreateManyInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
 }
 
 export type RequestSupplementUpdateManyMutationInput = {
@@ -495,12 +529,14 @@ export type RequestSupplementUpdateManyMutationInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RequestSupplementUncheckedUpdateManyInput = {
@@ -511,13 +547,15 @@ export type RequestSupplementUncheckedUpdateManyInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RequestSupplementListRelationFilter = {
@@ -549,6 +587,8 @@ export type RequestSupplementCountOrderByAggregateInput = {
   afterBudgetYear?: Prisma.SortOrder
   beforeAmountMinor?: Prisma.SortOrder
   afterAmountMinor?: Prisma.SortOrder
+  beforeExpectedEndDate?: Prisma.SortOrder
+  afterExpectedEndDate?: Prisma.SortOrder
   currency?: Prisma.SortOrder
 }
 
@@ -574,6 +614,8 @@ export type RequestSupplementMaxOrderByAggregateInput = {
   afterBudgetYear?: Prisma.SortOrder
   beforeAmountMinor?: Prisma.SortOrder
   afterAmountMinor?: Prisma.SortOrder
+  beforeExpectedEndDate?: Prisma.SortOrder
+  afterExpectedEndDate?: Prisma.SortOrder
   currency?: Prisma.SortOrder
 }
 
@@ -591,6 +633,8 @@ export type RequestSupplementMinOrderByAggregateInput = {
   afterBudgetYear?: Prisma.SortOrder
   beforeAmountMinor?: Prisma.SortOrder
   afterAmountMinor?: Prisma.SortOrder
+  beforeExpectedEndDate?: Prisma.SortOrder
+  afterExpectedEndDate?: Prisma.SortOrder
   currency?: Prisma.SortOrder
 }
 
@@ -794,12 +838,14 @@ export type RequestSupplementCreateWithoutCurrencyRecordInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestSupplementsInput
   request: Prisma.AccessRequestCreateNestedOneWithoutSupplementsInput
   changedBy: Prisma.EmployeeCreateNestedOneWithoutRequestSupplementsMadeInput
@@ -814,12 +860,14 @@ export type RequestSupplementUncheckedCreateWithoutCurrencyRecordInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
   drops?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutSupplementInput
 }
 
@@ -860,13 +908,15 @@ export type RequestSupplementScalarWhereInput = {
   reason?: Prisma.StringFilter<"RequestSupplement"> | string
   changedByEmployeeId?: Prisma.UuidFilter<"RequestSupplement"> | string
   createdAt?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFilter<"RequestSupplement"> | Date | string
-  beforeBudgetYear?: Prisma.IntFilter<"RequestSupplement"> | number
-  afterBudgetYear?: Prisma.IntFilter<"RequestSupplement"> | number
-  beforeAmountMinor?: Prisma.BigIntFilter<"RequestSupplement"> | bigint | number
-  afterAmountMinor?: Prisma.BigIntFilter<"RequestSupplement"> | bigint | number
-  currency?: Prisma.StringFilter<"RequestSupplement"> | string
+  beforeExpectedSpendOn?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedSpendOn?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  beforeBudgetYear?: Prisma.IntNullableFilter<"RequestSupplement"> | number | null
+  afterBudgetYear?: Prisma.IntNullableFilter<"RequestSupplement"> | number | null
+  beforeAmountMinor?: Prisma.BigIntNullableFilter<"RequestSupplement"> | bigint | number | null
+  afterAmountMinor?: Prisma.BigIntNullableFilter<"RequestSupplement"> | bigint | number | null
+  beforeExpectedEndDate?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  afterExpectedEndDate?: Prisma.DateTimeNullableFilter<"RequestSupplement"> | Date | string | null
+  currency?: Prisma.StringNullableFilter<"RequestSupplement"> | string | null
 }
 
 export type RequestSupplementCreateWithoutOrganizationInput = {
@@ -874,15 +924,17 @@ export type RequestSupplementCreateWithoutOrganizationInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutSupplementsInput
   changedBy: Prisma.EmployeeCreateNestedOneWithoutRequestSupplementsMadeInput
-  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
+  currencyRecord?: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
   drops?: Prisma.RequestSupplementDropCreateNestedManyWithoutSupplementInput
 }
 
@@ -893,13 +945,15 @@ export type RequestSupplementUncheckedCreateWithoutOrganizationInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
   drops?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutSupplementInput
 }
 
@@ -934,15 +988,17 @@ export type RequestSupplementCreateWithoutChangedByInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestSupplementsInput
   request: Prisma.AccessRequestCreateNestedOneWithoutSupplementsInput
-  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
+  currencyRecord?: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
   drops?: Prisma.RequestSupplementDropCreateNestedManyWithoutSupplementInput
 }
 
@@ -953,13 +1009,15 @@ export type RequestSupplementUncheckedCreateWithoutChangedByInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
   drops?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutSupplementInput
 }
 
@@ -994,15 +1052,17 @@ export type RequestSupplementCreateWithoutRequestInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestSupplementsInput
   changedBy: Prisma.EmployeeCreateNestedOneWithoutRequestSupplementsMadeInput
-  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
+  currencyRecord?: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
   drops?: Prisma.RequestSupplementDropCreateNestedManyWithoutSupplementInput
 }
 
@@ -1013,13 +1073,15 @@ export type RequestSupplementUncheckedCreateWithoutRequestInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
   drops?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutSupplementInput
 }
 
@@ -1054,16 +1116,18 @@ export type RequestSupplementCreateWithoutDropsInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestSupplementsInput
   request: Prisma.AccessRequestCreateNestedOneWithoutSupplementsInput
   changedBy: Prisma.EmployeeCreateNestedOneWithoutRequestSupplementsMadeInput
-  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
+  currencyRecord?: Prisma.CurrencyCreateNestedOneWithoutRequestSupplementsInput
 }
 
 export type RequestSupplementUncheckedCreateWithoutDropsInput = {
@@ -1074,13 +1138,15 @@ export type RequestSupplementUncheckedCreateWithoutDropsInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
 }
 
 export type RequestSupplementCreateOrConnectWithoutDropsInput = {
@@ -1104,16 +1170,18 @@ export type RequestSupplementUpdateWithoutDropsInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestSupplementsNestedInput
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutSupplementsNestedInput
   changedBy?: Prisma.EmployeeUpdateOneRequiredWithoutRequestSupplementsMadeNestedInput
-  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutRequestSupplementsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneWithoutRequestSupplementsNestedInput
 }
 
 export type RequestSupplementUncheckedUpdateWithoutDropsInput = {
@@ -1124,13 +1192,15 @@ export type RequestSupplementUncheckedUpdateWithoutDropsInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RequestSupplementCreateManyCurrencyRecordInput = {
@@ -1141,12 +1211,14 @@ export type RequestSupplementCreateManyCurrencyRecordInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
 }
 
 export type RequestSupplementUpdateWithoutCurrencyRecordInput = {
@@ -1154,12 +1226,14 @@ export type RequestSupplementUpdateWithoutCurrencyRecordInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestSupplementsNestedInput
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutSupplementsNestedInput
   changedBy?: Prisma.EmployeeUpdateOneRequiredWithoutRequestSupplementsMadeNestedInput
@@ -1174,12 +1248,14 @@ export type RequestSupplementUncheckedUpdateWithoutCurrencyRecordInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   drops?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutSupplementNestedInput
 }
 
@@ -1191,12 +1267,14 @@ export type RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RequestSupplementCreateManyOrganizationInput = {
@@ -1206,13 +1284,15 @@ export type RequestSupplementCreateManyOrganizationInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
 }
 
 export type RequestSupplementUpdateWithoutOrganizationInput = {
@@ -1220,15 +1300,17 @@ export type RequestSupplementUpdateWithoutOrganizationInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutSupplementsNestedInput
   changedBy?: Prisma.EmployeeUpdateOneRequiredWithoutRequestSupplementsMadeNestedInput
-  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutRequestSupplementsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneWithoutRequestSupplementsNestedInput
   drops?: Prisma.RequestSupplementDropUpdateManyWithoutSupplementNestedInput
 }
 
@@ -1239,13 +1321,15 @@ export type RequestSupplementUncheckedUpdateWithoutOrganizationInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   drops?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutSupplementNestedInput
 }
 
@@ -1256,13 +1340,15 @@ export type RequestSupplementUncheckedUpdateManyWithoutOrganizationInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RequestSupplementCreateManyChangedByInput = {
@@ -1272,13 +1358,15 @@ export type RequestSupplementCreateManyChangedByInput = {
   number: number
   reason: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
 }
 
 export type RequestSupplementUpdateWithoutChangedByInput = {
@@ -1286,15 +1374,17 @@ export type RequestSupplementUpdateWithoutChangedByInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestSupplementsNestedInput
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutSupplementsNestedInput
-  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutRequestSupplementsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneWithoutRequestSupplementsNestedInput
   drops?: Prisma.RequestSupplementDropUpdateManyWithoutSupplementNestedInput
 }
 
@@ -1305,13 +1395,15 @@ export type RequestSupplementUncheckedUpdateWithoutChangedByInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   drops?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutSupplementNestedInput
 }
 
@@ -1322,13 +1414,15 @@ export type RequestSupplementUncheckedUpdateManyWithoutChangedByInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RequestSupplementCreateManyRequestInput = {
@@ -1338,13 +1432,15 @@ export type RequestSupplementCreateManyRequestInput = {
   reason: string
   changedByEmployeeId: string
   createdAt?: Date | string
-  beforeExpectedSpendOn: Date | string
-  afterExpectedSpendOn: Date | string
-  beforeBudgetYear: number
-  afterBudgetYear: number
-  beforeAmountMinor: bigint | number
-  afterAmountMinor: bigint | number
-  currency: string
+  beforeExpectedSpendOn?: Date | string | null
+  afterExpectedSpendOn?: Date | string | null
+  beforeBudgetYear?: number | null
+  afterBudgetYear?: number | null
+  beforeAmountMinor?: bigint | number | null
+  afterAmountMinor?: bigint | number | null
+  beforeExpectedEndDate?: Date | string | null
+  afterExpectedEndDate?: Date | string | null
+  currency?: string | null
 }
 
 export type RequestSupplementUpdateWithoutRequestInput = {
@@ -1352,15 +1448,17 @@ export type RequestSupplementUpdateWithoutRequestInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestSupplementsNestedInput
   changedBy?: Prisma.EmployeeUpdateOneRequiredWithoutRequestSupplementsMadeNestedInput
-  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutRequestSupplementsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneWithoutRequestSupplementsNestedInput
   drops?: Prisma.RequestSupplementDropUpdateManyWithoutSupplementNestedInput
 }
 
@@ -1371,13 +1469,15 @@ export type RequestSupplementUncheckedUpdateWithoutRequestInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   drops?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutSupplementNestedInput
 }
 
@@ -1388,13 +1488,15 @@ export type RequestSupplementUncheckedUpdateManyWithoutRequestInput = {
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   changedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  afterExpectedSpendOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  beforeBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  afterBudgetYear?: Prisma.IntFieldUpdateOperationsInput | number
-  beforeAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  afterAmountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  beforeExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  beforeBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterBudgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  afterAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  beforeExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  afterExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1442,11 +1544,13 @@ export type RequestSupplementSelect<ExtArgs extends runtime.Types.Extensions.Int
   afterBudgetYear?: boolean
   beforeAmountMinor?: boolean
   afterAmountMinor?: boolean
+  beforeExpectedEndDate?: boolean
+  afterExpectedEndDate?: boolean
   currency?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   changedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  currencyRecord?: boolean | Prisma.RequestSupplement$currencyRecordArgs<ExtArgs>
   drops?: boolean | Prisma.RequestSupplement$dropsArgs<ExtArgs>
   _count?: boolean | Prisma.RequestSupplementCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["requestSupplement"]>
@@ -1465,11 +1569,13 @@ export type RequestSupplementSelectCreateManyAndReturn<ExtArgs extends runtime.T
   afterBudgetYear?: boolean
   beforeAmountMinor?: boolean
   afterAmountMinor?: boolean
+  beforeExpectedEndDate?: boolean
+  afterExpectedEndDate?: boolean
   currency?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   changedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  currencyRecord?: boolean | Prisma.RequestSupplement$currencyRecordArgs<ExtArgs>
 }, ExtArgs["result"]["requestSupplement"]>
 
 export type RequestSupplementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1486,11 +1592,13 @@ export type RequestSupplementSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   afterBudgetYear?: boolean
   beforeAmountMinor?: boolean
   afterAmountMinor?: boolean
+  beforeExpectedEndDate?: boolean
+  afterExpectedEndDate?: boolean
   currency?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   changedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  currencyRecord?: boolean | Prisma.RequestSupplement$currencyRecordArgs<ExtArgs>
 }, ExtArgs["result"]["requestSupplement"]>
 
 export type RequestSupplementSelectScalar = {
@@ -1507,15 +1615,17 @@ export type RequestSupplementSelectScalar = {
   afterBudgetYear?: boolean
   beforeAmountMinor?: boolean
   afterAmountMinor?: boolean
+  beforeExpectedEndDate?: boolean
+  afterExpectedEndDate?: boolean
   currency?: boolean
 }
 
-export type RequestSupplementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "number" | "reason" | "changedByEmployeeId" | "createdAt" | "beforeExpectedSpendOn" | "afterExpectedSpendOn" | "beforeBudgetYear" | "afterBudgetYear" | "beforeAmountMinor" | "afterAmountMinor" | "currency", ExtArgs["result"]["requestSupplement"]>
+export type RequestSupplementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "number" | "reason" | "changedByEmployeeId" | "createdAt" | "beforeExpectedSpendOn" | "afterExpectedSpendOn" | "beforeBudgetYear" | "afterBudgetYear" | "beforeAmountMinor" | "afterAmountMinor" | "beforeExpectedEndDate" | "afterExpectedEndDate" | "currency", ExtArgs["result"]["requestSupplement"]>
 export type RequestSupplementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   changedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  currencyRecord?: boolean | Prisma.RequestSupplement$currencyRecordArgs<ExtArgs>
   drops?: boolean | Prisma.RequestSupplement$dropsArgs<ExtArgs>
   _count?: boolean | Prisma.RequestSupplementCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1523,13 +1633,13 @@ export type RequestSupplementIncludeCreateManyAndReturn<ExtArgs extends runtime.
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   changedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  currencyRecord?: boolean | Prisma.RequestSupplement$currencyRecordArgs<ExtArgs>
 }
 export type RequestSupplementIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   changedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  currencyRecord?: boolean | Prisma.RequestSupplement$currencyRecordArgs<ExtArgs>
 }
 
 export type $RequestSupplementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1538,7 +1648,7 @@ export type $RequestSupplementPayload<ExtArgs extends runtime.Types.Extensions.I
     organization: Prisma.$OrganizationPayload<ExtArgs>
     request: Prisma.$AccessRequestPayload<ExtArgs>
     changedBy: Prisma.$EmployeePayload<ExtArgs>
-    currencyRecord: Prisma.$CurrencyPayload<ExtArgs>
+    currencyRecord: Prisma.$CurrencyPayload<ExtArgs> | null
     drops: Prisma.$RequestSupplementDropPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1549,13 +1659,15 @@ export type $RequestSupplementPayload<ExtArgs extends runtime.Types.Extensions.I
     reason: string
     changedByEmployeeId: string
     createdAt: Date
-    beforeExpectedSpendOn: Date
-    afterExpectedSpendOn: Date
-    beforeBudgetYear: number
-    afterBudgetYear: number
-    beforeAmountMinor: bigint
-    afterAmountMinor: bigint
-    currency: string
+    beforeExpectedSpendOn: Date | null
+    afterExpectedSpendOn: Date | null
+    beforeBudgetYear: number | null
+    afterBudgetYear: number | null
+    beforeAmountMinor: bigint | null
+    afterAmountMinor: bigint | null
+    beforeExpectedEndDate: Date | null
+    afterExpectedEndDate: Date | null
+    currency: string | null
   }, ExtArgs["result"]["requestSupplement"]>
   composites: {}
 }
@@ -1953,7 +2065,7 @@ export interface Prisma__RequestSupplementClient<T, Null = never, ExtArgs extend
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   request<T extends Prisma.AccessRequestDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestDefaultArgs<ExtArgs>>): Prisma.Prisma__AccessRequestClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   changedBy<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  currencyRecord<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  currencyRecord<T extends Prisma.RequestSupplement$currencyRecordArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestSupplement$currencyRecordArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   drops<T extends Prisma.RequestSupplement$dropsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestSupplement$dropsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestSupplementDropPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1997,6 +2109,8 @@ export interface RequestSupplementFieldRefs {
   readonly afterBudgetYear: Prisma.FieldRef<"RequestSupplement", 'Int'>
   readonly beforeAmountMinor: Prisma.FieldRef<"RequestSupplement", 'BigInt'>
   readonly afterAmountMinor: Prisma.FieldRef<"RequestSupplement", 'BigInt'>
+  readonly beforeExpectedEndDate: Prisma.FieldRef<"RequestSupplement", 'DateTime'>
+  readonly afterExpectedEndDate: Prisma.FieldRef<"RequestSupplement", 'DateTime'>
   readonly currency: Prisma.FieldRef<"RequestSupplement", 'String'>
 }
     
@@ -2396,6 +2510,25 @@ export type RequestSupplementDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many RequestSupplements to delete.
    */
   limit?: number
+}
+
+/**
+ * RequestSupplement.currencyRecord
+ */
+export type RequestSupplement$currencyRecordArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Currency
+   */
+  select?: Prisma.CurrencySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Currency
+   */
+  omit?: Prisma.CurrencyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CurrencyInclude<ExtArgs> | null
+  where?: Prisma.CurrencyWhereInput
 }
 
 /**

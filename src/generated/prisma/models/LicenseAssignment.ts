@@ -41,6 +41,7 @@ export type LicenseAssignmentMinAggregateOutputType = {
   validFromBasis: $Enums.AssignmentDateBasis | null
   validUntil: Date | null
   expectedEndDate: Date | null
+  grantedOn: Date | null
   failedAt: Date | null
   cancelledAt: Date | null
   predecessorId: string | null
@@ -66,6 +67,7 @@ export type LicenseAssignmentMaxAggregateOutputType = {
   validFromBasis: $Enums.AssignmentDateBasis | null
   validUntil: Date | null
   expectedEndDate: Date | null
+  grantedOn: Date | null
   failedAt: Date | null
   cancelledAt: Date | null
   predecessorId: string | null
@@ -91,6 +93,7 @@ export type LicenseAssignmentCountAggregateOutputType = {
   validFromBasis: number
   validUntil: number
   expectedEndDate: number
+  grantedOn: number
   failedAt: number
   cancelledAt: number
   predecessorId: number
@@ -118,6 +121,7 @@ export type LicenseAssignmentMinAggregateInputType = {
   validFromBasis?: true
   validUntil?: true
   expectedEndDate?: true
+  grantedOn?: true
   failedAt?: true
   cancelledAt?: true
   predecessorId?: true
@@ -143,6 +147,7 @@ export type LicenseAssignmentMaxAggregateInputType = {
   validFromBasis?: true
   validUntil?: true
   expectedEndDate?: true
+  grantedOn?: true
   failedAt?: true
   cancelledAt?: true
   predecessorId?: true
@@ -168,6 +173,7 @@ export type LicenseAssignmentCountAggregateInputType = {
   validFromBasis?: true
   validUntil?: true
   expectedEndDate?: true
+  grantedOn?: true
   failedAt?: true
   cancelledAt?: true
   predecessorId?: true
@@ -266,6 +272,7 @@ export type LicenseAssignmentGroupByOutputType = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil: Date | null
   expectedEndDate: Date | null
+  grantedOn: Date | null
   failedAt: Date | null
   cancelledAt: Date | null
   predecessorId: string | null
@@ -312,6 +319,7 @@ export type LicenseAssignmentWhereInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFilter<"LicenseAssignment"> | $Enums.AssignmentDateBasis
   validUntil?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   expectedEndDate?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
+  grantedOn?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   failedAt?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   predecessorId?: Prisma.UuidNullableFilter<"LicenseAssignment"> | string | null
@@ -328,6 +336,7 @@ export type LicenseAssignmentWhereInput = {
   successors?: Prisma.LicenseAssignmentListRelationFilter
   baselineImport?: Prisma.XOR<Prisma.SeatBaselineImportNullableScalarRelationFilter, Prisma.SeatBaselineImportWhereInput> | null
   provisioningTasks?: Prisma.ProvisioningTaskListRelationFilter
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostListRelationFilter
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   handoverDuties?: Prisma.HandoverDutyListRelationFilter
   dutyNotices?: Prisma.ServiceAccountDutyNoticeListRelationFilter
@@ -356,6 +365,7 @@ export type LicenseAssignmentOrderByWithRelationInput = {
   validFromBasis?: Prisma.SortOrder
   validUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   expectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  grantedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   failedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   predecessorId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -372,6 +382,7 @@ export type LicenseAssignmentOrderByWithRelationInput = {
   successors?: Prisma.LicenseAssignmentOrderByRelationAggregateInput
   baselineImport?: Prisma.SeatBaselineImportOrderByWithRelationInput
   provisioningTasks?: Prisma.ProvisioningTaskOrderByRelationAggregateInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostOrderByRelationAggregateInput
   returnRequests?: Prisma.ReturnRequestOrderByRelationAggregateInput
   handoverDuties?: Prisma.HandoverDutyOrderByRelationAggregateInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeOrderByRelationAggregateInput
@@ -403,6 +414,7 @@ export type LicenseAssignmentWhereUniqueInput = Prisma.AtLeast<{
   validFromBasis?: Prisma.EnumAssignmentDateBasisFilter<"LicenseAssignment"> | $Enums.AssignmentDateBasis
   validUntil?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   expectedEndDate?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
+  grantedOn?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   failedAt?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   predecessorId?: Prisma.UuidNullableFilter<"LicenseAssignment"> | string | null
@@ -419,6 +431,7 @@ export type LicenseAssignmentWhereUniqueInput = Prisma.AtLeast<{
   successors?: Prisma.LicenseAssignmentListRelationFilter
   baselineImport?: Prisma.XOR<Prisma.SeatBaselineImportNullableScalarRelationFilter, Prisma.SeatBaselineImportWhereInput> | null
   provisioningTasks?: Prisma.ProvisioningTaskListRelationFilter
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostListRelationFilter
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   handoverDuties?: Prisma.HandoverDutyListRelationFilter
   dutyNotices?: Prisma.ServiceAccountDutyNoticeListRelationFilter
@@ -447,6 +460,7 @@ export type LicenseAssignmentOrderByWithAggregationInput = {
   validFromBasis?: Prisma.SortOrder
   validUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   expectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  grantedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   failedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   predecessorId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -478,6 +492,7 @@ export type LicenseAssignmentScalarWhereWithAggregatesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisWithAggregatesFilter<"LicenseAssignment"> | $Enums.AssignmentDateBasis
   validUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"LicenseAssignment"> | Date | string | null
   expectedEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"LicenseAssignment"> | Date | string | null
+  grantedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"LicenseAssignment"> | Date | string | null
   failedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"LicenseAssignment"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableWithAggregatesFilter<"LicenseAssignment"> | Date | string | null
   predecessorId?: Prisma.UuidNullableWithAggregatesFilter<"LicenseAssignment"> | string | null
@@ -497,6 +512,7 @@ export type LicenseAssignmentCreateInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -511,6 +527,7 @@ export type LicenseAssignmentCreateInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -539,6 +556,7 @@ export type LicenseAssignmentUncheckedCreateInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -547,6 +565,7 @@ export type LicenseAssignmentUncheckedCreateInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -569,6 +588,7 @@ export type LicenseAssignmentUpdateInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -583,6 +603,7 @@ export type LicenseAssignmentUpdateInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -611,6 +632,7 @@ export type LicenseAssignmentUncheckedUpdateInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -619,6 +641,7 @@ export type LicenseAssignmentUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -647,6 +670,7 @@ export type LicenseAssignmentCreateManyInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -666,6 +690,7 @@ export type LicenseAssignmentUpdateManyMutationInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -689,6 +714,7 @@ export type LicenseAssignmentUncheckedUpdateManyInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -729,6 +755,7 @@ export type LicenseAssignmentCountOrderByAggregateInput = {
   validFromBasis?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   expectedEndDate?: Prisma.SortOrder
+  grantedOn?: Prisma.SortOrder
   failedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
   predecessorId?: Prisma.SortOrder
@@ -754,6 +781,7 @@ export type LicenseAssignmentMaxOrderByAggregateInput = {
   validFromBasis?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   expectedEndDate?: Prisma.SortOrder
+  grantedOn?: Prisma.SortOrder
   failedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
   predecessorId?: Prisma.SortOrder
@@ -779,6 +807,7 @@ export type LicenseAssignmentMinOrderByAggregateInput = {
   validFromBasis?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   expectedEndDate?: Prisma.SortOrder
+  grantedOn?: Prisma.SortOrder
   failedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
   predecessorId?: Prisma.SortOrder
@@ -1072,6 +1101,20 @@ export type LicenseAssignmentUpdateOneRequiredWithoutRenewalReleasesNestedInput 
   update?: Prisma.XOR<Prisma.XOR<Prisma.LicenseAssignmentUpdateToOneWithWhereWithoutRenewalReleasesInput, Prisma.LicenseAssignmentUpdateWithoutRenewalReleasesInput>, Prisma.LicenseAssignmentUncheckedUpdateWithoutRenewalReleasesInput>
 }
 
+export type LicenseAssignmentCreateNestedOneWithoutPoolGrantAvoidedCostsInput = {
+  create?: Prisma.XOR<Prisma.LicenseAssignmentCreateWithoutPoolGrantAvoidedCostsInput, Prisma.LicenseAssignmentUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  connectOrCreate?: Prisma.LicenseAssignmentCreateOrConnectWithoutPoolGrantAvoidedCostsInput
+  connect?: Prisma.LicenseAssignmentWhereUniqueInput
+}
+
+export type LicenseAssignmentUpdateOneRequiredWithoutPoolGrantAvoidedCostsNestedInput = {
+  create?: Prisma.XOR<Prisma.LicenseAssignmentCreateWithoutPoolGrantAvoidedCostsInput, Prisma.LicenseAssignmentUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  connectOrCreate?: Prisma.LicenseAssignmentCreateOrConnectWithoutPoolGrantAvoidedCostsInput
+  upsert?: Prisma.LicenseAssignmentUpsertWithoutPoolGrantAvoidedCostsInput
+  connect?: Prisma.LicenseAssignmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LicenseAssignmentUpdateToOneWithWhereWithoutPoolGrantAvoidedCostsInput, Prisma.LicenseAssignmentUpdateWithoutPoolGrantAvoidedCostsInput>, Prisma.LicenseAssignmentUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+}
+
 export type LicenseAssignmentCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.LicenseAssignmentCreateWithoutOrganizationInput, Prisma.LicenseAssignmentUncheckedCreateWithoutOrganizationInput> | Prisma.LicenseAssignmentCreateWithoutOrganizationInput[] | Prisma.LicenseAssignmentUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.LicenseAssignmentCreateOrConnectWithoutOrganizationInput | Prisma.LicenseAssignmentCreateOrConnectWithoutOrganizationInput[]
@@ -1309,6 +1352,7 @@ export type LicenseAssignmentCreateWithoutPlanInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -1322,6 +1366,7 @@ export type LicenseAssignmentCreateWithoutPlanInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -1349,6 +1394,7 @@ export type LicenseAssignmentUncheckedCreateWithoutPlanInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -1357,6 +1403,7 @@ export type LicenseAssignmentUncheckedCreateWithoutPlanInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -1414,6 +1461,7 @@ export type LicenseAssignmentScalarWhereInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFilter<"LicenseAssignment"> | $Enums.AssignmentDateBasis
   validUntil?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   expectedEndDate?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
+  grantedOn?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   failedAt?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"LicenseAssignment"> | Date | string | null
   predecessorId?: Prisma.UuidNullableFilter<"LicenseAssignment"> | string | null
@@ -1433,6 +1481,7 @@ export type LicenseAssignmentCreateWithoutSubscriptionInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -1446,6 +1495,7 @@ export type LicenseAssignmentCreateWithoutSubscriptionInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -1473,6 +1523,7 @@ export type LicenseAssignmentUncheckedCreateWithoutSubscriptionInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -1481,6 +1532,7 @@ export type LicenseAssignmentUncheckedCreateWithoutSubscriptionInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -1529,6 +1581,7 @@ export type LicenseAssignmentCreateWithoutBaselineImportInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -1542,6 +1595,7 @@ export type LicenseAssignmentCreateWithoutBaselineImportInput = {
   predecessor?: Prisma.LicenseAssignmentCreateNestedOneWithoutSuccessorsInput
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -1570,6 +1624,7 @@ export type LicenseAssignmentUncheckedCreateWithoutBaselineImportInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -1577,6 +1632,7 @@ export type LicenseAssignmentUncheckedCreateWithoutBaselineImportInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -1625,6 +1681,7 @@ export type LicenseAssignmentCreateWithoutSuccessorsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -1638,6 +1695,7 @@ export type LicenseAssignmentCreateWithoutSuccessorsInput = {
   predecessor?: Prisma.LicenseAssignmentCreateNestedOneWithoutSuccessorsInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -1666,6 +1724,7 @@ export type LicenseAssignmentUncheckedCreateWithoutSuccessorsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -1673,6 +1732,7 @@ export type LicenseAssignmentUncheckedCreateWithoutSuccessorsInput = {
   createdByAppUserId: string
   createdAt?: Date | string
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -1700,6 +1760,7 @@ export type LicenseAssignmentCreateWithoutPredecessorInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -1713,6 +1774,7 @@ export type LicenseAssignmentCreateWithoutPredecessorInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -1741,6 +1803,7 @@ export type LicenseAssignmentUncheckedCreateWithoutPredecessorInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   baselineImportId?: string | null
@@ -1748,6 +1811,7 @@ export type LicenseAssignmentUncheckedCreateWithoutPredecessorInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -1791,6 +1855,7 @@ export type LicenseAssignmentUpdateWithoutSuccessorsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1804,6 +1869,7 @@ export type LicenseAssignmentUpdateWithoutSuccessorsInput = {
   predecessor?: Prisma.LicenseAssignmentUpdateOneWithoutSuccessorsNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -1832,6 +1898,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutSuccessorsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1839,6 +1906,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutSuccessorsInput = {
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -1877,6 +1945,7 @@ export type LicenseAssignmentCreateWithoutProvisioningTasksInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -1890,6 +1959,7 @@ export type LicenseAssignmentCreateWithoutProvisioningTasksInput = {
   predecessor?: Prisma.LicenseAssignmentCreateNestedOneWithoutSuccessorsInput
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -1918,6 +1988,7 @@ export type LicenseAssignmentUncheckedCreateWithoutProvisioningTasksInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -1925,6 +1996,7 @@ export type LicenseAssignmentUncheckedCreateWithoutProvisioningTasksInput = {
   createdByAppUserId: string
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -1963,6 +2035,7 @@ export type LicenseAssignmentUpdateWithoutProvisioningTasksInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1976,6 +2049,7 @@ export type LicenseAssignmentUpdateWithoutProvisioningTasksInput = {
   predecessor?: Prisma.LicenseAssignmentUpdateOneWithoutSuccessorsNestedInput
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -2004,6 +2078,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutProvisioningTasksInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2011,6 +2086,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutProvisioningTasksInput = {
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -2033,6 +2109,7 @@ export type LicenseAssignmentCreateWithoutHandoverDutiesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -2047,6 +2124,7 @@ export type LicenseAssignmentCreateWithoutHandoverDutiesInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
   expiryReminders?: Prisma.AssignmentExpiryReminderCreateNestedManyWithoutAssignmentInput
@@ -2074,6 +2152,7 @@ export type LicenseAssignmentUncheckedCreateWithoutHandoverDutiesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -2082,6 +2161,7 @@ export type LicenseAssignmentUncheckedCreateWithoutHandoverDutiesInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedCreateNestedManyWithoutAssignmentInput
@@ -2119,6 +2199,7 @@ export type LicenseAssignmentUpdateWithoutHandoverDutiesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2133,6 +2214,7 @@ export type LicenseAssignmentUpdateWithoutHandoverDutiesInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUpdateManyWithoutAssignmentNestedInput
@@ -2160,6 +2242,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutHandoverDutiesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2168,6 +2251,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutHandoverDutiesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -2189,6 +2273,7 @@ export type LicenseAssignmentCreateWithoutDutyNoticesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -2203,6 +2288,7 @@ export type LicenseAssignmentCreateWithoutDutyNoticesInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   expiryReminders?: Prisma.AssignmentExpiryReminderCreateNestedManyWithoutAssignmentInput
@@ -2230,6 +2316,7 @@ export type LicenseAssignmentUncheckedCreateWithoutDutyNoticesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -2238,6 +2325,7 @@ export type LicenseAssignmentUncheckedCreateWithoutDutyNoticesInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedCreateNestedManyWithoutAssignmentInput
@@ -2275,6 +2363,7 @@ export type LicenseAssignmentUpdateWithoutDutyNoticesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2289,6 +2378,7 @@ export type LicenseAssignmentUpdateWithoutDutyNoticesInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUpdateManyWithoutAssignmentNestedInput
@@ -2316,6 +2406,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutDutyNoticesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2324,6 +2415,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutDutyNoticesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -2345,6 +2437,7 @@ export type LicenseAssignmentCreateWithoutExpiryRemindersInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -2359,6 +2452,7 @@ export type LicenseAssignmentCreateWithoutExpiryRemindersInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -2386,6 +2480,7 @@ export type LicenseAssignmentUncheckedCreateWithoutExpiryRemindersInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -2394,6 +2489,7 @@ export type LicenseAssignmentUncheckedCreateWithoutExpiryRemindersInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -2431,6 +2527,7 @@ export type LicenseAssignmentUpdateWithoutExpiryRemindersInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2445,6 +2542,7 @@ export type LicenseAssignmentUpdateWithoutExpiryRemindersInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -2472,6 +2570,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutExpiryRemindersInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2480,6 +2579,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutExpiryRemindersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -2501,6 +2601,7 @@ export type LicenseAssignmentCreateWithoutSaasIssuesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -2515,6 +2616,7 @@ export type LicenseAssignmentCreateWithoutSaasIssuesInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -2542,6 +2644,7 @@ export type LicenseAssignmentUncheckedCreateWithoutSaasIssuesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -2550,6 +2653,7 @@ export type LicenseAssignmentUncheckedCreateWithoutSaasIssuesInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -2587,6 +2691,7 @@ export type LicenseAssignmentUpdateWithoutSaasIssuesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2601,6 +2706,7 @@ export type LicenseAssignmentUpdateWithoutSaasIssuesInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -2628,6 +2734,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutSaasIssuesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2636,6 +2743,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutSaasIssuesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -2657,6 +2765,7 @@ export type LicenseAssignmentCreateWithoutRenewalReleasesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -2671,6 +2780,7 @@ export type LicenseAssignmentCreateWithoutRenewalReleasesInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -2698,6 +2808,7 @@ export type LicenseAssignmentUncheckedCreateWithoutRenewalReleasesInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -2706,6 +2817,7 @@ export type LicenseAssignmentUncheckedCreateWithoutRenewalReleasesInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -2743,6 +2855,7 @@ export type LicenseAssignmentUpdateWithoutRenewalReleasesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2757,6 +2870,7 @@ export type LicenseAssignmentUpdateWithoutRenewalReleasesInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -2784,6 +2898,171 @@ export type LicenseAssignmentUncheckedUpdateWithoutRenewalReleasesInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  baselineImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
+  dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
+  expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedUpdateManyWithoutAssignmentNestedInput
+  saasIssues?: Prisma.SaasIssueUncheckedUpdateManyWithoutAssignmentNestedInput
+  transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutAssignmentNestedInput
+  renewalRequests?: Prisma.AccessRequestRenewalUncheckedUpdateManyWithoutAssignmentNestedInput
+  renewalOfRequest?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutSuccessorNestedInput
+}
+
+export type LicenseAssignmentCreateWithoutPoolGrantAvoidedCostsInput = {
+  id?: string
+  kind: $Enums.AssignmentKind
+  source: $Enums.AssignmentSource
+  accountIdentifier: string
+  normalizedAccountIdentifier: string
+  reason?: string | null
+  validFrom: Date | string
+  validFromBasis: $Enums.AssignmentDateBasis
+  validUntil?: Date | string | null
+  expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
+  failedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutLicenseAssignmentsInput
+  plan: Prisma.PlanCreateNestedOneWithoutLicenseAssignmentsInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutLicenseAssignmentsInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutLicenseAssignmentsInput
+  costCenter?: Prisma.CostCenterCreateNestedOneWithoutLicenseAssignmentsInput
+  owningDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedServiceAssignmentsInput
+  predecessor?: Prisma.LicenseAssignmentCreateNestedOneWithoutSuccessorsInput
+  successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
+  baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
+  provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
+  dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
+  expiryReminders?: Prisma.AssignmentExpiryReminderCreateNestedManyWithoutAssignmentInput
+  renewalReleases?: Prisma.SubscriptionRenewalReleasedSeatCreateNestedManyWithoutAssignmentInput
+  saasIssues?: Prisma.SaasIssueCreateNestedManyWithoutAssignmentInput
+  transferReviewItems?: Prisma.TransferReviewItemCreateNestedManyWithoutAssignmentInput
+  renewalRequests?: Prisma.AccessRequestRenewalCreateNestedManyWithoutAssignmentInput
+  renewalOfRequest?: Prisma.AccessRequestRenewalCreateNestedOneWithoutSuccessorInput
+}
+
+export type LicenseAssignmentUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
+  id?: string
+  organizationId: string
+  kind: $Enums.AssignmentKind
+  source: $Enums.AssignmentSource
+  planId: string
+  subscriptionId?: string | null
+  employeeId: string
+  accountIdentifier: string
+  normalizedAccountIdentifier: string
+  reason?: string | null
+  costCenterId?: string | null
+  owningDepartmentId?: string | null
+  validFrom: Date | string
+  validFromBasis: $Enums.AssignmentDateBasis
+  validUntil?: Date | string | null
+  expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
+  failedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  predecessorId?: string | null
+  baselineImportId?: string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
+  dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
+  expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedCreateNestedManyWithoutAssignmentInput
+  renewalReleases?: Prisma.SubscriptionRenewalReleasedSeatUncheckedCreateNestedManyWithoutAssignmentInput
+  saasIssues?: Prisma.SaasIssueUncheckedCreateNestedManyWithoutAssignmentInput
+  transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutAssignmentInput
+  renewalRequests?: Prisma.AccessRequestRenewalUncheckedCreateNestedManyWithoutAssignmentInput
+  renewalOfRequest?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutSuccessorInput
+}
+
+export type LicenseAssignmentCreateOrConnectWithoutPoolGrantAvoidedCostsInput = {
+  where: Prisma.LicenseAssignmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.LicenseAssignmentCreateWithoutPoolGrantAvoidedCostsInput, Prisma.LicenseAssignmentUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+}
+
+export type LicenseAssignmentUpsertWithoutPoolGrantAvoidedCostsInput = {
+  update: Prisma.XOR<Prisma.LicenseAssignmentUpdateWithoutPoolGrantAvoidedCostsInput, Prisma.LicenseAssignmentUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+  create: Prisma.XOR<Prisma.LicenseAssignmentCreateWithoutPoolGrantAvoidedCostsInput, Prisma.LicenseAssignmentUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  where?: Prisma.LicenseAssignmentWhereInput
+}
+
+export type LicenseAssignmentUpdateToOneWithWhereWithoutPoolGrantAvoidedCostsInput = {
+  where?: Prisma.LicenseAssignmentWhereInput
+  data: Prisma.XOR<Prisma.LicenseAssignmentUpdateWithoutPoolGrantAvoidedCostsInput, Prisma.LicenseAssignmentUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+}
+
+export type LicenseAssignmentUpdateWithoutPoolGrantAvoidedCostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumAssignmentKindFieldUpdateOperationsInput | $Enums.AssignmentKind
+  source?: Prisma.EnumAssignmentSourceFieldUpdateOperationsInput | $Enums.AssignmentSource
+  accountIdentifier?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedAccountIdentifier?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutLicenseAssignmentsNestedInput
+  plan?: Prisma.PlanUpdateOneRequiredWithoutLicenseAssignmentsNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutLicenseAssignmentsNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutLicenseAssignmentsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneWithoutLicenseAssignmentsNestedInput
+  owningDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedServiceAssignmentsNestedInput
+  predecessor?: Prisma.LicenseAssignmentUpdateOneWithoutSuccessorsNestedInput
+  successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
+  baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
+  dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
+  expiryReminders?: Prisma.AssignmentExpiryReminderUpdateManyWithoutAssignmentNestedInput
+  renewalReleases?: Prisma.SubscriptionRenewalReleasedSeatUpdateManyWithoutAssignmentNestedInput
+  saasIssues?: Prisma.SaasIssueUpdateManyWithoutAssignmentNestedInput
+  transferReviewItems?: Prisma.TransferReviewItemUpdateManyWithoutAssignmentNestedInput
+  renewalRequests?: Prisma.AccessRequestRenewalUpdateManyWithoutAssignmentNestedInput
+  renewalOfRequest?: Prisma.AccessRequestRenewalUpdateOneWithoutSuccessorNestedInput
+}
+
+export type LicenseAssignmentUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumAssignmentKindFieldUpdateOperationsInput | $Enums.AssignmentKind
+  source?: Prisma.EnumAssignmentSourceFieldUpdateOperationsInput | $Enums.AssignmentSource
+  planId?: Prisma.StringFieldUpdateOperationsInput | string
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountIdentifier?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedAccountIdentifier?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owningDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
+  validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2796,6 +3075,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutRenewalReleasesInput = {
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedUpdateManyWithoutAssignmentNestedInput
+  renewalReleases?: Prisma.SubscriptionRenewalReleasedSeatUncheckedUpdateManyWithoutAssignmentNestedInput
   saasIssues?: Prisma.SaasIssueUncheckedUpdateManyWithoutAssignmentNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutAssignmentNestedInput
   renewalRequests?: Prisma.AccessRequestRenewalUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -2813,6 +3093,7 @@ export type LicenseAssignmentCreateWithoutOrganizationInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -2826,6 +3107,7 @@ export type LicenseAssignmentCreateWithoutOrganizationInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -2853,6 +3135,7 @@ export type LicenseAssignmentUncheckedCreateWithoutOrganizationInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -2861,6 +3144,7 @@ export type LicenseAssignmentUncheckedCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -2909,6 +3193,7 @@ export type LicenseAssignmentCreateWithoutCostCenterInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -2922,6 +3207,7 @@ export type LicenseAssignmentCreateWithoutCostCenterInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -2949,6 +3235,7 @@ export type LicenseAssignmentUncheckedCreateWithoutCostCenterInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -2957,6 +3244,7 @@ export type LicenseAssignmentUncheckedCreateWithoutCostCenterInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -3005,6 +3293,7 @@ export type LicenseAssignmentCreateWithoutOwningDepartmentInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -3018,6 +3307,7 @@ export type LicenseAssignmentCreateWithoutOwningDepartmentInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -3045,6 +3335,7 @@ export type LicenseAssignmentUncheckedCreateWithoutOwningDepartmentInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3053,6 +3344,7 @@ export type LicenseAssignmentUncheckedCreateWithoutOwningDepartmentInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -3101,6 +3393,7 @@ export type LicenseAssignmentCreateWithoutEmployeeInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -3114,6 +3407,7 @@ export type LicenseAssignmentCreateWithoutEmployeeInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -3141,6 +3435,7 @@ export type LicenseAssignmentUncheckedCreateWithoutEmployeeInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3149,6 +3444,7 @@ export type LicenseAssignmentUncheckedCreateWithoutEmployeeInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -3197,6 +3493,7 @@ export type LicenseAssignmentCreateWithoutTransferReviewItemsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -3211,6 +3508,7 @@ export type LicenseAssignmentCreateWithoutTransferReviewItemsInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -3238,6 +3536,7 @@ export type LicenseAssignmentUncheckedCreateWithoutTransferReviewItemsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3246,6 +3545,7 @@ export type LicenseAssignmentUncheckedCreateWithoutTransferReviewItemsInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -3283,6 +3583,7 @@ export type LicenseAssignmentUpdateWithoutTransferReviewItemsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3297,6 +3598,7 @@ export type LicenseAssignmentUpdateWithoutTransferReviewItemsInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -3324,6 +3626,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutTransferReviewItemsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3332,6 +3635,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutTransferReviewItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -3353,6 +3657,7 @@ export type LicenseAssignmentCreateWithoutReturnRequestsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -3367,6 +3672,7 @@ export type LicenseAssignmentCreateWithoutReturnRequestsInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
   expiryReminders?: Prisma.AssignmentExpiryReminderCreateNestedManyWithoutAssignmentInput
@@ -3394,6 +3700,7 @@ export type LicenseAssignmentUncheckedCreateWithoutReturnRequestsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3402,6 +3709,7 @@ export type LicenseAssignmentUncheckedCreateWithoutReturnRequestsInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedCreateNestedManyWithoutAssignmentInput
@@ -3439,6 +3747,7 @@ export type LicenseAssignmentUpdateWithoutReturnRequestsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3453,6 +3762,7 @@ export type LicenseAssignmentUpdateWithoutReturnRequestsInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUpdateManyWithoutAssignmentNestedInput
@@ -3480,6 +3790,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutReturnRequestsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3488,6 +3799,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutReturnRequestsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
   expiryReminders?: Prisma.AssignmentExpiryReminderUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -3509,6 +3821,7 @@ export type LicenseAssignmentCreateWithoutRenewalRequestsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -3523,6 +3836,7 @@ export type LicenseAssignmentCreateWithoutRenewalRequestsInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -3550,6 +3864,7 @@ export type LicenseAssignmentUncheckedCreateWithoutRenewalRequestsInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3558,6 +3873,7 @@ export type LicenseAssignmentUncheckedCreateWithoutRenewalRequestsInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -3584,6 +3900,7 @@ export type LicenseAssignmentCreateWithoutRenewalOfRequestInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   createdByAppUserId: string
@@ -3598,6 +3915,7 @@ export type LicenseAssignmentCreateWithoutRenewalOfRequestInput = {
   successors?: Prisma.LicenseAssignmentCreateNestedManyWithoutPredecessorInput
   baselineImport?: Prisma.SeatBaselineImportCreateNestedOneWithoutAssignmentsInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeCreateNestedManyWithoutAssignmentInput
@@ -3625,6 +3943,7 @@ export type LicenseAssignmentUncheckedCreateWithoutRenewalOfRequestInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3633,6 +3952,7 @@ export type LicenseAssignmentUncheckedCreateWithoutRenewalOfRequestInput = {
   createdAt?: Date | string
   successors?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPredecessorInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutAssignmentInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutAssignmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutAssignmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutAssignmentInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedCreateNestedManyWithoutAssignmentInput
@@ -3670,6 +3990,7 @@ export type LicenseAssignmentUpdateWithoutRenewalRequestsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3684,6 +4005,7 @@ export type LicenseAssignmentUpdateWithoutRenewalRequestsInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -3711,6 +4033,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutRenewalRequestsInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3719,6 +4042,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutRenewalRequestsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -3751,6 +4075,7 @@ export type LicenseAssignmentUpdateWithoutRenewalOfRequestInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3765,6 +4090,7 @@ export type LicenseAssignmentUpdateWithoutRenewalOfRequestInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -3792,6 +4118,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutRenewalOfRequestInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3800,6 +4127,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutRenewalOfRequestInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -3826,6 +4154,7 @@ export type LicenseAssignmentCreateManyPlanInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3845,6 +4174,7 @@ export type LicenseAssignmentUpdateWithoutPlanInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3858,6 +4188,7 @@ export type LicenseAssignmentUpdateWithoutPlanInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -3885,6 +4216,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutPlanInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3893,6 +4225,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutPlanInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -3920,6 +4253,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutPlanInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3944,6 +4278,7 @@ export type LicenseAssignmentCreateManySubscriptionInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -3963,6 +4298,7 @@ export type LicenseAssignmentUpdateWithoutSubscriptionInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3976,6 +4312,7 @@ export type LicenseAssignmentUpdateWithoutSubscriptionInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -4003,6 +4340,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutSubscriptionInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4011,6 +4349,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutSubscriptionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -4038,6 +4377,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutSubscriptionInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4063,6 +4403,7 @@ export type LicenseAssignmentCreateManyBaselineImportInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -4081,6 +4422,7 @@ export type LicenseAssignmentUpdateWithoutBaselineImportInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -4094,6 +4436,7 @@ export type LicenseAssignmentUpdateWithoutBaselineImportInput = {
   predecessor?: Prisma.LicenseAssignmentUpdateOneWithoutSuccessorsNestedInput
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -4122,6 +4465,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutBaselineImportInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4129,6 +4473,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutBaselineImportInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -4157,6 +4502,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutBaselineImportInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4181,6 +4527,7 @@ export type LicenseAssignmentCreateManyPredecessorInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   baselineImportId?: string | null
@@ -4199,6 +4546,7 @@ export type LicenseAssignmentUpdateWithoutPredecessorInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -4212,6 +4560,7 @@ export type LicenseAssignmentUpdateWithoutPredecessorInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -4240,6 +4589,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutPredecessorInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   baselineImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4247,6 +4597,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutPredecessorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -4275,6 +4626,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutPredecessorInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   baselineImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4298,6 +4650,7 @@ export type LicenseAssignmentCreateManyOrganizationInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -4317,6 +4670,7 @@ export type LicenseAssignmentUpdateWithoutOrganizationInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -4330,6 +4684,7 @@ export type LicenseAssignmentUpdateWithoutOrganizationInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -4357,6 +4712,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutOrganizationInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4365,6 +4721,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -4392,6 +4749,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutOrganizationInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4416,6 +4774,7 @@ export type LicenseAssignmentCreateManyCostCenterInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -4435,6 +4794,7 @@ export type LicenseAssignmentUpdateWithoutCostCenterInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -4448,6 +4808,7 @@ export type LicenseAssignmentUpdateWithoutCostCenterInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -4475,6 +4836,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutCostCenterInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4483,6 +4845,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutCostCenterInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -4510,6 +4873,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutCostCenterInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4534,6 +4898,7 @@ export type LicenseAssignmentCreateManyOwningDepartmentInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -4553,6 +4918,7 @@ export type LicenseAssignmentUpdateWithoutOwningDepartmentInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -4566,6 +4932,7 @@ export type LicenseAssignmentUpdateWithoutOwningDepartmentInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -4593,6 +4960,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutOwningDepartmentInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4601,6 +4969,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutOwningDepartmentInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -4628,6 +4997,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutOwningDepartmentInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4652,6 +5022,7 @@ export type LicenseAssignmentCreateManyEmployeeInput = {
   validFromBasis: $Enums.AssignmentDateBasis
   validUntil?: Date | string | null
   expectedEndDate?: Date | string | null
+  grantedOn?: Date | string | null
   failedAt?: Date | string | null
   cancelledAt?: Date | string | null
   predecessorId?: string | null
@@ -4671,6 +5042,7 @@ export type LicenseAssignmentUpdateWithoutEmployeeInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -4684,6 +5056,7 @@ export type LicenseAssignmentUpdateWithoutEmployeeInput = {
   successors?: Prisma.LicenseAssignmentUpdateManyWithoutPredecessorNestedInput
   baselineImport?: Prisma.SeatBaselineImportUpdateOneWithoutAssignmentsNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUpdateManyWithoutAssignmentNestedInput
@@ -4711,6 +5084,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutEmployeeInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4719,6 +5093,7 @@ export type LicenseAssignmentUncheckedUpdateWithoutEmployeeInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   successors?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPredecessorNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutAssignmentNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutAssignmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutAssignmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutAssignmentNestedInput
   dutyNotices?: Prisma.ServiceAccountDutyNoticeUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -4746,6 +5121,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutEmployeeInput = {
   validFromBasis?: Prisma.EnumAssignmentDateBasisFieldUpdateOperationsInput | $Enums.AssignmentDateBasis
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   predecessorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4762,6 +5138,7 @@ export type LicenseAssignmentUncheckedUpdateManyWithoutEmployeeInput = {
 export type LicenseAssignmentCountOutputType = {
   successors: number
   provisioningTasks: number
+  poolGrantAvoidedCosts: number
   returnRequests: number
   handoverDuties: number
   dutyNotices: number
@@ -4775,6 +5152,7 @@ export type LicenseAssignmentCountOutputType = {
 export type LicenseAssignmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   successors?: boolean | LicenseAssignmentCountOutputTypeCountSuccessorsArgs
   provisioningTasks?: boolean | LicenseAssignmentCountOutputTypeCountProvisioningTasksArgs
+  poolGrantAvoidedCosts?: boolean | LicenseAssignmentCountOutputTypeCountPoolGrantAvoidedCostsArgs
   returnRequests?: boolean | LicenseAssignmentCountOutputTypeCountReturnRequestsArgs
   handoverDuties?: boolean | LicenseAssignmentCountOutputTypeCountHandoverDutiesArgs
   dutyNotices?: boolean | LicenseAssignmentCountOutputTypeCountDutyNoticesArgs
@@ -4807,6 +5185,13 @@ export type LicenseAssignmentCountOutputTypeCountSuccessorsArgs<ExtArgs extends 
  */
 export type LicenseAssignmentCountOutputTypeCountProvisioningTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ProvisioningTaskWhereInput
+}
+
+/**
+ * LicenseAssignmentCountOutputType without action
+ */
+export type LicenseAssignmentCountOutputTypeCountPoolGrantAvoidedCostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PoolGrantAvoidedCostWhereInput
 }
 
 /**
@@ -4883,6 +5268,7 @@ export type LicenseAssignmentSelect<ExtArgs extends runtime.Types.Extensions.Int
   validFromBasis?: boolean
   validUntil?: boolean
   expectedEndDate?: boolean
+  grantedOn?: boolean
   failedAt?: boolean
   cancelledAt?: boolean
   predecessorId?: boolean
@@ -4899,6 +5285,7 @@ export type LicenseAssignmentSelect<ExtArgs extends runtime.Types.Extensions.Int
   successors?: boolean | Prisma.LicenseAssignment$successorsArgs<ExtArgs>
   baselineImport?: boolean | Prisma.LicenseAssignment$baselineImportArgs<ExtArgs>
   provisioningTasks?: boolean | Prisma.LicenseAssignment$provisioningTasksArgs<ExtArgs>
+  poolGrantAvoidedCosts?: boolean | Prisma.LicenseAssignment$poolGrantAvoidedCostsArgs<ExtArgs>
   returnRequests?: boolean | Prisma.LicenseAssignment$returnRequestsArgs<ExtArgs>
   handoverDuties?: boolean | Prisma.LicenseAssignment$handoverDutiesArgs<ExtArgs>
   dutyNotices?: boolean | Prisma.LicenseAssignment$dutyNoticesArgs<ExtArgs>
@@ -4928,6 +5315,7 @@ export type LicenseAssignmentSelectCreateManyAndReturn<ExtArgs extends runtime.T
   validFromBasis?: boolean
   validUntil?: boolean
   expectedEndDate?: boolean
+  grantedOn?: boolean
   failedAt?: boolean
   cancelledAt?: boolean
   predecessorId?: boolean
@@ -4961,6 +5349,7 @@ export type LicenseAssignmentSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   validFromBasis?: boolean
   validUntil?: boolean
   expectedEndDate?: boolean
+  grantedOn?: boolean
   failedAt?: boolean
   cancelledAt?: boolean
   predecessorId?: boolean
@@ -4994,6 +5383,7 @@ export type LicenseAssignmentSelectScalar = {
   validFromBasis?: boolean
   validUntil?: boolean
   expectedEndDate?: boolean
+  grantedOn?: boolean
   failedAt?: boolean
   cancelledAt?: boolean
   predecessorId?: boolean
@@ -5002,7 +5392,7 @@ export type LicenseAssignmentSelectScalar = {
   createdAt?: boolean
 }
 
-export type LicenseAssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "kind" | "source" | "planId" | "subscriptionId" | "employeeId" | "accountIdentifier" | "normalizedAccountIdentifier" | "reason" | "costCenterId" | "owningDepartmentId" | "validFrom" | "validFromBasis" | "validUntil" | "expectedEndDate" | "failedAt" | "cancelledAt" | "predecessorId" | "baselineImportId" | "createdByAppUserId" | "createdAt", ExtArgs["result"]["licenseAssignment"]>
+export type LicenseAssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "kind" | "source" | "planId" | "subscriptionId" | "employeeId" | "accountIdentifier" | "normalizedAccountIdentifier" | "reason" | "costCenterId" | "owningDepartmentId" | "validFrom" | "validFromBasis" | "validUntil" | "expectedEndDate" | "grantedOn" | "failedAt" | "cancelledAt" | "predecessorId" | "baselineImportId" | "createdByAppUserId" | "createdAt", ExtArgs["result"]["licenseAssignment"]>
 export type LicenseAssignmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
@@ -5014,6 +5404,7 @@ export type LicenseAssignmentInclude<ExtArgs extends runtime.Types.Extensions.In
   successors?: boolean | Prisma.LicenseAssignment$successorsArgs<ExtArgs>
   baselineImport?: boolean | Prisma.LicenseAssignment$baselineImportArgs<ExtArgs>
   provisioningTasks?: boolean | Prisma.LicenseAssignment$provisioningTasksArgs<ExtArgs>
+  poolGrantAvoidedCosts?: boolean | Prisma.LicenseAssignment$poolGrantAvoidedCostsArgs<ExtArgs>
   returnRequests?: boolean | Prisma.LicenseAssignment$returnRequestsArgs<ExtArgs>
   handoverDuties?: boolean | Prisma.LicenseAssignment$handoverDutiesArgs<ExtArgs>
   dutyNotices?: boolean | Prisma.LicenseAssignment$dutyNoticesArgs<ExtArgs>
@@ -5059,6 +5450,7 @@ export type $LicenseAssignmentPayload<ExtArgs extends runtime.Types.Extensions.I
     successors: Prisma.$LicenseAssignmentPayload<ExtArgs>[]
     baselineImport: Prisma.$SeatBaselineImportPayload<ExtArgs> | null
     provisioningTasks: Prisma.$ProvisioningTaskPayload<ExtArgs>[]
+    poolGrantAvoidedCosts: Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>[]
     returnRequests: Prisma.$ReturnRequestPayload<ExtArgs>[]
     handoverDuties: Prisma.$HandoverDutyPayload<ExtArgs>[]
     dutyNotices: Prisma.$ServiceAccountDutyNoticePayload<ExtArgs>[]
@@ -5086,6 +5478,7 @@ export type $LicenseAssignmentPayload<ExtArgs extends runtime.Types.Extensions.I
     validFromBasis: $Enums.AssignmentDateBasis
     validUntil: Date | null
     expectedEndDate: Date | null
+    grantedOn: Date | null
     failedAt: Date | null
     cancelledAt: Date | null
     predecessorId: string | null
@@ -5496,6 +5889,7 @@ export interface Prisma__LicenseAssignmentClient<T, Null = never, ExtArgs extend
   successors<T extends Prisma.LicenseAssignment$successorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignment$successorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LicenseAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   baselineImport<T extends Prisma.LicenseAssignment$baselineImportArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignment$baselineImportArgs<ExtArgs>>): Prisma.Prisma__SeatBaselineImportClient<runtime.Types.Result.GetResult<Prisma.$SeatBaselineImportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   provisioningTasks<T extends Prisma.LicenseAssignment$provisioningTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignment$provisioningTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProvisioningTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  poolGrantAvoidedCosts<T extends Prisma.LicenseAssignment$poolGrantAvoidedCostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignment$poolGrantAvoidedCostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   returnRequests<T extends Prisma.LicenseAssignment$returnRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignment$returnRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   handoverDuties<T extends Prisma.LicenseAssignment$handoverDutiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignment$handoverDutiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HandoverDutyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dutyNotices<T extends Prisma.LicenseAssignment$dutyNoticesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignment$dutyNoticesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceAccountDutyNoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -5550,6 +5944,7 @@ export interface LicenseAssignmentFieldRefs {
   readonly validFromBasis: Prisma.FieldRef<"LicenseAssignment", 'AssignmentDateBasis'>
   readonly validUntil: Prisma.FieldRef<"LicenseAssignment", 'DateTime'>
   readonly expectedEndDate: Prisma.FieldRef<"LicenseAssignment", 'DateTime'>
+  readonly grantedOn: Prisma.FieldRef<"LicenseAssignment", 'DateTime'>
   readonly failedAt: Prisma.FieldRef<"LicenseAssignment", 'DateTime'>
   readonly cancelledAt: Prisma.FieldRef<"LicenseAssignment", 'DateTime'>
   readonly predecessorId: Prisma.FieldRef<"LicenseAssignment", 'String'>
@@ -6097,6 +6492,30 @@ export type LicenseAssignment$provisioningTasksArgs<ExtArgs extends runtime.Type
   take?: number
   skip?: number
   distinct?: Prisma.ProvisioningTaskScalarFieldEnum | Prisma.ProvisioningTaskScalarFieldEnum[]
+}
+
+/**
+ * LicenseAssignment.poolGrantAvoidedCosts
+ */
+export type LicenseAssignment$poolGrantAvoidedCostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PoolGrantAvoidedCost
+   */
+  select?: Prisma.PoolGrantAvoidedCostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PoolGrantAvoidedCost
+   */
+  omit?: Prisma.PoolGrantAvoidedCostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PoolGrantAvoidedCostInclude<ExtArgs> | null
+  where?: Prisma.PoolGrantAvoidedCostWhereInput
+  orderBy?: Prisma.PoolGrantAvoidedCostOrderByWithRelationInput | Prisma.PoolGrantAvoidedCostOrderByWithRelationInput[]
+  cursor?: Prisma.PoolGrantAvoidedCostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PoolGrantAvoidedCostScalarFieldEnum | Prisma.PoolGrantAvoidedCostScalarFieldEnum[]
 }
 
 /**

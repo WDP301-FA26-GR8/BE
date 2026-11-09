@@ -67,6 +67,8 @@ export type BudgetVersionMinAggregateOutputType = {
   proposalId: string | null
   basedOnVersionId: string | null
   baseMinor: bigint | null
+  baseReason: string | null
+  origin: $Enums.BudgetVersionOrigin | null
   reserveMinor: bigint | null
   reservePercent: number | null
   reserveReason: string | null
@@ -101,6 +103,8 @@ export type BudgetVersionMaxAggregateOutputType = {
   proposalId: string | null
   basedOnVersionId: string | null
   baseMinor: bigint | null
+  baseReason: string | null
+  origin: $Enums.BudgetVersionOrigin | null
   reserveMinor: bigint | null
   reservePercent: number | null
   reserveReason: string | null
@@ -135,6 +139,8 @@ export type BudgetVersionCountAggregateOutputType = {
   proposalId: number
   basedOnVersionId: number
   baseMinor: number
+  baseReason: number
+  origin: number
   reserveMinor: number
   reservePercent: number
   reserveReason: number
@@ -201,6 +207,8 @@ export type BudgetVersionMinAggregateInputType = {
   proposalId?: true
   basedOnVersionId?: true
   baseMinor?: true
+  baseReason?: true
+  origin?: true
   reserveMinor?: true
   reservePercent?: true
   reserveReason?: true
@@ -235,6 +243,8 @@ export type BudgetVersionMaxAggregateInputType = {
   proposalId?: true
   basedOnVersionId?: true
   baseMinor?: true
+  baseReason?: true
+  origin?: true
   reserveMinor?: true
   reservePercent?: true
   reserveReason?: true
@@ -269,6 +279,8 @@ export type BudgetVersionCountAggregateInputType = {
   proposalId?: true
   basedOnVersionId?: true
   baseMinor?: true
+  baseReason?: true
+  origin?: true
   reserveMinor?: true
   reservePercent?: true
   reserveReason?: true
@@ -390,6 +402,8 @@ export type BudgetVersionGroupByOutputType = {
   proposalId: string | null
   basedOnVersionId: string | null
   baseMinor: bigint
+  baseReason: string | null
+  origin: $Enums.BudgetVersionOrigin
   reserveMinor: bigint
   reservePercent: number | null
   reserveReason: string | null
@@ -447,6 +461,8 @@ export type BudgetVersionWhereInput = {
   proposalId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   basedOnVersionId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
+  baseReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFilter<"BudgetVersion"> | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   reservePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
   reserveReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
@@ -494,6 +510,8 @@ export type BudgetVersionOrderByWithRelationInput = {
   proposalId?: Prisma.SortOrderInput | Prisma.SortOrder
   basedOnVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
+  baseReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  origin?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
   reservePercent?: Prisma.SortOrderInput | Prisma.SortOrder
   reserveReason?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -546,6 +564,8 @@ export type BudgetVersionWhereUniqueInput = Prisma.AtLeast<{
   proposalId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   basedOnVersionId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
+  baseReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFilter<"BudgetVersion"> | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   reservePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
   reserveReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
@@ -592,6 +612,8 @@ export type BudgetVersionOrderByWithAggregationInput = {
   proposalId?: Prisma.SortOrderInput | Prisma.SortOrder
   basedOnVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
+  baseReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  origin?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
   reservePercent?: Prisma.SortOrderInput | Prisma.SortOrder
   reserveReason?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -634,6 +656,8 @@ export type BudgetVersionScalarWhereWithAggregatesInput = {
   proposalId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetVersion"> | string | null
   basedOnVersionId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetVersion"> | bigint | number
+  baseReason?: Prisma.StringNullableWithAggregatesFilter<"BudgetVersion"> | string | null
+  origin?: Prisma.EnumBudgetVersionOriginWithAggregatesFilter<"BudgetVersion"> | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetVersion"> | bigint | number
   reservePercent?: Prisma.IntNullableWithAggregatesFilter<"BudgetVersion"> | number | null
   reserveReason?: Prisma.StringNullableWithAggregatesFilter<"BudgetVersion"> | string | null
@@ -664,6 +688,8 @@ export type BudgetVersionCreateInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -709,6 +735,8 @@ export type BudgetVersionUncheckedCreateInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -746,6 +774,8 @@ export type BudgetVersionUpdateInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -791,6 +821,8 @@ export type BudgetVersionUncheckedUpdateInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -832,6 +864,8 @@ export type BudgetVersionCreateManyInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -862,6 +896,8 @@ export type BudgetVersionUpdateManyMutationInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -894,6 +930,8 @@ export type BudgetVersionUncheckedUpdateManyInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -949,6 +987,8 @@ export type BudgetVersionCountOrderByAggregateInput = {
   proposalId?: Prisma.SortOrder
   basedOnVersionId?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
+  baseReason?: Prisma.SortOrder
+  origin?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
   reservePercent?: Prisma.SortOrder
   reserveReason?: Prisma.SortOrder
@@ -998,6 +1038,8 @@ export type BudgetVersionMaxOrderByAggregateInput = {
   proposalId?: Prisma.SortOrder
   basedOnVersionId?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
+  baseReason?: Prisma.SortOrder
+  origin?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
   reservePercent?: Prisma.SortOrder
   reserveReason?: Prisma.SortOrder
@@ -1032,6 +1074,8 @@ export type BudgetVersionMinOrderByAggregateInput = {
   proposalId?: Prisma.SortOrder
   basedOnVersionId?: Prisma.SortOrder
   baseMinor?: Prisma.SortOrder
+  baseReason?: Prisma.SortOrder
+  origin?: Prisma.SortOrder
   reserveMinor?: Prisma.SortOrder
   reservePercent?: Prisma.SortOrder
   reserveReason?: Prisma.SortOrder
@@ -1163,12 +1207,8 @@ export type EnumBudgetVersionStateFieldUpdateOperationsInput = {
   set?: $Enums.BudgetVersionState
 }
 
-export type NullableBigIntFieldUpdateOperationsInput = {
-  set?: bigint | number | null
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
+export type EnumBudgetVersionOriginFieldUpdateOperationsInput = {
+  set?: $Enums.BudgetVersionOrigin
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -1450,6 +1490,8 @@ export type BudgetVersionCreateWithoutProposalInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1493,6 +1535,8 @@ export type BudgetVersionUncheckedCreateWithoutProposalInput = {
   state: $Enums.BudgetVersionState
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1563,6 +1607,8 @@ export type BudgetVersionScalarWhereInput = {
   proposalId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   basedOnVersionId?: Prisma.UuidNullableFilter<"BudgetVersion"> | string | null
   baseMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
+  baseReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFilter<"BudgetVersion"> | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFilter<"BudgetVersion"> | bigint | number
   reservePercent?: Prisma.IntNullableFilter<"BudgetVersion"> | number | null
   reserveReason?: Prisma.StringNullableFilter<"BudgetVersion"> | string | null
@@ -1593,6 +1639,8 @@ export type BudgetVersionCreateWithoutRevisionsInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1637,6 +1685,8 @@ export type BudgetVersionUncheckedCreateWithoutRevisionsInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1678,6 +1728,8 @@ export type BudgetVersionCreateWithoutBasedOnInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1721,6 +1773,8 @@ export type BudgetVersionUncheckedCreateWithoutBasedOnInput = {
   state: $Enums.BudgetVersionState
   proposalId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1768,6 +1822,8 @@ export type BudgetVersionCreateWithoutFollowedByInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1812,6 +1868,8 @@ export type BudgetVersionUncheckedCreateWithoutFollowedByInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1853,6 +1911,8 @@ export type BudgetVersionCreateWithoutRejectedPredecessorInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1897,6 +1957,8 @@ export type BudgetVersionUncheckedCreateWithoutRejectedPredecessorInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -1949,6 +2011,8 @@ export type BudgetVersionUpdateWithoutRevisionsInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1993,6 +2057,8 @@ export type BudgetVersionUncheckedUpdateWithoutRevisionsInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2056,6 +2122,8 @@ export type BudgetVersionUpdateWithoutFollowedByInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2100,6 +2168,8 @@ export type BudgetVersionUncheckedUpdateWithoutFollowedByInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2147,6 +2217,8 @@ export type BudgetVersionUpdateWithoutRejectedPredecessorInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2191,6 +2263,8 @@ export type BudgetVersionUncheckedUpdateWithoutRejectedPredecessorInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2227,6 +2301,8 @@ export type BudgetVersionCreateWithoutLinesInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2271,6 +2347,8 @@ export type BudgetVersionUncheckedCreateWithoutLinesInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2323,6 +2401,8 @@ export type BudgetVersionUpdateWithoutLinesInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2367,6 +2447,8 @@ export type BudgetVersionUncheckedUpdateWithoutLinesInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2403,6 +2485,8 @@ export type BudgetVersionCreateWithoutDecisionsInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2447,6 +2531,8 @@ export type BudgetVersionUncheckedCreateWithoutDecisionsInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2499,6 +2585,8 @@ export type BudgetVersionUpdateWithoutDecisionsInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2543,6 +2631,8 @@ export type BudgetVersionUncheckedUpdateWithoutDecisionsInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2579,6 +2669,8 @@ export type BudgetVersionCreateWithoutAttachedCommitmentsInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2623,6 +2715,8 @@ export type BudgetVersionUncheckedCreateWithoutAttachedCommitmentsInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2675,6 +2769,8 @@ export type BudgetVersionUpdateWithoutAttachedCommitmentsInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2719,6 +2815,8 @@ export type BudgetVersionUncheckedUpdateWithoutAttachedCommitmentsInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2755,6 +2853,8 @@ export type BudgetVersionCreateWithoutHistoryInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2799,6 +2899,8 @@ export type BudgetVersionUncheckedCreateWithoutHistoryInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2851,6 +2953,8 @@ export type BudgetVersionUpdateWithoutHistoryInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2895,6 +2999,8 @@ export type BudgetVersionUncheckedUpdateWithoutHistoryInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2931,6 +3037,8 @@ export type BudgetVersionCreateWithoutAttachmentsInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -2975,6 +3083,8 @@ export type BudgetVersionUncheckedCreateWithoutAttachmentsInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3027,6 +3137,8 @@ export type BudgetVersionUpdateWithoutAttachmentsInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3071,6 +3183,8 @@ export type BudgetVersionUncheckedUpdateWithoutAttachmentsInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3107,6 +3221,8 @@ export type BudgetVersionCreateWithoutCurrencyRecordInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3151,6 +3267,8 @@ export type BudgetVersionUncheckedCreateWithoutCurrencyRecordInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3213,6 +3331,8 @@ export type BudgetVersionCreateWithoutOrganizationInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3256,6 +3376,8 @@ export type BudgetVersionUncheckedCreateWithoutOrganizationInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3319,6 +3441,8 @@ export type BudgetVersionCreateWithoutCostCenterInput = {
   kind: $Enums.BudgetVersionKind
   state: $Enums.BudgetVersionState
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3362,6 +3486,8 @@ export type BudgetVersionUncheckedCreateWithoutCostCenterInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3428,6 +3554,8 @@ export type BudgetVersionCreateManyProposalInput = {
   state: $Enums.BudgetVersionState
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3458,6 +3586,8 @@ export type BudgetVersionUpdateWithoutProposalInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3501,6 +3631,8 @@ export type BudgetVersionUncheckedUpdateWithoutProposalInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3541,6 +3673,8 @@ export type BudgetVersionUncheckedUpdateManyWithoutProposalInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3574,6 +3708,8 @@ export type BudgetVersionCreateManyBasedOnInput = {
   state: $Enums.BudgetVersionState
   proposalId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3604,6 +3740,8 @@ export type BudgetVersionUpdateWithoutBasedOnInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3647,6 +3785,8 @@ export type BudgetVersionUncheckedUpdateWithoutBasedOnInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3687,6 +3827,8 @@ export type BudgetVersionUncheckedUpdateManyWithoutBasedOnInput = {
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3721,6 +3863,8 @@ export type BudgetVersionCreateManyCurrencyRecordInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3750,6 +3894,8 @@ export type BudgetVersionUpdateWithoutCurrencyRecordInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3794,6 +3940,8 @@ export type BudgetVersionUncheckedUpdateWithoutCurrencyRecordInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3834,6 +3982,8 @@ export type BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3866,6 +4016,8 @@ export type BudgetVersionCreateManyOrganizationInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -3896,6 +4048,8 @@ export type BudgetVersionUpdateWithoutOrganizationInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3939,6 +4093,8 @@ export type BudgetVersionUncheckedUpdateWithoutOrganizationInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3979,6 +4135,8 @@ export type BudgetVersionUncheckedUpdateManyWithoutOrganizationInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4012,6 +4170,8 @@ export type BudgetVersionCreateManyCostCenterInput = {
   proposalId?: string | null
   basedOnVersionId?: string | null
   baseMinor: bigint | number
+  baseReason?: string | null
+  origin?: $Enums.BudgetVersionOrigin
   reserveMinor: bigint | number
   reservePercent?: number | null
   reserveReason?: string | null
@@ -4042,6 +4202,8 @@ export type BudgetVersionUpdateWithoutCostCenterInput = {
   kind?: Prisma.EnumBudgetVersionKindFieldUpdateOperationsInput | $Enums.BudgetVersionKind
   state?: Prisma.EnumBudgetVersionStateFieldUpdateOperationsInput | $Enums.BudgetVersionState
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4085,6 +4247,8 @@ export type BudgetVersionUncheckedUpdateWithoutCostCenterInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4125,6 +4289,8 @@ export type BudgetVersionUncheckedUpdateManyWithoutCostCenterInput = {
   proposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   basedOnVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baseMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  baseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumBudgetVersionOriginFieldUpdateOperationsInput | $Enums.BudgetVersionOrigin
   reserveMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   reservePercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reserveReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4235,6 +4401,8 @@ export type BudgetVersionSelect<ExtArgs extends runtime.Types.Extensions.Interna
   proposalId?: boolean
   basedOnVersionId?: boolean
   baseMinor?: boolean
+  baseReason?: boolean
+  origin?: boolean
   reserveMinor?: boolean
   reservePercent?: boolean
   reserveReason?: boolean
@@ -4283,6 +4451,8 @@ export type BudgetVersionSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   proposalId?: boolean
   basedOnVersionId?: boolean
   baseMinor?: boolean
+  baseReason?: boolean
+  origin?: boolean
   reserveMinor?: boolean
   reservePercent?: boolean
   reserveReason?: boolean
@@ -4323,6 +4493,8 @@ export type BudgetVersionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   proposalId?: boolean
   basedOnVersionId?: boolean
   baseMinor?: boolean
+  baseReason?: boolean
+  origin?: boolean
   reserveMinor?: boolean
   reservePercent?: boolean
   reserveReason?: boolean
@@ -4363,6 +4535,8 @@ export type BudgetVersionSelectScalar = {
   proposalId?: boolean
   basedOnVersionId?: boolean
   baseMinor?: boolean
+  baseReason?: boolean
+  origin?: boolean
   reserveMinor?: boolean
   reservePercent?: boolean
   reserveReason?: boolean
@@ -4386,7 +4560,7 @@ export type BudgetVersionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type BudgetVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "costCenterId" | "year" | "number" | "kind" | "state" | "proposalId" | "basedOnVersionId" | "baseMinor" | "reserveMinor" | "reservePercent" | "reserveReason" | "totalMinor" | "currency" | "highValuePercent" | "highValueAmountMinor" | "q1Minor" | "q2Minor" | "q3Minor" | "q4Minor" | "reason" | "createdByEmployeeId" | "createdAt" | "sentByEmployeeId" | "sentAt" | "detachedAt" | "neverCurrent" | "expiredAt" | "rejectedPredecessorId" | "updatedAt", ExtArgs["result"]["budgetVersion"]>
+export type BudgetVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "costCenterId" | "year" | "number" | "kind" | "state" | "proposalId" | "basedOnVersionId" | "baseMinor" | "baseReason" | "origin" | "reserveMinor" | "reservePercent" | "reserveReason" | "totalMinor" | "currency" | "highValuePercent" | "highValueAmountMinor" | "q1Minor" | "q2Minor" | "q3Minor" | "q4Minor" | "reason" | "createdByEmployeeId" | "createdAt" | "sentByEmployeeId" | "sentAt" | "detachedAt" | "neverCurrent" | "expiredAt" | "rejectedPredecessorId" | "updatedAt", ExtArgs["result"]["budgetVersion"]>
 export type BudgetVersionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.CostCenterDefaultArgs<ExtArgs>
@@ -4448,6 +4622,8 @@ export type $BudgetVersionPayload<ExtArgs extends runtime.Types.Extensions.Inter
     proposalId: string | null
     basedOnVersionId: string | null
     baseMinor: bigint
+    baseReason: string | null
+    origin: $Enums.BudgetVersionOrigin
     reserveMinor: bigint
     reservePercent: number | null
     reserveReason: string | null
@@ -4915,6 +5091,8 @@ export interface BudgetVersionFieldRefs {
   readonly proposalId: Prisma.FieldRef<"BudgetVersion", 'String'>
   readonly basedOnVersionId: Prisma.FieldRef<"BudgetVersion", 'String'>
   readonly baseMinor: Prisma.FieldRef<"BudgetVersion", 'BigInt'>
+  readonly baseReason: Prisma.FieldRef<"BudgetVersion", 'String'>
+  readonly origin: Prisma.FieldRef<"BudgetVersion", 'BudgetVersionOrigin'>
   readonly reserveMinor: Prisma.FieldRef<"BudgetVersion", 'BigInt'>
   readonly reservePercent: Prisma.FieldRef<"BudgetVersion", 'Int'>
   readonly reserveReason: Prisma.FieldRef<"BudgetVersion", 'String'>

@@ -35,6 +35,10 @@ export type RequestBudgetCheckYearAvgAggregateOutputType = {
   remainingMinor: number | null
   shareBasisPoints: number | null
   pendingMinor: number | null
+  baseMinor: number | null
+  reserveMinor: number | null
+  remainingBaseMinor: number | null
+  remainingWithReserveMinor: number | null
 }
 
 export type RequestBudgetCheckYearSumAggregateOutputType = {
@@ -46,6 +50,10 @@ export type RequestBudgetCheckYearSumAggregateOutputType = {
   remainingMinor: bigint | null
   shareBasisPoints: number | null
   pendingMinor: bigint | null
+  baseMinor: bigint | null
+  reserveMinor: bigint | null
+  remainingBaseMinor: bigint | null
+  remainingWithReserveMinor: bigint | null
 }
 
 export type RequestBudgetCheckYearMinAggregateOutputType = {
@@ -60,6 +68,10 @@ export type RequestBudgetCheckYearMinAggregateOutputType = {
   remainingMinor: bigint | null
   shareBasisPoints: number | null
   pendingMinor: bigint | null
+  baseMinor: bigint | null
+  reserveMinor: bigint | null
+  remainingBaseMinor: bigint | null
+  remainingWithReserveMinor: bigint | null
 }
 
 export type RequestBudgetCheckYearMaxAggregateOutputType = {
@@ -74,6 +86,10 @@ export type RequestBudgetCheckYearMaxAggregateOutputType = {
   remainingMinor: bigint | null
   shareBasisPoints: number | null
   pendingMinor: bigint | null
+  baseMinor: bigint | null
+  reserveMinor: bigint | null
+  remainingBaseMinor: bigint | null
+  remainingWithReserveMinor: bigint | null
 }
 
 export type RequestBudgetCheckYearCountAggregateOutputType = {
@@ -88,6 +104,10 @@ export type RequestBudgetCheckYearCountAggregateOutputType = {
   remainingMinor: number
   shareBasisPoints: number
   pendingMinor: number
+  baseMinor: number
+  reserveMinor: number
+  remainingBaseMinor: number
+  remainingWithReserveMinor: number
   _all: number
 }
 
@@ -101,6 +121,10 @@ export type RequestBudgetCheckYearAvgAggregateInputType = {
   remainingMinor?: true
   shareBasisPoints?: true
   pendingMinor?: true
+  baseMinor?: true
+  reserveMinor?: true
+  remainingBaseMinor?: true
+  remainingWithReserveMinor?: true
 }
 
 export type RequestBudgetCheckYearSumAggregateInputType = {
@@ -112,6 +136,10 @@ export type RequestBudgetCheckYearSumAggregateInputType = {
   remainingMinor?: true
   shareBasisPoints?: true
   pendingMinor?: true
+  baseMinor?: true
+  reserveMinor?: true
+  remainingBaseMinor?: true
+  remainingWithReserveMinor?: true
 }
 
 export type RequestBudgetCheckYearMinAggregateInputType = {
@@ -126,6 +154,10 @@ export type RequestBudgetCheckYearMinAggregateInputType = {
   remainingMinor?: true
   shareBasisPoints?: true
   pendingMinor?: true
+  baseMinor?: true
+  reserveMinor?: true
+  remainingBaseMinor?: true
+  remainingWithReserveMinor?: true
 }
 
 export type RequestBudgetCheckYearMaxAggregateInputType = {
@@ -140,6 +172,10 @@ export type RequestBudgetCheckYearMaxAggregateInputType = {
   remainingMinor?: true
   shareBasisPoints?: true
   pendingMinor?: true
+  baseMinor?: true
+  reserveMinor?: true
+  remainingBaseMinor?: true
+  remainingWithReserveMinor?: true
 }
 
 export type RequestBudgetCheckYearCountAggregateInputType = {
@@ -154,6 +190,10 @@ export type RequestBudgetCheckYearCountAggregateInputType = {
   remainingMinor?: true
   shareBasisPoints?: true
   pendingMinor?: true
+  baseMinor?: true
+  reserveMinor?: true
+  remainingBaseMinor?: true
+  remainingWithReserveMinor?: true
   _all?: true
 }
 
@@ -255,6 +295,10 @@ export type RequestBudgetCheckYearGroupByOutputType = {
   remainingMinor: bigint | null
   shareBasisPoints: number | null
   pendingMinor: bigint | null
+  baseMinor: bigint | null
+  reserveMinor: bigint | null
+  remainingBaseMinor: bigint | null
+  remainingWithReserveMinor: bigint | null
   _count: RequestBudgetCheckYearCountAggregateOutputType | null
   _avg: RequestBudgetCheckYearAvgAggregateOutputType | null
   _sum: RequestBudgetCheckYearSumAggregateOutputType | null
@@ -292,6 +336,10 @@ export type RequestBudgetCheckYearWhereInput = {
   remainingMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
   shareBasisPoints?: Prisma.IntNullableFilter<"RequestBudgetCheckYear"> | number | null
   pendingMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  baseMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  reserveMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingBaseMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingWithReserveMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
   check?: Prisma.XOR<Prisma.RequestBudgetCheckScalarRelationFilter, Prisma.RequestBudgetCheckWhereInput>
 }
 
@@ -307,6 +355,10 @@ export type RequestBudgetCheckYearOrderByWithRelationInput = {
   remainingMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   shareBasisPoints?: Prisma.SortOrderInput | Prisma.SortOrder
   pendingMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  baseMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  reserveMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  remainingBaseMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  remainingWithReserveMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   check?: Prisma.RequestBudgetCheckOrderByWithRelationInput
 }
 
@@ -326,6 +378,10 @@ export type RequestBudgetCheckYearWhereUniqueInput = Prisma.AtLeast<{
   remainingMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
   shareBasisPoints?: Prisma.IntNullableFilter<"RequestBudgetCheckYear"> | number | null
   pendingMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  baseMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  reserveMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingBaseMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingWithReserveMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
   check?: Prisma.XOR<Prisma.RequestBudgetCheckScalarRelationFilter, Prisma.RequestBudgetCheckWhereInput>
 }, "checkId_year">
 
@@ -341,6 +397,10 @@ export type RequestBudgetCheckYearOrderByWithAggregationInput = {
   remainingMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   shareBasisPoints?: Prisma.SortOrderInput | Prisma.SortOrder
   pendingMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  baseMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  reserveMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  remainingBaseMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  remainingWithReserveMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RequestBudgetCheckYearCountOrderByAggregateInput
   _avg?: Prisma.RequestBudgetCheckYearAvgOrderByAggregateInput
   _max?: Prisma.RequestBudgetCheckYearMaxOrderByAggregateInput
@@ -363,6 +423,10 @@ export type RequestBudgetCheckYearScalarWhereWithAggregatesInput = {
   remainingMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheckYear"> | bigint | number | null
   shareBasisPoints?: Prisma.IntNullableWithAggregatesFilter<"RequestBudgetCheckYear"> | number | null
   pendingMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  baseMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  reserveMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingBaseMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingWithReserveMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheckYear"> | bigint | number | null
 }
 
 export type RequestBudgetCheckYearCreateInput = {
@@ -376,6 +440,10 @@ export type RequestBudgetCheckYearCreateInput = {
   remainingMinor?: bigint | number | null
   shareBasisPoints?: number | null
   pendingMinor?: bigint | number | null
+  baseMinor?: bigint | number | null
+  reserveMinor?: bigint | number | null
+  remainingBaseMinor?: bigint | number | null
+  remainingWithReserveMinor?: bigint | number | null
   check: Prisma.RequestBudgetCheckCreateNestedOneWithoutYearResultsInput
 }
 
@@ -391,6 +459,10 @@ export type RequestBudgetCheckYearUncheckedCreateInput = {
   remainingMinor?: bigint | number | null
   shareBasisPoints?: number | null
   pendingMinor?: bigint | number | null
+  baseMinor?: bigint | number | null
+  reserveMinor?: bigint | number | null
+  remainingBaseMinor?: bigint | number | null
+  remainingWithReserveMinor?: bigint | number | null
 }
 
 export type RequestBudgetCheckYearUpdateInput = {
@@ -404,6 +476,10 @@ export type RequestBudgetCheckYearUpdateInput = {
   remainingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   shareBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pendingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  baseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingBaseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingWithReserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   check?: Prisma.RequestBudgetCheckUpdateOneRequiredWithoutYearResultsNestedInput
 }
 
@@ -419,6 +495,10 @@ export type RequestBudgetCheckYearUncheckedUpdateInput = {
   remainingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   shareBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pendingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  baseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingBaseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingWithReserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type RequestBudgetCheckYearCreateManyInput = {
@@ -433,6 +513,10 @@ export type RequestBudgetCheckYearCreateManyInput = {
   remainingMinor?: bigint | number | null
   shareBasisPoints?: number | null
   pendingMinor?: bigint | number | null
+  baseMinor?: bigint | number | null
+  reserveMinor?: bigint | number | null
+  remainingBaseMinor?: bigint | number | null
+  remainingWithReserveMinor?: bigint | number | null
 }
 
 export type RequestBudgetCheckYearUpdateManyMutationInput = {
@@ -446,6 +530,10 @@ export type RequestBudgetCheckYearUpdateManyMutationInput = {
   remainingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   shareBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pendingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  baseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingBaseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingWithReserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type RequestBudgetCheckYearUncheckedUpdateManyInput = {
@@ -460,6 +548,10 @@ export type RequestBudgetCheckYearUncheckedUpdateManyInput = {
   remainingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   shareBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pendingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  baseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingBaseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingWithReserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type RequestBudgetCheckYearListRelationFilter = {
@@ -489,6 +581,10 @@ export type RequestBudgetCheckYearCountOrderByAggregateInput = {
   remainingMinor?: Prisma.SortOrder
   shareBasisPoints?: Prisma.SortOrder
   pendingMinor?: Prisma.SortOrder
+  baseMinor?: Prisma.SortOrder
+  reserveMinor?: Prisma.SortOrder
+  remainingBaseMinor?: Prisma.SortOrder
+  remainingWithReserveMinor?: Prisma.SortOrder
 }
 
 export type RequestBudgetCheckYearAvgOrderByAggregateInput = {
@@ -500,6 +596,10 @@ export type RequestBudgetCheckYearAvgOrderByAggregateInput = {
   remainingMinor?: Prisma.SortOrder
   shareBasisPoints?: Prisma.SortOrder
   pendingMinor?: Prisma.SortOrder
+  baseMinor?: Prisma.SortOrder
+  reserveMinor?: Prisma.SortOrder
+  remainingBaseMinor?: Prisma.SortOrder
+  remainingWithReserveMinor?: Prisma.SortOrder
 }
 
 export type RequestBudgetCheckYearMaxOrderByAggregateInput = {
@@ -514,6 +614,10 @@ export type RequestBudgetCheckYearMaxOrderByAggregateInput = {
   remainingMinor?: Prisma.SortOrder
   shareBasisPoints?: Prisma.SortOrder
   pendingMinor?: Prisma.SortOrder
+  baseMinor?: Prisma.SortOrder
+  reserveMinor?: Prisma.SortOrder
+  remainingBaseMinor?: Prisma.SortOrder
+  remainingWithReserveMinor?: Prisma.SortOrder
 }
 
 export type RequestBudgetCheckYearMinOrderByAggregateInput = {
@@ -528,6 +632,10 @@ export type RequestBudgetCheckYearMinOrderByAggregateInput = {
   remainingMinor?: Prisma.SortOrder
   shareBasisPoints?: Prisma.SortOrder
   pendingMinor?: Prisma.SortOrder
+  baseMinor?: Prisma.SortOrder
+  reserveMinor?: Prisma.SortOrder
+  remainingBaseMinor?: Prisma.SortOrder
+  remainingWithReserveMinor?: Prisma.SortOrder
 }
 
 export type RequestBudgetCheckYearSumOrderByAggregateInput = {
@@ -539,6 +647,10 @@ export type RequestBudgetCheckYearSumOrderByAggregateInput = {
   remainingMinor?: Prisma.SortOrder
   shareBasisPoints?: Prisma.SortOrder
   pendingMinor?: Prisma.SortOrder
+  baseMinor?: Prisma.SortOrder
+  reserveMinor?: Prisma.SortOrder
+  remainingBaseMinor?: Prisma.SortOrder
+  remainingWithReserveMinor?: Prisma.SortOrder
 }
 
 export type RequestBudgetCheckYearCreateNestedManyWithoutCheckInput = {
@@ -598,6 +710,10 @@ export type RequestBudgetCheckYearCreateWithoutCheckInput = {
   remainingMinor?: bigint | number | null
   shareBasisPoints?: number | null
   pendingMinor?: bigint | number | null
+  baseMinor?: bigint | number | null
+  reserveMinor?: bigint | number | null
+  remainingBaseMinor?: bigint | number | null
+  remainingWithReserveMinor?: bigint | number | null
 }
 
 export type RequestBudgetCheckYearUncheckedCreateWithoutCheckInput = {
@@ -611,6 +727,10 @@ export type RequestBudgetCheckYearUncheckedCreateWithoutCheckInput = {
   remainingMinor?: bigint | number | null
   shareBasisPoints?: number | null
   pendingMinor?: bigint | number | null
+  baseMinor?: bigint | number | null
+  reserveMinor?: bigint | number | null
+  remainingBaseMinor?: bigint | number | null
+  remainingWithReserveMinor?: bigint | number | null
 }
 
 export type RequestBudgetCheckYearCreateOrConnectWithoutCheckInput = {
@@ -654,6 +774,10 @@ export type RequestBudgetCheckYearScalarWhereInput = {
   remainingMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
   shareBasisPoints?: Prisma.IntNullableFilter<"RequestBudgetCheckYear"> | number | null
   pendingMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  baseMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  reserveMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingBaseMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
+  remainingWithReserveMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheckYear"> | bigint | number | null
 }
 
 export type RequestBudgetCheckYearCreateManyCheckInput = {
@@ -667,6 +791,10 @@ export type RequestBudgetCheckYearCreateManyCheckInput = {
   remainingMinor?: bigint | number | null
   shareBasisPoints?: number | null
   pendingMinor?: bigint | number | null
+  baseMinor?: bigint | number | null
+  reserveMinor?: bigint | number | null
+  remainingBaseMinor?: bigint | number | null
+  remainingWithReserveMinor?: bigint | number | null
 }
 
 export type RequestBudgetCheckYearUpdateWithoutCheckInput = {
@@ -680,6 +808,10 @@ export type RequestBudgetCheckYearUpdateWithoutCheckInput = {
   remainingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   shareBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pendingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  baseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingBaseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingWithReserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type RequestBudgetCheckYearUncheckedUpdateWithoutCheckInput = {
@@ -693,6 +825,10 @@ export type RequestBudgetCheckYearUncheckedUpdateWithoutCheckInput = {
   remainingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   shareBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pendingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  baseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingBaseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingWithReserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckInput = {
@@ -706,6 +842,10 @@ export type RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckInput = {
   remainingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   shareBasisPoints?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pendingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  baseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  reserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingBaseMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  remainingWithReserveMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 
@@ -722,6 +862,10 @@ export type RequestBudgetCheckYearSelect<ExtArgs extends runtime.Types.Extension
   remainingMinor?: boolean
   shareBasisPoints?: boolean
   pendingMinor?: boolean
+  baseMinor?: boolean
+  reserveMinor?: boolean
+  remainingBaseMinor?: boolean
+  remainingWithReserveMinor?: boolean
   check?: boolean | Prisma.RequestBudgetCheckDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["requestBudgetCheckYear"]>
 
@@ -737,6 +881,10 @@ export type RequestBudgetCheckYearSelectCreateManyAndReturn<ExtArgs extends runt
   remainingMinor?: boolean
   shareBasisPoints?: boolean
   pendingMinor?: boolean
+  baseMinor?: boolean
+  reserveMinor?: boolean
+  remainingBaseMinor?: boolean
+  remainingWithReserveMinor?: boolean
   check?: boolean | Prisma.RequestBudgetCheckDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["requestBudgetCheckYear"]>
 
@@ -752,6 +900,10 @@ export type RequestBudgetCheckYearSelectUpdateManyAndReturn<ExtArgs extends runt
   remainingMinor?: boolean
   shareBasisPoints?: boolean
   pendingMinor?: boolean
+  baseMinor?: boolean
+  reserveMinor?: boolean
+  remainingBaseMinor?: boolean
+  remainingWithReserveMinor?: boolean
   check?: boolean | Prisma.RequestBudgetCheckDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["requestBudgetCheckYear"]>
 
@@ -767,9 +919,13 @@ export type RequestBudgetCheckYearSelectScalar = {
   remainingMinor?: boolean
   shareBasisPoints?: boolean
   pendingMinor?: boolean
+  baseMinor?: boolean
+  reserveMinor?: boolean
+  remainingBaseMinor?: boolean
+  remainingWithReserveMinor?: boolean
 }
 
-export type RequestBudgetCheckYearOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"checkId" | "year" | "costMinor" | "code" | "versionId" | "budgetMinor" | "heldMinor" | "spentMinor" | "remainingMinor" | "shareBasisPoints" | "pendingMinor", ExtArgs["result"]["requestBudgetCheckYear"]>
+export type RequestBudgetCheckYearOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"checkId" | "year" | "costMinor" | "code" | "versionId" | "budgetMinor" | "heldMinor" | "spentMinor" | "remainingMinor" | "shareBasisPoints" | "pendingMinor" | "baseMinor" | "reserveMinor" | "remainingBaseMinor" | "remainingWithReserveMinor", ExtArgs["result"]["requestBudgetCheckYear"]>
 export type RequestBudgetCheckYearInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   check?: boolean | Prisma.RequestBudgetCheckDefaultArgs<ExtArgs>
 }
@@ -797,6 +953,10 @@ export type $RequestBudgetCheckYearPayload<ExtArgs extends runtime.Types.Extensi
     remainingMinor: bigint | null
     shareBasisPoints: number | null
     pendingMinor: bigint | null
+    baseMinor: bigint | null
+    reserveMinor: bigint | null
+    remainingBaseMinor: bigint | null
+    remainingWithReserveMinor: bigint | null
   }, ExtArgs["result"]["requestBudgetCheckYear"]>
   composites: {}
 }
@@ -1232,6 +1392,10 @@ export interface RequestBudgetCheckYearFieldRefs {
   readonly remainingMinor: Prisma.FieldRef<"RequestBudgetCheckYear", 'BigInt'>
   readonly shareBasisPoints: Prisma.FieldRef<"RequestBudgetCheckYear", 'Int'>
   readonly pendingMinor: Prisma.FieldRef<"RequestBudgetCheckYear", 'BigInt'>
+  readonly baseMinor: Prisma.FieldRef<"RequestBudgetCheckYear", 'BigInt'>
+  readonly reserveMinor: Prisma.FieldRef<"RequestBudgetCheckYear", 'BigInt'>
+  readonly remainingBaseMinor: Prisma.FieldRef<"RequestBudgetCheckYear", 'BigInt'>
+  readonly remainingWithReserveMinor: Prisma.FieldRef<"RequestBudgetCheckYear", 'BigInt'>
 }
     
 

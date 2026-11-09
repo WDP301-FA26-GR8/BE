@@ -31,6 +31,8 @@ export type BudgetProposalLineAvgAggregateOutputType = {
   seats: number | null
   amountMinor: number | null
   servicePeriodMonths: number | null
+  priorityRank: number | null
+  overCeilingMinor: number | null
 }
 
 export type BudgetProposalLineSumAggregateOutputType = {
@@ -38,6 +40,8 @@ export type BudgetProposalLineSumAggregateOutputType = {
   seats: number | null
   amountMinor: bigint | null
   servicePeriodMonths: number | null
+  priorityRank: number | null
+  overCeilingMinor: bigint | null
 }
 
 export type BudgetProposalLineMinAggregateOutputType = {
@@ -53,6 +57,9 @@ export type BudgetProposalLineMinAggregateOutputType = {
   repeatCycle: $Enums.BudgetRepeatCycle | null
   quoteValidUntil: Date | null
   note: string | null
+  lineType: $Enums.BudgetLineType | null
+  priorityRank: number | null
+  overCeilingMinor: bigint | null
 }
 
 export type BudgetProposalLineMaxAggregateOutputType = {
@@ -68,6 +75,9 @@ export type BudgetProposalLineMaxAggregateOutputType = {
   repeatCycle: $Enums.BudgetRepeatCycle | null
   quoteValidUntil: Date | null
   note: string | null
+  lineType: $Enums.BudgetLineType | null
+  priorityRank: number | null
+  overCeilingMinor: bigint | null
 }
 
 export type BudgetProposalLineCountAggregateOutputType = {
@@ -83,6 +93,10 @@ export type BudgetProposalLineCountAggregateOutputType = {
   repeatCycle: number
   quoteValidUntil: number
   note: number
+  lineType: number
+  zbb: number
+  priorityRank: number
+  overCeilingMinor: number
   _all: number
 }
 
@@ -92,6 +106,8 @@ export type BudgetProposalLineAvgAggregateInputType = {
   seats?: true
   amountMinor?: true
   servicePeriodMonths?: true
+  priorityRank?: true
+  overCeilingMinor?: true
 }
 
 export type BudgetProposalLineSumAggregateInputType = {
@@ -99,6 +115,8 @@ export type BudgetProposalLineSumAggregateInputType = {
   seats?: true
   amountMinor?: true
   servicePeriodMonths?: true
+  priorityRank?: true
+  overCeilingMinor?: true
 }
 
 export type BudgetProposalLineMinAggregateInputType = {
@@ -114,6 +132,9 @@ export type BudgetProposalLineMinAggregateInputType = {
   repeatCycle?: true
   quoteValidUntil?: true
   note?: true
+  lineType?: true
+  priorityRank?: true
+  overCeilingMinor?: true
 }
 
 export type BudgetProposalLineMaxAggregateInputType = {
@@ -129,6 +150,9 @@ export type BudgetProposalLineMaxAggregateInputType = {
   repeatCycle?: true
   quoteValidUntil?: true
   note?: true
+  lineType?: true
+  priorityRank?: true
+  overCeilingMinor?: true
 }
 
 export type BudgetProposalLineCountAggregateInputType = {
@@ -144,6 +168,10 @@ export type BudgetProposalLineCountAggregateInputType = {
   repeatCycle?: true
   quoteValidUntil?: true
   note?: true
+  lineType?: true
+  zbb?: true
+  priorityRank?: true
+  overCeilingMinor?: true
   _all?: true
 }
 
@@ -246,6 +274,10 @@ export type BudgetProposalLineGroupByOutputType = {
   repeatCycle: $Enums.BudgetRepeatCycle | null
   quoteValidUntil: Date | null
   note: string | null
+  lineType: $Enums.BudgetLineType
+  zbb: runtime.JsonValue | null
+  priorityRank: number
+  overCeilingMinor: bigint | null
   _count: BudgetProposalLineCountAggregateOutputType | null
   _avg: BudgetProposalLineAvgAggregateOutputType | null
   _sum: BudgetProposalLineSumAggregateOutputType | null
@@ -284,6 +316,10 @@ export type BudgetProposalLineWhereInput = {
   repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableFilter<"BudgetProposalLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"BudgetProposalLine"> | Date | string | null
   note?: Prisma.StringNullableFilter<"BudgetProposalLine"> | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFilter<"BudgetProposalLine"> | $Enums.BudgetLineType
+  zbb?: Prisma.JsonNullableFilter<"BudgetProposalLine">
+  priorityRank?: Prisma.IntFilter<"BudgetProposalLine"> | number
+  overCeilingMinor?: Prisma.BigIntNullableFilter<"BudgetProposalLine"> | bigint | number | null
   proposal?: Prisma.XOR<Prisma.BudgetProposalScalarRelationFilter, Prisma.BudgetProposalWhereInput>
   plan?: Prisma.XOR<Prisma.PlanNullableScalarRelationFilter, Prisma.PlanWhereInput> | null
   versionLines?: Prisma.BudgetVersionLineListRelationFilter
@@ -302,12 +338,17 @@ export type BudgetProposalLineOrderByWithRelationInput = {
   repeatCycle?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
+  lineType?: Prisma.SortOrder
+  zbb?: Prisma.SortOrderInput | Prisma.SortOrder
+  priorityRank?: Prisma.SortOrder
+  overCeilingMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   proposal?: Prisma.BudgetProposalOrderByWithRelationInput
   plan?: Prisma.PlanOrderByWithRelationInput
   versionLines?: Prisma.BudgetVersionLineOrderByRelationAggregateInput
 }
 
 export type BudgetProposalLineWhereUniqueInput = Prisma.AtLeast<{
+  proposalId_priorityRank?: Prisma.BudgetProposalLineProposalIdPriorityRankCompoundUniqueInput
   proposalId_position?: Prisma.BudgetProposalLineProposalIdPositionCompoundUniqueInput
   AND?: Prisma.BudgetProposalLineWhereInput | Prisma.BudgetProposalLineWhereInput[]
   OR?: Prisma.BudgetProposalLineWhereInput[]
@@ -324,10 +365,14 @@ export type BudgetProposalLineWhereUniqueInput = Prisma.AtLeast<{
   repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableFilter<"BudgetProposalLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"BudgetProposalLine"> | Date | string | null
   note?: Prisma.StringNullableFilter<"BudgetProposalLine"> | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFilter<"BudgetProposalLine"> | $Enums.BudgetLineType
+  zbb?: Prisma.JsonNullableFilter<"BudgetProposalLine">
+  priorityRank?: Prisma.IntFilter<"BudgetProposalLine"> | number
+  overCeilingMinor?: Prisma.BigIntNullableFilter<"BudgetProposalLine"> | bigint | number | null
   proposal?: Prisma.XOR<Prisma.BudgetProposalScalarRelationFilter, Prisma.BudgetProposalWhereInput>
   plan?: Prisma.XOR<Prisma.PlanNullableScalarRelationFilter, Prisma.PlanWhereInput> | null
   versionLines?: Prisma.BudgetVersionLineListRelationFilter
-}, "proposalId_position">
+}, "proposalId_position" | "proposalId_priorityRank">
 
 export type BudgetProposalLineOrderByWithAggregationInput = {
   proposalId?: Prisma.SortOrder
@@ -342,6 +387,10 @@ export type BudgetProposalLineOrderByWithAggregationInput = {
   repeatCycle?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
+  lineType?: Prisma.SortOrder
+  zbb?: Prisma.SortOrderInput | Prisma.SortOrder
+  priorityRank?: Prisma.SortOrder
+  overCeilingMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.BudgetProposalLineCountOrderByAggregateInput
   _avg?: Prisma.BudgetProposalLineAvgOrderByAggregateInput
   _max?: Prisma.BudgetProposalLineMaxOrderByAggregateInput
@@ -365,6 +414,10 @@ export type BudgetProposalLineScalarWhereWithAggregatesInput = {
   repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableWithAggregatesFilter<"BudgetProposalLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"BudgetProposalLine"> | Date | string | null
   note?: Prisma.StringNullableWithAggregatesFilter<"BudgetProposalLine"> | string | null
+  lineType?: Prisma.EnumBudgetLineTypeWithAggregatesFilter<"BudgetProposalLine"> | $Enums.BudgetLineType
+  zbb?: Prisma.JsonNullableWithAggregatesFilter<"BudgetProposalLine">
+  priorityRank?: Prisma.IntWithAggregatesFilter<"BudgetProposalLine"> | number
+  overCeilingMinor?: Prisma.BigIntNullableWithAggregatesFilter<"BudgetProposalLine"> | bigint | number | null
 }
 
 export type BudgetProposalLineCreateInput = {
@@ -378,6 +431,10 @@ export type BudgetProposalLineCreateInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
   proposal: Prisma.BudgetProposalCreateNestedOneWithoutLinesInput
   plan?: Prisma.PlanCreateNestedOneWithoutBudgetProposalLinesInput
   versionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutProposalLineInput
@@ -396,6 +453,10 @@ export type BudgetProposalLineUncheckedCreateInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
   versionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutProposalLineInput
 }
 
@@ -410,6 +471,10 @@ export type BudgetProposalLineUpdateInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   proposal?: Prisma.BudgetProposalUpdateOneRequiredWithoutLinesNestedInput
   plan?: Prisma.PlanUpdateOneWithoutBudgetProposalLinesNestedInput
   versionLines?: Prisma.BudgetVersionLineUpdateManyWithoutProposalLineNestedInput
@@ -428,6 +493,10 @@ export type BudgetProposalLineUncheckedUpdateInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   versionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutProposalLineNestedInput
 }
 
@@ -444,6 +513,10 @@ export type BudgetProposalLineCreateManyInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
 }
 
 export type BudgetProposalLineUpdateManyMutationInput = {
@@ -457,6 +530,10 @@ export type BudgetProposalLineUpdateManyMutationInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type BudgetProposalLineUncheckedUpdateManyInput = {
@@ -472,6 +549,10 @@ export type BudgetProposalLineUncheckedUpdateManyInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type BudgetProposalLineListRelationFilter = {
@@ -482,6 +563,11 @@ export type BudgetProposalLineListRelationFilter = {
 
 export type BudgetProposalLineOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type BudgetProposalLineProposalIdPriorityRankCompoundUniqueInput = {
+  proposalId: string
+  priorityRank: number
 }
 
 export type BudgetProposalLineProposalIdPositionCompoundUniqueInput = {
@@ -502,6 +588,10 @@ export type BudgetProposalLineCountOrderByAggregateInput = {
   repeatCycle?: Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  lineType?: Prisma.SortOrder
+  zbb?: Prisma.SortOrder
+  priorityRank?: Prisma.SortOrder
+  overCeilingMinor?: Prisma.SortOrder
 }
 
 export type BudgetProposalLineAvgOrderByAggregateInput = {
@@ -509,6 +599,8 @@ export type BudgetProposalLineAvgOrderByAggregateInput = {
   seats?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   servicePeriodMonths?: Prisma.SortOrder
+  priorityRank?: Prisma.SortOrder
+  overCeilingMinor?: Prisma.SortOrder
 }
 
 export type BudgetProposalLineMaxOrderByAggregateInput = {
@@ -524,6 +616,9 @@ export type BudgetProposalLineMaxOrderByAggregateInput = {
   repeatCycle?: Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  lineType?: Prisma.SortOrder
+  priorityRank?: Prisma.SortOrder
+  overCeilingMinor?: Prisma.SortOrder
 }
 
 export type BudgetProposalLineMinOrderByAggregateInput = {
@@ -539,6 +634,9 @@ export type BudgetProposalLineMinOrderByAggregateInput = {
   repeatCycle?: Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  lineType?: Prisma.SortOrder
+  priorityRank?: Prisma.SortOrder
+  overCeilingMinor?: Prisma.SortOrder
 }
 
 export type BudgetProposalLineSumOrderByAggregateInput = {
@@ -546,6 +644,8 @@ export type BudgetProposalLineSumOrderByAggregateInput = {
   seats?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   servicePeriodMonths?: Prisma.SortOrder
+  priorityRank?: Prisma.SortOrder
+  overCeilingMinor?: Prisma.SortOrder
 }
 
 export type BudgetProposalLineNullableScalarRelationFilter = {
@@ -597,6 +697,18 @@ export type BudgetProposalLineUncheckedUpdateManyWithoutProposalNestedInput = {
 
 export type NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput = {
   set?: $Enums.BudgetRepeatCycle | null
+}
+
+export type EnumBudgetLineTypeFieldUpdateOperationsInput = {
+  set?: $Enums.BudgetLineType
+}
+
+export type NullableBigIntFieldUpdateOperationsInput = {
+  set?: bigint | number | null
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
 }
 
 export type BudgetProposalLineCreateNestedOneWithoutVersionLinesInput = {
@@ -668,6 +780,10 @@ export type BudgetProposalLineCreateWithoutProposalInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
   plan?: Prisma.PlanCreateNestedOneWithoutBudgetProposalLinesInput
   versionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutProposalLineInput
 }
@@ -684,6 +800,10 @@ export type BudgetProposalLineUncheckedCreateWithoutProposalInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
   versionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutProposalLineInput
 }
 
@@ -729,6 +849,10 @@ export type BudgetProposalLineScalarWhereInput = {
   repeatCycle?: Prisma.EnumBudgetRepeatCycleNullableFilter<"BudgetProposalLine"> | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"BudgetProposalLine"> | Date | string | null
   note?: Prisma.StringNullableFilter<"BudgetProposalLine"> | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFilter<"BudgetProposalLine"> | $Enums.BudgetLineType
+  zbb?: Prisma.JsonNullableFilter<"BudgetProposalLine">
+  priorityRank?: Prisma.IntFilter<"BudgetProposalLine"> | number
+  overCeilingMinor?: Prisma.BigIntNullableFilter<"BudgetProposalLine"> | bigint | number | null
 }
 
 export type BudgetProposalLineCreateWithoutVersionLinesInput = {
@@ -742,6 +866,10 @@ export type BudgetProposalLineCreateWithoutVersionLinesInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
   proposal: Prisma.BudgetProposalCreateNestedOneWithoutLinesInput
   plan?: Prisma.PlanCreateNestedOneWithoutBudgetProposalLinesInput
 }
@@ -759,6 +887,10 @@ export type BudgetProposalLineUncheckedCreateWithoutVersionLinesInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
 }
 
 export type BudgetProposalLineCreateOrConnectWithoutVersionLinesInput = {
@@ -788,6 +920,10 @@ export type BudgetProposalLineUpdateWithoutVersionLinesInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   proposal?: Prisma.BudgetProposalUpdateOneRequiredWithoutLinesNestedInput
   plan?: Prisma.PlanUpdateOneWithoutBudgetProposalLinesNestedInput
 }
@@ -805,6 +941,10 @@ export type BudgetProposalLineUncheckedUpdateWithoutVersionLinesInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type BudgetProposalLineCreateWithoutPlanInput = {
@@ -818,6 +958,10 @@ export type BudgetProposalLineCreateWithoutPlanInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
   proposal: Prisma.BudgetProposalCreateNestedOneWithoutLinesInput
   versionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutProposalLineInput
 }
@@ -834,6 +978,10 @@ export type BudgetProposalLineUncheckedCreateWithoutPlanInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
   versionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutProposalLineInput
 }
 
@@ -875,6 +1023,10 @@ export type BudgetProposalLineCreateManyProposalInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
 }
 
 export type BudgetProposalLineUpdateWithoutProposalInput = {
@@ -888,6 +1040,10 @@ export type BudgetProposalLineUpdateWithoutProposalInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   plan?: Prisma.PlanUpdateOneWithoutBudgetProposalLinesNestedInput
   versionLines?: Prisma.BudgetVersionLineUpdateManyWithoutProposalLineNestedInput
 }
@@ -904,6 +1060,10 @@ export type BudgetProposalLineUncheckedUpdateWithoutProposalInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   versionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutProposalLineNestedInput
 }
 
@@ -919,6 +1079,10 @@ export type BudgetProposalLineUncheckedUpdateManyWithoutProposalInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type BudgetProposalLineCreateManyPlanInput = {
@@ -933,6 +1097,10 @@ export type BudgetProposalLineCreateManyPlanInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
+  lineType?: $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank: number
+  overCeilingMinor?: bigint | number | null
 }
 
 export type BudgetProposalLineUpdateWithoutPlanInput = {
@@ -946,6 +1114,10 @@ export type BudgetProposalLineUpdateWithoutPlanInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   proposal?: Prisma.BudgetProposalUpdateOneRequiredWithoutLinesNestedInput
   versionLines?: Prisma.BudgetVersionLineUpdateManyWithoutProposalLineNestedInput
 }
@@ -962,6 +1134,10 @@ export type BudgetProposalLineUncheckedUpdateWithoutPlanInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   versionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutProposalLineNestedInput
 }
 
@@ -977,6 +1153,10 @@ export type BudgetProposalLineUncheckedUpdateManyWithoutPlanInput = {
   repeatCycle?: Prisma.NullableEnumBudgetRepeatCycleFieldUpdateOperationsInput | $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lineType?: Prisma.EnumBudgetLineTypeFieldUpdateOperationsInput | $Enums.BudgetLineType
+  zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  priorityRank?: Prisma.IntFieldUpdateOperationsInput | number
+  overCeilingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 
@@ -1023,6 +1203,10 @@ export type BudgetProposalLineSelect<ExtArgs extends runtime.Types.Extensions.In
   repeatCycle?: boolean
   quoteValidUntil?: boolean
   note?: boolean
+  lineType?: boolean
+  zbb?: boolean
+  priorityRank?: boolean
+  overCeilingMinor?: boolean
   proposal?: boolean | Prisma.BudgetProposalDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.BudgetProposalLine$planArgs<ExtArgs>
   versionLines?: boolean | Prisma.BudgetProposalLine$versionLinesArgs<ExtArgs>
@@ -1042,6 +1226,10 @@ export type BudgetProposalLineSelectCreateManyAndReturn<ExtArgs extends runtime.
   repeatCycle?: boolean
   quoteValidUntil?: boolean
   note?: boolean
+  lineType?: boolean
+  zbb?: boolean
+  priorityRank?: boolean
+  overCeilingMinor?: boolean
   proposal?: boolean | Prisma.BudgetProposalDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.BudgetProposalLine$planArgs<ExtArgs>
 }, ExtArgs["result"]["budgetProposalLine"]>
@@ -1059,6 +1247,10 @@ export type BudgetProposalLineSelectUpdateManyAndReturn<ExtArgs extends runtime.
   repeatCycle?: boolean
   quoteValidUntil?: boolean
   note?: boolean
+  lineType?: boolean
+  zbb?: boolean
+  priorityRank?: boolean
+  overCeilingMinor?: boolean
   proposal?: boolean | Prisma.BudgetProposalDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.BudgetProposalLine$planArgs<ExtArgs>
 }, ExtArgs["result"]["budgetProposalLine"]>
@@ -1076,9 +1268,13 @@ export type BudgetProposalLineSelectScalar = {
   repeatCycle?: boolean
   quoteValidUntil?: boolean
   note?: boolean
+  lineType?: boolean
+  zbb?: boolean
+  priorityRank?: boolean
+  overCeilingMinor?: boolean
 }
 
-export type BudgetProposalLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"proposalId" | "position" | "description" | "planId" | "seats" | "amountMinor" | "windowFrom" | "windowTo" | "servicePeriodMonths" | "repeatCycle" | "quoteValidUntil" | "note", ExtArgs["result"]["budgetProposalLine"]>
+export type BudgetProposalLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"proposalId" | "position" | "description" | "planId" | "seats" | "amountMinor" | "windowFrom" | "windowTo" | "servicePeriodMonths" | "repeatCycle" | "quoteValidUntil" | "note" | "lineType" | "zbb" | "priorityRank" | "overCeilingMinor", ExtArgs["result"]["budgetProposalLine"]>
 export type BudgetProposalLineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proposal?: boolean | Prisma.BudgetProposalDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.BudgetProposalLine$planArgs<ExtArgs>
@@ -1114,6 +1310,10 @@ export type $BudgetProposalLinePayload<ExtArgs extends runtime.Types.Extensions.
     repeatCycle: $Enums.BudgetRepeatCycle | null
     quoteValidUntil: Date | null
     note: string | null
+    lineType: $Enums.BudgetLineType
+    zbb: runtime.JsonValue | null
+    priorityRank: number
+    overCeilingMinor: bigint | null
   }, ExtArgs["result"]["budgetProposalLine"]>
   composites: {}
 }
@@ -1552,6 +1752,10 @@ export interface BudgetProposalLineFieldRefs {
   readonly repeatCycle: Prisma.FieldRef<"BudgetProposalLine", 'BudgetRepeatCycle'>
   readonly quoteValidUntil: Prisma.FieldRef<"BudgetProposalLine", 'DateTime'>
   readonly note: Prisma.FieldRef<"BudgetProposalLine", 'String'>
+  readonly lineType: Prisma.FieldRef<"BudgetProposalLine", 'BudgetLineType'>
+  readonly zbb: Prisma.FieldRef<"BudgetProposalLine", 'Json'>
+  readonly priorityRank: Prisma.FieldRef<"BudgetProposalLine", 'Int'>
+  readonly overCeilingMinor: Prisma.FieldRef<"BudgetProposalLine", 'BigInt'>
 }
     
 

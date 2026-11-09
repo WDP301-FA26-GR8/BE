@@ -255,6 +255,7 @@ export type EmployeeWhereInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceMemberships?: Prisma.PlanWorkspaceAdminListRelationFilter
+  subscriptionsInCharge?: Prisma.SubscriptionListRelationFilter
   planTermOpinions?: Prisma.PlanTermOpinionListRelationFilter
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerListRelationFilter
   licenseAssignments?: Prisma.LicenseAssignmentListRelationFilter
@@ -282,9 +283,12 @@ export type EmployeeWhereInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckListRelationFilter
   spendBatchesSubmitted?: Prisma.SpendBatchListRelationFilter
   spendDecisionsGiven?: Prisma.SpendDecisionListRelationFilter
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationListRelationFilter
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestListRelationFilter
   commitmentReleases?: Prisma.BudgetCommitmentReleaseListRelationFilter
   invoicesRecorded?: Prisma.InvoiceListRelationFilter
+  budgetCyclesOpened?: Prisma.BudgetCycleListRelationFilter
+  budgetCyclesPublished?: Prisma.BudgetCycleListRelationFilter
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestListRelationFilter
   stepSlaRemindersHeld?: Prisma.StepSlaReminderListRelationFilter
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientListRelationFilter
@@ -329,6 +333,7 @@ export type EmployeeOrderByWithRelationInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileOrderByRelationAggregateInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileOrderByRelationAggregateInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminOrderByRelationAggregateInput
+  subscriptionsInCharge?: Prisma.SubscriptionOrderByRelationAggregateInput
   planTermOpinions?: Prisma.PlanTermOpinionOrderByRelationAggregateInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerOrderByRelationAggregateInput
   licenseAssignments?: Prisma.LicenseAssignmentOrderByRelationAggregateInput
@@ -356,9 +361,12 @@ export type EmployeeOrderByWithRelationInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckOrderByRelationAggregateInput
   spendBatchesSubmitted?: Prisma.SpendBatchOrderByRelationAggregateInput
   spendDecisionsGiven?: Prisma.SpendDecisionOrderByRelationAggregateInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationOrderByRelationAggregateInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestOrderByRelationAggregateInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseOrderByRelationAggregateInput
   invoicesRecorded?: Prisma.InvoiceOrderByRelationAggregateInput
+  budgetCyclesOpened?: Prisma.BudgetCycleOrderByRelationAggregateInput
+  budgetCyclesPublished?: Prisma.BudgetCycleOrderByRelationAggregateInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestOrderByRelationAggregateInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderOrderByRelationAggregateInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientOrderByRelationAggregateInput
@@ -408,6 +416,7 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceMemberships?: Prisma.PlanWorkspaceAdminListRelationFilter
+  subscriptionsInCharge?: Prisma.SubscriptionListRelationFilter
   planTermOpinions?: Prisma.PlanTermOpinionListRelationFilter
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerListRelationFilter
   licenseAssignments?: Prisma.LicenseAssignmentListRelationFilter
@@ -435,9 +444,12 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckListRelationFilter
   spendBatchesSubmitted?: Prisma.SpendBatchListRelationFilter
   spendDecisionsGiven?: Prisma.SpendDecisionListRelationFilter
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationListRelationFilter
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestListRelationFilter
   commitmentReleases?: Prisma.BudgetCommitmentReleaseListRelationFilter
   invoicesRecorded?: Prisma.InvoiceListRelationFilter
+  budgetCyclesOpened?: Prisma.BudgetCycleListRelationFilter
+  budgetCyclesPublished?: Prisma.BudgetCycleListRelationFilter
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestListRelationFilter
   stepSlaRemindersHeld?: Prisma.StepSlaReminderListRelationFilter
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientListRelationFilter
@@ -519,6 +531,7 @@ export type EmployeeCreateInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -546,9 +559,12 @@ export type EmployeeCreateInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -592,6 +608,7 @@ export type EmployeeUncheckedCreateInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -619,9 +636,12 @@ export type EmployeeUncheckedCreateInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -665,6 +685,7 @@ export type EmployeeUpdateInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -692,9 +713,12 @@ export type EmployeeUpdateInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -738,6 +762,7 @@ export type EmployeeUncheckedUpdateInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -765,9 +790,12 @@ export type EmployeeUncheckedUpdateInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -944,6 +972,36 @@ export type EmployeeUpdateOneRequiredWithoutInvoicesRecordedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutInvoicesRecordedInput, Prisma.EmployeeUpdateWithoutInvoicesRecordedInput>, Prisma.EmployeeUncheckedUpdateWithoutInvoicesRecordedInput>
 }
 
+export type EmployeeCreateNestedOneWithoutBudgetCyclesOpenedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutBudgetCyclesOpenedInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeCreateNestedOneWithoutBudgetCyclesPublishedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesPublishedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesPublishedInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutBudgetCyclesPublishedInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutBudgetCyclesOpenedNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutBudgetCyclesOpenedInput
+  upsert?: Prisma.EmployeeUpsertWithoutBudgetCyclesOpenedInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUpdateWithoutBudgetCyclesOpenedInput>, Prisma.EmployeeUncheckedUpdateWithoutBudgetCyclesOpenedInput>
+}
+
+export type EmployeeUpdateOneWithoutBudgetCyclesPublishedNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesPublishedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesPublishedInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutBudgetCyclesPublishedInput
+  upsert?: Prisma.EmployeeUpsertWithoutBudgetCyclesPublishedInput
+  disconnect?: Prisma.EmployeeWhereInput | boolean
+  delete?: Prisma.EmployeeWhereInput | boolean
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutBudgetCyclesPublishedInput, Prisma.EmployeeUpdateWithoutBudgetCyclesPublishedInput>, Prisma.EmployeeUncheckedUpdateWithoutBudgetCyclesPublishedInput>
+}
+
 export type EmployeeCreateNestedOneWithoutOwnedApplicationsInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutOwnedApplicationsInput, Prisma.EmployeeUncheckedCreateWithoutOwnedApplicationsInput>
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutOwnedApplicationsInput
@@ -1000,6 +1058,22 @@ export type EmployeeUpdateOneRequiredWithoutWorkspaceMembershipsNestedInput = {
   upsert?: Prisma.EmployeeUpsertWithoutWorkspaceMembershipsInput
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutWorkspaceMembershipsInput, Prisma.EmployeeUpdateWithoutWorkspaceMembershipsInput>, Prisma.EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput>
+}
+
+export type EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSubscriptionsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutSubscriptionsInChargeInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSubscriptionsInChargeInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSubscriptionsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutSubscriptionsInChargeInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSubscriptionsInChargeInput
+  upsert?: Prisma.EmployeeUpsertWithoutSubscriptionsInChargeInput
+  disconnect?: Prisma.EmployeeWhereInput | boolean
+  delete?: Prisma.EmployeeWhereInput | boolean
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutSubscriptionsInChargeInput, Prisma.EmployeeUpdateWithoutSubscriptionsInChargeInput>, Prisma.EmployeeUncheckedUpdateWithoutSubscriptionsInChargeInput>
 }
 
 export type EmployeeCreateNestedOneWithoutPlanTermOpinionsInput = {
@@ -1660,6 +1734,20 @@ export type EmployeeUpdateOneRequiredWithoutSpendDecisionsGivenNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutSpendDecisionsGivenInput, Prisma.EmployeeUpdateWithoutSpendDecisionsGivenInput>, Prisma.EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput>
 }
 
+export type EmployeeCreateNestedOneWithoutReserveConfirmationsGivenInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutReserveConfirmationsGivenInput, Prisma.EmployeeUncheckedCreateWithoutReserveConfirmationsGivenInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutReserveConfirmationsGivenInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutReserveConfirmationsGivenNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutReserveConfirmationsGivenInput, Prisma.EmployeeUncheckedCreateWithoutReserveConfirmationsGivenInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutReserveConfirmationsGivenInput
+  upsert?: Prisma.EmployeeUpsertWithoutReserveConfirmationsGivenInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutReserveConfirmationsGivenInput, Prisma.EmployeeUpdateWithoutReserveConfirmationsGivenInput>, Prisma.EmployeeUncheckedUpdateWithoutReserveConfirmationsGivenInput>
+}
+
 export type EmployeeCreateNestedOneWithoutBudgetQuestionsAskedInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetQuestionsAskedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput>
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutBudgetQuestionsAskedInput
@@ -1832,6 +1920,7 @@ export type EmployeeCreateWithoutCommitmentReleasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -1859,8 +1948,11 @@ export type EmployeeCreateWithoutCommitmentReleasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -1904,6 +1996,7 @@ export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1931,8 +2024,11 @@ export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1992,6 +2088,7 @@ export type EmployeeUpdateWithoutCommitmentReleasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -2019,8 +2116,11 @@ export type EmployeeUpdateWithoutCommitmentReleasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -2064,6 +2164,7 @@ export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2091,8 +2192,11 @@ export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2136,6 +2240,7 @@ export type EmployeeCreateWithoutInvoicesRecordedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -2163,8 +2268,11 @@ export type EmployeeCreateWithoutInvoicesRecordedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -2208,6 +2316,7 @@ export type EmployeeUncheckedCreateWithoutInvoicesRecordedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2235,8 +2344,11 @@ export type EmployeeUncheckedCreateWithoutInvoicesRecordedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2296,6 +2408,7 @@ export type EmployeeUpdateWithoutInvoicesRecordedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -2323,8 +2436,11 @@ export type EmployeeUpdateWithoutInvoicesRecordedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -2368,6 +2484,7 @@ export type EmployeeUncheckedUpdateWithoutInvoicesRecordedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2395,8 +2512,651 @@ export type EmployeeUncheckedUpdateWithoutInvoicesRecordedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeCreateWithoutBudgetCyclesOpenedInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutBudgetCyclesOpenedInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput>
+}
+
+export type EmployeeCreateWithoutBudgetCyclesPublishedInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutBudgetCyclesPublishedInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutBudgetCyclesPublishedInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesPublishedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesPublishedInput>
+}
+
+export type EmployeeUpsertWithoutBudgetCyclesOpenedInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUncheckedUpdateWithoutBudgetCyclesOpenedInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutBudgetCyclesOpenedInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUncheckedUpdateWithoutBudgetCyclesOpenedInput>
+}
+
+export type EmployeeUpdateWithoutBudgetCyclesOpenedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutBudgetCyclesOpenedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUpsertWithoutBudgetCyclesPublishedInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutBudgetCyclesPublishedInput, Prisma.EmployeeUncheckedUpdateWithoutBudgetCyclesPublishedInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesPublishedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesPublishedInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutBudgetCyclesPublishedInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutBudgetCyclesPublishedInput, Prisma.EmployeeUncheckedUpdateWithoutBudgetCyclesPublishedInput>
+}
+
+export type EmployeeUpdateWithoutBudgetCyclesPublishedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutBudgetCyclesPublishedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2439,6 +3199,7 @@ export type EmployeeCreateWithoutOwnedApplicationsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -2466,9 +3227,12 @@ export type EmployeeCreateWithoutOwnedApplicationsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -2511,6 +3275,7 @@ export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2538,9 +3303,12 @@ export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2599,6 +3367,7 @@ export type EmployeeUpdateWithoutOwnedApplicationsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -2626,9 +3395,12 @@ export type EmployeeUpdateWithoutOwnedApplicationsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -2671,6 +3443,7 @@ export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2698,9 +3471,12 @@ export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2743,6 +3519,7 @@ export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -2770,9 +3547,12 @@ export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -2815,6 +3595,7 @@ export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2842,9 +3623,12 @@ export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2892,6 +3676,7 @@ export type EmployeeCreateWithoutWorkspaceEmergencyHolderOfInput = {
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -2919,9 +3704,12 @@ export type EmployeeCreateWithoutWorkspaceEmergencyHolderOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -2964,6 +3752,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2991,9 +3780,12 @@ export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3052,6 +3844,7 @@ export type EmployeeUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -3079,9 +3872,12 @@ export type EmployeeUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -3124,6 +3920,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3151,9 +3948,12 @@ export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3207,6 +4007,7 @@ export type EmployeeUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -3234,9 +4035,12 @@ export type EmployeeUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -3279,6 +4083,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3306,9 +4111,12 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3351,6 +4159,7 @@ export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -3378,9 +4187,12 @@ export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -3423,6 +4235,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3450,9 +4263,12 @@ export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3511,6 +4327,7 @@ export type EmployeeUpdateWithoutWorkspaceMembershipsInput = {
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -3538,9 +4355,12 @@ export type EmployeeUpdateWithoutWorkspaceMembershipsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -3583,6 +4403,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3610,9 +4431,332 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeCreateWithoutSubscriptionsInChargeInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutSubscriptionsInChargeInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutSubscriptionsInChargeInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSubscriptionsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutSubscriptionsInChargeInput>
+}
+
+export type EmployeeUpsertWithoutSubscriptionsInChargeInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutSubscriptionsInChargeInput, Prisma.EmployeeUncheckedUpdateWithoutSubscriptionsInChargeInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSubscriptionsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutSubscriptionsInChargeInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutSubscriptionsInChargeInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutSubscriptionsInChargeInput, Prisma.EmployeeUncheckedUpdateWithoutSubscriptionsInChargeInput>
+}
+
+export type EmployeeUpdateWithoutSubscriptionsInChargeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutSubscriptionsInChargeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3656,6 +4800,7 @@ export type EmployeeCreateWithoutPlanTermOpinionsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
@@ -3682,9 +4827,12 @@ export type EmployeeCreateWithoutPlanTermOpinionsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -3728,6 +4876,7 @@ export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
@@ -3754,9 +4903,12 @@ export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3816,6 +4968,7 @@ export type EmployeeUpdateWithoutPlanTermOpinionsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
@@ -3842,9 +4995,12 @@ export type EmployeeUpdateWithoutPlanTermOpinionsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -3888,6 +5044,7 @@ export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
@@ -3914,9 +5071,12 @@ export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3960,6 +5120,7 @@ export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
@@ -3986,9 +5147,12 @@ export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -4032,6 +5196,7 @@ export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
@@ -4058,9 +5223,12 @@ export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4120,6 +5288,7 @@ export type EmployeeUpdateWithoutApplicationBusinessOwnersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
@@ -4146,9 +5315,12 @@ export type EmployeeUpdateWithoutApplicationBusinessOwnersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -4192,6 +5364,7 @@ export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
@@ -4218,9 +5391,12 @@ export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4264,6 +5440,7 @@ export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -4290,9 +5467,12 @@ export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -4336,6 +5516,7 @@ export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4362,9 +5543,12 @@ export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4424,6 +5608,7 @@ export type EmployeeUpdateWithoutRetirementConfirmationsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -4450,9 +5635,12 @@ export type EmployeeUpdateWithoutRetirementConfirmationsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -4496,6 +5684,7 @@ export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4522,9 +5711,12 @@ export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4568,6 +5760,7 @@ export type EmployeeCreateWithoutDeviceRegistrationsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -4594,9 +5787,12 @@ export type EmployeeCreateWithoutDeviceRegistrationsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -4640,6 +5836,7 @@ export type EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4666,9 +5863,12 @@ export type EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4728,6 +5928,7 @@ export type EmployeeUpdateWithoutDeviceRegistrationsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -4754,9 +5955,12 @@ export type EmployeeUpdateWithoutDeviceRegistrationsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -4800,6 +6004,7 @@ export type EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4826,9 +6031,12 @@ export type EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4871,6 +6079,7 @@ export type EmployeeCreateWithoutAppUserInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -4898,9 +6107,12 @@ export type EmployeeCreateWithoutAppUserInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -4943,6 +6155,7 @@ export type EmployeeUncheckedCreateWithoutAppUserInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4970,9 +6183,12 @@ export type EmployeeUncheckedCreateWithoutAppUserInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5031,6 +6247,7 @@ export type EmployeeUpdateWithoutAppUserInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -5058,9 +6275,12 @@ export type EmployeeUpdateWithoutAppUserInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -5103,6 +6323,7 @@ export type EmployeeUncheckedUpdateWithoutAppUserInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5130,9 +6351,12 @@ export type EmployeeUncheckedUpdateWithoutAppUserInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5176,6 +6400,7 @@ export type EmployeeCreateWithoutAccessBlockInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -5203,9 +6428,12 @@ export type EmployeeCreateWithoutAccessBlockInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -5248,6 +6476,7 @@ export type EmployeeUncheckedCreateWithoutAccessBlockInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5275,9 +6504,12 @@ export type EmployeeUncheckedCreateWithoutAccessBlockInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5336,6 +6568,7 @@ export type EmployeeUpdateWithoutAccessBlockInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -5363,9 +6596,12 @@ export type EmployeeUpdateWithoutAccessBlockInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -5408,6 +6644,7 @@ export type EmployeeUncheckedUpdateWithoutAccessBlockInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5435,9 +6672,12 @@ export type EmployeeUncheckedUpdateWithoutAccessBlockInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5480,6 +6720,7 @@ export type EmployeeCreateWithoutLicenseAssignmentsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
@@ -5506,9 +6747,12 @@ export type EmployeeCreateWithoutLicenseAssignmentsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -5552,6 +6796,7 @@ export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
@@ -5578,9 +6823,12 @@ export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5640,6 +6888,7 @@ export type EmployeeUpdateWithoutLicenseAssignmentsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
@@ -5666,9 +6915,12 @@ export type EmployeeUpdateWithoutLicenseAssignmentsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -5712,6 +6964,7 @@ export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
@@ -5738,9 +6991,12 @@ export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5784,6 +7040,7 @@ export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -5810,9 +7067,12 @@ export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -5856,6 +7116,7 @@ export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5882,9 +7143,12 @@ export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5944,6 +7208,7 @@ export type EmployeeUpdateWithoutProvisioningTasksInChargeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -5970,9 +7235,12 @@ export type EmployeeUpdateWithoutProvisioningTasksInChargeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -6016,6 +7284,7 @@ export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6042,9 +7311,12 @@ export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6088,6 +7360,7 @@ export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -6114,9 +7387,12 @@ export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -6160,6 +7436,7 @@ export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6186,9 +7463,12 @@ export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6248,6 +7528,7 @@ export type EmployeeUpdateWithoutRevocationReasonsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -6274,9 +7555,12 @@ export type EmployeeUpdateWithoutRevocationReasonsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -6320,6 +7604,7 @@ export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6346,9 +7631,12 @@ export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6392,6 +7680,7 @@ export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -6418,9 +7707,12 @@ export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -6464,6 +7756,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6490,9 +7783,12 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6541,6 +7837,7 @@ export type EmployeeCreateWithoutHandoverDutiesFixedToInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -6567,9 +7864,12 @@ export type EmployeeCreateWithoutHandoverDutiesFixedToInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -6613,6 +7913,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6639,9 +7940,12 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6690,6 +7994,7 @@ export type EmployeeCreateWithoutHandoverDutiesConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -6716,9 +8021,12 @@ export type EmployeeCreateWithoutHandoverDutiesConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -6762,6 +8070,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6788,9 +8097,12 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6850,6 +8162,7 @@ export type EmployeeUpdateWithoutHandoverDutiesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -6876,9 +8189,12 @@ export type EmployeeUpdateWithoutHandoverDutiesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -6922,6 +8238,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6948,9 +8265,12 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7005,6 +8325,7 @@ export type EmployeeUpdateWithoutHandoverDutiesFixedToInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -7031,9 +8352,12 @@ export type EmployeeUpdateWithoutHandoverDutiesFixedToInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -7077,6 +8401,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7103,9 +8428,12 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7160,6 +8488,7 @@ export type EmployeeUpdateWithoutHandoverDutiesConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -7186,9 +8515,12 @@ export type EmployeeUpdateWithoutHandoverDutiesConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -7232,6 +8564,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7258,9 +8591,12 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7303,6 +8639,7 @@ export type EmployeeCreateWithoutOrganizationInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -7330,9 +8667,12 @@ export type EmployeeCreateWithoutOrganizationInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -7375,6 +8715,7 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7402,9 +8743,12 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7492,6 +8836,7 @@ export type EmployeeCreateWithoutItAdminOfInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -7519,9 +8864,12 @@ export type EmployeeCreateWithoutItAdminOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -7564,6 +8912,7 @@ export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7591,9 +8940,12 @@ export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7652,6 +9004,7 @@ export type EmployeeUpdateWithoutItAdminOfInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -7679,9 +9032,12 @@ export type EmployeeUpdateWithoutItAdminOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -7724,6 +9080,7 @@ export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7751,9 +9108,12 @@ export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7796,6 +9156,7 @@ export type EmployeeCreateWithoutHeadPeriodsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -7823,9 +9184,12 @@ export type EmployeeCreateWithoutHeadPeriodsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -7868,6 +9232,7 @@ export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7895,9 +9260,12 @@ export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7956,6 +9324,7 @@ export type EmployeeUpdateWithoutHeadPeriodsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -7983,9 +9352,12 @@ export type EmployeeUpdateWithoutHeadPeriodsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -8028,6 +9400,7 @@ export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8055,9 +9428,12 @@ export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8100,6 +9476,7 @@ export type EmployeeCreateWithoutPlacementsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -8127,9 +9504,12 @@ export type EmployeeCreateWithoutPlacementsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -8172,6 +9552,7 @@ export type EmployeeUncheckedCreateWithoutPlacementsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8199,9 +9580,12 @@ export type EmployeeUncheckedCreateWithoutPlacementsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8260,6 +9644,7 @@ export type EmployeeUpdateWithoutPlacementsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -8287,9 +9672,12 @@ export type EmployeeUpdateWithoutPlacementsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -8332,6 +9720,7 @@ export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8359,9 +9748,12 @@ export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8405,6 +9797,7 @@ export type EmployeeCreateWithoutDepartmentTransfersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -8432,9 +9825,12 @@ export type EmployeeCreateWithoutDepartmentTransfersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -8477,6 +9873,7 @@ export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8504,9 +9901,12 @@ export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8565,6 +9965,7 @@ export type EmployeeUpdateWithoutDepartmentTransfersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -8592,9 +9993,12 @@ export type EmployeeUpdateWithoutDepartmentTransfersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -8637,6 +10041,7 @@ export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8664,9 +10069,12 @@ export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8709,6 +10117,7 @@ export type EmployeeCreateWithoutTransferReviewsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -8736,9 +10145,12 @@ export type EmployeeCreateWithoutTransferReviewsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -8781,6 +10193,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8808,9 +10221,12 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8869,6 +10285,7 @@ export type EmployeeUpdateWithoutTransferReviewsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -8896,9 +10313,12 @@ export type EmployeeUpdateWithoutTransferReviewsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -8941,6 +10361,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8968,9 +10389,12 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9013,6 +10437,7 @@ export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -9040,9 +10465,12 @@ export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -9085,6 +10513,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9112,9 +10541,12 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9173,6 +10605,7 @@ export type EmployeeUpdateWithoutTransferReviewsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -9200,9 +10633,12 @@ export type EmployeeUpdateWithoutTransferReviewsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -9245,6 +10681,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9272,9 +10709,12 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9317,6 +10757,7 @@ export type EmployeeCreateWithoutEmployeeLeavesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -9344,9 +10785,12 @@ export type EmployeeCreateWithoutEmployeeLeavesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -9389,6 +10833,7 @@ export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9416,9 +10861,12 @@ export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9477,6 +10925,7 @@ export type EmployeeUpdateWithoutEmployeeLeavesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -9504,9 +10953,12 @@ export type EmployeeUpdateWithoutEmployeeLeavesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -9549,6 +11001,7 @@ export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9576,9 +11029,12 @@ export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9621,6 +11077,7 @@ export type EmployeeCreateWithoutOffboardingCasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -9648,9 +11105,12 @@ export type EmployeeCreateWithoutOffboardingCasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -9693,6 +11153,7 @@ export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9720,9 +11181,12 @@ export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9781,6 +11245,7 @@ export type EmployeeUpdateWithoutOffboardingCasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -9808,9 +11273,12 @@ export type EmployeeUpdateWithoutOffboardingCasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -9853,6 +11321,7 @@ export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9880,9 +11349,12 @@ export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9925,6 +11397,7 @@ export type EmployeeCreateWithoutNoticesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -9952,9 +11425,12 @@ export type EmployeeCreateWithoutNoticesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -9997,6 +11473,7 @@ export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10024,9 +11501,12 @@ export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10074,6 +11554,7 @@ export type EmployeeCreateWithoutNoticesSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -10101,9 +11582,12 @@ export type EmployeeCreateWithoutNoticesSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -10146,6 +11630,7 @@ export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10173,9 +11658,12 @@ export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10234,6 +11722,7 @@ export type EmployeeUpdateWithoutNoticesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -10261,9 +11750,12 @@ export type EmployeeUpdateWithoutNoticesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -10306,6 +11798,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10333,9 +11826,12 @@ export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10389,6 +11885,7 @@ export type EmployeeUpdateWithoutNoticesSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -10416,9 +11913,12 @@ export type EmployeeUpdateWithoutNoticesSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -10461,6 +11961,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10488,9 +11989,12 @@ export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10533,6 +12037,7 @@ export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -10560,9 +12065,12 @@ export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -10605,6 +12113,7 @@ export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10632,9 +12141,12 @@ export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10693,6 +12205,7 @@ export type EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -10720,9 +12233,12 @@ export type EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -10765,6 +12281,7 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10792,9 +12309,12 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10837,6 +12357,7 @@ export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -10863,9 +12384,12 @@ export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -10909,6 +12433,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10935,9 +12460,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10986,6 +12514,7 @@ export type EmployeeCreateWithoutAccessRequestsWithdrawnInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -11012,9 +12541,12 @@ export type EmployeeCreateWithoutAccessRequestsWithdrawnInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -11058,6 +12590,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11084,9 +12617,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11135,6 +12671,7 @@ export type EmployeeCreateWithoutAccessRequestsCancelledInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -11161,9 +12698,12 @@ export type EmployeeCreateWithoutAccessRequestsCancelledInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -11207,6 +12747,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11233,9 +12774,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11295,6 +12839,7 @@ export type EmployeeUpdateWithoutAccessRequestsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -11321,9 +12866,12 @@ export type EmployeeUpdateWithoutAccessRequestsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -11367,6 +12915,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11393,9 +12942,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11450,6 +13002,7 @@ export type EmployeeUpdateWithoutAccessRequestsWithdrawnInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -11476,9 +13029,12 @@ export type EmployeeUpdateWithoutAccessRequestsWithdrawnInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -11522,6 +13078,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11548,9 +13105,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11605,6 +13165,7 @@ export type EmployeeUpdateWithoutAccessRequestsCancelledInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -11631,9 +13192,12 @@ export type EmployeeUpdateWithoutAccessRequestsCancelledInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -11677,6 +13241,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11703,9 +13268,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11749,6 +13317,7 @@ export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -11775,9 +13344,12 @@ export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -11821,6 +13393,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11847,9 +13420,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11909,6 +13485,7 @@ export type EmployeeUpdateWithoutAccessRequestBeneficiariesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -11935,9 +13512,12 @@ export type EmployeeUpdateWithoutAccessRequestBeneficiariesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -11981,6 +13561,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12007,9 +13588,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12053,6 +13637,7 @@ export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -12079,9 +13664,12 @@ export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -12125,6 +13713,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12151,9 +13740,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12213,6 +13805,7 @@ export type EmployeeUpdateWithoutAccessRequestLinesEndedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -12239,9 +13832,12 @@ export type EmployeeUpdateWithoutAccessRequestLinesEndedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -12285,6 +13881,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12311,9 +13908,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12357,6 +13957,7 @@ export type EmployeeCreateWithoutLineDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -12383,9 +13984,12 @@ export type EmployeeCreateWithoutLineDecisionsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -12429,6 +14033,7 @@ export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12455,9 +14060,12 @@ export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12517,6 +14125,7 @@ export type EmployeeUpdateWithoutLineDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -12543,9 +14152,12 @@ export type EmployeeUpdateWithoutLineDecisionsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -12589,6 +14201,7 @@ export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12615,9 +14228,12 @@ export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12661,6 +14277,7 @@ export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -12687,9 +14304,12 @@ export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -12733,6 +14353,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12759,9 +14380,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12821,6 +14445,7 @@ export type EmployeeUpdateWithoutAccessRequestStepsAssignedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -12847,9 +14472,12 @@ export type EmployeeUpdateWithoutAccessRequestStepsAssignedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -12893,6 +14521,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12919,9 +14548,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12965,6 +14597,7 @@ export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -12991,9 +14624,12 @@ export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -13037,6 +14673,7 @@ export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13063,9 +14700,12 @@ export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13125,6 +14765,7 @@ export type EmployeeUpdateWithoutApprovalRecordsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -13151,9 +14792,12 @@ export type EmployeeUpdateWithoutApprovalRecordsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -13197,6 +14841,7 @@ export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13223,9 +14868,12 @@ export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13269,6 +14917,7 @@ export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -13296,9 +14945,12 @@ export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -13341,6 +14993,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13368,9 +15021,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13418,6 +15074,7 @@ export type EmployeeCreateWithoutAssessmentsRejectedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -13445,9 +15102,12 @@ export type EmployeeCreateWithoutAssessmentsRejectedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -13490,6 +15150,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13517,9 +15178,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13567,6 +15231,7 @@ export type EmployeeCreateWithoutAssessmentsSavedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -13594,9 +15259,12 @@ export type EmployeeCreateWithoutAssessmentsSavedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -13639,6 +15307,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13666,9 +15335,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13716,6 +15388,7 @@ export type EmployeeCreateWithoutAssessmentsCompletedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -13743,9 +15416,12 @@ export type EmployeeCreateWithoutAssessmentsCompletedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -13788,6 +15464,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13815,9 +15492,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13876,6 +15556,7 @@ export type EmployeeUpdateWithoutAssessmentsProposedOwnerInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -13903,9 +15584,12 @@ export type EmployeeUpdateWithoutAssessmentsProposedOwnerInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -13948,6 +15632,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13975,9 +15660,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14031,6 +15719,7 @@ export type EmployeeUpdateWithoutAssessmentsRejectedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -14058,9 +15747,12 @@ export type EmployeeUpdateWithoutAssessmentsRejectedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -14103,6 +15795,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14130,9 +15823,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14186,6 +15882,7 @@ export type EmployeeUpdateWithoutAssessmentsSavedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -14213,9 +15910,12 @@ export type EmployeeUpdateWithoutAssessmentsSavedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -14258,6 +15958,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14285,9 +15986,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14341,6 +16045,7 @@ export type EmployeeUpdateWithoutAssessmentsCompletedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -14368,9 +16073,12 @@ export type EmployeeUpdateWithoutAssessmentsCompletedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -14413,6 +16121,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14440,9 +16149,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14485,6 +16197,7 @@ export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -14511,9 +16224,12 @@ export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -14557,6 +16273,7 @@ export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -14583,9 +16300,12 @@ export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -14645,6 +16365,7 @@ export type EmployeeUpdateWithoutRequestBudgetChecksRunInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -14671,9 +16392,12 @@ export type EmployeeUpdateWithoutRequestBudgetChecksRunInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -14717,6 +16441,7 @@ export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14743,9 +16468,12 @@ export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14789,6 +16517,7 @@ export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -14816,9 +16545,12 @@ export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -14861,6 +16593,7 @@ export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -14888,9 +16621,12 @@ export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -14949,6 +16685,7 @@ export type EmployeeUpdateWithoutRequestFinanceReviewsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -14976,9 +16713,12 @@ export type EmployeeUpdateWithoutRequestFinanceReviewsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -15021,6 +16761,7 @@ export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15048,9 +16789,12 @@ export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15093,6 +16837,7 @@ export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -15119,9 +16864,12 @@ export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -15165,6 +16913,7 @@ export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15191,9 +16940,12 @@ export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15253,6 +17005,7 @@ export type EmployeeUpdateWithoutSpendBatchesSubmittedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -15279,9 +17032,12 @@ export type EmployeeUpdateWithoutSpendBatchesSubmittedInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -15325,6 +17081,7 @@ export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15351,9 +17108,12 @@ export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15397,6 +17157,7 @@ export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -15424,9 +17185,12 @@ export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -15469,6 +17233,7 @@ export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15496,9 +17261,12 @@ export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15557,6 +17325,7 @@ export type EmployeeUpdateWithoutRequestSupplementsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -15584,9 +17353,12 @@ export type EmployeeUpdateWithoutRequestSupplementsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -15629,6 +17401,7 @@ export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15656,9 +17429,12 @@ export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15701,6 +17477,7 @@ export type EmployeeCreateWithoutSupplementDropsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -15727,9 +17504,12 @@ export type EmployeeCreateWithoutSupplementDropsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -15773,6 +17553,7 @@ export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15799,9 +17580,12 @@ export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15861,6 +17645,7 @@ export type EmployeeUpdateWithoutSupplementDropsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -15887,9 +17672,12 @@ export type EmployeeUpdateWithoutSupplementDropsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -15933,6 +17721,7 @@ export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15959,9 +17748,12 @@ export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16005,6 +17797,7 @@ export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -16031,9 +17824,12 @@ export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -16077,6 +17873,7 @@ export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -16103,9 +17900,12 @@ export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -16165,6 +17965,7 @@ export type EmployeeUpdateWithoutSpendDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -16191,9 +17992,12 @@ export type EmployeeUpdateWithoutSpendDecisionsGivenInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -16237,6 +18041,7 @@ export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16263,9 +18068,332 @@ export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
   approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeCreateWithoutReserveConfirmationsGivenInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutReserveConfirmationsGivenInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutReserveConfirmationsGivenInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutReserveConfirmationsGivenInput, Prisma.EmployeeUncheckedCreateWithoutReserveConfirmationsGivenInput>
+}
+
+export type EmployeeUpsertWithoutReserveConfirmationsGivenInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutReserveConfirmationsGivenInput, Prisma.EmployeeUncheckedUpdateWithoutReserveConfirmationsGivenInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutReserveConfirmationsGivenInput, Prisma.EmployeeUncheckedCreateWithoutReserveConfirmationsGivenInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutReserveConfirmationsGivenInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutReserveConfirmationsGivenInput, Prisma.EmployeeUncheckedUpdateWithoutReserveConfirmationsGivenInput>
+}
+
+export type EmployeeUpdateWithoutReserveConfirmationsGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutReserveConfirmationsGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16309,6 +18437,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -16336,8 +18465,11 @@ export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -16381,6 +18513,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -16408,8 +18541,11 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -16458,6 +18594,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAnsweredInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -16485,9 +18622,12 @@ export type EmployeeCreateWithoutBudgetQuestionsAnsweredInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
@@ -16530,6 +18670,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -16557,9 +18698,12 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
@@ -16618,6 +18762,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAskedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -16645,8 +18790,11 @@ export type EmployeeUpdateWithoutBudgetQuestionsAskedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -16690,6 +18838,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16717,8 +18866,11 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16773,6 +18925,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAnsweredInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -16800,9 +18953,12 @@ export type EmployeeUpdateWithoutBudgetQuestionsAnsweredInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
@@ -16845,6 +19001,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16872,9 +19029,12 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
@@ -16917,6 +19077,7 @@ export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -16943,9 +19104,12 @@ export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -16989,6 +19153,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17015,9 +19180,12 @@ export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17066,6 +19234,7 @@ export type EmployeeCreateWithoutServiceAccountBoundariesDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -17092,9 +19261,12 @@ export type EmployeeCreateWithoutServiceAccountBoundariesDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -17138,6 +19310,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput =
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17164,9 +19337,12 @@ export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput =
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17226,6 +19402,7 @@ export type EmployeeUpdateWithoutServiceAccountsAnsweredForInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -17252,9 +19429,12 @@ export type EmployeeUpdateWithoutServiceAccountsAnsweredForInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -17298,6 +19478,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -17324,9 +19505,12 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -17381,6 +19565,7 @@ export type EmployeeUpdateWithoutServiceAccountBoundariesDecidedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -17407,9 +19592,12 @@ export type EmployeeUpdateWithoutServiceAccountBoundariesDecidedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -17453,6 +19641,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput =
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -17479,9 +19668,12 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput =
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -17525,6 +19717,7 @@ export type EmployeeCreateWithoutReturnRequestsSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -17551,9 +19744,12 @@ export type EmployeeCreateWithoutReturnRequestsSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -17597,6 +19793,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17623,9 +19820,12 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17674,6 +19874,7 @@ export type EmployeeCreateWithoutReturnRequestsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -17700,9 +19901,12 @@ export type EmployeeCreateWithoutReturnRequestsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -17746,6 +19950,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17772,9 +19977,12 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17823,6 +20031,7 @@ export type EmployeeCreateWithoutReturnHandoversConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -17849,9 +20058,12 @@ export type EmployeeCreateWithoutReturnHandoversConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -17895,6 +20107,7 @@ export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17921,9 +20134,12 @@ export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17983,6 +20199,7 @@ export type EmployeeUpdateWithoutReturnRequestsSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -18009,9 +20226,12 @@ export type EmployeeUpdateWithoutReturnRequestsSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -18055,6 +20275,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18081,9 +20302,12 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18138,6 +20362,7 @@ export type EmployeeUpdateWithoutReturnRequestsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -18164,9 +20389,12 @@ export type EmployeeUpdateWithoutReturnRequestsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -18210,6 +20438,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18236,9 +20465,12 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18293,6 +20525,7 @@ export type EmployeeUpdateWithoutReturnHandoversConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -18319,9 +20552,12 @@ export type EmployeeUpdateWithoutReturnHandoversConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -18365,6 +20601,7 @@ export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18391,9 +20628,12 @@ export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18437,6 +20677,7 @@ export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -18464,9 +20705,12 @@ export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
@@ -18509,6 +20753,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -18536,9 +20781,12 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
@@ -18597,6 +20845,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -18624,9 +20873,12 @@ export type EmployeeUpdateWithoutStepSlaRemindersHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
@@ -18669,6 +20921,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18696,9 +20949,12 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
@@ -18741,6 +20997,7 @@ export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -18768,9 +21025,12 @@ export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
@@ -18813,6 +21073,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -18840,9 +21101,12 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
@@ -18901,6 +21165,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersReceivedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -18928,9 +21193,12 @@ export type EmployeeUpdateWithoutStepSlaRemindersReceivedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
@@ -18973,6 +21241,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19000,9 +21269,12 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
@@ -19045,6 +21317,7 @@ export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -19072,9 +21345,12 @@ export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
@@ -19117,6 +21393,7 @@ export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -19144,9 +21421,12 @@ export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
   invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
@@ -19205,6 +21485,7 @@ export type EmployeeUpdateWithoutCongestionIncidentsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -19232,9 +21513,12 @@ export type EmployeeUpdateWithoutCongestionIncidentsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -19277,6 +21561,7 @@ export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19304,9 +21589,12 @@ export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19363,6 +21651,7 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -19390,9 +21679,12 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
@@ -19435,6 +21727,7 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19462,9 +21755,12 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
   spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
   spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
   budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
   commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
   invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
   budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
   stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
   stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19514,6 +21810,7 @@ export type EmployeeCountOutputType = {
   workspacePrimaryOwnerOf: number
   workspaceEmergencyHolderOf: number
   workspaceMemberships: number
+  subscriptionsInCharge: number
   planTermOpinions: number
   applicationBusinessOwners: number
   licenseAssignments: number
@@ -19541,9 +21838,12 @@ export type EmployeeCountOutputType = {
   requestBudgetChecksRun: number
   spendBatchesSubmitted: number
   spendDecisionsGiven: number
+  reserveConfirmationsGiven: number
   budgetQuestionsAsked: number
   commitmentReleases: number
   invoicesRecorded: number
+  budgetCyclesOpened: number
+  budgetCyclesPublished: number
   budgetQuestionsAnswered: number
   stepSlaRemindersHeld: number
   stepSlaRemindersReceived: number
@@ -19572,6 +21872,7 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   workspacePrimaryOwnerOf?: boolean | EmployeeCountOutputTypeCountWorkspacePrimaryOwnerOfArgs
   workspaceEmergencyHolderOf?: boolean | EmployeeCountOutputTypeCountWorkspaceEmergencyHolderOfArgs
   workspaceMemberships?: boolean | EmployeeCountOutputTypeCountWorkspaceMembershipsArgs
+  subscriptionsInCharge?: boolean | EmployeeCountOutputTypeCountSubscriptionsInChargeArgs
   planTermOpinions?: boolean | EmployeeCountOutputTypeCountPlanTermOpinionsArgs
   applicationBusinessOwners?: boolean | EmployeeCountOutputTypeCountApplicationBusinessOwnersArgs
   licenseAssignments?: boolean | EmployeeCountOutputTypeCountLicenseAssignmentsArgs
@@ -19599,9 +21900,12 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   requestBudgetChecksRun?: boolean | EmployeeCountOutputTypeCountRequestBudgetChecksRunArgs
   spendBatchesSubmitted?: boolean | EmployeeCountOutputTypeCountSpendBatchesSubmittedArgs
   spendDecisionsGiven?: boolean | EmployeeCountOutputTypeCountSpendDecisionsGivenArgs
+  reserveConfirmationsGiven?: boolean | EmployeeCountOutputTypeCountReserveConfirmationsGivenArgs
   budgetQuestionsAsked?: boolean | EmployeeCountOutputTypeCountBudgetQuestionsAskedArgs
   commitmentReleases?: boolean | EmployeeCountOutputTypeCountCommitmentReleasesArgs
   invoicesRecorded?: boolean | EmployeeCountOutputTypeCountInvoicesRecordedArgs
+  budgetCyclesOpened?: boolean | EmployeeCountOutputTypeCountBudgetCyclesOpenedArgs
+  budgetCyclesPublished?: boolean | EmployeeCountOutputTypeCountBudgetCyclesPublishedArgs
   budgetQuestionsAnswered?: boolean | EmployeeCountOutputTypeCountBudgetQuestionsAnsweredArgs
   stepSlaRemindersHeld?: boolean | EmployeeCountOutputTypeCountStepSlaRemindersHeldArgs
   stepSlaRemindersReceived?: boolean | EmployeeCountOutputTypeCountStepSlaRemindersReceivedArgs
@@ -19679,6 +21983,13 @@ export type EmployeeCountOutputTypeCountWorkspaceEmergencyHolderOfArgs<ExtArgs e
  */
 export type EmployeeCountOutputTypeCountWorkspaceMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PlanWorkspaceAdminWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountSubscriptionsInChargeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
 }
 
 /**
@@ -19873,6 +22184,13 @@ export type EmployeeCountOutputTypeCountSpendDecisionsGivenArgs<ExtArgs extends 
 /**
  * EmployeeCountOutputType without action
  */
+export type EmployeeCountOutputTypeCountReserveConfirmationsGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RequestReserveConfirmationWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
 export type EmployeeCountOutputTypeCountBudgetQuestionsAskedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.BudgetInformationRequestWhereInput
 }
@@ -19889,6 +22207,20 @@ export type EmployeeCountOutputTypeCountCommitmentReleasesArgs<ExtArgs extends r
  */
 export type EmployeeCountOutputTypeCountInvoicesRecordedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountBudgetCyclesOpenedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetCycleWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountBudgetCyclesPublishedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetCycleWhereInput
 }
 
 /**
@@ -20041,6 +22373,7 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   workspacePrimaryOwnerOf?: boolean | Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>
   workspaceEmergencyHolderOf?: boolean | Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>
   workspaceMemberships?: boolean | Prisma.Employee$workspaceMembershipsArgs<ExtArgs>
+  subscriptionsInCharge?: boolean | Prisma.Employee$subscriptionsInChargeArgs<ExtArgs>
   planTermOpinions?: boolean | Prisma.Employee$planTermOpinionsArgs<ExtArgs>
   applicationBusinessOwners?: boolean | Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs>
   licenseAssignments?: boolean | Prisma.Employee$licenseAssignmentsArgs<ExtArgs>
@@ -20068,9 +22401,12 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   requestBudgetChecksRun?: boolean | Prisma.Employee$requestBudgetChecksRunArgs<ExtArgs>
   spendBatchesSubmitted?: boolean | Prisma.Employee$spendBatchesSubmittedArgs<ExtArgs>
   spendDecisionsGiven?: boolean | Prisma.Employee$spendDecisionsGivenArgs<ExtArgs>
+  reserveConfirmationsGiven?: boolean | Prisma.Employee$reserveConfirmationsGivenArgs<ExtArgs>
   budgetQuestionsAsked?: boolean | Prisma.Employee$budgetQuestionsAskedArgs<ExtArgs>
   commitmentReleases?: boolean | Prisma.Employee$commitmentReleasesArgs<ExtArgs>
   invoicesRecorded?: boolean | Prisma.Employee$invoicesRecordedArgs<ExtArgs>
+  budgetCyclesOpened?: boolean | Prisma.Employee$budgetCyclesOpenedArgs<ExtArgs>
+  budgetCyclesPublished?: boolean | Prisma.Employee$budgetCyclesPublishedArgs<ExtArgs>
   budgetQuestionsAnswered?: boolean | Prisma.Employee$budgetQuestionsAnsweredArgs<ExtArgs>
   stepSlaRemindersHeld?: boolean | Prisma.Employee$stepSlaRemindersHeldArgs<ExtArgs>
   stepSlaRemindersReceived?: boolean | Prisma.Employee$stepSlaRemindersReceivedArgs<ExtArgs>
@@ -20154,6 +22490,7 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   workspacePrimaryOwnerOf?: boolean | Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>
   workspaceEmergencyHolderOf?: boolean | Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>
   workspaceMemberships?: boolean | Prisma.Employee$workspaceMembershipsArgs<ExtArgs>
+  subscriptionsInCharge?: boolean | Prisma.Employee$subscriptionsInChargeArgs<ExtArgs>
   planTermOpinions?: boolean | Prisma.Employee$planTermOpinionsArgs<ExtArgs>
   applicationBusinessOwners?: boolean | Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs>
   licenseAssignments?: boolean | Prisma.Employee$licenseAssignmentsArgs<ExtArgs>
@@ -20181,9 +22518,12 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   requestBudgetChecksRun?: boolean | Prisma.Employee$requestBudgetChecksRunArgs<ExtArgs>
   spendBatchesSubmitted?: boolean | Prisma.Employee$spendBatchesSubmittedArgs<ExtArgs>
   spendDecisionsGiven?: boolean | Prisma.Employee$spendDecisionsGivenArgs<ExtArgs>
+  reserveConfirmationsGiven?: boolean | Prisma.Employee$reserveConfirmationsGivenArgs<ExtArgs>
   budgetQuestionsAsked?: boolean | Prisma.Employee$budgetQuestionsAskedArgs<ExtArgs>
   commitmentReleases?: boolean | Prisma.Employee$commitmentReleasesArgs<ExtArgs>
   invoicesRecorded?: boolean | Prisma.Employee$invoicesRecordedArgs<ExtArgs>
+  budgetCyclesOpened?: boolean | Prisma.Employee$budgetCyclesOpenedArgs<ExtArgs>
+  budgetCyclesPublished?: boolean | Prisma.Employee$budgetCyclesPublishedArgs<ExtArgs>
   budgetQuestionsAnswered?: boolean | Prisma.Employee$budgetQuestionsAnsweredArgs<ExtArgs>
   stepSlaRemindersHeld?: boolean | Prisma.Employee$stepSlaRemindersHeldArgs<ExtArgs>
   stepSlaRemindersReceived?: boolean | Prisma.Employee$stepSlaRemindersReceivedArgs<ExtArgs>
@@ -20224,6 +22564,7 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     workspacePrimaryOwnerOf: Prisma.$PlanWorkspaceProfilePayload<ExtArgs>[]
     workspaceEmergencyHolderOf: Prisma.$PlanWorkspaceProfilePayload<ExtArgs>[]
     workspaceMemberships: Prisma.$PlanWorkspaceAdminPayload<ExtArgs>[]
+    subscriptionsInCharge: Prisma.$SubscriptionPayload<ExtArgs>[]
     planTermOpinions: Prisma.$PlanTermOpinionPayload<ExtArgs>[]
     applicationBusinessOwners: Prisma.$ApplicationBusinessOwnerPayload<ExtArgs>[]
     licenseAssignments: Prisma.$LicenseAssignmentPayload<ExtArgs>[]
@@ -20251,9 +22592,12 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     requestBudgetChecksRun: Prisma.$RequestBudgetCheckPayload<ExtArgs>[]
     spendBatchesSubmitted: Prisma.$SpendBatchPayload<ExtArgs>[]
     spendDecisionsGiven: Prisma.$SpendDecisionPayload<ExtArgs>[]
+    reserveConfirmationsGiven: Prisma.$RequestReserveConfirmationPayload<ExtArgs>[]
     budgetQuestionsAsked: Prisma.$BudgetInformationRequestPayload<ExtArgs>[]
     commitmentReleases: Prisma.$BudgetCommitmentReleasePayload<ExtArgs>[]
     invoicesRecorded: Prisma.$InvoicePayload<ExtArgs>[]
+    budgetCyclesOpened: Prisma.$BudgetCyclePayload<ExtArgs>[]
+    budgetCyclesPublished: Prisma.$BudgetCyclePayload<ExtArgs>[]
     budgetQuestionsAnswered: Prisma.$BudgetInformationRequestPayload<ExtArgs>[]
     stepSlaRemindersHeld: Prisma.$StepSlaReminderPayload<ExtArgs>[]
     stepSlaRemindersReceived: Prisma.$StepSlaReminderRecipientPayload<ExtArgs>[]
@@ -20691,6 +23035,7 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   workspacePrimaryOwnerOf<T extends Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspaceEmergencyHolderOf<T extends Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspaceMemberships<T extends Prisma.Employee$workspaceMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspaceMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptionsInCharge<T extends Prisma.Employee$subscriptionsInChargeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$subscriptionsInChargeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   planTermOpinions<T extends Prisma.Employee$planTermOpinionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$planTermOpinionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanTermOpinionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   applicationBusinessOwners<T extends Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationBusinessOwnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   licenseAssignments<T extends Prisma.Employee$licenseAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$licenseAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LicenseAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -20718,9 +23063,12 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   requestBudgetChecksRun<T extends Prisma.Employee$requestBudgetChecksRunArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$requestBudgetChecksRunArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestBudgetCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   spendBatchesSubmitted<T extends Prisma.Employee$spendBatchesSubmittedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$spendBatchesSubmittedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SpendBatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   spendDecisionsGiven<T extends Prisma.Employee$spendDecisionsGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$spendDecisionsGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SpendDecisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reserveConfirmationsGiven<T extends Prisma.Employee$reserveConfirmationsGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$reserveConfirmationsGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestReserveConfirmationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetQuestionsAsked<T extends Prisma.Employee$budgetQuestionsAskedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$budgetQuestionsAskedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetInformationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   commitmentReleases<T extends Prisma.Employee$commitmentReleasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$commitmentReleasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoicesRecorded<T extends Prisma.Employee$invoicesRecordedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$invoicesRecordedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  budgetCyclesOpened<T extends Prisma.Employee$budgetCyclesOpenedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$budgetCyclesOpenedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCyclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  budgetCyclesPublished<T extends Prisma.Employee$budgetCyclesPublishedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$budgetCyclesPublishedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCyclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetQuestionsAnswered<T extends Prisma.Employee$budgetQuestionsAnsweredArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$budgetQuestionsAnsweredArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetInformationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stepSlaRemindersHeld<T extends Prisma.Employee$stepSlaRemindersHeldArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$stepSlaRemindersHeldArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StepSlaReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stepSlaRemindersReceived<T extends Prisma.Employee$stepSlaRemindersReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$stepSlaRemindersReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StepSlaReminderRecipientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -21367,6 +23715,30 @@ export type Employee$workspaceMembershipsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.PlanWorkspaceAdminScalarFieldEnum | Prisma.PlanWorkspaceAdminScalarFieldEnum[]
+}
+
+/**
+ * Employee.subscriptionsInCharge
+ */
+export type Employee$subscriptionsInChargeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
 }
 
 /**
@@ -22018,6 +24390,30 @@ export type Employee$spendDecisionsGivenArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * Employee.reserveConfirmationsGiven
+ */
+export type Employee$reserveConfirmationsGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequestReserveConfirmation
+   */
+  select?: Prisma.RequestReserveConfirmationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RequestReserveConfirmation
+   */
+  omit?: Prisma.RequestReserveConfirmationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RequestReserveConfirmationInclude<ExtArgs> | null
+  where?: Prisma.RequestReserveConfirmationWhereInput
+  orderBy?: Prisma.RequestReserveConfirmationOrderByWithRelationInput | Prisma.RequestReserveConfirmationOrderByWithRelationInput[]
+  cursor?: Prisma.RequestReserveConfirmationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RequestReserveConfirmationScalarFieldEnum | Prisma.RequestReserveConfirmationScalarFieldEnum[]
+}
+
+/**
  * Employee.budgetQuestionsAsked
  */
 export type Employee$budgetQuestionsAskedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -22087,6 +24483,54 @@ export type Employee$invoicesRecordedArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Employee.budgetCyclesOpened
+ */
+export type Employee$budgetCyclesOpenedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetCycle
+   */
+  select?: Prisma.BudgetCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetCycle
+   */
+  omit?: Prisma.BudgetCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetCycleInclude<ExtArgs> | null
+  where?: Prisma.BudgetCycleWhereInput
+  orderBy?: Prisma.BudgetCycleOrderByWithRelationInput | Prisma.BudgetCycleOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetCycleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetCycleScalarFieldEnum | Prisma.BudgetCycleScalarFieldEnum[]
+}
+
+/**
+ * Employee.budgetCyclesPublished
+ */
+export type Employee$budgetCyclesPublishedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetCycle
+   */
+  select?: Prisma.BudgetCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetCycle
+   */
+  omit?: Prisma.BudgetCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetCycleInclude<ExtArgs> | null
+  where?: Prisma.BudgetCycleWhereInput
+  orderBy?: Prisma.BudgetCycleOrderByWithRelationInput | Prisma.BudgetCycleOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetCycleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetCycleScalarFieldEnum | Prisma.BudgetCycleScalarFieldEnum[]
 }
 
 /**

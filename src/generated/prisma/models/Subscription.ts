@@ -31,7 +31,9 @@ export type SubscriptionAvgAggregateOutputType = {
   unitPriceMinor: number | null
   priceRate: runtime.Decimal | null
   priceReportingMinor: number | null
+  commitmentTermMonths: number | null
   noticePeriodDays: number | null
+  vendorMinimumSeats: number | null
 }
 
 export type SubscriptionSumAggregateOutputType = {
@@ -39,7 +41,9 @@ export type SubscriptionSumAggregateOutputType = {
   unitPriceMinor: bigint | null
   priceRate: runtime.Decimal | null
   priceReportingMinor: bigint | null
+  commitmentTermMonths: number | null
   noticePeriodDays: number | null
+  vendorMinimumSeats: number | null
 }
 
 export type SubscriptionMinAggregateOutputType = {
@@ -59,6 +63,7 @@ export type SubscriptionMinAggregateOutputType = {
   priceReportingCurrency: string | null
   priceExchangeRateId: string | null
   billingCycle: $Enums.BillingCycle | null
+  commitmentTermMonths: number | null
   startDate: Date | null
   endDate: Date | null
   renewalDate: Date | null
@@ -66,6 +71,9 @@ export type SubscriptionMinAggregateOutputType = {
   noticePeriodDays: number | null
   autoRenew: boolean | null
   allowsMidTermReduction: boolean | null
+  responsibleItAdminEmployeeId: string | null
+  vendorMinimumSeats: number | null
+  isPrimaryForPlan: boolean | null
   ownerDepartmentId: string | null
   renewedFromId: string | null
   createdAt: Date | null
@@ -89,6 +97,7 @@ export type SubscriptionMaxAggregateOutputType = {
   priceReportingCurrency: string | null
   priceExchangeRateId: string | null
   billingCycle: $Enums.BillingCycle | null
+  commitmentTermMonths: number | null
   startDate: Date | null
   endDate: Date | null
   renewalDate: Date | null
@@ -96,6 +105,9 @@ export type SubscriptionMaxAggregateOutputType = {
   noticePeriodDays: number | null
   autoRenew: boolean | null
   allowsMidTermReduction: boolean | null
+  responsibleItAdminEmployeeId: string | null
+  vendorMinimumSeats: number | null
+  isPrimaryForPlan: boolean | null
   ownerDepartmentId: string | null
   renewedFromId: string | null
   createdAt: Date | null
@@ -119,6 +131,7 @@ export type SubscriptionCountAggregateOutputType = {
   priceReportingCurrency: number
   priceExchangeRateId: number
   billingCycle: number
+  commitmentTermMonths: number
   startDate: number
   endDate: number
   renewalDate: number
@@ -126,6 +139,9 @@ export type SubscriptionCountAggregateOutputType = {
   noticePeriodDays: number
   autoRenew: number
   allowsMidTermReduction: number
+  responsibleItAdminEmployeeId: number
+  vendorMinimumSeats: number
+  isPrimaryForPlan: number
   ownerDepartmentId: number
   renewedFromId: number
   createdAt: number
@@ -139,7 +155,9 @@ export type SubscriptionAvgAggregateInputType = {
   unitPriceMinor?: true
   priceRate?: true
   priceReportingMinor?: true
+  commitmentTermMonths?: true
   noticePeriodDays?: true
+  vendorMinimumSeats?: true
 }
 
 export type SubscriptionSumAggregateInputType = {
@@ -147,7 +165,9 @@ export type SubscriptionSumAggregateInputType = {
   unitPriceMinor?: true
   priceRate?: true
   priceReportingMinor?: true
+  commitmentTermMonths?: true
   noticePeriodDays?: true
+  vendorMinimumSeats?: true
 }
 
 export type SubscriptionMinAggregateInputType = {
@@ -167,6 +187,7 @@ export type SubscriptionMinAggregateInputType = {
   priceReportingCurrency?: true
   priceExchangeRateId?: true
   billingCycle?: true
+  commitmentTermMonths?: true
   startDate?: true
   endDate?: true
   renewalDate?: true
@@ -174,6 +195,9 @@ export type SubscriptionMinAggregateInputType = {
   noticePeriodDays?: true
   autoRenew?: true
   allowsMidTermReduction?: true
+  responsibleItAdminEmployeeId?: true
+  vendorMinimumSeats?: true
+  isPrimaryForPlan?: true
   ownerDepartmentId?: true
   renewedFromId?: true
   createdAt?: true
@@ -197,6 +221,7 @@ export type SubscriptionMaxAggregateInputType = {
   priceReportingCurrency?: true
   priceExchangeRateId?: true
   billingCycle?: true
+  commitmentTermMonths?: true
   startDate?: true
   endDate?: true
   renewalDate?: true
@@ -204,6 +229,9 @@ export type SubscriptionMaxAggregateInputType = {
   noticePeriodDays?: true
   autoRenew?: true
   allowsMidTermReduction?: true
+  responsibleItAdminEmployeeId?: true
+  vendorMinimumSeats?: true
+  isPrimaryForPlan?: true
   ownerDepartmentId?: true
   renewedFromId?: true
   createdAt?: true
@@ -227,6 +255,7 @@ export type SubscriptionCountAggregateInputType = {
   priceReportingCurrency?: true
   priceExchangeRateId?: true
   billingCycle?: true
+  commitmentTermMonths?: true
   startDate?: true
   endDate?: true
   renewalDate?: true
@@ -234,6 +263,9 @@ export type SubscriptionCountAggregateInputType = {
   noticePeriodDays?: true
   autoRenew?: true
   allowsMidTermReduction?: true
+  responsibleItAdminEmployeeId?: true
+  vendorMinimumSeats?: true
+  isPrimaryForPlan?: true
   ownerDepartmentId?: true
   renewedFromId?: true
   createdAt?: true
@@ -344,6 +376,7 @@ export type SubscriptionGroupByOutputType = {
   priceReportingCurrency: string | null
   priceExchangeRateId: string | null
   billingCycle: $Enums.BillingCycle | null
+  commitmentTermMonths: number | null
   startDate: Date | null
   endDate: Date | null
   renewalDate: Date | null
@@ -351,7 +384,10 @@ export type SubscriptionGroupByOutputType = {
   noticePeriodDays: number | null
   autoRenew: boolean
   allowsMidTermReduction: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId: string | null
+  vendorMinimumSeats: number | null
+  isPrimaryForPlan: boolean
+  ownerDepartmentId: string | null
   renewedFromId: string | null
   createdAt: Date
   updatedAt: Date
@@ -397,6 +433,7 @@ export type SubscriptionWhereInput = {
   priceReportingCurrency?: Prisma.StringNullableFilter<"Subscription"> | string | null
   priceExchangeRateId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   billingCycle?: Prisma.EnumBillingCycleNullableFilter<"Subscription"> | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.IntNullableFilter<"Subscription"> | number | null
   startDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   renewalDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
@@ -404,13 +441,17 @@ export type SubscriptionWhereInput = {
   noticePeriodDays?: Prisma.IntNullableFilter<"Subscription"> | number | null
   autoRenew?: Prisma.BoolFilter<"Subscription"> | boolean
   allowsMidTermReduction?: Prisma.BoolFilter<"Subscription"> | boolean
-  ownerDepartmentId?: Prisma.UuidFilter<"Subscription"> | string
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
+  vendorMinimumSeats?: Prisma.IntNullableFilter<"Subscription"> | number | null
+  isPrimaryForPlan?: Prisma.BoolFilter<"Subscription"> | boolean
+  ownerDepartmentId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   renewedFromId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
-  ownerDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
+  ownerDepartment?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
+  responsibleItAdmin?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   renewedFrom?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   renewedBy?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   renewalCases?: Prisma.SubscriptionRenewalListRelationFilter
@@ -441,6 +482,7 @@ export type SubscriptionOrderByWithRelationInput = {
   priceReportingCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   priceExchangeRateId?: Prisma.SortOrderInput | Prisma.SortOrder
   billingCycle?: Prisma.SortOrderInput | Prisma.SortOrder
+  commitmentTermMonths?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   renewalDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -448,13 +490,17 @@ export type SubscriptionOrderByWithRelationInput = {
   noticePeriodDays?: Prisma.SortOrderInput | Prisma.SortOrder
   autoRenew?: Prisma.SortOrder
   allowsMidTermReduction?: Prisma.SortOrder
-  ownerDepartmentId?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  vendorMinimumSeats?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPrimaryForPlan?: Prisma.SortOrder
+  ownerDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   renewedFromId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   plan?: Prisma.PlanOrderByWithRelationInput
   ownerDepartment?: Prisma.DepartmentOrderByWithRelationInput
+  responsibleItAdmin?: Prisma.EmployeeOrderByWithRelationInput
   renewedFrom?: Prisma.SubscriptionOrderByWithRelationInput
   renewedBy?: Prisma.SubscriptionOrderByWithRelationInput
   renewalCases?: Prisma.SubscriptionRenewalOrderByRelationAggregateInput
@@ -489,6 +535,7 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
   priceReportingCurrency?: Prisma.StringNullableFilter<"Subscription"> | string | null
   priceExchangeRateId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   billingCycle?: Prisma.EnumBillingCycleNullableFilter<"Subscription"> | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.IntNullableFilter<"Subscription"> | number | null
   startDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   renewalDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
@@ -496,12 +543,16 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
   noticePeriodDays?: Prisma.IntNullableFilter<"Subscription"> | number | null
   autoRenew?: Prisma.BoolFilter<"Subscription"> | boolean
   allowsMidTermReduction?: Prisma.BoolFilter<"Subscription"> | boolean
-  ownerDepartmentId?: Prisma.UuidFilter<"Subscription"> | string
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
+  vendorMinimumSeats?: Prisma.IntNullableFilter<"Subscription"> | number | null
+  isPrimaryForPlan?: Prisma.BoolFilter<"Subscription"> | boolean
+  ownerDepartmentId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
-  ownerDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
+  ownerDepartment?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
+  responsibleItAdmin?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   renewedFrom?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   renewedBy?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   renewalCases?: Prisma.SubscriptionRenewalListRelationFilter
@@ -532,6 +583,7 @@ export type SubscriptionOrderByWithAggregationInput = {
   priceReportingCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   priceExchangeRateId?: Prisma.SortOrderInput | Prisma.SortOrder
   billingCycle?: Prisma.SortOrderInput | Prisma.SortOrder
+  commitmentTermMonths?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   renewalDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -539,7 +591,10 @@ export type SubscriptionOrderByWithAggregationInput = {
   noticePeriodDays?: Prisma.SortOrderInput | Prisma.SortOrder
   autoRenew?: Prisma.SortOrder
   allowsMidTermReduction?: Prisma.SortOrder
-  ownerDepartmentId?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  vendorMinimumSeats?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPrimaryForPlan?: Prisma.SortOrder
+  ownerDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   renewedFromId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -570,6 +625,7 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
   priceReportingCurrency?: Prisma.StringNullableWithAggregatesFilter<"Subscription"> | string | null
   priceExchangeRateId?: Prisma.UuidNullableWithAggregatesFilter<"Subscription"> | string | null
   billingCycle?: Prisma.EnumBillingCycleNullableWithAggregatesFilter<"Subscription"> | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.IntNullableWithAggregatesFilter<"Subscription"> | number | null
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
   renewalDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
@@ -577,7 +633,10 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
   noticePeriodDays?: Prisma.IntNullableWithAggregatesFilter<"Subscription"> | number | null
   autoRenew?: Prisma.BoolWithAggregatesFilter<"Subscription"> | boolean
   allowsMidTermReduction?: Prisma.BoolWithAggregatesFilter<"Subscription"> | boolean
-  ownerDepartmentId?: Prisma.UuidWithAggregatesFilter<"Subscription"> | string
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableWithAggregatesFilter<"Subscription"> | string | null
+  vendorMinimumSeats?: Prisma.IntNullableWithAggregatesFilter<"Subscription"> | number | null
+  isPrimaryForPlan?: Prisma.BoolWithAggregatesFilter<"Subscription"> | boolean
+  ownerDepartmentId?: Prisma.UuidNullableWithAggregatesFilter<"Subscription"> | string | null
   renewedFromId?: Prisma.UuidNullableWithAggregatesFilter<"Subscription"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Subscription"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Subscription"> | Date | string
@@ -596,6 +655,7 @@ export type SubscriptionCreateInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -603,11 +663,14 @@ export type SubscriptionCreateInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -638,6 +701,7 @@ export type SubscriptionUncheckedCreateInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -645,7 +709,10 @@ export type SubscriptionUncheckedCreateInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -672,6 +739,7 @@ export type SubscriptionUpdateInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -679,11 +747,14 @@ export type SubscriptionUpdateInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -714,6 +785,7 @@ export type SubscriptionUncheckedUpdateInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -721,7 +793,10 @@ export type SubscriptionUncheckedUpdateInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -752,6 +827,7 @@ export type SubscriptionCreateManyInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -759,7 +835,10 @@ export type SubscriptionCreateManyInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -778,6 +857,7 @@ export type SubscriptionUpdateManyMutationInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -785,6 +865,8 @@ export type SubscriptionUpdateManyMutationInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -806,6 +888,7 @@ export type SubscriptionUncheckedUpdateManyInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -813,7 +896,10 @@ export type SubscriptionUncheckedUpdateManyInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -851,6 +937,7 @@ export type SubscriptionCountOrderByAggregateInput = {
   priceReportingCurrency?: Prisma.SortOrder
   priceExchangeRateId?: Prisma.SortOrder
   billingCycle?: Prisma.SortOrder
+  commitmentTermMonths?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   renewalDate?: Prisma.SortOrder
@@ -858,6 +945,9 @@ export type SubscriptionCountOrderByAggregateInput = {
   noticePeriodDays?: Prisma.SortOrder
   autoRenew?: Prisma.SortOrder
   allowsMidTermReduction?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrder
+  vendorMinimumSeats?: Prisma.SortOrder
+  isPrimaryForPlan?: Prisma.SortOrder
   ownerDepartmentId?: Prisma.SortOrder
   renewedFromId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -869,7 +959,9 @@ export type SubscriptionAvgOrderByAggregateInput = {
   unitPriceMinor?: Prisma.SortOrder
   priceRate?: Prisma.SortOrder
   priceReportingMinor?: Prisma.SortOrder
+  commitmentTermMonths?: Prisma.SortOrder
   noticePeriodDays?: Prisma.SortOrder
+  vendorMinimumSeats?: Prisma.SortOrder
 }
 
 export type SubscriptionMaxOrderByAggregateInput = {
@@ -889,6 +981,7 @@ export type SubscriptionMaxOrderByAggregateInput = {
   priceReportingCurrency?: Prisma.SortOrder
   priceExchangeRateId?: Prisma.SortOrder
   billingCycle?: Prisma.SortOrder
+  commitmentTermMonths?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   renewalDate?: Prisma.SortOrder
@@ -896,6 +989,9 @@ export type SubscriptionMaxOrderByAggregateInput = {
   noticePeriodDays?: Prisma.SortOrder
   autoRenew?: Prisma.SortOrder
   allowsMidTermReduction?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrder
+  vendorMinimumSeats?: Prisma.SortOrder
+  isPrimaryForPlan?: Prisma.SortOrder
   ownerDepartmentId?: Prisma.SortOrder
   renewedFromId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -919,6 +1015,7 @@ export type SubscriptionMinOrderByAggregateInput = {
   priceReportingCurrency?: Prisma.SortOrder
   priceExchangeRateId?: Prisma.SortOrder
   billingCycle?: Prisma.SortOrder
+  commitmentTermMonths?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   renewalDate?: Prisma.SortOrder
@@ -926,6 +1023,9 @@ export type SubscriptionMinOrderByAggregateInput = {
   noticePeriodDays?: Prisma.SortOrder
   autoRenew?: Prisma.SortOrder
   allowsMidTermReduction?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrder
+  vendorMinimumSeats?: Prisma.SortOrder
+  isPrimaryForPlan?: Prisma.SortOrder
   ownerDepartmentId?: Prisma.SortOrder
   renewedFromId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -937,7 +1037,9 @@ export type SubscriptionSumOrderByAggregateInput = {
   unitPriceMinor?: Prisma.SortOrder
   priceRate?: Prisma.SortOrder
   priceReportingMinor?: Prisma.SortOrder
+  commitmentTermMonths?: Prisma.SortOrder
   noticePeriodDays?: Prisma.SortOrder
+  vendorMinimumSeats?: Prisma.SortOrder
 }
 
 export type SubscriptionScalarRelationFilter = {
@@ -1331,6 +1433,48 @@ export type SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput = {
   deleteMany?: Prisma.SubscriptionScalarWhereInput | Prisma.SubscriptionScalarWhereInput[]
 }
 
+export type SubscriptionCreateNestedManyWithoutResponsibleItAdminInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.SubscriptionCreateWithoutResponsibleItAdminInput[] | Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput | Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.SubscriptionCreateManyResponsibleItAdminInputEnvelope
+  connect?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+}
+
+export type SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.SubscriptionCreateWithoutResponsibleItAdminInput[] | Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput | Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.SubscriptionCreateManyResponsibleItAdminInputEnvelope
+  connect?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+}
+
+export type SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.SubscriptionCreateWithoutResponsibleItAdminInput[] | Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput | Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput[]
+  upsert?: Prisma.SubscriptionUpsertWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.SubscriptionUpsertWithWhereUniqueWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.SubscriptionCreateManyResponsibleItAdminInputEnvelope
+  set?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  disconnect?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  delete?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  connect?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  update?: Prisma.SubscriptionUpdateWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.SubscriptionUpdateWithWhereUniqueWithoutResponsibleItAdminInput[]
+  updateMany?: Prisma.SubscriptionUpdateManyWithWhereWithoutResponsibleItAdminInput | Prisma.SubscriptionUpdateManyWithWhereWithoutResponsibleItAdminInput[]
+  deleteMany?: Prisma.SubscriptionScalarWhereInput | Prisma.SubscriptionScalarWhereInput[]
+}
+
+export type SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionCreateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.SubscriptionCreateWithoutResponsibleItAdminInput[] | Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput | Prisma.SubscriptionCreateOrConnectWithoutResponsibleItAdminInput[]
+  upsert?: Prisma.SubscriptionUpsertWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.SubscriptionUpsertWithWhereUniqueWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.SubscriptionCreateManyResponsibleItAdminInputEnvelope
+  set?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  disconnect?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  delete?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  connect?: Prisma.SubscriptionWhereUniqueInput | Prisma.SubscriptionWhereUniqueInput[]
+  update?: Prisma.SubscriptionUpdateWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.SubscriptionUpdateWithWhereUniqueWithoutResponsibleItAdminInput[]
+  updateMany?: Prisma.SubscriptionUpdateManyWithWhereWithoutResponsibleItAdminInput | Prisma.SubscriptionUpdateManyWithWhereWithoutResponsibleItAdminInput[]
+  deleteMany?: Prisma.SubscriptionScalarWhereInput | Prisma.SubscriptionScalarWhereInput[]
+}
+
 export type SubscriptionCreateWithoutPlanInput = {
   id?: string
   kind: $Enums.SubscriptionKind
@@ -1344,6 +1488,7 @@ export type SubscriptionCreateWithoutPlanInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1351,10 +1496,13 @@ export type SubscriptionCreateWithoutPlanInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -1384,6 +1532,7 @@ export type SubscriptionUncheckedCreateWithoutPlanInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1391,7 +1540,10 @@ export type SubscriptionUncheckedCreateWithoutPlanInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1451,6 +1603,7 @@ export type SubscriptionScalarWhereInput = {
   priceReportingCurrency?: Prisma.StringNullableFilter<"Subscription"> | string | null
   priceExchangeRateId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   billingCycle?: Prisma.EnumBillingCycleNullableFilter<"Subscription"> | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.IntNullableFilter<"Subscription"> | number | null
   startDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   renewalDate?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
@@ -1458,7 +1611,10 @@ export type SubscriptionScalarWhereInput = {
   noticePeriodDays?: Prisma.IntNullableFilter<"Subscription"> | number | null
   autoRenew?: Prisma.BoolFilter<"Subscription"> | boolean
   allowsMidTermReduction?: Prisma.BoolFilter<"Subscription"> | boolean
-  ownerDepartmentId?: Prisma.UuidFilter<"Subscription"> | string
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
+  vendorMinimumSeats?: Prisma.IntNullableFilter<"Subscription"> | number | null
+  isPrimaryForPlan?: Prisma.BoolFilter<"Subscription"> | boolean
+  ownerDepartmentId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   renewedFromId?: Prisma.UuidNullableFilter<"Subscription"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
@@ -1477,6 +1633,7 @@ export type SubscriptionCreateWithoutRenewedByInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1484,11 +1641,14 @@ export type SubscriptionCreateWithoutRenewedByInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
@@ -1518,6 +1678,7 @@ export type SubscriptionUncheckedCreateWithoutRenewedByInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1525,7 +1686,10 @@ export type SubscriptionUncheckedCreateWithoutRenewedByInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1556,6 +1720,7 @@ export type SubscriptionCreateWithoutRenewedFromInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1563,11 +1728,14 @@ export type SubscriptionCreateWithoutRenewedFromInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
@@ -1597,6 +1765,7 @@ export type SubscriptionUncheckedCreateWithoutRenewedFromInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1604,7 +1773,10 @@ export type SubscriptionUncheckedCreateWithoutRenewedFromInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
@@ -1646,6 +1818,7 @@ export type SubscriptionUpdateWithoutRenewedByInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1653,11 +1826,14 @@ export type SubscriptionUpdateWithoutRenewedByInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
@@ -1687,6 +1863,7 @@ export type SubscriptionUncheckedUpdateWithoutRenewedByInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1694,7 +1871,10 @@ export type SubscriptionUncheckedUpdateWithoutRenewedByInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1731,6 +1911,7 @@ export type SubscriptionUpdateWithoutRenewedFromInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1738,11 +1919,14 @@ export type SubscriptionUpdateWithoutRenewedFromInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
@@ -1772,6 +1956,7 @@ export type SubscriptionUncheckedUpdateWithoutRenewedFromInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1779,7 +1964,10 @@ export type SubscriptionUncheckedUpdateWithoutRenewedFromInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
@@ -1805,6 +1993,7 @@ export type SubscriptionCreateWithoutOwnerAssignmentInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1812,11 +2001,14 @@ export type SubscriptionCreateWithoutOwnerAssignmentInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -1846,6 +2038,7 @@ export type SubscriptionUncheckedCreateWithoutOwnerAssignmentInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1853,7 +2046,10 @@ export type SubscriptionUncheckedCreateWithoutOwnerAssignmentInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1895,6 +2091,7 @@ export type SubscriptionUpdateWithoutOwnerAssignmentInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1902,11 +2099,14 @@ export type SubscriptionUpdateWithoutOwnerAssignmentInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -1936,6 +2136,7 @@ export type SubscriptionUncheckedUpdateWithoutOwnerAssignmentInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1943,7 +2144,10 @@ export type SubscriptionUncheckedUpdateWithoutOwnerAssignmentInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1969,6 +2173,7 @@ export type SubscriptionCreateWithoutSeatBaselineImportsInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -1976,11 +2181,14 @@ export type SubscriptionCreateWithoutSeatBaselineImportsInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -2010,6 +2218,7 @@ export type SubscriptionUncheckedCreateWithoutSeatBaselineImportsInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2017,7 +2226,10 @@ export type SubscriptionUncheckedCreateWithoutSeatBaselineImportsInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2059,6 +2271,7 @@ export type SubscriptionUpdateWithoutSeatBaselineImportsInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2066,11 +2279,14 @@ export type SubscriptionUpdateWithoutSeatBaselineImportsInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -2100,6 +2316,7 @@ export type SubscriptionUncheckedUpdateWithoutSeatBaselineImportsInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2107,7 +2324,10 @@ export type SubscriptionUncheckedUpdateWithoutSeatBaselineImportsInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2133,6 +2353,7 @@ export type SubscriptionCreateWithoutPriceCurrencyInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2140,11 +2361,14 @@ export type SubscriptionCreateWithoutPriceCurrencyInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -2173,6 +2397,7 @@ export type SubscriptionUncheckedCreateWithoutPriceCurrencyInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2180,7 +2405,10 @@ export type SubscriptionUncheckedCreateWithoutPriceCurrencyInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2233,6 +2461,7 @@ export type SubscriptionCreateWithoutExchangeRateInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2240,11 +2469,14 @@ export type SubscriptionCreateWithoutExchangeRateInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -2273,6 +2505,7 @@ export type SubscriptionUncheckedCreateWithoutExchangeRateInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2280,7 +2513,10 @@ export type SubscriptionUncheckedCreateWithoutExchangeRateInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2333,6 +2569,7 @@ export type SubscriptionCreateWithoutLicenseAssignmentsInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2340,11 +2577,14 @@ export type SubscriptionCreateWithoutLicenseAssignmentsInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -2374,6 +2614,7 @@ export type SubscriptionUncheckedCreateWithoutLicenseAssignmentsInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2381,7 +2622,10 @@ export type SubscriptionUncheckedCreateWithoutLicenseAssignmentsInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2423,6 +2667,7 @@ export type SubscriptionUpdateWithoutLicenseAssignmentsInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2430,11 +2675,14 @@ export type SubscriptionUpdateWithoutLicenseAssignmentsInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -2464,6 +2712,7 @@ export type SubscriptionUncheckedUpdateWithoutLicenseAssignmentsInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2471,7 +2720,10 @@ export type SubscriptionUncheckedUpdateWithoutLicenseAssignmentsInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2497,6 +2749,7 @@ export type SubscriptionCreateWithoutLicenseKeysInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2504,11 +2757,14 @@ export type SubscriptionCreateWithoutLicenseKeysInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -2538,6 +2794,7 @@ export type SubscriptionUncheckedCreateWithoutLicenseKeysInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2545,7 +2802,10 @@ export type SubscriptionUncheckedCreateWithoutLicenseKeysInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2587,6 +2847,7 @@ export type SubscriptionUpdateWithoutLicenseKeysInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2594,11 +2855,14 @@ export type SubscriptionUpdateWithoutLicenseKeysInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -2628,6 +2892,7 @@ export type SubscriptionUncheckedUpdateWithoutLicenseKeysInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2635,7 +2900,10 @@ export type SubscriptionUncheckedUpdateWithoutLicenseKeysInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2661,6 +2929,7 @@ export type SubscriptionCreateWithoutRenewalCasesInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2668,11 +2937,14 @@ export type SubscriptionCreateWithoutRenewalCasesInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
@@ -2702,6 +2974,7 @@ export type SubscriptionUncheckedCreateWithoutRenewalCasesInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2709,7 +2982,10 @@ export type SubscriptionUncheckedCreateWithoutRenewalCasesInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2740,6 +3016,7 @@ export type SubscriptionCreateWithoutRenewalNextOfInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2747,11 +3024,14 @@ export type SubscriptionCreateWithoutRenewalNextOfInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -2781,6 +3061,7 @@ export type SubscriptionUncheckedCreateWithoutRenewalNextOfInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2788,7 +3069,10 @@ export type SubscriptionUncheckedCreateWithoutRenewalNextOfInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2830,6 +3114,7 @@ export type SubscriptionUpdateWithoutRenewalCasesInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2837,11 +3122,14 @@ export type SubscriptionUpdateWithoutRenewalCasesInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
@@ -2871,6 +3159,7 @@ export type SubscriptionUncheckedUpdateWithoutRenewalCasesInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2878,7 +3167,10 @@ export type SubscriptionUncheckedUpdateWithoutRenewalCasesInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2915,6 +3207,7 @@ export type SubscriptionUpdateWithoutRenewalNextOfInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2922,11 +3215,14 @@ export type SubscriptionUpdateWithoutRenewalNextOfInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -2956,6 +3252,7 @@ export type SubscriptionUncheckedUpdateWithoutRenewalNextOfInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2963,7 +3260,10 @@ export type SubscriptionUncheckedUpdateWithoutRenewalNextOfInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2989,6 +3289,7 @@ export type SubscriptionCreateWithoutDeadlineEventInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -2996,11 +3297,14 @@ export type SubscriptionCreateWithoutDeadlineEventInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -3030,6 +3334,7 @@ export type SubscriptionUncheckedCreateWithoutDeadlineEventInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3037,7 +3342,10 @@ export type SubscriptionUncheckedCreateWithoutDeadlineEventInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3079,6 +3387,7 @@ export type SubscriptionUpdateWithoutDeadlineEventInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3086,11 +3395,14 @@ export type SubscriptionUpdateWithoutDeadlineEventInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -3120,6 +3432,7 @@ export type SubscriptionUncheckedUpdateWithoutDeadlineEventInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3127,7 +3440,10 @@ export type SubscriptionUncheckedUpdateWithoutDeadlineEventInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3153,6 +3469,7 @@ export type SubscriptionCreateWithoutOrganizationInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3160,10 +3477,13 @@ export type SubscriptionCreateWithoutOrganizationInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
-  ownerDepartment: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -3193,6 +3513,7 @@ export type SubscriptionUncheckedCreateWithoutOrganizationInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3200,7 +3521,10 @@ export type SubscriptionUncheckedCreateWithoutOrganizationInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3253,6 +3577,7 @@ export type SubscriptionCreateWithoutOwnerDepartmentInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3260,10 +3585,13 @@ export type SubscriptionCreateWithoutOwnerDepartmentInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
   plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutSubscriptionsInChargeInput
   renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
   renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
   renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
@@ -3294,6 +3622,7 @@ export type SubscriptionUncheckedCreateWithoutOwnerDepartmentInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3301,6 +3630,9 @@ export type SubscriptionUncheckedCreateWithoutOwnerDepartmentInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3340,6 +3672,114 @@ export type SubscriptionUpdateManyWithWhereWithoutOwnerDepartmentInput = {
   data: Prisma.XOR<Prisma.SubscriptionUpdateManyMutationInput, Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentInput>
 }
 
+export type SubscriptionCreateWithoutResponsibleItAdminInput = {
+  id?: string
+  kind: $Enums.SubscriptionKind
+  status?: $Enums.SubscriptionStatus
+  purchasedQuantity?: number | null
+  unitPriceMinor?: bigint | number | null
+  priceRecordedOn?: Date | string | null
+  priceRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceRateDate?: Date | string | null
+  priceRateSource?: $Enums.PriceRateSource | null
+  priceReportingMinor?: bigint | number | null
+  priceReportingCurrency?: string | null
+  billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  renewalDate?: Date | string | null
+  noticeDeadline?: Date | string | null
+  noticePeriodDays?: number | null
+  autoRenew?: boolean
+  allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutSubscriptionsInput
+  plan: Prisma.PlanCreateNestedOneWithoutSubscriptionsInput
+  ownerDepartment?: Prisma.DepartmentCreateNestedOneWithoutOwnedSubscriptionsInput
+  renewedFrom?: Prisma.SubscriptionCreateNestedOneWithoutRenewedByInput
+  renewedBy?: Prisma.SubscriptionCreateNestedOneWithoutRenewedFromInput
+  renewalCases?: Prisma.SubscriptionRenewalCreateNestedManyWithoutSubscriptionInput
+  renewalNextOf?: Prisma.SubscriptionRenewalCreateNestedOneWithoutNextSubscriptionInput
+  deadlineEvent?: Prisma.SubscriptionDeadlineEventCreateNestedOneWithoutSubscriptionInput
+  ownerAssignment?: Prisma.SubscriptionOwnerAssignmentCreateNestedOneWithoutSubscriptionInput
+  priceCurrency?: Prisma.CurrencyCreateNestedOneWithoutSubscriptionsInput
+  exchangeRate?: Prisma.ExchangeRateCreateNestedOneWithoutSubscriptionsInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutSubscriptionInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutSubscriptionInput
+  licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutSubscriptionInput
+}
+
+export type SubscriptionUncheckedCreateWithoutResponsibleItAdminInput = {
+  id?: string
+  organizationId: string
+  planId: string
+  kind: $Enums.SubscriptionKind
+  status?: $Enums.SubscriptionStatus
+  purchasedQuantity?: number | null
+  unitPriceMinor?: bigint | number | null
+  unitPriceCurrency?: string | null
+  priceRecordedOn?: Date | string | null
+  priceRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceRateDate?: Date | string | null
+  priceRateSource?: $Enums.PriceRateSource | null
+  priceReportingMinor?: bigint | number | null
+  priceReportingCurrency?: string | null
+  priceExchangeRateId?: string | null
+  billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  renewalDate?: Date | string | null
+  noticeDeadline?: Date | string | null
+  noticePeriodDays?: number | null
+  autoRenew?: boolean
+  allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
+  renewedFromId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  renewedBy?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutRenewedFromInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutSubscriptionInput
+  renewalNextOf?: Prisma.SubscriptionRenewalUncheckedCreateNestedOneWithoutNextSubscriptionInput
+  deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedOneWithoutSubscriptionInput
+  ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedOneWithoutSubscriptionInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutSubscriptionInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutSubscriptionInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutSubscriptionInput
+}
+
+export type SubscriptionCreateOrConnectWithoutResponsibleItAdminInput = {
+  where: Prisma.SubscriptionWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubscriptionCreateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput>
+}
+
+export type SubscriptionCreateManyResponsibleItAdminInputEnvelope = {
+  data: Prisma.SubscriptionCreateManyResponsibleItAdminInput | Prisma.SubscriptionCreateManyResponsibleItAdminInput[]
+  skipDuplicates?: boolean
+}
+
+export type SubscriptionUpsertWithWhereUniqueWithoutResponsibleItAdminInput = {
+  where: Prisma.SubscriptionWhereUniqueInput
+  update: Prisma.XOR<Prisma.SubscriptionUpdateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedUpdateWithoutResponsibleItAdminInput>
+  create: Prisma.XOR<Prisma.SubscriptionCreateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedCreateWithoutResponsibleItAdminInput>
+}
+
+export type SubscriptionUpdateWithWhereUniqueWithoutResponsibleItAdminInput = {
+  where: Prisma.SubscriptionWhereUniqueInput
+  data: Prisma.XOR<Prisma.SubscriptionUpdateWithoutResponsibleItAdminInput, Prisma.SubscriptionUncheckedUpdateWithoutResponsibleItAdminInput>
+}
+
+export type SubscriptionUpdateManyWithWhereWithoutResponsibleItAdminInput = {
+  where: Prisma.SubscriptionScalarWhereInput
+  data: Prisma.XOR<Prisma.SubscriptionUpdateManyMutationInput, Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminInput>
+}
+
 export type SubscriptionCreateManyPlanInput = {
   id?: string
   organizationId: string
@@ -3356,6 +3796,7 @@ export type SubscriptionCreateManyPlanInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3363,7 +3804,10 @@ export type SubscriptionCreateManyPlanInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3382,6 +3826,7 @@ export type SubscriptionUpdateWithoutPlanInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3389,10 +3834,13 @@ export type SubscriptionUpdateWithoutPlanInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -3422,6 +3870,7 @@ export type SubscriptionUncheckedUpdateWithoutPlanInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3429,7 +3878,10 @@ export type SubscriptionUncheckedUpdateWithoutPlanInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3459,6 +3911,7 @@ export type SubscriptionUncheckedUpdateManyWithoutPlanInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3466,7 +3919,10 @@ export type SubscriptionUncheckedUpdateManyWithoutPlanInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3488,6 +3944,7 @@ export type SubscriptionCreateManyPriceCurrencyInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3495,7 +3952,10 @@ export type SubscriptionCreateManyPriceCurrencyInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3514,6 +3974,7 @@ export type SubscriptionUpdateWithoutPriceCurrencyInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3521,11 +3982,14 @@ export type SubscriptionUpdateWithoutPriceCurrencyInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -3554,6 +4018,7 @@ export type SubscriptionUncheckedUpdateWithoutPriceCurrencyInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3561,7 +4026,10 @@ export type SubscriptionUncheckedUpdateWithoutPriceCurrencyInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3591,6 +4059,7 @@ export type SubscriptionUncheckedUpdateManyWithoutPriceCurrencyInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3598,7 +4067,10 @@ export type SubscriptionUncheckedUpdateManyWithoutPriceCurrencyInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3620,6 +4092,7 @@ export type SubscriptionCreateManyExchangeRateInput = {
   priceReportingMinor?: bigint | number | null
   priceReportingCurrency?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3627,7 +4100,10 @@ export type SubscriptionCreateManyExchangeRateInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3646,6 +4122,7 @@ export type SubscriptionUpdateWithoutExchangeRateInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3653,11 +4130,14 @@ export type SubscriptionUpdateWithoutExchangeRateInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -3686,6 +4166,7 @@ export type SubscriptionUncheckedUpdateWithoutExchangeRateInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3693,7 +4174,10 @@ export type SubscriptionUncheckedUpdateWithoutExchangeRateInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3723,6 +4207,7 @@ export type SubscriptionUncheckedUpdateManyWithoutExchangeRateInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3730,7 +4215,10 @@ export type SubscriptionUncheckedUpdateManyWithoutExchangeRateInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3752,6 +4240,7 @@ export type SubscriptionCreateManyOrganizationInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3759,7 +4248,10 @@ export type SubscriptionCreateManyOrganizationInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
-  ownerDepartmentId: string
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3778,6 +4270,7 @@ export type SubscriptionUpdateWithoutOrganizationInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3785,10 +4278,13 @@ export type SubscriptionUpdateWithoutOrganizationInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
-  ownerDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutOwnedSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -3818,6 +4314,7 @@ export type SubscriptionUncheckedUpdateWithoutOrganizationInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3825,7 +4322,10 @@ export type SubscriptionUncheckedUpdateWithoutOrganizationInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3855,6 +4355,7 @@ export type SubscriptionUncheckedUpdateManyWithoutOrganizationInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3862,7 +4363,10 @@ export type SubscriptionUncheckedUpdateManyWithoutOrganizationInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  ownerDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3885,6 +4389,7 @@ export type SubscriptionCreateManyOwnerDepartmentInput = {
   priceReportingCurrency?: string | null
   priceExchangeRateId?: string | null
   billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   renewalDate?: Date | string | null
@@ -3892,6 +4397,9 @@ export type SubscriptionCreateManyOwnerDepartmentInput = {
   noticePeriodDays?: number | null
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  responsibleItAdminEmployeeId?: string | null
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
   renewedFromId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3910,6 +4418,7 @@ export type SubscriptionUpdateWithoutOwnerDepartmentInput = {
   priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3917,10 +4426,13 @@ export type SubscriptionUpdateWithoutOwnerDepartmentInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
   plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutSubscriptionsInChargeNestedInput
   renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
   renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
   renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
@@ -3951,6 +4463,7 @@ export type SubscriptionUncheckedUpdateWithoutOwnerDepartmentInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3958,6 +4471,9 @@ export type SubscriptionUncheckedUpdateWithoutOwnerDepartmentInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3988,6 +4504,7 @@ export type SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentInput = {
   priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3995,6 +4512,157 @@ export type SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentInput = {
   noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SubscriptionCreateManyResponsibleItAdminInput = {
+  id?: string
+  organizationId: string
+  planId: string
+  kind: $Enums.SubscriptionKind
+  status?: $Enums.SubscriptionStatus
+  purchasedQuantity?: number | null
+  unitPriceMinor?: bigint | number | null
+  unitPriceCurrency?: string | null
+  priceRecordedOn?: Date | string | null
+  priceRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceRateDate?: Date | string | null
+  priceRateSource?: $Enums.PriceRateSource | null
+  priceReportingMinor?: bigint | number | null
+  priceReportingCurrency?: string | null
+  priceExchangeRateId?: string | null
+  billingCycle?: $Enums.BillingCycle | null
+  commitmentTermMonths?: number | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  renewalDate?: Date | string | null
+  noticeDeadline?: Date | string | null
+  noticePeriodDays?: number | null
+  autoRenew?: boolean
+  allowsMidTermReduction?: boolean
+  vendorMinimumSeats?: number | null
+  isPrimaryForPlan?: boolean
+  ownerDepartmentId?: string | null
+  renewedFromId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SubscriptionUpdateWithoutResponsibleItAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumSubscriptionKindFieldUpdateOperationsInput | $Enums.SubscriptionKind
+  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  purchasedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  priceRecordedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priceRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceRateDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priceRateSource?: Prisma.NullableEnumPriceRateSourceFieldUpdateOperationsInput | $Enums.PriceRateSource | null
+  priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noticeDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput
+  plan?: Prisma.PlanUpdateOneRequiredWithoutSubscriptionsNestedInput
+  ownerDepartment?: Prisma.DepartmentUpdateOneWithoutOwnedSubscriptionsNestedInput
+  renewedFrom?: Prisma.SubscriptionUpdateOneWithoutRenewedByNestedInput
+  renewedBy?: Prisma.SubscriptionUpdateOneWithoutRenewedFromNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUpdateManyWithoutSubscriptionNestedInput
+  renewalNextOf?: Prisma.SubscriptionRenewalUpdateOneWithoutNextSubscriptionNestedInput
+  deadlineEvent?: Prisma.SubscriptionDeadlineEventUpdateOneWithoutSubscriptionNestedInput
+  ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUpdateOneWithoutSubscriptionNestedInput
+  priceCurrency?: Prisma.CurrencyUpdateOneWithoutSubscriptionsNestedInput
+  exchangeRate?: Prisma.ExchangeRateUpdateOneWithoutSubscriptionsNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutSubscriptionNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutSubscriptionNestedInput
+  licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutSubscriptionNestedInput
+}
+
+export type SubscriptionUncheckedUpdateWithoutResponsibleItAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  planId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumSubscriptionKindFieldUpdateOperationsInput | $Enums.SubscriptionKind
+  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  purchasedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  unitPriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceRecordedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priceRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceRateDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priceRateSource?: Prisma.NullableEnumPriceRateSourceFieldUpdateOperationsInput | $Enums.PriceRateSource | null
+  priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noticeDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  renewedBy?: Prisma.SubscriptionUncheckedUpdateOneWithoutRenewedFromNestedInput
+  renewalCases?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutSubscriptionNestedInput
+  renewalNextOf?: Prisma.SubscriptionRenewalUncheckedUpdateOneWithoutNextSubscriptionNestedInput
+  deadlineEvent?: Prisma.SubscriptionDeadlineEventUncheckedUpdateOneWithoutSubscriptionNestedInput
+  ownerAssignment?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateOneWithoutSubscriptionNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutSubscriptionNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutSubscriptionNestedInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedUpdateManyWithoutSubscriptionNestedInput
+}
+
+export type SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  planId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumSubscriptionKindFieldUpdateOperationsInput | $Enums.SubscriptionKind
+  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  purchasedQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  unitPriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceRecordedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priceRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  priceRateDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priceRateSource?: Prisma.NullableEnumPriceRateSourceFieldUpdateOperationsInput | $Enums.PriceRateSource | null
+  priceReportingMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  priceReportingCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priceExchangeRateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  commitmentTermMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  renewalDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noticeDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  autoRenew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  allowsMidTermReduction?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorMinimumSeats?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPrimaryForPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ownerDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   renewedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4075,6 +4743,7 @@ export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   priceReportingCurrency?: boolean
   priceExchangeRateId?: boolean
   billingCycle?: boolean
+  commitmentTermMonths?: boolean
   startDate?: boolean
   endDate?: boolean
   renewalDate?: boolean
@@ -4082,13 +4751,17 @@ export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   noticePeriodDays?: boolean
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  responsibleItAdminEmployeeId?: boolean
+  vendorMinimumSeats?: boolean
+  isPrimaryForPlan?: boolean
   ownerDepartmentId?: boolean
   renewedFromId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  ownerDepartment?: boolean | Prisma.Subscription$ownerDepartmentArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Subscription$responsibleItAdminArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   renewedBy?: boolean | Prisma.Subscription$renewedByArgs<ExtArgs>
   renewalCases?: boolean | Prisma.Subscription$renewalCasesArgs<ExtArgs>
@@ -4120,6 +4793,7 @@ export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   priceReportingCurrency?: boolean
   priceExchangeRateId?: boolean
   billingCycle?: boolean
+  commitmentTermMonths?: boolean
   startDate?: boolean
   endDate?: boolean
   renewalDate?: boolean
@@ -4127,13 +4801,17 @@ export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   noticePeriodDays?: boolean
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  responsibleItAdminEmployeeId?: boolean
+  vendorMinimumSeats?: boolean
+  isPrimaryForPlan?: boolean
   ownerDepartmentId?: boolean
   renewedFromId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  ownerDepartment?: boolean | Prisma.Subscription$ownerDepartmentArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Subscription$responsibleItAdminArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   priceCurrency?: boolean | Prisma.Subscription$priceCurrencyArgs<ExtArgs>
   exchangeRate?: boolean | Prisma.Subscription$exchangeRateArgs<ExtArgs>
@@ -4156,6 +4834,7 @@ export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   priceReportingCurrency?: boolean
   priceExchangeRateId?: boolean
   billingCycle?: boolean
+  commitmentTermMonths?: boolean
   startDate?: boolean
   endDate?: boolean
   renewalDate?: boolean
@@ -4163,13 +4842,17 @@ export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   noticePeriodDays?: boolean
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  responsibleItAdminEmployeeId?: boolean
+  vendorMinimumSeats?: boolean
+  isPrimaryForPlan?: boolean
   ownerDepartmentId?: boolean
   renewedFromId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  ownerDepartment?: boolean | Prisma.Subscription$ownerDepartmentArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Subscription$responsibleItAdminArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   priceCurrency?: boolean | Prisma.Subscription$priceCurrencyArgs<ExtArgs>
   exchangeRate?: boolean | Prisma.Subscription$exchangeRateArgs<ExtArgs>
@@ -4192,6 +4875,7 @@ export type SubscriptionSelectScalar = {
   priceReportingCurrency?: boolean
   priceExchangeRateId?: boolean
   billingCycle?: boolean
+  commitmentTermMonths?: boolean
   startDate?: boolean
   endDate?: boolean
   renewalDate?: boolean
@@ -4199,17 +4883,21 @@ export type SubscriptionSelectScalar = {
   noticePeriodDays?: boolean
   autoRenew?: boolean
   allowsMidTermReduction?: boolean
+  responsibleItAdminEmployeeId?: boolean
+  vendorMinimumSeats?: boolean
+  isPrimaryForPlan?: boolean
   ownerDepartmentId?: boolean
   renewedFromId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "planId" | "kind" | "status" | "purchasedQuantity" | "unitPriceMinor" | "unitPriceCurrency" | "priceRecordedOn" | "priceRate" | "priceRateDate" | "priceRateSource" | "priceReportingMinor" | "priceReportingCurrency" | "priceExchangeRateId" | "billingCycle" | "startDate" | "endDate" | "renewalDate" | "noticeDeadline" | "noticePeriodDays" | "autoRenew" | "allowsMidTermReduction" | "ownerDepartmentId" | "renewedFromId" | "createdAt" | "updatedAt", ExtArgs["result"]["subscription"]>
+export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "planId" | "kind" | "status" | "purchasedQuantity" | "unitPriceMinor" | "unitPriceCurrency" | "priceRecordedOn" | "priceRate" | "priceRateDate" | "priceRateSource" | "priceReportingMinor" | "priceReportingCurrency" | "priceExchangeRateId" | "billingCycle" | "commitmentTermMonths" | "startDate" | "endDate" | "renewalDate" | "noticeDeadline" | "noticePeriodDays" | "autoRenew" | "allowsMidTermReduction" | "responsibleItAdminEmployeeId" | "vendorMinimumSeats" | "isPrimaryForPlan" | "ownerDepartmentId" | "renewedFromId" | "createdAt" | "updatedAt", ExtArgs["result"]["subscription"]>
 export type SubscriptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  ownerDepartment?: boolean | Prisma.Subscription$ownerDepartmentArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Subscription$responsibleItAdminArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   renewedBy?: boolean | Prisma.Subscription$renewedByArgs<ExtArgs>
   renewalCases?: boolean | Prisma.Subscription$renewalCasesArgs<ExtArgs>
@@ -4226,7 +4914,8 @@ export type SubscriptionInclude<ExtArgs extends runtime.Types.Extensions.Interna
 export type SubscriptionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  ownerDepartment?: boolean | Prisma.Subscription$ownerDepartmentArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Subscription$responsibleItAdminArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   priceCurrency?: boolean | Prisma.Subscription$priceCurrencyArgs<ExtArgs>
   exchangeRate?: boolean | Prisma.Subscription$exchangeRateArgs<ExtArgs>
@@ -4234,7 +4923,8 @@ export type SubscriptionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types
 export type SubscriptionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  ownerDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
+  ownerDepartment?: boolean | Prisma.Subscription$ownerDepartmentArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Subscription$responsibleItAdminArgs<ExtArgs>
   renewedFrom?: boolean | Prisma.Subscription$renewedFromArgs<ExtArgs>
   priceCurrency?: boolean | Prisma.Subscription$priceCurrencyArgs<ExtArgs>
   exchangeRate?: boolean | Prisma.Subscription$exchangeRateArgs<ExtArgs>
@@ -4245,7 +4935,8 @@ export type $SubscriptionPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     plan: Prisma.$PlanPayload<ExtArgs>
-    ownerDepartment: Prisma.$DepartmentPayload<ExtArgs>
+    ownerDepartment: Prisma.$DepartmentPayload<ExtArgs> | null
+    responsibleItAdmin: Prisma.$EmployeePayload<ExtArgs> | null
     renewedFrom: Prisma.$SubscriptionPayload<ExtArgs> | null
     renewedBy: Prisma.$SubscriptionPayload<ExtArgs> | null
     renewalCases: Prisma.$SubscriptionRenewalPayload<ExtArgs>[]
@@ -4275,6 +4966,7 @@ export type $SubscriptionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     priceReportingCurrency: string | null
     priceExchangeRateId: string | null
     billingCycle: $Enums.BillingCycle | null
+    commitmentTermMonths: number | null
     startDate: Date | null
     endDate: Date | null
     renewalDate: Date | null
@@ -4282,7 +4974,10 @@ export type $SubscriptionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     noticePeriodDays: number | null
     autoRenew: boolean
     allowsMidTermReduction: boolean
-    ownerDepartmentId: string
+    responsibleItAdminEmployeeId: string | null
+    vendorMinimumSeats: number | null
+    isPrimaryForPlan: boolean
+    ownerDepartmentId: string | null
     renewedFromId: string | null
     createdAt: Date
     updatedAt: Date
@@ -4682,7 +5377,8 @@ export interface Prisma__SubscriptionClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   plan<T extends Prisma.PlanDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanDefaultArgs<ExtArgs>>): Prisma.Prisma__PlanClient<runtime.Types.Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  ownerDepartment<T extends Prisma.DepartmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  ownerDepartment<T extends Prisma.Subscription$ownerDepartmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$ownerDepartmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  responsibleItAdmin<T extends Prisma.Subscription$responsibleItAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$responsibleItAdminArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   renewedFrom<T extends Prisma.Subscription$renewedFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewedFromArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   renewedBy<T extends Prisma.Subscription$renewedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewedByArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   renewalCases<T extends Prisma.Subscription$renewalCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscription$renewalCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionRenewalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4739,6 +5435,7 @@ export interface SubscriptionFieldRefs {
   readonly priceReportingCurrency: Prisma.FieldRef<"Subscription", 'String'>
   readonly priceExchangeRateId: Prisma.FieldRef<"Subscription", 'String'>
   readonly billingCycle: Prisma.FieldRef<"Subscription", 'BillingCycle'>
+  readonly commitmentTermMonths: Prisma.FieldRef<"Subscription", 'Int'>
   readonly startDate: Prisma.FieldRef<"Subscription", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Subscription", 'DateTime'>
   readonly renewalDate: Prisma.FieldRef<"Subscription", 'DateTime'>
@@ -4746,6 +5443,9 @@ export interface SubscriptionFieldRefs {
   readonly noticePeriodDays: Prisma.FieldRef<"Subscription", 'Int'>
   readonly autoRenew: Prisma.FieldRef<"Subscription", 'Boolean'>
   readonly allowsMidTermReduction: Prisma.FieldRef<"Subscription", 'Boolean'>
+  readonly responsibleItAdminEmployeeId: Prisma.FieldRef<"Subscription", 'String'>
+  readonly vendorMinimumSeats: Prisma.FieldRef<"Subscription", 'Int'>
+  readonly isPrimaryForPlan: Prisma.FieldRef<"Subscription", 'Boolean'>
   readonly ownerDepartmentId: Prisma.FieldRef<"Subscription", 'String'>
   readonly renewedFromId: Prisma.FieldRef<"Subscription", 'String'>
   readonly createdAt: Prisma.FieldRef<"Subscription", 'DateTime'>
@@ -5148,6 +5848,44 @@ export type SubscriptionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many Subscriptions to delete.
    */
   limit?: number
+}
+
+/**
+ * Subscription.ownerDepartment
+ */
+export type Subscription$ownerDepartmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Department
+   */
+  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Department
+   */
+  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  where?: Prisma.DepartmentWhereInput
+}
+
+/**
+ * Subscription.responsibleItAdmin
+ */
+export type Subscription$responsibleItAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
 }
 
 /**

@@ -411,6 +411,8 @@ export const ModelName = {
   Invoice: 'Invoice',
   BudgetVersionHistoryEntry: 'BudgetVersionHistoryEntry',
   BudgetAttachment: 'BudgetAttachment',
+  BudgetCycle: 'BudgetCycle',
+  BudgetDepartmentCeiling: 'BudgetDepartmentCeiling',
   VendorGroup: 'VendorGroup',
   VendorServiceLine: 'VendorServiceLine',
   VendorDictionaryProposal: 'VendorDictionaryProposal',
@@ -470,6 +472,7 @@ export const ModelName = {
   SubscriptionRenewal: 'SubscriptionRenewal',
   SubscriptionRenewalReleasedSeat: 'SubscriptionRenewalReleasedSeat',
   SubscriptionDeadlineEvent: 'SubscriptionDeadlineEvent',
+  PoolGrantAvoidedCost: 'PoolGrantAvoidedCost',
   EmailOutbox: 'EmailOutbox',
   InAppNotification: 'InAppNotification',
   HeldDepartmentNotification: 'HeldDepartmentNotification',
@@ -513,6 +516,7 @@ export const ModelName = {
   RequestSupplement: 'RequestSupplement',
   RequestSupplementDrop: 'RequestSupplementDrop',
   SpendDecision: 'SpendDecision',
+  RequestReserveConfirmation: 'RequestReserveConfirmation',
   BudgetInformationRequest: 'BudgetInformationRequest',
   ControlledWaitAlert: 'ControlledWaitAlert',
   AccessRequestServiceAccount: 'AccessRequestServiceAccount',
@@ -522,6 +526,7 @@ export const ModelName = {
   StepSlaReminder: 'StepSlaReminder',
   StepSlaReminderRecipient: 'StepSlaReminderRecipient',
   CongestionIncident: 'CongestionIncident',
+  YearStartCommitmentRun: 'YearStartCommitmentRun',
   CollectorAllowlistVersion: 'CollectorAllowlistVersion',
   CollectorAllowlistEntry: 'CollectorAllowlistEntry',
   AiUsageDay: 'AiUsageDay',
@@ -543,7 +548,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aiInvocation" | "aiInvocationContent" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection"
+    modelProps: "aiInvocation" | "aiInvocationContent" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "budgetCycle" | "budgetDepartmentCeiling" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "poolGrantAvoidedCost" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "requestReserveConfirmation" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "yearStartCommitmentRun" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1580,6 +1585,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BudgetAttachmentCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BudgetAttachmentCountAggregateOutputType> | number
+        }
+      }
+    }
+    BudgetCycle: {
+      payload: Prisma.$BudgetCyclePayload<ExtArgs>
+      fields: Prisma.BudgetCycleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BudgetCycleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BudgetCycleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>
+        }
+        findFirst: {
+          args: Prisma.BudgetCycleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BudgetCycleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>
+        }
+        findMany: {
+          args: Prisma.BudgetCycleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>[]
+        }
+        create: {
+          args: Prisma.BudgetCycleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>
+        }
+        createMany: {
+          args: Prisma.BudgetCycleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BudgetCycleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>[]
+        }
+        delete: {
+          args: Prisma.BudgetCycleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>
+        }
+        update: {
+          args: Prisma.BudgetCycleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>
+        }
+        deleteMany: {
+          args: Prisma.BudgetCycleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BudgetCycleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BudgetCycleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>[]
+        }
+        upsert: {
+          args: Prisma.BudgetCycleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetCyclePayload>
+        }
+        aggregate: {
+          args: Prisma.BudgetCycleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBudgetCycle>
+        }
+        groupBy: {
+          args: Prisma.BudgetCycleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetCycleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BudgetCycleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetCycleCountAggregateOutputType> | number
+        }
+      }
+    }
+    BudgetDepartmentCeiling: {
+      payload: Prisma.$BudgetDepartmentCeilingPayload<ExtArgs>
+      fields: Prisma.BudgetDepartmentCeilingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BudgetDepartmentCeilingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BudgetDepartmentCeilingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>
+        }
+        findFirst: {
+          args: Prisma.BudgetDepartmentCeilingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BudgetDepartmentCeilingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>
+        }
+        findMany: {
+          args: Prisma.BudgetDepartmentCeilingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>[]
+        }
+        create: {
+          args: Prisma.BudgetDepartmentCeilingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>
+        }
+        createMany: {
+          args: Prisma.BudgetDepartmentCeilingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BudgetDepartmentCeilingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>[]
+        }
+        delete: {
+          args: Prisma.BudgetDepartmentCeilingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>
+        }
+        update: {
+          args: Prisma.BudgetDepartmentCeilingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>
+        }
+        deleteMany: {
+          args: Prisma.BudgetDepartmentCeilingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BudgetDepartmentCeilingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BudgetDepartmentCeilingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>[]
+        }
+        upsert: {
+          args: Prisma.BudgetDepartmentCeilingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetDepartmentCeilingPayload>
+        }
+        aggregate: {
+          args: Prisma.BudgetDepartmentCeilingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBudgetDepartmentCeiling>
+        }
+        groupBy: {
+          args: Prisma.BudgetDepartmentCeilingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetDepartmentCeilingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BudgetDepartmentCeilingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetDepartmentCeilingCountAggregateOutputType> | number
         }
       }
     }
@@ -5949,6 +6102,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PoolGrantAvoidedCost: {
+      payload: Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>
+      fields: Prisma.PoolGrantAvoidedCostFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PoolGrantAvoidedCostFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PoolGrantAvoidedCostFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>
+        }
+        findFirst: {
+          args: Prisma.PoolGrantAvoidedCostFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PoolGrantAvoidedCostFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>
+        }
+        findMany: {
+          args: Prisma.PoolGrantAvoidedCostFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>[]
+        }
+        create: {
+          args: Prisma.PoolGrantAvoidedCostCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>
+        }
+        createMany: {
+          args: Prisma.PoolGrantAvoidedCostCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PoolGrantAvoidedCostCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>[]
+        }
+        delete: {
+          args: Prisma.PoolGrantAvoidedCostDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>
+        }
+        update: {
+          args: Prisma.PoolGrantAvoidedCostUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>
+        }
+        deleteMany: {
+          args: Prisma.PoolGrantAvoidedCostDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PoolGrantAvoidedCostUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PoolGrantAvoidedCostUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>[]
+        }
+        upsert: {
+          args: Prisma.PoolGrantAvoidedCostUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PoolGrantAvoidedCostPayload>
+        }
+        aggregate: {
+          args: Prisma.PoolGrantAvoidedCostAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePoolGrantAvoidedCost>
+        }
+        groupBy: {
+          args: Prisma.PoolGrantAvoidedCostGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PoolGrantAvoidedCostGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PoolGrantAvoidedCostCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PoolGrantAvoidedCostCountAggregateOutputType> | number
+        }
+      }
+    }
     EmailOutbox: {
       payload: Prisma.$EmailOutboxPayload<ExtArgs>
       fields: Prisma.EmailOutboxFieldRefs
@@ -9131,6 +9358,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RequestReserveConfirmation: {
+      payload: Prisma.$RequestReserveConfirmationPayload<ExtArgs>
+      fields: Prisma.RequestReserveConfirmationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RequestReserveConfirmationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RequestReserveConfirmationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>
+        }
+        findFirst: {
+          args: Prisma.RequestReserveConfirmationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RequestReserveConfirmationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>
+        }
+        findMany: {
+          args: Prisma.RequestReserveConfirmationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>[]
+        }
+        create: {
+          args: Prisma.RequestReserveConfirmationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>
+        }
+        createMany: {
+          args: Prisma.RequestReserveConfirmationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RequestReserveConfirmationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>[]
+        }
+        delete: {
+          args: Prisma.RequestReserveConfirmationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>
+        }
+        update: {
+          args: Prisma.RequestReserveConfirmationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>
+        }
+        deleteMany: {
+          args: Prisma.RequestReserveConfirmationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RequestReserveConfirmationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RequestReserveConfirmationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>[]
+        }
+        upsert: {
+          args: Prisma.RequestReserveConfirmationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequestReserveConfirmationPayload>
+        }
+        aggregate: {
+          args: Prisma.RequestReserveConfirmationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRequestReserveConfirmation>
+        }
+        groupBy: {
+          args: Prisma.RequestReserveConfirmationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RequestReserveConfirmationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RequestReserveConfirmationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RequestReserveConfirmationCountAggregateOutputType> | number
+        }
+      }
+    }
     BudgetInformationRequest: {
       payload: Prisma.$BudgetInformationRequestPayload<ExtArgs>
       fields: Prisma.BudgetInformationRequestFieldRefs
@@ -9797,6 +10098,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    YearStartCommitmentRun: {
+      payload: Prisma.$YearStartCommitmentRunPayload<ExtArgs>
+      fields: Prisma.YearStartCommitmentRunFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.YearStartCommitmentRunFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.YearStartCommitmentRunFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>
+        }
+        findFirst: {
+          args: Prisma.YearStartCommitmentRunFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.YearStartCommitmentRunFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>
+        }
+        findMany: {
+          args: Prisma.YearStartCommitmentRunFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>[]
+        }
+        create: {
+          args: Prisma.YearStartCommitmentRunCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>
+        }
+        createMany: {
+          args: Prisma.YearStartCommitmentRunCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.YearStartCommitmentRunCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>[]
+        }
+        delete: {
+          args: Prisma.YearStartCommitmentRunDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>
+        }
+        update: {
+          args: Prisma.YearStartCommitmentRunUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>
+        }
+        deleteMany: {
+          args: Prisma.YearStartCommitmentRunDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.YearStartCommitmentRunUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.YearStartCommitmentRunUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>[]
+        }
+        upsert: {
+          args: Prisma.YearStartCommitmentRunUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$YearStartCommitmentRunPayload>
+        }
+        aggregate: {
+          args: Prisma.YearStartCommitmentRunAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateYearStartCommitmentRun>
+        }
+        groupBy: {
+          args: Prisma.YearStartCommitmentRunGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.YearStartCommitmentRunGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.YearStartCommitmentRunCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.YearStartCommitmentRunCountAggregateOutputType> | number
+        }
+      }
+    }
     CollectorAllowlistVersion: {
       payload: Prisma.$CollectorAllowlistVersionPayload<ExtArgs>
       fields: Prisma.CollectorAllowlistVersionFieldRefs
@@ -10373,7 +10748,11 @@ export const BudgetProposalLineScalarFieldEnum = {
   servicePeriodMonths: 'servicePeriodMonths',
   repeatCycle: 'repeatCycle',
   quoteValidUntil: 'quoteValidUntil',
-  note: 'note'
+  note: 'note',
+  lineType: 'lineType',
+  zbb: 'zbb',
+  priorityRank: 'priorityRank',
+  overCeilingMinor: 'overCeilingMinor'
 } as const
 
 export type BudgetProposalLineScalarFieldEnum = (typeof BudgetProposalLineScalarFieldEnum)[keyof typeof BudgetProposalLineScalarFieldEnum]
@@ -10390,6 +10769,8 @@ export const BudgetVersionScalarFieldEnum = {
   proposalId: 'proposalId',
   basedOnVersionId: 'basedOnVersionId',
   baseMinor: 'baseMinor',
+  baseReason: 'baseReason',
+  origin: 'origin',
   reserveMinor: 'reserveMinor',
   reservePercent: 'reservePercent',
   reserveReason: 'reserveReason',
@@ -10431,7 +10812,10 @@ export const BudgetVersionLineScalarFieldEnum = {
   repeatCycle: 'repeatCycle',
   quoteValidUntil: 'quoteValidUntil',
   financeComment: 'financeComment',
-  adjustmentReason: 'adjustmentReason'
+  adjustmentReason: 'adjustmentReason',
+  lineType: 'lineType',
+  zbb: 'zbb',
+  priorityRank: 'priorityRank'
 } as const
 
 export type BudgetVersionLineScalarFieldEnum = (typeof BudgetVersionLineScalarFieldEnum)[keyof typeof BudgetVersionLineScalarFieldEnum]
@@ -10486,6 +10870,8 @@ export const BudgetCommitmentScalarFieldEnum = {
   releasedAt: 'releasedAt',
   appliedMinor: 'appliedMinor',
   snapshotCheckId: 'snapshotCheckId',
+  origin: 'origin',
+  seatMonthlyMinor: 'seatMonthlyMinor',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -10568,6 +10954,41 @@ export const BudgetAttachmentScalarFieldEnum = {
 } as const
 
 export type BudgetAttachmentScalarFieldEnum = (typeof BudgetAttachmentScalarFieldEnum)[keyof typeof BudgetAttachmentScalarFieldEnum]
+
+
+export const BudgetCycleScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  year: 'year',
+  submissionDeadline: 'submissionDeadline',
+  decisionDeadline: 'decisionDeadline',
+  annualCeilingMinor: 'annualCeilingMinor',
+  sharedPoolReserveMinor: 'sharedPoolReserveMinor',
+  currency: 'currency',
+  priorities: 'priorities',
+  openedByEmployeeId: 'openedByEmployeeId',
+  openedAt: 'openedAt',
+  publishedByEmployeeId: 'publishedByEmployeeId',
+  publishedAt: 'publishedAt',
+  firstPublishedAt: 'firstPublishedAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BudgetCycleScalarFieldEnum = (typeof BudgetCycleScalarFieldEnum)[keyof typeof BudgetCycleScalarFieldEnum]
+
+
+export const BudgetDepartmentCeilingScalarFieldEnum = {
+  cycleId: 'cycleId',
+  departmentId: 'departmentId',
+  signedCommitmentsMinor: 'signedCommitmentsMinor',
+  plannedSeatsMinor: 'plannedSeatsMinor',
+  priorityMinor: 'priorityMinor',
+  totalMinor: 'totalMinor',
+  publishedTotalMinor: 'publishedTotalMinor',
+  explanation: 'explanation'
+} as const
+
+export type BudgetDepartmentCeilingScalarFieldEnum = (typeof BudgetDepartmentCeilingScalarFieldEnum)[keyof typeof BudgetDepartmentCeilingScalarFieldEnum]
 
 
 export const VendorGroupScalarFieldEnum = {
@@ -10728,6 +11149,7 @@ export const SubscriptionScalarFieldEnum = {
   priceReportingCurrency: 'priceReportingCurrency',
   priceExchangeRateId: 'priceExchangeRateId',
   billingCycle: 'billingCycle',
+  commitmentTermMonths: 'commitmentTermMonths',
   startDate: 'startDate',
   endDate: 'endDate',
   renewalDate: 'renewalDate',
@@ -10735,6 +11157,9 @@ export const SubscriptionScalarFieldEnum = {
   noticePeriodDays: 'noticePeriodDays',
   autoRenew: 'autoRenew',
   allowsMidTermReduction: 'allowsMidTermReduction',
+  responsibleItAdminEmployeeId: 'responsibleItAdminEmployeeId',
+  vendorMinimumSeats: 'vendorMinimumSeats',
+  isPrimaryForPlan: 'isPrimaryForPlan',
   ownerDepartmentId: 'ownerDepartmentId',
   renewedFromId: 'renewedFromId',
   createdAt: 'createdAt',
@@ -11264,6 +11689,7 @@ export const LicenseAssignmentScalarFieldEnum = {
   validFromBasis: 'validFromBasis',
   validUntil: 'validUntil',
   expectedEndDate: 'expectedEndDate',
+  grantedOn: 'grantedOn',
   failedAt: 'failedAt',
   cancelledAt: 'cancelledAt',
   predecessorId: 'predecessorId',
@@ -11319,6 +11745,9 @@ export const ProvisioningTaskScalarFieldEnum = {
   accessCutOn: 'accessCutOn',
   accessEvidence: 'accessEvidence',
   completionNote: 'completionNote',
+  purchaseKind: 'purchaseKind',
+  purchaseReason: 'purchaseReason',
+  purchasedAt: 'purchasedAt',
   createdByAppUserId: 'createdByAppUserId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -11546,6 +11975,25 @@ export const SubscriptionDeadlineEventScalarFieldEnum = {
 export type SubscriptionDeadlineEventScalarFieldEnum = (typeof SubscriptionDeadlineEventScalarFieldEnum)[keyof typeof SubscriptionDeadlineEventScalarFieldEnum]
 
 
+export const PoolGrantAvoidedCostScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  provisioningTaskId: 'provisioningTaskId',
+  assignmentId: 'assignmentId',
+  requestId: 'requestId',
+  planId: 'planId',
+  provisioningType: 'provisioningType',
+  months: 'months',
+  unitMinor: 'unitMinor',
+  amountMinor: 'amountMinor',
+  currency: 'currency',
+  recordedOn: 'recordedOn',
+  createdAt: 'createdAt'
+} as const
+
+export type PoolGrantAvoidedCostScalarFieldEnum = (typeof PoolGrantAvoidedCostScalarFieldEnum)[keyof typeof PoolGrantAvoidedCostScalarFieldEnum]
+
+
 export const EmailOutboxScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
@@ -11666,7 +12114,8 @@ export const DepartmentScalarFieldEnum = {
   itAdminEmployeeId: 'itAdminEmployeeId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deactivatedAt: 'deactivatedAt'
+  deactivatedAt: 'deactivatedAt',
+  effectiveFrom: 'effectiveFrom'
 } as const
 
 export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
@@ -12019,6 +12468,10 @@ export const AccessRequestScalarFieldEnum = {
   costCenterId: 'costCenterId',
   businessReason: 'businessReason',
   termMonths: 'termMonths',
+  amountMonths: 'amountMonths',
+  priceKind: 'priceKind',
+  grantedOn: 'grantedOn',
+  nextYearAmountMinor: 'nextYearAmountMinor',
   pricingStatus: 'pricingStatus',
   priceMissingReason: 'priceMissingReason',
   expectedSpendOn: 'expectedSpendOn',
@@ -12211,6 +12664,11 @@ export const RequestBudgetCheckScalarFieldEnum = {
   planLineOverdue: 'planLineOverdue',
   periodClosed: 'periodClosed',
   offPlan: 'offPlan',
+  outcome: 'outcome',
+  blockReasons: 'blockReasons',
+  overBaseByMinor: 'overBaseByMinor',
+  overByMinor: 'overByMinor',
+  costCenterId: 'costCenterId',
   currency: 'currency',
   bindingTotalMinor: 'bindingTotalMinor',
   ranByEmployeeId: 'ranByEmployeeId',
@@ -12231,7 +12689,11 @@ export const RequestBudgetCheckYearScalarFieldEnum = {
   spentMinor: 'spentMinor',
   remainingMinor: 'remainingMinor',
   shareBasisPoints: 'shareBasisPoints',
-  pendingMinor: 'pendingMinor'
+  pendingMinor: 'pendingMinor',
+  baseMinor: 'baseMinor',
+  reserveMinor: 'reserveMinor',
+  remainingBaseMinor: 'remainingBaseMinor',
+  remainingWithReserveMinor: 'remainingWithReserveMinor'
 } as const
 
 export type RequestBudgetCheckYearScalarFieldEnum = (typeof RequestBudgetCheckYearScalarFieldEnum)[keyof typeof RequestBudgetCheckYearScalarFieldEnum]
@@ -12290,6 +12752,8 @@ export const RequestSupplementScalarFieldEnum = {
   afterBudgetYear: 'afterBudgetYear',
   beforeAmountMinor: 'beforeAmountMinor',
   afterAmountMinor: 'afterAmountMinor',
+  beforeExpectedEndDate: 'beforeExpectedEndDate',
+  afterExpectedEndDate: 'afterExpectedEndDate',
   currency: 'currency'
 } as const
 
@@ -12317,6 +12781,20 @@ export const SpendDecisionScalarFieldEnum = {
 } as const
 
 export type SpendDecisionScalarFieldEnum = (typeof SpendDecisionScalarFieldEnum)[keyof typeof SpendDecisionScalarFieldEnum]
+
+
+export const RequestReserveConfirmationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  requestId: 'requestId',
+  checkId: 'checkId',
+  spendStepId: 'spendStepId',
+  reason: 'reason',
+  confirmedByEmployeeId: 'confirmedByEmployeeId',
+  confirmedAt: 'confirmedAt'
+} as const
+
+export type RequestReserveConfirmationScalarFieldEnum = (typeof RequestReserveConfirmationScalarFieldEnum)[keyof typeof RequestReserveConfirmationScalarFieldEnum]
 
 
 export const BudgetInformationRequestScalarFieldEnum = {
@@ -12460,6 +12938,19 @@ export const CongestionIncidentScalarFieldEnum = {
 } as const
 
 export type CongestionIncidentScalarFieldEnum = (typeof CongestionIncidentScalarFieldEnum)[keyof typeof CongestionIncidentScalarFieldEnum]
+
+
+export const YearStartCommitmentRunScalarFieldEnum = {
+  organizationId: 'organizationId',
+  year: 'year',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  runCount: 'runCount',
+  createdCount: 'createdCount',
+  skippedCount: 'skippedCount'
+} as const
+
+export type YearStartCommitmentRunScalarFieldEnum = (typeof YearStartCommitmentRunScalarFieldEnum)[keyof typeof YearStartCommitmentRunScalarFieldEnum]
 
 
 export const CollectorAllowlistVersionScalarFieldEnum = {
@@ -12741,6 +13232,20 @@ export type ListEnumBudgetRepeatCycleFieldRefInput<$PrismaModel> = FieldRefInput
 
 
 /**
+ * Reference to a field of type 'BudgetLineType'
+ */
+export type EnumBudgetLineTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetLineType'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetLineType[]'
+ */
+export type ListEnumBudgetLineTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetLineType[]'>
+    
+
+
+/**
  * Reference to a field of type 'BudgetVersionKind'
  */
 export type EnumBudgetVersionKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetVersionKind'>
@@ -12765,6 +13270,20 @@ export type EnumBudgetVersionStateFieldRefInput<$PrismaModel> = FieldRefInputTyp
  * Reference to a field of type 'BudgetVersionState[]'
  */
 export type ListEnumBudgetVersionStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetVersionState[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetVersionOrigin'
+ */
+export type EnumBudgetVersionOriginFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetVersionOrigin'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetVersionOrigin[]'
+ */
+export type ListEnumBudgetVersionOriginFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetVersionOrigin[]'>
     
 
 
@@ -12800,6 +13319,20 @@ export type EnumCommitmentStateFieldRefInput<$PrismaModel> = FieldRefInputType<$
  * Reference to a field of type 'CommitmentState[]'
  */
 export type ListEnumCommitmentStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommitmentState[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CommitmentOrigin'
+ */
+export type EnumCommitmentOriginFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommitmentOrigin'>
+    
+
+
+/**
+ * Reference to a field of type 'CommitmentOrigin[]'
+ */
+export type ListEnumCommitmentOriginFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommitmentOrigin[]'>
     
 
 
@@ -13504,6 +14037,20 @@ export type ListEnumAccessStateFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
+ * Reference to a field of type 'ProvisioningPurchaseKind'
+ */
+export type EnumProvisioningPurchaseKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProvisioningPurchaseKind'>
+    
+
+
+/**
+ * Reference to a field of type 'ProvisioningPurchaseKind[]'
+ */
+export type ListEnumProvisioningPurchaseKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProvisioningPurchaseKind[]'>
+    
+
+
+/**
  * Reference to a field of type 'Bytes'
  */
 export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
@@ -14120,6 +14667,20 @@ export type ListEnumAccessRequestStateFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
+ * Reference to a field of type 'AccessRequestPriceKind'
+ */
+export type EnumAccessRequestPriceKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccessRequestPriceKind'>
+    
+
+
+/**
+ * Reference to a field of type 'AccessRequestPriceKind[]'
+ */
+export type ListEnumAccessRequestPriceKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccessRequestPriceKind[]'>
+    
+
+
+/**
  * Reference to a field of type 'AccessRequestPricingStatus'
  */
 export type EnumAccessRequestPricingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccessRequestPricingStatus'>
@@ -14326,6 +14887,20 @@ export type EnumBudgetCheckRouteFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'BudgetCheckRoute[]'
  */
 export type ListEnumBudgetCheckRouteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetCheckRoute[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetCheckOutcome'
+ */
+export type EnumBudgetCheckOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetCheckOutcome'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetCheckOutcome[]'
+ */
+export type ListEnumBudgetCheckOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetCheckOutcome[]'>
     
 
 
@@ -14801,6 +15376,8 @@ export type GlobalOmitConfig = {
   invoice?: Prisma.InvoiceOmit
   budgetVersionHistoryEntry?: Prisma.BudgetVersionHistoryEntryOmit
   budgetAttachment?: Prisma.BudgetAttachmentOmit
+  budgetCycle?: Prisma.BudgetCycleOmit
+  budgetDepartmentCeiling?: Prisma.BudgetDepartmentCeilingOmit
   vendorGroup?: Prisma.VendorGroupOmit
   vendorServiceLine?: Prisma.VendorServiceLineOmit
   vendorDictionaryProposal?: Prisma.VendorDictionaryProposalOmit
@@ -14860,6 +15437,7 @@ export type GlobalOmitConfig = {
   subscriptionRenewal?: Prisma.SubscriptionRenewalOmit
   subscriptionRenewalReleasedSeat?: Prisma.SubscriptionRenewalReleasedSeatOmit
   subscriptionDeadlineEvent?: Prisma.SubscriptionDeadlineEventOmit
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostOmit
   emailOutbox?: Prisma.EmailOutboxOmit
   inAppNotification?: Prisma.InAppNotificationOmit
   heldDepartmentNotification?: Prisma.HeldDepartmentNotificationOmit
@@ -14903,6 +15481,7 @@ export type GlobalOmitConfig = {
   requestSupplement?: Prisma.RequestSupplementOmit
   requestSupplementDrop?: Prisma.RequestSupplementDropOmit
   spendDecision?: Prisma.SpendDecisionOmit
+  requestReserveConfirmation?: Prisma.RequestReserveConfirmationOmit
   budgetInformationRequest?: Prisma.BudgetInformationRequestOmit
   controlledWaitAlert?: Prisma.ControlledWaitAlertOmit
   accessRequestServiceAccount?: Prisma.AccessRequestServiceAccountOmit
@@ -14912,6 +15491,7 @@ export type GlobalOmitConfig = {
   stepSlaReminder?: Prisma.StepSlaReminderOmit
   stepSlaReminderRecipient?: Prisma.StepSlaReminderRecipientOmit
   congestionIncident?: Prisma.CongestionIncidentOmit
+  yearStartCommitmentRun?: Prisma.YearStartCommitmentRunOmit
   collectorAllowlistVersion?: Prisma.CollectorAllowlistVersionOmit
   collectorAllowlistEntry?: Prisma.CollectorAllowlistEntryOmit
   aiUsageDay?: Prisma.AiUsageDayOmit

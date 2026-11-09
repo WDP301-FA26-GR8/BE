@@ -91,6 +91,19 @@ export type BudgetVersionHistoryEntry = Prisma.BudgetVersionHistoryEntryModel
  */
 export type BudgetAttachment = Prisma.BudgetAttachmentModel
 /**
+ * Model BudgetCycle
+ * The budget cycle of a year (QĐ-103i, BR-MF4-01): the deadlines, the annual ceiling of the software budget, the shared-pool reserve
+ * and the ceilings of the departments. Finance opens, changes and publishes it. `publishedAt` is set while it is published and cleared
+ * when a ceiling is changed; `firstPublishedAt` is never cleared (from it a department head may submit the proposal of the year).
+ */
+export type BudgetCycle = Prisma.BudgetCycleModel
+/**
+ * Model BudgetDepartmentCeiling
+ * The ceiling of one department in a cycle (FR-5.16(2)): the commitments already signed, the seats planned at their monthly price and
+ * the priority items; `totalMinor` is their sum. `publishedTotalMinor` is the total the head was told at the last publication.
+ */
+export type BudgetDepartmentCeiling = Prisma.BudgetDepartmentCeilingModel
+/**
  * Model VendorGroup
  * 
  */
@@ -386,6 +399,11 @@ export type SubscriptionRenewalReleasedSeat = Prisma.SubscriptionRenewalReleased
  */
 export type SubscriptionDeadlineEvent = Prisma.SubscriptionDeadlineEventModel
 /**
+ * Model PoolGrantAvoidedCost
+ * 
+ */
+export type PoolGrantAvoidedCost = Prisma.PoolGrantAvoidedCostModel
+/**
  * Model EmailOutbox
  * 
  */
@@ -601,6 +619,11 @@ export type RequestSupplementDrop = Prisma.RequestSupplementDropModel
  */
 export type SpendDecision = Prisma.SpendDecisionModel
 /**
+ * Model RequestReserveConfirmation
+ * 
+ */
+export type RequestReserveConfirmation = Prisma.RequestReserveConfirmationModel
+/**
  * Model BudgetInformationRequest
  * What the spending approver asks Finance while the spend step is theirs, and what Finance answers (US-06-02, US-06-03). The
  * question is advice for the approver and decides nothing: it does not stop the step, its SLA or the decision. It is kept for
@@ -653,6 +676,11 @@ export type StepSlaReminderRecipient = Prisma.StepSlaReminderRecipientModel
  * audit trail keeps its actors.
  */
 export type CongestionIncident = Prisma.CongestionIncidentModel
+/**
+ * Model YearStartCommitmentRun
+ * 
+ */
+export type YearStartCommitmentRun = Prisma.YearStartCommitmentRunModel
 /**
  * Model CollectorAllowlistVersion
  * 

@@ -28,11 +28,15 @@ export type AggregateRequestBudgetCheck = {
 
 export type RequestBudgetCheckAvgAggregateOutputType = {
   number: number | null
+  overBaseByMinor: number | null
+  overByMinor: number | null
   bindingTotalMinor: number | null
 }
 
 export type RequestBudgetCheckSumAggregateOutputType = {
   number: number | null
+  overBaseByMinor: bigint | null
+  overByMinor: bigint | null
   bindingTotalMinor: bigint | null
 }
 
@@ -47,6 +51,10 @@ export type RequestBudgetCheckMinAggregateOutputType = {
   planLineOverdue: boolean | null
   periodClosed: boolean | null
   offPlan: boolean | null
+  outcome: $Enums.BudgetCheckOutcome | null
+  overBaseByMinor: bigint | null
+  overByMinor: bigint | null
+  costCenterId: string | null
   currency: string | null
   bindingTotalMinor: bigint | null
   ranByEmployeeId: string | null
@@ -64,6 +72,10 @@ export type RequestBudgetCheckMaxAggregateOutputType = {
   planLineOverdue: boolean | null
   periodClosed: boolean | null
   offPlan: boolean | null
+  outcome: $Enums.BudgetCheckOutcome | null
+  overBaseByMinor: bigint | null
+  overByMinor: bigint | null
+  costCenterId: string | null
   currency: string | null
   bindingTotalMinor: bigint | null
   ranByEmployeeId: string | null
@@ -81,6 +93,11 @@ export type RequestBudgetCheckCountAggregateOutputType = {
   planLineOverdue: number
   periodClosed: number
   offPlan: number
+  outcome: number
+  blockReasons: number
+  overBaseByMinor: number
+  overByMinor: number
+  costCenterId: number
   currency: number
   bindingTotalMinor: number
   ranByEmployeeId: number
@@ -91,11 +108,15 @@ export type RequestBudgetCheckCountAggregateOutputType = {
 
 export type RequestBudgetCheckAvgAggregateInputType = {
   number?: true
+  overBaseByMinor?: true
+  overByMinor?: true
   bindingTotalMinor?: true
 }
 
 export type RequestBudgetCheckSumAggregateInputType = {
   number?: true
+  overBaseByMinor?: true
+  overByMinor?: true
   bindingTotalMinor?: true
 }
 
@@ -110,6 +131,10 @@ export type RequestBudgetCheckMinAggregateInputType = {
   planLineOverdue?: true
   periodClosed?: true
   offPlan?: true
+  outcome?: true
+  overBaseByMinor?: true
+  overByMinor?: true
+  costCenterId?: true
   currency?: true
   bindingTotalMinor?: true
   ranByEmployeeId?: true
@@ -127,6 +152,10 @@ export type RequestBudgetCheckMaxAggregateInputType = {
   planLineOverdue?: true
   periodClosed?: true
   offPlan?: true
+  outcome?: true
+  overBaseByMinor?: true
+  overByMinor?: true
+  costCenterId?: true
   currency?: true
   bindingTotalMinor?: true
   ranByEmployeeId?: true
@@ -144,6 +173,11 @@ export type RequestBudgetCheckCountAggregateInputType = {
   planLineOverdue?: true
   periodClosed?: true
   offPlan?: true
+  outcome?: true
+  blockReasons?: true
+  overBaseByMinor?: true
+  overByMinor?: true
+  costCenterId?: true
   currency?: true
   bindingTotalMinor?: true
   ranByEmployeeId?: true
@@ -248,6 +282,11 @@ export type RequestBudgetCheckGroupByOutputType = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome: $Enums.BudgetCheckOutcome | null
+  blockReasons: string[]
+  overBaseByMinor: bigint | null
+  overByMinor: bigint | null
+  costCenterId: string | null
   currency: string
   bindingTotalMinor: bigint
   ranByEmployeeId: string | null
@@ -288,6 +327,11 @@ export type RequestBudgetCheckWhereInput = {
   planLineOverdue?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
   periodClosed?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
   offPlan?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
+  outcome?: Prisma.EnumBudgetCheckOutcomeNullableFilter<"RequestBudgetCheck"> | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.StringNullableListFilter<"RequestBudgetCheck">
+  overBaseByMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheck"> | bigint | number | null
+  overByMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheck"> | bigint | number | null
+  costCenterId?: Prisma.UuidNullableFilter<"RequestBudgetCheck"> | string | null
   currency?: Prisma.StringFilter<"RequestBudgetCheck"> | string
   bindingTotalMinor?: Prisma.BigIntFilter<"RequestBudgetCheck"> | bigint | number
   ranByEmployeeId?: Prisma.UuidNullableFilter<"RequestBudgetCheck"> | string | null
@@ -300,6 +344,7 @@ export type RequestBudgetCheckWhereInput = {
   yearResults?: Prisma.RequestBudgetCheckYearListRelationFilter
   spendDecisions?: Prisma.SpendDecisionListRelationFilter
   commitments?: Prisma.BudgetCommitmentListRelationFilter
+  reserveConfirmation?: Prisma.XOR<Prisma.RequestReserveConfirmationNullableScalarRelationFilter, Prisma.RequestReserveConfirmationWhereInput> | null
 }
 
 export type RequestBudgetCheckOrderByWithRelationInput = {
@@ -313,6 +358,11 @@ export type RequestBudgetCheckOrderByWithRelationInput = {
   planLineOverdue?: Prisma.SortOrder
   periodClosed?: Prisma.SortOrder
   offPlan?: Prisma.SortOrder
+  outcome?: Prisma.SortOrderInput | Prisma.SortOrder
+  blockReasons?: Prisma.SortOrder
+  overBaseByMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  overByMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  costCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
   currency?: Prisma.SortOrder
   bindingTotalMinor?: Prisma.SortOrder
   ranByEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -325,6 +375,7 @@ export type RequestBudgetCheckOrderByWithRelationInput = {
   yearResults?: Prisma.RequestBudgetCheckYearOrderByRelationAggregateInput
   spendDecisions?: Prisma.SpendDecisionOrderByRelationAggregateInput
   commitments?: Prisma.BudgetCommitmentOrderByRelationAggregateInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationOrderByWithRelationInput
 }
 
 export type RequestBudgetCheckWhereUniqueInput = Prisma.AtLeast<{
@@ -342,6 +393,11 @@ export type RequestBudgetCheckWhereUniqueInput = Prisma.AtLeast<{
   planLineOverdue?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
   periodClosed?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
   offPlan?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
+  outcome?: Prisma.EnumBudgetCheckOutcomeNullableFilter<"RequestBudgetCheck"> | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.StringNullableListFilter<"RequestBudgetCheck">
+  overBaseByMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheck"> | bigint | number | null
+  overByMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheck"> | bigint | number | null
+  costCenterId?: Prisma.UuidNullableFilter<"RequestBudgetCheck"> | string | null
   currency?: Prisma.StringFilter<"RequestBudgetCheck"> | string
   bindingTotalMinor?: Prisma.BigIntFilter<"RequestBudgetCheck"> | bigint | number
   ranByEmployeeId?: Prisma.UuidNullableFilter<"RequestBudgetCheck"> | string | null
@@ -354,6 +410,7 @@ export type RequestBudgetCheckWhereUniqueInput = Prisma.AtLeast<{
   yearResults?: Prisma.RequestBudgetCheckYearListRelationFilter
   spendDecisions?: Prisma.SpendDecisionListRelationFilter
   commitments?: Prisma.BudgetCommitmentListRelationFilter
+  reserveConfirmation?: Prisma.XOR<Prisma.RequestReserveConfirmationNullableScalarRelationFilter, Prisma.RequestReserveConfirmationWhereInput> | null
 }, "id" | "requestId_number">
 
 export type RequestBudgetCheckOrderByWithAggregationInput = {
@@ -367,6 +424,11 @@ export type RequestBudgetCheckOrderByWithAggregationInput = {
   planLineOverdue?: Prisma.SortOrder
   periodClosed?: Prisma.SortOrder
   offPlan?: Prisma.SortOrder
+  outcome?: Prisma.SortOrderInput | Prisma.SortOrder
+  blockReasons?: Prisma.SortOrder
+  overBaseByMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  overByMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  costCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
   currency?: Prisma.SortOrder
   bindingTotalMinor?: Prisma.SortOrder
   ranByEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -392,6 +454,11 @@ export type RequestBudgetCheckScalarWhereWithAggregatesInput = {
   planLineOverdue?: Prisma.BoolWithAggregatesFilter<"RequestBudgetCheck"> | boolean
   periodClosed?: Prisma.BoolWithAggregatesFilter<"RequestBudgetCheck"> | boolean
   offPlan?: Prisma.BoolWithAggregatesFilter<"RequestBudgetCheck"> | boolean
+  outcome?: Prisma.EnumBudgetCheckOutcomeNullableWithAggregatesFilter<"RequestBudgetCheck"> | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.StringNullableListFilter<"RequestBudgetCheck">
+  overBaseByMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheck"> | bigint | number | null
+  overByMinor?: Prisma.BigIntNullableWithAggregatesFilter<"RequestBudgetCheck"> | bigint | number | null
+  costCenterId?: Prisma.UuidNullableWithAggregatesFilter<"RequestBudgetCheck"> | string | null
   currency?: Prisma.StringWithAggregatesFilter<"RequestBudgetCheck"> | string
   bindingTotalMinor?: Prisma.BigIntWithAggregatesFilter<"RequestBudgetCheck"> | bigint | number
   ranByEmployeeId?: Prisma.UuidNullableWithAggregatesFilter<"RequestBudgetCheck"> | string | null
@@ -407,6 +474,11 @@ export type RequestBudgetCheckCreateInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -417,6 +489,7 @@ export type RequestBudgetCheckCreateInput = {
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateInput = {
@@ -430,6 +503,11 @@ export type RequestBudgetCheckUncheckedCreateInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -438,6 +516,7 @@ export type RequestBudgetCheckUncheckedCreateInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUpdateInput = {
@@ -449,6 +528,11 @@ export type RequestBudgetCheckUpdateInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -459,6 +543,7 @@ export type RequestBudgetCheckUpdateInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateInput = {
@@ -472,6 +557,11 @@ export type RequestBudgetCheckUncheckedUpdateInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -480,6 +570,7 @@ export type RequestBudgetCheckUncheckedUpdateInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckCreateManyInput = {
@@ -493,6 +584,11 @@ export type RequestBudgetCheckCreateManyInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -508,6 +604,11 @@ export type RequestBudgetCheckUpdateManyMutationInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -523,6 +624,11 @@ export type RequestBudgetCheckUncheckedUpdateManyInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -560,6 +666,11 @@ export type RequestBudgetCheckCountOrderByAggregateInput = {
   planLineOverdue?: Prisma.SortOrder
   periodClosed?: Prisma.SortOrder
   offPlan?: Prisma.SortOrder
+  outcome?: Prisma.SortOrder
+  blockReasons?: Prisma.SortOrder
+  overBaseByMinor?: Prisma.SortOrder
+  overByMinor?: Prisma.SortOrder
+  costCenterId?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bindingTotalMinor?: Prisma.SortOrder
   ranByEmployeeId?: Prisma.SortOrder
@@ -568,6 +679,8 @@ export type RequestBudgetCheckCountOrderByAggregateInput = {
 
 export type RequestBudgetCheckAvgOrderByAggregateInput = {
   number?: Prisma.SortOrder
+  overBaseByMinor?: Prisma.SortOrder
+  overByMinor?: Prisma.SortOrder
   bindingTotalMinor?: Prisma.SortOrder
 }
 
@@ -582,6 +695,10 @@ export type RequestBudgetCheckMaxOrderByAggregateInput = {
   planLineOverdue?: Prisma.SortOrder
   periodClosed?: Prisma.SortOrder
   offPlan?: Prisma.SortOrder
+  outcome?: Prisma.SortOrder
+  overBaseByMinor?: Prisma.SortOrder
+  overByMinor?: Prisma.SortOrder
+  costCenterId?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bindingTotalMinor?: Prisma.SortOrder
   ranByEmployeeId?: Prisma.SortOrder
@@ -599,6 +716,10 @@ export type RequestBudgetCheckMinOrderByAggregateInput = {
   planLineOverdue?: Prisma.SortOrder
   periodClosed?: Prisma.SortOrder
   offPlan?: Prisma.SortOrder
+  outcome?: Prisma.SortOrder
+  overBaseByMinor?: Prisma.SortOrder
+  overByMinor?: Prisma.SortOrder
+  costCenterId?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bindingTotalMinor?: Prisma.SortOrder
   ranByEmployeeId?: Prisma.SortOrder
@@ -607,6 +728,8 @@ export type RequestBudgetCheckMinOrderByAggregateInput = {
 
 export type RequestBudgetCheckSumOrderByAggregateInput = {
   number?: Prisma.SortOrder
+  overBaseByMinor?: Prisma.SortOrder
+  overByMinor?: Prisma.SortOrder
   bindingTotalMinor?: Prisma.SortOrder
 }
 
@@ -799,12 +922,25 @@ export type RequestBudgetCheckUncheckedUpdateManyWithoutRequestNestedInput = {
   deleteMany?: Prisma.RequestBudgetCheckScalarWhereInput | Prisma.RequestBudgetCheckScalarWhereInput[]
 }
 
+export type RequestBudgetCheckCreateblockReasonsInput = {
+  set: string[]
+}
+
 export type EnumBudgetCheckTriggerFieldUpdateOperationsInput = {
   set?: $Enums.BudgetCheckTrigger
 }
 
 export type EnumBudgetCheckRouteFieldUpdateOperationsInput = {
   set?: $Enums.BudgetCheckRoute
+}
+
+export type NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput = {
+  set?: $Enums.BudgetCheckOutcome | null
+}
+
+export type RequestBudgetCheckUpdateblockReasonsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type RequestBudgetCheckCreateNestedOneWithoutYearResultsInput = {
@@ -851,6 +987,20 @@ export type RequestBudgetCheckUpdateOneWithoutSpendDecisionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RequestBudgetCheckUpdateToOneWithWhereWithoutSpendDecisionsInput, Prisma.RequestBudgetCheckUpdateWithoutSpendDecisionsInput>, Prisma.RequestBudgetCheckUncheckedUpdateWithoutSpendDecisionsInput>
 }
 
+export type RequestBudgetCheckCreateNestedOneWithoutReserveConfirmationInput = {
+  create?: Prisma.XOR<Prisma.RequestBudgetCheckCreateWithoutReserveConfirmationInput, Prisma.RequestBudgetCheckUncheckedCreateWithoutReserveConfirmationInput>
+  connectOrCreate?: Prisma.RequestBudgetCheckCreateOrConnectWithoutReserveConfirmationInput
+  connect?: Prisma.RequestBudgetCheckWhereUniqueInput
+}
+
+export type RequestBudgetCheckUpdateOneRequiredWithoutReserveConfirmationNestedInput = {
+  create?: Prisma.XOR<Prisma.RequestBudgetCheckCreateWithoutReserveConfirmationInput, Prisma.RequestBudgetCheckUncheckedCreateWithoutReserveConfirmationInput>
+  connectOrCreate?: Prisma.RequestBudgetCheckCreateOrConnectWithoutReserveConfirmationInput
+  upsert?: Prisma.RequestBudgetCheckUpsertWithoutReserveConfirmationInput
+  connect?: Prisma.RequestBudgetCheckWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RequestBudgetCheckUpdateToOneWithWhereWithoutReserveConfirmationInput, Prisma.RequestBudgetCheckUpdateWithoutReserveConfirmationInput>, Prisma.RequestBudgetCheckUncheckedUpdateWithoutReserveConfirmationInput>
+}
+
 export type RequestBudgetCheckCreateWithoutCommitmentsInput = {
   id?: string
   number: number
@@ -860,6 +1010,11 @@ export type RequestBudgetCheckCreateWithoutCommitmentsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -869,6 +1024,7 @@ export type RequestBudgetCheckCreateWithoutCommitmentsInput = {
   financeReviews?: Prisma.RequestFinanceReviewCreateNestedManyWithoutCheckInput
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutCommitmentsInput = {
@@ -882,6 +1038,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutCommitmentsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -889,6 +1050,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutCommitmentsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutCheckInput
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutCommitmentsInput = {
@@ -916,6 +1078,11 @@ export type RequestBudgetCheckUpdateWithoutCommitmentsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -925,6 +1092,7 @@ export type RequestBudgetCheckUpdateWithoutCommitmentsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUpdateManyWithoutCheckNestedInput
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutCommitmentsInput = {
@@ -938,6 +1106,11 @@ export type RequestBudgetCheckUncheckedUpdateWithoutCommitmentsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -945,6 +1118,7 @@ export type RequestBudgetCheckUncheckedUpdateWithoutCommitmentsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutCheckNestedInput
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckCreateWithoutCurrencyRecordInput = {
@@ -956,6 +1130,11 @@ export type RequestBudgetCheckCreateWithoutCurrencyRecordInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -965,6 +1144,7 @@ export type RequestBudgetCheckCreateWithoutCurrencyRecordInput = {
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutCurrencyRecordInput = {
@@ -978,6 +1158,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutCurrencyRecordInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
   ranAt?: Date | string
@@ -985,6 +1170,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutCurrencyRecordInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutCurrencyRecordInput = {
@@ -1027,6 +1213,11 @@ export type RequestBudgetCheckScalarWhereInput = {
   planLineOverdue?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
   periodClosed?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
   offPlan?: Prisma.BoolFilter<"RequestBudgetCheck"> | boolean
+  outcome?: Prisma.EnumBudgetCheckOutcomeNullableFilter<"RequestBudgetCheck"> | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.StringNullableListFilter<"RequestBudgetCheck">
+  overBaseByMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheck"> | bigint | number | null
+  overByMinor?: Prisma.BigIntNullableFilter<"RequestBudgetCheck"> | bigint | number | null
+  costCenterId?: Prisma.UuidNullableFilter<"RequestBudgetCheck"> | string | null
   currency?: Prisma.StringFilter<"RequestBudgetCheck"> | string
   bindingTotalMinor?: Prisma.BigIntFilter<"RequestBudgetCheck"> | bigint | number
   ranByEmployeeId?: Prisma.UuidNullableFilter<"RequestBudgetCheck"> | string | null
@@ -1042,6 +1233,11 @@ export type RequestBudgetCheckCreateWithoutOrganizationInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetChecksInput
@@ -1051,6 +1247,7 @@ export type RequestBudgetCheckCreateWithoutOrganizationInput = {
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutOrganizationInput = {
@@ -1063,6 +1260,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutOrganizationInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -1071,6 +1273,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutOrganizationInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutOrganizationInput = {
@@ -1108,6 +1311,11 @@ export type RequestBudgetCheckCreateWithoutRanByInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -1117,6 +1325,7 @@ export type RequestBudgetCheckCreateWithoutRanByInput = {
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutRanByInput = {
@@ -1130,6 +1339,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutRanByInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
@@ -1137,6 +1351,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutRanByInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutRanByInput = {
@@ -1174,6 +1389,11 @@ export type RequestBudgetCheckCreateWithoutRequestInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -1183,6 +1403,7 @@ export type RequestBudgetCheckCreateWithoutRequestInput = {
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutRequestInput = {
@@ -1195,6 +1416,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutRequestInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -1203,6 +1429,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutRequestInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutRequestInput = {
@@ -1240,6 +1467,11 @@ export type RequestBudgetCheckCreateWithoutYearResultsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -1249,6 +1481,7 @@ export type RequestBudgetCheckCreateWithoutYearResultsInput = {
   financeReviews?: Prisma.RequestFinanceReviewCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutYearResultsInput = {
@@ -1262,6 +1495,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutYearResultsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -1269,6 +1507,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutYearResultsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutYearResultsInput = {
@@ -1296,6 +1535,11 @@ export type RequestBudgetCheckUpdateWithoutYearResultsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -1305,6 +1549,7 @@ export type RequestBudgetCheckUpdateWithoutYearResultsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutYearResultsInput = {
@@ -1318,6 +1563,11 @@ export type RequestBudgetCheckUncheckedUpdateWithoutYearResultsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1325,6 +1575,7 @@ export type RequestBudgetCheckUncheckedUpdateWithoutYearResultsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckCreateWithoutFinanceReviewsInput = {
@@ -1336,6 +1587,11 @@ export type RequestBudgetCheckCreateWithoutFinanceReviewsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -1345,6 +1601,7 @@ export type RequestBudgetCheckCreateWithoutFinanceReviewsInput = {
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutFinanceReviewsInput = {
@@ -1358,6 +1615,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutFinanceReviewsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -1365,6 +1627,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutFinanceReviewsInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutFinanceReviewsInput = {
@@ -1392,6 +1655,11 @@ export type RequestBudgetCheckUpdateWithoutFinanceReviewsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -1401,6 +1669,7 @@ export type RequestBudgetCheckUpdateWithoutFinanceReviewsInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutFinanceReviewsInput = {
@@ -1414,6 +1683,11 @@ export type RequestBudgetCheckUncheckedUpdateWithoutFinanceReviewsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1421,6 +1695,7 @@ export type RequestBudgetCheckUncheckedUpdateWithoutFinanceReviewsInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckCreateWithoutSpendDecisionsInput = {
@@ -1432,6 +1707,11 @@ export type RequestBudgetCheckCreateWithoutSpendDecisionsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
@@ -1441,6 +1721,7 @@ export type RequestBudgetCheckCreateWithoutSpendDecisionsInput = {
   financeReviews?: Prisma.RequestFinanceReviewCreateNestedManyWithoutCheckInput
   yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckUncheckedCreateWithoutSpendDecisionsInput = {
@@ -1454,6 +1735,11 @@ export type RequestBudgetCheckUncheckedCreateWithoutSpendDecisionsInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -1461,6 +1747,7 @@ export type RequestBudgetCheckUncheckedCreateWithoutSpendDecisionsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutCheckInput
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
   commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutCheckInput
 }
 
 export type RequestBudgetCheckCreateOrConnectWithoutSpendDecisionsInput = {
@@ -1488,6 +1775,11 @@ export type RequestBudgetCheckUpdateWithoutSpendDecisionsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -1497,6 +1789,7 @@ export type RequestBudgetCheckUpdateWithoutSpendDecisionsInput = {
   financeReviews?: Prisma.RequestFinanceReviewUpdateManyWithoutCheckNestedInput
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutSpendDecisionsInput = {
@@ -1510,12 +1803,138 @@ export type RequestBudgetCheckUncheckedUpdateWithoutSpendDecisionsInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   financeReviews?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutCheckNestedInput
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
+  commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
+}
+
+export type RequestBudgetCheckCreateWithoutReserveConfirmationInput = {
+  id?: string
+  number: number
+  trigger: $Enums.BudgetCheckTrigger
+  route: $Enums.BudgetCheckRoute
+  staleCostEvidence: boolean
+  planLineOverdue: boolean
+  periodClosed: boolean
+  offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
+  bindingTotalMinor: bigint | number
+  ranAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutRequestBudgetChecksInput
+  request: Prisma.AccessRequestCreateNestedOneWithoutBudgetChecksInput
+  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutRequestBudgetChecksInput
+  ranBy?: Prisma.EmployeeCreateNestedOneWithoutRequestBudgetChecksRunInput
+  financeReviews?: Prisma.RequestFinanceReviewCreateNestedManyWithoutCheckInput
+  yearResults?: Prisma.RequestBudgetCheckYearCreateNestedManyWithoutCheckInput
+  spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutCheckInput
+  commitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutSnapshotCheckInput
+}
+
+export type RequestBudgetCheckUncheckedCreateWithoutReserveConfirmationInput = {
+  id?: string
+  organizationId: string
+  requestId: string
+  number: number
+  trigger: $Enums.BudgetCheckTrigger
+  route: $Enums.BudgetCheckRoute
+  staleCostEvidence: boolean
+  planLineOverdue: boolean
+  periodClosed: boolean
+  offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
+  currency: string
+  bindingTotalMinor: bigint | number
+  ranByEmployeeId?: string | null
+  ranAt?: Date | string
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutCheckInput
+  yearResults?: Prisma.RequestBudgetCheckYearUncheckedCreateNestedManyWithoutCheckInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutCheckInput
+  commitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutSnapshotCheckInput
+}
+
+export type RequestBudgetCheckCreateOrConnectWithoutReserveConfirmationInput = {
+  where: Prisma.RequestBudgetCheckWhereUniqueInput
+  create: Prisma.XOR<Prisma.RequestBudgetCheckCreateWithoutReserveConfirmationInput, Prisma.RequestBudgetCheckUncheckedCreateWithoutReserveConfirmationInput>
+}
+
+export type RequestBudgetCheckUpsertWithoutReserveConfirmationInput = {
+  update: Prisma.XOR<Prisma.RequestBudgetCheckUpdateWithoutReserveConfirmationInput, Prisma.RequestBudgetCheckUncheckedUpdateWithoutReserveConfirmationInput>
+  create: Prisma.XOR<Prisma.RequestBudgetCheckCreateWithoutReserveConfirmationInput, Prisma.RequestBudgetCheckUncheckedCreateWithoutReserveConfirmationInput>
+  where?: Prisma.RequestBudgetCheckWhereInput
+}
+
+export type RequestBudgetCheckUpdateToOneWithWhereWithoutReserveConfirmationInput = {
+  where?: Prisma.RequestBudgetCheckWhereInput
+  data: Prisma.XOR<Prisma.RequestBudgetCheckUpdateWithoutReserveConfirmationInput, Prisma.RequestBudgetCheckUncheckedUpdateWithoutReserveConfirmationInput>
+}
+
+export type RequestBudgetCheckUpdateWithoutReserveConfirmationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.IntFieldUpdateOperationsInput | number
+  trigger?: Prisma.EnumBudgetCheckTriggerFieldUpdateOperationsInput | $Enums.BudgetCheckTrigger
+  route?: Prisma.EnumBudgetCheckRouteFieldUpdateOperationsInput | $Enums.BudgetCheckRoute
+  staleCostEvidence?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
+  request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetChecksNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
+  ranBy?: Prisma.EmployeeUpdateOneWithoutRequestBudgetChecksRunNestedInput
+  financeReviews?: Prisma.RequestFinanceReviewUpdateManyWithoutCheckNestedInput
+  yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
+  spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
+  commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+}
+
+export type RequestBudgetCheckUncheckedUpdateWithoutReserveConfirmationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.IntFieldUpdateOperationsInput | number
+  trigger?: Prisma.EnumBudgetCheckTriggerFieldUpdateOperationsInput | $Enums.BudgetCheckTrigger
+  route?: Prisma.EnumBudgetCheckRouteFieldUpdateOperationsInput | $Enums.BudgetCheckRoute
+  staleCostEvidence?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutCheckNestedInput
+  yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
 }
 
@@ -1530,6 +1949,11 @@ export type RequestBudgetCheckCreateManyCurrencyRecordInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
   ranAt?: Date | string
@@ -1544,6 +1968,11 @@ export type RequestBudgetCheckUpdateWithoutCurrencyRecordInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -1553,6 +1982,7 @@ export type RequestBudgetCheckUpdateWithoutCurrencyRecordInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutCurrencyRecordInput = {
@@ -1566,6 +1996,11 @@ export type RequestBudgetCheckUncheckedUpdateWithoutCurrencyRecordInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1573,6 +2008,7 @@ export type RequestBudgetCheckUncheckedUpdateWithoutCurrencyRecordInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordInput = {
@@ -1586,6 +2022,11 @@ export type RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1601,6 +2042,11 @@ export type RequestBudgetCheckCreateManyOrganizationInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -1616,6 +2062,11 @@ export type RequestBudgetCheckUpdateWithoutOrganizationInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetChecksNestedInput
@@ -1625,6 +2076,7 @@ export type RequestBudgetCheckUpdateWithoutOrganizationInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutOrganizationInput = {
@@ -1637,6 +2089,11 @@ export type RequestBudgetCheckUncheckedUpdateWithoutOrganizationInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1645,6 +2102,7 @@ export type RequestBudgetCheckUncheckedUpdateWithoutOrganizationInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1657,6 +2115,11 @@ export type RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1674,6 +2137,11 @@ export type RequestBudgetCheckCreateManyRanByInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranAt?: Date | string
@@ -1688,6 +2156,11 @@ export type RequestBudgetCheckUpdateWithoutRanByInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -1697,6 +2170,7 @@ export type RequestBudgetCheckUpdateWithoutRanByInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutRanByInput = {
@@ -1710,6 +2184,11 @@ export type RequestBudgetCheckUncheckedUpdateWithoutRanByInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1717,6 +2196,7 @@ export type RequestBudgetCheckUncheckedUpdateWithoutRanByInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateManyWithoutRanByInput = {
@@ -1730,6 +2210,11 @@ export type RequestBudgetCheckUncheckedUpdateManyWithoutRanByInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1745,6 +2230,11 @@ export type RequestBudgetCheckCreateManyRequestInput = {
   planLineOverdue: boolean
   periodClosed: boolean
   offPlan: boolean
+  outcome?: $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckCreateblockReasonsInput | string[]
+  overBaseByMinor?: bigint | number | null
+  overByMinor?: bigint | number | null
+  costCenterId?: string | null
   currency: string
   bindingTotalMinor: bigint | number
   ranByEmployeeId?: string | null
@@ -1760,6 +2250,11 @@ export type RequestBudgetCheckUpdateWithoutRequestInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRequestBudgetChecksNestedInput
@@ -1769,6 +2264,7 @@ export type RequestBudgetCheckUpdateWithoutRequestInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateWithoutRequestInput = {
@@ -1781,6 +2277,11 @@ export type RequestBudgetCheckUncheckedUpdateWithoutRequestInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1789,6 +2290,7 @@ export type RequestBudgetCheckUncheckedUpdateWithoutRequestInput = {
   yearResults?: Prisma.RequestBudgetCheckYearUncheckedUpdateManyWithoutCheckNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutCheckNestedInput
   commitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutCheckNestedInput
 }
 
 export type RequestBudgetCheckUncheckedUpdateManyWithoutRequestInput = {
@@ -1801,6 +2303,11 @@ export type RequestBudgetCheckUncheckedUpdateManyWithoutRequestInput = {
   planLineOverdue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   periodClosed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  outcome?: Prisma.NullableEnumBudgetCheckOutcomeFieldUpdateOperationsInput | $Enums.BudgetCheckOutcome | null
+  blockReasons?: Prisma.RequestBudgetCheckUpdateblockReasonsInput | string[]
+  overBaseByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  overByMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bindingTotalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ranByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1876,6 +2383,11 @@ export type RequestBudgetCheckSelect<ExtArgs extends runtime.Types.Extensions.In
   planLineOverdue?: boolean
   periodClosed?: boolean
   offPlan?: boolean
+  outcome?: boolean
+  blockReasons?: boolean
+  overBaseByMinor?: boolean
+  overByMinor?: boolean
+  costCenterId?: boolean
   currency?: boolean
   bindingTotalMinor?: boolean
   ranByEmployeeId?: boolean
@@ -1888,6 +2400,7 @@ export type RequestBudgetCheckSelect<ExtArgs extends runtime.Types.Extensions.In
   yearResults?: boolean | Prisma.RequestBudgetCheck$yearResultsArgs<ExtArgs>
   spendDecisions?: boolean | Prisma.RequestBudgetCheck$spendDecisionsArgs<ExtArgs>
   commitments?: boolean | Prisma.RequestBudgetCheck$commitmentsArgs<ExtArgs>
+  reserveConfirmation?: boolean | Prisma.RequestBudgetCheck$reserveConfirmationArgs<ExtArgs>
   _count?: boolean | Prisma.RequestBudgetCheckCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["requestBudgetCheck"]>
 
@@ -1902,6 +2415,11 @@ export type RequestBudgetCheckSelectCreateManyAndReturn<ExtArgs extends runtime.
   planLineOverdue?: boolean
   periodClosed?: boolean
   offPlan?: boolean
+  outcome?: boolean
+  blockReasons?: boolean
+  overBaseByMinor?: boolean
+  overByMinor?: boolean
+  costCenterId?: boolean
   currency?: boolean
   bindingTotalMinor?: boolean
   ranByEmployeeId?: boolean
@@ -1923,6 +2441,11 @@ export type RequestBudgetCheckSelectUpdateManyAndReturn<ExtArgs extends runtime.
   planLineOverdue?: boolean
   periodClosed?: boolean
   offPlan?: boolean
+  outcome?: boolean
+  blockReasons?: boolean
+  overBaseByMinor?: boolean
+  overByMinor?: boolean
+  costCenterId?: boolean
   currency?: boolean
   bindingTotalMinor?: boolean
   ranByEmployeeId?: boolean
@@ -1944,13 +2467,18 @@ export type RequestBudgetCheckSelectScalar = {
   planLineOverdue?: boolean
   periodClosed?: boolean
   offPlan?: boolean
+  outcome?: boolean
+  blockReasons?: boolean
+  overBaseByMinor?: boolean
+  overByMinor?: boolean
+  costCenterId?: boolean
   currency?: boolean
   bindingTotalMinor?: boolean
   ranByEmployeeId?: boolean
   ranAt?: boolean
 }
 
-export type RequestBudgetCheckOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "number" | "trigger" | "route" | "staleCostEvidence" | "planLineOverdue" | "periodClosed" | "offPlan" | "currency" | "bindingTotalMinor" | "ranByEmployeeId" | "ranAt", ExtArgs["result"]["requestBudgetCheck"]>
+export type RequestBudgetCheckOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "number" | "trigger" | "route" | "staleCostEvidence" | "planLineOverdue" | "periodClosed" | "offPlan" | "outcome" | "blockReasons" | "overBaseByMinor" | "overByMinor" | "costCenterId" | "currency" | "bindingTotalMinor" | "ranByEmployeeId" | "ranAt", ExtArgs["result"]["requestBudgetCheck"]>
 export type RequestBudgetCheckInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
@@ -1960,6 +2488,7 @@ export type RequestBudgetCheckInclude<ExtArgs extends runtime.Types.Extensions.I
   yearResults?: boolean | Prisma.RequestBudgetCheck$yearResultsArgs<ExtArgs>
   spendDecisions?: boolean | Prisma.RequestBudgetCheck$spendDecisionsArgs<ExtArgs>
   commitments?: boolean | Prisma.RequestBudgetCheck$commitmentsArgs<ExtArgs>
+  reserveConfirmation?: boolean | Prisma.RequestBudgetCheck$reserveConfirmationArgs<ExtArgs>
   _count?: boolean | Prisma.RequestBudgetCheckCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RequestBudgetCheckIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1986,6 +2515,7 @@ export type $RequestBudgetCheckPayload<ExtArgs extends runtime.Types.Extensions.
     yearResults: Prisma.$RequestBudgetCheckYearPayload<ExtArgs>[]
     spendDecisions: Prisma.$SpendDecisionPayload<ExtArgs>[]
     commitments: Prisma.$BudgetCommitmentPayload<ExtArgs>[]
+    reserveConfirmation: Prisma.$RequestReserveConfirmationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1998,6 +2528,11 @@ export type $RequestBudgetCheckPayload<ExtArgs extends runtime.Types.Extensions.
     planLineOverdue: boolean
     periodClosed: boolean
     offPlan: boolean
+    outcome: $Enums.BudgetCheckOutcome | null
+    blockReasons: string[]
+    overBaseByMinor: bigint | null
+    overByMinor: bigint | null
+    costCenterId: string | null
     currency: string
     bindingTotalMinor: bigint
     ranByEmployeeId: string | null
@@ -2404,6 +2939,7 @@ export interface Prisma__RequestBudgetCheckClient<T, Null = never, ExtArgs exten
   yearResults<T extends Prisma.RequestBudgetCheck$yearResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestBudgetCheck$yearResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestBudgetCheckYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   spendDecisions<T extends Prisma.RequestBudgetCheck$spendDecisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestBudgetCheck$spendDecisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SpendDecisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   commitments<T extends Prisma.RequestBudgetCheck$commitmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestBudgetCheck$commitmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reserveConfirmation<T extends Prisma.RequestBudgetCheck$reserveConfirmationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestBudgetCheck$reserveConfirmationArgs<ExtArgs>>): Prisma.Prisma__RequestReserveConfirmationClient<runtime.Types.Result.GetResult<Prisma.$RequestReserveConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2443,6 +2979,11 @@ export interface RequestBudgetCheckFieldRefs {
   readonly planLineOverdue: Prisma.FieldRef<"RequestBudgetCheck", 'Boolean'>
   readonly periodClosed: Prisma.FieldRef<"RequestBudgetCheck", 'Boolean'>
   readonly offPlan: Prisma.FieldRef<"RequestBudgetCheck", 'Boolean'>
+  readonly outcome: Prisma.FieldRef<"RequestBudgetCheck", 'BudgetCheckOutcome'>
+  readonly blockReasons: Prisma.FieldRef<"RequestBudgetCheck", 'String[]'>
+  readonly overBaseByMinor: Prisma.FieldRef<"RequestBudgetCheck", 'BigInt'>
+  readonly overByMinor: Prisma.FieldRef<"RequestBudgetCheck", 'BigInt'>
+  readonly costCenterId: Prisma.FieldRef<"RequestBudgetCheck", 'String'>
   readonly currency: Prisma.FieldRef<"RequestBudgetCheck", 'String'>
   readonly bindingTotalMinor: Prisma.FieldRef<"RequestBudgetCheck", 'BigInt'>
   readonly ranByEmployeeId: Prisma.FieldRef<"RequestBudgetCheck", 'String'>
@@ -2960,6 +3501,25 @@ export type RequestBudgetCheck$commitmentsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.BudgetCommitmentScalarFieldEnum | Prisma.BudgetCommitmentScalarFieldEnum[]
+}
+
+/**
+ * RequestBudgetCheck.reserveConfirmation
+ */
+export type RequestBudgetCheck$reserveConfirmationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequestReserveConfirmation
+   */
+  select?: Prisma.RequestReserveConfirmationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RequestReserveConfirmation
+   */
+  omit?: Prisma.RequestReserveConfirmationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RequestReserveConfirmationInclude<ExtArgs> | null
+  where?: Prisma.RequestReserveConfirmationWhereInput
 }
 
 /**

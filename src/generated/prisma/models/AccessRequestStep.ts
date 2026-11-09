@@ -312,6 +312,7 @@ export type AccessRequestStepWhereInput = {
   financeReview?: Prisma.XOR<Prisma.RequestFinanceReviewNullableScalarRelationFilter, Prisma.RequestFinanceReviewWhereInput> | null
   spendDecision?: Prisma.XOR<Prisma.SpendDecisionNullableScalarRelationFilter, Prisma.SpendDecisionWhereInput> | null
   budgetInformation?: Prisma.BudgetInformationRequestListRelationFilter
+  reserveConfirmation?: Prisma.XOR<Prisma.RequestReserveConfirmationNullableScalarRelationFilter, Prisma.RequestReserveConfirmationWhereInput> | null
   controlledWaitAlerts?: Prisma.ControlledWaitAlertListRelationFilter
 }
 
@@ -339,6 +340,7 @@ export type AccessRequestStepOrderByWithRelationInput = {
   financeReview?: Prisma.RequestFinanceReviewOrderByWithRelationInput
   spendDecision?: Prisma.SpendDecisionOrderByWithRelationInput
   budgetInformation?: Prisma.BudgetInformationRequestOrderByRelationAggregateInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationOrderByWithRelationInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertOrderByRelationAggregateInput
 }
 
@@ -370,6 +372,7 @@ export type AccessRequestStepWhereUniqueInput = Prisma.AtLeast<{
   financeReview?: Prisma.XOR<Prisma.RequestFinanceReviewNullableScalarRelationFilter, Prisma.RequestFinanceReviewWhereInput> | null
   spendDecision?: Prisma.XOR<Prisma.SpendDecisionNullableScalarRelationFilter, Prisma.SpendDecisionWhereInput> | null
   budgetInformation?: Prisma.BudgetInformationRequestListRelationFilter
+  reserveConfirmation?: Prisma.XOR<Prisma.RequestReserveConfirmationNullableScalarRelationFilter, Prisma.RequestReserveConfirmationWhereInput> | null
   controlledWaitAlerts?: Prisma.ControlledWaitAlertListRelationFilter
 }, "id" | "requestId_sequence">
 
@@ -439,6 +442,7 @@ export type AccessRequestStepCreateInput = {
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -464,6 +468,7 @@ export type AccessRequestStepUncheckedCreateInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -489,6 +494,7 @@ export type AccessRequestStepUpdateInput = {
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -514,6 +520,7 @@ export type AccessRequestStepUncheckedUpdateInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -817,6 +824,20 @@ export type AccessRequestStepUpdateOneRequiredWithoutSpendDecisionNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestStepUpdateToOneWithWhereWithoutSpendDecisionInput, Prisma.AccessRequestStepUpdateWithoutSpendDecisionInput>, Prisma.AccessRequestStepUncheckedUpdateWithoutSpendDecisionInput>
 }
 
+export type AccessRequestStepCreateNestedOneWithoutReserveConfirmationInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestStepCreateWithoutReserveConfirmationInput, Prisma.AccessRequestStepUncheckedCreateWithoutReserveConfirmationInput>
+  connectOrCreate?: Prisma.AccessRequestStepCreateOrConnectWithoutReserveConfirmationInput
+  connect?: Prisma.AccessRequestStepWhereUniqueInput
+}
+
+export type AccessRequestStepUpdateOneRequiredWithoutReserveConfirmationNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestStepCreateWithoutReserveConfirmationInput, Prisma.AccessRequestStepUncheckedCreateWithoutReserveConfirmationInput>
+  connectOrCreate?: Prisma.AccessRequestStepCreateOrConnectWithoutReserveConfirmationInput
+  upsert?: Prisma.AccessRequestStepUpsertWithoutReserveConfirmationInput
+  connect?: Prisma.AccessRequestStepWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestStepUpdateToOneWithWhereWithoutReserveConfirmationInput, Prisma.AccessRequestStepUpdateWithoutReserveConfirmationInput>, Prisma.AccessRequestStepUncheckedUpdateWithoutReserveConfirmationInput>
+}
+
 export type AccessRequestStepCreateNestedOneWithoutBudgetInformationInput = {
   create?: Prisma.XOR<Prisma.AccessRequestStepCreateWithoutBudgetInformationInput, Prisma.AccessRequestStepUncheckedCreateWithoutBudgetInformationInput>
   connectOrCreate?: Prisma.AccessRequestStepCreateOrConnectWithoutBudgetInformationInput
@@ -866,6 +887,7 @@ export type AccessRequestStepCreateWithoutAssigneeInput = {
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -890,6 +912,7 @@ export type AccessRequestStepUncheckedCreateWithoutAssigneeInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -961,6 +984,7 @@ export type AccessRequestStepCreateWithoutRequestInput = {
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -985,6 +1009,7 @@ export type AccessRequestStepUncheckedCreateWithoutRequestInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -1035,6 +1060,7 @@ export type AccessRequestStepCreateWithoutLinesInput = {
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -1059,6 +1085,7 @@ export type AccessRequestStepUncheckedCreateWithoutLinesInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -1099,6 +1126,7 @@ export type AccessRequestStepUpdateWithoutLinesInput = {
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1123,6 +1151,7 @@ export type AccessRequestStepUncheckedUpdateWithoutLinesInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -1147,6 +1176,7 @@ export type AccessRequestStepCreateWithoutLineDecisionsInput = {
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -1171,6 +1201,7 @@ export type AccessRequestStepUncheckedCreateWithoutLineDecisionsInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -1211,6 +1242,7 @@ export type AccessRequestStepUpdateWithoutLineDecisionsInput = {
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1235,6 +1267,7 @@ export type AccessRequestStepUncheckedUpdateWithoutLineDecisionsInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -1259,6 +1292,7 @@ export type AccessRequestStepCreateWithoutApprovalRecordInput = {
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -1283,6 +1317,7 @@ export type AccessRequestStepUncheckedCreateWithoutApprovalRecordInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -1323,6 +1358,7 @@ export type AccessRequestStepUpdateWithoutApprovalRecordInput = {
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1347,6 +1383,7 @@ export type AccessRequestStepUncheckedUpdateWithoutApprovalRecordInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -1371,6 +1408,7 @@ export type AccessRequestStepCreateWithoutFinanceReviewInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -1395,6 +1433,7 @@ export type AccessRequestStepUncheckedCreateWithoutFinanceReviewInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -1435,6 +1474,7 @@ export type AccessRequestStepUpdateWithoutFinanceReviewInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUpdateManyWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1459,6 +1499,7 @@ export type AccessRequestStepUncheckedUpdateWithoutFinanceReviewInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -1483,6 +1524,7 @@ export type AccessRequestStepCreateWithoutSpendDecisionInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutStepInput
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -1507,6 +1549,7 @@ export type AccessRequestStepUncheckedCreateWithoutSpendDecisionInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutStepInput
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -1547,6 +1590,7 @@ export type AccessRequestStepUpdateWithoutSpendDecisionInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUpdateManyWithoutStepNestedInput
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1570,6 +1614,123 @@ export type AccessRequestStepUncheckedUpdateWithoutSpendDecisionInput = {
   lines?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutNeedStepNestedInput
   lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutStepNestedInput
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
+}
+
+export type AccessRequestStepCreateWithoutReserveConfirmationInput = {
+  id?: string
+  kind: $Enums.AccessRequestStepKind
+  sequence: number
+  state: $Enums.AccessRequestStepState
+  routingRow: number
+  waitingReason?: string | null
+  samePersonAsSpend?: boolean
+  noIndependentReview?: boolean
+  slaWorkingDays: number
+  createdAt?: Date | string
+  assignedAt?: Date | string | null
+  decidedAt?: Date | string | null
+  waitingSince?: Date | string | null
+  request: Prisma.AccessRequestCreateNestedOneWithoutStepsInput
+  assignee?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestStepsAssignedInput
+  approvalRecord?: Prisma.ApprovalRecordCreateNestedOneWithoutStepInput
+  lines?: Prisma.AccessRequestLineCreateNestedManyWithoutNeedStepInput
+  lineDecisions?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutStepInput
+  financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
+  spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
+  budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
+}
+
+export type AccessRequestStepUncheckedCreateWithoutReserveConfirmationInput = {
+  id?: string
+  requestId: string
+  kind: $Enums.AccessRequestStepKind
+  sequence: number
+  state: $Enums.AccessRequestStepState
+  assigneeEmployeeId?: string | null
+  routingRow: number
+  waitingReason?: string | null
+  samePersonAsSpend?: boolean
+  noIndependentReview?: boolean
+  slaWorkingDays: number
+  createdAt?: Date | string
+  assignedAt?: Date | string | null
+  decidedAt?: Date | string | null
+  waitingSince?: Date | string | null
+  approvalRecord?: Prisma.ApprovalRecordUncheckedCreateNestedOneWithoutStepInput
+  lines?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutNeedStepInput
+  lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutStepInput
+  financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
+  spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
+}
+
+export type AccessRequestStepCreateOrConnectWithoutReserveConfirmationInput = {
+  where: Prisma.AccessRequestStepWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccessRequestStepCreateWithoutReserveConfirmationInput, Prisma.AccessRequestStepUncheckedCreateWithoutReserveConfirmationInput>
+}
+
+export type AccessRequestStepUpsertWithoutReserveConfirmationInput = {
+  update: Prisma.XOR<Prisma.AccessRequestStepUpdateWithoutReserveConfirmationInput, Prisma.AccessRequestStepUncheckedUpdateWithoutReserveConfirmationInput>
+  create: Prisma.XOR<Prisma.AccessRequestStepCreateWithoutReserveConfirmationInput, Prisma.AccessRequestStepUncheckedCreateWithoutReserveConfirmationInput>
+  where?: Prisma.AccessRequestStepWhereInput
+}
+
+export type AccessRequestStepUpdateToOneWithWhereWithoutReserveConfirmationInput = {
+  where?: Prisma.AccessRequestStepWhereInput
+  data: Prisma.XOR<Prisma.AccessRequestStepUpdateWithoutReserveConfirmationInput, Prisma.AccessRequestStepUncheckedUpdateWithoutReserveConfirmationInput>
+}
+
+export type AccessRequestStepUpdateWithoutReserveConfirmationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumAccessRequestStepKindFieldUpdateOperationsInput | $Enums.AccessRequestStepKind
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  state?: Prisma.EnumAccessRequestStepStateFieldUpdateOperationsInput | $Enums.AccessRequestStepState
+  routingRow?: Prisma.IntFieldUpdateOperationsInput | number
+  waitingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  samePersonAsSpend?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  noIndependentReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  slaWorkingDays?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  waitingSince?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  request?: Prisma.AccessRequestUpdateOneRequiredWithoutStepsNestedInput
+  assignee?: Prisma.EmployeeUpdateOneWithoutAccessRequestStepsAssignedNestedInput
+  approvalRecord?: Prisma.ApprovalRecordUpdateOneWithoutStepNestedInput
+  lines?: Prisma.AccessRequestLineUpdateManyWithoutNeedStepNestedInput
+  lineDecisions?: Prisma.AccessRequestLineDecisionUpdateManyWithoutStepNestedInput
+  financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
+  spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
+}
+
+export type AccessRequestStepUncheckedUpdateWithoutReserveConfirmationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumAccessRequestStepKindFieldUpdateOperationsInput | $Enums.AccessRequestStepKind
+  sequence?: Prisma.IntFieldUpdateOperationsInput | number
+  state?: Prisma.EnumAccessRequestStepStateFieldUpdateOperationsInput | $Enums.AccessRequestStepState
+  assigneeEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  routingRow?: Prisma.IntFieldUpdateOperationsInput | number
+  waitingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  samePersonAsSpend?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  noIndependentReview?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  slaWorkingDays?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  waitingSince?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRecord?: Prisma.ApprovalRecordUncheckedUpdateOneWithoutStepNestedInput
+  lines?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutNeedStepNestedInput
+  lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutStepNestedInput
+  financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
+  spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
@@ -1595,6 +1756,7 @@ export type AccessRequestStepCreateWithoutBudgetInformationInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutStepInput
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutStepInput
 }
 
@@ -1619,6 +1781,7 @@ export type AccessRequestStepUncheckedCreateWithoutBudgetInformationInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutStepInput
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutStepInput
 }
 
@@ -1659,6 +1822,7 @@ export type AccessRequestStepUpdateWithoutBudgetInformationInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUpdateManyWithoutStepNestedInput
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1683,6 +1847,7 @@ export type AccessRequestStepUncheckedUpdateWithoutBudgetInformationInput = {
   lineDecisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutStepNestedInput
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -1708,6 +1873,7 @@ export type AccessRequestStepCreateWithoutControlledWaitAlertsInput = {
   financeReview?: Prisma.RequestFinanceReviewCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationCreateNestedOneWithoutSpendStepInput
 }
 
 export type AccessRequestStepUncheckedCreateWithoutControlledWaitAlertsInput = {
@@ -1732,6 +1898,7 @@ export type AccessRequestStepUncheckedCreateWithoutControlledWaitAlertsInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedCreateNestedOneWithoutStepInput
   spendDecision?: Prisma.SpendDecisionUncheckedCreateNestedOneWithoutStepInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutStepInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedCreateNestedOneWithoutSpendStepInput
 }
 
 export type AccessRequestStepCreateOrConnectWithoutControlledWaitAlertsInput = {
@@ -1772,6 +1939,7 @@ export type AccessRequestStepUpdateWithoutControlledWaitAlertsInput = {
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
 }
 
 export type AccessRequestStepUncheckedUpdateWithoutControlledWaitAlertsInput = {
@@ -1796,6 +1964,7 @@ export type AccessRequestStepUncheckedUpdateWithoutControlledWaitAlertsInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
 }
 
 export type AccessRequestStepCreateManyAssigneeInput = {
@@ -1836,6 +2005,7 @@ export type AccessRequestStepUpdateWithoutAssigneeInput = {
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1860,6 +2030,7 @@ export type AccessRequestStepUncheckedUpdateWithoutAssigneeInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -1918,6 +2089,7 @@ export type AccessRequestStepUpdateWithoutRequestInput = {
   financeReview?: Prisma.RequestFinanceReviewUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutStepNestedInput
 }
 
@@ -1942,6 +2114,7 @@ export type AccessRequestStepUncheckedUpdateWithoutRequestInput = {
   financeReview?: Prisma.RequestFinanceReviewUncheckedUpdateOneWithoutStepNestedInput
   spendDecision?: Prisma.SpendDecisionUncheckedUpdateOneWithoutStepNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutStepNestedInput
+  reserveConfirmation?: Prisma.RequestReserveConfirmationUncheckedUpdateOneWithoutSpendStepNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutStepNestedInput
 }
 
@@ -2044,6 +2217,7 @@ export type AccessRequestStepSelect<ExtArgs extends runtime.Types.Extensions.Int
   financeReview?: boolean | Prisma.AccessRequestStep$financeReviewArgs<ExtArgs>
   spendDecision?: boolean | Prisma.AccessRequestStep$spendDecisionArgs<ExtArgs>
   budgetInformation?: boolean | Prisma.AccessRequestStep$budgetInformationArgs<ExtArgs>
+  reserveConfirmation?: boolean | Prisma.AccessRequestStep$reserveConfirmationArgs<ExtArgs>
   controlledWaitAlerts?: boolean | Prisma.AccessRequestStep$controlledWaitAlertsArgs<ExtArgs>
   _count?: boolean | Prisma.AccessRequestStepCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequestStep"]>
@@ -2116,6 +2290,7 @@ export type AccessRequestStepInclude<ExtArgs extends runtime.Types.Extensions.In
   financeReview?: boolean | Prisma.AccessRequestStep$financeReviewArgs<ExtArgs>
   spendDecision?: boolean | Prisma.AccessRequestStep$spendDecisionArgs<ExtArgs>
   budgetInformation?: boolean | Prisma.AccessRequestStep$budgetInformationArgs<ExtArgs>
+  reserveConfirmation?: boolean | Prisma.AccessRequestStep$reserveConfirmationArgs<ExtArgs>
   controlledWaitAlerts?: boolean | Prisma.AccessRequestStep$controlledWaitAlertsArgs<ExtArgs>
   _count?: boolean | Prisma.AccessRequestStepCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -2139,6 +2314,7 @@ export type $AccessRequestStepPayload<ExtArgs extends runtime.Types.Extensions.I
     financeReview: Prisma.$RequestFinanceReviewPayload<ExtArgs> | null
     spendDecision: Prisma.$SpendDecisionPayload<ExtArgs> | null
     budgetInformation: Prisma.$BudgetInformationRequestPayload<ExtArgs>[]
+    reserveConfirmation: Prisma.$RequestReserveConfirmationPayload<ExtArgs> | null
     controlledWaitAlerts: Prisma.$ControlledWaitAlertPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2559,6 +2735,7 @@ export interface Prisma__AccessRequestStepClient<T, Null = never, ExtArgs extend
   financeReview<T extends Prisma.AccessRequestStep$financeReviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestStep$financeReviewArgs<ExtArgs>>): Prisma.Prisma__RequestFinanceReviewClient<runtime.Types.Result.GetResult<Prisma.$RequestFinanceReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   spendDecision<T extends Prisma.AccessRequestStep$spendDecisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestStep$spendDecisionArgs<ExtArgs>>): Prisma.Prisma__SpendDecisionClient<runtime.Types.Result.GetResult<Prisma.$SpendDecisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   budgetInformation<T extends Prisma.AccessRequestStep$budgetInformationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestStep$budgetInformationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetInformationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reserveConfirmation<T extends Prisma.AccessRequestStep$reserveConfirmationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestStep$reserveConfirmationArgs<ExtArgs>>): Prisma.Prisma__RequestReserveConfirmationClient<runtime.Types.Result.GetResult<Prisma.$RequestReserveConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   controlledWaitAlerts<T extends Prisma.AccessRequestStep$controlledWaitAlertsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestStep$controlledWaitAlertsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ControlledWaitAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3150,6 +3327,25 @@ export type AccessRequestStep$budgetInformationArgs<ExtArgs extends runtime.Type
   take?: number
   skip?: number
   distinct?: Prisma.BudgetInformationRequestScalarFieldEnum | Prisma.BudgetInformationRequestScalarFieldEnum[]
+}
+
+/**
+ * AccessRequestStep.reserveConfirmation
+ */
+export type AccessRequestStep$reserveConfirmationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequestReserveConfirmation
+   */
+  select?: Prisma.RequestReserveConfirmationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RequestReserveConfirmation
+   */
+  omit?: Prisma.RequestReserveConfirmationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RequestReserveConfirmationInclude<ExtArgs> | null
+  where?: Prisma.RequestReserveConfirmationWhereInput
 }
 
 /**

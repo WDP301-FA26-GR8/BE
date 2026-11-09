@@ -59,6 +59,24 @@ export const BudgetRepeatCycle = {
 export type BudgetRepeatCycle = (typeof BudgetRepeatCycle)[keyof typeof BudgetRepeatCycle]
 
 
+export const BudgetLineType = {
+  RENEW: 'RENEW',
+  CHANGE: 'CHANGE',
+  NEW: 'NEW',
+  CANCEL: 'CANCEL'
+} as const
+
+export type BudgetLineType = (typeof BudgetLineType)[keyof typeof BudgetLineType]
+
+
+export const BudgetVersionOrigin = {
+  PROPOSAL: 'PROPOSAL',
+  BASELINE_NO_HEAD: 'BASELINE_NO_HEAD'
+} as const
+
+export type BudgetVersionOrigin = (typeof BudgetVersionOrigin)[keyof typeof BudgetVersionOrigin]
+
+
 export const BudgetVersionKind = {
   INITIAL: 'INITIAL',
   REVISION: 'REVISION'
@@ -96,6 +114,14 @@ export const CommitmentState = {
 } as const
 
 export type CommitmentState = (typeof CommitmentState)[keyof typeof CommitmentState]
+
+
+export const CommitmentOrigin = {
+  APPROVAL: 'APPROVAL',
+  YEAR_START: 'YEAR_START'
+} as const
+
+export type CommitmentOrigin = (typeof CommitmentOrigin)[keyof typeof CommitmentOrigin]
 
 
 export const CommitmentReleaseReason = {
@@ -527,6 +553,15 @@ export const ProvisioningFailureKind = {
 } as const
 
 export type ProvisioningFailureKind = (typeof ProvisioningFailureKind)[keyof typeof ProvisioningFailureKind]
+
+
+export const ProvisioningPurchaseKind = {
+  POOL_TOP_UP: 'POOL_TOP_UP',
+  KEY_PURCHASE: 'KEY_PURCHASE',
+  K1_SUBSCRIPTION: 'K1_SUBSCRIPTION'
+} as const
+
+export type ProvisioningPurchaseKind = (typeof ProvisioningPurchaseKind)[keyof typeof ProvisioningPurchaseKind]
 
 
 export const RevocationSource = {
@@ -1003,6 +1038,14 @@ export const AccessRequestCancelCause = {
 export type AccessRequestCancelCause = (typeof AccessRequestCancelCause)[keyof typeof AccessRequestCancelCause]
 
 
+export const AccessRequestPriceKind = {
+  RECURRING: 'RECURRING',
+  ONE_TIME: 'ONE_TIME'
+} as const
+
+export type AccessRequestPriceKind = (typeof AccessRequestPriceKind)[keyof typeof AccessRequestPriceKind]
+
+
 export const AccessRequestPricingStatus = {
   NOT_APPLICABLE: 'NOT_APPLICABLE',
   PRICED: 'PRICED',
@@ -1153,10 +1196,20 @@ export const BudgetCheckTrigger = {
   PLAN_LINE_MOVED: 'PLAN_LINE_MOVED',
   BUDGET_VERSION_APPROVED: 'BUDGET_VERSION_APPROVED',
   SPEND_DECISION: 'SPEND_DECISION',
-  FINANCE_OUTCOME_WHILE_WAITING: 'FINANCE_OUTCOME_WHILE_WAITING'
+  FINANCE_OUTCOME_WHILE_WAITING: 'FINANCE_OUTCOME_WHILE_WAITING',
+  RESERVE_CONFIRMATION: 'RESERVE_CONFIRMATION'
 } as const
 
 export type BudgetCheckTrigger = (typeof BudgetCheckTrigger)[keyof typeof BudgetCheckTrigger]
+
+
+export const BudgetCheckOutcome = {
+  WITHIN_BASE: 'WITHIN_BASE',
+  USES_RESERVE: 'USES_RESERVE',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type BudgetCheckOutcome = (typeof BudgetCheckOutcome)[keyof typeof BudgetCheckOutcome]
 
 
 export const BudgetCheckRoute = {
@@ -1200,6 +1253,7 @@ export type FinanceDirection = (typeof FinanceDirection)[keyof typeof FinanceDir
 export const SpendBatchItemOutcome = {
   SENT_TO_APPROVER: 'SENT_TO_APPROVER',
   SENT_TO_FINANCE: 'SENT_TO_FINANCE',
+  AWAITING_RESERVE_CONFIRMATION: 'AWAITING_RESERVE_CONFIRMATION',
   STOPPED: 'STOPPED'
 } as const
 
@@ -1254,7 +1308,8 @@ export const SlaReminderRole = {
   HOLDER: 'HOLDER',
   SUPERIOR: 'SUPERIOR',
   FINANCE_QUESTION: 'FINANCE_QUESTION',
-  SUPER_ADMIN: 'SUPER_ADMIN'
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  REQUESTER: 'REQUESTER'
 } as const
 
 export type SlaReminderRole = (typeof SlaReminderRole)[keyof typeof SlaReminderRole]
