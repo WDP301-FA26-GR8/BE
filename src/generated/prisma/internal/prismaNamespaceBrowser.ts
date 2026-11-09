@@ -65,6 +65,8 @@ export const ModelName = {
   Invoice: 'Invoice',
   BudgetVersionHistoryEntry: 'BudgetVersionHistoryEntry',
   BudgetAttachment: 'BudgetAttachment',
+  BudgetCycle: 'BudgetCycle',
+  BudgetDepartmentCeiling: 'BudgetDepartmentCeiling',
   VendorGroup: 'VendorGroup',
   VendorServiceLine: 'VendorServiceLine',
   VendorDictionaryProposal: 'VendorDictionaryProposal',
@@ -124,6 +126,7 @@ export const ModelName = {
   SubscriptionRenewal: 'SubscriptionRenewal',
   SubscriptionRenewalReleasedSeat: 'SubscriptionRenewalReleasedSeat',
   SubscriptionDeadlineEvent: 'SubscriptionDeadlineEvent',
+  PoolGrantAvoidedCost: 'PoolGrantAvoidedCost',
   EmailOutbox: 'EmailOutbox',
   InAppNotification: 'InAppNotification',
   HeldDepartmentNotification: 'HeldDepartmentNotification',
@@ -167,6 +170,7 @@ export const ModelName = {
   RequestSupplement: 'RequestSupplement',
   RequestSupplementDrop: 'RequestSupplementDrop',
   SpendDecision: 'SpendDecision',
+  RequestReserveConfirmation: 'RequestReserveConfirmation',
   BudgetInformationRequest: 'BudgetInformationRequest',
   ControlledWaitAlert: 'ControlledWaitAlert',
   AccessRequestServiceAccount: 'AccessRequestServiceAccount',
@@ -176,6 +180,7 @@ export const ModelName = {
   StepSlaReminder: 'StepSlaReminder',
   StepSlaReminderRecipient: 'StepSlaReminderRecipient',
   CongestionIncident: 'CongestionIncident',
+  YearStartCommitmentRun: 'YearStartCommitmentRun',
   CollectorAllowlistVersion: 'CollectorAllowlistVersion',
   CollectorAllowlistEntry: 'CollectorAllowlistEntry',
   AiUsageDay: 'AiUsageDay',
@@ -293,7 +298,11 @@ export const BudgetProposalLineScalarFieldEnum = {
   servicePeriodMonths: 'servicePeriodMonths',
   repeatCycle: 'repeatCycle',
   quoteValidUntil: 'quoteValidUntil',
-  note: 'note'
+  note: 'note',
+  lineType: 'lineType',
+  zbb: 'zbb',
+  priorityRank: 'priorityRank',
+  overCeilingMinor: 'overCeilingMinor'
 } as const
 
 export type BudgetProposalLineScalarFieldEnum = (typeof BudgetProposalLineScalarFieldEnum)[keyof typeof BudgetProposalLineScalarFieldEnum]
@@ -310,6 +319,8 @@ export const BudgetVersionScalarFieldEnum = {
   proposalId: 'proposalId',
   basedOnVersionId: 'basedOnVersionId',
   baseMinor: 'baseMinor',
+  baseReason: 'baseReason',
+  origin: 'origin',
   reserveMinor: 'reserveMinor',
   reservePercent: 'reservePercent',
   reserveReason: 'reserveReason',
@@ -351,7 +362,10 @@ export const BudgetVersionLineScalarFieldEnum = {
   repeatCycle: 'repeatCycle',
   quoteValidUntil: 'quoteValidUntil',
   financeComment: 'financeComment',
-  adjustmentReason: 'adjustmentReason'
+  adjustmentReason: 'adjustmentReason',
+  lineType: 'lineType',
+  zbb: 'zbb',
+  priorityRank: 'priorityRank'
 } as const
 
 export type BudgetVersionLineScalarFieldEnum = (typeof BudgetVersionLineScalarFieldEnum)[keyof typeof BudgetVersionLineScalarFieldEnum]
@@ -406,6 +420,8 @@ export const BudgetCommitmentScalarFieldEnum = {
   releasedAt: 'releasedAt',
   appliedMinor: 'appliedMinor',
   snapshotCheckId: 'snapshotCheckId',
+  origin: 'origin',
+  seatMonthlyMinor: 'seatMonthlyMinor',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -488,6 +504,41 @@ export const BudgetAttachmentScalarFieldEnum = {
 } as const
 
 export type BudgetAttachmentScalarFieldEnum = (typeof BudgetAttachmentScalarFieldEnum)[keyof typeof BudgetAttachmentScalarFieldEnum]
+
+
+export const BudgetCycleScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  year: 'year',
+  submissionDeadline: 'submissionDeadline',
+  decisionDeadline: 'decisionDeadline',
+  annualCeilingMinor: 'annualCeilingMinor',
+  sharedPoolReserveMinor: 'sharedPoolReserveMinor',
+  currency: 'currency',
+  priorities: 'priorities',
+  openedByEmployeeId: 'openedByEmployeeId',
+  openedAt: 'openedAt',
+  publishedByEmployeeId: 'publishedByEmployeeId',
+  publishedAt: 'publishedAt',
+  firstPublishedAt: 'firstPublishedAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BudgetCycleScalarFieldEnum = (typeof BudgetCycleScalarFieldEnum)[keyof typeof BudgetCycleScalarFieldEnum]
+
+
+export const BudgetDepartmentCeilingScalarFieldEnum = {
+  cycleId: 'cycleId',
+  departmentId: 'departmentId',
+  signedCommitmentsMinor: 'signedCommitmentsMinor',
+  plannedSeatsMinor: 'plannedSeatsMinor',
+  priorityMinor: 'priorityMinor',
+  totalMinor: 'totalMinor',
+  publishedTotalMinor: 'publishedTotalMinor',
+  explanation: 'explanation'
+} as const
+
+export type BudgetDepartmentCeilingScalarFieldEnum = (typeof BudgetDepartmentCeilingScalarFieldEnum)[keyof typeof BudgetDepartmentCeilingScalarFieldEnum]
 
 
 export const VendorGroupScalarFieldEnum = {
@@ -648,6 +699,7 @@ export const SubscriptionScalarFieldEnum = {
   priceReportingCurrency: 'priceReportingCurrency',
   priceExchangeRateId: 'priceExchangeRateId',
   billingCycle: 'billingCycle',
+  commitmentTermMonths: 'commitmentTermMonths',
   startDate: 'startDate',
   endDate: 'endDate',
   renewalDate: 'renewalDate',
@@ -655,6 +707,9 @@ export const SubscriptionScalarFieldEnum = {
   noticePeriodDays: 'noticePeriodDays',
   autoRenew: 'autoRenew',
   allowsMidTermReduction: 'allowsMidTermReduction',
+  responsibleItAdminEmployeeId: 'responsibleItAdminEmployeeId',
+  vendorMinimumSeats: 'vendorMinimumSeats',
+  isPrimaryForPlan: 'isPrimaryForPlan',
   ownerDepartmentId: 'ownerDepartmentId',
   renewedFromId: 'renewedFromId',
   createdAt: 'createdAt',
@@ -1184,6 +1239,7 @@ export const LicenseAssignmentScalarFieldEnum = {
   validFromBasis: 'validFromBasis',
   validUntil: 'validUntil',
   expectedEndDate: 'expectedEndDate',
+  grantedOn: 'grantedOn',
   failedAt: 'failedAt',
   cancelledAt: 'cancelledAt',
   predecessorId: 'predecessorId',
@@ -1239,6 +1295,9 @@ export const ProvisioningTaskScalarFieldEnum = {
   accessCutOn: 'accessCutOn',
   accessEvidence: 'accessEvidence',
   completionNote: 'completionNote',
+  purchaseKind: 'purchaseKind',
+  purchaseReason: 'purchaseReason',
+  purchasedAt: 'purchasedAt',
   createdByAppUserId: 'createdByAppUserId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1466,6 +1525,25 @@ export const SubscriptionDeadlineEventScalarFieldEnum = {
 export type SubscriptionDeadlineEventScalarFieldEnum = (typeof SubscriptionDeadlineEventScalarFieldEnum)[keyof typeof SubscriptionDeadlineEventScalarFieldEnum]
 
 
+export const PoolGrantAvoidedCostScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  provisioningTaskId: 'provisioningTaskId',
+  assignmentId: 'assignmentId',
+  requestId: 'requestId',
+  planId: 'planId',
+  provisioningType: 'provisioningType',
+  months: 'months',
+  unitMinor: 'unitMinor',
+  amountMinor: 'amountMinor',
+  currency: 'currency',
+  recordedOn: 'recordedOn',
+  createdAt: 'createdAt'
+} as const
+
+export type PoolGrantAvoidedCostScalarFieldEnum = (typeof PoolGrantAvoidedCostScalarFieldEnum)[keyof typeof PoolGrantAvoidedCostScalarFieldEnum]
+
+
 export const EmailOutboxScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
@@ -1586,7 +1664,8 @@ export const DepartmentScalarFieldEnum = {
   itAdminEmployeeId: 'itAdminEmployeeId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deactivatedAt: 'deactivatedAt'
+  deactivatedAt: 'deactivatedAt',
+  effectiveFrom: 'effectiveFrom'
 } as const
 
 export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
@@ -1939,6 +2018,10 @@ export const AccessRequestScalarFieldEnum = {
   costCenterId: 'costCenterId',
   businessReason: 'businessReason',
   termMonths: 'termMonths',
+  amountMonths: 'amountMonths',
+  priceKind: 'priceKind',
+  grantedOn: 'grantedOn',
+  nextYearAmountMinor: 'nextYearAmountMinor',
   pricingStatus: 'pricingStatus',
   priceMissingReason: 'priceMissingReason',
   expectedSpendOn: 'expectedSpendOn',
@@ -2131,6 +2214,11 @@ export const RequestBudgetCheckScalarFieldEnum = {
   planLineOverdue: 'planLineOverdue',
   periodClosed: 'periodClosed',
   offPlan: 'offPlan',
+  outcome: 'outcome',
+  blockReasons: 'blockReasons',
+  overBaseByMinor: 'overBaseByMinor',
+  overByMinor: 'overByMinor',
+  costCenterId: 'costCenterId',
   currency: 'currency',
   bindingTotalMinor: 'bindingTotalMinor',
   ranByEmployeeId: 'ranByEmployeeId',
@@ -2151,7 +2239,11 @@ export const RequestBudgetCheckYearScalarFieldEnum = {
   spentMinor: 'spentMinor',
   remainingMinor: 'remainingMinor',
   shareBasisPoints: 'shareBasisPoints',
-  pendingMinor: 'pendingMinor'
+  pendingMinor: 'pendingMinor',
+  baseMinor: 'baseMinor',
+  reserveMinor: 'reserveMinor',
+  remainingBaseMinor: 'remainingBaseMinor',
+  remainingWithReserveMinor: 'remainingWithReserveMinor'
 } as const
 
 export type RequestBudgetCheckYearScalarFieldEnum = (typeof RequestBudgetCheckYearScalarFieldEnum)[keyof typeof RequestBudgetCheckYearScalarFieldEnum]
@@ -2210,6 +2302,8 @@ export const RequestSupplementScalarFieldEnum = {
   afterBudgetYear: 'afterBudgetYear',
   beforeAmountMinor: 'beforeAmountMinor',
   afterAmountMinor: 'afterAmountMinor',
+  beforeExpectedEndDate: 'beforeExpectedEndDate',
+  afterExpectedEndDate: 'afterExpectedEndDate',
   currency: 'currency'
 } as const
 
@@ -2237,6 +2331,20 @@ export const SpendDecisionScalarFieldEnum = {
 } as const
 
 export type SpendDecisionScalarFieldEnum = (typeof SpendDecisionScalarFieldEnum)[keyof typeof SpendDecisionScalarFieldEnum]
+
+
+export const RequestReserveConfirmationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  requestId: 'requestId',
+  checkId: 'checkId',
+  spendStepId: 'spendStepId',
+  reason: 'reason',
+  confirmedByEmployeeId: 'confirmedByEmployeeId',
+  confirmedAt: 'confirmedAt'
+} as const
+
+export type RequestReserveConfirmationScalarFieldEnum = (typeof RequestReserveConfirmationScalarFieldEnum)[keyof typeof RequestReserveConfirmationScalarFieldEnum]
 
 
 export const BudgetInformationRequestScalarFieldEnum = {
@@ -2380,6 +2488,19 @@ export const CongestionIncidentScalarFieldEnum = {
 } as const
 
 export type CongestionIncidentScalarFieldEnum = (typeof CongestionIncidentScalarFieldEnum)[keyof typeof CongestionIncidentScalarFieldEnum]
+
+
+export const YearStartCommitmentRunScalarFieldEnum = {
+  organizationId: 'organizationId',
+  year: 'year',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  runCount: 'runCount',
+  createdCount: 'createdCount',
+  skippedCount: 'skippedCount'
+} as const
+
+export type YearStartCommitmentRunScalarFieldEnum = (typeof YearStartCommitmentRunScalarFieldEnum)[keyof typeof YearStartCommitmentRunScalarFieldEnum]
 
 
 export const CollectorAllowlistVersionScalarFieldEnum = {

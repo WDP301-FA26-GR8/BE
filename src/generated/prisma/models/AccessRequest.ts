@@ -28,6 +28,8 @@ export type AggregateAccessRequest = {
 
 export type AccessRequestAvgAggregateOutputType = {
   termMonths: number | null
+  amountMonths: number | null
+  nextYearAmountMinor: number | null
   budgetYear: number | null
   amountMinor: number | null
   unitPriceMinor: number | null
@@ -36,6 +38,8 @@ export type AccessRequestAvgAggregateOutputType = {
 
 export type AccessRequestSumAggregateOutputType = {
   termMonths: number | null
+  amountMonths: number | null
+  nextYearAmountMinor: bigint | null
   budgetYear: number | null
   amountMinor: bigint | null
   unitPriceMinor: bigint | null
@@ -54,6 +58,10 @@ export type AccessRequestMinAggregateOutputType = {
   costCenterId: string | null
   businessReason: string | null
   termMonths: number | null
+  amountMonths: number | null
+  priceKind: $Enums.AccessRequestPriceKind | null
+  grantedOn: Date | null
+  nextYearAmountMinor: bigint | null
   pricingStatus: $Enums.AccessRequestPricingStatus | null
   priceMissingReason: string | null
   expectedSpendOn: Date | null
@@ -95,6 +103,10 @@ export type AccessRequestMaxAggregateOutputType = {
   costCenterId: string | null
   businessReason: string | null
   termMonths: number | null
+  amountMonths: number | null
+  priceKind: $Enums.AccessRequestPriceKind | null
+  grantedOn: Date | null
+  nextYearAmountMinor: bigint | null
   pricingStatus: $Enums.AccessRequestPricingStatus | null
   priceMissingReason: string | null
   expectedSpendOn: Date | null
@@ -136,6 +148,10 @@ export type AccessRequestCountAggregateOutputType = {
   costCenterId: number
   businessReason: number
   termMonths: number
+  amountMonths: number
+  priceKind: number
+  grantedOn: number
+  nextYearAmountMinor: number
   pricingStatus: number
   priceMissingReason: number
   expectedSpendOn: number
@@ -171,6 +187,8 @@ export type AccessRequestCountAggregateOutputType = {
 
 export type AccessRequestAvgAggregateInputType = {
   termMonths?: true
+  amountMonths?: true
+  nextYearAmountMinor?: true
   budgetYear?: true
   amountMinor?: true
   unitPriceMinor?: true
@@ -179,6 +197,8 @@ export type AccessRequestAvgAggregateInputType = {
 
 export type AccessRequestSumAggregateInputType = {
   termMonths?: true
+  amountMonths?: true
+  nextYearAmountMinor?: true
   budgetYear?: true
   amountMinor?: true
   unitPriceMinor?: true
@@ -197,6 +217,10 @@ export type AccessRequestMinAggregateInputType = {
   costCenterId?: true
   businessReason?: true
   termMonths?: true
+  amountMonths?: true
+  priceKind?: true
+  grantedOn?: true
+  nextYearAmountMinor?: true
   pricingStatus?: true
   priceMissingReason?: true
   expectedSpendOn?: true
@@ -238,6 +262,10 @@ export type AccessRequestMaxAggregateInputType = {
   costCenterId?: true
   businessReason?: true
   termMonths?: true
+  amountMonths?: true
+  priceKind?: true
+  grantedOn?: true
+  nextYearAmountMinor?: true
   pricingStatus?: true
   priceMissingReason?: true
   expectedSpendOn?: true
@@ -279,6 +307,10 @@ export type AccessRequestCountAggregateInputType = {
   costCenterId?: true
   businessReason?: true
   termMonths?: true
+  amountMonths?: true
+  priceKind?: true
+  grantedOn?: true
+  nextYearAmountMinor?: true
   pricingStatus?: true
   priceMissingReason?: true
   expectedSpendOn?: true
@@ -408,7 +440,11 @@ export type AccessRequestGroupByOutputType = {
   departmentId: string
   costCenterId: string | null
   businessReason: string
-  termMonths: number
+  termMonths: number | null
+  amountMonths: number | null
+  priceKind: $Enums.AccessRequestPriceKind | null
+  grantedOn: Date | null
+  nextYearAmountMinor: bigint | null
   pricingStatus: $Enums.AccessRequestPricingStatus
   priceMissingReason: string | null
   expectedSpendOn: Date | null
@@ -474,7 +510,11 @@ export type AccessRequestWhereInput = {
   departmentId?: Prisma.UuidFilter<"AccessRequest"> | string
   costCenterId?: Prisma.UuidNullableFilter<"AccessRequest"> | string | null
   businessReason?: Prisma.StringFilter<"AccessRequest"> | string
-  termMonths?: Prisma.IntFilter<"AccessRequest"> | number
+  termMonths?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  amountMonths?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  priceKind?: Prisma.EnumAccessRequestPriceKindNullableFilter<"AccessRequest"> | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
+  nextYearAmountMinor?: Prisma.BigIntNullableFilter<"AccessRequest"> | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFilter<"AccessRequest"> | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   expectedSpendOn?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
@@ -526,6 +566,7 @@ export type AccessRequestWhereInput = {
   spendDecisions?: Prisma.SpendDecisionListRelationFilter
   budgetCommitments?: Prisma.BudgetCommitmentListRelationFilter
   budgetInformation?: Prisma.BudgetInformationRequestListRelationFilter
+  reserveConfirmations?: Prisma.RequestReserveConfirmationListRelationFilter
   controlledWaitAlerts?: Prisma.ControlledWaitAlertListRelationFilter
   stepSlaReminders?: Prisma.StepSlaReminderListRelationFilter
   serviceAccount?: Prisma.XOR<Prisma.AccessRequestServiceAccountNullableScalarRelationFilter, Prisma.AccessRequestServiceAccountWhereInput> | null
@@ -544,7 +585,11 @@ export type AccessRequestOrderByWithRelationInput = {
   departmentId?: Prisma.SortOrder
   costCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
   businessReason?: Prisma.SortOrder
-  termMonths?: Prisma.SortOrder
+  termMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  amountMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceKind?: Prisma.SortOrderInput | Prisma.SortOrder
+  grantedOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  nextYearAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   pricingStatus?: Prisma.SortOrder
   priceMissingReason?: Prisma.SortOrderInput | Prisma.SortOrder
   expectedSpendOn?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -596,6 +641,7 @@ export type AccessRequestOrderByWithRelationInput = {
   spendDecisions?: Prisma.SpendDecisionOrderByRelationAggregateInput
   budgetCommitments?: Prisma.BudgetCommitmentOrderByRelationAggregateInput
   budgetInformation?: Prisma.BudgetInformationRequestOrderByRelationAggregateInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationOrderByRelationAggregateInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertOrderByRelationAggregateInput
   stepSlaReminders?: Prisma.StepSlaReminderOrderByRelationAggregateInput
   serviceAccount?: Prisma.AccessRequestServiceAccountOrderByWithRelationInput
@@ -617,7 +663,11 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
   departmentId?: Prisma.UuidFilter<"AccessRequest"> | string
   costCenterId?: Prisma.UuidNullableFilter<"AccessRequest"> | string | null
   businessReason?: Prisma.StringFilter<"AccessRequest"> | string
-  termMonths?: Prisma.IntFilter<"AccessRequest"> | number
+  termMonths?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  amountMonths?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  priceKind?: Prisma.EnumAccessRequestPriceKindNullableFilter<"AccessRequest"> | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
+  nextYearAmountMinor?: Prisma.BigIntNullableFilter<"AccessRequest"> | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFilter<"AccessRequest"> | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   expectedSpendOn?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
@@ -669,6 +719,7 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
   spendDecisions?: Prisma.SpendDecisionListRelationFilter
   budgetCommitments?: Prisma.BudgetCommitmentListRelationFilter
   budgetInformation?: Prisma.BudgetInformationRequestListRelationFilter
+  reserveConfirmations?: Prisma.RequestReserveConfirmationListRelationFilter
   controlledWaitAlerts?: Prisma.ControlledWaitAlertListRelationFilter
   stepSlaReminders?: Prisma.StepSlaReminderListRelationFilter
   serviceAccount?: Prisma.XOR<Prisma.AccessRequestServiceAccountNullableScalarRelationFilter, Prisma.AccessRequestServiceAccountWhereInput> | null
@@ -687,7 +738,11 @@ export type AccessRequestOrderByWithAggregationInput = {
   departmentId?: Prisma.SortOrder
   costCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
   businessReason?: Prisma.SortOrder
-  termMonths?: Prisma.SortOrder
+  termMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  amountMonths?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceKind?: Prisma.SortOrderInput | Prisma.SortOrder
+  grantedOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  nextYearAmountMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   pricingStatus?: Prisma.SortOrder
   priceMissingReason?: Prisma.SortOrderInput | Prisma.SortOrder
   expectedSpendOn?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -738,7 +793,11 @@ export type AccessRequestScalarWhereWithAggregatesInput = {
   departmentId?: Prisma.UuidWithAggregatesFilter<"AccessRequest"> | string
   costCenterId?: Prisma.UuidNullableWithAggregatesFilter<"AccessRequest"> | string | null
   businessReason?: Prisma.StringWithAggregatesFilter<"AccessRequest"> | string
-  termMonths?: Prisma.IntWithAggregatesFilter<"AccessRequest"> | number
+  termMonths?: Prisma.IntNullableWithAggregatesFilter<"AccessRequest"> | number | null
+  amountMonths?: Prisma.IntNullableWithAggregatesFilter<"AccessRequest"> | number | null
+  priceKind?: Prisma.EnumAccessRequestPriceKindNullableWithAggregatesFilter<"AccessRequest"> | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequest"> | Date | string | null
+  nextYearAmountMinor?: Prisma.BigIntNullableWithAggregatesFilter<"AccessRequest"> | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusWithAggregatesFilter<"AccessRequest"> | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
   expectedSpendOn?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequest"> | Date | string | null
@@ -776,7 +835,11 @@ export type AccessRequestCreateInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -825,6 +888,7 @@ export type AccessRequestCreateInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -843,7 +907,11 @@ export type AccessRequestUncheckedCreateInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -887,6 +955,7 @@ export type AccessRequestUncheckedCreateInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -900,7 +969,11 @@ export type AccessRequestUpdateInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -949,6 +1022,7 @@ export type AccessRequestUpdateInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -967,7 +1041,11 @@ export type AccessRequestUncheckedUpdateInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1011,6 +1089,7 @@ export type AccessRequestUncheckedUpdateInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -1029,7 +1108,11 @@ export type AccessRequestCreateManyInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -1067,7 +1150,11 @@ export type AccessRequestUpdateManyMutationInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1107,7 +1194,11 @@ export type AccessRequestUncheckedUpdateManyInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1166,6 +1257,10 @@ export type AccessRequestCountOrderByAggregateInput = {
   costCenterId?: Prisma.SortOrder
   businessReason?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  amountMonths?: Prisma.SortOrder
+  priceKind?: Prisma.SortOrder
+  grantedOn?: Prisma.SortOrder
+  nextYearAmountMinor?: Prisma.SortOrder
   pricingStatus?: Prisma.SortOrder
   priceMissingReason?: Prisma.SortOrder
   expectedSpendOn?: Prisma.SortOrder
@@ -1199,6 +1294,8 @@ export type AccessRequestCountOrderByAggregateInput = {
 
 export type AccessRequestAvgOrderByAggregateInput = {
   termMonths?: Prisma.SortOrder
+  amountMonths?: Prisma.SortOrder
+  nextYearAmountMinor?: Prisma.SortOrder
   budgetYear?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   unitPriceMinor?: Prisma.SortOrder
@@ -1217,6 +1314,10 @@ export type AccessRequestMaxOrderByAggregateInput = {
   costCenterId?: Prisma.SortOrder
   businessReason?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  amountMonths?: Prisma.SortOrder
+  priceKind?: Prisma.SortOrder
+  grantedOn?: Prisma.SortOrder
+  nextYearAmountMinor?: Prisma.SortOrder
   pricingStatus?: Prisma.SortOrder
   priceMissingReason?: Prisma.SortOrder
   expectedSpendOn?: Prisma.SortOrder
@@ -1258,6 +1359,10 @@ export type AccessRequestMinOrderByAggregateInput = {
   costCenterId?: Prisma.SortOrder
   businessReason?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  amountMonths?: Prisma.SortOrder
+  priceKind?: Prisma.SortOrder
+  grantedOn?: Prisma.SortOrder
+  nextYearAmountMinor?: Prisma.SortOrder
   pricingStatus?: Prisma.SortOrder
   priceMissingReason?: Prisma.SortOrder
   expectedSpendOn?: Prisma.SortOrder
@@ -1289,6 +1394,8 @@ export type AccessRequestMinOrderByAggregateInput = {
 
 export type AccessRequestSumOrderByAggregateInput = {
   termMonths?: Prisma.SortOrder
+  amountMonths?: Prisma.SortOrder
+  nextYearAmountMinor?: Prisma.SortOrder
   budgetYear?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   unitPriceMinor?: Prisma.SortOrder
@@ -1662,6 +1769,10 @@ export type EnumAccessRequestStateFieldUpdateOperationsInput = {
   set?: $Enums.AccessRequestState
 }
 
+export type NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput = {
+  set?: $Enums.AccessRequestPriceKind | null
+}
+
 export type EnumAccessRequestPricingStatusFieldUpdateOperationsInput = {
   set?: $Enums.AccessRequestPricingStatus
 }
@@ -1838,6 +1949,20 @@ export type AccessRequestUpdateOneRequiredWithoutSpendDecisionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestUpdateToOneWithWhereWithoutSpendDecisionsInput, Prisma.AccessRequestUpdateWithoutSpendDecisionsInput>, Prisma.AccessRequestUncheckedUpdateWithoutSpendDecisionsInput>
 }
 
+export type AccessRequestCreateNestedOneWithoutReserveConfirmationsInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutReserveConfirmationsInput, Prisma.AccessRequestUncheckedCreateWithoutReserveConfirmationsInput>
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutReserveConfirmationsInput
+  connect?: Prisma.AccessRequestWhereUniqueInput
+}
+
+export type AccessRequestUpdateOneRequiredWithoutReserveConfirmationsNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutReserveConfirmationsInput, Prisma.AccessRequestUncheckedCreateWithoutReserveConfirmationsInput>
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutReserveConfirmationsInput
+  upsert?: Prisma.AccessRequestUpsertWithoutReserveConfirmationsInput
+  connect?: Prisma.AccessRequestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestUpdateToOneWithWhereWithoutReserveConfirmationsInput, Prisma.AccessRequestUpdateWithoutReserveConfirmationsInput>, Prisma.AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput>
+}
+
 export type AccessRequestCreateNestedOneWithoutBudgetInformationInput = {
   create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutBudgetInformationInput, Prisma.AccessRequestUncheckedCreateWithoutBudgetInformationInput>
   connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutBudgetInformationInput
@@ -1930,7 +2055,11 @@ export type AccessRequestCreateWithoutBudgetCommitmentsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -1978,6 +2107,7 @@ export type AccessRequestCreateWithoutBudgetCommitmentsInput = {
   supplements?: Prisma.RequestSupplementCreateNestedManyWithoutRequestInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -1996,7 +2126,11 @@ export type AccessRequestUncheckedCreateWithoutBudgetCommitmentsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2039,6 +2173,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetCommitmentsInput = {
   supplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutRequestInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -2068,7 +2203,11 @@ export type AccessRequestUpdateWithoutBudgetCommitmentsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2116,6 +2255,7 @@ export type AccessRequestUpdateWithoutBudgetCommitmentsInput = {
   supplements?: Prisma.RequestSupplementUpdateManyWithoutRequestNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -2134,7 +2274,11 @@ export type AccessRequestUncheckedUpdateWithoutBudgetCommitmentsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2177,6 +2321,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetCommitmentsInput = {
   supplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutRequestNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -2190,7 +2335,11 @@ export type AccessRequestCreateWithoutPlanInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2238,6 +2387,7 @@ export type AccessRequestCreateWithoutPlanInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -2255,7 +2405,11 @@ export type AccessRequestUncheckedCreateWithoutPlanInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2299,6 +2453,7 @@ export type AccessRequestUncheckedCreateWithoutPlanInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -2346,7 +2501,11 @@ export type AccessRequestScalarWhereInput = {
   departmentId?: Prisma.UuidFilter<"AccessRequest"> | string
   costCenterId?: Prisma.UuidNullableFilter<"AccessRequest"> | string | null
   businessReason?: Prisma.StringFilter<"AccessRequest"> | string
-  termMonths?: Prisma.IntFilter<"AccessRequest"> | number
+  termMonths?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  amountMonths?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  priceKind?: Prisma.EnumAccessRequestPriceKindNullableFilter<"AccessRequest"> | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
+  nextYearAmountMinor?: Prisma.BigIntNullableFilter<"AccessRequest"> | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFilter<"AccessRequest"> | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   expectedSpendOn?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
@@ -2384,7 +2543,11 @@ export type AccessRequestCreateWithoutAmountCurrencyRecordInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2432,6 +2595,7 @@ export type AccessRequestCreateWithoutAmountCurrencyRecordInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -2450,7 +2614,11 @@ export type AccessRequestUncheckedCreateWithoutAmountCurrencyRecordInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2493,6 +2661,7 @@ export type AccessRequestUncheckedCreateWithoutAmountCurrencyRecordInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -2532,7 +2701,11 @@ export type AccessRequestCreateWithoutOrganizationInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2580,6 +2753,7 @@ export type AccessRequestCreateWithoutOrganizationInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -2597,7 +2771,11 @@ export type AccessRequestUncheckedCreateWithoutOrganizationInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2641,6 +2819,7 @@ export type AccessRequestUncheckedCreateWithoutOrganizationInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -2680,7 +2859,11 @@ export type AccessRequestCreateWithoutCostCenterInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2728,6 +2911,7 @@ export type AccessRequestCreateWithoutCostCenterInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -2745,7 +2929,11 @@ export type AccessRequestUncheckedCreateWithoutCostCenterInput = {
   requesterEmployeeId: string
   departmentId: string
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2789,6 +2977,7 @@ export type AccessRequestUncheckedCreateWithoutCostCenterInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -2828,7 +3017,11 @@ export type AccessRequestCreateWithoutDepartmentInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2876,6 +3069,7 @@ export type AccessRequestCreateWithoutDepartmentInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -2893,7 +3087,11 @@ export type AccessRequestUncheckedCreateWithoutDepartmentInput = {
   requesterEmployeeId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -2937,6 +3135,7 @@ export type AccessRequestUncheckedCreateWithoutDepartmentInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -2976,7 +3175,11 @@ export type AccessRequestCreateWithoutRequesterInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3024,6 +3227,7 @@ export type AccessRequestCreateWithoutRequesterInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -3041,7 +3245,11 @@ export type AccessRequestUncheckedCreateWithoutRequesterInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3085,6 +3293,7 @@ export type AccessRequestUncheckedCreateWithoutRequesterInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -3108,7 +3317,11 @@ export type AccessRequestCreateWithoutWithdrawnByInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3156,6 +3369,7 @@ export type AccessRequestCreateWithoutWithdrawnByInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -3174,7 +3388,11 @@ export type AccessRequestUncheckedCreateWithoutWithdrawnByInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3217,6 +3435,7 @@ export type AccessRequestUncheckedCreateWithoutWithdrawnByInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -3240,7 +3459,11 @@ export type AccessRequestCreateWithoutCancelledByInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3288,6 +3511,7 @@ export type AccessRequestCreateWithoutCancelledByInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -3306,7 +3530,11 @@ export type AccessRequestUncheckedCreateWithoutCancelledByInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3349,6 +3577,7 @@ export type AccessRequestUncheckedCreateWithoutCancelledByInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -3420,7 +3649,11 @@ export type AccessRequestCreateWithoutBeneficiariesInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3468,6 +3701,7 @@ export type AccessRequestCreateWithoutBeneficiariesInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -3486,7 +3720,11 @@ export type AccessRequestUncheckedCreateWithoutBeneficiariesInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3529,6 +3767,7 @@ export type AccessRequestUncheckedCreateWithoutBeneficiariesInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -3558,7 +3797,11 @@ export type AccessRequestUpdateWithoutBeneficiariesInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3606,6 +3849,7 @@ export type AccessRequestUpdateWithoutBeneficiariesInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -3624,7 +3868,11 @@ export type AccessRequestUncheckedUpdateWithoutBeneficiariesInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3667,6 +3915,7 @@ export type AccessRequestUncheckedUpdateWithoutBeneficiariesInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -3680,7 +3929,11 @@ export type AccessRequestCreateWithoutLinesInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3728,6 +3981,7 @@ export type AccessRequestCreateWithoutLinesInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -3746,7 +4000,11 @@ export type AccessRequestUncheckedCreateWithoutLinesInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3789,6 +4047,7 @@ export type AccessRequestUncheckedCreateWithoutLinesInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -3818,7 +4077,11 @@ export type AccessRequestUpdateWithoutLinesInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3866,6 +4129,7 @@ export type AccessRequestUpdateWithoutLinesInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -3884,7 +4148,11 @@ export type AccessRequestUncheckedUpdateWithoutLinesInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3927,6 +4195,7 @@ export type AccessRequestUncheckedUpdateWithoutLinesInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -3940,7 +4209,11 @@ export type AccessRequestCreateWithoutLineAmountsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -3988,6 +4261,7 @@ export type AccessRequestCreateWithoutLineAmountsInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -4006,7 +4280,11 @@ export type AccessRequestUncheckedCreateWithoutLineAmountsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -4049,6 +4327,7 @@ export type AccessRequestUncheckedCreateWithoutLineAmountsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -4078,7 +4357,11 @@ export type AccessRequestUpdateWithoutLineAmountsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4126,6 +4409,7 @@ export type AccessRequestUpdateWithoutLineAmountsInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -4144,7 +4428,11 @@ export type AccessRequestUncheckedUpdateWithoutLineAmountsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4187,6 +4475,7 @@ export type AccessRequestUncheckedUpdateWithoutLineAmountsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -4200,7 +4489,11 @@ export type AccessRequestCreateWithoutStepsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -4248,6 +4541,7 @@ export type AccessRequestCreateWithoutStepsInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -4266,7 +4560,11 @@ export type AccessRequestUncheckedCreateWithoutStepsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -4309,6 +4607,7 @@ export type AccessRequestUncheckedCreateWithoutStepsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -4338,7 +4637,11 @@ export type AccessRequestUpdateWithoutStepsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4386,6 +4689,7 @@ export type AccessRequestUpdateWithoutStepsInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -4404,7 +4708,11 @@ export type AccessRequestUncheckedUpdateWithoutStepsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4447,6 +4755,7 @@ export type AccessRequestUncheckedUpdateWithoutStepsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -4460,7 +4769,11 @@ export type AccessRequestCreateWithoutApprovalRecordsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -4508,6 +4821,7 @@ export type AccessRequestCreateWithoutApprovalRecordsInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -4526,7 +4840,11 @@ export type AccessRequestUncheckedCreateWithoutApprovalRecordsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -4569,6 +4887,7 @@ export type AccessRequestUncheckedCreateWithoutApprovalRecordsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -4598,7 +4917,11 @@ export type AccessRequestUpdateWithoutApprovalRecordsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4646,6 +4969,7 @@ export type AccessRequestUpdateWithoutApprovalRecordsInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -4664,7 +4988,11 @@ export type AccessRequestUncheckedUpdateWithoutApprovalRecordsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4707,6 +5035,7 @@ export type AccessRequestUncheckedUpdateWithoutApprovalRecordsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -4720,7 +5049,11 @@ export type AccessRequestCreateWithoutProposalInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -4768,6 +5101,7 @@ export type AccessRequestCreateWithoutProposalInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -4786,7 +5120,11 @@ export type AccessRequestUncheckedCreateWithoutProposalInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -4829,6 +5167,7 @@ export type AccessRequestUncheckedCreateWithoutProposalInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -4858,7 +5197,11 @@ export type AccessRequestUpdateWithoutProposalInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4906,6 +5249,7 @@ export type AccessRequestUpdateWithoutProposalInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -4924,7 +5268,11 @@ export type AccessRequestUncheckedUpdateWithoutProposalInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4967,6 +5315,7 @@ export type AccessRequestUncheckedUpdateWithoutProposalInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -4980,7 +5329,11 @@ export type AccessRequestCreateWithoutAssessmentInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5028,6 +5381,7 @@ export type AccessRequestCreateWithoutAssessmentInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -5046,7 +5400,11 @@ export type AccessRequestUncheckedCreateWithoutAssessmentInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5089,6 +5447,7 @@ export type AccessRequestUncheckedCreateWithoutAssessmentInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -5118,7 +5477,11 @@ export type AccessRequestUpdateWithoutAssessmentInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5166,6 +5529,7 @@ export type AccessRequestUpdateWithoutAssessmentInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -5184,7 +5548,11 @@ export type AccessRequestUncheckedUpdateWithoutAssessmentInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5227,6 +5595,7 @@ export type AccessRequestUncheckedUpdateWithoutAssessmentInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -5240,7 +5609,11 @@ export type AccessRequestCreateWithoutBudgetChecksInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5288,6 +5661,7 @@ export type AccessRequestCreateWithoutBudgetChecksInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -5306,7 +5680,11 @@ export type AccessRequestUncheckedCreateWithoutBudgetChecksInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5349,6 +5727,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetChecksInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -5378,7 +5757,11 @@ export type AccessRequestUpdateWithoutBudgetChecksInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5426,6 +5809,7 @@ export type AccessRequestUpdateWithoutBudgetChecksInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -5444,7 +5828,11 @@ export type AccessRequestUncheckedUpdateWithoutBudgetChecksInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5487,6 +5875,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetChecksInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -5500,7 +5889,11 @@ export type AccessRequestCreateWithoutFinanceReviewsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5548,6 +5941,7 @@ export type AccessRequestCreateWithoutFinanceReviewsInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -5566,7 +5960,11 @@ export type AccessRequestUncheckedCreateWithoutFinanceReviewsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5609,6 +6007,7 @@ export type AccessRequestUncheckedCreateWithoutFinanceReviewsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -5638,7 +6037,11 @@ export type AccessRequestUpdateWithoutFinanceReviewsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5686,6 +6089,7 @@ export type AccessRequestUpdateWithoutFinanceReviewsInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -5704,7 +6108,11 @@ export type AccessRequestUncheckedUpdateWithoutFinanceReviewsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5747,6 +6155,7 @@ export type AccessRequestUncheckedUpdateWithoutFinanceReviewsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -5760,7 +6169,11 @@ export type AccessRequestCreateWithoutBatchItemsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5808,6 +6221,7 @@ export type AccessRequestCreateWithoutBatchItemsInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -5826,7 +6240,11 @@ export type AccessRequestUncheckedCreateWithoutBatchItemsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -5869,6 +6287,7 @@ export type AccessRequestUncheckedCreateWithoutBatchItemsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -5898,7 +6317,11 @@ export type AccessRequestUpdateWithoutBatchItemsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5946,6 +6369,7 @@ export type AccessRequestUpdateWithoutBatchItemsInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -5964,7 +6388,11 @@ export type AccessRequestUncheckedUpdateWithoutBatchItemsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6007,6 +6435,7 @@ export type AccessRequestUncheckedUpdateWithoutBatchItemsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -6020,7 +6449,11 @@ export type AccessRequestCreateWithoutSupplementsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6068,6 +6501,7 @@ export type AccessRequestCreateWithoutSupplementsInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -6086,7 +6520,11 @@ export type AccessRequestUncheckedCreateWithoutSupplementsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6129,6 +6567,7 @@ export type AccessRequestUncheckedCreateWithoutSupplementsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -6158,7 +6597,11 @@ export type AccessRequestUpdateWithoutSupplementsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6206,6 +6649,7 @@ export type AccessRequestUpdateWithoutSupplementsInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -6224,7 +6668,11 @@ export type AccessRequestUncheckedUpdateWithoutSupplementsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6267,6 +6715,7 @@ export type AccessRequestUncheckedUpdateWithoutSupplementsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -6280,7 +6729,11 @@ export type AccessRequestCreateWithoutSpendDecisionsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6328,6 +6781,7 @@ export type AccessRequestCreateWithoutSpendDecisionsInput = {
   supplements?: Prisma.RequestSupplementCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -6346,7 +6800,11 @@ export type AccessRequestUncheckedCreateWithoutSpendDecisionsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6389,6 +6847,7 @@ export type AccessRequestUncheckedCreateWithoutSpendDecisionsInput = {
   supplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -6418,7 +6877,11 @@ export type AccessRequestUpdateWithoutSpendDecisionsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6466,6 +6929,7 @@ export type AccessRequestUpdateWithoutSpendDecisionsInput = {
   supplements?: Prisma.RequestSupplementUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -6484,7 +6948,11 @@ export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6527,6 +6995,7 @@ export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
   supplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -6534,13 +7003,17 @@ export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
-export type AccessRequestCreateWithoutBudgetInformationInput = {
+export type AccessRequestCreateWithoutReserveConfirmationsInput = {
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6588,6 +7061,7 @@ export type AccessRequestCreateWithoutBudgetInformationInput = {
   supplements?: Prisma.RequestSupplementCreateNestedManyWithoutRequestInput
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
+  budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -6595,7 +7069,7 @@ export type AccessRequestCreateWithoutBudgetInformationInput = {
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
 }
 
-export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
+export type AccessRequestUncheckedCreateWithoutReserveConfirmationsInput = {
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6606,7 +7080,11 @@ export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6649,6 +7127,287 @@ export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
   supplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutRequestInput
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
+  renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
+}
+
+export type AccessRequestCreateOrConnectWithoutReserveConfirmationsInput = {
+  where: Prisma.AccessRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutReserveConfirmationsInput, Prisma.AccessRequestUncheckedCreateWithoutReserveConfirmationsInput>
+}
+
+export type AccessRequestUpsertWithoutReserveConfirmationsInput = {
+  update: Prisma.XOR<Prisma.AccessRequestUpdateWithoutReserveConfirmationsInput, Prisma.AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput>
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutReserveConfirmationsInput, Prisma.AccessRequestUncheckedCreateWithoutReserveConfirmationsInput>
+  where?: Prisma.AccessRequestWhereInput
+}
+
+export type AccessRequestUpdateToOneWithWhereWithoutReserveConfirmationsInput = {
+  where?: Prisma.AccessRequestWhereInput
+  data: Prisma.XOR<Prisma.AccessRequestUpdateWithoutReserveConfirmationsInput, Prisma.AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput>
+}
+
+export type AccessRequestUpdateWithoutReserveConfirmationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
+  branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
+  state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
+  businessReason?: Prisma.StringFieldUpdateOperationsInput | string
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
+  priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planLinePosition?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  planLineConfirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  delegatedBatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  policy?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
+  cancelNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  spendQueuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutAccessRequestsNestedInput
+  plan?: Prisma.PlanUpdateOneWithoutAccessRequestsNestedInput
+  requester?: Prisma.EmployeeUpdateOneRequiredWithoutAccessRequestsMadeNestedInput
+  withdrawnBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestsWithdrawnNestedInput
+  cancelledBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestsCancelledNestedInput
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutAccessRequestsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneWithoutAccessRequestsNestedInput
+  amountCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAccessRequestAmountsNestedInput
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutRequestNestedInput
+  lines?: Prisma.AccessRequestLineUpdateManyWithoutRequestNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutRequestNestedInput
+  steps?: Prisma.AccessRequestStepUpdateManyWithoutRequestNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutRequestNestedInput
+  proposal?: Prisma.AccessRequestProposalUpdateOneWithoutRequestNestedInput
+  assessment?: Prisma.AccessRequestAssessmentUpdateOneWithoutRequestNestedInput
+  budgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutRequestNestedInput
+  financeReviews?: Prisma.RequestFinanceReviewUpdateManyWithoutRequestNestedInput
+  batchItems?: Prisma.SpendBatchItemUpdateManyWithoutRequestNestedInput
+  supplements?: Prisma.RequestSupplementUpdateManyWithoutRequestNestedInput
+  spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
+  renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+}
+
+export type AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
+  branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
+  state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
+  planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessReason?: Prisma.StringFieldUpdateOperationsInput | string
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
+  priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  amountCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planLinePosition?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  planLineConfirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  delegatedBatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  policy?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
+  cancelNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  spendQueuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutRequestNestedInput
+  lines?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutRequestNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutRequestNestedInput
+  steps?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutRequestNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutRequestNestedInput
+  proposal?: Prisma.AccessRequestProposalUncheckedUpdateOneWithoutRequestNestedInput
+  assessment?: Prisma.AccessRequestAssessmentUncheckedUpdateOneWithoutRequestNestedInput
+  budgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRequestNestedInput
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutRequestNestedInput
+  batchItems?: Prisma.SpendBatchItemUncheckedUpdateManyWithoutRequestNestedInput
+  supplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutRequestNestedInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
+  renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
+}
+
+export type AccessRequestCreateWithoutBudgetInformationInput = {
+  id?: string
+  type?: $Enums.AccessRequestType
+  branch: $Enums.AccessRequestBranch
+  state: $Enums.AccessRequestState
+  businessReason: string
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
+  pricingStatus?: $Enums.AccessRequestPricingStatus
+  priceMissingReason?: string | null
+  expectedSpendOn?: Date | string | null
+  budgetYear?: number | null
+  amountMinor?: bigint | number | null
+  unitPriceMinor?: bigint | number | null
+  billingCycle?: $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: string | null
+  planLinePosition?: number | null
+  planLineConfirmed?: boolean
+  offPlan?: boolean
+  delegatedBatchId?: string | null
+  expectedEndDate?: Date | string | null
+  policy: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Date | string | null
+  withdrawalReason?: string | null
+  withdrawnAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelCause?: $Enums.AccessRequestCancelCause | null
+  cancelNote?: string | null
+  grantCompletedAt?: Date | string | null
+  spendQueuedAt?: Date | string | null
+  createdByAppUserId: string
+  submittedAt?: Date | string | null
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutAccessRequestsInput
+  plan?: Prisma.PlanCreateNestedOneWithoutAccessRequestsInput
+  requester: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsMadeInput
+  withdrawnBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsWithdrawnInput
+  cancelledBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsCancelledInput
+  department: Prisma.DepartmentCreateNestedOneWithoutAccessRequestsInput
+  costCenter?: Prisma.CostCenterCreateNestedOneWithoutAccessRequestsInput
+  amountCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAccessRequestAmountsInput
+  beneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutRequestInput
+  lines?: Prisma.AccessRequestLineCreateNestedManyWithoutRequestInput
+  lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutRequestInput
+  steps?: Prisma.AccessRequestStepCreateNestedManyWithoutRequestInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutRequestInput
+  proposal?: Prisma.AccessRequestProposalCreateNestedOneWithoutRequestInput
+  assessment?: Prisma.AccessRequestAssessmentCreateNestedOneWithoutRequestInput
+  budgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRequestInput
+  financeReviews?: Prisma.RequestFinanceReviewCreateNestedManyWithoutRequestInput
+  batchItems?: Prisma.SpendBatchItemCreateNestedManyWithoutRequestInput
+  supplements?: Prisma.RequestSupplementCreateNestedManyWithoutRequestInput
+  spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
+  renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+}
+
+export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
+  id?: string
+  organizationId: string
+  type?: $Enums.AccessRequestType
+  branch: $Enums.AccessRequestBranch
+  state: $Enums.AccessRequestState
+  planId?: string | null
+  requesterEmployeeId: string
+  departmentId: string
+  costCenterId?: string | null
+  businessReason: string
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
+  pricingStatus?: $Enums.AccessRequestPricingStatus
+  priceMissingReason?: string | null
+  expectedSpendOn?: Date | string | null
+  budgetYear?: number | null
+  amountMinor?: bigint | number | null
+  amountCurrency?: string | null
+  unitPriceMinor?: bigint | number | null
+  billingCycle?: $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: string | null
+  planLinePosition?: number | null
+  planLineConfirmed?: boolean
+  offPlan?: boolean
+  delegatedBatchId?: string | null
+  expectedEndDate?: Date | string | null
+  policy: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Date | string | null
+  withdrawnByEmployeeId?: string | null
+  withdrawalReason?: string | null
+  withdrawnAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByEmployeeId?: string | null
+  cancelCause?: $Enums.AccessRequestCancelCause | null
+  cancelNote?: string | null
+  grantCompletedAt?: Date | string | null
+  spendQueuedAt?: Date | string | null
+  createdByAppUserId: string
+  submittedAt?: Date | string | null
+  updatedAt?: Date | string
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutRequestInput
+  lines?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutRequestInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutRequestInput
+  steps?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutRequestInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutRequestInput
+  proposal?: Prisma.AccessRequestProposalUncheckedCreateNestedOneWithoutRequestInput
+  assessment?: Prisma.AccessRequestAssessmentUncheckedCreateNestedOneWithoutRequestInput
+  budgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRequestInput
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutRequestInput
+  batchItems?: Prisma.SpendBatchItemUncheckedCreateNestedManyWithoutRequestInput
+  supplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutRequestInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -6678,7 +7437,11 @@ export type AccessRequestUpdateWithoutBudgetInformationInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6726,6 +7489,7 @@ export type AccessRequestUpdateWithoutBudgetInformationInput = {
   supplements?: Prisma.RequestSupplementUpdateManyWithoutRequestNestedInput
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -6744,7 +7508,11 @@ export type AccessRequestUncheckedUpdateWithoutBudgetInformationInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6787,6 +7555,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetInformationInput = {
   supplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutRequestNestedInput
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -6800,7 +7569,11 @@ export type AccessRequestCreateWithoutControlledWaitAlertsInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6849,6 +7622,7 @@ export type AccessRequestCreateWithoutControlledWaitAlertsInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
@@ -6866,7 +7640,11 @@ export type AccessRequestUncheckedCreateWithoutControlledWaitAlertsInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -6910,6 +7688,7 @@ export type AccessRequestUncheckedCreateWithoutControlledWaitAlertsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
@@ -6938,7 +7717,11 @@ export type AccessRequestUpdateWithoutControlledWaitAlertsInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6987,6 +7770,7 @@ export type AccessRequestUpdateWithoutControlledWaitAlertsInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
@@ -7004,7 +7788,11 @@ export type AccessRequestUncheckedUpdateWithoutControlledWaitAlertsInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7048,6 +7836,7 @@ export type AccessRequestUncheckedUpdateWithoutControlledWaitAlertsInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
@@ -7060,7 +7849,11 @@ export type AccessRequestCreateWithoutServiceAccountInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7109,6 +7902,7 @@ export type AccessRequestCreateWithoutServiceAccountInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
@@ -7126,7 +7920,11 @@ export type AccessRequestUncheckedCreateWithoutServiceAccountInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7170,6 +7968,7 @@ export type AccessRequestUncheckedCreateWithoutServiceAccountInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
@@ -7198,7 +7997,11 @@ export type AccessRequestUpdateWithoutServiceAccountInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7247,6 +8050,7 @@ export type AccessRequestUpdateWithoutServiceAccountInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
@@ -7264,7 +8068,11 @@ export type AccessRequestUncheckedUpdateWithoutServiceAccountInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7308,6 +8116,7 @@ export type AccessRequestUncheckedUpdateWithoutServiceAccountInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
@@ -7320,7 +8129,11 @@ export type AccessRequestCreateWithoutReturnsFromHereInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7369,6 +8182,7 @@ export type AccessRequestCreateWithoutReturnsFromHereInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -7386,7 +8200,11 @@ export type AccessRequestUncheckedCreateWithoutReturnsFromHereInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7430,6 +8248,7 @@ export type AccessRequestUncheckedCreateWithoutReturnsFromHereInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -7458,7 +8277,11 @@ export type AccessRequestUpdateWithoutReturnsFromHereInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7507,6 +8330,7 @@ export type AccessRequestUpdateWithoutReturnsFromHereInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -7524,7 +8348,11 @@ export type AccessRequestUncheckedUpdateWithoutReturnsFromHereInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7568,6 +8396,7 @@ export type AccessRequestUncheckedUpdateWithoutReturnsFromHereInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -7580,7 +8409,11 @@ export type AccessRequestCreateWithoutRenewalInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7629,6 +8462,7 @@ export type AccessRequestCreateWithoutRenewalInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
@@ -7646,7 +8480,11 @@ export type AccessRequestUncheckedCreateWithoutRenewalInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7690,6 +8528,7 @@ export type AccessRequestUncheckedCreateWithoutRenewalInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
@@ -7718,7 +8557,11 @@ export type AccessRequestUpdateWithoutRenewalInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7767,6 +8610,7 @@ export type AccessRequestUpdateWithoutRenewalInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -7784,7 +8628,11 @@ export type AccessRequestUncheckedUpdateWithoutRenewalInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7828,6 +8676,7 @@ export type AccessRequestUncheckedUpdateWithoutRenewalInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -7840,7 +8689,11 @@ export type AccessRequestCreateWithoutStepSlaRemindersInput = {
   branch: $Enums.AccessRequestBranch
   state: $Enums.AccessRequestState
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7889,6 +8742,7 @@ export type AccessRequestCreateWithoutStepSlaRemindersInput = {
   spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
@@ -7906,7 +8760,11 @@ export type AccessRequestUncheckedCreateWithoutStepSlaRemindersInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -7950,6 +8808,7 @@ export type AccessRequestUncheckedCreateWithoutStepSlaRemindersInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
@@ -7978,7 +8837,11 @@ export type AccessRequestUpdateWithoutStepSlaRemindersInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8027,6 +8890,7 @@ export type AccessRequestUpdateWithoutStepSlaRemindersInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
@@ -8044,7 +8908,11 @@ export type AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8088,6 +8956,7 @@ export type AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
@@ -8104,7 +8973,11 @@ export type AccessRequestCreateManyPlanInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -8142,7 +9015,11 @@ export type AccessRequestUpdateWithoutPlanInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8190,6 +9067,7 @@ export type AccessRequestUpdateWithoutPlanInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -8207,7 +9085,11 @@ export type AccessRequestUncheckedUpdateWithoutPlanInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8251,6 +9133,7 @@ export type AccessRequestUncheckedUpdateWithoutPlanInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -8268,7 +9151,11 @@ export type AccessRequestUncheckedUpdateManyWithoutPlanInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8311,7 +9198,11 @@ export type AccessRequestCreateManyAmountCurrencyRecordInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -8348,7 +9239,11 @@ export type AccessRequestUpdateWithoutAmountCurrencyRecordInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8396,6 +9291,7 @@ export type AccessRequestUpdateWithoutAmountCurrencyRecordInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -8414,7 +9310,11 @@ export type AccessRequestUncheckedUpdateWithoutAmountCurrencyRecordInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8457,6 +9357,7 @@ export type AccessRequestUncheckedUpdateWithoutAmountCurrencyRecordInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -8475,7 +9376,11 @@ export type AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8516,7 +9421,11 @@ export type AccessRequestCreateManyOrganizationInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -8554,7 +9463,11 @@ export type AccessRequestUpdateWithoutOrganizationInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8602,6 +9515,7 @@ export type AccessRequestUpdateWithoutOrganizationInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -8619,7 +9533,11 @@ export type AccessRequestUncheckedUpdateWithoutOrganizationInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8663,6 +9581,7 @@ export type AccessRequestUncheckedUpdateWithoutOrganizationInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -8680,7 +9599,11 @@ export type AccessRequestUncheckedUpdateManyWithoutOrganizationInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8722,7 +9645,11 @@ export type AccessRequestCreateManyCostCenterInput = {
   requesterEmployeeId: string
   departmentId: string
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -8760,7 +9687,11 @@ export type AccessRequestUpdateWithoutCostCenterInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8808,6 +9739,7 @@ export type AccessRequestUpdateWithoutCostCenterInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -8825,7 +9757,11 @@ export type AccessRequestUncheckedUpdateWithoutCostCenterInput = {
   requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8869,6 +9805,7 @@ export type AccessRequestUncheckedUpdateWithoutCostCenterInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -8886,7 +9823,11 @@ export type AccessRequestUncheckedUpdateManyWithoutCostCenterInput = {
   requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8928,7 +9869,11 @@ export type AccessRequestCreateManyDepartmentInput = {
   requesterEmployeeId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -8966,7 +9911,11 @@ export type AccessRequestUpdateWithoutDepartmentInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9014,6 +9963,7 @@ export type AccessRequestUpdateWithoutDepartmentInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -9031,7 +9981,11 @@ export type AccessRequestUncheckedUpdateWithoutDepartmentInput = {
   requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9075,6 +10029,7 @@ export type AccessRequestUncheckedUpdateWithoutDepartmentInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -9092,7 +10047,11 @@ export type AccessRequestUncheckedUpdateManyWithoutDepartmentInput = {
   requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9134,7 +10093,11 @@ export type AccessRequestCreateManyRequesterInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -9177,7 +10140,11 @@ export type AccessRequestCreateManyWithdrawnByInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -9219,7 +10186,11 @@ export type AccessRequestCreateManyCancelledByInput = {
   departmentId: string
   costCenterId?: string | null
   businessReason: string
-  termMonths: number
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
   pricingStatus?: $Enums.AccessRequestPricingStatus
   priceMissingReason?: string | null
   expectedSpendOn?: Date | string | null
@@ -9256,7 +10227,11 @@ export type AccessRequestUpdateWithoutRequesterInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9304,6 +10279,7 @@ export type AccessRequestUpdateWithoutRequesterInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -9321,7 +10297,11 @@ export type AccessRequestUncheckedUpdateWithoutRequesterInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9365,6 +10345,7 @@ export type AccessRequestUncheckedUpdateWithoutRequesterInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -9382,7 +10363,11 @@ export type AccessRequestUncheckedUpdateManyWithoutRequesterInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9420,7 +10405,11 @@ export type AccessRequestUpdateWithoutWithdrawnByInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9468,6 +10457,7 @@ export type AccessRequestUpdateWithoutWithdrawnByInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -9486,7 +10476,11 @@ export type AccessRequestUncheckedUpdateWithoutWithdrawnByInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9529,6 +10523,7 @@ export type AccessRequestUncheckedUpdateWithoutWithdrawnByInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -9547,7 +10542,11 @@ export type AccessRequestUncheckedUpdateManyWithoutWithdrawnByInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9584,7 +10583,11 @@ export type AccessRequestUpdateWithoutCancelledByInput = {
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
   state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9632,6 +10635,7 @@ export type AccessRequestUpdateWithoutCancelledByInput = {
   spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
@@ -9650,7 +10654,11 @@ export type AccessRequestUncheckedUpdateWithoutCancelledByInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9693,6 +10701,7 @@ export type AccessRequestUncheckedUpdateWithoutCancelledByInput = {
   spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
@@ -9711,7 +10720,11 @@ export type AccessRequestUncheckedUpdateManyWithoutCancelledByInput = {
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessReason?: Prisma.StringFieldUpdateOperationsInput | string
-  termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
   priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9760,6 +10773,7 @@ export type AccessRequestCountOutputType = {
   spendDecisions: number
   budgetCommitments: number
   budgetInformation: number
+  reserveConfirmations: number
   controlledWaitAlerts: number
   stepSlaReminders: number
   returnsFromHere: number
@@ -9778,6 +10792,7 @@ export type AccessRequestCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   spendDecisions?: boolean | AccessRequestCountOutputTypeCountSpendDecisionsArgs
   budgetCommitments?: boolean | AccessRequestCountOutputTypeCountBudgetCommitmentsArgs
   budgetInformation?: boolean | AccessRequestCountOutputTypeCountBudgetInformationArgs
+  reserveConfirmations?: boolean | AccessRequestCountOutputTypeCountReserveConfirmationsArgs
   controlledWaitAlerts?: boolean | AccessRequestCountOutputTypeCountControlledWaitAlertsArgs
   stepSlaReminders?: boolean | AccessRequestCountOutputTypeCountStepSlaRemindersArgs
   returnsFromHere?: boolean | AccessRequestCountOutputTypeCountReturnsFromHereArgs
@@ -9880,6 +10895,13 @@ export type AccessRequestCountOutputTypeCountBudgetInformationArgs<ExtArgs exten
 /**
  * AccessRequestCountOutputType without action
  */
+export type AccessRequestCountOutputTypeCountReserveConfirmationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RequestReserveConfirmationWhereInput
+}
+
+/**
+ * AccessRequestCountOutputType without action
+ */
 export type AccessRequestCountOutputTypeCountControlledWaitAlertsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ControlledWaitAlertWhereInput
 }
@@ -9911,6 +10933,10 @@ export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.Interna
   costCenterId?: boolean
   businessReason?: boolean
   termMonths?: boolean
+  amountMonths?: boolean
+  priceKind?: boolean
+  grantedOn?: boolean
+  nextYearAmountMinor?: boolean
   pricingStatus?: boolean
   priceMissingReason?: boolean
   expectedSpendOn?: boolean
@@ -9962,6 +10988,7 @@ export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.Interna
   spendDecisions?: boolean | Prisma.AccessRequest$spendDecisionsArgs<ExtArgs>
   budgetCommitments?: boolean | Prisma.AccessRequest$budgetCommitmentsArgs<ExtArgs>
   budgetInformation?: boolean | Prisma.AccessRequest$budgetInformationArgs<ExtArgs>
+  reserveConfirmations?: boolean | Prisma.AccessRequest$reserveConfirmationsArgs<ExtArgs>
   controlledWaitAlerts?: boolean | Prisma.AccessRequest$controlledWaitAlertsArgs<ExtArgs>
   stepSlaReminders?: boolean | Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs>
   serviceAccount?: boolean | Prisma.AccessRequest$serviceAccountArgs<ExtArgs>
@@ -9982,6 +11009,10 @@ export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   costCenterId?: boolean
   businessReason?: boolean
   termMonths?: boolean
+  amountMonths?: boolean
+  priceKind?: boolean
+  grantedOn?: boolean
+  nextYearAmountMinor?: boolean
   pricingStatus?: boolean
   priceMissingReason?: boolean
   expectedSpendOn?: boolean
@@ -10033,6 +11064,10 @@ export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   costCenterId?: boolean
   businessReason?: boolean
   termMonths?: boolean
+  amountMonths?: boolean
+  priceKind?: boolean
+  grantedOn?: boolean
+  nextYearAmountMinor?: boolean
   pricingStatus?: boolean
   priceMissingReason?: boolean
   expectedSpendOn?: boolean
@@ -10084,6 +11119,10 @@ export type AccessRequestSelectScalar = {
   costCenterId?: boolean
   businessReason?: boolean
   termMonths?: boolean
+  amountMonths?: boolean
+  priceKind?: boolean
+  grantedOn?: boolean
+  nextYearAmountMinor?: boolean
   pricingStatus?: boolean
   priceMissingReason?: boolean
   expectedSpendOn?: boolean
@@ -10115,7 +11154,7 @@ export type AccessRequestSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "type" | "branch" | "state" | "planId" | "requesterEmployeeId" | "departmentId" | "costCenterId" | "businessReason" | "termMonths" | "pricingStatus" | "priceMissingReason" | "expectedSpendOn" | "budgetYear" | "amountMinor" | "amountCurrency" | "unitPriceMinor" | "billingCycle" | "paymentSchedule" | "planLineVersionId" | "planLinePosition" | "planLineConfirmed" | "offPlan" | "delegatedBatchId" | "expectedEndDate" | "policy" | "withdrawalRequestedAt" | "withdrawnByEmployeeId" | "withdrawalReason" | "withdrawnAt" | "cancelledAt" | "cancelledByEmployeeId" | "cancelCause" | "cancelNote" | "grantCompletedAt" | "spendQueuedAt" | "createdByAppUserId" | "submittedAt" | "updatedAt", ExtArgs["result"]["accessRequest"]>
+export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "type" | "branch" | "state" | "planId" | "requesterEmployeeId" | "departmentId" | "costCenterId" | "businessReason" | "termMonths" | "amountMonths" | "priceKind" | "grantedOn" | "nextYearAmountMinor" | "pricingStatus" | "priceMissingReason" | "expectedSpendOn" | "budgetYear" | "amountMinor" | "amountCurrency" | "unitPriceMinor" | "billingCycle" | "paymentSchedule" | "planLineVersionId" | "planLinePosition" | "planLineConfirmed" | "offPlan" | "delegatedBatchId" | "expectedEndDate" | "policy" | "withdrawalRequestedAt" | "withdrawnByEmployeeId" | "withdrawalReason" | "withdrawnAt" | "cancelledAt" | "cancelledByEmployeeId" | "cancelCause" | "cancelNote" | "grantCompletedAt" | "spendQueuedAt" | "createdByAppUserId" | "submittedAt" | "updatedAt", ExtArgs["result"]["accessRequest"]>
 export type AccessRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.AccessRequest$planArgs<ExtArgs>
@@ -10139,6 +11178,7 @@ export type AccessRequestInclude<ExtArgs extends runtime.Types.Extensions.Intern
   spendDecisions?: boolean | Prisma.AccessRequest$spendDecisionsArgs<ExtArgs>
   budgetCommitments?: boolean | Prisma.AccessRequest$budgetCommitmentsArgs<ExtArgs>
   budgetInformation?: boolean | Prisma.AccessRequest$budgetInformationArgs<ExtArgs>
+  reserveConfirmations?: boolean | Prisma.AccessRequest$reserveConfirmationsArgs<ExtArgs>
   controlledWaitAlerts?: boolean | Prisma.AccessRequest$controlledWaitAlertsArgs<ExtArgs>
   stepSlaReminders?: boolean | Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs>
   serviceAccount?: boolean | Prisma.AccessRequest$serviceAccountArgs<ExtArgs>
@@ -10192,6 +11232,7 @@ export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.Inter
     spendDecisions: Prisma.$SpendDecisionPayload<ExtArgs>[]
     budgetCommitments: Prisma.$BudgetCommitmentPayload<ExtArgs>[]
     budgetInformation: Prisma.$BudgetInformationRequestPayload<ExtArgs>[]
+    reserveConfirmations: Prisma.$RequestReserveConfirmationPayload<ExtArgs>[]
     controlledWaitAlerts: Prisma.$ControlledWaitAlertPayload<ExtArgs>[]
     stepSlaReminders: Prisma.$StepSlaReminderPayload<ExtArgs>[]
     serviceAccount: Prisma.$AccessRequestServiceAccountPayload<ExtArgs> | null
@@ -10209,7 +11250,11 @@ export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.Inter
     departmentId: string
     costCenterId: string | null
     businessReason: string
-    termMonths: number
+    termMonths: number | null
+    amountMonths: number | null
+    priceKind: $Enums.AccessRequestPriceKind | null
+    grantedOn: Date | null
+    nextYearAmountMinor: bigint | null
     pricingStatus: $Enums.AccessRequestPricingStatus
     priceMissingReason: string | null
     expectedSpendOn: Date | null
@@ -10655,6 +11700,7 @@ export interface Prisma__AccessRequestClient<T, Null = never, ExtArgs extends ru
   spendDecisions<T extends Prisma.AccessRequest$spendDecisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$spendDecisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SpendDecisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetCommitments<T extends Prisma.AccessRequest$budgetCommitmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$budgetCommitmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetInformation<T extends Prisma.AccessRequest$budgetInformationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$budgetInformationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetInformationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reserveConfirmations<T extends Prisma.AccessRequest$reserveConfirmationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$reserveConfirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestReserveConfirmationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   controlledWaitAlerts<T extends Prisma.AccessRequest$controlledWaitAlertsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$controlledWaitAlertsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ControlledWaitAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stepSlaReminders<T extends Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StepSlaReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   serviceAccount<T extends Prisma.AccessRequest$serviceAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$serviceAccountArgs<ExtArgs>>): Prisma.Prisma__AccessRequestServiceAccountClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestServiceAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -10700,6 +11746,10 @@ export interface AccessRequestFieldRefs {
   readonly costCenterId: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly businessReason: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly termMonths: Prisma.FieldRef<"AccessRequest", 'Int'>
+  readonly amountMonths: Prisma.FieldRef<"AccessRequest", 'Int'>
+  readonly priceKind: Prisma.FieldRef<"AccessRequest", 'AccessRequestPriceKind'>
+  readonly grantedOn: Prisma.FieldRef<"AccessRequest", 'DateTime'>
+  readonly nextYearAmountMinor: Prisma.FieldRef<"AccessRequest", 'BigInt'>
   readonly pricingStatus: Prisma.FieldRef<"AccessRequest", 'AccessRequestPricingStatus'>
   readonly priceMissingReason: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly expectedSpendOn: Prisma.FieldRef<"AccessRequest", 'DateTime'>
@@ -11548,6 +12598,30 @@ export type AccessRequest$budgetInformationArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.BudgetInformationRequestScalarFieldEnum | Prisma.BudgetInformationRequestScalarFieldEnum[]
+}
+
+/**
+ * AccessRequest.reserveConfirmations
+ */
+export type AccessRequest$reserveConfirmationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequestReserveConfirmation
+   */
+  select?: Prisma.RequestReserveConfirmationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RequestReserveConfirmation
+   */
+  omit?: Prisma.RequestReserveConfirmationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RequestReserveConfirmationInclude<ExtArgs> | null
+  where?: Prisma.RequestReserveConfirmationWhereInput
+  orderBy?: Prisma.RequestReserveConfirmationOrderByWithRelationInput | Prisma.RequestReserveConfirmationOrderByWithRelationInput[]
+  cursor?: Prisma.RequestReserveConfirmationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RequestReserveConfirmationScalarFieldEnum | Prisma.RequestReserveConfirmationScalarFieldEnum[]
 }
 
 /**

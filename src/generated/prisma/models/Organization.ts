@@ -210,6 +210,7 @@ export type OrganizationWhereInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalListRelationFilter
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventListRelationFilter
   provisioningTasks?: Prisma.ProvisioningTaskListRelationFilter
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostListRelationFilter
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   handoverDuties?: Prisma.HandoverDutyListRelationFilter
   accessRequests?: Prisma.AccessRequestListRelationFilter
@@ -219,10 +220,13 @@ export type OrganizationWhereInput = {
   congestionIncidents?: Prisma.CongestionIncidentListRelationFilter
   requestBudgetChecks?: Prisma.RequestBudgetCheckListRelationFilter
   spendBatches?: Prisma.SpendBatchListRelationFilter
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationListRelationFilter
   requestSupplements?: Prisma.RequestSupplementListRelationFilter
   budgetProposals?: Prisma.BudgetProposalListRelationFilter
+  budgetCycles?: Prisma.BudgetCycleListRelationFilter
   budgetVersions?: Prisma.BudgetVersionListRelationFilter
   budgetCommitments?: Prisma.BudgetCommitmentListRelationFilter
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationListRelationFilter
   contracts?: Prisma.ContractListRelationFilter
@@ -268,6 +272,7 @@ export type OrganizationOrderByWithRelationInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalOrderByRelationAggregateInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventOrderByRelationAggregateInput
   provisioningTasks?: Prisma.ProvisioningTaskOrderByRelationAggregateInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostOrderByRelationAggregateInput
   returnRequests?: Prisma.ReturnRequestOrderByRelationAggregateInput
   handoverDuties?: Prisma.HandoverDutyOrderByRelationAggregateInput
   accessRequests?: Prisma.AccessRequestOrderByRelationAggregateInput
@@ -277,10 +282,13 @@ export type OrganizationOrderByWithRelationInput = {
   congestionIncidents?: Prisma.CongestionIncidentOrderByRelationAggregateInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckOrderByRelationAggregateInput
   spendBatches?: Prisma.SpendBatchOrderByRelationAggregateInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationOrderByRelationAggregateInput
   requestSupplements?: Prisma.RequestSupplementOrderByRelationAggregateInput
   budgetProposals?: Prisma.BudgetProposalOrderByRelationAggregateInput
+  budgetCycles?: Prisma.BudgetCycleOrderByRelationAggregateInput
   budgetVersions?: Prisma.BudgetVersionOrderByRelationAggregateInput
   budgetCommitments?: Prisma.BudgetCommitmentOrderByRelationAggregateInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationOrderByRelationAggregateInput
   contracts?: Prisma.ContractOrderByRelationAggregateInput
@@ -329,6 +337,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   subscriptionRenewals?: Prisma.SubscriptionRenewalListRelationFilter
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventListRelationFilter
   provisioningTasks?: Prisma.ProvisioningTaskListRelationFilter
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostListRelationFilter
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   handoverDuties?: Prisma.HandoverDutyListRelationFilter
   accessRequests?: Prisma.AccessRequestListRelationFilter
@@ -338,10 +347,13 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   congestionIncidents?: Prisma.CongestionIncidentListRelationFilter
   requestBudgetChecks?: Prisma.RequestBudgetCheckListRelationFilter
   spendBatches?: Prisma.SpendBatchListRelationFilter
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationListRelationFilter
   requestSupplements?: Prisma.RequestSupplementListRelationFilter
   budgetProposals?: Prisma.BudgetProposalListRelationFilter
+  budgetCycles?: Prisma.BudgetCycleListRelationFilter
   budgetVersions?: Prisma.BudgetVersionListRelationFilter
   budgetCommitments?: Prisma.BudgetCommitmentListRelationFilter
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationListRelationFilter
   contracts?: Prisma.ContractListRelationFilter
@@ -410,6 +422,7 @@ export type OrganizationCreateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -419,10 +432,13 @@ export type OrganizationCreateInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -467,6 +483,7 @@ export type OrganizationUncheckedCreateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -476,10 +493,13 @@ export type OrganizationUncheckedCreateInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -524,6 +544,7 @@ export type OrganizationUpdateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -533,10 +554,13 @@ export type OrganizationUpdateInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -581,6 +605,7 @@ export type OrganizationUncheckedUpdateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -590,10 +615,13 @@ export type OrganizationUncheckedUpdateInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -762,6 +790,20 @@ export type OrganizationUpdateOneRequiredWithoutBudgetAttachmentsNestedInput = {
   upsert?: Prisma.OrganizationUpsertWithoutBudgetAttachmentsInput
   connect?: Prisma.OrganizationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutBudgetAttachmentsInput, Prisma.OrganizationUpdateWithoutBudgetAttachmentsInput>, Prisma.OrganizationUncheckedUpdateWithoutBudgetAttachmentsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutBudgetCyclesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutBudgetCyclesInput, Prisma.OrganizationUncheckedCreateWithoutBudgetCyclesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutBudgetCyclesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutBudgetCyclesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutBudgetCyclesInput, Prisma.OrganizationUncheckedCreateWithoutBudgetCyclesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutBudgetCyclesInput
+  upsert?: Prisma.OrganizationUpsertWithoutBudgetCyclesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutBudgetCyclesInput, Prisma.OrganizationUpdateWithoutBudgetCyclesInput>, Prisma.OrganizationUncheckedUpdateWithoutBudgetCyclesInput>
 }
 
 export type OrganizationCreateNestedOneWithoutVendorProposalsInput = {
@@ -1086,6 +1128,20 @@ export type OrganizationUpdateOneRequiredWithoutSubscriptionDeadlineEventsNested
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSubscriptionDeadlineEventsInput, Prisma.OrganizationUpdateWithoutSubscriptionDeadlineEventsInput>, Prisma.OrganizationUncheckedUpdateWithoutSubscriptionDeadlineEventsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutPoolGrantAvoidedCostsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPoolGrantAvoidedCostsInput, Prisma.OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPoolGrantAvoidedCostsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutPoolGrantAvoidedCostsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPoolGrantAvoidedCostsInput, Prisma.OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPoolGrantAvoidedCostsInput
+  upsert?: Prisma.OrganizationUpsertWithoutPoolGrantAvoidedCostsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPoolGrantAvoidedCostsInput, Prisma.OrganizationUpdateWithoutPoolGrantAvoidedCostsInput>, Prisma.OrganizationUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+}
+
 export type OrganizationCreateNestedOneWithoutHeldDepartmentNotificationsInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutHeldDepartmentNotificationsInput, Prisma.OrganizationUncheckedCreateWithoutHeldDepartmentNotificationsInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutHeldDepartmentNotificationsInput
@@ -1338,6 +1394,20 @@ export type OrganizationUpdateOneRequiredWithoutRequestSupplementsNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutRequestSupplementsInput, Prisma.OrganizationUpdateWithoutRequestSupplementsInput>, Prisma.OrganizationUncheckedUpdateWithoutRequestSupplementsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutRequestReserveConfirmationsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutRequestReserveConfirmationsInput, Prisma.OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutRequestReserveConfirmationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutRequestReserveConfirmationsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutRequestReserveConfirmationsInput, Prisma.OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutRequestReserveConfirmationsInput
+  upsert?: Prisma.OrganizationUpsertWithoutRequestReserveConfirmationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutRequestReserveConfirmationsInput, Prisma.OrganizationUpdateWithoutRequestReserveConfirmationsInput>, Prisma.OrganizationUncheckedUpdateWithoutRequestReserveConfirmationsInput>
+}
+
 export type OrganizationCreateNestedOneWithoutControlledWaitAlertsInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutControlledWaitAlertsInput, Prisma.OrganizationUncheckedCreateWithoutControlledWaitAlertsInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutControlledWaitAlertsInput
@@ -1394,6 +1464,20 @@ export type OrganizationUpdateOneRequiredWithoutCongestionIncidentsNestedInput =
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCongestionIncidentsInput, Prisma.OrganizationUpdateWithoutCongestionIncidentsInput>, Prisma.OrganizationUncheckedUpdateWithoutCongestionIncidentsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutYearStartCommitmentRunsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutYearStartCommitmentRunsInput, Prisma.OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutYearStartCommitmentRunsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutYearStartCommitmentRunsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutYearStartCommitmentRunsInput, Prisma.OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutYearStartCommitmentRunsInput
+  upsert?: Prisma.OrganizationUpsertWithoutYearStartCommitmentRunsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutYearStartCommitmentRunsInput, Prisma.OrganizationUpdateWithoutYearStartCommitmentRunsInput>, Prisma.OrganizationUncheckedUpdateWithoutYearStartCommitmentRunsInput>
+}
+
 export type OrganizationCreateWithoutBudgetProposalsInput = {
   id?: string
   name: string
@@ -1420,6 +1504,7 @@ export type OrganizationCreateWithoutBudgetProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -1429,9 +1514,12 @@ export type OrganizationCreateWithoutBudgetProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -1476,6 +1564,7 @@ export type OrganizationUncheckedCreateWithoutBudgetProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1485,9 +1574,12 @@ export type OrganizationUncheckedCreateWithoutBudgetProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1548,6 +1640,7 @@ export type OrganizationUpdateWithoutBudgetProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -1557,9 +1650,12 @@ export type OrganizationUpdateWithoutBudgetProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -1604,6 +1700,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1613,9 +1710,12 @@ export type OrganizationUncheckedUpdateWithoutBudgetProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1660,6 +1760,7 @@ export type OrganizationCreateWithoutBudgetVersionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -1669,9 +1770,12 @@ export type OrganizationCreateWithoutBudgetVersionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -1716,6 +1820,7 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1725,9 +1830,12 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1788,6 +1896,7 @@ export type OrganizationUpdateWithoutBudgetVersionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -1797,9 +1906,12 @@ export type OrganizationUpdateWithoutBudgetVersionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -1844,6 +1956,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1853,9 +1966,12 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1900,6 +2016,7 @@ export type OrganizationCreateWithoutBudgetCommitmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -1909,9 +2026,12 @@ export type OrganizationCreateWithoutBudgetCommitmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -1956,6 +2076,7 @@ export type OrganizationUncheckedCreateWithoutBudgetCommitmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1965,9 +2086,12 @@ export type OrganizationUncheckedCreateWithoutBudgetCommitmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2028,6 +2152,7 @@ export type OrganizationUpdateWithoutBudgetCommitmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -2037,9 +2162,12 @@ export type OrganizationUpdateWithoutBudgetCommitmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -2084,6 +2212,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetCommitmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2093,9 +2222,12 @@ export type OrganizationUncheckedUpdateWithoutBudgetCommitmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2140,6 +2272,7 @@ export type OrganizationCreateWithoutInvoicesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -2149,10 +2282,13 @@ export type OrganizationCreateWithoutInvoicesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
   documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
@@ -2196,6 +2332,7 @@ export type OrganizationUncheckedCreateWithoutInvoicesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2205,10 +2342,13 @@ export type OrganizationUncheckedCreateWithoutInvoicesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
   documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2268,6 +2408,7 @@ export type OrganizationUpdateWithoutInvoicesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -2277,10 +2418,13 @@ export type OrganizationUpdateWithoutInvoicesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
   documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
@@ -2324,6 +2468,7 @@ export type OrganizationUncheckedUpdateWithoutInvoicesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2333,10 +2478,13 @@ export type OrganizationUncheckedUpdateWithoutInvoicesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
   documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2380,6 +2528,7 @@ export type OrganizationCreateWithoutBudgetVersionHistoryInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -2389,10 +2538,13 @@ export type OrganizationCreateWithoutBudgetVersionHistoryInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -2436,6 +2588,7 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionHistoryInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2445,10 +2598,13 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionHistoryInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2508,6 +2664,7 @@ export type OrganizationUpdateWithoutBudgetVersionHistoryInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -2517,10 +2674,13 @@ export type OrganizationUpdateWithoutBudgetVersionHistoryInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -2564,6 +2724,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionHistoryInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2573,10 +2734,13 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionHistoryInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2620,6 +2784,7 @@ export type OrganizationCreateWithoutBudgetAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -2629,10 +2794,13 @@ export type OrganizationCreateWithoutBudgetAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -2676,6 +2844,7 @@ export type OrganizationUncheckedCreateWithoutBudgetAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2685,10 +2854,13 @@ export type OrganizationUncheckedCreateWithoutBudgetAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2748,6 +2920,7 @@ export type OrganizationUpdateWithoutBudgetAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -2757,10 +2930,13 @@ export type OrganizationUpdateWithoutBudgetAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -2804,6 +2980,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2813,10 +2990,13 @@ export type OrganizationUncheckedUpdateWithoutBudgetAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2825,6 +3005,262 @@ export type OrganizationUncheckedUpdateWithoutBudgetAttachmentsInput = {
   seatBaselineState?: Prisma.SeatBaselineStateUncheckedUpdateOneWithoutOrganizationNestedInput
   superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutBudgetCyclesInput = {
+  id?: string
+  name: string
+  timeZone: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  reportingCurrencyRecord: Prisma.CurrencyCreateNestedOneWithoutOrganizationsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutBudgetCyclesInput = {
+  id?: string
+  name: string
+  timeZone: string
+  reportingCurrency: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorUncheckedCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutBudgetCyclesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutBudgetCyclesInput, Prisma.OrganizationUncheckedCreateWithoutBudgetCyclesInput>
+}
+
+export type OrganizationUpsertWithoutBudgetCyclesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutBudgetCyclesInput, Prisma.OrganizationUncheckedUpdateWithoutBudgetCyclesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutBudgetCyclesInput, Prisma.OrganizationUncheckedCreateWithoutBudgetCyclesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutBudgetCyclesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutBudgetCyclesInput, Prisma.OrganizationUncheckedUpdateWithoutBudgetCyclesInput>
+}
+
+export type OrganizationUpdateWithoutBudgetCyclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reportingCurrencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutOrganizationsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutBudgetCyclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  reportingCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUncheckedUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
   heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutOrganizationNestedInput
   changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedUpdateManyWithoutOrganizationNestedInput
   departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2859,6 +3295,7 @@ export type OrganizationCreateWithoutVendorProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -2868,10 +3305,13 @@ export type OrganizationCreateWithoutVendorProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -2915,6 +3355,7 @@ export type OrganizationUncheckedCreateWithoutVendorProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2924,10 +3365,13 @@ export type OrganizationUncheckedCreateWithoutVendorProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2987,6 +3431,7 @@ export type OrganizationUpdateWithoutVendorProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -2996,10 +3441,13 @@ export type OrganizationUpdateWithoutVendorProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -3043,6 +3491,7 @@ export type OrganizationUncheckedUpdateWithoutVendorProposalsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3052,10 +3501,13 @@ export type OrganizationUncheckedUpdateWithoutVendorProposalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3099,6 +3551,7 @@ export type OrganizationCreateWithoutVendorsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -3108,10 +3561,13 @@ export type OrganizationCreateWithoutVendorsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -3155,6 +3611,7 @@ export type OrganizationUncheckedCreateWithoutVendorsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3164,10 +3621,13 @@ export type OrganizationUncheckedCreateWithoutVendorsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3227,6 +3687,7 @@ export type OrganizationUpdateWithoutVendorsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -3236,10 +3697,13 @@ export type OrganizationUpdateWithoutVendorsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -3283,6 +3747,7 @@ export type OrganizationUncheckedUpdateWithoutVendorsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3292,10 +3757,13 @@ export type OrganizationUncheckedUpdateWithoutVendorsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3339,6 +3807,7 @@ export type OrganizationCreateWithoutFunctionalGroupsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -3348,10 +3817,13 @@ export type OrganizationCreateWithoutFunctionalGroupsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -3395,6 +3867,7 @@ export type OrganizationUncheckedCreateWithoutFunctionalGroupsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3404,10 +3877,13 @@ export type OrganizationUncheckedCreateWithoutFunctionalGroupsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3467,6 +3943,7 @@ export type OrganizationUpdateWithoutFunctionalGroupsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -3476,10 +3953,13 @@ export type OrganizationUpdateWithoutFunctionalGroupsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -3523,6 +4003,7 @@ export type OrganizationUncheckedUpdateWithoutFunctionalGroupsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3532,10 +4013,13 @@ export type OrganizationUncheckedUpdateWithoutFunctionalGroupsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3579,6 +4063,7 @@ export type OrganizationCreateWithoutApplicationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -3588,10 +4073,13 @@ export type OrganizationCreateWithoutApplicationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -3635,6 +4123,7 @@ export type OrganizationUncheckedCreateWithoutApplicationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3644,10 +4133,13 @@ export type OrganizationUncheckedCreateWithoutApplicationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3707,6 +4199,7 @@ export type OrganizationUpdateWithoutApplicationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -3716,10 +4209,13 @@ export type OrganizationUpdateWithoutApplicationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -3763,6 +4259,7 @@ export type OrganizationUncheckedUpdateWithoutApplicationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3772,10 +4269,13 @@ export type OrganizationUncheckedUpdateWithoutApplicationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3819,6 +4319,7 @@ export type OrganizationCreateWithoutPlansInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -3828,10 +4329,13 @@ export type OrganizationCreateWithoutPlansInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -3875,6 +4379,7 @@ export type OrganizationUncheckedCreateWithoutPlansInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3884,10 +4389,13 @@ export type OrganizationUncheckedCreateWithoutPlansInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3947,6 +4455,7 @@ export type OrganizationUpdateWithoutPlansInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -3956,10 +4465,13 @@ export type OrganizationUpdateWithoutPlansInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -4003,6 +4515,7 @@ export type OrganizationUncheckedUpdateWithoutPlansInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4012,10 +4525,13 @@ export type OrganizationUncheckedUpdateWithoutPlansInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4059,6 +4575,7 @@ export type OrganizationCreateWithoutSubscriptionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -4068,10 +4585,13 @@ export type OrganizationCreateWithoutSubscriptionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -4115,6 +4635,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4124,10 +4645,13 @@ export type OrganizationUncheckedCreateWithoutSubscriptionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4187,6 +4711,7 @@ export type OrganizationUpdateWithoutSubscriptionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -4196,10 +4721,13 @@ export type OrganizationUpdateWithoutSubscriptionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -4243,6 +4771,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4252,10 +4781,13 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4299,6 +4831,7 @@ export type OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -4308,10 +4841,13 @@ export type OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -4355,6 +4891,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput 
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4364,10 +4901,13 @@ export type OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput 
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4427,6 +4967,7 @@ export type OrganizationUpdateWithoutSubscriptionOwnerAssignmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -4436,10 +4977,13 @@ export type OrganizationUpdateWithoutSubscriptionOwnerAssignmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -4483,6 +5027,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput 
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4492,10 +5037,13 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput 
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4540,6 +5088,7 @@ export type OrganizationCreateWithoutApplicationRetirementConfirmationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -4549,10 +5098,13 @@ export type OrganizationCreateWithoutApplicationRetirementConfirmationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
   documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
@@ -4596,6 +5148,7 @@ export type OrganizationUncheckedCreateWithoutApplicationRetirementConfirmations
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4605,10 +5158,13 @@ export type OrganizationUncheckedCreateWithoutApplicationRetirementConfirmations
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
   documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4668,6 +5224,7 @@ export type OrganizationUpdateWithoutApplicationRetirementConfirmationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -4677,10 +5234,13 @@ export type OrganizationUpdateWithoutApplicationRetirementConfirmationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
   documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
@@ -4724,6 +5284,7 @@ export type OrganizationUncheckedUpdateWithoutApplicationRetirementConfirmations
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4733,10 +5294,13 @@ export type OrganizationUncheckedUpdateWithoutApplicationRetirementConfirmations
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
   documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4780,6 +5344,7 @@ export type OrganizationCreateWithoutContractsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -4789,10 +5354,13 @@ export type OrganizationCreateWithoutContractsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
@@ -4836,6 +5404,7 @@ export type OrganizationUncheckedCreateWithoutContractsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4845,10 +5414,13 @@ export type OrganizationUncheckedCreateWithoutContractsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4908,6 +5480,7 @@ export type OrganizationUpdateWithoutContractsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -4917,10 +5490,13 @@ export type OrganizationUpdateWithoutContractsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
@@ -4964,6 +5540,7 @@ export type OrganizationUncheckedUpdateWithoutContractsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4973,10 +5550,13 @@ export type OrganizationUncheckedUpdateWithoutContractsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5020,6 +5600,7 @@ export type OrganizationCreateWithoutDocumentAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -5029,10 +5610,13 @@ export type OrganizationCreateWithoutDocumentAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -5076,6 +5660,7 @@ export type OrganizationUncheckedCreateWithoutDocumentAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5085,10 +5670,13 @@ export type OrganizationUncheckedCreateWithoutDocumentAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5148,6 +5736,7 @@ export type OrganizationUpdateWithoutDocumentAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -5157,10 +5746,13 @@ export type OrganizationUpdateWithoutDocumentAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -5204,6 +5796,7 @@ export type OrganizationUncheckedUpdateWithoutDocumentAttachmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5213,10 +5806,13 @@ export type OrganizationUncheckedUpdateWithoutDocumentAttachmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5259,6 +5855,7 @@ export type OrganizationCreateWithoutSeatBaselineImportsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -5268,10 +5865,13 @@ export type OrganizationCreateWithoutSeatBaselineImportsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -5315,6 +5915,7 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineImportsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5324,10 +5925,13 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineImportsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5387,6 +5991,7 @@ export type OrganizationUpdateWithoutSeatBaselineImportsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -5396,10 +6001,13 @@ export type OrganizationUpdateWithoutSeatBaselineImportsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -5443,6 +6051,7 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineImportsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5452,10 +6061,13 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineImportsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5499,6 +6111,7 @@ export type OrganizationCreateWithoutReportingCurrencyRecordInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -5508,10 +6121,13 @@ export type OrganizationCreateWithoutReportingCurrencyRecordInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -5555,6 +6171,7 @@ export type OrganizationUncheckedCreateWithoutReportingCurrencyRecordInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5564,10 +6181,13 @@ export type OrganizationUncheckedCreateWithoutReportingCurrencyRecordInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5649,6 +6269,7 @@ export type OrganizationCreateWithoutExchangeRatesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -5658,10 +6279,13 @@ export type OrganizationCreateWithoutExchangeRatesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -5705,6 +6329,7 @@ export type OrganizationUncheckedCreateWithoutExchangeRatesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5714,10 +6339,13 @@ export type OrganizationUncheckedCreateWithoutExchangeRatesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5777,6 +6405,7 @@ export type OrganizationUpdateWithoutExchangeRatesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -5786,10 +6415,13 @@ export type OrganizationUpdateWithoutExchangeRatesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -5833,6 +6465,7 @@ export type OrganizationUncheckedUpdateWithoutExchangeRatesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5842,10 +6475,13 @@ export type OrganizationUncheckedUpdateWithoutExchangeRatesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5889,6 +6525,7 @@ export type OrganizationCreateWithoutVendorTaxProfilesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -5898,10 +6535,13 @@ export type OrganizationCreateWithoutVendorTaxProfilesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -5945,6 +6585,7 @@ export type OrganizationUncheckedCreateWithoutVendorTaxProfilesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5954,10 +6595,13 @@ export type OrganizationUncheckedCreateWithoutVendorTaxProfilesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6017,6 +6661,7 @@ export type OrganizationUpdateWithoutVendorTaxProfilesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -6026,10 +6671,13 @@ export type OrganizationUpdateWithoutVendorTaxProfilesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -6073,6 +6721,7 @@ export type OrganizationUncheckedUpdateWithoutVendorTaxProfilesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6082,10 +6731,13 @@ export type OrganizationUncheckedUpdateWithoutVendorTaxProfilesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6129,6 +6781,7 @@ export type OrganizationCreateWithoutLicenseAssignmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -6138,10 +6791,13 @@ export type OrganizationCreateWithoutLicenseAssignmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -6185,6 +6841,7 @@ export type OrganizationUncheckedCreateWithoutLicenseAssignmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6194,10 +6851,13 @@ export type OrganizationUncheckedCreateWithoutLicenseAssignmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6257,6 +6917,7 @@ export type OrganizationUpdateWithoutLicenseAssignmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -6266,10 +6927,13 @@ export type OrganizationUpdateWithoutLicenseAssignmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -6313,6 +6977,7 @@ export type OrganizationUncheckedUpdateWithoutLicenseAssignmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6322,10 +6987,13 @@ export type OrganizationUncheckedUpdateWithoutLicenseAssignmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6370,6 +7038,7 @@ export type OrganizationCreateWithoutSeatBaselineStateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -6379,10 +7048,13 @@ export type OrganizationCreateWithoutSeatBaselineStateInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -6426,6 +7098,7 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineStateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6435,10 +7108,13 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineStateInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6498,6 +7174,7 @@ export type OrganizationUpdateWithoutSeatBaselineStateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -6507,10 +7184,13 @@ export type OrganizationUpdateWithoutSeatBaselineStateInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -6554,6 +7234,7 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineStateInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6563,10 +7244,13 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineStateInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6609,6 +7293,7 @@ export type OrganizationCreateWithoutProvisioningTasksInput = {
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -6618,10 +7303,13 @@ export type OrganizationCreateWithoutProvisioningTasksInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -6665,6 +7353,7 @@ export type OrganizationUncheckedCreateWithoutProvisioningTasksInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6674,10 +7363,13 @@ export type OrganizationUncheckedCreateWithoutProvisioningTasksInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6737,6 +7429,7 @@ export type OrganizationUpdateWithoutProvisioningTasksInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -6746,10 +7439,13 @@ export type OrganizationUpdateWithoutProvisioningTasksInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -6793,6 +7489,7 @@ export type OrganizationUncheckedUpdateWithoutProvisioningTasksInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6802,10 +7499,13 @@ export type OrganizationUncheckedUpdateWithoutProvisioningTasksInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6850,6 +7550,7 @@ export type OrganizationCreateWithoutLicenseKeysInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -6859,10 +7560,13 @@ export type OrganizationCreateWithoutLicenseKeysInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -6906,6 +7610,7 @@ export type OrganizationUncheckedCreateWithoutLicenseKeysInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6915,10 +7620,13 @@ export type OrganizationUncheckedCreateWithoutLicenseKeysInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6978,6 +7686,7 @@ export type OrganizationUpdateWithoutLicenseKeysInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -6987,10 +7696,13 @@ export type OrganizationUpdateWithoutLicenseKeysInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -7034,6 +7746,7 @@ export type OrganizationUncheckedUpdateWithoutLicenseKeysInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7043,10 +7756,13 @@ export type OrganizationUncheckedUpdateWithoutLicenseKeysInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7090,6 +7806,7 @@ export type OrganizationCreateWithoutHandoverDutiesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
@@ -7098,10 +7815,13 @@ export type OrganizationCreateWithoutHandoverDutiesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -7146,6 +7866,7 @@ export type OrganizationUncheckedCreateWithoutHandoverDutiesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7154,10 +7875,13 @@ export type OrganizationUncheckedCreateWithoutHandoverDutiesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7218,6 +7942,7 @@ export type OrganizationUpdateWithoutHandoverDutiesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
@@ -7226,10 +7951,13 @@ export type OrganizationUpdateWithoutHandoverDutiesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -7274,6 +8002,7 @@ export type OrganizationUncheckedUpdateWithoutHandoverDutiesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7282,10 +8011,13 @@ export type OrganizationUncheckedUpdateWithoutHandoverDutiesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7329,6 +8061,7 @@ export type OrganizationCreateWithoutSubscriptionRenewalsInput = {
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -7338,10 +8071,13 @@ export type OrganizationCreateWithoutSubscriptionRenewalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -7385,6 +8121,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionRenewalsInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7394,10 +8131,13 @@ export type OrganizationUncheckedCreateWithoutSubscriptionRenewalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7457,6 +8197,7 @@ export type OrganizationUpdateWithoutSubscriptionRenewalsInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -7466,10 +8207,13 @@ export type OrganizationUpdateWithoutSubscriptionRenewalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -7513,6 +8257,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionRenewalsInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7522,10 +8267,13 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionRenewalsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7569,6 +8317,7 @@ export type OrganizationCreateWithoutSubscriptionDeadlineEventsInput = {
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -7578,10 +8327,13 @@ export type OrganizationCreateWithoutSubscriptionDeadlineEventsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -7625,6 +8377,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionDeadlineEventsInput = 
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7634,10 +8387,13 @@ export type OrganizationUncheckedCreateWithoutSubscriptionDeadlineEventsInput = 
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7697,6 +8453,7 @@ export type OrganizationUpdateWithoutSubscriptionDeadlineEventsInput = {
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -7706,10 +8463,13 @@ export type OrganizationUpdateWithoutSubscriptionDeadlineEventsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -7753,6 +8513,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionDeadlineEventsInput = 
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7762,10 +8523,269 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionDeadlineEventsInput = 
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutPoolGrantAvoidedCostsInput = {
+  id?: string
+  name: string
+  timeZone: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  reportingCurrencyRecord: Prisma.CurrencyCreateNestedOneWithoutOrganizationsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
+  id?: string
+  name: string
+  timeZone: string
+  reportingCurrency: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorUncheckedCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPoolGrantAvoidedCostsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPoolGrantAvoidedCostsInput, Prisma.OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+}
+
+export type OrganizationUpsertWithoutPoolGrantAvoidedCostsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPoolGrantAvoidedCostsInput, Prisma.OrganizationUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPoolGrantAvoidedCostsInput, Prisma.OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPoolGrantAvoidedCostsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPoolGrantAvoidedCostsInput, Prisma.OrganizationUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+}
+
+export type OrganizationUpdateWithoutPoolGrantAvoidedCostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reportingCurrencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutOrganizationsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  reportingCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUncheckedUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7810,6 +8830,7 @@ export type OrganizationCreateWithoutHeldDepartmentNotificationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -7819,10 +8840,13 @@ export type OrganizationCreateWithoutHeldDepartmentNotificationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -7866,6 +8890,7 @@ export type OrganizationUncheckedCreateWithoutHeldDepartmentNotificationsInput =
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7875,10 +8900,13 @@ export type OrganizationUncheckedCreateWithoutHeldDepartmentNotificationsInput =
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7938,6 +8966,7 @@ export type OrganizationUpdateWithoutHeldDepartmentNotificationsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -7947,10 +8976,13 @@ export type OrganizationUpdateWithoutHeldDepartmentNotificationsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -7994,6 +9026,7 @@ export type OrganizationUncheckedUpdateWithoutHeldDepartmentNotificationsInput =
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8003,10 +9036,13 @@ export type OrganizationUncheckedUpdateWithoutHeldDepartmentNotificationsInput =
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8049,6 +9085,7 @@ export type OrganizationCreateWithoutCostCentersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -8058,10 +9095,13 @@ export type OrganizationCreateWithoutCostCentersInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -8105,6 +9145,7 @@ export type OrganizationUncheckedCreateWithoutCostCentersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8114,10 +9155,13 @@ export type OrganizationUncheckedCreateWithoutCostCentersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8177,6 +9221,7 @@ export type OrganizationUpdateWithoutCostCentersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -8186,10 +9231,13 @@ export type OrganizationUpdateWithoutCostCentersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -8233,6 +9281,7 @@ export type OrganizationUncheckedUpdateWithoutCostCentersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8242,10 +9291,13 @@ export type OrganizationUncheckedUpdateWithoutCostCentersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8289,6 +9341,7 @@ export type OrganizationCreateWithoutDepartmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -8298,10 +9351,13 @@ export type OrganizationCreateWithoutDepartmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -8345,6 +9401,7 @@ export type OrganizationUncheckedCreateWithoutDepartmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8354,10 +9411,13 @@ export type OrganizationUncheckedCreateWithoutDepartmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8417,6 +9477,7 @@ export type OrganizationUpdateWithoutDepartmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -8426,10 +9487,13 @@ export type OrganizationUpdateWithoutDepartmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -8473,6 +9537,7 @@ export type OrganizationUncheckedUpdateWithoutDepartmentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8482,10 +9547,13 @@ export type OrganizationUncheckedUpdateWithoutDepartmentsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8529,6 +9597,7 @@ export type OrganizationCreateWithoutCostCenterDepartmentLinksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -8538,10 +9607,13 @@ export type OrganizationCreateWithoutCostCenterDepartmentLinksInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -8585,6 +9657,7 @@ export type OrganizationUncheckedCreateWithoutCostCenterDepartmentLinksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8594,10 +9667,13 @@ export type OrganizationUncheckedCreateWithoutCostCenterDepartmentLinksInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8657,6 +9733,7 @@ export type OrganizationUpdateWithoutCostCenterDepartmentLinksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -8666,10 +9743,13 @@ export type OrganizationUpdateWithoutCostCenterDepartmentLinksInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -8713,6 +9793,7 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDepartmentLinksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8722,10 +9803,13 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDepartmentLinksInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8769,6 +9853,7 @@ export type OrganizationCreateWithoutCostCenterDirectionActivationInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -8778,10 +9863,13 @@ export type OrganizationCreateWithoutCostCenterDirectionActivationInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -8825,6 +9913,7 @@ export type OrganizationUncheckedCreateWithoutCostCenterDirectionActivationInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8834,10 +9923,13 @@ export type OrganizationUncheckedCreateWithoutCostCenterDirectionActivationInput
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8897,6 +9989,7 @@ export type OrganizationUpdateWithoutCostCenterDirectionActivationInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -8906,10 +9999,13 @@ export type OrganizationUpdateWithoutCostCenterDirectionActivationInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -8953,6 +10049,7 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDirectionActivationInput
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8962,10 +10059,13 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDirectionActivationInput
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9009,6 +10109,7 @@ export type OrganizationCreateWithoutEmployeesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -9018,10 +10119,13 @@ export type OrganizationCreateWithoutEmployeesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -9065,6 +10169,7 @@ export type OrganizationUncheckedCreateWithoutEmployeesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9074,10 +10179,13 @@ export type OrganizationUncheckedCreateWithoutEmployeesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9137,6 +10245,7 @@ export type OrganizationUpdateWithoutEmployeesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -9146,10 +10255,13 @@ export type OrganizationUpdateWithoutEmployeesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -9193,6 +10305,7 @@ export type OrganizationUncheckedUpdateWithoutEmployeesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9202,10 +10315,13 @@ export type OrganizationUncheckedUpdateWithoutEmployeesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9250,6 +10366,7 @@ export type OrganizationCreateWithoutChangeAnnouncementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -9259,10 +10376,13 @@ export type OrganizationCreateWithoutChangeAnnouncementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -9306,6 +10426,7 @@ export type OrganizationUncheckedCreateWithoutChangeAnnouncementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9315,10 +10436,13 @@ export type OrganizationUncheckedCreateWithoutChangeAnnouncementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9378,6 +10502,7 @@ export type OrganizationUpdateWithoutChangeAnnouncementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -9387,10 +10512,13 @@ export type OrganizationUpdateWithoutChangeAnnouncementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -9434,6 +10562,7 @@ export type OrganizationUncheckedUpdateWithoutChangeAnnouncementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9443,10 +10572,13 @@ export type OrganizationUncheckedUpdateWithoutChangeAnnouncementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9490,6 +10622,7 @@ export type OrganizationCreateWithoutDepartmentTransfersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -9499,10 +10632,13 @@ export type OrganizationCreateWithoutDepartmentTransfersInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -9546,6 +10682,7 @@ export type OrganizationUncheckedCreateWithoutDepartmentTransfersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9555,10 +10692,13 @@ export type OrganizationUncheckedCreateWithoutDepartmentTransfersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9618,6 +10758,7 @@ export type OrganizationUpdateWithoutDepartmentTransfersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -9627,10 +10768,13 @@ export type OrganizationUpdateWithoutDepartmentTransfersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -9674,6 +10818,7 @@ export type OrganizationUncheckedUpdateWithoutDepartmentTransfersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9683,10 +10828,13 @@ export type OrganizationUncheckedUpdateWithoutDepartmentTransfersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9730,6 +10878,7 @@ export type OrganizationCreateWithoutTransferReviewsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -9739,10 +10888,13 @@ export type OrganizationCreateWithoutTransferReviewsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -9786,6 +10938,7 @@ export type OrganizationUncheckedCreateWithoutTransferReviewsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9795,10 +10948,13 @@ export type OrganizationUncheckedCreateWithoutTransferReviewsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9858,6 +11014,7 @@ export type OrganizationUpdateWithoutTransferReviewsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -9867,10 +11024,13 @@ export type OrganizationUpdateWithoutTransferReviewsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -9914,6 +11074,7 @@ export type OrganizationUncheckedUpdateWithoutTransferReviewsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9923,10 +11084,13 @@ export type OrganizationUncheckedUpdateWithoutTransferReviewsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9970,6 +11134,7 @@ export type OrganizationCreateWithoutEmployeeLeavesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -9979,10 +11144,13 @@ export type OrganizationCreateWithoutEmployeeLeavesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -10026,6 +11194,7 @@ export type OrganizationUncheckedCreateWithoutEmployeeLeavesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10035,10 +11204,13 @@ export type OrganizationUncheckedCreateWithoutEmployeeLeavesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10098,6 +11270,7 @@ export type OrganizationUpdateWithoutEmployeeLeavesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -10107,10 +11280,13 @@ export type OrganizationUpdateWithoutEmployeeLeavesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -10154,6 +11330,7 @@ export type OrganizationUncheckedUpdateWithoutEmployeeLeavesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10163,10 +11340,13 @@ export type OrganizationUncheckedUpdateWithoutEmployeeLeavesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10210,6 +11390,7 @@ export type OrganizationCreateWithoutOffboardingCasesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -10219,10 +11400,13 @@ export type OrganizationCreateWithoutOffboardingCasesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -10266,6 +11450,7 @@ export type OrganizationUncheckedCreateWithoutOffboardingCasesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10275,10 +11460,13 @@ export type OrganizationUncheckedCreateWithoutOffboardingCasesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10338,6 +11526,7 @@ export type OrganizationUpdateWithoutOffboardingCasesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -10347,10 +11536,13 @@ export type OrganizationUpdateWithoutOffboardingCasesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -10394,6 +11586,7 @@ export type OrganizationUncheckedUpdateWithoutOffboardingCasesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10403,10 +11596,13 @@ export type OrganizationUncheckedUpdateWithoutOffboardingCasesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10450,6 +11646,7 @@ export type OrganizationCreateWithoutPersonnelNoticesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -10459,10 +11656,13 @@ export type OrganizationCreateWithoutPersonnelNoticesInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -10506,6 +11706,7 @@ export type OrganizationUncheckedCreateWithoutPersonnelNoticesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10515,10 +11716,13 @@ export type OrganizationUncheckedCreateWithoutPersonnelNoticesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10578,6 +11782,7 @@ export type OrganizationUpdateWithoutPersonnelNoticesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -10587,10 +11792,13 @@ export type OrganizationUpdateWithoutPersonnelNoticesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -10634,6 +11842,7 @@ export type OrganizationUncheckedUpdateWithoutPersonnelNoticesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10643,10 +11852,13 @@ export type OrganizationUncheckedUpdateWithoutPersonnelNoticesInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10690,6 +11902,7 @@ export type OrganizationCreateWithoutSuperAdminEventTicketsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -10699,10 +11912,13 @@ export type OrganizationCreateWithoutSuperAdminEventTicketsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -10746,6 +11962,7 @@ export type OrganizationUncheckedCreateWithoutSuperAdminEventTicketsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10755,10 +11972,13 @@ export type OrganizationUncheckedCreateWithoutSuperAdminEventTicketsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10818,6 +12038,7 @@ export type OrganizationUpdateWithoutSuperAdminEventTicketsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -10827,10 +12048,13 @@ export type OrganizationUpdateWithoutSuperAdminEventTicketsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -10874,6 +12098,7 @@ export type OrganizationUncheckedUpdateWithoutSuperAdminEventTicketsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10883,10 +12108,13 @@ export type OrganizationUncheckedUpdateWithoutSuperAdminEventTicketsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10930,6 +12158,7 @@ export type OrganizationCreateWithoutAccessRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
@@ -10938,10 +12167,13 @@ export type OrganizationCreateWithoutAccessRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -10986,6 +12218,7 @@ export type OrganizationUncheckedCreateWithoutAccessRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10994,10 +12227,13 @@ export type OrganizationUncheckedCreateWithoutAccessRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11058,6 +12294,7 @@ export type OrganizationUpdateWithoutAccessRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
@@ -11066,10 +12303,13 @@ export type OrganizationUpdateWithoutAccessRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -11114,6 +12354,7 @@ export type OrganizationUncheckedUpdateWithoutAccessRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11122,10 +12363,13 @@ export type OrganizationUncheckedUpdateWithoutAccessRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11170,6 +12414,7 @@ export type OrganizationCreateWithoutApprovalRecordsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -11178,10 +12423,13 @@ export type OrganizationCreateWithoutApprovalRecordsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -11226,6 +12474,7 @@ export type OrganizationUncheckedCreateWithoutApprovalRecordsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11234,10 +12483,13 @@ export type OrganizationUncheckedCreateWithoutApprovalRecordsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11298,6 +12550,7 @@ export type OrganizationUpdateWithoutApprovalRecordsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -11306,10 +12559,13 @@ export type OrganizationUpdateWithoutApprovalRecordsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -11354,6 +12610,7 @@ export type OrganizationUncheckedUpdateWithoutApprovalRecordsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11362,10 +12619,13 @@ export type OrganizationUncheckedUpdateWithoutApprovalRecordsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11410,6 +12670,7 @@ export type OrganizationCreateWithoutRequestBudgetChecksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -11418,10 +12679,13 @@ export type OrganizationCreateWithoutRequestBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -11466,6 +12730,7 @@ export type OrganizationUncheckedCreateWithoutRequestBudgetChecksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11474,10 +12739,13 @@ export type OrganizationUncheckedCreateWithoutRequestBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11538,6 +12806,7 @@ export type OrganizationUpdateWithoutRequestBudgetChecksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -11546,10 +12815,13 @@ export type OrganizationUpdateWithoutRequestBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -11594,6 +12866,7 @@ export type OrganizationUncheckedUpdateWithoutRequestBudgetChecksInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11602,10 +12875,13 @@ export type OrganizationUncheckedUpdateWithoutRequestBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11650,6 +12926,7 @@ export type OrganizationCreateWithoutSpendBatchesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -11658,10 +12935,13 @@ export type OrganizationCreateWithoutSpendBatchesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -11706,6 +12986,7 @@ export type OrganizationUncheckedCreateWithoutSpendBatchesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11714,10 +12995,13 @@ export type OrganizationUncheckedCreateWithoutSpendBatchesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11778,6 +13062,7 @@ export type OrganizationUpdateWithoutSpendBatchesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -11786,10 +13071,13 @@ export type OrganizationUpdateWithoutSpendBatchesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -11834,6 +13122,7 @@ export type OrganizationUncheckedUpdateWithoutSpendBatchesInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11842,10 +13131,13 @@ export type OrganizationUncheckedUpdateWithoutSpendBatchesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11890,6 +13182,7 @@ export type OrganizationCreateWithoutRequestSupplementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -11899,9 +13192,12 @@ export type OrganizationCreateWithoutRequestSupplementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -11946,6 +13242,7 @@ export type OrganizationUncheckedCreateWithoutRequestSupplementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11955,9 +13252,12 @@ export type OrganizationUncheckedCreateWithoutRequestSupplementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12018,6 +13318,7 @@ export type OrganizationUpdateWithoutRequestSupplementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -12027,9 +13328,12 @@ export type OrganizationUpdateWithoutRequestSupplementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -12074,6 +13378,7 @@ export type OrganizationUncheckedUpdateWithoutRequestSupplementsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12083,9 +13388,268 @@ export type OrganizationUncheckedUpdateWithoutRequestSupplementsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutRequestReserveConfirmationsInput = {
+  id?: string
+  name: string
+  timeZone: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  reportingCurrencyRecord: Prisma.CurrencyCreateNestedOneWithoutOrganizationsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput = {
+  id?: string
+  name: string
+  timeZone: string
+  reportingCurrency: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorUncheckedCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutRequestReserveConfirmationsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutRequestReserveConfirmationsInput, Prisma.OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput>
+}
+
+export type OrganizationUpsertWithoutRequestReserveConfirmationsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutRequestReserveConfirmationsInput, Prisma.OrganizationUncheckedUpdateWithoutRequestReserveConfirmationsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutRequestReserveConfirmationsInput, Prisma.OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutRequestReserveConfirmationsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutRequestReserveConfirmationsInput, Prisma.OrganizationUncheckedUpdateWithoutRequestReserveConfirmationsInput>
+}
+
+export type OrganizationUpdateWithoutRequestReserveConfirmationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reportingCurrencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutOrganizationsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutRequestReserveConfirmationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  reportingCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUncheckedUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12130,6 +13694,7 @@ export type OrganizationCreateWithoutControlledWaitAlertsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -12138,10 +13703,13 @@ export type OrganizationCreateWithoutControlledWaitAlertsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -12186,6 +13754,7 @@ export type OrganizationUncheckedCreateWithoutControlledWaitAlertsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12194,10 +13763,13 @@ export type OrganizationUncheckedCreateWithoutControlledWaitAlertsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12258,6 +13830,7 @@ export type OrganizationUpdateWithoutControlledWaitAlertsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -12266,10 +13839,13 @@ export type OrganizationUpdateWithoutControlledWaitAlertsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -12314,6 +13890,7 @@ export type OrganizationUncheckedUpdateWithoutControlledWaitAlertsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12322,10 +13899,13 @@ export type OrganizationUncheckedUpdateWithoutControlledWaitAlertsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12370,6 +13950,7 @@ export type OrganizationCreateWithoutReturnRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
@@ -12378,10 +13959,13 @@ export type OrganizationCreateWithoutReturnRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -12426,6 +14010,7 @@ export type OrganizationUncheckedCreateWithoutReturnRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12434,10 +14019,13 @@ export type OrganizationUncheckedCreateWithoutReturnRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12498,6 +14086,7 @@ export type OrganizationUpdateWithoutReturnRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
@@ -12506,10 +14095,13 @@ export type OrganizationUpdateWithoutReturnRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -12554,6 +14146,7 @@ export type OrganizationUncheckedUpdateWithoutReturnRequestsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12562,10 +14155,13 @@ export type OrganizationUncheckedUpdateWithoutReturnRequestsInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12610,6 +14206,7 @@ export type OrganizationCreateWithoutStepSlaRemindersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -12618,10 +14215,13 @@ export type OrganizationCreateWithoutStepSlaRemindersInput = {
   congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -12666,6 +14266,7 @@ export type OrganizationUncheckedCreateWithoutStepSlaRemindersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12674,10 +14275,13 @@ export type OrganizationUncheckedCreateWithoutStepSlaRemindersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12738,6 +14342,7 @@ export type OrganizationUpdateWithoutStepSlaRemindersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -12746,10 +14351,13 @@ export type OrganizationUpdateWithoutStepSlaRemindersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -12794,6 +14402,7 @@ export type OrganizationUncheckedUpdateWithoutStepSlaRemindersInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12802,10 +14411,13 @@ export type OrganizationUncheckedUpdateWithoutStepSlaRemindersInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12850,6 +14462,7 @@ export type OrganizationCreateWithoutCongestionIncidentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
@@ -12858,10 +14471,13 @@ export type OrganizationCreateWithoutCongestionIncidentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
@@ -12906,6 +14522,7 @@ export type OrganizationUncheckedCreateWithoutCongestionIncidentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12914,10 +14531,13 @@ export type OrganizationUncheckedCreateWithoutCongestionIncidentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
   budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12978,6 +14598,7 @@ export type OrganizationUpdateWithoutCongestionIncidentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -12986,10 +14607,13 @@ export type OrganizationUpdateWithoutCongestionIncidentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -13034,6 +14658,7 @@ export type OrganizationUncheckedUpdateWithoutCongestionIncidentsInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13042,8 +14667,267 @@ export type OrganizationUncheckedUpdateWithoutCongestionIncidentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutYearStartCommitmentRunsInput = {
+  id?: string
+  name: string
+  timeZone: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  reportingCurrencyRecord: Prisma.CurrencyCreateNestedOneWithoutOrganizationsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput = {
+  id?: string
+  name: string
+  timeZone: string
+  reportingCurrency: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorUncheckedCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutYearStartCommitmentRunsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutYearStartCommitmentRunsInput, Prisma.OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput>
+}
+
+export type OrganizationUpsertWithoutYearStartCommitmentRunsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutYearStartCommitmentRunsInput, Prisma.OrganizationUncheckedUpdateWithoutYearStartCommitmentRunsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutYearStartCommitmentRunsInput, Prisma.OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutYearStartCommitmentRunsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutYearStartCommitmentRunsInput, Prisma.OrganizationUncheckedUpdateWithoutYearStartCommitmentRunsInput>
+}
+
+export type OrganizationUpdateWithoutYearStartCommitmentRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reportingCurrencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutOrganizationsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutYearStartCommitmentRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  reportingCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUncheckedUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13097,6 +14981,7 @@ export type OrganizationUpdateWithoutReportingCurrencyRecordInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
@@ -13106,10 +14991,13 @@ export type OrganizationUpdateWithoutReportingCurrencyRecordInput = {
   congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
@@ -13153,6 +15041,7 @@ export type OrganizationUncheckedUpdateWithoutReportingCurrencyRecordInput = {
   subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
   provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13162,10 +15051,13 @@ export type OrganizationUncheckedUpdateWithoutReportingCurrencyRecordInput = {
   congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
   budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
   applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13216,6 +15108,7 @@ export type OrganizationCountOutputType = {
   subscriptionRenewals: number
   subscriptionDeadlineEvents: number
   provisioningTasks: number
+  poolGrantAvoidedCosts: number
   returnRequests: number
   handoverDuties: number
   accessRequests: number
@@ -13225,10 +15118,13 @@ export type OrganizationCountOutputType = {
   congestionIncidents: number
   requestBudgetChecks: number
   spendBatches: number
+  requestReserveConfirmations: number
   requestSupplements: number
   budgetProposals: number
+  budgetCycles: number
   budgetVersions: number
   budgetCommitments: number
+  yearStartCommitmentRuns: number
   invoices: number
   applicationRetirementConfirmations: number
   contracts: number
@@ -13265,6 +15161,7 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   subscriptionRenewals?: boolean | OrganizationCountOutputTypeCountSubscriptionRenewalsArgs
   subscriptionDeadlineEvents?: boolean | OrganizationCountOutputTypeCountSubscriptionDeadlineEventsArgs
   provisioningTasks?: boolean | OrganizationCountOutputTypeCountProvisioningTasksArgs
+  poolGrantAvoidedCosts?: boolean | OrganizationCountOutputTypeCountPoolGrantAvoidedCostsArgs
   returnRequests?: boolean | OrganizationCountOutputTypeCountReturnRequestsArgs
   handoverDuties?: boolean | OrganizationCountOutputTypeCountHandoverDutiesArgs
   accessRequests?: boolean | OrganizationCountOutputTypeCountAccessRequestsArgs
@@ -13274,10 +15171,13 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   congestionIncidents?: boolean | OrganizationCountOutputTypeCountCongestionIncidentsArgs
   requestBudgetChecks?: boolean | OrganizationCountOutputTypeCountRequestBudgetChecksArgs
   spendBatches?: boolean | OrganizationCountOutputTypeCountSpendBatchesArgs
+  requestReserveConfirmations?: boolean | OrganizationCountOutputTypeCountRequestReserveConfirmationsArgs
   requestSupplements?: boolean | OrganizationCountOutputTypeCountRequestSupplementsArgs
   budgetProposals?: boolean | OrganizationCountOutputTypeCountBudgetProposalsArgs
+  budgetCycles?: boolean | OrganizationCountOutputTypeCountBudgetCyclesArgs
   budgetVersions?: boolean | OrganizationCountOutputTypeCountBudgetVersionsArgs
   budgetCommitments?: boolean | OrganizationCountOutputTypeCountBudgetCommitmentsArgs
+  yearStartCommitmentRuns?: boolean | OrganizationCountOutputTypeCountYearStartCommitmentRunsArgs
   invoices?: boolean | OrganizationCountOutputTypeCountInvoicesArgs
   applicationRetirementConfirmations?: boolean | OrganizationCountOutputTypeCountApplicationRetirementConfirmationsArgs
   contracts?: boolean | OrganizationCountOutputTypeCountContractsArgs
@@ -13434,6 +15334,13 @@ export type OrganizationCountOutputTypeCountProvisioningTasksArgs<ExtArgs extend
 /**
  * OrganizationCountOutputType without action
  */
+export type OrganizationCountOutputTypeCountPoolGrantAvoidedCostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PoolGrantAvoidedCostWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
 export type OrganizationCountOutputTypeCountReturnRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ReturnRequestWhereInput
 }
@@ -13497,6 +15404,13 @@ export type OrganizationCountOutputTypeCountSpendBatchesArgs<ExtArgs extends run
 /**
  * OrganizationCountOutputType without action
  */
+export type OrganizationCountOutputTypeCountRequestReserveConfirmationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RequestReserveConfirmationWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
 export type OrganizationCountOutputTypeCountRequestSupplementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.RequestSupplementWhereInput
 }
@@ -13511,6 +15425,13 @@ export type OrganizationCountOutputTypeCountBudgetProposalsArgs<ExtArgs extends 
 /**
  * OrganizationCountOutputType without action
  */
+export type OrganizationCountOutputTypeCountBudgetCyclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetCycleWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
 export type OrganizationCountOutputTypeCountBudgetVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.BudgetVersionWhereInput
 }
@@ -13520,6 +15441,13 @@ export type OrganizationCountOutputTypeCountBudgetVersionsArgs<ExtArgs extends r
  */
 export type OrganizationCountOutputTypeCountBudgetCommitmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.BudgetCommitmentWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountYearStartCommitmentRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.YearStartCommitmentRunWhereInput
 }
 
 /**
@@ -13655,6 +15583,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   subscriptionRenewals?: boolean | Prisma.Organization$subscriptionRenewalsArgs<ExtArgs>
   subscriptionDeadlineEvents?: boolean | Prisma.Organization$subscriptionDeadlineEventsArgs<ExtArgs>
   provisioningTasks?: boolean | Prisma.Organization$provisioningTasksArgs<ExtArgs>
+  poolGrantAvoidedCosts?: boolean | Prisma.Organization$poolGrantAvoidedCostsArgs<ExtArgs>
   returnRequests?: boolean | Prisma.Organization$returnRequestsArgs<ExtArgs>
   handoverDuties?: boolean | Prisma.Organization$handoverDutiesArgs<ExtArgs>
   accessRequests?: boolean | Prisma.Organization$accessRequestsArgs<ExtArgs>
@@ -13664,10 +15593,13 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   congestionIncidents?: boolean | Prisma.Organization$congestionIncidentsArgs<ExtArgs>
   requestBudgetChecks?: boolean | Prisma.Organization$requestBudgetChecksArgs<ExtArgs>
   spendBatches?: boolean | Prisma.Organization$spendBatchesArgs<ExtArgs>
+  requestReserveConfirmations?: boolean | Prisma.Organization$requestReserveConfirmationsArgs<ExtArgs>
   requestSupplements?: boolean | Prisma.Organization$requestSupplementsArgs<ExtArgs>
   budgetProposals?: boolean | Prisma.Organization$budgetProposalsArgs<ExtArgs>
+  budgetCycles?: boolean | Prisma.Organization$budgetCyclesArgs<ExtArgs>
   budgetVersions?: boolean | Prisma.Organization$budgetVersionsArgs<ExtArgs>
   budgetCommitments?: boolean | Prisma.Organization$budgetCommitmentsArgs<ExtArgs>
+  yearStartCommitmentRuns?: boolean | Prisma.Organization$yearStartCommitmentRunsArgs<ExtArgs>
   invoices?: boolean | Prisma.Organization$invoicesArgs<ExtArgs>
   applicationRetirementConfirmations?: boolean | Prisma.Organization$applicationRetirementConfirmationsArgs<ExtArgs>
   contracts?: boolean | Prisma.Organization$contractsArgs<ExtArgs>
@@ -13738,6 +15670,7 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   subscriptionRenewals?: boolean | Prisma.Organization$subscriptionRenewalsArgs<ExtArgs>
   subscriptionDeadlineEvents?: boolean | Prisma.Organization$subscriptionDeadlineEventsArgs<ExtArgs>
   provisioningTasks?: boolean | Prisma.Organization$provisioningTasksArgs<ExtArgs>
+  poolGrantAvoidedCosts?: boolean | Prisma.Organization$poolGrantAvoidedCostsArgs<ExtArgs>
   returnRequests?: boolean | Prisma.Organization$returnRequestsArgs<ExtArgs>
   handoverDuties?: boolean | Prisma.Organization$handoverDutiesArgs<ExtArgs>
   accessRequests?: boolean | Prisma.Organization$accessRequestsArgs<ExtArgs>
@@ -13747,10 +15680,13 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   congestionIncidents?: boolean | Prisma.Organization$congestionIncidentsArgs<ExtArgs>
   requestBudgetChecks?: boolean | Prisma.Organization$requestBudgetChecksArgs<ExtArgs>
   spendBatches?: boolean | Prisma.Organization$spendBatchesArgs<ExtArgs>
+  requestReserveConfirmations?: boolean | Prisma.Organization$requestReserveConfirmationsArgs<ExtArgs>
   requestSupplements?: boolean | Prisma.Organization$requestSupplementsArgs<ExtArgs>
   budgetProposals?: boolean | Prisma.Organization$budgetProposalsArgs<ExtArgs>
+  budgetCycles?: boolean | Prisma.Organization$budgetCyclesArgs<ExtArgs>
   budgetVersions?: boolean | Prisma.Organization$budgetVersionsArgs<ExtArgs>
   budgetCommitments?: boolean | Prisma.Organization$budgetCommitmentsArgs<ExtArgs>
+  yearStartCommitmentRuns?: boolean | Prisma.Organization$yearStartCommitmentRunsArgs<ExtArgs>
   invoices?: boolean | Prisma.Organization$invoicesArgs<ExtArgs>
   applicationRetirementConfirmations?: boolean | Prisma.Organization$applicationRetirementConfirmationsArgs<ExtArgs>
   contracts?: boolean | Prisma.Organization$contractsArgs<ExtArgs>
@@ -13799,6 +15735,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     subscriptionRenewals: Prisma.$SubscriptionRenewalPayload<ExtArgs>[]
     subscriptionDeadlineEvents: Prisma.$SubscriptionDeadlineEventPayload<ExtArgs>[]
     provisioningTasks: Prisma.$ProvisioningTaskPayload<ExtArgs>[]
+    poolGrantAvoidedCosts: Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>[]
     returnRequests: Prisma.$ReturnRequestPayload<ExtArgs>[]
     handoverDuties: Prisma.$HandoverDutyPayload<ExtArgs>[]
     accessRequests: Prisma.$AccessRequestPayload<ExtArgs>[]
@@ -13808,10 +15745,13 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     congestionIncidents: Prisma.$CongestionIncidentPayload<ExtArgs>[]
     requestBudgetChecks: Prisma.$RequestBudgetCheckPayload<ExtArgs>[]
     spendBatches: Prisma.$SpendBatchPayload<ExtArgs>[]
+    requestReserveConfirmations: Prisma.$RequestReserveConfirmationPayload<ExtArgs>[]
     requestSupplements: Prisma.$RequestSupplementPayload<ExtArgs>[]
     budgetProposals: Prisma.$BudgetProposalPayload<ExtArgs>[]
+    budgetCycles: Prisma.$BudgetCyclePayload<ExtArgs>[]
     budgetVersions: Prisma.$BudgetVersionPayload<ExtArgs>[]
     budgetCommitments: Prisma.$BudgetCommitmentPayload<ExtArgs>[]
+    yearStartCommitmentRuns: Prisma.$YearStartCommitmentRunPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     applicationRetirementConfirmations: Prisma.$ApplicationRetirementConfirmationPayload<ExtArgs>[]
     contracts: Prisma.$ContractPayload<ExtArgs>[]
@@ -14250,6 +16190,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   subscriptionRenewals<T extends Prisma.Organization$subscriptionRenewalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$subscriptionRenewalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionRenewalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptionDeadlineEvents<T extends Prisma.Organization$subscriptionDeadlineEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$subscriptionDeadlineEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionDeadlineEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   provisioningTasks<T extends Prisma.Organization$provisioningTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$provisioningTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProvisioningTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  poolGrantAvoidedCosts<T extends Prisma.Organization$poolGrantAvoidedCostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$poolGrantAvoidedCostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   returnRequests<T extends Prisma.Organization$returnRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$returnRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   handoverDuties<T extends Prisma.Organization$handoverDutiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$handoverDutiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HandoverDutyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessRequests<T extends Prisma.Organization$accessRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$accessRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -14259,10 +16200,13 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   congestionIncidents<T extends Prisma.Organization$congestionIncidentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$congestionIncidentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CongestionIncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   requestBudgetChecks<T extends Prisma.Organization$requestBudgetChecksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$requestBudgetChecksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestBudgetCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   spendBatches<T extends Prisma.Organization$spendBatchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$spendBatchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SpendBatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  requestReserveConfirmations<T extends Prisma.Organization$requestReserveConfirmationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$requestReserveConfirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestReserveConfirmationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   requestSupplements<T extends Prisma.Organization$requestSupplementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$requestSupplementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestSupplementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetProposals<T extends Prisma.Organization$budgetProposalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$budgetProposalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetProposalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  budgetCycles<T extends Prisma.Organization$budgetCyclesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$budgetCyclesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCyclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetVersions<T extends Prisma.Organization$budgetVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$budgetVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetCommitments<T extends Prisma.Organization$budgetCommitmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$budgetCommitmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  yearStartCommitmentRuns<T extends Prisma.Organization$yearStartCommitmentRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$yearStartCommitmentRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$YearStartCommitmentRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Organization$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   applicationRetirementConfirmations<T extends Prisma.Organization$applicationRetirementConfirmationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$applicationRetirementConfirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationRetirementConfirmationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   contracts<T extends Prisma.Organization$contractsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -15166,6 +17110,30 @@ export type Organization$provisioningTasksArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
+ * Organization.poolGrantAvoidedCosts
+ */
+export type Organization$poolGrantAvoidedCostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PoolGrantAvoidedCost
+   */
+  select?: Prisma.PoolGrantAvoidedCostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PoolGrantAvoidedCost
+   */
+  omit?: Prisma.PoolGrantAvoidedCostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PoolGrantAvoidedCostInclude<ExtArgs> | null
+  where?: Prisma.PoolGrantAvoidedCostWhereInput
+  orderBy?: Prisma.PoolGrantAvoidedCostOrderByWithRelationInput | Prisma.PoolGrantAvoidedCostOrderByWithRelationInput[]
+  cursor?: Prisma.PoolGrantAvoidedCostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PoolGrantAvoidedCostScalarFieldEnum | Prisma.PoolGrantAvoidedCostScalarFieldEnum[]
+}
+
+/**
  * Organization.returnRequests
  */
 export type Organization$returnRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -15382,6 +17350,30 @@ export type Organization$spendBatchesArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
+ * Organization.requestReserveConfirmations
+ */
+export type Organization$requestReserveConfirmationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequestReserveConfirmation
+   */
+  select?: Prisma.RequestReserveConfirmationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RequestReserveConfirmation
+   */
+  omit?: Prisma.RequestReserveConfirmationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RequestReserveConfirmationInclude<ExtArgs> | null
+  where?: Prisma.RequestReserveConfirmationWhereInput
+  orderBy?: Prisma.RequestReserveConfirmationOrderByWithRelationInput | Prisma.RequestReserveConfirmationOrderByWithRelationInput[]
+  cursor?: Prisma.RequestReserveConfirmationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RequestReserveConfirmationScalarFieldEnum | Prisma.RequestReserveConfirmationScalarFieldEnum[]
+}
+
+/**
  * Organization.requestSupplements
  */
 export type Organization$requestSupplementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -15430,6 +17422,30 @@ export type Organization$budgetProposalsArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * Organization.budgetCycles
+ */
+export type Organization$budgetCyclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetCycle
+   */
+  select?: Prisma.BudgetCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetCycle
+   */
+  omit?: Prisma.BudgetCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetCycleInclude<ExtArgs> | null
+  where?: Prisma.BudgetCycleWhereInput
+  orderBy?: Prisma.BudgetCycleOrderByWithRelationInput | Prisma.BudgetCycleOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetCycleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetCycleScalarFieldEnum | Prisma.BudgetCycleScalarFieldEnum[]
+}
+
+/**
  * Organization.budgetVersions
  */
 export type Organization$budgetVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -15475,6 +17491,30 @@ export type Organization$budgetCommitmentsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.BudgetCommitmentScalarFieldEnum | Prisma.BudgetCommitmentScalarFieldEnum[]
+}
+
+/**
+ * Organization.yearStartCommitmentRuns
+ */
+export type Organization$yearStartCommitmentRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the YearStartCommitmentRun
+   */
+  select?: Prisma.YearStartCommitmentRunSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the YearStartCommitmentRun
+   */
+  omit?: Prisma.YearStartCommitmentRunOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.YearStartCommitmentRunInclude<ExtArgs> | null
+  where?: Prisma.YearStartCommitmentRunWhereInput
+  orderBy?: Prisma.YearStartCommitmentRunOrderByWithRelationInput | Prisma.YearStartCommitmentRunOrderByWithRelationInput[]
+  cursor?: Prisma.YearStartCommitmentRunWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.YearStartCommitmentRunScalarFieldEnum | Prisma.YearStartCommitmentRunScalarFieldEnum[]
 }
 
 /**

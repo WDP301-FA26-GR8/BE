@@ -71,6 +71,9 @@ export type ProvisioningTaskMinAggregateOutputType = {
   accessCutOn: Date | null
   accessEvidence: string | null
   completionNote: string | null
+  purchaseKind: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason: string | null
+  purchasedAt: Date | null
   createdByAppUserId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -111,6 +114,9 @@ export type ProvisioningTaskMaxAggregateOutputType = {
   accessCutOn: Date | null
   accessEvidence: string | null
   completionNote: string | null
+  purchaseKind: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason: string | null
+  purchasedAt: Date | null
   createdByAppUserId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -151,6 +157,9 @@ export type ProvisioningTaskCountAggregateOutputType = {
   accessCutOn: number
   accessEvidence: number
   completionNote: number
+  purchaseKind: number
+  purchaseReason: number
+  purchasedAt: number
   createdByAppUserId: number
   createdAt: number
   updatedAt: number
@@ -203,6 +212,9 @@ export type ProvisioningTaskMinAggregateInputType = {
   accessCutOn?: true
   accessEvidence?: true
   completionNote?: true
+  purchaseKind?: true
+  purchaseReason?: true
+  purchasedAt?: true
   createdByAppUserId?: true
   createdAt?: true
   updatedAt?: true
@@ -243,6 +255,9 @@ export type ProvisioningTaskMaxAggregateInputType = {
   accessCutOn?: true
   accessEvidence?: true
   completionNote?: true
+  purchaseKind?: true
+  purchaseReason?: true
+  purchasedAt?: true
   createdByAppUserId?: true
   createdAt?: true
   updatedAt?: true
@@ -283,6 +298,9 @@ export type ProvisioningTaskCountAggregateInputType = {
   accessCutOn?: true
   accessEvidence?: true
   completionNote?: true
+  purchaseKind?: true
+  purchaseReason?: true
+  purchasedAt?: true
   createdByAppUserId?: true
   createdAt?: true
   updatedAt?: true
@@ -410,6 +428,9 @@ export type ProvisioningTaskGroupByOutputType = {
   accessCutOn: Date | null
   accessEvidence: string | null
   completionNote: string | null
+  purchaseKind: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason: string | null
+  purchasedAt: Date | null
   createdByAppUserId: string
   createdAt: Date
   updatedAt: Date
@@ -473,11 +494,15 @@ export type ProvisioningTaskWhereInput = {
   accessCutOn?: Prisma.DateTimeNullableFilter<"ProvisioningTask"> | Date | string | null
   accessEvidence?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
   completionNote?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
+  purchaseKind?: Prisma.EnumProvisioningPurchaseKindNullableFilter<"ProvisioningTask"> | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
+  purchasedAt?: Prisma.DateTimeNullableFilter<"ProvisioningTask"> | Date | string | null
   createdByAppUserId?: Prisma.UuidFilter<"ProvisioningTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ProvisioningTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProvisioningTask"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   assignment?: Prisma.XOR<Prisma.LicenseAssignmentScalarRelationFilter, Prisma.LicenseAssignmentWhereInput>
+  poolGrantAvoidedCost?: Prisma.XOR<Prisma.PoolGrantAvoidedCostNullableScalarRelationFilter, Prisma.PoolGrantAvoidedCostWhereInput> | null
   defaultResponsible?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   reasons?: Prisma.ProvisioningTaskReasonListRelationFilter
   returnRequest?: Prisma.XOR<Prisma.ReturnRequestNullableScalarRelationFilter, Prisma.ReturnRequestWhereInput> | null
@@ -519,11 +544,15 @@ export type ProvisioningTaskOrderByWithRelationInput = {
   accessCutOn?: Prisma.SortOrderInput | Prisma.SortOrder
   accessEvidence?: Prisma.SortOrderInput | Prisma.SortOrder
   completionNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchaseKind?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchaseReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdByAppUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   assignment?: Prisma.LicenseAssignmentOrderByWithRelationInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostOrderByWithRelationInput
   defaultResponsible?: Prisma.EmployeeOrderByWithRelationInput
   reasons?: Prisma.ProvisioningTaskReasonOrderByRelationAggregateInput
   returnRequest?: Prisma.ReturnRequestOrderByWithRelationInput
@@ -568,11 +597,15 @@ export type ProvisioningTaskWhereUniqueInput = Prisma.AtLeast<{
   accessCutOn?: Prisma.DateTimeNullableFilter<"ProvisioningTask"> | Date | string | null
   accessEvidence?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
   completionNote?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
+  purchaseKind?: Prisma.EnumProvisioningPurchaseKindNullableFilter<"ProvisioningTask"> | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
+  purchasedAt?: Prisma.DateTimeNullableFilter<"ProvisioningTask"> | Date | string | null
   createdByAppUserId?: Prisma.UuidFilter<"ProvisioningTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ProvisioningTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProvisioningTask"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   assignment?: Prisma.XOR<Prisma.LicenseAssignmentScalarRelationFilter, Prisma.LicenseAssignmentWhereInput>
+  poolGrantAvoidedCost?: Prisma.XOR<Prisma.PoolGrantAvoidedCostNullableScalarRelationFilter, Prisma.PoolGrantAvoidedCostWhereInput> | null
   defaultResponsible?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   reasons?: Prisma.ProvisioningTaskReasonListRelationFilter
   returnRequest?: Prisma.XOR<Prisma.ReturnRequestNullableScalarRelationFilter, Prisma.ReturnRequestWhereInput> | null
@@ -614,6 +647,9 @@ export type ProvisioningTaskOrderByWithAggregationInput = {
   accessCutOn?: Prisma.SortOrderInput | Prisma.SortOrder
   accessEvidence?: Prisma.SortOrderInput | Prisma.SortOrder
   completionNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchaseKind?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchaseReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdByAppUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -662,6 +698,9 @@ export type ProvisioningTaskScalarWhereWithAggregatesInput = {
   accessCutOn?: Prisma.DateTimeNullableWithAggregatesFilter<"ProvisioningTask"> | Date | string | null
   accessEvidence?: Prisma.StringNullableWithAggregatesFilter<"ProvisioningTask"> | string | null
   completionNote?: Prisma.StringNullableWithAggregatesFilter<"ProvisioningTask"> | string | null
+  purchaseKind?: Prisma.EnumProvisioningPurchaseKindNullableWithAggregatesFilter<"ProvisioningTask"> | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.StringNullableWithAggregatesFilter<"ProvisioningTask"> | string | null
+  purchasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ProvisioningTask"> | Date | string | null
   createdByAppUserId?: Prisma.UuidWithAggregatesFilter<"ProvisioningTask"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProvisioningTask"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProvisioningTask"> | Date | string
@@ -699,11 +738,15 @@ export type ProvisioningTaskCreateInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProvisioningTasksInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutProvisioningTasksInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostCreateNestedOneWithoutProvisioningTaskInput
   defaultResponsible?: Prisma.EmployeeCreateNestedOneWithoutProvisioningTasksInChargeInput
   reasons?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutRevocationTaskInput
@@ -745,9 +788,13 @@ export type ProvisioningTaskUncheckedCreateInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedOneWithoutProvisioningTaskInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutRevocationTaskInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutRevocationTaskInput
@@ -785,11 +832,15 @@ export type ProvisioningTaskUpdateInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProvisioningTasksNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUpdateOneWithoutProvisioningTaskNestedInput
   defaultResponsible?: Prisma.EmployeeUpdateOneWithoutProvisioningTasksInChargeNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutRevocationTaskNestedInput
@@ -831,9 +882,13 @@ export type ProvisioningTaskUncheckedUpdateInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedUpdateOneWithoutProvisioningTaskNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutRevocationTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskNestedInput
@@ -874,6 +929,9 @@ export type ProvisioningTaskCreateManyInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -911,6 +969,9 @@ export type ProvisioningTaskUpdateManyMutationInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -951,6 +1012,9 @@ export type ProvisioningTaskUncheckedUpdateManyInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1001,6 +1065,9 @@ export type ProvisioningTaskCountOrderByAggregateInput = {
   accessCutOn?: Prisma.SortOrder
   accessEvidence?: Prisma.SortOrder
   completionNote?: Prisma.SortOrder
+  purchaseKind?: Prisma.SortOrder
+  purchaseReason?: Prisma.SortOrder
+  purchasedAt?: Prisma.SortOrder
   createdByAppUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -1046,6 +1113,9 @@ export type ProvisioningTaskMaxOrderByAggregateInput = {
   accessCutOn?: Prisma.SortOrder
   accessEvidence?: Prisma.SortOrder
   completionNote?: Prisma.SortOrder
+  purchaseKind?: Prisma.SortOrder
+  purchaseReason?: Prisma.SortOrder
+  purchasedAt?: Prisma.SortOrder
   createdByAppUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -1086,6 +1156,9 @@ export type ProvisioningTaskMinOrderByAggregateInput = {
   accessCutOn?: Prisma.SortOrder
   accessEvidence?: Prisma.SortOrder
   completionNote?: Prisma.SortOrder
+  purchaseKind?: Prisma.SortOrder
+  purchaseReason?: Prisma.SortOrder
+  purchasedAt?: Prisma.SortOrder
   createdByAppUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -1176,6 +1249,10 @@ export type NullableEnumAccessStateFieldUpdateOperationsInput = {
   set?: $Enums.AccessState | null
 }
 
+export type NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput = {
+  set?: $Enums.ProvisioningPurchaseKind | null
+}
+
 export type ProvisioningTaskCreateNestedOneWithoutReasonsInput = {
   create?: Prisma.XOR<Prisma.ProvisioningTaskCreateWithoutReasonsInput, Prisma.ProvisioningTaskUncheckedCreateWithoutReasonsInput>
   connectOrCreate?: Prisma.ProvisioningTaskCreateOrConnectWithoutReasonsInput
@@ -1188,6 +1265,20 @@ export type ProvisioningTaskUpdateOneRequiredWithoutReasonsNestedInput = {
   upsert?: Prisma.ProvisioningTaskUpsertWithoutReasonsInput
   connect?: Prisma.ProvisioningTaskWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProvisioningTaskUpdateToOneWithWhereWithoutReasonsInput, Prisma.ProvisioningTaskUpdateWithoutReasonsInput>, Prisma.ProvisioningTaskUncheckedUpdateWithoutReasonsInput>
+}
+
+export type ProvisioningTaskCreateNestedOneWithoutPoolGrantAvoidedCostInput = {
+  create?: Prisma.XOR<Prisma.ProvisioningTaskCreateWithoutPoolGrantAvoidedCostInput, Prisma.ProvisioningTaskUncheckedCreateWithoutPoolGrantAvoidedCostInput>
+  connectOrCreate?: Prisma.ProvisioningTaskCreateOrConnectWithoutPoolGrantAvoidedCostInput
+  connect?: Prisma.ProvisioningTaskWhereUniqueInput
+}
+
+export type ProvisioningTaskUpdateOneRequiredWithoutPoolGrantAvoidedCostNestedInput = {
+  create?: Prisma.XOR<Prisma.ProvisioningTaskCreateWithoutPoolGrantAvoidedCostInput, Prisma.ProvisioningTaskUncheckedCreateWithoutPoolGrantAvoidedCostInput>
+  connectOrCreate?: Prisma.ProvisioningTaskCreateOrConnectWithoutPoolGrantAvoidedCostInput
+  upsert?: Prisma.ProvisioningTaskUpsertWithoutPoolGrantAvoidedCostInput
+  connect?: Prisma.ProvisioningTaskWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProvisioningTaskUpdateToOneWithWhereWithoutPoolGrantAvoidedCostInput, Prisma.ProvisioningTaskUpdateWithoutPoolGrantAvoidedCostInput>, Prisma.ProvisioningTaskUncheckedUpdateWithoutPoolGrantAvoidedCostInput>
 }
 
 export type ProvisioningTaskCreateNestedManyWithoutOrganizationInput = {
@@ -1336,10 +1427,14 @@ export type ProvisioningTaskCreateWithoutAssignmentInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProvisioningTasksInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostCreateNestedOneWithoutProvisioningTaskInput
   defaultResponsible?: Prisma.EmployeeCreateNestedOneWithoutProvisioningTasksInChargeInput
   reasons?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutRevocationTaskInput
@@ -1380,9 +1475,13 @@ export type ProvisioningTaskUncheckedCreateWithoutAssignmentInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedOneWithoutProvisioningTaskInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutRevocationTaskInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutRevocationTaskInput
@@ -1452,6 +1551,9 @@ export type ProvisioningTaskScalarWhereInput = {
   accessCutOn?: Prisma.DateTimeNullableFilter<"ProvisioningTask"> | Date | string | null
   accessEvidence?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
   completionNote?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
+  purchaseKind?: Prisma.EnumProvisioningPurchaseKindNullableFilter<"ProvisioningTask"> | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.StringNullableFilter<"ProvisioningTask"> | string | null
+  purchasedAt?: Prisma.DateTimeNullableFilter<"ProvisioningTask"> | Date | string | null
   createdByAppUserId?: Prisma.UuidFilter<"ProvisioningTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ProvisioningTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProvisioningTask"> | Date | string
@@ -1489,11 +1591,15 @@ export type ProvisioningTaskCreateWithoutReasonsInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProvisioningTasksInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutProvisioningTasksInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostCreateNestedOneWithoutProvisioningTaskInput
   defaultResponsible?: Prisma.EmployeeCreateNestedOneWithoutProvisioningTasksInChargeInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutRevocationTaskInput
   transferReviewItems?: Prisma.TransferReviewItemCreateNestedManyWithoutRevocationTaskInput
@@ -1534,9 +1640,13 @@ export type ProvisioningTaskUncheckedCreateWithoutReasonsInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedOneWithoutProvisioningTaskInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutRevocationTaskInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutRevocationTaskInput
 }
@@ -1589,11 +1699,15 @@ export type ProvisioningTaskUpdateWithoutReasonsInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProvisioningTasksNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUpdateOneWithoutProvisioningTaskNestedInput
   defaultResponsible?: Prisma.EmployeeUpdateOneWithoutProvisioningTasksInChargeNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutRevocationTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUpdateManyWithoutRevocationTaskNestedInput
@@ -1634,9 +1748,213 @@ export type ProvisioningTaskUncheckedUpdateWithoutReasonsInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedUpdateOneWithoutProvisioningTaskNestedInput
+  returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutRevocationTaskNestedInput
+  transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskNestedInput
+}
+
+export type ProvisioningTaskCreateWithoutPoolGrantAvoidedCostInput = {
+  id?: string
+  kind: $Enums.ProvisioningTaskKind
+  channel: $Enums.ProvisioningChannel
+  status?: $Enums.ProvisioningTaskStatus
+  requestId?: string | null
+  claimedByAppUserId?: string | null
+  claimedAt?: Date | string | null
+  completedByAppUserId?: string | null
+  completedAt?: Date | string | null
+  evidence?: string | null
+  failedByAppUserId?: string | null
+  failedAt?: Date | string | null
+  failureReason?: string | null
+  failureKind?: $Enums.ProvisioningFailureKind | null
+  attempts?: number
+  maxAttempts: number
+  lastError?: string | null
+  nextRetryAt?: Date | string | null
+  closedByAppUserId?: string | null
+  closedAt?: Date | string | null
+  closeReason?: string | null
+  handedOffByAppUserId?: string | null
+  handedOffAt?: Date | string | null
+  handOffEvidence?: string | null
+  revocationSource?: $Enums.RevocationSource | null
+  completion?: $Enums.RevocationCompletion | null
+  paidThroughOn?: Date | string | null
+  accessState?: $Enums.AccessState | null
+  accessCutOn?: Date | string | null
+  accessEvidence?: string | null
+  completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutProvisioningTasksInput
+  assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutProvisioningTasksInput
+  defaultResponsible?: Prisma.EmployeeCreateNestedOneWithoutProvisioningTasksInChargeInput
+  reasons?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutTaskInput
+  returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutRevocationTaskInput
+  transferReviewItems?: Prisma.TransferReviewItemCreateNestedManyWithoutRevocationTaskInput
+}
+
+export type ProvisioningTaskUncheckedCreateWithoutPoolGrantAvoidedCostInput = {
+  id?: string
+  organizationId: string
+  assignmentId: string
+  kind: $Enums.ProvisioningTaskKind
+  channel: $Enums.ProvisioningChannel
+  status?: $Enums.ProvisioningTaskStatus
+  requestId?: string | null
+  defaultResponsibleEmployeeId?: string | null
+  claimedByAppUserId?: string | null
+  claimedAt?: Date | string | null
+  completedByAppUserId?: string | null
+  completedAt?: Date | string | null
+  evidence?: string | null
+  failedByAppUserId?: string | null
+  failedAt?: Date | string | null
+  failureReason?: string | null
+  failureKind?: $Enums.ProvisioningFailureKind | null
+  attempts?: number
+  maxAttempts: number
+  lastError?: string | null
+  nextRetryAt?: Date | string | null
+  closedByAppUserId?: string | null
+  closedAt?: Date | string | null
+  closeReason?: string | null
+  handedOffByAppUserId?: string | null
+  handedOffAt?: Date | string | null
+  handOffEvidence?: string | null
+  revocationSource?: $Enums.RevocationSource | null
+  completion?: $Enums.RevocationCompletion | null
+  paidThroughOn?: Date | string | null
+  accessState?: $Enums.AccessState | null
+  accessCutOn?: Date | string | null
+  accessEvidence?: string | null
+  completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  reasons?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutTaskInput
+  returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutRevocationTaskInput
+  transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutRevocationTaskInput
+}
+
+export type ProvisioningTaskCreateOrConnectWithoutPoolGrantAvoidedCostInput = {
+  where: Prisma.ProvisioningTaskWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProvisioningTaskCreateWithoutPoolGrantAvoidedCostInput, Prisma.ProvisioningTaskUncheckedCreateWithoutPoolGrantAvoidedCostInput>
+}
+
+export type ProvisioningTaskUpsertWithoutPoolGrantAvoidedCostInput = {
+  update: Prisma.XOR<Prisma.ProvisioningTaskUpdateWithoutPoolGrantAvoidedCostInput, Prisma.ProvisioningTaskUncheckedUpdateWithoutPoolGrantAvoidedCostInput>
+  create: Prisma.XOR<Prisma.ProvisioningTaskCreateWithoutPoolGrantAvoidedCostInput, Prisma.ProvisioningTaskUncheckedCreateWithoutPoolGrantAvoidedCostInput>
+  where?: Prisma.ProvisioningTaskWhereInput
+}
+
+export type ProvisioningTaskUpdateToOneWithWhereWithoutPoolGrantAvoidedCostInput = {
+  where?: Prisma.ProvisioningTaskWhereInput
+  data: Prisma.XOR<Prisma.ProvisioningTaskUpdateWithoutPoolGrantAvoidedCostInput, Prisma.ProvisioningTaskUncheckedUpdateWithoutPoolGrantAvoidedCostInput>
+}
+
+export type ProvisioningTaskUpdateWithoutPoolGrantAvoidedCostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumProvisioningTaskKindFieldUpdateOperationsInput | $Enums.ProvisioningTaskKind
+  channel?: Prisma.EnumProvisioningChannelFieldUpdateOperationsInput | $Enums.ProvisioningChannel
+  status?: Prisma.EnumProvisioningTaskStatusFieldUpdateOperationsInput | $Enums.ProvisioningTaskStatus
+  requestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claimedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claimedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  evidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failureKind?: Prisma.NullableEnumProvisioningFailureKindFieldUpdateOperationsInput | $Enums.ProvisioningFailureKind | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  maxAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closeReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  handedOffByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  handedOffAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handOffEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revocationSource?: Prisma.NullableEnumRevocationSourceFieldUpdateOperationsInput | $Enums.RevocationSource | null
+  completion?: Prisma.NullableEnumRevocationCompletionFieldUpdateOperationsInput | $Enums.RevocationCompletion | null
+  paidThroughOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessState?: Prisma.NullableEnumAccessStateFieldUpdateOperationsInput | $Enums.AccessState | null
+  accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  defaultResponsible?: Prisma.EmployeeUpdateOneWithoutProvisioningTasksInChargeNestedInput
+  reasons?: Prisma.ProvisioningTaskReasonUpdateManyWithoutTaskNestedInput
+  returnRequest?: Prisma.ReturnRequestUpdateOneWithoutRevocationTaskNestedInput
+  transferReviewItems?: Prisma.TransferReviewItemUpdateManyWithoutRevocationTaskNestedInput
+}
+
+export type ProvisioningTaskUncheckedUpdateWithoutPoolGrantAvoidedCostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumProvisioningTaskKindFieldUpdateOperationsInput | $Enums.ProvisioningTaskKind
+  channel?: Prisma.EnumProvisioningChannelFieldUpdateOperationsInput | $Enums.ProvisioningChannel
+  status?: Prisma.EnumProvisioningTaskStatusFieldUpdateOperationsInput | $Enums.ProvisioningTaskStatus
+  requestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  defaultResponsibleEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claimedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claimedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  evidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failureKind?: Prisma.NullableEnumProvisioningFailureKindFieldUpdateOperationsInput | $Enums.ProvisioningFailureKind | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  maxAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closeReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  handedOffByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  handedOffAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  handOffEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revocationSource?: Prisma.NullableEnumRevocationSourceFieldUpdateOperationsInput | $Enums.RevocationSource | null
+  completion?: Prisma.NullableEnumRevocationCompletionFieldUpdateOperationsInput | $Enums.RevocationCompletion | null
+  paidThroughOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessState?: Prisma.NullableEnumAccessStateFieldUpdateOperationsInput | $Enums.AccessState | null
+  accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reasons?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutRevocationTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskNestedInput
 }
@@ -1673,10 +1991,14 @@ export type ProvisioningTaskCreateWithoutOrganizationInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutProvisioningTasksInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostCreateNestedOneWithoutProvisioningTaskInput
   defaultResponsible?: Prisma.EmployeeCreateNestedOneWithoutProvisioningTasksInChargeInput
   reasons?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutRevocationTaskInput
@@ -1717,9 +2039,13 @@ export type ProvisioningTaskUncheckedCreateWithoutOrganizationInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedOneWithoutProvisioningTaskInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutRevocationTaskInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutRevocationTaskInput
@@ -1783,11 +2109,15 @@ export type ProvisioningTaskCreateWithoutDefaultResponsibleInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProvisioningTasksInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutProvisioningTasksInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostCreateNestedOneWithoutProvisioningTaskInput
   reasons?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutRevocationTaskInput
   transferReviewItems?: Prisma.TransferReviewItemCreateNestedManyWithoutRevocationTaskInput
@@ -1827,9 +2157,13 @@ export type ProvisioningTaskUncheckedCreateWithoutDefaultResponsibleInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedOneWithoutProvisioningTaskInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutRevocationTaskInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutRevocationTaskInput
@@ -1893,11 +2227,15 @@ export type ProvisioningTaskCreateWithoutTransferReviewItemsInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProvisioningTasksInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutProvisioningTasksInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostCreateNestedOneWithoutProvisioningTaskInput
   defaultResponsible?: Prisma.EmployeeCreateNestedOneWithoutProvisioningTasksInChargeInput
   reasons?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutRevocationTaskInput
@@ -1938,9 +2276,13 @@ export type ProvisioningTaskUncheckedCreateWithoutTransferReviewItemsInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedOneWithoutProvisioningTaskInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutTaskInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutRevocationTaskInput
 }
@@ -1993,11 +2335,15 @@ export type ProvisioningTaskUpdateWithoutTransferReviewItemsInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProvisioningTasksNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUpdateOneWithoutProvisioningTaskNestedInput
   defaultResponsible?: Prisma.EmployeeUpdateOneWithoutProvisioningTasksInChargeNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutRevocationTaskNestedInput
@@ -2038,9 +2384,13 @@ export type ProvisioningTaskUncheckedUpdateWithoutTransferReviewItemsInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedUpdateOneWithoutProvisioningTaskNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutRevocationTaskNestedInput
 }
@@ -2077,11 +2427,15 @@ export type ProvisioningTaskCreateWithoutReturnRequestInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProvisioningTasksInput
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutProvisioningTasksInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostCreateNestedOneWithoutProvisioningTaskInput
   defaultResponsible?: Prisma.EmployeeCreateNestedOneWithoutProvisioningTasksInChargeInput
   reasons?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutTaskInput
   transferReviewItems?: Prisma.TransferReviewItemCreateNestedManyWithoutRevocationTaskInput
@@ -2122,9 +2476,13 @@ export type ProvisioningTaskUncheckedCreateWithoutReturnRequestInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedOneWithoutProvisioningTaskInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutTaskInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutRevocationTaskInput
 }
@@ -2177,11 +2535,15 @@ export type ProvisioningTaskUpdateWithoutReturnRequestInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProvisioningTasksNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUpdateOneWithoutProvisioningTaskNestedInput
   defaultResponsible?: Prisma.EmployeeUpdateOneWithoutProvisioningTasksInChargeNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUpdateManyWithoutTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUpdateManyWithoutRevocationTaskNestedInput
@@ -2222,9 +2584,13 @@ export type ProvisioningTaskUncheckedUpdateWithoutReturnRequestInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedUpdateOneWithoutProvisioningTaskNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskNestedInput
 }
@@ -2263,6 +2629,9 @@ export type ProvisioningTaskCreateManyAssignmentInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2300,10 +2669,14 @@ export type ProvisioningTaskUpdateWithoutAssignmentInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUpdateOneWithoutProvisioningTaskNestedInput
   defaultResponsible?: Prisma.EmployeeUpdateOneWithoutProvisioningTasksInChargeNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutRevocationTaskNestedInput
@@ -2344,9 +2717,13 @@ export type ProvisioningTaskUncheckedUpdateWithoutAssignmentInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedUpdateOneWithoutProvisioningTaskNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutRevocationTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskNestedInput
@@ -2386,6 +2763,9 @@ export type ProvisioningTaskUncheckedUpdateManyWithoutAssignmentInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2425,6 +2805,9 @@ export type ProvisioningTaskCreateManyOrganizationInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2462,10 +2845,14 @@ export type ProvisioningTaskUpdateWithoutOrganizationInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUpdateOneWithoutProvisioningTaskNestedInput
   defaultResponsible?: Prisma.EmployeeUpdateOneWithoutProvisioningTasksInChargeNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutRevocationTaskNestedInput
@@ -2506,9 +2893,13 @@ export type ProvisioningTaskUncheckedUpdateWithoutOrganizationInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedUpdateOneWithoutProvisioningTaskNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutRevocationTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskNestedInput
@@ -2548,6 +2939,9 @@ export type ProvisioningTaskUncheckedUpdateManyWithoutOrganizationInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2587,6 +2981,9 @@ export type ProvisioningTaskCreateManyDefaultResponsibleInput = {
   accessCutOn?: Date | string | null
   accessEvidence?: string | null
   completionNote?: string | null
+  purchaseKind?: $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: string | null
+  purchasedAt?: Date | string | null
   createdByAppUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2624,11 +3021,15 @@ export type ProvisioningTaskUpdateWithoutDefaultResponsibleInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProvisioningTasksNestedInput
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutProvisioningTasksNestedInput
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUpdateOneWithoutProvisioningTaskNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutRevocationTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUpdateManyWithoutRevocationTaskNestedInput
@@ -2668,9 +3069,13 @@ export type ProvisioningTaskUncheckedUpdateWithoutDefaultResponsibleInput = {
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostUncheckedUpdateOneWithoutProvisioningTaskNestedInput
   reasons?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutRevocationTaskNestedInput
   transferReviewItems?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutRevocationTaskNestedInput
@@ -2710,6 +3115,9 @@ export type ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleInput = 
   accessCutOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accessEvidence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchaseKind?: Prisma.NullableEnumProvisioningPurchaseKindFieldUpdateOperationsInput | $Enums.ProvisioningPurchaseKind | null
+  purchaseReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  purchasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2790,11 +3198,15 @@ export type ProvisioningTaskSelect<ExtArgs extends runtime.Types.Extensions.Inte
   accessCutOn?: boolean
   accessEvidence?: boolean
   completionNote?: boolean
+  purchaseKind?: boolean
+  purchaseReason?: boolean
+  purchasedAt?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   assignment?: boolean | Prisma.LicenseAssignmentDefaultArgs<ExtArgs>
+  poolGrantAvoidedCost?: boolean | Prisma.ProvisioningTask$poolGrantAvoidedCostArgs<ExtArgs>
   defaultResponsible?: boolean | Prisma.ProvisioningTask$defaultResponsibleArgs<ExtArgs>
   reasons?: boolean | Prisma.ProvisioningTask$reasonsArgs<ExtArgs>
   returnRequest?: boolean | Prisma.ProvisioningTask$returnRequestArgs<ExtArgs>
@@ -2837,6 +3249,9 @@ export type ProvisioningTaskSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   accessCutOn?: boolean
   accessEvidence?: boolean
   completionNote?: boolean
+  purchaseKind?: boolean
+  purchaseReason?: boolean
+  purchasedAt?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -2880,6 +3295,9 @@ export type ProvisioningTaskSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   accessCutOn?: boolean
   accessEvidence?: boolean
   completionNote?: boolean
+  purchaseKind?: boolean
+  purchaseReason?: boolean
+  purchasedAt?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -2923,15 +3341,19 @@ export type ProvisioningTaskSelectScalar = {
   accessCutOn?: boolean
   accessEvidence?: boolean
   completionNote?: boolean
+  purchaseKind?: boolean
+  purchaseReason?: boolean
+  purchasedAt?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProvisioningTaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "assignmentId" | "kind" | "channel" | "status" | "requestId" | "defaultResponsibleEmployeeId" | "claimedByAppUserId" | "claimedAt" | "completedByAppUserId" | "completedAt" | "evidence" | "failedByAppUserId" | "failedAt" | "failureReason" | "failureKind" | "attempts" | "maxAttempts" | "lastError" | "nextRetryAt" | "closedByAppUserId" | "closedAt" | "closeReason" | "handedOffByAppUserId" | "handedOffAt" | "handOffEvidence" | "revocationSource" | "completion" | "paidThroughOn" | "accessState" | "accessCutOn" | "accessEvidence" | "completionNote" | "createdByAppUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["provisioningTask"]>
+export type ProvisioningTaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "assignmentId" | "kind" | "channel" | "status" | "requestId" | "defaultResponsibleEmployeeId" | "claimedByAppUserId" | "claimedAt" | "completedByAppUserId" | "completedAt" | "evidence" | "failedByAppUserId" | "failedAt" | "failureReason" | "failureKind" | "attempts" | "maxAttempts" | "lastError" | "nextRetryAt" | "closedByAppUserId" | "closedAt" | "closeReason" | "handedOffByAppUserId" | "handedOffAt" | "handOffEvidence" | "revocationSource" | "completion" | "paidThroughOn" | "accessState" | "accessCutOn" | "accessEvidence" | "completionNote" | "purchaseKind" | "purchaseReason" | "purchasedAt" | "createdByAppUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["provisioningTask"]>
 export type ProvisioningTaskInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   assignment?: boolean | Prisma.LicenseAssignmentDefaultArgs<ExtArgs>
+  poolGrantAvoidedCost?: boolean | Prisma.ProvisioningTask$poolGrantAvoidedCostArgs<ExtArgs>
   defaultResponsible?: boolean | Prisma.ProvisioningTask$defaultResponsibleArgs<ExtArgs>
   reasons?: boolean | Prisma.ProvisioningTask$reasonsArgs<ExtArgs>
   returnRequest?: boolean | Prisma.ProvisioningTask$returnRequestArgs<ExtArgs>
@@ -2954,6 +3376,7 @@ export type $ProvisioningTaskPayload<ExtArgs extends runtime.Types.Extensions.In
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     assignment: Prisma.$LicenseAssignmentPayload<ExtArgs>
+    poolGrantAvoidedCost: Prisma.$PoolGrantAvoidedCostPayload<ExtArgs> | null
     defaultResponsible: Prisma.$EmployeePayload<ExtArgs> | null
     reasons: Prisma.$ProvisioningTaskReasonPayload<ExtArgs>[]
     returnRequest: Prisma.$ReturnRequestPayload<ExtArgs> | null
@@ -2994,6 +3417,9 @@ export type $ProvisioningTaskPayload<ExtArgs extends runtime.Types.Extensions.In
     accessCutOn: Date | null
     accessEvidence: string | null
     completionNote: string | null
+    purchaseKind: $Enums.ProvisioningPurchaseKind | null
+    purchaseReason: string | null
+    purchasedAt: Date | null
     createdByAppUserId: string
     createdAt: Date
     updatedAt: Date
@@ -3393,6 +3819,7 @@ export interface Prisma__ProvisioningTaskClient<T, Null = never, ExtArgs extends
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   assignment<T extends Prisma.LicenseAssignmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseAssignmentDefaultArgs<ExtArgs>>): Prisma.Prisma__LicenseAssignmentClient<runtime.Types.Result.GetResult<Prisma.$LicenseAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  poolGrantAvoidedCost<T extends Prisma.ProvisioningTask$poolGrantAvoidedCostArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProvisioningTask$poolGrantAvoidedCostArgs<ExtArgs>>): Prisma.Prisma__PoolGrantAvoidedCostClient<runtime.Types.Result.GetResult<Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   defaultResponsible<T extends Prisma.ProvisioningTask$defaultResponsibleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProvisioningTask$defaultResponsibleArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   reasons<T extends Prisma.ProvisioningTask$reasonsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProvisioningTask$reasonsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProvisioningTaskReasonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   returnRequest<T extends Prisma.ProvisioningTask$returnRequestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProvisioningTask$returnRequestArgs<ExtArgs>>): Prisma.Prisma__ReturnRequestClient<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -3460,6 +3887,9 @@ export interface ProvisioningTaskFieldRefs {
   readonly accessCutOn: Prisma.FieldRef<"ProvisioningTask", 'DateTime'>
   readonly accessEvidence: Prisma.FieldRef<"ProvisioningTask", 'String'>
   readonly completionNote: Prisma.FieldRef<"ProvisioningTask", 'String'>
+  readonly purchaseKind: Prisma.FieldRef<"ProvisioningTask", 'ProvisioningPurchaseKind'>
+  readonly purchaseReason: Prisma.FieldRef<"ProvisioningTask", 'String'>
+  readonly purchasedAt: Prisma.FieldRef<"ProvisioningTask", 'DateTime'>
   readonly createdByAppUserId: Prisma.FieldRef<"ProvisioningTask", 'String'>
   readonly createdAt: Prisma.FieldRef<"ProvisioningTask", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProvisioningTask", 'DateTime'>
@@ -3861,6 +4291,25 @@ export type ProvisioningTaskDeleteManyArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many ProvisioningTasks to delete.
    */
   limit?: number
+}
+
+/**
+ * ProvisioningTask.poolGrantAvoidedCost
+ */
+export type ProvisioningTask$poolGrantAvoidedCostArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PoolGrantAvoidedCost
+   */
+  select?: Prisma.PoolGrantAvoidedCostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PoolGrantAvoidedCost
+   */
+  omit?: Prisma.PoolGrantAvoidedCostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PoolGrantAvoidedCostInclude<ExtArgs> | null
+  where?: Prisma.PoolGrantAvoidedCostWhereInput
 }
 
 /**

@@ -254,6 +254,7 @@ export type PlanWhereInput = {
   termOpinions?: Prisma.PlanTermOpinionListRelationFilter
   seatBaselineImports?: Prisma.SeatBaselineImportListRelationFilter
   licenseAssignments?: Prisma.LicenseAssignmentListRelationFilter
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostListRelationFilter
   accessRequests?: Prisma.AccessRequestListRelationFilter
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentListRelationFilter
@@ -284,6 +285,7 @@ export type PlanOrderByWithRelationInput = {
   termOpinions?: Prisma.PlanTermOpinionOrderByRelationAggregateInput
   seatBaselineImports?: Prisma.SeatBaselineImportOrderByRelationAggregateInput
   licenseAssignments?: Prisma.LicenseAssignmentOrderByRelationAggregateInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostOrderByRelationAggregateInput
   accessRequests?: Prisma.AccessRequestOrderByRelationAggregateInput
   returnRequests?: Prisma.ReturnRequestOrderByRelationAggregateInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentOrderByRelationAggregateInput
@@ -318,6 +320,7 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   termOpinions?: Prisma.PlanTermOpinionListRelationFilter
   seatBaselineImports?: Prisma.SeatBaselineImportListRelationFilter
   licenseAssignments?: Prisma.LicenseAssignmentListRelationFilter
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostListRelationFilter
   accessRequests?: Prisma.AccessRequestListRelationFilter
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentListRelationFilter
@@ -384,6 +387,7 @@ export type PlanCreateInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -412,6 +416,7 @@ export type PlanUncheckedCreateInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -440,6 +445,7 @@ export type PlanUpdateInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -468,6 +474,7 @@ export type PlanUncheckedUpdateInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -770,6 +777,20 @@ export type PlanUpdateOneRequiredWithoutLicenseAssignmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutLicenseAssignmentsInput, Prisma.PlanUpdateWithoutLicenseAssignmentsInput>, Prisma.PlanUncheckedUpdateWithoutLicenseAssignmentsInput>
 }
 
+export type PlanCreateNestedOneWithoutPoolGrantAvoidedCostsInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutPoolGrantAvoidedCostsInput
+  connect?: Prisma.PlanWhereUniqueInput
+}
+
+export type PlanUpdateOneRequiredWithoutPoolGrantAvoidedCostsNestedInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutPoolGrantAvoidedCostsInput
+  upsert?: Prisma.PlanUpsertWithoutPoolGrantAvoidedCostsInput
+  connect?: Prisma.PlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUpdateWithoutPoolGrantAvoidedCostsInput>, Prisma.PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+}
+
 export type PlanCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.PlanCreateWithoutOrganizationInput, Prisma.PlanUncheckedCreateWithoutOrganizationInput> | Prisma.PlanCreateWithoutOrganizationInput[] | Prisma.PlanUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.PlanCreateOrConnectWithoutOrganizationInput | Prisma.PlanCreateOrConnectWithoutOrganizationInput[]
@@ -894,6 +915,7 @@ export type PlanCreateWithoutBudgetProposalLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -921,6 +943,7 @@ export type PlanUncheckedCreateWithoutBudgetProposalLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -964,6 +987,7 @@ export type PlanUpdateWithoutBudgetProposalLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -991,6 +1015,7 @@ export type PlanUncheckedUpdateWithoutBudgetProposalLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1018,6 +1043,7 @@ export type PlanCreateWithoutBudgetVersionLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1045,6 +1071,7 @@ export type PlanUncheckedCreateWithoutBudgetVersionLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1088,6 +1115,7 @@ export type PlanUpdateWithoutBudgetVersionLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -1115,6 +1143,7 @@ export type PlanUncheckedUpdateWithoutBudgetVersionLinesInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1141,6 +1170,7 @@ export type PlanCreateWithoutApplicationInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1168,6 +1198,7 @@ export type PlanUncheckedCreateWithoutApplicationInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1240,6 +1271,7 @@ export type PlanCreateWithoutWorkspaceProfileInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1267,6 +1299,7 @@ export type PlanUncheckedCreateWithoutWorkspaceProfileInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1310,6 +1343,7 @@ export type PlanUpdateWithoutWorkspaceProfileInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -1337,6 +1371,7 @@ export type PlanUncheckedUpdateWithoutWorkspaceProfileInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1364,6 +1399,7 @@ export type PlanCreateWithoutSubscriptionsInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1391,6 +1427,7 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1434,6 +1471,7 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -1461,6 +1499,7 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1488,6 +1527,7 @@ export type PlanCreateWithoutTermsInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1515,6 +1555,7 @@ export type PlanUncheckedCreateWithoutTermsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1558,6 +1599,7 @@ export type PlanUpdateWithoutTermsInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -1585,6 +1627,7 @@ export type PlanUncheckedUpdateWithoutTermsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1612,6 +1655,7 @@ export type PlanCreateWithoutTermOpinionsInput = {
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1639,6 +1683,7 @@ export type PlanUncheckedCreateWithoutTermOpinionsInput = {
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1682,6 +1727,7 @@ export type PlanUpdateWithoutTermOpinionsInput = {
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -1709,6 +1755,7 @@ export type PlanUncheckedUpdateWithoutTermOpinionsInput = {
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1736,6 +1783,7 @@ export type PlanCreateWithoutSeatBaselineImportsInput = {
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1763,6 +1811,7 @@ export type PlanUncheckedCreateWithoutSeatBaselineImportsInput = {
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1806,6 +1855,7 @@ export type PlanUpdateWithoutSeatBaselineImportsInput = {
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -1833,6 +1883,7 @@ export type PlanUncheckedUpdateWithoutSeatBaselineImportsInput = {
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1860,6 +1911,7 @@ export type PlanCreateWithoutLicenseAssignmentsInput = {
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -1887,6 +1939,7 @@ export type PlanUncheckedCreateWithoutLicenseAssignmentsInput = {
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -1930,6 +1983,7 @@ export type PlanUpdateWithoutLicenseAssignmentsInput = {
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -1957,6 +2011,135 @@ export type PlanUncheckedUpdateWithoutLicenseAssignmentsInput = {
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanCreateWithoutPoolGrantAvoidedCostsInput = {
+  id?: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
+  application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+}
+
+export type PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
+  id?: string
+  organizationId: string
+  applicationId: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+}
+
+export type PlanCreateOrConnectWithoutPoolGrantAvoidedCostsInput = {
+  where: Prisma.PlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlanCreateWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+}
+
+export type PlanUpsertWithoutPoolGrantAvoidedCostsInput = {
+  update: Prisma.XOR<Prisma.PlanUpdateWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+  create: Prisma.XOR<Prisma.PlanCreateWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput>
+  where?: Prisma.PlanWhereInput
+}
+
+export type PlanUpdateToOneWithWhereWithoutPoolGrantAvoidedCostsInput = {
+  where?: Prisma.PlanWhereInput
+  data: Prisma.XOR<Prisma.PlanUpdateWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
+}
+
+export type PlanUpdateWithoutPoolGrantAvoidedCostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
+  application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -1984,6 +2167,7 @@ export type PlanCreateWithoutOrganizationInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -2011,6 +2195,7 @@ export type PlanUncheckedCreateWithoutOrganizationInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -2065,6 +2250,7 @@ export type PlanCreateWithoutAccessRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
@@ -2092,6 +2278,7 @@ export type PlanUncheckedCreateWithoutAccessRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
@@ -2135,6 +2322,7 @@ export type PlanUpdateWithoutAccessRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
@@ -2162,6 +2350,7 @@ export type PlanUncheckedUpdateWithoutAccessRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
@@ -2189,6 +2378,7 @@ export type PlanCreateWithoutAssessmentsEquivalentInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
@@ -2216,6 +2406,7 @@ export type PlanUncheckedCreateWithoutAssessmentsEquivalentInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
@@ -2248,6 +2439,7 @@ export type PlanCreateWithoutAssessmentsAlternativeInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
@@ -2275,6 +2467,7 @@ export type PlanUncheckedCreateWithoutAssessmentsAlternativeInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
@@ -2318,6 +2511,7 @@ export type PlanUpdateWithoutAssessmentsEquivalentInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
@@ -2345,6 +2539,7 @@ export type PlanUncheckedUpdateWithoutAssessmentsEquivalentInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
@@ -2383,6 +2578,7 @@ export type PlanUpdateWithoutAssessmentsAlternativeInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -2410,6 +2606,7 @@ export type PlanUncheckedUpdateWithoutAssessmentsAlternativeInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -2437,6 +2634,7 @@ export type PlanCreateWithoutReturnRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
@@ -2464,6 +2662,7 @@ export type PlanUncheckedCreateWithoutReturnRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
@@ -2507,6 +2706,7 @@ export type PlanUpdateWithoutReturnRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
@@ -2534,6 +2734,7 @@ export type PlanUncheckedUpdateWithoutReturnRequestsInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
@@ -2575,6 +2776,7 @@ export type PlanUpdateWithoutApplicationInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -2602,6 +2804,7 @@ export type PlanUncheckedUpdateWithoutApplicationInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -2659,6 +2862,7 @@ export type PlanUpdateWithoutOrganizationInput = {
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
@@ -2686,6 +2890,7 @@ export type PlanUncheckedUpdateWithoutOrganizationInput = {
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
@@ -2719,6 +2924,7 @@ export type PlanCountOutputType = {
   termOpinions: number
   seatBaselineImports: number
   licenseAssignments: number
+  poolGrantAvoidedCosts: number
   accessRequests: number
   returnRequests: number
   assessmentsEquivalent: number
@@ -2732,6 +2938,7 @@ export type PlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   termOpinions?: boolean | PlanCountOutputTypeCountTermOpinionsArgs
   seatBaselineImports?: boolean | PlanCountOutputTypeCountSeatBaselineImportsArgs
   licenseAssignments?: boolean | PlanCountOutputTypeCountLicenseAssignmentsArgs
+  poolGrantAvoidedCosts?: boolean | PlanCountOutputTypeCountPoolGrantAvoidedCostsArgs
   accessRequests?: boolean | PlanCountOutputTypeCountAccessRequestsArgs
   returnRequests?: boolean | PlanCountOutputTypeCountReturnRequestsArgs
   assessmentsEquivalent?: boolean | PlanCountOutputTypeCountAssessmentsEquivalentArgs
@@ -2776,6 +2983,13 @@ export type PlanCountOutputTypeCountSeatBaselineImportsArgs<ExtArgs extends runt
  */
 export type PlanCountOutputTypeCountLicenseAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.LicenseAssignmentWhereInput
+}
+
+/**
+ * PlanCountOutputType without action
+ */
+export type PlanCountOutputTypeCountPoolGrantAvoidedCostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PoolGrantAvoidedCostWhereInput
 }
 
 /**
@@ -2843,6 +3057,7 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   termOpinions?: boolean | Prisma.Plan$termOpinionsArgs<ExtArgs>
   seatBaselineImports?: boolean | Prisma.Plan$seatBaselineImportsArgs<ExtArgs>
   licenseAssignments?: boolean | Prisma.Plan$licenseAssignmentsArgs<ExtArgs>
+  poolGrantAvoidedCosts?: boolean | Prisma.Plan$poolGrantAvoidedCostsArgs<ExtArgs>
   accessRequests?: boolean | Prisma.Plan$accessRequestsArgs<ExtArgs>
   returnRequests?: boolean | Prisma.Plan$returnRequestsArgs<ExtArgs>
   assessmentsEquivalent?: boolean | Prisma.Plan$assessmentsEquivalentArgs<ExtArgs>
@@ -2914,6 +3129,7 @@ export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   termOpinions?: boolean | Prisma.Plan$termOpinionsArgs<ExtArgs>
   seatBaselineImports?: boolean | Prisma.Plan$seatBaselineImportsArgs<ExtArgs>
   licenseAssignments?: boolean | Prisma.Plan$licenseAssignmentsArgs<ExtArgs>
+  poolGrantAvoidedCosts?: boolean | Prisma.Plan$poolGrantAvoidedCostsArgs<ExtArgs>
   accessRequests?: boolean | Prisma.Plan$accessRequestsArgs<ExtArgs>
   returnRequests?: boolean | Prisma.Plan$returnRequestsArgs<ExtArgs>
   assessmentsEquivalent?: boolean | Prisma.Plan$assessmentsEquivalentArgs<ExtArgs>
@@ -2942,6 +3158,7 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     termOpinions: Prisma.$PlanTermOpinionPayload<ExtArgs>[]
     seatBaselineImports: Prisma.$SeatBaselineImportPayload<ExtArgs>[]
     licenseAssignments: Prisma.$LicenseAssignmentPayload<ExtArgs>[]
+    poolGrantAvoidedCosts: Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>[]
     accessRequests: Prisma.$AccessRequestPayload<ExtArgs>[]
     returnRequests: Prisma.$ReturnRequestPayload<ExtArgs>[]
     assessmentsEquivalent: Prisma.$AccessRequestAssessmentPayload<ExtArgs>[]
@@ -3365,6 +3582,7 @@ export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Typ
   termOpinions<T extends Prisma.Plan$termOpinionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$termOpinionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanTermOpinionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   seatBaselineImports<T extends Prisma.Plan$seatBaselineImportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$seatBaselineImportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeatBaselineImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   licenseAssignments<T extends Prisma.Plan$licenseAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$licenseAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LicenseAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  poolGrantAvoidedCosts<T extends Prisma.Plan$poolGrantAvoidedCostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$poolGrantAvoidedCostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PoolGrantAvoidedCostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessRequests<T extends Prisma.Plan$accessRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$accessRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   returnRequests<T extends Prisma.Plan$returnRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$returnRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assessmentsEquivalent<T extends Prisma.Plan$assessmentsEquivalentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$assessmentsEquivalentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3945,6 +4163,30 @@ export type Plan$licenseAssignmentsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.LicenseAssignmentScalarFieldEnum | Prisma.LicenseAssignmentScalarFieldEnum[]
+}
+
+/**
+ * Plan.poolGrantAvoidedCosts
+ */
+export type Plan$poolGrantAvoidedCostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PoolGrantAvoidedCost
+   */
+  select?: Prisma.PoolGrantAvoidedCostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PoolGrantAvoidedCost
+   */
+  omit?: Prisma.PoolGrantAvoidedCostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PoolGrantAvoidedCostInclude<ExtArgs> | null
+  where?: Prisma.PoolGrantAvoidedCostWhereInput
+  orderBy?: Prisma.PoolGrantAvoidedCostOrderByWithRelationInput | Prisma.PoolGrantAvoidedCostOrderByWithRelationInput[]
+  cursor?: Prisma.PoolGrantAvoidedCostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PoolGrantAvoidedCostScalarFieldEnum | Prisma.PoolGrantAvoidedCostScalarFieldEnum[]
 }
 
 /**
