@@ -20,8 +20,18 @@ export type AccessRequestLineModel = runtime.Types.Result.DefaultSelection<Prism
 
 export type AggregateAccessRequestLine = {
   _count: AccessRequestLineCountAggregateOutputType | null
+  _avg: AccessRequestLineAvgAggregateOutputType | null
+  _sum: AccessRequestLineSumAggregateOutputType | null
   _min: AccessRequestLineMinAggregateOutputType | null
   _max: AccessRequestLineMaxAggregateOutputType | null
+}
+
+export type AccessRequestLineAvgAggregateOutputType = {
+  manyPaidSoftwareCount: number | null
+}
+
+export type AccessRequestLineSumAggregateOutputType = {
+  manyPaidSoftwareCount: number | null
 }
 
 export type AccessRequestLineMinAggregateOutputType = {
@@ -36,6 +46,10 @@ export type AccessRequestLineMinAggregateOutputType = {
   cancelCause: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt: Date | null
   createdAt: Date | null
+  manyPaidSoftware: boolean | null
+  manyPaidSoftwareCount: number | null
+  manyPaidSoftwareReason: string | null
+  limitExemption: string | null
 }
 
 export type AccessRequestLineMaxAggregateOutputType = {
@@ -50,6 +64,10 @@ export type AccessRequestLineMaxAggregateOutputType = {
   cancelCause: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt: Date | null
   createdAt: Date | null
+  manyPaidSoftware: boolean | null
+  manyPaidSoftwareCount: number | null
+  manyPaidSoftwareReason: string | null
+  limitExemption: string | null
 }
 
 export type AccessRequestLineCountAggregateOutputType = {
@@ -64,9 +82,21 @@ export type AccessRequestLineCountAggregateOutputType = {
   cancelCause: number
   withdrawalRequestedAt: number
   createdAt: number
+  manyPaidSoftware: number
+  manyPaidSoftwareCount: number
+  manyPaidSoftwareReason: number
+  limitExemption: number
   _all: number
 }
 
+
+export type AccessRequestLineAvgAggregateInputType = {
+  manyPaidSoftwareCount?: true
+}
+
+export type AccessRequestLineSumAggregateInputType = {
+  manyPaidSoftwareCount?: true
+}
 
 export type AccessRequestLineMinAggregateInputType = {
   requestId?: true
@@ -80,6 +110,10 @@ export type AccessRequestLineMinAggregateInputType = {
   cancelCause?: true
   withdrawalRequestedAt?: true
   createdAt?: true
+  manyPaidSoftware?: true
+  manyPaidSoftwareCount?: true
+  manyPaidSoftwareReason?: true
+  limitExemption?: true
 }
 
 export type AccessRequestLineMaxAggregateInputType = {
@@ -94,6 +128,10 @@ export type AccessRequestLineMaxAggregateInputType = {
   cancelCause?: true
   withdrawalRequestedAt?: true
   createdAt?: true
+  manyPaidSoftware?: true
+  manyPaidSoftwareCount?: true
+  manyPaidSoftwareReason?: true
+  limitExemption?: true
 }
 
 export type AccessRequestLineCountAggregateInputType = {
@@ -108,6 +146,10 @@ export type AccessRequestLineCountAggregateInputType = {
   cancelCause?: true
   withdrawalRequestedAt?: true
   createdAt?: true
+  manyPaidSoftware?: true
+  manyPaidSoftwareCount?: true
+  manyPaidSoftwareReason?: true
+  limitExemption?: true
   _all?: true
 }
 
@@ -149,6 +191,18 @@ export type AccessRequestLineAggregateArgs<ExtArgs extends runtime.Types.Extensi
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: AccessRequestLineAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: AccessRequestLineSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: AccessRequestLineMinAggregateInputType
@@ -179,6 +233,8 @@ export type AccessRequestLineGroupByArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   _count?: AccessRequestLineCountAggregateInputType | true
+  _avg?: AccessRequestLineAvgAggregateInputType
+  _sum?: AccessRequestLineSumAggregateInputType
   _min?: AccessRequestLineMinAggregateInputType
   _max?: AccessRequestLineMaxAggregateInputType
 }
@@ -195,7 +251,13 @@ export type AccessRequestLineGroupByOutputType = {
   cancelCause: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt: Date | null
   createdAt: Date
+  manyPaidSoftware: boolean
+  manyPaidSoftwareCount: number | null
+  manyPaidSoftwareReason: string | null
+  limitExemption: string | null
   _count: AccessRequestLineCountAggregateOutputType | null
+  _avg: AccessRequestLineAvgAggregateOutputType | null
+  _sum: AccessRequestLineSumAggregateOutputType | null
   _min: AccessRequestLineMinAggregateOutputType | null
   _max: AccessRequestLineMaxAggregateOutputType | null
 }
@@ -230,6 +292,10 @@ export type AccessRequestLineWhereInput = {
   cancelCause?: Prisma.EnumAccessRequestCancelCauseNullableFilter<"AccessRequestLine"> | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.DateTimeNullableFilter<"AccessRequestLine"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"AccessRequestLine"> | Date | string
+  manyPaidSoftware?: Prisma.BoolFilter<"AccessRequestLine"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequestLine"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequestLine"> | string | null
+  limitExemption?: Prisma.StringNullableFilter<"AccessRequestLine"> | string | null
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   beneficiary?: Prisma.XOR<Prisma.AccessRequestBeneficiaryScalarRelationFilter, Prisma.AccessRequestBeneficiaryWhereInput>
   needStep?: Prisma.XOR<Prisma.AccessRequestStepScalarRelationFilter, Prisma.AccessRequestStepWhereInput>
@@ -250,6 +316,10 @@ export type AccessRequestLineOrderByWithRelationInput = {
   cancelCause?: Prisma.SortOrderInput | Prisma.SortOrder
   withdrawalRequestedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  limitExemption?: Prisma.SortOrderInput | Prisma.SortOrder
   request?: Prisma.AccessRequestOrderByWithRelationInput
   beneficiary?: Prisma.AccessRequestBeneficiaryOrderByWithRelationInput
   needStep?: Prisma.AccessRequestStepOrderByWithRelationInput
@@ -274,6 +344,10 @@ export type AccessRequestLineWhereUniqueInput = Prisma.AtLeast<{
   cancelCause?: Prisma.EnumAccessRequestCancelCauseNullableFilter<"AccessRequestLine"> | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.DateTimeNullableFilter<"AccessRequestLine"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"AccessRequestLine"> | Date | string
+  manyPaidSoftware?: Prisma.BoolFilter<"AccessRequestLine"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequestLine"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequestLine"> | string | null
+  limitExemption?: Prisma.StringNullableFilter<"AccessRequestLine"> | string | null
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   beneficiary?: Prisma.XOR<Prisma.AccessRequestBeneficiaryScalarRelationFilter, Prisma.AccessRequestBeneficiaryWhereInput>
   needStep?: Prisma.XOR<Prisma.AccessRequestStepScalarRelationFilter, Prisma.AccessRequestStepWhereInput>
@@ -294,9 +368,15 @@ export type AccessRequestLineOrderByWithAggregationInput = {
   cancelCause?: Prisma.SortOrderInput | Prisma.SortOrder
   withdrawalRequestedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  limitExemption?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AccessRequestLineCountOrderByAggregateInput
+  _avg?: Prisma.AccessRequestLineAvgOrderByAggregateInput
   _max?: Prisma.AccessRequestLineMaxOrderByAggregateInput
   _min?: Prisma.AccessRequestLineMinOrderByAggregateInput
+  _sum?: Prisma.AccessRequestLineSumOrderByAggregateInput
 }
 
 export type AccessRequestLineScalarWhereWithAggregatesInput = {
@@ -314,6 +394,10 @@ export type AccessRequestLineScalarWhereWithAggregatesInput = {
   cancelCause?: Prisma.EnumAccessRequestCancelCauseNullableWithAggregatesFilter<"AccessRequestLine"> | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequestLine"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AccessRequestLine"> | Date | string
+  manyPaidSoftware?: Prisma.BoolWithAggregatesFilter<"AccessRequestLine"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableWithAggregatesFilter<"AccessRequestLine"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableWithAggregatesFilter<"AccessRequestLine"> | string | null
+  limitExemption?: Prisma.StringNullableWithAggregatesFilter<"AccessRequestLine"> | string | null
 }
 
 export type AccessRequestLineCreateInput = {
@@ -324,6 +408,10 @@ export type AccessRequestLineCreateInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLinesInput
   beneficiary: Prisma.AccessRequestBeneficiaryCreateNestedOneWithoutLineInput
   needStep: Prisma.AccessRequestStepCreateNestedOneWithoutLinesInput
@@ -344,6 +432,10 @@ export type AccessRequestLineUncheckedCreateInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutLineInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutLineInput
 }
@@ -356,6 +448,10 @@ export type AccessRequestLineUpdateInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLinesNestedInput
   beneficiary?: Prisma.AccessRequestBeneficiaryUpdateOneRequiredWithoutLineNestedInput
   needStep?: Prisma.AccessRequestStepUpdateOneRequiredWithoutLinesNestedInput
@@ -376,6 +472,10 @@ export type AccessRequestLineUncheckedUpdateInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutLineNestedInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutLineNestedInput
 }
@@ -392,6 +492,10 @@ export type AccessRequestLineCreateManyInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
 }
 
 export type AccessRequestLineUpdateManyMutationInput = {
@@ -402,6 +506,10 @@ export type AccessRequestLineUpdateManyMutationInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessRequestLineUncheckedUpdateManyInput = {
@@ -416,6 +524,10 @@ export type AccessRequestLineUncheckedUpdateManyInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessRequestLineListRelationFilter = {
@@ -450,6 +562,14 @@ export type AccessRequestLineCountOrderByAggregateInput = {
   cancelCause?: Prisma.SortOrder
   withdrawalRequestedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrder
+  limitExemption?: Prisma.SortOrder
+}
+
+export type AccessRequestLineAvgOrderByAggregateInput = {
+  manyPaidSoftwareCount?: Prisma.SortOrder
 }
 
 export type AccessRequestLineMaxOrderByAggregateInput = {
@@ -464,6 +584,10 @@ export type AccessRequestLineMaxOrderByAggregateInput = {
   cancelCause?: Prisma.SortOrder
   withdrawalRequestedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrder
+  limitExemption?: Prisma.SortOrder
 }
 
 export type AccessRequestLineMinOrderByAggregateInput = {
@@ -478,6 +602,14 @@ export type AccessRequestLineMinOrderByAggregateInput = {
   cancelCause?: Prisma.SortOrder
   withdrawalRequestedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrder
+  limitExemption?: Prisma.SortOrder
+}
+
+export type AccessRequestLineSumOrderByAggregateInput = {
+  manyPaidSoftwareCount?: Prisma.SortOrder
 }
 
 export type AccessRequestLineScalarRelationFilter = {
@@ -683,6 +815,10 @@ export type AccessRequestLineCreateWithoutEndedByInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLinesInput
   beneficiary: Prisma.AccessRequestBeneficiaryCreateNestedOneWithoutLineInput
   needStep: Prisma.AccessRequestStepCreateNestedOneWithoutLinesInput
@@ -701,6 +837,10 @@ export type AccessRequestLineUncheckedCreateWithoutEndedByInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutLineInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutLineInput
 }
@@ -746,6 +886,10 @@ export type AccessRequestLineScalarWhereInput = {
   cancelCause?: Prisma.EnumAccessRequestCancelCauseNullableFilter<"AccessRequestLine"> | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.DateTimeNullableFilter<"AccessRequestLine"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"AccessRequestLine"> | Date | string
+  manyPaidSoftware?: Prisma.BoolFilter<"AccessRequestLine"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequestLine"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequestLine"> | string | null
+  limitExemption?: Prisma.StringNullableFilter<"AccessRequestLine"> | string | null
 }
 
 export type AccessRequestLineCreateWithoutRequestInput = {
@@ -756,6 +900,10 @@ export type AccessRequestLineCreateWithoutRequestInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   beneficiary: Prisma.AccessRequestBeneficiaryCreateNestedOneWithoutLineInput
   needStep: Prisma.AccessRequestStepCreateNestedOneWithoutLinesInput
   endedBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestLinesEndedInput
@@ -774,6 +922,10 @@ export type AccessRequestLineUncheckedCreateWithoutRequestInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutLineInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutLineInput
 }
@@ -812,6 +964,10 @@ export type AccessRequestLineCreateWithoutBeneficiaryInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLinesInput
   needStep: Prisma.AccessRequestStepCreateNestedOneWithoutLinesInput
   endedBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestLinesEndedInput
@@ -829,6 +985,10 @@ export type AccessRequestLineUncheckedCreateWithoutBeneficiaryInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutLineInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutLineInput
 }
@@ -857,6 +1017,10 @@ export type AccessRequestLineUpdateWithoutBeneficiaryInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLinesNestedInput
   needStep?: Prisma.AccessRequestStepUpdateOneRequiredWithoutLinesNestedInput
   endedBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestLinesEndedNestedInput
@@ -874,6 +1038,10 @@ export type AccessRequestLineUncheckedUpdateWithoutBeneficiaryInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutLineNestedInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutLineNestedInput
 }
@@ -886,6 +1054,10 @@ export type AccessRequestLineCreateWithoutDecisionsInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLinesInput
   beneficiary: Prisma.AccessRequestBeneficiaryCreateNestedOneWithoutLineInput
   needStep: Prisma.AccessRequestStepCreateNestedOneWithoutLinesInput
@@ -905,6 +1077,10 @@ export type AccessRequestLineUncheckedCreateWithoutDecisionsInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   amounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutLineInput
 }
 
@@ -932,6 +1108,10 @@ export type AccessRequestLineUpdateWithoutDecisionsInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLinesNestedInput
   beneficiary?: Prisma.AccessRequestBeneficiaryUpdateOneRequiredWithoutLineNestedInput
   needStep?: Prisma.AccessRequestStepUpdateOneRequiredWithoutLinesNestedInput
@@ -951,6 +1131,10 @@ export type AccessRequestLineUncheckedUpdateWithoutDecisionsInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutLineNestedInput
 }
 
@@ -962,6 +1146,10 @@ export type AccessRequestLineCreateWithoutAmountsInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLinesInput
   beneficiary: Prisma.AccessRequestBeneficiaryCreateNestedOneWithoutLineInput
   needStep: Prisma.AccessRequestStepCreateNestedOneWithoutLinesInput
@@ -981,6 +1169,10 @@ export type AccessRequestLineUncheckedCreateWithoutAmountsInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutLineInput
 }
 
@@ -1008,6 +1200,10 @@ export type AccessRequestLineUpdateWithoutAmountsInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLinesNestedInput
   beneficiary?: Prisma.AccessRequestBeneficiaryUpdateOneRequiredWithoutLineNestedInput
   needStep?: Prisma.AccessRequestStepUpdateOneRequiredWithoutLinesNestedInput
@@ -1027,6 +1223,10 @@ export type AccessRequestLineUncheckedUpdateWithoutAmountsInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutLineNestedInput
 }
 
@@ -1038,6 +1238,10 @@ export type AccessRequestLineCreateWithoutNeedStepInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLinesInput
   beneficiary: Prisma.AccessRequestBeneficiaryCreateNestedOneWithoutLineInput
   endedBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestLinesEndedInput
@@ -1056,6 +1260,10 @@ export type AccessRequestLineUncheckedCreateWithoutNeedStepInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutLineInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutLineInput
 }
@@ -1097,6 +1305,10 @@ export type AccessRequestLineCreateManyEndedByInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
 }
 
 export type AccessRequestLineUpdateWithoutEndedByInput = {
@@ -1107,6 +1319,10 @@ export type AccessRequestLineUpdateWithoutEndedByInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLinesNestedInput
   beneficiary?: Prisma.AccessRequestBeneficiaryUpdateOneRequiredWithoutLineNestedInput
   needStep?: Prisma.AccessRequestStepUpdateOneRequiredWithoutLinesNestedInput
@@ -1125,6 +1341,10 @@ export type AccessRequestLineUncheckedUpdateWithoutEndedByInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutLineNestedInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutLineNestedInput
 }
@@ -1140,6 +1360,10 @@ export type AccessRequestLineUncheckedUpdateManyWithoutEndedByInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessRequestLineCreateManyRequestInput = {
@@ -1153,6 +1377,10 @@ export type AccessRequestLineCreateManyRequestInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
 }
 
 export type AccessRequestLineUpdateWithoutRequestInput = {
@@ -1163,6 +1391,10 @@ export type AccessRequestLineUpdateWithoutRequestInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   beneficiary?: Prisma.AccessRequestBeneficiaryUpdateOneRequiredWithoutLineNestedInput
   needStep?: Prisma.AccessRequestStepUpdateOneRequiredWithoutLinesNestedInput
   endedBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestLinesEndedNestedInput
@@ -1181,6 +1413,10 @@ export type AccessRequestLineUncheckedUpdateWithoutRequestInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutLineNestedInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutLineNestedInput
 }
@@ -1196,6 +1432,10 @@ export type AccessRequestLineUncheckedUpdateManyWithoutRequestInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessRequestLineCreateManyNeedStepInput = {
@@ -1209,6 +1449,10 @@ export type AccessRequestLineCreateManyNeedStepInput = {
   cancelCause?: $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Date | string | null
   createdAt?: Date | string
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
 }
 
 export type AccessRequestLineUpdateWithoutNeedStepInput = {
@@ -1219,6 +1463,10 @@ export type AccessRequestLineUpdateWithoutNeedStepInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLinesNestedInput
   beneficiary?: Prisma.AccessRequestBeneficiaryUpdateOneRequiredWithoutLineNestedInput
   endedBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestLinesEndedNestedInput
@@ -1237,6 +1485,10 @@ export type AccessRequestLineUncheckedUpdateWithoutNeedStepInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   decisions?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutLineNestedInput
   amounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutLineNestedInput
 }
@@ -1252,6 +1504,10 @@ export type AccessRequestLineUncheckedUpdateManyWithoutNeedStepInput = {
   cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
   withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1306,6 +1562,10 @@ export type AccessRequestLineSelect<ExtArgs extends runtime.Types.Extensions.Int
   cancelCause?: boolean
   withdrawalRequestedAt?: boolean
   createdAt?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   beneficiary?: boolean | Prisma.AccessRequestBeneficiaryDefaultArgs<ExtArgs>
   needStep?: boolean | Prisma.AccessRequestStepDefaultArgs<ExtArgs>
@@ -1327,6 +1587,10 @@ export type AccessRequestLineSelectCreateManyAndReturn<ExtArgs extends runtime.T
   cancelCause?: boolean
   withdrawalRequestedAt?: boolean
   createdAt?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   beneficiary?: boolean | Prisma.AccessRequestBeneficiaryDefaultArgs<ExtArgs>
   needStep?: boolean | Prisma.AccessRequestStepDefaultArgs<ExtArgs>
@@ -1345,6 +1609,10 @@ export type AccessRequestLineSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   cancelCause?: boolean
   withdrawalRequestedAt?: boolean
   createdAt?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   beneficiary?: boolean | Prisma.AccessRequestBeneficiaryDefaultArgs<ExtArgs>
   needStep?: boolean | Prisma.AccessRequestStepDefaultArgs<ExtArgs>
@@ -1363,9 +1631,13 @@ export type AccessRequestLineSelectScalar = {
   cancelCause?: boolean
   withdrawalRequestedAt?: boolean
   createdAt?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
 }
 
-export type AccessRequestLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "employeeId" | "state" | "needStepId" | "expectedEndDate" | "endedAt" | "endedByEmployeeId" | "endReason" | "cancelCause" | "withdrawalRequestedAt" | "createdAt", ExtArgs["result"]["accessRequestLine"]>
+export type AccessRequestLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "employeeId" | "state" | "needStepId" | "expectedEndDate" | "endedAt" | "endedByEmployeeId" | "endReason" | "cancelCause" | "withdrawalRequestedAt" | "createdAt" | "manyPaidSoftware" | "manyPaidSoftwareCount" | "manyPaidSoftwareReason" | "limitExemption", ExtArgs["result"]["accessRequestLine"]>
 export type AccessRequestLineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   beneficiary?: boolean | Prisma.AccessRequestBeneficiaryDefaultArgs<ExtArgs>
@@ -1410,6 +1682,10 @@ export type $AccessRequestLinePayload<ExtArgs extends runtime.Types.Extensions.I
     cancelCause: $Enums.AccessRequestCancelCause | null
     withdrawalRequestedAt: Date | null
     createdAt: Date
+    manyPaidSoftware: boolean
+    manyPaidSoftwareCount: number | null
+    manyPaidSoftwareReason: string | null
+    limitExemption: string | null
   }, ExtArgs["result"]["accessRequestLine"]>
   composites: {}
 }
@@ -1850,6 +2126,10 @@ export interface AccessRequestLineFieldRefs {
   readonly cancelCause: Prisma.FieldRef<"AccessRequestLine", 'AccessRequestCancelCause'>
   readonly withdrawalRequestedAt: Prisma.FieldRef<"AccessRequestLine", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"AccessRequestLine", 'DateTime'>
+  readonly manyPaidSoftware: Prisma.FieldRef<"AccessRequestLine", 'Boolean'>
+  readonly manyPaidSoftwareCount: Prisma.FieldRef<"AccessRequestLine", 'Int'>
+  readonly manyPaidSoftwareReason: Prisma.FieldRef<"AccessRequestLine", 'String'>
+  readonly limitExemption: Prisma.FieldRef<"AccessRequestLine", 'String'>
 }
     
 

@@ -161,6 +161,11 @@ export type Application = Prisma.ApplicationModel
  */
 export type Plan = Prisma.PlanModel
 /**
+ * Model PlanUsageRate
+ * 
+ */
+export type PlanUsageRate = Prisma.PlanUsageRateModel
+/**
  * Model PlanWorkspaceProfile
  * 
  */
@@ -391,6 +396,11 @@ export type ServiceAccountDutyNotice = Prisma.ServiceAccountDutyNoticeModel
  */
 export type AssignmentExpiryReminder = Prisma.AssignmentExpiryReminderModel
 /**
+ * Model AssignmentRenewalWindow
+ * 
+ */
+export type AssignmentRenewalWindow = Prisma.AssignmentRenewalWindowModel
+/**
  * Model SaasIssue
  * 
  */
@@ -450,6 +460,46 @@ export type ParameterValue = Prisma.ParameterValueModel
  * 
  */
 export type NonWorkingDate = Prisma.NonWorkingDateModel
+/**
+ * Model GhostSeatRuleRun
+ * 
+ */
+export type GhostSeatRuleRun = Prisma.GhostSeatRuleRunModel
+/**
+ * Model GhostSeatRuleSkip
+ * 
+ */
+export type GhostSeatRuleSkip = Prisma.GhostSeatRuleSkipModel
+/**
+ * Model GhostSeatRecommendation
+ * 
+ */
+export type GhostSeatRecommendation = Prisma.GhostSeatRecommendationModel
+/**
+ * Model GhostSeatDecision
+ * 
+ */
+export type GhostSeatDecision = Prisma.GhostSeatDecisionModel
+/**
+ * Model GhostSeatReturn
+ * 
+ */
+export type GhostSeatReturn = Prisma.GhostSeatReturnModel
+/**
+ * Model GhostSeatExemption
+ * 
+ */
+export type GhostSeatExemption = Prisma.GhostSeatExemptionModel
+/**
+ * Model GhostSeatApplicationThreshold
+ * 
+ */
+export type GhostSeatApplicationThreshold = Prisma.GhostSeatApplicationThresholdModel
+/**
+ * Model GhostSeatSeatState
+ * 
+ */
+export type GhostSeatSeatState = Prisma.GhostSeatSeatStateModel
 /**
  * Model Organization
  * 
@@ -733,3 +783,38 @@ export type ToolStatusWindow = Prisma.ToolStatusWindowModel
  * 
  */
 export type IntakeRejection = Prisma.IntakeRejectionModel
+/**
+ * Model UsageSource
+ * 
+ */
+export type UsageSource = Prisma.UsageSourceModel
+/**
+ * Model UsageImport
+ * 
+ */
+export type UsageImport = Prisma.UsageImportModel
+/**
+ * Model UsageImportRow
+ * 
+ */
+export type UsageImportRow = Prisma.UsageImportRowModel
+/**
+ * Model UsageActivityDay
+ * 
+ */
+export type UsageActivityDay = Prisma.UsageActivityDayModel
+/**
+ * Model UsageIdentityMapping
+ * 
+ */
+export type UsageIdentityMapping = Prisma.UsageIdentityMappingModel
+/**
+ * Model UsageUnmatchedIdentity
+ * 
+ */
+export type UsageUnmatchedIdentity = Prisma.UsageUnmatchedIdentityModel
+/**
+ * Model UsageNoAssignmentFinding
+ * 
+ */
+export type UsageNoAssignmentFinding = Prisma.UsageNoAssignmentFindingModel

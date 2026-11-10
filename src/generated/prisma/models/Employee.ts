@@ -1008,10 +1008,12 @@ export type EmployeeCreateNestedOneWithoutOwnedApplicationsInput = {
   connect?: Prisma.EmployeeWhereUniqueInput
 }
 
-export type EmployeeUpdateOneRequiredWithoutOwnedApplicationsNestedInput = {
+export type EmployeeUpdateOneWithoutOwnedApplicationsNestedInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutOwnedApplicationsInput, Prisma.EmployeeUncheckedCreateWithoutOwnedApplicationsInput>
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutOwnedApplicationsInput
   upsert?: Prisma.EmployeeUpsertWithoutOwnedApplicationsInput
+  disconnect?: Prisma.EmployeeWhereInput | boolean
+  delete?: Prisma.EmployeeWhereInput | boolean
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutOwnedApplicationsInput, Prisma.EmployeeUpdateWithoutOwnedApplicationsInput>, Prisma.EmployeeUncheckedUpdateWithoutOwnedApplicationsInput>
 }
