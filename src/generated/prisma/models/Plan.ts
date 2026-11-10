@@ -250,6 +250,7 @@ export type PlanWhereInput = {
   application?: Prisma.XOR<Prisma.ApplicationScalarRelationFilter, Prisma.ApplicationWhereInput>
   workspaceProfile?: Prisma.XOR<Prisma.PlanWorkspaceProfileNullableScalarRelationFilter, Prisma.PlanWorkspaceProfileWhereInput> | null
   subscriptions?: Prisma.SubscriptionListRelationFilter
+  usageRate?: Prisma.XOR<Prisma.PlanUsageRateNullableScalarRelationFilter, Prisma.PlanUsageRateWhereInput> | null
   terms?: Prisma.XOR<Prisma.PlanTermsNullableScalarRelationFilter, Prisma.PlanTermsWhereInput> | null
   termOpinions?: Prisma.PlanTermOpinionListRelationFilter
   seatBaselineImports?: Prisma.SeatBaselineImportListRelationFilter
@@ -281,6 +282,7 @@ export type PlanOrderByWithRelationInput = {
   application?: Prisma.ApplicationOrderByWithRelationInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileOrderByWithRelationInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
+  usageRate?: Prisma.PlanUsageRateOrderByWithRelationInput
   terms?: Prisma.PlanTermsOrderByWithRelationInput
   termOpinions?: Prisma.PlanTermOpinionOrderByRelationAggregateInput
   seatBaselineImports?: Prisma.SeatBaselineImportOrderByRelationAggregateInput
@@ -316,6 +318,7 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   application?: Prisma.XOR<Prisma.ApplicationScalarRelationFilter, Prisma.ApplicationWhereInput>
   workspaceProfile?: Prisma.XOR<Prisma.PlanWorkspaceProfileNullableScalarRelationFilter, Prisma.PlanWorkspaceProfileWhereInput> | null
   subscriptions?: Prisma.SubscriptionListRelationFilter
+  usageRate?: Prisma.XOR<Prisma.PlanUsageRateNullableScalarRelationFilter, Prisma.PlanUsageRateWhereInput> | null
   terms?: Prisma.XOR<Prisma.PlanTermsNullableScalarRelationFilter, Prisma.PlanTermsWhereInput> | null
   termOpinions?: Prisma.PlanTermOpinionListRelationFilter
   seatBaselineImports?: Prisma.SeatBaselineImportListRelationFilter
@@ -383,6 +386,7 @@ export type PlanCreateInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -412,6 +416,7 @@ export type PlanUncheckedCreateInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -441,6 +446,7 @@ export type PlanUpdateInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -470,6 +476,7 @@ export type PlanUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -693,6 +700,20 @@ export type NullableEnumSharingPolicyFieldUpdateOperationsInput = {
   set?: $Enums.SharingPolicy | null
 }
 
+export type PlanCreateNestedOneWithoutUsageRateInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutUsageRateInput, Prisma.PlanUncheckedCreateWithoutUsageRateInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutUsageRateInput
+  connect?: Prisma.PlanWhereUniqueInput
+}
+
+export type PlanUpdateOneRequiredWithoutUsageRateNestedInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutUsageRateInput, Prisma.PlanUncheckedCreateWithoutUsageRateInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutUsageRateInput
+  upsert?: Prisma.PlanUpsertWithoutUsageRateInput
+  connect?: Prisma.PlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutUsageRateInput, Prisma.PlanUpdateWithoutUsageRateInput>, Prisma.PlanUncheckedUpdateWithoutUsageRateInput>
+}
+
 export type PlanCreateNestedOneWithoutWorkspaceProfileInput = {
   create?: Prisma.XOR<Prisma.PlanCreateWithoutWorkspaceProfileInput, Prisma.PlanUncheckedCreateWithoutWorkspaceProfileInput>
   connectOrCreate?: Prisma.PlanCreateOrConnectWithoutWorkspaceProfileInput
@@ -911,6 +932,7 @@ export type PlanCreateWithoutBudgetProposalLinesInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -939,6 +961,7 @@ export type PlanUncheckedCreateWithoutBudgetProposalLinesInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -983,6 +1006,7 @@ export type PlanUpdateWithoutBudgetProposalLinesInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -1011,6 +1035,7 @@ export type PlanUncheckedUpdateWithoutBudgetProposalLinesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -1039,6 +1064,7 @@ export type PlanCreateWithoutBudgetVersionLinesInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -1067,6 +1093,7 @@ export type PlanUncheckedCreateWithoutBudgetVersionLinesInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -1111,6 +1138,7 @@ export type PlanUpdateWithoutBudgetVersionLinesInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -1139,6 +1167,7 @@ export type PlanUncheckedUpdateWithoutBudgetVersionLinesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -1166,6 +1195,7 @@ export type PlanCreateWithoutApplicationInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -1194,6 +1224,7 @@ export type PlanUncheckedCreateWithoutApplicationInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -1252,6 +1283,138 @@ export type PlanScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
 }
 
+export type PlanCreateWithoutUsageRateInput = {
+  id?: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
+  application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+}
+
+export type PlanUncheckedCreateWithoutUsageRateInput = {
+  id?: string
+  organizationId: string
+  applicationId: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+}
+
+export type PlanCreateOrConnectWithoutUsageRateInput = {
+  where: Prisma.PlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlanCreateWithoutUsageRateInput, Prisma.PlanUncheckedCreateWithoutUsageRateInput>
+}
+
+export type PlanUpsertWithoutUsageRateInput = {
+  update: Prisma.XOR<Prisma.PlanUpdateWithoutUsageRateInput, Prisma.PlanUncheckedUpdateWithoutUsageRateInput>
+  create: Prisma.XOR<Prisma.PlanCreateWithoutUsageRateInput, Prisma.PlanUncheckedCreateWithoutUsageRateInput>
+  where?: Prisma.PlanWhereInput
+}
+
+export type PlanUpdateToOneWithWhereWithoutUsageRateInput = {
+  where?: Prisma.PlanWhereInput
+  data: Prisma.XOR<Prisma.PlanUpdateWithoutUsageRateInput, Prisma.PlanUncheckedUpdateWithoutUsageRateInput>
+}
+
+export type PlanUpdateWithoutUsageRateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
+  application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanUncheckedUpdateWithoutUsageRateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+}
+
 export type PlanCreateWithoutWorkspaceProfileInput = {
   id?: string
   name: string
@@ -1267,6 +1430,7 @@ export type PlanCreateWithoutWorkspaceProfileInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -1295,6 +1459,7 @@ export type PlanUncheckedCreateWithoutWorkspaceProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -1339,6 +1504,7 @@ export type PlanUpdateWithoutWorkspaceProfileInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -1367,6 +1533,7 @@ export type PlanUncheckedUpdateWithoutWorkspaceProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -1395,6 +1562,7 @@ export type PlanCreateWithoutSubscriptionsInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -1423,6 +1591,7 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -1467,6 +1636,7 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -1495,6 +1665,7 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -1524,6 +1695,7 @@ export type PlanCreateWithoutTermsInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
@@ -1552,6 +1724,7 @@ export type PlanUncheckedCreateWithoutTermsInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
@@ -1596,6 +1769,7 @@ export type PlanUpdateWithoutTermsInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
@@ -1624,6 +1798,7 @@ export type PlanUncheckedUpdateWithoutTermsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
@@ -1652,6 +1827,7 @@ export type PlanCreateWithoutTermOpinionsInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
@@ -1680,6 +1856,7 @@ export type PlanUncheckedCreateWithoutTermOpinionsInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
@@ -1724,6 +1901,7 @@ export type PlanUpdateWithoutTermOpinionsInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
@@ -1752,6 +1930,7 @@ export type PlanUncheckedUpdateWithoutTermOpinionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
@@ -1780,6 +1959,7 @@ export type PlanCreateWithoutSeatBaselineImportsInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
@@ -1808,6 +1988,7 @@ export type PlanUncheckedCreateWithoutSeatBaselineImportsInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
@@ -1852,6 +2033,7 @@ export type PlanUpdateWithoutSeatBaselineImportsInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
@@ -1880,6 +2062,7 @@ export type PlanUncheckedUpdateWithoutSeatBaselineImportsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
@@ -1908,6 +2091,7 @@ export type PlanCreateWithoutLicenseAssignmentsInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -1936,6 +2120,7 @@ export type PlanUncheckedCreateWithoutLicenseAssignmentsInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -1980,6 +2165,7 @@ export type PlanUpdateWithoutLicenseAssignmentsInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2008,6 +2194,7 @@ export type PlanUncheckedUpdateWithoutLicenseAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -2036,6 +2223,7 @@ export type PlanCreateWithoutPoolGrantAvoidedCostsInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -2064,6 +2252,7 @@ export type PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -2108,6 +2297,7 @@ export type PlanUpdateWithoutPoolGrantAvoidedCostsInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2136,6 +2326,7 @@ export type PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -2163,6 +2354,7 @@ export type PlanCreateWithoutOrganizationInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -2191,6 +2383,7 @@ export type PlanUncheckedCreateWithoutOrganizationInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -2246,6 +2439,7 @@ export type PlanCreateWithoutAccessRequestsInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -2274,6 +2468,7 @@ export type PlanUncheckedCreateWithoutAccessRequestsInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -2318,6 +2513,7 @@ export type PlanUpdateWithoutAccessRequestsInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2346,6 +2542,7 @@ export type PlanUncheckedUpdateWithoutAccessRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -2374,6 +2571,7 @@ export type PlanCreateWithoutAssessmentsEquivalentInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -2402,6 +2600,7 @@ export type PlanUncheckedCreateWithoutAssessmentsEquivalentInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -2435,6 +2634,7 @@ export type PlanCreateWithoutAssessmentsAlternativeInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -2463,6 +2663,7 @@ export type PlanUncheckedCreateWithoutAssessmentsAlternativeInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -2507,6 +2708,7 @@ export type PlanUpdateWithoutAssessmentsEquivalentInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2535,6 +2737,7 @@ export type PlanUncheckedUpdateWithoutAssessmentsEquivalentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -2574,6 +2777,7 @@ export type PlanUpdateWithoutAssessmentsAlternativeInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2602,6 +2806,7 @@ export type PlanUncheckedUpdateWithoutAssessmentsAlternativeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -2630,6 +2835,7 @@ export type PlanCreateWithoutReturnRequestsInput = {
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
@@ -2658,6 +2864,7 @@ export type PlanUncheckedCreateWithoutReturnRequestsInput = {
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
   terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
@@ -2702,6 +2909,7 @@ export type PlanUpdateWithoutReturnRequestsInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2730,6 +2938,7 @@ export type PlanUncheckedUpdateWithoutReturnRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -2772,6 +2981,7 @@ export type PlanUpdateWithoutApplicationInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2800,6 +3010,7 @@ export type PlanUncheckedUpdateWithoutApplicationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -2858,6 +3069,7 @@ export type PlanUpdateWithoutOrganizationInput = {
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
   workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
@@ -2886,6 +3098,7 @@ export type PlanUncheckedUpdateWithoutOrganizationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
   terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
   termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
@@ -3053,6 +3266,7 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
   workspaceProfile?: boolean | Prisma.Plan$workspaceProfileArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
+  usageRate?: boolean | Prisma.Plan$usageRateArgs<ExtArgs>
   terms?: boolean | Prisma.Plan$termsArgs<ExtArgs>
   termOpinions?: boolean | Prisma.Plan$termOpinionsArgs<ExtArgs>
   seatBaselineImports?: boolean | Prisma.Plan$seatBaselineImportsArgs<ExtArgs>
@@ -3125,6 +3339,7 @@ export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
   workspaceProfile?: boolean | Prisma.Plan$workspaceProfileArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
+  usageRate?: boolean | Prisma.Plan$usageRateArgs<ExtArgs>
   terms?: boolean | Prisma.Plan$termsArgs<ExtArgs>
   termOpinions?: boolean | Prisma.Plan$termOpinionsArgs<ExtArgs>
   seatBaselineImports?: boolean | Prisma.Plan$seatBaselineImportsArgs<ExtArgs>
@@ -3154,6 +3369,7 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     application: Prisma.$ApplicationPayload<ExtArgs>
     workspaceProfile: Prisma.$PlanWorkspaceProfilePayload<ExtArgs> | null
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    usageRate: Prisma.$PlanUsageRatePayload<ExtArgs> | null
     terms: Prisma.$PlanTermsPayload<ExtArgs> | null
     termOpinions: Prisma.$PlanTermOpinionPayload<ExtArgs>[]
     seatBaselineImports: Prisma.$SeatBaselineImportPayload<ExtArgs>[]
@@ -3578,6 +3794,7 @@ export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Typ
   application<T extends Prisma.ApplicationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApplicationDefaultArgs<ExtArgs>>): Prisma.Prisma__ApplicationClient<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   workspaceProfile<T extends Prisma.Plan$workspaceProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$workspaceProfileArgs<ExtArgs>>): Prisma.Prisma__PlanWorkspaceProfileClient<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   subscriptions<T extends Prisma.Plan$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usageRate<T extends Prisma.Plan$usageRateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$usageRateArgs<ExtArgs>>): Prisma.Prisma__PlanUsageRateClient<runtime.Types.Result.GetResult<Prisma.$PlanUsageRatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   terms<T extends Prisma.Plan$termsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$termsArgs<ExtArgs>>): Prisma.Prisma__PlanTermsClient<runtime.Types.Result.GetResult<Prisma.$PlanTermsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   termOpinions<T extends Prisma.Plan$termOpinionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$termOpinionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanTermOpinionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   seatBaselineImports<T extends Prisma.Plan$seatBaselineImportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$seatBaselineImportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeatBaselineImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4072,6 +4289,25 @@ export type Plan$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+}
+
+/**
+ * Plan.usageRate
+ */
+export type Plan$usageRateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PlanUsageRate
+   */
+  select?: Prisma.PlanUsageRateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PlanUsageRate
+   */
+  omit?: Prisma.PlanUsageRateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlanUsageRateInclude<ExtArgs> | null
+  where?: Prisma.PlanUsageRateWhereInput
 }
 
 /**

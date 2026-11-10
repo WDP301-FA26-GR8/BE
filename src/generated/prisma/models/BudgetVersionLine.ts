@@ -458,7 +458,7 @@ export type BudgetVersionLineCreateInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   version: Prisma.BudgetVersionCreateNestedOneWithoutLinesInput
@@ -483,7 +483,7 @@ export type BudgetVersionLineUncheckedCreateInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   changes?: Prisma.BudgetVersionLineChangeUncheckedCreateNestedManyWithoutLineInput
@@ -548,7 +548,7 @@ export type BudgetVersionLineCreateManyInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
 }
@@ -842,7 +842,7 @@ export type BudgetVersionLineCreateWithoutProposalLineInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   version: Prisma.BudgetVersionCreateNestedOneWithoutLinesInput
@@ -864,7 +864,7 @@ export type BudgetVersionLineUncheckedCreateWithoutProposalLineInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   changes?: Prisma.BudgetVersionLineChangeUncheckedCreateNestedManyWithoutLineInput
@@ -932,7 +932,7 @@ export type BudgetVersionLineCreateWithoutVersionInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   proposalLine?: Prisma.BudgetProposalLineCreateNestedOneWithoutVersionLinesInput
@@ -955,7 +955,7 @@ export type BudgetVersionLineUncheckedCreateWithoutVersionInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   changes?: Prisma.BudgetVersionLineChangeUncheckedCreateNestedManyWithoutLineInput
@@ -999,7 +999,7 @@ export type BudgetVersionLineCreateWithoutChangesInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   version: Prisma.BudgetVersionCreateNestedOneWithoutLinesInput
@@ -1023,7 +1023,7 @@ export type BudgetVersionLineUncheckedCreateWithoutChangesInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
 }
@@ -1097,7 +1097,7 @@ export type BudgetVersionLineCreateWithoutPlanInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   version: Prisma.BudgetVersionCreateNestedOneWithoutLinesInput
@@ -1120,7 +1120,7 @@ export type BudgetVersionLineUncheckedCreateWithoutPlanInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
   changes?: Prisma.BudgetVersionLineChangeUncheckedCreateNestedManyWithoutLineInput
@@ -1166,7 +1166,7 @@ export type BudgetVersionLineCreateManyProposalLineInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
 }
@@ -1245,7 +1245,7 @@ export type BudgetVersionLineCreateManyVersionInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
 }
@@ -1326,7 +1326,7 @@ export type BudgetVersionLineCreateManyPlanInput = {
   quoteValidUntil?: Date | string | null
   financeComment?: string | null
   adjustmentReason?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank?: number | null
 }

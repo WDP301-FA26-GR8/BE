@@ -129,7 +129,10 @@ export const CommitmentReleaseReason = {
   REQUEST_WITHDRAWN: 'REQUEST_WITHDRAWN',
   GRANT_FAILED: 'GRANT_FAILED',
   PARTICIPANT_WITHDRAWN: 'PARTICIPANT_WITHDRAWN',
-  REMAINDER: 'REMAINDER'
+  REMAINDER: 'REMAINDER',
+  REVOKED: 'REVOKED',
+  LATE_GRANT: 'LATE_GRANT',
+  GRANTED_FROM_POOL: 'GRANTED_FROM_POOL'
 } as const
 
 export type CommitmentReleaseReason = (typeof CommitmentReleaseReason)[keyof typeof CommitmentReleaseReason]
@@ -517,7 +520,8 @@ export type AssignmentDateBasis = (typeof AssignmentDateBasis)[keyof typeof Assi
 
 export const ProvisioningTaskKind = {
   GRANT: 'GRANT',
-  REVOKE: 'REVOKE'
+  REVOKE: 'REVOKE',
+  EXTEND: 'EXTEND'
 } as const
 
 export type ProvisioningTaskKind = (typeof ProvisioningTaskKind)[keyof typeof ProvisioningTaskKind]
@@ -587,7 +591,8 @@ export const RevocationCompletion = {
   ACCOUNT_REMOVED: 'ACCOUNT_REMOVED',
   ALREADY_GONE: 'ALREADY_GONE',
   RENEWAL_CANCELLED: 'RENEWAL_CANCELLED',
-  OFF_SYSTEM_REVOKED: 'OFF_SYSTEM_REVOKED'
+  OFF_SYSTEM_REVOKED: 'OFF_SYSTEM_REVOKED',
+  KEY_DEACTIVATED: 'KEY_DEACTIVATED'
 } as const
 
 export type RevocationCompletion = (typeof RevocationCompletion)[keyof typeof RevocationCompletion]
@@ -603,8 +608,7 @@ export type AccessState = (typeof AccessState)[keyof typeof AccessState]
 
 export const LicenseKeyStatus = {
   IN_STORE: 'IN_STORE',
-  ASSIGNED: 'ASSIGNED',
-  RETIRED: 'RETIRED'
+  ASSIGNED: 'ASSIGNED'
 } as const
 
 export type LicenseKeyStatus = (typeof LicenseKeyStatus)[keyof typeof LicenseKeyStatus]
@@ -761,6 +765,138 @@ export const EmailOutboxStatus = {
 } as const
 
 export type EmailOutboxStatus = (typeof EmailOutboxStatus)[keyof typeof EmailOutboxStatus]
+
+
+export const GhostSeatGroup = {
+  G1: 'G1',
+  G2: 'G2',
+  G3: 'G3',
+  G4: 'G4'
+} as const
+
+export type GhostSeatGroup = (typeof GhostSeatGroup)[keyof typeof GhostSeatGroup]
+
+
+export const GhostSeatTier = {
+  MONITOR: 'MONITOR',
+  REVIEW: 'REVIEW',
+  ACTION: 'ACTION'
+} as const
+
+export type GhostSeatTier = (typeof GhostSeatTier)[keyof typeof GhostSeatTier]
+
+
+export const GhostSeatState = {
+  OPEN: 'OPEN',
+  PAUSED: 'PAUSED',
+  RECLAIM_DECIDED: 'RECLAIM_DECIDED',
+  CLOSED: 'CLOSED',
+  AWAITING_DECISION: 'AWAITING_DECISION',
+  WAITING_FOR_HEAD: 'WAITING_FOR_HEAD',
+  RETURNED_TO_HEAD: 'RETURNED_TO_HEAD'
+} as const
+
+export type GhostSeatState = (typeof GhostSeatState)[keyof typeof GhostSeatState]
+
+
+export const GhostSeatCloseReason = {
+  ACCEPTED: 'ACCEPTED',
+  SUPERSEDED: 'SUPERSEDED',
+  SEAT_ENDED: 'SEAT_ENDED',
+  FREE_SEATS_GONE: 'FREE_SEATS_GONE',
+  OUT_OF_SCOPE: 'OUT_OF_SCOPE',
+  KEPT: 'KEPT',
+  NEGATED: 'NEGATED',
+  TRANSFER_SEAT_REVOKED: 'TRANSFER_SEAT_REVOKED',
+  EXEMPTED: 'EXEMPTED',
+  LEFT_TO_EXPIRE: 'LEFT_TO_EXPIRE'
+} as const
+
+export type GhostSeatCloseReason = (typeof GhostSeatCloseReason)[keyof typeof GhostSeatCloseReason]
+
+
+export const GhostSeatChoice = {
+  KEEP: 'KEEP',
+  RECLAIM: 'RECLAIM',
+  EXEMPT: 'EXEMPT'
+} as const
+
+export type GhostSeatChoice = (typeof GhostSeatChoice)[keyof typeof GhostSeatChoice]
+
+
+export const GhostSeatRuleSet = {
+  G1_G2: 'G1_G2',
+  G3_G4: 'G3_G4'
+} as const
+
+export type GhostSeatRuleSet = (typeof GhostSeatRuleSet)[keyof typeof GhostSeatRuleSet]
+
+
+export const GhostSeatRunStatus = {
+  RUNNING: 'RUNNING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+} as const
+
+export type GhostSeatRunStatus = (typeof GhostSeatRunStatus)[keyof typeof GhostSeatRunStatus]
+
+
+export const GhostSeatGate = {
+  PER_SEAT: 'PER_SEAT',
+  INTERNAL_SOFTWARE: 'INTERNAL_SOFTWARE',
+  OPEN_RECOMMENDATION: 'OPEN_RECOMMENDATION',
+  SERVICE_ACCOUNT: 'SERVICE_ACCOUNT',
+  LEAVE_OR_HANDOVER: 'LEAVE_OR_HANDOVER',
+  NOT_USABLE: 'NOT_USABLE',
+  NEW_ASSIGNMENT: 'NEW_ASSIGNMENT',
+  COVERAGE: 'COVERAGE',
+  STALE_SOURCE: 'STALE_SOURCE',
+  EXEMPT: 'EXEMPT',
+  TIME_BOUND_ENDING: 'TIME_BOUND_ENDING',
+  REVOCATION_IN_PROGRESS: 'REVOCATION_IN_PROGRESS',
+  NO_DATA: 'NO_DATA',
+  UNMATCHED_IDENTITY: 'UNMATCHED_IDENTITY',
+  INSUFFICIENT_EVIDENCE: 'INSUFFICIENT_EVIDENCE'
+} as const
+
+export type GhostSeatGate = (typeof GhostSeatGate)[keyof typeof GhostSeatGate]
+
+
+export const GhostSeatConfidence = {
+  HIGH: 'HIGH',
+  MEDIUM: 'MEDIUM',
+  LOW: 'LOW'
+} as const
+
+export type GhostSeatConfidence = (typeof GhostSeatConfidence)[keyof typeof GhostSeatConfidence]
+
+
+export const GhostSeatActivityStatus = {
+  NEVER_ACTIVE: 'NEVER_ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type GhostSeatActivityStatus = (typeof GhostSeatActivityStatus)[keyof typeof GhostSeatActivityStatus]
+
+
+export const GhostSeatSeatStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  NO_DATA: 'NO_DATA',
+  UNMATCHED_IDENTITY: 'UNMATCHED_IDENTITY',
+  INSUFFICIENT_EVIDENCE: 'INSUFFICIENT_EVIDENCE',
+  EXCLUDED: 'EXCLUDED'
+} as const
+
+export type GhostSeatSeatStatus = (typeof GhostSeatSeatStatus)[keyof typeof GhostSeatSeatStatus]
+
+
+export const GhostSeatSkipSubject = {
+  SUBSCRIPTION: 'SUBSCRIPTION',
+  ASSIGNMENT: 'ASSIGNMENT'
+} as const
+
+export type GhostSeatSkipSubject = (typeof GhostSeatSkipSubject)[keyof typeof GhostSeatSkipSubject]
 
 
 export const CostCenterKind = {
@@ -987,6 +1123,14 @@ export const SuperAdminEventMode = {
 export type SuperAdminEventMode = (typeof SuperAdminEventMode)[keyof typeof SuperAdminEventMode]
 
 
+export const RequestRoutingMode = {
+  VIA_HEAD: 'VIA_HEAD',
+  ONE_STEP: 'ONE_STEP'
+} as const
+
+export type RequestRoutingMode = (typeof RequestRoutingMode)[keyof typeof RequestRoutingMode]
+
+
 export const AccessRequestType = {
   GRANT: 'GRANT',
   SERVICE_ACCOUNT: 'SERVICE_ACCOUNT',
@@ -1007,6 +1151,7 @@ export type AccessRequestBranch = (typeof AccessRequestBranch)[keyof typeof Acce
 
 
 export const AccessRequestState = {
+  AWAITING_REQUESTER_REVISION: 'AWAITING_REQUESTER_REVISION',
   PENDING: 'PENDING',
   AWAITING_EXECUTION: 'AWAITING_EXECUTION',
   AWAITING_IT_ASSESSMENT: 'AWAITING_IT_ASSESSMENT',
@@ -1066,6 +1211,7 @@ export type AccessRequestStepKind = (typeof AccessRequestStepKind)[keyof typeof 
 
 
 export const AccessRequestStepState = {
+  NOT_REQUIRED: 'NOT_REQUIRED',
   PENDING: 'PENDING',
   WAITING: 'WAITING',
   APPROVED: 'APPROVED',
@@ -1394,3 +1540,140 @@ export const IntakeRejectionReason = {
 } as const
 
 export type IntakeRejectionReason = (typeof IntakeRejectionReason)[keyof typeof IntakeRejectionReason]
+
+
+export const UsageIdentifierType = {
+  EMAIL: 'EMAIL',
+  USERNAME: 'USERNAME',
+  ACCOUNT_ID: 'ACCOUNT_ID'
+} as const
+
+export type UsageIdentifierType = (typeof UsageIdentifierType)[keyof typeof UsageIdentifierType]
+
+
+export const UsageReportShape = {
+  AGGREGATE: 'AGGREGATE',
+  EVENT: 'EVENT'
+} as const
+
+export type UsageReportShape = (typeof UsageReportShape)[keyof typeof UsageReportShape]
+
+
+export const UsageDefinitionStrictness = {
+  STRICT: 'STRICT',
+  LOOSE: 'LOOSE'
+} as const
+
+export type UsageDefinitionStrictness = (typeof UsageDefinitionStrictness)[keyof typeof UsageDefinitionStrictness]
+
+
+export const UsageEvidenceDirection = {
+  POSITIVE_ONLY: 'POSITIVE_ONLY',
+  POSITIVE_AND_NEGATIVE: 'POSITIVE_AND_NEGATIVE'
+} as const
+
+export type UsageEvidenceDirection = (typeof UsageEvidenceDirection)[keyof typeof UsageEvidenceDirection]
+
+
+export const UsageImportFormat = {
+  JSON: 'JSON',
+  CSV: 'CSV'
+} as const
+
+export type UsageImportFormat = (typeof UsageImportFormat)[keyof typeof UsageImportFormat]
+
+
+export const UsageImportStatus = {
+  PREVIEW: 'PREVIEW',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type UsageImportStatus = (typeof UsageImportStatus)[keyof typeof UsageImportStatus]
+
+
+export const UsageCoverageBasis = {
+  DECLARED: 'DECLARED',
+  DERIVED: 'DERIVED'
+} as const
+
+export type UsageCoverageBasis = (typeof UsageCoverageBasis)[keyof typeof UsageCoverageBasis]
+
+
+export const UsageNoticeMode = {
+  CONFIRMED_DELIVERED: 'CONFIRMED_DELIVERED',
+  SYSTEM_SENT: 'SYSTEM_SENT'
+} as const
+
+export type UsageNoticeMode = (typeof UsageNoticeMode)[keyof typeof UsageNoticeMode]
+
+
+export const UsageRowOutcome = {
+  MATCHED: 'MATCHED',
+  UNMATCHED: 'UNMATCHED',
+  AMBIGUOUS: 'AMBIGUOUS',
+  NOT_A_PERSON: 'NOT_A_PERSON',
+  INVALID: 'INVALID'
+} as const
+
+export type UsageRowOutcome = (typeof UsageRowOutcome)[keyof typeof UsageRowOutcome]
+
+
+export const UsageEventClass = {
+  VALUE: 'VALUE',
+  PASSIVE: 'PASSIVE',
+  AUTH_ONLY: 'AUTH_ONLY'
+} as const
+
+export type UsageEventClass = (typeof UsageEventClass)[keyof typeof UsageEventClass]
+
+
+export const UsageActivityBasis = {
+  ACTIVE_DATE: 'ACTIVE_DATE',
+  LAST_ACTIVITY: 'LAST_ACTIVITY'
+} as const
+
+export type UsageActivityBasis = (typeof UsageActivityBasis)[keyof typeof UsageActivityBasis]
+
+
+export const UsageMatchMethod = {
+  EXACT_EMAIL: 'EXACT_EMAIL',
+  ACCOUNT_IDENTIFIER: 'ACCOUNT_IDENTIFIER',
+  ALIAS_RULE: 'ALIAS_RULE',
+  MANUAL: 'MANUAL'
+} as const
+
+export type UsageMatchMethod = (typeof UsageMatchMethod)[keyof typeof UsageMatchMethod]
+
+
+export const UsageMatchConfidence = {
+  HIGH: 'HIGH',
+  MEDIUM: 'MEDIUM'
+} as const
+
+export type UsageMatchConfidence = (typeof UsageMatchConfidence)[keyof typeof UsageMatchConfidence]
+
+
+export const UsageUnmatchedReason = {
+  NOT_FOUND: 'NOT_FOUND',
+  AMBIGUOUS: 'AMBIGUOUS'
+} as const
+
+export type UsageUnmatchedReason = (typeof UsageUnmatchedReason)[keyof typeof UsageUnmatchedReason]
+
+
+export const UsageUnmatchedStatus = {
+  OPEN: 'OPEN',
+  DISMISSED: 'DISMISSED',
+  RESOLVED: 'RESOLVED'
+} as const
+
+export type UsageUnmatchedStatus = (typeof UsageUnmatchedStatus)[keyof typeof UsageUnmatchedStatus]
+
+
+export const UsageFindingStatus = {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+} as const
+
+export type UsageFindingStatus = (typeof UsageFindingStatus)[keyof typeof UsageFindingStatus]

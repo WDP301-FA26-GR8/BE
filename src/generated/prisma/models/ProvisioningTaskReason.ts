@@ -33,6 +33,11 @@ export type ProvisioningTaskReasonMinAggregateOutputType = {
   referenceKind: string | null
   referenceId: string | null
   note: string | null
+  dueOn: Date | null
+  notBefore: Date | null
+  withdrawnAt: Date | null
+  withdrawnByAppUserId: string | null
+  withdrawCause: string | null
   createdAt: Date | null
 }
 
@@ -45,6 +50,11 @@ export type ProvisioningTaskReasonMaxAggregateOutputType = {
   referenceKind: string | null
   referenceId: string | null
   note: string | null
+  dueOn: Date | null
+  notBefore: Date | null
+  withdrawnAt: Date | null
+  withdrawnByAppUserId: string | null
+  withdrawCause: string | null
   createdAt: Date | null
 }
 
@@ -57,6 +67,11 @@ export type ProvisioningTaskReasonCountAggregateOutputType = {
   referenceKind: number
   referenceId: number
   note: number
+  dueOn: number
+  notBefore: number
+  withdrawnAt: number
+  withdrawnByAppUserId: number
+  withdrawCause: number
   createdAt: number
   _all: number
 }
@@ -71,6 +86,11 @@ export type ProvisioningTaskReasonMinAggregateInputType = {
   referenceKind?: true
   referenceId?: true
   note?: true
+  dueOn?: true
+  notBefore?: true
+  withdrawnAt?: true
+  withdrawnByAppUserId?: true
+  withdrawCause?: true
   createdAt?: true
 }
 
@@ -83,6 +103,11 @@ export type ProvisioningTaskReasonMaxAggregateInputType = {
   referenceKind?: true
   referenceId?: true
   note?: true
+  dueOn?: true
+  notBefore?: true
+  withdrawnAt?: true
+  withdrawnByAppUserId?: true
+  withdrawCause?: true
   createdAt?: true
 }
 
@@ -95,6 +120,11 @@ export type ProvisioningTaskReasonCountAggregateInputType = {
   referenceKind?: true
   referenceId?: true
   note?: true
+  dueOn?: true
+  notBefore?: true
+  withdrawnAt?: true
+  withdrawnByAppUserId?: true
+  withdrawCause?: true
   createdAt?: true
   _all?: true
 }
@@ -180,6 +210,11 @@ export type ProvisioningTaskReasonGroupByOutputType = {
   referenceKind: string | null
   referenceId: string | null
   note: string | null
+  dueOn: Date | null
+  notBefore: Date | null
+  withdrawnAt: Date | null
+  withdrawnByAppUserId: string | null
+  withdrawCause: string | null
   createdAt: Date
   _count: ProvisioningTaskReasonCountAggregateOutputType | null
   _min: ProvisioningTaskReasonMinAggregateOutputType | null
@@ -213,6 +248,11 @@ export type ProvisioningTaskReasonWhereInput = {
   referenceKind?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
   referenceId?: Prisma.UuidNullableFilter<"ProvisioningTaskReason"> | string | null
   note?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
+  dueOn?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  notBefore?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableFilter<"ProvisioningTaskReason"> | string | null
+  withdrawCause?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProvisioningTaskReason"> | Date | string
   task?: Prisma.XOR<Prisma.ProvisioningTaskScalarRelationFilter, Prisma.ProvisioningTaskWhereInput>
   decidedBy?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
@@ -227,6 +267,11 @@ export type ProvisioningTaskReasonOrderByWithRelationInput = {
   referenceKind?: Prisma.SortOrderInput | Prisma.SortOrder
   referenceId?: Prisma.SortOrderInput | Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
+  dueOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  notBefore?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawCause?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   task?: Prisma.ProvisioningTaskOrderByWithRelationInput
   decidedBy?: Prisma.EmployeeOrderByWithRelationInput
@@ -244,6 +289,11 @@ export type ProvisioningTaskReasonWhereUniqueInput = Prisma.AtLeast<{
   referenceKind?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
   referenceId?: Prisma.UuidNullableFilter<"ProvisioningTaskReason"> | string | null
   note?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
+  dueOn?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  notBefore?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableFilter<"ProvisioningTaskReason"> | string | null
+  withdrawCause?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProvisioningTaskReason"> | Date | string
   task?: Prisma.XOR<Prisma.ProvisioningTaskScalarRelationFilter, Prisma.ProvisioningTaskWhereInput>
   decidedBy?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
@@ -258,6 +308,11 @@ export type ProvisioningTaskReasonOrderByWithAggregationInput = {
   referenceKind?: Prisma.SortOrderInput | Prisma.SortOrder
   referenceId?: Prisma.SortOrderInput | Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
+  dueOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  notBefore?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawCause?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ProvisioningTaskReasonCountOrderByAggregateInput
   _max?: Prisma.ProvisioningTaskReasonMaxOrderByAggregateInput
@@ -276,6 +331,11 @@ export type ProvisioningTaskReasonScalarWhereWithAggregatesInput = {
   referenceKind?: Prisma.StringNullableWithAggregatesFilter<"ProvisioningTaskReason"> | string | null
   referenceId?: Prisma.UuidNullableWithAggregatesFilter<"ProvisioningTaskReason"> | string | null
   note?: Prisma.StringNullableWithAggregatesFilter<"ProvisioningTaskReason"> | string | null
+  dueOn?: Prisma.DateTimeNullableWithAggregatesFilter<"ProvisioningTaskReason"> | Date | string | null
+  notBefore?: Prisma.DateTimeNullableWithAggregatesFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"ProvisioningTaskReason"> | string | null
+  withdrawCause?: Prisma.StringNullableWithAggregatesFilter<"ProvisioningTaskReason"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProvisioningTaskReason"> | Date | string
 }
 
@@ -286,6 +346,11 @@ export type ProvisioningTaskReasonCreateInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
   task: Prisma.ProvisioningTaskCreateNestedOneWithoutReasonsInput
   decidedBy?: Prisma.EmployeeCreateNestedOneWithoutRevocationReasonsDecidedInput
@@ -300,6 +365,11 @@ export type ProvisioningTaskReasonUncheckedCreateInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
 }
 
@@ -310,6 +380,11 @@ export type ProvisioningTaskReasonUpdateInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task?: Prisma.ProvisioningTaskUpdateOneRequiredWithoutReasonsNestedInput
   decidedBy?: Prisma.EmployeeUpdateOneWithoutRevocationReasonsDecidedNestedInput
@@ -324,6 +399,11 @@ export type ProvisioningTaskReasonUncheckedUpdateInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -336,6 +416,11 @@ export type ProvisioningTaskReasonCreateManyInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
 }
 
@@ -346,6 +431,11 @@ export type ProvisioningTaskReasonUpdateManyMutationInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -358,6 +448,11 @@ export type ProvisioningTaskReasonUncheckedUpdateManyInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -380,6 +475,11 @@ export type ProvisioningTaskReasonCountOrderByAggregateInput = {
   referenceKind?: Prisma.SortOrder
   referenceId?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  dueOn?: Prisma.SortOrder
+  notBefore?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrder
+  withdrawCause?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -392,6 +492,11 @@ export type ProvisioningTaskReasonMaxOrderByAggregateInput = {
   referenceKind?: Prisma.SortOrder
   referenceId?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  dueOn?: Prisma.SortOrder
+  notBefore?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrder
+  withdrawCause?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -404,6 +509,11 @@ export type ProvisioningTaskReasonMinOrderByAggregateInput = {
   referenceKind?: Prisma.SortOrder
   referenceId?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  dueOn?: Prisma.SortOrder
+  notBefore?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrder
+  withdrawCause?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -502,6 +612,11 @@ export type ProvisioningTaskReasonCreateWithoutTaskInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
   decidedBy?: Prisma.EmployeeCreateNestedOneWithoutRevocationReasonsDecidedInput
 }
@@ -514,6 +629,11 @@ export type ProvisioningTaskReasonUncheckedCreateWithoutTaskInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
 }
 
@@ -555,6 +675,11 @@ export type ProvisioningTaskReasonScalarWhereInput = {
   referenceKind?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
   referenceId?: Prisma.UuidNullableFilter<"ProvisioningTaskReason"> | string | null
   note?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
+  dueOn?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  notBefore?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"ProvisioningTaskReason"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableFilter<"ProvisioningTaskReason"> | string | null
+  withdrawCause?: Prisma.StringNullableFilter<"ProvisioningTaskReason"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProvisioningTaskReason"> | Date | string
 }
 
@@ -565,6 +690,11 @@ export type ProvisioningTaskReasonCreateWithoutDecidedByInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
   task: Prisma.ProvisioningTaskCreateNestedOneWithoutReasonsInput
 }
@@ -577,6 +707,11 @@ export type ProvisioningTaskReasonUncheckedCreateWithoutDecidedByInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
 }
 
@@ -614,6 +749,11 @@ export type ProvisioningTaskReasonCreateManyTaskInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
 }
 
@@ -624,6 +764,11 @@ export type ProvisioningTaskReasonUpdateWithoutTaskInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedBy?: Prisma.EmployeeUpdateOneWithoutRevocationReasonsDecidedNestedInput
 }
@@ -636,6 +781,11 @@ export type ProvisioningTaskReasonUncheckedUpdateWithoutTaskInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -647,6 +797,11 @@ export type ProvisioningTaskReasonUncheckedUpdateManyWithoutTaskInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -658,6 +813,11 @@ export type ProvisioningTaskReasonCreateManyDecidedByInput = {
   referenceKind?: string | null
   referenceId?: string | null
   note?: string | null
+  dueOn?: Date | string | null
+  notBefore?: Date | string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawCause?: string | null
   createdAt?: Date | string
 }
 
@@ -668,6 +828,11 @@ export type ProvisioningTaskReasonUpdateWithoutDecidedByInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task?: Prisma.ProvisioningTaskUpdateOneRequiredWithoutReasonsNestedInput
 }
@@ -680,6 +845,11 @@ export type ProvisioningTaskReasonUncheckedUpdateWithoutDecidedByInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -691,6 +861,11 @@ export type ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByInput = {
   referenceKind?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notBefore?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawCause?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -705,6 +880,11 @@ export type ProvisioningTaskReasonSelect<ExtArgs extends runtime.Types.Extension
   referenceKind?: boolean
   referenceId?: boolean
   note?: boolean
+  dueOn?: boolean
+  notBefore?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawCause?: boolean
   createdAt?: boolean
   task?: boolean | Prisma.ProvisioningTaskDefaultArgs<ExtArgs>
   decidedBy?: boolean | Prisma.ProvisioningTaskReason$decidedByArgs<ExtArgs>
@@ -719,6 +899,11 @@ export type ProvisioningTaskReasonSelectCreateManyAndReturn<ExtArgs extends runt
   referenceKind?: boolean
   referenceId?: boolean
   note?: boolean
+  dueOn?: boolean
+  notBefore?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawCause?: boolean
   createdAt?: boolean
   task?: boolean | Prisma.ProvisioningTaskDefaultArgs<ExtArgs>
   decidedBy?: boolean | Prisma.ProvisioningTaskReason$decidedByArgs<ExtArgs>
@@ -733,6 +918,11 @@ export type ProvisioningTaskReasonSelectUpdateManyAndReturn<ExtArgs extends runt
   referenceKind?: boolean
   referenceId?: boolean
   note?: boolean
+  dueOn?: boolean
+  notBefore?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawCause?: boolean
   createdAt?: boolean
   task?: boolean | Prisma.ProvisioningTaskDefaultArgs<ExtArgs>
   decidedBy?: boolean | Prisma.ProvisioningTaskReason$decidedByArgs<ExtArgs>
@@ -747,10 +937,15 @@ export type ProvisioningTaskReasonSelectScalar = {
   referenceKind?: boolean
   referenceId?: boolean
   note?: boolean
+  dueOn?: boolean
+  notBefore?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawCause?: boolean
   createdAt?: boolean
 }
 
-export type ProvisioningTaskReasonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "taskId" | "source" | "decidedByEmployeeId" | "decidedRole" | "referenceKind" | "referenceId" | "note" | "createdAt", ExtArgs["result"]["provisioningTaskReason"]>
+export type ProvisioningTaskReasonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "taskId" | "source" | "decidedByEmployeeId" | "decidedRole" | "referenceKind" | "referenceId" | "note" | "dueOn" | "notBefore" | "withdrawnAt" | "withdrawnByAppUserId" | "withdrawCause" | "createdAt", ExtArgs["result"]["provisioningTaskReason"]>
 export type ProvisioningTaskReasonInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   task?: boolean | Prisma.ProvisioningTaskDefaultArgs<ExtArgs>
   decidedBy?: boolean | Prisma.ProvisioningTaskReason$decidedByArgs<ExtArgs>
@@ -779,6 +974,11 @@ export type $ProvisioningTaskReasonPayload<ExtArgs extends runtime.Types.Extensi
     referenceKind: string | null
     referenceId: string | null
     note: string | null
+    dueOn: Date | null
+    notBefore: Date | null
+    withdrawnAt: Date | null
+    withdrawnByAppUserId: string | null
+    withdrawCause: string | null
     createdAt: Date
   }, ExtArgs["result"]["provisioningTaskReason"]>
   composites: {}
@@ -1213,6 +1413,11 @@ export interface ProvisioningTaskReasonFieldRefs {
   readonly referenceKind: Prisma.FieldRef<"ProvisioningTaskReason", 'String'>
   readonly referenceId: Prisma.FieldRef<"ProvisioningTaskReason", 'String'>
   readonly note: Prisma.FieldRef<"ProvisioningTaskReason", 'String'>
+  readonly dueOn: Prisma.FieldRef<"ProvisioningTaskReason", 'DateTime'>
+  readonly notBefore: Prisma.FieldRef<"ProvisioningTaskReason", 'DateTime'>
+  readonly withdrawnAt: Prisma.FieldRef<"ProvisioningTaskReason", 'DateTime'>
+  readonly withdrawnByAppUserId: Prisma.FieldRef<"ProvisioningTaskReason", 'String'>
+  readonly withdrawCause: Prisma.FieldRef<"ProvisioningTaskReason", 'String'>
   readonly createdAt: Prisma.FieldRef<"ProvisioningTaskReason", 'DateTime'>
 }
     

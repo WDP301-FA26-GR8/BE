@@ -35,6 +35,10 @@ export type LicenseKeyMinAggregateOutputType = {
   status: $Enums.LicenseKeyStatus | null
   importedByAppUserId: string | null
   importedAt: Date | null
+  assignmentId: string | null
+  withdrawnAt: Date | null
+  withdrawnByAppUserId: string | null
+  withdrawalReason: string | null
 }
 
 export type LicenseKeyMaxAggregateOutputType = {
@@ -48,6 +52,10 @@ export type LicenseKeyMaxAggregateOutputType = {
   status: $Enums.LicenseKeyStatus | null
   importedByAppUserId: string | null
   importedAt: Date | null
+  assignmentId: string | null
+  withdrawnAt: Date | null
+  withdrawnByAppUserId: string | null
+  withdrawalReason: string | null
 }
 
 export type LicenseKeyCountAggregateOutputType = {
@@ -61,6 +69,10 @@ export type LicenseKeyCountAggregateOutputType = {
   status: number
   importedByAppUserId: number
   importedAt: number
+  assignmentId: number
+  withdrawnAt: number
+  withdrawnByAppUserId: number
+  withdrawalReason: number
   _all: number
 }
 
@@ -76,6 +88,10 @@ export type LicenseKeyMinAggregateInputType = {
   status?: true
   importedByAppUserId?: true
   importedAt?: true
+  assignmentId?: true
+  withdrawnAt?: true
+  withdrawnByAppUserId?: true
+  withdrawalReason?: true
 }
 
 export type LicenseKeyMaxAggregateInputType = {
@@ -89,6 +105,10 @@ export type LicenseKeyMaxAggregateInputType = {
   status?: true
   importedByAppUserId?: true
   importedAt?: true
+  assignmentId?: true
+  withdrawnAt?: true
+  withdrawnByAppUserId?: true
+  withdrawalReason?: true
 }
 
 export type LicenseKeyCountAggregateInputType = {
@@ -102,6 +122,10 @@ export type LicenseKeyCountAggregateInputType = {
   status?: true
   importedByAppUserId?: true
   importedAt?: true
+  assignmentId?: true
+  withdrawnAt?: true
+  withdrawnByAppUserId?: true
+  withdrawalReason?: true
   _all?: true
 }
 
@@ -188,6 +212,10 @@ export type LicenseKeyGroupByOutputType = {
   status: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt: Date
+  assignmentId: string | null
+  withdrawnAt: Date | null
+  withdrawnByAppUserId: string | null
+  withdrawalReason: string | null
   _count: LicenseKeyCountAggregateOutputType | null
   _min: LicenseKeyMinAggregateOutputType | null
   _max: LicenseKeyMaxAggregateOutputType | null
@@ -222,8 +250,13 @@ export type LicenseKeyWhereInput = {
   status?: Prisma.EnumLicenseKeyStatusFilter<"LicenseKey"> | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.UuidFilter<"LicenseKey"> | string
   importedAt?: Prisma.DateTimeFilter<"LicenseKey"> | Date | string
+  assignmentId?: Prisma.UuidNullableFilter<"LicenseKey"> | string | null
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"LicenseKey"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableFilter<"LicenseKey"> | string | null
+  withdrawalReason?: Prisma.StringNullableFilter<"LicenseKey"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   subscription?: Prisma.XOR<Prisma.SubscriptionScalarRelationFilter, Prisma.SubscriptionWhereInput>
+  assignment?: Prisma.XOR<Prisma.LicenseAssignmentNullableScalarRelationFilter, Prisma.LicenseAssignmentWhereInput> | null
 }
 
 export type LicenseKeyOrderByWithRelationInput = {
@@ -237,12 +270,18 @@ export type LicenseKeyOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   importedByAppUserId?: Prisma.SortOrder
   importedAt?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawalReason?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   subscription?: Prisma.SubscriptionOrderByWithRelationInput
+  assignment?: Prisma.LicenseAssignmentOrderByWithRelationInput
 }
 
 export type LicenseKeyWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  assignmentId?: string
   organizationId_fingerprint?: Prisma.LicenseKeyOrganizationIdFingerprintCompoundUniqueInput
   AND?: Prisma.LicenseKeyWhereInput | Prisma.LicenseKeyWhereInput[]
   OR?: Prisma.LicenseKeyWhereInput[]
@@ -256,9 +295,13 @@ export type LicenseKeyWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumLicenseKeyStatusFilter<"LicenseKey"> | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.UuidFilter<"LicenseKey"> | string
   importedAt?: Prisma.DateTimeFilter<"LicenseKey"> | Date | string
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"LicenseKey"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableFilter<"LicenseKey"> | string | null
+  withdrawalReason?: Prisma.StringNullableFilter<"LicenseKey"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   subscription?: Prisma.XOR<Prisma.SubscriptionScalarRelationFilter, Prisma.SubscriptionWhereInput>
-}, "id" | "organizationId_fingerprint">
+  assignment?: Prisma.XOR<Prisma.LicenseAssignmentNullableScalarRelationFilter, Prisma.LicenseAssignmentWhereInput> | null
+}, "id" | "assignmentId" | "organizationId_fingerprint">
 
 export type LicenseKeyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -271,6 +314,10 @@ export type LicenseKeyOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   importedByAppUserId?: Prisma.SortOrder
   importedAt?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawalReason?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LicenseKeyCountOrderByAggregateInput
   _max?: Prisma.LicenseKeyMaxOrderByAggregateInput
   _min?: Prisma.LicenseKeyMinOrderByAggregateInput
@@ -290,6 +337,10 @@ export type LicenseKeyScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumLicenseKeyStatusWithAggregatesFilter<"LicenseKey"> | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.UuidWithAggregatesFilter<"LicenseKey"> | string
   importedAt?: Prisma.DateTimeWithAggregatesFilter<"LicenseKey"> | Date | string
+  assignmentId?: Prisma.UuidNullableWithAggregatesFilter<"LicenseKey"> | string | null
+  withdrawnAt?: Prisma.DateTimeNullableWithAggregatesFilter<"LicenseKey"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"LicenseKey"> | string | null
+  withdrawalReason?: Prisma.StringNullableWithAggregatesFilter<"LicenseKey"> | string | null
 }
 
 export type LicenseKeyCreateInput = {
@@ -301,8 +352,12 @@ export type LicenseKeyCreateInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutLicenseKeysInput
   subscription: Prisma.SubscriptionCreateNestedOneWithoutLicenseKeysInput
+  assignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutLicenseKeyInput
 }
 
 export type LicenseKeyUncheckedCreateInput = {
@@ -316,6 +371,10 @@ export type LicenseKeyUncheckedCreateInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  assignmentId?: string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
 }
 
 export type LicenseKeyUpdateInput = {
@@ -327,8 +386,12 @@ export type LicenseKeyUpdateInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutLicenseKeysNestedInput
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutLicenseKeysNestedInput
+  assignment?: Prisma.LicenseAssignmentUpdateOneWithoutLicenseKeyNestedInput
 }
 
 export type LicenseKeyUncheckedUpdateInput = {
@@ -342,6 +405,10 @@ export type LicenseKeyUncheckedUpdateInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LicenseKeyCreateManyInput = {
@@ -355,6 +422,10 @@ export type LicenseKeyCreateManyInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  assignmentId?: string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
 }
 
 export type LicenseKeyUpdateManyMutationInput = {
@@ -366,6 +437,9 @@ export type LicenseKeyUpdateManyMutationInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LicenseKeyUncheckedUpdateManyInput = {
@@ -379,6 +453,10 @@ export type LicenseKeyUncheckedUpdateManyInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LicenseKeyListRelationFilter = {
@@ -389,6 +467,11 @@ export type LicenseKeyListRelationFilter = {
 
 export type LicenseKeyOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type LicenseKeyNullableScalarRelationFilter = {
+  is?: Prisma.LicenseKeyWhereInput | null
+  isNot?: Prisma.LicenseKeyWhereInput | null
 }
 
 export type LicenseKeyOrganizationIdFingerprintCompoundUniqueInput = {
@@ -407,6 +490,10 @@ export type LicenseKeyCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   importedByAppUserId?: Prisma.SortOrder
   importedAt?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrder
+  withdrawalReason?: Prisma.SortOrder
 }
 
 export type LicenseKeyMaxOrderByAggregateInput = {
@@ -420,6 +507,10 @@ export type LicenseKeyMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   importedByAppUserId?: Prisma.SortOrder
   importedAt?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrder
+  withdrawalReason?: Prisma.SortOrder
 }
 
 export type LicenseKeyMinOrderByAggregateInput = {
@@ -433,6 +524,10 @@ export type LicenseKeyMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   importedByAppUserId?: Prisma.SortOrder
   importedAt?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnByAppUserId?: Prisma.SortOrder
+  withdrawalReason?: Prisma.SortOrder
 }
 
 export type LicenseKeyCreateNestedManyWithoutSubscriptionInput = {
@@ -475,6 +570,38 @@ export type LicenseKeyUncheckedUpdateManyWithoutSubscriptionNestedInput = {
   update?: Prisma.LicenseKeyUpdateWithWhereUniqueWithoutSubscriptionInput | Prisma.LicenseKeyUpdateWithWhereUniqueWithoutSubscriptionInput[]
   updateMany?: Prisma.LicenseKeyUpdateManyWithWhereWithoutSubscriptionInput | Prisma.LicenseKeyUpdateManyWithWhereWithoutSubscriptionInput[]
   deleteMany?: Prisma.LicenseKeyScalarWhereInput | Prisma.LicenseKeyScalarWhereInput[]
+}
+
+export type LicenseKeyCreateNestedOneWithoutAssignmentInput = {
+  create?: Prisma.XOR<Prisma.LicenseKeyCreateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.LicenseKeyCreateOrConnectWithoutAssignmentInput
+  connect?: Prisma.LicenseKeyWhereUniqueInput
+}
+
+export type LicenseKeyUncheckedCreateNestedOneWithoutAssignmentInput = {
+  create?: Prisma.XOR<Prisma.LicenseKeyCreateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.LicenseKeyCreateOrConnectWithoutAssignmentInput
+  connect?: Prisma.LicenseKeyWhereUniqueInput
+}
+
+export type LicenseKeyUpdateOneWithoutAssignmentNestedInput = {
+  create?: Prisma.XOR<Prisma.LicenseKeyCreateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.LicenseKeyCreateOrConnectWithoutAssignmentInput
+  upsert?: Prisma.LicenseKeyUpsertWithoutAssignmentInput
+  disconnect?: Prisma.LicenseKeyWhereInput | boolean
+  delete?: Prisma.LicenseKeyWhereInput | boolean
+  connect?: Prisma.LicenseKeyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LicenseKeyUpdateToOneWithWhereWithoutAssignmentInput, Prisma.LicenseKeyUpdateWithoutAssignmentInput>, Prisma.LicenseKeyUncheckedUpdateWithoutAssignmentInput>
+}
+
+export type LicenseKeyUncheckedUpdateOneWithoutAssignmentNestedInput = {
+  create?: Prisma.XOR<Prisma.LicenseKeyCreateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.LicenseKeyCreateOrConnectWithoutAssignmentInput
+  upsert?: Prisma.LicenseKeyUpsertWithoutAssignmentInput
+  disconnect?: Prisma.LicenseKeyWhereInput | boolean
+  delete?: Prisma.LicenseKeyWhereInput | boolean
+  connect?: Prisma.LicenseKeyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LicenseKeyUpdateToOneWithWhereWithoutAssignmentInput, Prisma.LicenseKeyUpdateWithoutAssignmentInput>, Prisma.LicenseKeyUncheckedUpdateWithoutAssignmentInput>
 }
 
 export type BytesFieldUpdateOperationsInput = {
@@ -536,7 +663,11 @@ export type LicenseKeyCreateWithoutSubscriptionInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutLicenseKeysInput
+  assignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutLicenseKeyInput
 }
 
 export type LicenseKeyUncheckedCreateWithoutSubscriptionInput = {
@@ -549,6 +680,10 @@ export type LicenseKeyUncheckedCreateWithoutSubscriptionInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  assignmentId?: string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
 }
 
 export type LicenseKeyCreateOrConnectWithoutSubscriptionInput = {
@@ -591,6 +726,90 @@ export type LicenseKeyScalarWhereInput = {
   status?: Prisma.EnumLicenseKeyStatusFilter<"LicenseKey"> | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.UuidFilter<"LicenseKey"> | string
   importedAt?: Prisma.DateTimeFilter<"LicenseKey"> | Date | string
+  assignmentId?: Prisma.UuidNullableFilter<"LicenseKey"> | string | null
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"LicenseKey"> | Date | string | null
+  withdrawnByAppUserId?: Prisma.UuidNullableFilter<"LicenseKey"> | string | null
+  withdrawalReason?: Prisma.StringNullableFilter<"LicenseKey"> | string | null
+}
+
+export type LicenseKeyCreateWithoutAssignmentInput = {
+  id?: string
+  fingerprint: string
+  masked: string
+  ciphertext: runtime.Bytes
+  cipherKeyId: string
+  status?: $Enums.LicenseKeyStatus
+  importedByAppUserId: string
+  importedAt?: Date | string
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutLicenseKeysInput
+  subscription: Prisma.SubscriptionCreateNestedOneWithoutLicenseKeysInput
+}
+
+export type LicenseKeyUncheckedCreateWithoutAssignmentInput = {
+  id?: string
+  organizationId: string
+  subscriptionId: string
+  fingerprint: string
+  masked: string
+  ciphertext: runtime.Bytes
+  cipherKeyId: string
+  status?: $Enums.LicenseKeyStatus
+  importedByAppUserId: string
+  importedAt?: Date | string
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
+}
+
+export type LicenseKeyCreateOrConnectWithoutAssignmentInput = {
+  where: Prisma.LicenseKeyWhereUniqueInput
+  create: Prisma.XOR<Prisma.LicenseKeyCreateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedCreateWithoutAssignmentInput>
+}
+
+export type LicenseKeyUpsertWithoutAssignmentInput = {
+  update: Prisma.XOR<Prisma.LicenseKeyUpdateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedUpdateWithoutAssignmentInput>
+  create: Prisma.XOR<Prisma.LicenseKeyCreateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedCreateWithoutAssignmentInput>
+  where?: Prisma.LicenseKeyWhereInput
+}
+
+export type LicenseKeyUpdateToOneWithWhereWithoutAssignmentInput = {
+  where?: Prisma.LicenseKeyWhereInput
+  data: Prisma.XOR<Prisma.LicenseKeyUpdateWithoutAssignmentInput, Prisma.LicenseKeyUncheckedUpdateWithoutAssignmentInput>
+}
+
+export type LicenseKeyUpdateWithoutAssignmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fingerprint?: Prisma.StringFieldUpdateOperationsInput | string
+  masked?: Prisma.StringFieldUpdateOperationsInput | string
+  ciphertext?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  cipherKeyId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
+  importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutLicenseKeysNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutLicenseKeysNestedInput
+}
+
+export type LicenseKeyUncheckedUpdateWithoutAssignmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  subscriptionId?: Prisma.StringFieldUpdateOperationsInput | string
+  fingerprint?: Prisma.StringFieldUpdateOperationsInput | string
+  masked?: Prisma.StringFieldUpdateOperationsInput | string
+  ciphertext?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  cipherKeyId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
+  importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LicenseKeyCreateWithoutOrganizationInput = {
@@ -602,7 +821,11 @@ export type LicenseKeyCreateWithoutOrganizationInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
   subscription: Prisma.SubscriptionCreateNestedOneWithoutLicenseKeysInput
+  assignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutLicenseKeyInput
 }
 
 export type LicenseKeyUncheckedCreateWithoutOrganizationInput = {
@@ -615,6 +838,10 @@ export type LicenseKeyUncheckedCreateWithoutOrganizationInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  assignmentId?: string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
 }
 
 export type LicenseKeyCreateOrConnectWithoutOrganizationInput = {
@@ -653,6 +880,10 @@ export type LicenseKeyCreateManySubscriptionInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  assignmentId?: string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
 }
 
 export type LicenseKeyUpdateWithoutSubscriptionInput = {
@@ -664,7 +895,11 @@ export type LicenseKeyUpdateWithoutSubscriptionInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutLicenseKeysNestedInput
+  assignment?: Prisma.LicenseAssignmentUpdateOneWithoutLicenseKeyNestedInput
 }
 
 export type LicenseKeyUncheckedUpdateWithoutSubscriptionInput = {
@@ -677,6 +912,10 @@ export type LicenseKeyUncheckedUpdateWithoutSubscriptionInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LicenseKeyUncheckedUpdateManyWithoutSubscriptionInput = {
@@ -689,6 +928,10 @@ export type LicenseKeyUncheckedUpdateManyWithoutSubscriptionInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LicenseKeyCreateManyOrganizationInput = {
@@ -701,6 +944,10 @@ export type LicenseKeyCreateManyOrganizationInput = {
   status?: $Enums.LicenseKeyStatus
   importedByAppUserId: string
   importedAt?: Date | string
+  assignmentId?: string | null
+  withdrawnAt?: Date | string | null
+  withdrawnByAppUserId?: string | null
+  withdrawalReason?: string | null
 }
 
 export type LicenseKeyUpdateWithoutOrganizationInput = {
@@ -712,7 +959,11 @@ export type LicenseKeyUpdateWithoutOrganizationInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutLicenseKeysNestedInput
+  assignment?: Prisma.LicenseAssignmentUpdateOneWithoutLicenseKeyNestedInput
 }
 
 export type LicenseKeyUncheckedUpdateWithoutOrganizationInput = {
@@ -725,6 +976,10 @@ export type LicenseKeyUncheckedUpdateWithoutOrganizationInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LicenseKeyUncheckedUpdateManyWithoutOrganizationInput = {
@@ -737,6 +992,10 @@ export type LicenseKeyUncheckedUpdateManyWithoutOrganizationInput = {
   status?: Prisma.EnumLicenseKeyStatusFieldUpdateOperationsInput | $Enums.LicenseKeyStatus
   importedByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   importedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -752,8 +1011,13 @@ export type LicenseKeySelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   status?: boolean
   importedByAppUserId?: boolean
   importedAt?: boolean
+  assignmentId?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawalReason?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.LicenseKey$assignmentArgs<ExtArgs>
 }, ExtArgs["result"]["licenseKey"]>
 
 export type LicenseKeySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -767,8 +1031,13 @@ export type LicenseKeySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   importedByAppUserId?: boolean
   importedAt?: boolean
+  assignmentId?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawalReason?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.LicenseKey$assignmentArgs<ExtArgs>
 }, ExtArgs["result"]["licenseKey"]>
 
 export type LicenseKeySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -782,8 +1051,13 @@ export type LicenseKeySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   importedByAppUserId?: boolean
   importedAt?: boolean
+  assignmentId?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawalReason?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.LicenseKey$assignmentArgs<ExtArgs>
 }, ExtArgs["result"]["licenseKey"]>
 
 export type LicenseKeySelectScalar = {
@@ -797,20 +1071,27 @@ export type LicenseKeySelectScalar = {
   status?: boolean
   importedByAppUserId?: boolean
   importedAt?: boolean
+  assignmentId?: boolean
+  withdrawnAt?: boolean
+  withdrawnByAppUserId?: boolean
+  withdrawalReason?: boolean
 }
 
-export type LicenseKeyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "subscriptionId" | "fingerprint" | "masked" | "ciphertext" | "cipherKeyId" | "status" | "importedByAppUserId" | "importedAt", ExtArgs["result"]["licenseKey"]>
+export type LicenseKeyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "subscriptionId" | "fingerprint" | "masked" | "ciphertext" | "cipherKeyId" | "status" | "importedByAppUserId" | "importedAt" | "assignmentId" | "withdrawnAt" | "withdrawnByAppUserId" | "withdrawalReason", ExtArgs["result"]["licenseKey"]>
 export type LicenseKeyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.LicenseKey$assignmentArgs<ExtArgs>
 }
 export type LicenseKeyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.LicenseKey$assignmentArgs<ExtArgs>
 }
 export type LicenseKeyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.LicenseKey$assignmentArgs<ExtArgs>
 }
 
 export type $LicenseKeyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -818,6 +1099,7 @@ export type $LicenseKeyPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     subscription: Prisma.$SubscriptionPayload<ExtArgs>
+    assignment: Prisma.$LicenseAssignmentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -830,6 +1112,10 @@ export type $LicenseKeyPayload<ExtArgs extends runtime.Types.Extensions.Internal
     status: $Enums.LicenseKeyStatus
     importedByAppUserId: string
     importedAt: Date
+    assignmentId: string | null
+    withdrawnAt: Date | null
+    withdrawnByAppUserId: string | null
+    withdrawalReason: string | null
   }, ExtArgs["result"]["licenseKey"]>
   composites: {}
 }
@@ -1226,6 +1512,7 @@ export interface Prisma__LicenseKeyClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   subscription<T extends Prisma.SubscriptionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubscriptionDefaultArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  assignment<T extends Prisma.LicenseKey$assignmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LicenseKey$assignmentArgs<ExtArgs>>): Prisma.Prisma__LicenseAssignmentClient<runtime.Types.Result.GetResult<Prisma.$LicenseAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1265,6 +1552,10 @@ export interface LicenseKeyFieldRefs {
   readonly status: Prisma.FieldRef<"LicenseKey", 'LicenseKeyStatus'>
   readonly importedByAppUserId: Prisma.FieldRef<"LicenseKey", 'String'>
   readonly importedAt: Prisma.FieldRef<"LicenseKey", 'DateTime'>
+  readonly assignmentId: Prisma.FieldRef<"LicenseKey", 'String'>
+  readonly withdrawnAt: Prisma.FieldRef<"LicenseKey", 'DateTime'>
+  readonly withdrawnByAppUserId: Prisma.FieldRef<"LicenseKey", 'String'>
+  readonly withdrawalReason: Prisma.FieldRef<"LicenseKey", 'String'>
 }
     
 
@@ -1663,6 +1954,25 @@ export type LicenseKeyDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many LicenseKeys to delete.
    */
   limit?: number
+}
+
+/**
+ * LicenseKey.assignment
+ */
+export type LicenseKey$assignmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LicenseAssignment
+   */
+  select?: Prisma.LicenseAssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LicenseAssignment
+   */
+  omit?: Prisma.LicenseAssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LicenseAssignmentInclude<ExtArgs> | null
+  where?: Prisma.LicenseAssignmentWhereInput
 }
 
 /**

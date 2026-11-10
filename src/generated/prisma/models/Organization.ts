@@ -243,6 +243,7 @@ export type OrganizationWhereInput = {
   employeeLeaves?: Prisma.EmployeeLeaveListRelationFilter
   offboardingCases?: Prisma.OffboardingCaseListRelationFilter
   personnelNotices?: Prisma.PersonnelNoticeListRelationFilter
+  planUsageRates?: Prisma.PlanUsageRateListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -305,6 +306,7 @@ export type OrganizationOrderByWithRelationInput = {
   employeeLeaves?: Prisma.EmployeeLeaveOrderByRelationAggregateInput
   offboardingCases?: Prisma.OffboardingCaseOrderByRelationAggregateInput
   personnelNotices?: Prisma.PersonnelNoticeOrderByRelationAggregateInput
+  planUsageRates?: Prisma.PlanUsageRateOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -370,6 +372,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   employeeLeaves?: Prisma.EmployeeLeaveListRelationFilter
   offboardingCases?: Prisma.OffboardingCaseListRelationFilter
   personnelNotices?: Prisma.PersonnelNoticeListRelationFilter
+  planUsageRates?: Prisma.PlanUsageRateListRelationFilter
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -455,6 +458,7 @@ export type OrganizationCreateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -516,6 +520,7 @@ export type OrganizationUncheckedCreateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -577,6 +582,7 @@ export type OrganizationUpdateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -638,6 +644,7 @@ export type OrganizationUncheckedUpdateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -874,6 +881,20 @@ export type OrganizationUpdateOneRequiredWithoutPlansNestedInput = {
   upsert?: Prisma.OrganizationUpsertWithoutPlansInput
   connect?: Prisma.OrganizationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPlansInput, Prisma.OrganizationUpdateWithoutPlansInput>, Prisma.OrganizationUncheckedUpdateWithoutPlansInput>
+}
+
+export type OrganizationCreateNestedOneWithoutPlanUsageRatesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPlanUsageRatesInput, Prisma.OrganizationUncheckedCreateWithoutPlanUsageRatesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPlanUsageRatesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutPlanUsageRatesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPlanUsageRatesInput, Prisma.OrganizationUncheckedCreateWithoutPlanUsageRatesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPlanUsageRatesInput
+  upsert?: Prisma.OrganizationUpsertWithoutPlanUsageRatesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPlanUsageRatesInput, Prisma.OrganizationUpdateWithoutPlanUsageRatesInput>, Prisma.OrganizationUncheckedUpdateWithoutPlanUsageRatesInput>
 }
 
 export type OrganizationCreateNestedOneWithoutSubscriptionsInput = {
@@ -1536,6 +1557,7 @@ export type OrganizationCreateWithoutBudgetProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutBudgetProposalsInput = {
@@ -1596,6 +1618,7 @@ export type OrganizationUncheckedCreateWithoutBudgetProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutBudgetProposalsInput = {
@@ -1672,6 +1695,7 @@ export type OrganizationUpdateWithoutBudgetProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutBudgetProposalsInput = {
@@ -1732,6 +1756,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutBudgetVersionsInput = {
@@ -1792,6 +1817,7 @@ export type OrganizationCreateWithoutBudgetVersionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutBudgetVersionsInput = {
@@ -1852,6 +1878,7 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutBudgetVersionsInput = {
@@ -1928,6 +1955,7 @@ export type OrganizationUpdateWithoutBudgetVersionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutBudgetVersionsInput = {
@@ -1988,6 +2016,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutBudgetCommitmentsInput = {
@@ -2048,6 +2077,7 @@ export type OrganizationCreateWithoutBudgetCommitmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutBudgetCommitmentsInput = {
@@ -2108,6 +2138,7 @@ export type OrganizationUncheckedCreateWithoutBudgetCommitmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutBudgetCommitmentsInput = {
@@ -2184,6 +2215,7 @@ export type OrganizationUpdateWithoutBudgetCommitmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutBudgetCommitmentsInput = {
@@ -2244,6 +2276,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetCommitmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutInvoicesInput = {
@@ -2304,6 +2337,7 @@ export type OrganizationCreateWithoutInvoicesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutInvoicesInput = {
@@ -2364,6 +2398,7 @@ export type OrganizationUncheckedCreateWithoutInvoicesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutInvoicesInput = {
@@ -2440,6 +2475,7 @@ export type OrganizationUpdateWithoutInvoicesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutInvoicesInput = {
@@ -2500,6 +2536,7 @@ export type OrganizationUncheckedUpdateWithoutInvoicesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutBudgetVersionHistoryInput = {
@@ -2560,6 +2597,7 @@ export type OrganizationCreateWithoutBudgetVersionHistoryInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutBudgetVersionHistoryInput = {
@@ -2620,6 +2658,7 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionHistoryInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutBudgetVersionHistoryInput = {
@@ -2696,6 +2735,7 @@ export type OrganizationUpdateWithoutBudgetVersionHistoryInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutBudgetVersionHistoryInput = {
@@ -2756,6 +2796,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionHistoryInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutBudgetAttachmentsInput = {
@@ -2816,6 +2857,7 @@ export type OrganizationCreateWithoutBudgetAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutBudgetAttachmentsInput = {
@@ -2876,6 +2918,7 @@ export type OrganizationUncheckedCreateWithoutBudgetAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutBudgetAttachmentsInput = {
@@ -2952,6 +2995,7 @@ export type OrganizationUpdateWithoutBudgetAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutBudgetAttachmentsInput = {
@@ -3012,6 +3056,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutBudgetCyclesInput = {
@@ -3072,6 +3117,7 @@ export type OrganizationCreateWithoutBudgetCyclesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutBudgetCyclesInput = {
@@ -3132,6 +3178,7 @@ export type OrganizationUncheckedCreateWithoutBudgetCyclesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutBudgetCyclesInput = {
@@ -3208,6 +3255,7 @@ export type OrganizationUpdateWithoutBudgetCyclesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutBudgetCyclesInput = {
@@ -3268,6 +3316,7 @@ export type OrganizationUncheckedUpdateWithoutBudgetCyclesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutVendorProposalsInput = {
@@ -3328,6 +3377,7 @@ export type OrganizationCreateWithoutVendorProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutVendorProposalsInput = {
@@ -3388,6 +3438,7 @@ export type OrganizationUncheckedCreateWithoutVendorProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutVendorProposalsInput = {
@@ -3464,6 +3515,7 @@ export type OrganizationUpdateWithoutVendorProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutVendorProposalsInput = {
@@ -3524,6 +3576,7 @@ export type OrganizationUncheckedUpdateWithoutVendorProposalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutVendorsInput = {
@@ -3584,6 +3637,7 @@ export type OrganizationCreateWithoutVendorsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutVendorsInput = {
@@ -3644,6 +3698,7 @@ export type OrganizationUncheckedCreateWithoutVendorsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutVendorsInput = {
@@ -3720,6 +3775,7 @@ export type OrganizationUpdateWithoutVendorsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutVendorsInput = {
@@ -3780,6 +3836,7 @@ export type OrganizationUncheckedUpdateWithoutVendorsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutFunctionalGroupsInput = {
@@ -3840,6 +3897,7 @@ export type OrganizationCreateWithoutFunctionalGroupsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutFunctionalGroupsInput = {
@@ -3900,6 +3958,7 @@ export type OrganizationUncheckedCreateWithoutFunctionalGroupsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutFunctionalGroupsInput = {
@@ -3976,6 +4035,7 @@ export type OrganizationUpdateWithoutFunctionalGroupsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutFunctionalGroupsInput = {
@@ -4036,6 +4096,7 @@ export type OrganizationUncheckedUpdateWithoutFunctionalGroupsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutApplicationsInput = {
@@ -4096,6 +4157,7 @@ export type OrganizationCreateWithoutApplicationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutApplicationsInput = {
@@ -4156,6 +4218,7 @@ export type OrganizationUncheckedCreateWithoutApplicationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutApplicationsInput = {
@@ -4232,6 +4295,7 @@ export type OrganizationUpdateWithoutApplicationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutApplicationsInput = {
@@ -4292,6 +4356,7 @@ export type OrganizationUncheckedUpdateWithoutApplicationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPlansInput = {
@@ -4352,6 +4417,7 @@ export type OrganizationCreateWithoutPlansInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPlansInput = {
@@ -4412,6 +4478,7 @@ export type OrganizationUncheckedCreateWithoutPlansInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPlansInput = {
@@ -4488,6 +4555,7 @@ export type OrganizationUpdateWithoutPlansInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPlansInput = {
@@ -4505,6 +4573,267 @@ export type OrganizationUncheckedUpdateWithoutPlansInput = {
   vendors?: Prisma.VendorUncheckedUpdateManyWithoutOrganizationNestedInput
   functionalGroups?: Prisma.FunctionalGroupUncheckedUpdateManyWithoutOrganizationNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutPlanUsageRatesInput = {
+  id?: string
+  name: string
+  timeZone: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  reportingCurrencyRecord: Prisma.CurrencyCreateNestedOneWithoutOrganizationsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPlanUsageRatesInput = {
+  id?: string
+  name: string
+  timeZone: string
+  reportingCurrency: string
+  bootstrapCompletedAt?: Date | string | null
+  createdAt?: Date | string
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutOrganizationInput
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  vendors?: Prisma.VendorUncheckedCreateNestedManyWithoutOrganizationInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedCreateNestedManyWithoutOrganizationInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
+  provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutOrganizationInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
+  congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
+  documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  seatBaselineState?: Prisma.SeatBaselineStateUncheckedCreateNestedOneWithoutOrganizationInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  budgetAttachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutOrganizationInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedCreateNestedManyWithoutOrganizationInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutOrganizationInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
+  personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPlanUsageRatesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPlanUsageRatesInput, Prisma.OrganizationUncheckedCreateWithoutPlanUsageRatesInput>
+}
+
+export type OrganizationUpsertWithoutPlanUsageRatesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPlanUsageRatesInput, Prisma.OrganizationUncheckedUpdateWithoutPlanUsageRatesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPlanUsageRatesInput, Prisma.OrganizationUncheckedCreateWithoutPlanUsageRatesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPlanUsageRatesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPlanUsageRatesInput, Prisma.OrganizationUncheckedUpdateWithoutPlanUsageRatesInput>
+}
+
+export type OrganizationUpdateWithoutPlanUsageRatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reportingCurrencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutOrganizationsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
+  vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
+  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
+  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
+  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
+  subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
+  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
+  provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutOrganizationNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
+  congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
+  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
+  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
+  documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
+  licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutOrganizationNestedInput
+  seatBaselineState?: Prisma.SeatBaselineStateUpdateOneWithoutOrganizationNestedInput
+  superAdminEventTickets?: Prisma.SuperAdminEventTicketUpdateManyWithoutOrganizationNestedInput
+  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutOrganizationNestedInput
+  budgetAttachments?: Prisma.BudgetAttachmentUpdateManyWithoutOrganizationNestedInput
+  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutOrganizationNestedInput
+  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUpdateManyWithoutOrganizationNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutOrganizationNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
+  personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutPlanUsageRatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
+  reportingCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutOrganizationNestedInput
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  exchangeRates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutOrganizationNestedInput
+  vendors?: Prisma.VendorUncheckedUpdateManyWithoutOrganizationNestedInput
+  functionalGroups?: Prisma.FunctionalGroupUncheckedUpdateManyWithoutOrganizationNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4608,6 +4937,7 @@ export type OrganizationCreateWithoutSubscriptionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSubscriptionsInput = {
@@ -4668,6 +4998,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSubscriptionsInput = {
@@ -4744,6 +5075,7 @@ export type OrganizationUpdateWithoutSubscriptionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSubscriptionsInput = {
@@ -4804,6 +5136,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput = {
@@ -4864,6 +5197,7 @@ export type OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput = {
@@ -4924,6 +5258,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput 
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSubscriptionOwnerAssignmentsInput = {
@@ -5000,6 +5335,7 @@ export type OrganizationUpdateWithoutSubscriptionOwnerAssignmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput = {
@@ -5060,6 +5396,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput 
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutApplicationRetirementConfirmationsInput = {
@@ -5120,6 +5457,7 @@ export type OrganizationCreateWithoutApplicationRetirementConfirmationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutApplicationRetirementConfirmationsInput = {
@@ -5180,6 +5518,7 @@ export type OrganizationUncheckedCreateWithoutApplicationRetirementConfirmations
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutApplicationRetirementConfirmationsInput = {
@@ -5256,6 +5595,7 @@ export type OrganizationUpdateWithoutApplicationRetirementConfirmationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutApplicationRetirementConfirmationsInput = {
@@ -5316,6 +5656,7 @@ export type OrganizationUncheckedUpdateWithoutApplicationRetirementConfirmations
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutContractsInput = {
@@ -5376,6 +5717,7 @@ export type OrganizationCreateWithoutContractsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutContractsInput = {
@@ -5436,6 +5778,7 @@ export type OrganizationUncheckedCreateWithoutContractsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutContractsInput = {
@@ -5512,6 +5855,7 @@ export type OrganizationUpdateWithoutContractsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutContractsInput = {
@@ -5572,6 +5916,7 @@ export type OrganizationUncheckedUpdateWithoutContractsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutDocumentAttachmentsInput = {
@@ -5632,6 +5977,7 @@ export type OrganizationCreateWithoutDocumentAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDocumentAttachmentsInput = {
@@ -5692,6 +6038,7 @@ export type OrganizationUncheckedCreateWithoutDocumentAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDocumentAttachmentsInput = {
@@ -5768,6 +6115,7 @@ export type OrganizationUpdateWithoutDocumentAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDocumentAttachmentsInput = {
@@ -5828,6 +6176,7 @@ export type OrganizationUncheckedUpdateWithoutDocumentAttachmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSeatBaselineImportsInput = {
@@ -5888,6 +6237,7 @@ export type OrganizationCreateWithoutSeatBaselineImportsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSeatBaselineImportsInput = {
@@ -5948,6 +6298,7 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineImportsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSeatBaselineImportsInput = {
@@ -6024,6 +6375,7 @@ export type OrganizationUpdateWithoutSeatBaselineImportsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSeatBaselineImportsInput = {
@@ -6084,6 +6436,7 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineImportsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutReportingCurrencyRecordInput = {
@@ -6144,6 +6497,7 @@ export type OrganizationCreateWithoutReportingCurrencyRecordInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutReportingCurrencyRecordInput = {
@@ -6204,6 +6558,7 @@ export type OrganizationUncheckedCreateWithoutReportingCurrencyRecordInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutReportingCurrencyRecordInput = {
@@ -6302,6 +6657,7 @@ export type OrganizationCreateWithoutExchangeRatesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutExchangeRatesInput = {
@@ -6362,6 +6718,7 @@ export type OrganizationUncheckedCreateWithoutExchangeRatesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutExchangeRatesInput = {
@@ -6438,6 +6795,7 @@ export type OrganizationUpdateWithoutExchangeRatesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutExchangeRatesInput = {
@@ -6498,6 +6856,7 @@ export type OrganizationUncheckedUpdateWithoutExchangeRatesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutVendorTaxProfilesInput = {
@@ -6558,6 +6917,7 @@ export type OrganizationCreateWithoutVendorTaxProfilesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutVendorTaxProfilesInput = {
@@ -6618,6 +6978,7 @@ export type OrganizationUncheckedCreateWithoutVendorTaxProfilesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutVendorTaxProfilesInput = {
@@ -6694,6 +7055,7 @@ export type OrganizationUpdateWithoutVendorTaxProfilesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutVendorTaxProfilesInput = {
@@ -6754,6 +7116,7 @@ export type OrganizationUncheckedUpdateWithoutVendorTaxProfilesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutLicenseAssignmentsInput = {
@@ -6814,6 +7177,7 @@ export type OrganizationCreateWithoutLicenseAssignmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutLicenseAssignmentsInput = {
@@ -6874,6 +7238,7 @@ export type OrganizationUncheckedCreateWithoutLicenseAssignmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutLicenseAssignmentsInput = {
@@ -6950,6 +7315,7 @@ export type OrganizationUpdateWithoutLicenseAssignmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutLicenseAssignmentsInput = {
@@ -7010,6 +7376,7 @@ export type OrganizationUncheckedUpdateWithoutLicenseAssignmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSeatBaselineStateInput = {
@@ -7070,6 +7437,7 @@ export type OrganizationCreateWithoutSeatBaselineStateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSeatBaselineStateInput = {
@@ -7130,6 +7498,7 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineStateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSeatBaselineStateInput = {
@@ -7206,6 +7575,7 @@ export type OrganizationUpdateWithoutSeatBaselineStateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSeatBaselineStateInput = {
@@ -7266,6 +7636,7 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineStateInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProvisioningTasksInput = {
@@ -7326,6 +7697,7 @@ export type OrganizationCreateWithoutProvisioningTasksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProvisioningTasksInput = {
@@ -7386,6 +7758,7 @@ export type OrganizationUncheckedCreateWithoutProvisioningTasksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProvisioningTasksInput = {
@@ -7462,6 +7835,7 @@ export type OrganizationUpdateWithoutProvisioningTasksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProvisioningTasksInput = {
@@ -7522,6 +7896,7 @@ export type OrganizationUncheckedUpdateWithoutProvisioningTasksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutLicenseKeysInput = {
@@ -7582,6 +7957,7 @@ export type OrganizationCreateWithoutLicenseKeysInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutLicenseKeysInput = {
@@ -7642,6 +8018,7 @@ export type OrganizationUncheckedCreateWithoutLicenseKeysInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutLicenseKeysInput = {
@@ -7718,6 +8095,7 @@ export type OrganizationUpdateWithoutLicenseKeysInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutLicenseKeysInput = {
@@ -7778,6 +8156,7 @@ export type OrganizationUncheckedUpdateWithoutLicenseKeysInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutHandoverDutiesInput = {
@@ -7838,6 +8217,7 @@ export type OrganizationCreateWithoutHandoverDutiesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutHandoverDutiesInput = {
@@ -7898,6 +8278,7 @@ export type OrganizationUncheckedCreateWithoutHandoverDutiesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutHandoverDutiesInput = {
@@ -7974,6 +8355,7 @@ export type OrganizationUpdateWithoutHandoverDutiesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutHandoverDutiesInput = {
@@ -8034,6 +8416,7 @@ export type OrganizationUncheckedUpdateWithoutHandoverDutiesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSubscriptionRenewalsInput = {
@@ -8094,6 +8477,7 @@ export type OrganizationCreateWithoutSubscriptionRenewalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSubscriptionRenewalsInput = {
@@ -8154,6 +8538,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionRenewalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSubscriptionRenewalsInput = {
@@ -8230,6 +8615,7 @@ export type OrganizationUpdateWithoutSubscriptionRenewalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSubscriptionRenewalsInput = {
@@ -8290,6 +8676,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionRenewalsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSubscriptionDeadlineEventsInput = {
@@ -8350,6 +8737,7 @@ export type OrganizationCreateWithoutSubscriptionDeadlineEventsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSubscriptionDeadlineEventsInput = {
@@ -8410,6 +8798,7 @@ export type OrganizationUncheckedCreateWithoutSubscriptionDeadlineEventsInput = 
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSubscriptionDeadlineEventsInput = {
@@ -8486,6 +8875,7 @@ export type OrganizationUpdateWithoutSubscriptionDeadlineEventsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSubscriptionDeadlineEventsInput = {
@@ -8546,6 +8936,7 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionDeadlineEventsInput = 
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPoolGrantAvoidedCostsInput = {
@@ -8606,6 +8997,7 @@ export type OrganizationCreateWithoutPoolGrantAvoidedCostsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
@@ -8666,6 +9058,7 @@ export type OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPoolGrantAvoidedCostsInput = {
@@ -8742,6 +9135,7 @@ export type OrganizationUpdateWithoutPoolGrantAvoidedCostsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
@@ -8802,6 +9196,7 @@ export type OrganizationUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutHeldDepartmentNotificationsInput = {
@@ -8862,6 +9257,7 @@ export type OrganizationCreateWithoutHeldDepartmentNotificationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutHeldDepartmentNotificationsInput = {
@@ -8922,6 +9318,7 @@ export type OrganizationUncheckedCreateWithoutHeldDepartmentNotificationsInput =
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutHeldDepartmentNotificationsInput = {
@@ -8998,6 +9395,7 @@ export type OrganizationUpdateWithoutHeldDepartmentNotificationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutHeldDepartmentNotificationsInput = {
@@ -9058,6 +9456,7 @@ export type OrganizationUncheckedUpdateWithoutHeldDepartmentNotificationsInput =
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCostCentersInput = {
@@ -9118,6 +9517,7 @@ export type OrganizationCreateWithoutCostCentersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCostCentersInput = {
@@ -9178,6 +9578,7 @@ export type OrganizationUncheckedCreateWithoutCostCentersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCostCentersInput = {
@@ -9254,6 +9655,7 @@ export type OrganizationUpdateWithoutCostCentersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCostCentersInput = {
@@ -9314,6 +9716,7 @@ export type OrganizationUncheckedUpdateWithoutCostCentersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutDepartmentsInput = {
@@ -9374,6 +9777,7 @@ export type OrganizationCreateWithoutDepartmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDepartmentsInput = {
@@ -9434,6 +9838,7 @@ export type OrganizationUncheckedCreateWithoutDepartmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDepartmentsInput = {
@@ -9510,6 +9915,7 @@ export type OrganizationUpdateWithoutDepartmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDepartmentsInput = {
@@ -9570,6 +9976,7 @@ export type OrganizationUncheckedUpdateWithoutDepartmentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCostCenterDepartmentLinksInput = {
@@ -9630,6 +10037,7 @@ export type OrganizationCreateWithoutCostCenterDepartmentLinksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCostCenterDepartmentLinksInput = {
@@ -9690,6 +10098,7 @@ export type OrganizationUncheckedCreateWithoutCostCenterDepartmentLinksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCostCenterDepartmentLinksInput = {
@@ -9766,6 +10175,7 @@ export type OrganizationUpdateWithoutCostCenterDepartmentLinksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCostCenterDepartmentLinksInput = {
@@ -9826,6 +10236,7 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDepartmentLinksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCostCenterDirectionActivationInput = {
@@ -9886,6 +10297,7 @@ export type OrganizationCreateWithoutCostCenterDirectionActivationInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCostCenterDirectionActivationInput = {
@@ -9946,6 +10358,7 @@ export type OrganizationUncheckedCreateWithoutCostCenterDirectionActivationInput
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCostCenterDirectionActivationInput = {
@@ -10022,6 +10435,7 @@ export type OrganizationUpdateWithoutCostCenterDirectionActivationInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCostCenterDirectionActivationInput = {
@@ -10082,6 +10496,7 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDirectionActivationInput
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutEmployeesInput = {
@@ -10142,6 +10557,7 @@ export type OrganizationCreateWithoutEmployeesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutEmployeesInput = {
@@ -10202,6 +10618,7 @@ export type OrganizationUncheckedCreateWithoutEmployeesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutEmployeesInput = {
@@ -10278,6 +10695,7 @@ export type OrganizationUpdateWithoutEmployeesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutEmployeesInput = {
@@ -10338,6 +10756,7 @@ export type OrganizationUncheckedUpdateWithoutEmployeesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutChangeAnnouncementsInput = {
@@ -10398,6 +10817,7 @@ export type OrganizationCreateWithoutChangeAnnouncementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutChangeAnnouncementsInput = {
@@ -10458,6 +10878,7 @@ export type OrganizationUncheckedCreateWithoutChangeAnnouncementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutChangeAnnouncementsInput = {
@@ -10534,6 +10955,7 @@ export type OrganizationUpdateWithoutChangeAnnouncementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutChangeAnnouncementsInput = {
@@ -10594,6 +11016,7 @@ export type OrganizationUncheckedUpdateWithoutChangeAnnouncementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutDepartmentTransfersInput = {
@@ -10654,6 +11077,7 @@ export type OrganizationCreateWithoutDepartmentTransfersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDepartmentTransfersInput = {
@@ -10714,6 +11138,7 @@ export type OrganizationUncheckedCreateWithoutDepartmentTransfersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDepartmentTransfersInput = {
@@ -10790,6 +11215,7 @@ export type OrganizationUpdateWithoutDepartmentTransfersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDepartmentTransfersInput = {
@@ -10850,6 +11276,7 @@ export type OrganizationUncheckedUpdateWithoutDepartmentTransfersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTransferReviewsInput = {
@@ -10910,6 +11337,7 @@ export type OrganizationCreateWithoutTransferReviewsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTransferReviewsInput = {
@@ -10970,6 +11398,7 @@ export type OrganizationUncheckedCreateWithoutTransferReviewsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTransferReviewsInput = {
@@ -11046,6 +11475,7 @@ export type OrganizationUpdateWithoutTransferReviewsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTransferReviewsInput = {
@@ -11106,6 +11536,7 @@ export type OrganizationUncheckedUpdateWithoutTransferReviewsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutEmployeeLeavesInput = {
@@ -11166,6 +11597,7 @@ export type OrganizationCreateWithoutEmployeeLeavesInput = {
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutEmployeeLeavesInput = {
@@ -11226,6 +11658,7 @@ export type OrganizationUncheckedCreateWithoutEmployeeLeavesInput = {
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutEmployeeLeavesInput = {
@@ -11302,6 +11735,7 @@ export type OrganizationUpdateWithoutEmployeeLeavesInput = {
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutEmployeeLeavesInput = {
@@ -11362,6 +11796,7 @@ export type OrganizationUncheckedUpdateWithoutEmployeeLeavesInput = {
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOffboardingCasesInput = {
@@ -11422,6 +11857,7 @@ export type OrganizationCreateWithoutOffboardingCasesInput = {
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOffboardingCasesInput = {
@@ -11482,6 +11918,7 @@ export type OrganizationUncheckedCreateWithoutOffboardingCasesInput = {
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOffboardingCasesInput = {
@@ -11558,6 +11995,7 @@ export type OrganizationUpdateWithoutOffboardingCasesInput = {
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOffboardingCasesInput = {
@@ -11618,6 +12056,7 @@ export type OrganizationUncheckedUpdateWithoutOffboardingCasesInput = {
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPersonnelNoticesInput = {
@@ -11678,6 +12117,7 @@ export type OrganizationCreateWithoutPersonnelNoticesInput = {
   transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPersonnelNoticesInput = {
@@ -11738,6 +12178,7 @@ export type OrganizationUncheckedCreateWithoutPersonnelNoticesInput = {
   transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPersonnelNoticesInput = {
@@ -11814,6 +12255,7 @@ export type OrganizationUpdateWithoutPersonnelNoticesInput = {
   transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPersonnelNoticesInput = {
@@ -11874,6 +12316,7 @@ export type OrganizationUncheckedUpdateWithoutPersonnelNoticesInput = {
   transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSuperAdminEventTicketsInput = {
@@ -11934,6 +12377,7 @@ export type OrganizationCreateWithoutSuperAdminEventTicketsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSuperAdminEventTicketsInput = {
@@ -11994,6 +12438,7 @@ export type OrganizationUncheckedCreateWithoutSuperAdminEventTicketsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSuperAdminEventTicketsInput = {
@@ -12070,6 +12515,7 @@ export type OrganizationUpdateWithoutSuperAdminEventTicketsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSuperAdminEventTicketsInput = {
@@ -12130,6 +12576,7 @@ export type OrganizationUncheckedUpdateWithoutSuperAdminEventTicketsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutAccessRequestsInput = {
@@ -12190,6 +12637,7 @@ export type OrganizationCreateWithoutAccessRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutAccessRequestsInput = {
@@ -12250,6 +12698,7 @@ export type OrganizationUncheckedCreateWithoutAccessRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutAccessRequestsInput = {
@@ -12326,6 +12775,7 @@ export type OrganizationUpdateWithoutAccessRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutAccessRequestsInput = {
@@ -12386,6 +12836,7 @@ export type OrganizationUncheckedUpdateWithoutAccessRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutApprovalRecordsInput = {
@@ -12446,6 +12897,7 @@ export type OrganizationCreateWithoutApprovalRecordsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutApprovalRecordsInput = {
@@ -12506,6 +12958,7 @@ export type OrganizationUncheckedCreateWithoutApprovalRecordsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutApprovalRecordsInput = {
@@ -12582,6 +13035,7 @@ export type OrganizationUpdateWithoutApprovalRecordsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutApprovalRecordsInput = {
@@ -12642,6 +13096,7 @@ export type OrganizationUncheckedUpdateWithoutApprovalRecordsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutRequestBudgetChecksInput = {
@@ -12702,6 +13157,7 @@ export type OrganizationCreateWithoutRequestBudgetChecksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutRequestBudgetChecksInput = {
@@ -12762,6 +13218,7 @@ export type OrganizationUncheckedCreateWithoutRequestBudgetChecksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutRequestBudgetChecksInput = {
@@ -12838,6 +13295,7 @@ export type OrganizationUpdateWithoutRequestBudgetChecksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutRequestBudgetChecksInput = {
@@ -12898,6 +13356,7 @@ export type OrganizationUncheckedUpdateWithoutRequestBudgetChecksInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSpendBatchesInput = {
@@ -12958,6 +13417,7 @@ export type OrganizationCreateWithoutSpendBatchesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSpendBatchesInput = {
@@ -13018,6 +13478,7 @@ export type OrganizationUncheckedCreateWithoutSpendBatchesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSpendBatchesInput = {
@@ -13094,6 +13555,7 @@ export type OrganizationUpdateWithoutSpendBatchesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSpendBatchesInput = {
@@ -13154,6 +13616,7 @@ export type OrganizationUncheckedUpdateWithoutSpendBatchesInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutRequestSupplementsInput = {
@@ -13214,6 +13677,7 @@ export type OrganizationCreateWithoutRequestSupplementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutRequestSupplementsInput = {
@@ -13274,6 +13738,7 @@ export type OrganizationUncheckedCreateWithoutRequestSupplementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutRequestSupplementsInput = {
@@ -13350,6 +13815,7 @@ export type OrganizationUpdateWithoutRequestSupplementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutRequestSupplementsInput = {
@@ -13410,6 +13876,7 @@ export type OrganizationUncheckedUpdateWithoutRequestSupplementsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutRequestReserveConfirmationsInput = {
@@ -13470,6 +13937,7 @@ export type OrganizationCreateWithoutRequestReserveConfirmationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput = {
@@ -13530,6 +13998,7 @@ export type OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput =
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutRequestReserveConfirmationsInput = {
@@ -13606,6 +14075,7 @@ export type OrganizationUpdateWithoutRequestReserveConfirmationsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutRequestReserveConfirmationsInput = {
@@ -13666,6 +14136,7 @@ export type OrganizationUncheckedUpdateWithoutRequestReserveConfirmationsInput =
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutControlledWaitAlertsInput = {
@@ -13726,6 +14197,7 @@ export type OrganizationCreateWithoutControlledWaitAlertsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutControlledWaitAlertsInput = {
@@ -13786,6 +14258,7 @@ export type OrganizationUncheckedCreateWithoutControlledWaitAlertsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutControlledWaitAlertsInput = {
@@ -13862,6 +14335,7 @@ export type OrganizationUpdateWithoutControlledWaitAlertsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutControlledWaitAlertsInput = {
@@ -13922,6 +14396,7 @@ export type OrganizationUncheckedUpdateWithoutControlledWaitAlertsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutReturnRequestsInput = {
@@ -13982,6 +14457,7 @@ export type OrganizationCreateWithoutReturnRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutReturnRequestsInput = {
@@ -14042,6 +14518,7 @@ export type OrganizationUncheckedCreateWithoutReturnRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutReturnRequestsInput = {
@@ -14118,6 +14595,7 @@ export type OrganizationUpdateWithoutReturnRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutReturnRequestsInput = {
@@ -14178,6 +14656,7 @@ export type OrganizationUncheckedUpdateWithoutReturnRequestsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutStepSlaRemindersInput = {
@@ -14238,6 +14717,7 @@ export type OrganizationCreateWithoutStepSlaRemindersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutStepSlaRemindersInput = {
@@ -14298,6 +14778,7 @@ export type OrganizationUncheckedCreateWithoutStepSlaRemindersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutStepSlaRemindersInput = {
@@ -14374,6 +14855,7 @@ export type OrganizationUpdateWithoutStepSlaRemindersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutStepSlaRemindersInput = {
@@ -14434,6 +14916,7 @@ export type OrganizationUncheckedUpdateWithoutStepSlaRemindersInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCongestionIncidentsInput = {
@@ -14494,6 +14977,7 @@ export type OrganizationCreateWithoutCongestionIncidentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCongestionIncidentsInput = {
@@ -14554,6 +15038,7 @@ export type OrganizationUncheckedCreateWithoutCongestionIncidentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCongestionIncidentsInput = {
@@ -14630,6 +15115,7 @@ export type OrganizationUpdateWithoutCongestionIncidentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCongestionIncidentsInput = {
@@ -14690,6 +15176,7 @@ export type OrganizationUncheckedUpdateWithoutCongestionIncidentsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutYearStartCommitmentRunsInput = {
@@ -14750,6 +15237,7 @@ export type OrganizationCreateWithoutYearStartCommitmentRunsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput = {
@@ -14810,6 +15298,7 @@ export type OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutYearStartCommitmentRunsInput = {
@@ -14886,6 +15375,7 @@ export type OrganizationUpdateWithoutYearStartCommitmentRunsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutYearStartCommitmentRunsInput = {
@@ -14946,6 +15436,7 @@ export type OrganizationUncheckedUpdateWithoutYearStartCommitmentRunsInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyReportingCurrencyRecordInput = {
@@ -15014,6 +15505,7 @@ export type OrganizationUpdateWithoutReportingCurrencyRecordInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutReportingCurrencyRecordInput = {
@@ -15074,6 +15566,7 @@ export type OrganizationUncheckedUpdateWithoutReportingCurrencyRecordInput = {
   employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
   offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
   personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
+  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordInput = {
@@ -15140,6 +15633,7 @@ export type OrganizationCountOutputType = {
   employeeLeaves: number
   offboardingCases: number
   personnelNotices: number
+  planUsageRates: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -15193,6 +15687,7 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   employeeLeaves?: boolean | OrganizationCountOutputTypeCountEmployeeLeavesArgs
   offboardingCases?: boolean | OrganizationCountOutputTypeCountOffboardingCasesArgs
   personnelNotices?: boolean | OrganizationCountOutputTypeCountPersonnelNoticesArgs
+  planUsageRates?: boolean | OrganizationCountOutputTypeCountPlanUsageRatesArgs
 }
 
 /**
@@ -15555,6 +16050,13 @@ export type OrganizationCountOutputTypeCountPersonnelNoticesArgs<ExtArgs extends
   where?: Prisma.PersonnelNoticeWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountPlanUsageRatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlanUsageRateWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -15616,6 +16118,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   employeeLeaves?: boolean | Prisma.Organization$employeeLeavesArgs<ExtArgs>
   offboardingCases?: boolean | Prisma.Organization$offboardingCasesArgs<ExtArgs>
   personnelNotices?: boolean | Prisma.Organization$personnelNoticesArgs<ExtArgs>
+  planUsageRates?: boolean | Prisma.Organization$planUsageRatesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -15703,6 +16206,7 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   employeeLeaves?: boolean | Prisma.Organization$employeeLeavesArgs<ExtArgs>
   offboardingCases?: boolean | Prisma.Organization$offboardingCasesArgs<ExtArgs>
   personnelNotices?: boolean | Prisma.Organization$personnelNoticesArgs<ExtArgs>
+  planUsageRates?: boolean | Prisma.Organization$planUsageRatesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -15768,6 +16272,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     employeeLeaves: Prisma.$EmployeeLeavePayload<ExtArgs>[]
     offboardingCases: Prisma.$OffboardingCasePayload<ExtArgs>[]
     personnelNotices: Prisma.$PersonnelNoticePayload<ExtArgs>[]
+    planUsageRates: Prisma.$PlanUsageRatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -16223,6 +16728,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   employeeLeaves<T extends Prisma.Organization$employeeLeavesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$employeeLeavesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeLeavePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   offboardingCases<T extends Prisma.Organization$offboardingCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$offboardingCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OffboardingCasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   personnelNotices<T extends Prisma.Organization$personnelNoticesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$personnelNoticesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonnelNoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planUsageRates<T extends Prisma.Organization$planUsageRatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$planUsageRatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanUsageRatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17894,6 +18400,30 @@ export type Organization$personnelNoticesArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.PersonnelNoticeScalarFieldEnum | Prisma.PersonnelNoticeScalarFieldEnum[]
+}
+
+/**
+ * Organization.planUsageRates
+ */
+export type Organization$planUsageRatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PlanUsageRate
+   */
+  select?: Prisma.PlanUsageRateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PlanUsageRate
+   */
+  omit?: Prisma.PlanUsageRateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlanUsageRateInclude<ExtArgs> | null
+  where?: Prisma.PlanUsageRateWhereInput
+  orderBy?: Prisma.PlanUsageRateOrderByWithRelationInput | Prisma.PlanUsageRateOrderByWithRelationInput[]
+  cursor?: Prisma.PlanUsageRateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlanUsageRateScalarFieldEnum | Prisma.PlanUsageRateScalarFieldEnum[]
 }
 
 /**

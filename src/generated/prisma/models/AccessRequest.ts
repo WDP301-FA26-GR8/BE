@@ -27,6 +27,7 @@ export type AggregateAccessRequest = {
 }
 
 export type AccessRequestAvgAggregateOutputType = {
+  manyPaidSoftwareCount: number | null
   termMonths: number | null
   amountMonths: number | null
   nextYearAmountMinor: number | null
@@ -37,6 +38,7 @@ export type AccessRequestAvgAggregateOutputType = {
 }
 
 export type AccessRequestSumAggregateOutputType = {
+  manyPaidSoftwareCount: number | null
   termMonths: number | null
   amountMonths: number | null
   nextYearAmountMinor: bigint | null
@@ -47,6 +49,13 @@ export type AccessRequestSumAggregateOutputType = {
 }
 
 export type AccessRequestMinAggregateOutputType = {
+  routingMode: $Enums.RequestRoutingMode | null
+  oneStepReason: string | null
+  oneStepBlockedReason: string | null
+  manyPaidSoftware: boolean | null
+  manyPaidSoftwareCount: number | null
+  manyPaidSoftwareReason: string | null
+  limitExemption: string | null
   id: string | null
   organizationId: string | null
   type: $Enums.AccessRequestType | null
@@ -92,6 +101,13 @@ export type AccessRequestMinAggregateOutputType = {
 }
 
 export type AccessRequestMaxAggregateOutputType = {
+  routingMode: $Enums.RequestRoutingMode | null
+  oneStepReason: string | null
+  oneStepBlockedReason: string | null
+  manyPaidSoftware: boolean | null
+  manyPaidSoftwareCount: number | null
+  manyPaidSoftwareReason: string | null
+  limitExemption: string | null
   id: string | null
   organizationId: string | null
   type: $Enums.AccessRequestType | null
@@ -137,6 +153,13 @@ export type AccessRequestMaxAggregateOutputType = {
 }
 
 export type AccessRequestCountAggregateOutputType = {
+  routingMode: number
+  oneStepReason: number
+  oneStepBlockedReason: number
+  manyPaidSoftware: number
+  manyPaidSoftwareCount: number
+  manyPaidSoftwareReason: number
+  limitExemption: number
   id: number
   organizationId: number
   type: number
@@ -186,6 +209,7 @@ export type AccessRequestCountAggregateOutputType = {
 
 
 export type AccessRequestAvgAggregateInputType = {
+  manyPaidSoftwareCount?: true
   termMonths?: true
   amountMonths?: true
   nextYearAmountMinor?: true
@@ -196,6 +220,7 @@ export type AccessRequestAvgAggregateInputType = {
 }
 
 export type AccessRequestSumAggregateInputType = {
+  manyPaidSoftwareCount?: true
   termMonths?: true
   amountMonths?: true
   nextYearAmountMinor?: true
@@ -206,6 +231,13 @@ export type AccessRequestSumAggregateInputType = {
 }
 
 export type AccessRequestMinAggregateInputType = {
+  routingMode?: true
+  oneStepReason?: true
+  oneStepBlockedReason?: true
+  manyPaidSoftware?: true
+  manyPaidSoftwareCount?: true
+  manyPaidSoftwareReason?: true
+  limitExemption?: true
   id?: true
   organizationId?: true
   type?: true
@@ -251,6 +283,13 @@ export type AccessRequestMinAggregateInputType = {
 }
 
 export type AccessRequestMaxAggregateInputType = {
+  routingMode?: true
+  oneStepReason?: true
+  oneStepBlockedReason?: true
+  manyPaidSoftware?: true
+  manyPaidSoftwareCount?: true
+  manyPaidSoftwareReason?: true
+  limitExemption?: true
   id?: true
   organizationId?: true
   type?: true
@@ -296,6 +335,13 @@ export type AccessRequestMaxAggregateInputType = {
 }
 
 export type AccessRequestCountAggregateInputType = {
+  routingMode?: true
+  oneStepReason?: true
+  oneStepBlockedReason?: true
+  manyPaidSoftware?: true
+  manyPaidSoftwareCount?: true
+  manyPaidSoftwareReason?: true
+  limitExemption?: true
   id?: true
   organizationId?: true
   type?: true
@@ -430,6 +476,13 @@ export type AccessRequestGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type AccessRequestGroupByOutputType = {
+  routingMode: $Enums.RequestRoutingMode
+  oneStepReason: string | null
+  oneStepBlockedReason: string | null
+  manyPaidSoftware: boolean
+  manyPaidSoftwareCount: number | null
+  manyPaidSoftwareReason: string | null
+  limitExemption: string | null
   id: string
   organizationId: string
   type: $Enums.AccessRequestType
@@ -500,6 +553,13 @@ export type AccessRequestWhereInput = {
   AND?: Prisma.AccessRequestWhereInput | Prisma.AccessRequestWhereInput[]
   OR?: Prisma.AccessRequestWhereInput[]
   NOT?: Prisma.AccessRequestWhereInput | Prisma.AccessRequestWhereInput[]
+  routingMode?: Prisma.EnumRequestRoutingModeFilter<"AccessRequest"> | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  oneStepBlockedReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  manyPaidSoftware?: Prisma.BoolFilter<"AccessRequest"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  limitExemption?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   id?: Prisma.UuidFilter<"AccessRequest"> | string
   organizationId?: Prisma.UuidFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeFilter<"AccessRequest"> | $Enums.AccessRequestType
@@ -575,6 +635,13 @@ export type AccessRequestWhereInput = {
 }
 
 export type AccessRequestOrderByWithRelationInput = {
+  routingMode?: Prisma.SortOrder
+  oneStepReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  oneStepBlockedReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  limitExemption?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -654,6 +721,13 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AccessRequestWhereInput | Prisma.AccessRequestWhereInput[]
   OR?: Prisma.AccessRequestWhereInput[]
   NOT?: Prisma.AccessRequestWhereInput | Prisma.AccessRequestWhereInput[]
+  routingMode?: Prisma.EnumRequestRoutingModeFilter<"AccessRequest"> | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  oneStepBlockedReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  manyPaidSoftware?: Prisma.BoolFilter<"AccessRequest"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  limitExemption?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   organizationId?: Prisma.UuidFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeFilter<"AccessRequest"> | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFilter<"AccessRequest"> | $Enums.AccessRequestBranch
@@ -728,6 +802,13 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
 }, "id">
 
 export type AccessRequestOrderByWithAggregationInput = {
+  routingMode?: Prisma.SortOrder
+  oneStepReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  oneStepBlockedReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  limitExemption?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -783,6 +864,13 @@ export type AccessRequestScalarWhereWithAggregatesInput = {
   AND?: Prisma.AccessRequestScalarWhereWithAggregatesInput | Prisma.AccessRequestScalarWhereWithAggregatesInput[]
   OR?: Prisma.AccessRequestScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AccessRequestScalarWhereWithAggregatesInput | Prisma.AccessRequestScalarWhereWithAggregatesInput[]
+  routingMode?: Prisma.EnumRequestRoutingModeWithAggregatesFilter<"AccessRequest"> | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
+  oneStepBlockedReason?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
+  manyPaidSoftware?: Prisma.BoolWithAggregatesFilter<"AccessRequest"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableWithAggregatesFilter<"AccessRequest"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
+  limitExemption?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"AccessRequest"> | string
   organizationId?: Prisma.UuidWithAggregatesFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeWithAggregatesFilter<"AccessRequest"> | $Enums.AccessRequestType
@@ -830,6 +918,13 @@ export type AccessRequestScalarWhereWithAggregatesInput = {
 }
 
 export type AccessRequestCreateInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -897,6 +992,13 @@ export type AccessRequestCreateInput = {
 }
 
 export type AccessRequestUncheckedCreateInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -964,6 +1066,13 @@ export type AccessRequestUncheckedCreateInput = {
 }
 
 export type AccessRequestUpdateInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -1031,6 +1140,13 @@ export type AccessRequestUpdateInput = {
 }
 
 export type AccessRequestUncheckedUpdateInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -1098,6 +1214,13 @@ export type AccessRequestUncheckedUpdateInput = {
 }
 
 export type AccessRequestCreateManyInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -1145,6 +1268,13 @@ export type AccessRequestCreateManyInput = {
 }
 
 export type AccessRequestUpdateManyMutationInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -1184,6 +1314,13 @@ export type AccessRequestUpdateManyMutationInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -1246,6 +1383,13 @@ export type AccessRequestOrderByRelationAggregateInput = {
 }
 
 export type AccessRequestCountOrderByAggregateInput = {
+  routingMode?: Prisma.SortOrder
+  oneStepReason?: Prisma.SortOrder
+  oneStepBlockedReason?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrder
+  limitExemption?: Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -1293,6 +1437,7 @@ export type AccessRequestCountOrderByAggregateInput = {
 }
 
 export type AccessRequestAvgOrderByAggregateInput = {
+  manyPaidSoftwareCount?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
   amountMonths?: Prisma.SortOrder
   nextYearAmountMinor?: Prisma.SortOrder
@@ -1303,6 +1448,13 @@ export type AccessRequestAvgOrderByAggregateInput = {
 }
 
 export type AccessRequestMaxOrderByAggregateInput = {
+  routingMode?: Prisma.SortOrder
+  oneStepReason?: Prisma.SortOrder
+  oneStepBlockedReason?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrder
+  limitExemption?: Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -1348,6 +1500,13 @@ export type AccessRequestMaxOrderByAggregateInput = {
 }
 
 export type AccessRequestMinOrderByAggregateInput = {
+  routingMode?: Prisma.SortOrder
+  oneStepReason?: Prisma.SortOrder
+  oneStepBlockedReason?: Prisma.SortOrder
+  manyPaidSoftware?: Prisma.SortOrder
+  manyPaidSoftwareCount?: Prisma.SortOrder
+  manyPaidSoftwareReason?: Prisma.SortOrder
+  limitExemption?: Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -1393,6 +1552,7 @@ export type AccessRequestMinOrderByAggregateInput = {
 }
 
 export type AccessRequestSumOrderByAggregateInput = {
+  manyPaidSoftwareCount?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
   amountMonths?: Prisma.SortOrder
   nextYearAmountMinor?: Prisma.SortOrder
@@ -1757,6 +1917,10 @@ export type AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput = {
   deleteMany?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
 }
 
+export type EnumRequestRoutingModeFieldUpdateOperationsInput = {
+  set?: $Enums.RequestRoutingMode
+}
+
 export type EnumAccessRequestTypeFieldUpdateOperationsInput = {
   set?: $Enums.AccessRequestType
 }
@@ -2050,6 +2214,13 @@ export type AccessRequestUpdateOneRequiredWithoutStepSlaRemindersNestedInput = {
 }
 
 export type AccessRequestCreateWithoutBudgetCommitmentsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -2116,6 +2287,13 @@ export type AccessRequestCreateWithoutBudgetCommitmentsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutBudgetCommitmentsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -2198,6 +2376,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutBudgetCommitmentsInput = {
 }
 
 export type AccessRequestUpdateWithoutBudgetCommitmentsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -2264,6 +2449,13 @@ export type AccessRequestUpdateWithoutBudgetCommitmentsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutBudgetCommitmentsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -2330,6 +2522,13 @@ export type AccessRequestUncheckedUpdateWithoutBudgetCommitmentsInput = {
 }
 
 export type AccessRequestCreateWithoutPlanInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -2396,6 +2595,13 @@ export type AccessRequestCreateWithoutPlanInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutPlanInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -2491,6 +2697,13 @@ export type AccessRequestScalarWhereInput = {
   AND?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
   OR?: Prisma.AccessRequestScalarWhereInput[]
   NOT?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
+  routingMode?: Prisma.EnumRequestRoutingModeFilter<"AccessRequest"> | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  oneStepBlockedReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  manyPaidSoftware?: Prisma.BoolFilter<"AccessRequest"> | boolean
+  manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
+  manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  limitExemption?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   id?: Prisma.UuidFilter<"AccessRequest"> | string
   organizationId?: Prisma.UuidFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeFilter<"AccessRequest"> | $Enums.AccessRequestType
@@ -2538,6 +2751,13 @@ export type AccessRequestScalarWhereInput = {
 }
 
 export type AccessRequestCreateWithoutAmountCurrencyRecordInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -2604,6 +2824,13 @@ export type AccessRequestCreateWithoutAmountCurrencyRecordInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutAmountCurrencyRecordInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -2696,6 +2923,13 @@ export type AccessRequestUpdateManyWithWhereWithoutAmountCurrencyRecordInput = {
 }
 
 export type AccessRequestCreateWithoutOrganizationInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -2762,6 +2996,13 @@ export type AccessRequestCreateWithoutOrganizationInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutOrganizationInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -2854,6 +3095,13 @@ export type AccessRequestUpdateManyWithWhereWithoutOrganizationInput = {
 }
 
 export type AccessRequestCreateWithoutCostCenterInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -2920,6 +3168,13 @@ export type AccessRequestCreateWithoutCostCenterInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutCostCenterInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3012,6 +3267,13 @@ export type AccessRequestUpdateManyWithWhereWithoutCostCenterInput = {
 }
 
 export type AccessRequestCreateWithoutDepartmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -3078,6 +3340,13 @@ export type AccessRequestCreateWithoutDepartmentInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutDepartmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3170,6 +3439,13 @@ export type AccessRequestUpdateManyWithWhereWithoutDepartmentInput = {
 }
 
 export type AccessRequestCreateWithoutRequesterInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -3236,6 +3512,13 @@ export type AccessRequestCreateWithoutRequesterInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutRequesterInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3312,6 +3595,13 @@ export type AccessRequestCreateManyRequesterInputEnvelope = {
 }
 
 export type AccessRequestCreateWithoutWithdrawnByInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -3378,6 +3668,13 @@ export type AccessRequestCreateWithoutWithdrawnByInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutWithdrawnByInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3454,6 +3751,13 @@ export type AccessRequestCreateManyWithdrawnByInputEnvelope = {
 }
 
 export type AccessRequestCreateWithoutCancelledByInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -3520,6 +3824,13 @@ export type AccessRequestCreateWithoutCancelledByInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutCancelledByInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3644,6 +3955,13 @@ export type AccessRequestUpdateManyWithWhereWithoutCancelledByInput = {
 }
 
 export type AccessRequestCreateWithoutBeneficiariesInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -3710,6 +4028,13 @@ export type AccessRequestCreateWithoutBeneficiariesInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutBeneficiariesInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3792,6 +4117,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutBeneficiariesInput = {
 }
 
 export type AccessRequestUpdateWithoutBeneficiariesInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -3858,6 +4190,13 @@ export type AccessRequestUpdateWithoutBeneficiariesInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutBeneficiariesInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -3924,6 +4263,13 @@ export type AccessRequestUncheckedUpdateWithoutBeneficiariesInput = {
 }
 
 export type AccessRequestCreateWithoutLinesInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -3990,6 +4336,13 @@ export type AccessRequestCreateWithoutLinesInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutLinesInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4072,6 +4425,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutLinesInput = {
 }
 
 export type AccessRequestUpdateWithoutLinesInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -4138,6 +4498,13 @@ export type AccessRequestUpdateWithoutLinesInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutLinesInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -4204,6 +4571,13 @@ export type AccessRequestUncheckedUpdateWithoutLinesInput = {
 }
 
 export type AccessRequestCreateWithoutLineAmountsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -4270,6 +4644,13 @@ export type AccessRequestCreateWithoutLineAmountsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutLineAmountsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4352,6 +4733,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutLineAmountsInput = {
 }
 
 export type AccessRequestUpdateWithoutLineAmountsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -4418,6 +4806,13 @@ export type AccessRequestUpdateWithoutLineAmountsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutLineAmountsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -4484,6 +4879,13 @@ export type AccessRequestUncheckedUpdateWithoutLineAmountsInput = {
 }
 
 export type AccessRequestCreateWithoutStepsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -4550,6 +4952,13 @@ export type AccessRequestCreateWithoutStepsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutStepsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4632,6 +5041,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutStepsInput = {
 }
 
 export type AccessRequestUpdateWithoutStepsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -4698,6 +5114,13 @@ export type AccessRequestUpdateWithoutStepsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutStepsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -4764,6 +5187,13 @@ export type AccessRequestUncheckedUpdateWithoutStepsInput = {
 }
 
 export type AccessRequestCreateWithoutApprovalRecordsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -4830,6 +5260,13 @@ export type AccessRequestCreateWithoutApprovalRecordsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutApprovalRecordsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4912,6 +5349,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutApprovalRecordsInput = {
 }
 
 export type AccessRequestUpdateWithoutApprovalRecordsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -4978,6 +5422,13 @@ export type AccessRequestUpdateWithoutApprovalRecordsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutApprovalRecordsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -5044,6 +5495,13 @@ export type AccessRequestUncheckedUpdateWithoutApprovalRecordsInput = {
 }
 
 export type AccessRequestCreateWithoutProposalInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -5110,6 +5568,13 @@ export type AccessRequestCreateWithoutProposalInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutProposalInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -5192,6 +5657,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutProposalInput = {
 }
 
 export type AccessRequestUpdateWithoutProposalInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -5258,6 +5730,13 @@ export type AccessRequestUpdateWithoutProposalInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutProposalInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -5324,6 +5803,13 @@ export type AccessRequestUncheckedUpdateWithoutProposalInput = {
 }
 
 export type AccessRequestCreateWithoutAssessmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -5390,6 +5876,13 @@ export type AccessRequestCreateWithoutAssessmentInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutAssessmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -5472,6 +5965,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutAssessmentInput = {
 }
 
 export type AccessRequestUpdateWithoutAssessmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -5538,6 +6038,13 @@ export type AccessRequestUpdateWithoutAssessmentInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutAssessmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -5604,6 +6111,13 @@ export type AccessRequestUncheckedUpdateWithoutAssessmentInput = {
 }
 
 export type AccessRequestCreateWithoutBudgetChecksInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -5670,6 +6184,13 @@ export type AccessRequestCreateWithoutBudgetChecksInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutBudgetChecksInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -5752,6 +6273,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutBudgetChecksInput = {
 }
 
 export type AccessRequestUpdateWithoutBudgetChecksInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -5818,6 +6346,13 @@ export type AccessRequestUpdateWithoutBudgetChecksInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutBudgetChecksInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -5884,6 +6419,13 @@ export type AccessRequestUncheckedUpdateWithoutBudgetChecksInput = {
 }
 
 export type AccessRequestCreateWithoutFinanceReviewsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -5950,6 +6492,13 @@ export type AccessRequestCreateWithoutFinanceReviewsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutFinanceReviewsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6032,6 +6581,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutFinanceReviewsInput = {
 }
 
 export type AccessRequestUpdateWithoutFinanceReviewsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -6098,6 +6654,13 @@ export type AccessRequestUpdateWithoutFinanceReviewsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutFinanceReviewsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -6164,6 +6727,13 @@ export type AccessRequestUncheckedUpdateWithoutFinanceReviewsInput = {
 }
 
 export type AccessRequestCreateWithoutBatchItemsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -6230,6 +6800,13 @@ export type AccessRequestCreateWithoutBatchItemsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutBatchItemsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6312,6 +6889,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutBatchItemsInput = {
 }
 
 export type AccessRequestUpdateWithoutBatchItemsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -6378,6 +6962,13 @@ export type AccessRequestUpdateWithoutBatchItemsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutBatchItemsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -6444,6 +7035,13 @@ export type AccessRequestUncheckedUpdateWithoutBatchItemsInput = {
 }
 
 export type AccessRequestCreateWithoutSupplementsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -6510,6 +7108,13 @@ export type AccessRequestCreateWithoutSupplementsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutSupplementsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6592,6 +7197,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutSupplementsInput = {
 }
 
 export type AccessRequestUpdateWithoutSupplementsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -6658,6 +7270,13 @@ export type AccessRequestUpdateWithoutSupplementsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutSupplementsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -6724,6 +7343,13 @@ export type AccessRequestUncheckedUpdateWithoutSupplementsInput = {
 }
 
 export type AccessRequestCreateWithoutSpendDecisionsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -6790,6 +7416,13 @@ export type AccessRequestCreateWithoutSpendDecisionsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutSpendDecisionsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6872,6 +7505,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutSpendDecisionsInput = {
 }
 
 export type AccessRequestUpdateWithoutSpendDecisionsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -6938,6 +7578,13 @@ export type AccessRequestUpdateWithoutSpendDecisionsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -7004,6 +7651,13 @@ export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
 }
 
 export type AccessRequestCreateWithoutReserveConfirmationsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -7070,6 +7724,13 @@ export type AccessRequestCreateWithoutReserveConfirmationsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutReserveConfirmationsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -7152,6 +7813,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutReserveConfirmationsInput = 
 }
 
 export type AccessRequestUpdateWithoutReserveConfirmationsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -7218,6 +7886,13 @@ export type AccessRequestUpdateWithoutReserveConfirmationsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -7284,6 +7959,13 @@ export type AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput = {
 }
 
 export type AccessRequestCreateWithoutBudgetInformationInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -7350,6 +8032,13 @@ export type AccessRequestCreateWithoutBudgetInformationInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -7432,6 +8121,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutBudgetInformationInput = {
 }
 
 export type AccessRequestUpdateWithoutBudgetInformationInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -7498,6 +8194,13 @@ export type AccessRequestUpdateWithoutBudgetInformationInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutBudgetInformationInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -7564,6 +8267,13 @@ export type AccessRequestUncheckedUpdateWithoutBudgetInformationInput = {
 }
 
 export type AccessRequestCreateWithoutControlledWaitAlertsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -7630,6 +8340,13 @@ export type AccessRequestCreateWithoutControlledWaitAlertsInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutControlledWaitAlertsInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -7712,6 +8429,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutControlledWaitAlertsInput = 
 }
 
 export type AccessRequestUpdateWithoutControlledWaitAlertsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -7778,6 +8502,13 @@ export type AccessRequestUpdateWithoutControlledWaitAlertsInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutControlledWaitAlertsInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -7844,6 +8575,13 @@ export type AccessRequestUncheckedUpdateWithoutControlledWaitAlertsInput = {
 }
 
 export type AccessRequestCreateWithoutServiceAccountInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -7910,6 +8648,13 @@ export type AccessRequestCreateWithoutServiceAccountInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutServiceAccountInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -7992,6 +8737,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutServiceAccountInput = {
 }
 
 export type AccessRequestUpdateWithoutServiceAccountInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -8058,6 +8810,13 @@ export type AccessRequestUpdateWithoutServiceAccountInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutServiceAccountInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8124,6 +8883,13 @@ export type AccessRequestUncheckedUpdateWithoutServiceAccountInput = {
 }
 
 export type AccessRequestCreateWithoutReturnsFromHereInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -8190,6 +8956,13 @@ export type AccessRequestCreateWithoutReturnsFromHereInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutReturnsFromHereInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -8272,6 +9045,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutReturnsFromHereInput = {
 }
 
 export type AccessRequestUpdateWithoutReturnsFromHereInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -8338,6 +9118,13 @@ export type AccessRequestUpdateWithoutReturnsFromHereInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutReturnsFromHereInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8404,6 +9191,13 @@ export type AccessRequestUncheckedUpdateWithoutReturnsFromHereInput = {
 }
 
 export type AccessRequestCreateWithoutRenewalInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -8470,6 +9264,13 @@ export type AccessRequestCreateWithoutRenewalInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutRenewalInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -8552,6 +9353,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutRenewalInput = {
 }
 
 export type AccessRequestUpdateWithoutRenewalInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -8618,6 +9426,13 @@ export type AccessRequestUpdateWithoutRenewalInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutRenewalInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8684,6 +9499,13 @@ export type AccessRequestUncheckedUpdateWithoutRenewalInput = {
 }
 
 export type AccessRequestCreateWithoutStepSlaRemindersInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -8750,6 +9572,13 @@ export type AccessRequestCreateWithoutStepSlaRemindersInput = {
 }
 
 export type AccessRequestUncheckedCreateWithoutStepSlaRemindersInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -8832,6 +9661,13 @@ export type AccessRequestUpdateToOneWithWhereWithoutStepSlaRemindersInput = {
 }
 
 export type AccessRequestUpdateWithoutStepSlaRemindersInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -8898,6 +9734,13 @@ export type AccessRequestUpdateWithoutStepSlaRemindersInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8964,6 +9807,13 @@ export type AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput = {
 }
 
 export type AccessRequestCreateManyPlanInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9010,6 +9860,13 @@ export type AccessRequestCreateManyPlanInput = {
 }
 
 export type AccessRequestUpdateWithoutPlanInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -9076,6 +9933,13 @@ export type AccessRequestUpdateWithoutPlanInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutPlanInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9142,6 +10006,13 @@ export type AccessRequestUncheckedUpdateWithoutPlanInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutPlanInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9188,6 +10059,13 @@ export type AccessRequestUncheckedUpdateManyWithoutPlanInput = {
 }
 
 export type AccessRequestCreateManyAmountCurrencyRecordInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9234,6 +10112,13 @@ export type AccessRequestCreateManyAmountCurrencyRecordInput = {
 }
 
 export type AccessRequestUpdateWithoutAmountCurrencyRecordInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -9300,6 +10185,13 @@ export type AccessRequestUpdateWithoutAmountCurrencyRecordInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutAmountCurrencyRecordInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9366,6 +10258,13 @@ export type AccessRequestUncheckedUpdateWithoutAmountCurrencyRecordInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9412,6 +10311,13 @@ export type AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordInput = {
 }
 
 export type AccessRequestCreateManyOrganizationInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -9458,6 +10364,13 @@ export type AccessRequestCreateManyOrganizationInput = {
 }
 
 export type AccessRequestUpdateWithoutOrganizationInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -9524,6 +10437,13 @@ export type AccessRequestUpdateWithoutOrganizationInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutOrganizationInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -9590,6 +10510,13 @@ export type AccessRequestUncheckedUpdateWithoutOrganizationInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutOrganizationInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -9636,6 +10563,13 @@ export type AccessRequestUncheckedUpdateManyWithoutOrganizationInput = {
 }
 
 export type AccessRequestCreateManyCostCenterInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9682,6 +10616,13 @@ export type AccessRequestCreateManyCostCenterInput = {
 }
 
 export type AccessRequestUpdateWithoutCostCenterInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -9748,6 +10689,13 @@ export type AccessRequestUpdateWithoutCostCenterInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutCostCenterInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9814,6 +10762,13 @@ export type AccessRequestUncheckedUpdateWithoutCostCenterInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutCostCenterInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9860,6 +10815,13 @@ export type AccessRequestUncheckedUpdateManyWithoutCostCenterInput = {
 }
 
 export type AccessRequestCreateManyDepartmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9906,6 +10868,13 @@ export type AccessRequestCreateManyDepartmentInput = {
 }
 
 export type AccessRequestUpdateWithoutDepartmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -9972,6 +10941,13 @@ export type AccessRequestUpdateWithoutDepartmentInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutDepartmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10038,6 +11014,13 @@ export type AccessRequestUncheckedUpdateWithoutDepartmentInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutDepartmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10084,6 +11067,13 @@ export type AccessRequestUncheckedUpdateManyWithoutDepartmentInput = {
 }
 
 export type AccessRequestCreateManyRequesterInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -10130,6 +11120,13 @@ export type AccessRequestCreateManyRequesterInput = {
 }
 
 export type AccessRequestCreateManyWithdrawnByInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -10176,6 +11173,13 @@ export type AccessRequestCreateManyWithdrawnByInput = {
 }
 
 export type AccessRequestCreateManyCancelledByInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -10222,6 +11226,13 @@ export type AccessRequestCreateManyCancelledByInput = {
 }
 
 export type AccessRequestUpdateWithoutRequesterInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -10288,6 +11299,13 @@ export type AccessRequestUpdateWithoutRequesterInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutRequesterInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10354,6 +11372,13 @@ export type AccessRequestUncheckedUpdateWithoutRequesterInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutRequesterInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10400,6 +11425,13 @@ export type AccessRequestUncheckedUpdateManyWithoutRequesterInput = {
 }
 
 export type AccessRequestUpdateWithoutWithdrawnByInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -10466,6 +11498,13 @@ export type AccessRequestUpdateWithoutWithdrawnByInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutWithdrawnByInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10532,6 +11571,13 @@ export type AccessRequestUncheckedUpdateWithoutWithdrawnByInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutWithdrawnByInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10578,6 +11624,13 @@ export type AccessRequestUncheckedUpdateManyWithoutWithdrawnByInput = {
 }
 
 export type AccessRequestUpdateWithoutCancelledByInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -10644,6 +11697,13 @@ export type AccessRequestUpdateWithoutCancelledByInput = {
 }
 
 export type AccessRequestUncheckedUpdateWithoutCancelledByInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10710,6 +11770,13 @@ export type AccessRequestUncheckedUpdateWithoutCancelledByInput = {
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutCancelledByInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10922,6 +11989,13 @@ export type AccessRequestCountOutputTypeCountReturnsFromHereArgs<ExtArgs extends
 
 
 export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  routingMode?: boolean
+  oneStepReason?: boolean
+  oneStepBlockedReason?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -10998,6 +12072,13 @@ export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.Interna
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  routingMode?: boolean
+  oneStepReason?: boolean
+  oneStepBlockedReason?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -11053,6 +12134,13 @@ export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  routingMode?: boolean
+  oneStepReason?: boolean
+  oneStepBlockedReason?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -11108,6 +12196,13 @@ export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectScalar = {
+  routingMode?: boolean
+  oneStepReason?: boolean
+  oneStepBlockedReason?: boolean
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: boolean
+  manyPaidSoftwareReason?: boolean
+  limitExemption?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -11154,7 +12249,7 @@ export type AccessRequestSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "type" | "branch" | "state" | "planId" | "requesterEmployeeId" | "departmentId" | "costCenterId" | "businessReason" | "termMonths" | "amountMonths" | "priceKind" | "grantedOn" | "nextYearAmountMinor" | "pricingStatus" | "priceMissingReason" | "expectedSpendOn" | "budgetYear" | "amountMinor" | "amountCurrency" | "unitPriceMinor" | "billingCycle" | "paymentSchedule" | "planLineVersionId" | "planLinePosition" | "planLineConfirmed" | "offPlan" | "delegatedBatchId" | "expectedEndDate" | "policy" | "withdrawalRequestedAt" | "withdrawnByEmployeeId" | "withdrawalReason" | "withdrawnAt" | "cancelledAt" | "cancelledByEmployeeId" | "cancelCause" | "cancelNote" | "grantCompletedAt" | "spendQueuedAt" | "createdByAppUserId" | "submittedAt" | "updatedAt", ExtArgs["result"]["accessRequest"]>
+export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"routingMode" | "oneStepReason" | "oneStepBlockedReason" | "manyPaidSoftware" | "manyPaidSoftwareCount" | "manyPaidSoftwareReason" | "limitExemption" | "id" | "organizationId" | "type" | "branch" | "state" | "planId" | "requesterEmployeeId" | "departmentId" | "costCenterId" | "businessReason" | "termMonths" | "amountMonths" | "priceKind" | "grantedOn" | "nextYearAmountMinor" | "pricingStatus" | "priceMissingReason" | "expectedSpendOn" | "budgetYear" | "amountMinor" | "amountCurrency" | "unitPriceMinor" | "billingCycle" | "paymentSchedule" | "planLineVersionId" | "planLinePosition" | "planLineConfirmed" | "offPlan" | "delegatedBatchId" | "expectedEndDate" | "policy" | "withdrawalRequestedAt" | "withdrawnByEmployeeId" | "withdrawalReason" | "withdrawnAt" | "cancelledAt" | "cancelledByEmployeeId" | "cancelCause" | "cancelNote" | "grantCompletedAt" | "spendQueuedAt" | "createdByAppUserId" | "submittedAt" | "updatedAt", ExtArgs["result"]["accessRequest"]>
 export type AccessRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.AccessRequest$planArgs<ExtArgs>
@@ -11240,6 +12335,13 @@ export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.Inter
     returnsFromHere: Prisma.$ReturnRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    routingMode: $Enums.RequestRoutingMode
+    oneStepReason: string | null
+    oneStepBlockedReason: string | null
+    manyPaidSoftware: boolean
+    manyPaidSoftwareCount: number | null
+    manyPaidSoftwareReason: string | null
+    limitExemption: string | null
     id: string
     organizationId: string
     type: $Enums.AccessRequestType
@@ -11367,8 +12469,8 @@ export interface AccessRequestDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 AccessRequests
    * const accessRequests = await prisma.accessRequest.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const accessRequestWithIdOnly = await prisma.accessRequest.findMany({ select: { id: true } })
+   * // Only select the `oneStepReason`
+   * const accessRequestWithOneStepReasonOnly = await prisma.accessRequest.findMany({ select: { oneStepReason: true } })
    * 
    */
   findMany<T extends AccessRequestFindManyArgs>(args?: Prisma.SelectSubset<T, AccessRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -11412,9 +12514,9 @@ export interface AccessRequestDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many AccessRequests and only return the `id`
-   * const accessRequestWithIdOnly = await prisma.accessRequest.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many AccessRequests and only return the `oneStepReason`
+   * const accessRequestWithOneStepReasonOnly = await prisma.accessRequest.createManyAndReturn({
+   *   select: { oneStepReason: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -11503,9 +12605,9 @@ export interface AccessRequestDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more AccessRequests and only return the `id`
-   * const accessRequestWithIdOnly = await prisma.accessRequest.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more AccessRequests and only return the `oneStepReason`
+   * const accessRequestWithOneStepReasonOnly = await prisma.accessRequest.updateManyAndReturn({
+   *   select: { oneStepReason: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -11735,6 +12837,13 @@ export interface Prisma__AccessRequestClient<T, Null = never, ExtArgs extends ru
  * Fields of the AccessRequest model
  */
 export interface AccessRequestFieldRefs {
+  readonly routingMode: Prisma.FieldRef<"AccessRequest", 'RequestRoutingMode'>
+  readonly oneStepReason: Prisma.FieldRef<"AccessRequest", 'String'>
+  readonly oneStepBlockedReason: Prisma.FieldRef<"AccessRequest", 'String'>
+  readonly manyPaidSoftware: Prisma.FieldRef<"AccessRequest", 'Boolean'>
+  readonly manyPaidSoftwareCount: Prisma.FieldRef<"AccessRequest", 'Int'>
+  readonly manyPaidSoftwareReason: Prisma.FieldRef<"AccessRequest", 'String'>
+  readonly limitExemption: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly id: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly organizationId: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly type: Prisma.FieldRef<"AccessRequest", 'AccessRequestType'>

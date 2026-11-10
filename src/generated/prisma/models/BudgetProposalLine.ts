@@ -431,7 +431,7 @@ export type BudgetProposalLineCreateInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -453,7 +453,7 @@ export type BudgetProposalLineUncheckedCreateInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -513,7 +513,7 @@ export type BudgetProposalLineCreateManyInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -780,7 +780,7 @@ export type BudgetProposalLineCreateWithoutProposalInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -800,7 +800,7 @@ export type BudgetProposalLineUncheckedCreateWithoutProposalInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -866,7 +866,7 @@ export type BudgetProposalLineCreateWithoutVersionLinesInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -887,7 +887,7 @@ export type BudgetProposalLineUncheckedCreateWithoutVersionLinesInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -958,7 +958,7 @@ export type BudgetProposalLineCreateWithoutPlanInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -978,7 +978,7 @@ export type BudgetProposalLineUncheckedCreateWithoutPlanInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -1023,7 +1023,7 @@ export type BudgetProposalLineCreateManyProposalInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null
@@ -1097,7 +1097,7 @@ export type BudgetProposalLineCreateManyPlanInput = {
   repeatCycle?: $Enums.BudgetRepeatCycle | null
   quoteValidUntil?: Date | string | null
   note?: string | null
-  lineType?: $Enums.BudgetLineType
+  lineType: $Enums.BudgetLineType
   zbb?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   priorityRank: number
   overCeilingMinor?: bigint | number | null

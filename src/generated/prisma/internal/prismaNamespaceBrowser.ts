@@ -74,6 +74,7 @@ export const ModelName = {
   FunctionalGroup: 'FunctionalGroup',
   Application: 'Application',
   Plan: 'Plan',
+  PlanUsageRate: 'PlanUsageRate',
   PlanWorkspaceProfile: 'PlanWorkspaceProfile',
   PlanWorkspaceAdmin: 'PlanWorkspaceAdmin',
   Subscription: 'Subscription',
@@ -120,6 +121,7 @@ export const ModelName = {
   HandoverDuty: 'HandoverDuty',
   ServiceAccountDutyNotice: 'ServiceAccountDutyNotice',
   AssignmentExpiryReminder: 'AssignmentExpiryReminder',
+  AssignmentRenewalWindow: 'AssignmentRenewalWindow',
   SaasIssue: 'SaasIssue',
   SaasIssueEntry: 'SaasIssueEntry',
   SaasIssueCounter: 'SaasIssueCounter',
@@ -132,6 +134,14 @@ export const ModelName = {
   HeldDepartmentNotification: 'HeldDepartmentNotification',
   ParameterValue: 'ParameterValue',
   NonWorkingDate: 'NonWorkingDate',
+  GhostSeatRuleRun: 'GhostSeatRuleRun',
+  GhostSeatRuleSkip: 'GhostSeatRuleSkip',
+  GhostSeatRecommendation: 'GhostSeatRecommendation',
+  GhostSeatDecision: 'GhostSeatDecision',
+  GhostSeatReturn: 'GhostSeatReturn',
+  GhostSeatExemption: 'GhostSeatExemption',
+  GhostSeatApplicationThreshold: 'GhostSeatApplicationThreshold',
+  GhostSeatSeatState: 'GhostSeatSeatState',
   Organization: 'Organization',
   CostCenter: 'CostCenter',
   Department: 'Department',
@@ -186,7 +196,14 @@ export const ModelName = {
   AiUsageDay: 'AiUsageDay',
   ToolStatusSnapshot: 'ToolStatusSnapshot',
   ToolStatusWindow: 'ToolStatusWindow',
-  IntakeRejection: 'IntakeRejection'
+  IntakeRejection: 'IntakeRejection',
+  UsageSource: 'UsageSource',
+  UsageImport: 'UsageImport',
+  UsageImportRow: 'UsageImportRow',
+  UsageActivityDay: 'UsageActivityDay',
+  UsageIdentityMapping: 'UsageIdentityMapping',
+  UsageUnmatchedIdentity: 'UsageUnmatchedIdentity',
+  UsageNoAssignmentFinding: 'UsageNoAssignmentFinding'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -654,6 +671,18 @@ export const PlanScalarFieldEnum = {
 } as const
 
 export type PlanScalarFieldEnum = (typeof PlanScalarFieldEnum)[keyof typeof PlanScalarFieldEnum]
+
+
+export const PlanUsageRateScalarFieldEnum = {
+  planId: 'planId',
+  organizationId: 'organizationId',
+  activeSeats: 'activeSeats',
+  assessedSeats: 'assessedSeats',
+  assessedOn: 'assessedOn',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlanUsageRateScalarFieldEnum = (typeof PlanUsageRateScalarFieldEnum)[keyof typeof PlanUsageRateScalarFieldEnum]
 
 
 export const PlanWorkspaceProfileScalarFieldEnum = {
@@ -1295,6 +1324,8 @@ export const ProvisioningTaskScalarFieldEnum = {
   accessCutOn: 'accessCutOn',
   accessEvidence: 'accessEvidence',
   completionNote: 'completionNote',
+  dueOn: 'dueOn',
+  notBefore: 'notBefore',
   purchaseKind: 'purchaseKind',
   purchaseReason: 'purchaseReason',
   purchasedAt: 'purchasedAt',
@@ -1315,6 +1346,11 @@ export const ProvisioningTaskReasonScalarFieldEnum = {
   referenceKind: 'referenceKind',
   referenceId: 'referenceId',
   note: 'note',
+  dueOn: 'dueOn',
+  notBefore: 'notBefore',
+  withdrawnAt: 'withdrawnAt',
+  withdrawnByAppUserId: 'withdrawnByAppUserId',
+  withdrawCause: 'withdrawCause',
   createdAt: 'createdAt'
 } as const
 
@@ -1341,7 +1377,11 @@ export const LicenseKeyScalarFieldEnum = {
   cipherKeyId: 'cipherKeyId',
   status: 'status',
   importedByAppUserId: 'importedByAppUserId',
-  importedAt: 'importedAt'
+  importedAt: 'importedAt',
+  assignmentId: 'assignmentId',
+  withdrawnAt: 'withdrawnAt',
+  withdrawnByAppUserId: 'withdrawnByAppUserId',
+  withdrawalReason: 'withdrawalReason'
 } as const
 
 export type LicenseKeyScalarFieldEnum = (typeof LicenseKeyScalarFieldEnum)[keyof typeof LicenseKeyScalarFieldEnum]
@@ -1400,6 +1440,18 @@ export const AssignmentExpiryReminderScalarFieldEnum = {
 } as const
 
 export type AssignmentExpiryReminderScalarFieldEnum = (typeof AssignmentExpiryReminderScalarFieldEnum)[keyof typeof AssignmentExpiryReminderScalarFieldEnum]
+
+
+export const AssignmentRenewalWindowScalarFieldEnum = {
+  assignmentId: 'assignmentId',
+  expectedEndDate: 'expectedEndDate',
+  organizationId: 'organizationId',
+  windowDays: 'windowDays',
+  opensOn: 'opensOn',
+  openedAt: 'openedAt'
+} as const
+
+export type AssignmentRenewalWindowScalarFieldEnum = (typeof AssignmentRenewalWindowScalarFieldEnum)[keyof typeof AssignmentRenewalWindowScalarFieldEnum]
 
 
 export const SaasIssueScalarFieldEnum = {
@@ -1623,6 +1675,160 @@ export const NonWorkingDateScalarFieldEnum = {
 } as const
 
 export type NonWorkingDateScalarFieldEnum = (typeof NonWorkingDateScalarFieldEnum)[keyof typeof NonWorkingDateScalarFieldEnum]
+
+
+export const GhostSeatRuleRunScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  ruleSet: 'ruleSet',
+  periodKey: 'periodKey',
+  status: 'status',
+  attempt: 'attempt',
+  startedAt: 'startedAt',
+  finishedAt: 'finishedAt',
+  createdCount: 'createdCount',
+  updatedCount: 'updatedCount',
+  closedCount: 'closedCount',
+  skippedCount: 'skippedCount',
+  failedCount: 'failedCount',
+  error: 'error'
+} as const
+
+export type GhostSeatRuleRunScalarFieldEnum = (typeof GhostSeatRuleRunScalarFieldEnum)[keyof typeof GhostSeatRuleRunScalarFieldEnum]
+
+
+export const GhostSeatRuleSkipScalarFieldEnum = {
+  id: 'id',
+  runId: 'runId',
+  subjectType: 'subjectType',
+  subjectId: 'subjectId',
+  gate: 'gate',
+  detail: 'detail',
+  createdAt: 'createdAt'
+} as const
+
+export type GhostSeatRuleSkipScalarFieldEnum = (typeof GhostSeatRuleSkipScalarFieldEnum)[keyof typeof GhostSeatRuleSkipScalarFieldEnum]
+
+
+export const GhostSeatRecommendationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  group: 'group',
+  state: 'state',
+  closeReason: 'closeReason',
+  tier: 'tier',
+  applicationId: 'applicationId',
+  planId: 'planId',
+  subscriptionId: 'subscriptionId',
+  assignmentId: 'assignmentId',
+  seatChainId: 'seatChainId',
+  employeeId: 'employeeId',
+  departmentId: 'departmentId',
+  freeSeats: 'freeSeats',
+  countsTowardVacantCost: 'countsTowardVacantCost',
+  revocationTaskId: 'revocationTaskId',
+  holderLeftOn: 'holderLeftOn',
+  evidence: 'evidence',
+  createdRunId: 'createdRunId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  closedAt: 'closedAt',
+  closedByAppUserId: 'closedByAppUserId',
+  supersededById: 'supersededById',
+  deciderDepartmentId: 'deciderDepartmentId',
+  routedAt: 'routedAt',
+  decisionDueOn: 'decisionDueOn',
+  overdueNoticedAt: 'overdueNoticedAt',
+  returnCount: 'returnCount',
+  revocationNotBefore: 'revocationNotBefore',
+  pausedAt: 'pausedAt',
+  pauseTransferId: 'pauseTransferId',
+  confidence: 'confidence',
+  activityStatus: 'activityStatus',
+  inactiveDays: 'inactiveDays',
+  lastActiveDate: 'lastActiveDate',
+  previousRecommendationId: 'previousRecommendationId',
+  activityAfterDecisionOn: 'activityAfterDecisionOn'
+} as const
+
+export type GhostSeatRecommendationScalarFieldEnum = (typeof GhostSeatRecommendationScalarFieldEnum)[keyof typeof GhostSeatRecommendationScalarFieldEnum]
+
+
+export const GhostSeatDecisionScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  recommendationId: 'recommendationId',
+  choice: 'choice',
+  reason: 'reason',
+  exemptUntil: 'exemptUntil',
+  decidedOn: 'decidedOn',
+  decidedAt: 'decidedAt',
+  decidedByEmployeeId: 'decidedByEmployeeId',
+  decidedByAppUserId: 'decidedByAppUserId',
+  deciderDepartmentId: 'deciderDepartmentId',
+  deciderRoles: 'deciderRoles',
+  selfDecided: 'selfDecided',
+  batchId: 'batchId'
+} as const
+
+export type GhostSeatDecisionScalarFieldEnum = (typeof GhostSeatDecisionScalarFieldEnum)[keyof typeof GhostSeatDecisionScalarFieldEnum]
+
+
+export const GhostSeatReturnScalarFieldEnum = {
+  id: 'id',
+  recommendationId: 'recommendationId',
+  reason: 'reason',
+  returnedByAppUserId: 'returnedByAppUserId',
+  returnedAt: 'returnedAt',
+  taskId: 'taskId'
+} as const
+
+export type GhostSeatReturnScalarFieldEnum = (typeof GhostSeatReturnScalarFieldEnum)[keyof typeof GhostSeatReturnScalarFieldEnum]
+
+
+export const GhostSeatExemptionScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  seatChainId: 'seatChainId',
+  recommendationId: 'recommendationId',
+  decisionId: 'decisionId',
+  exemptUntil: 'exemptUntil',
+  createdAt: 'createdAt',
+  remindedAt: 'remindedAt',
+  endedAt: 'endedAt'
+} as const
+
+export type GhostSeatExemptionScalarFieldEnum = (typeof GhostSeatExemptionScalarFieldEnum)[keyof typeof GhostSeatExemptionScalarFieldEnum]
+
+
+export const GhostSeatApplicationThresholdScalarFieldEnum = {
+  organizationId: 'organizationId',
+  applicationId: 'applicationId',
+  monitorDays: 'monitorDays',
+  reviewDays: 'reviewDays',
+  actionDays: 'actionDays',
+  updatedByAppUserId: 'updatedByAppUserId',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GhostSeatApplicationThresholdScalarFieldEnum = (typeof GhostSeatApplicationThresholdScalarFieldEnum)[keyof typeof GhostSeatApplicationThresholdScalarFieldEnum]
+
+
+export const GhostSeatSeatStateScalarFieldEnum = {
+  seatChainId: 'seatChainId',
+  organizationId: 'organizationId',
+  applicationId: 'applicationId',
+  assignmentId: 'assignmentId',
+  employeeId: 'employeeId',
+  status: 'status',
+  lastActiveDate: 'lastActiveDate',
+  inactiveDays: 'inactiveDays',
+  gate: 'gate',
+  assessedRunId: 'assessedRunId',
+  assessedOn: 'assessedOn'
+} as const
+
+export type GhostSeatSeatStateScalarFieldEnum = (typeof GhostSeatSeatStateScalarFieldEnum)[keyof typeof GhostSeatSeatStateScalarFieldEnum]
 
 
 export const OrganizationScalarFieldEnum = {
@@ -2007,6 +2213,13 @@ export type PersonnelNoticeCounterScalarFieldEnum = (typeof PersonnelNoticeCount
 
 
 export const AccessRequestScalarFieldEnum = {
+  routingMode: 'routingMode',
+  oneStepReason: 'oneStepReason',
+  oneStepBlockedReason: 'oneStepBlockedReason',
+  manyPaidSoftware: 'manyPaidSoftware',
+  manyPaidSoftwareCount: 'manyPaidSoftwareCount',
+  manyPaidSoftwareReason: 'manyPaidSoftwareReason',
+  limitExemption: 'limitExemption',
   id: 'id',
   organizationId: 'organizationId',
   type: 'type',
@@ -2076,7 +2289,11 @@ export const AccessRequestLineScalarFieldEnum = {
   endReason: 'endReason',
   cancelCause: 'cancelCause',
   withdrawalRequestedAt: 'withdrawalRequestedAt',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  manyPaidSoftware: 'manyPaidSoftware',
+  manyPaidSoftwareCount: 'manyPaidSoftwareCount',
+  manyPaidSoftwareReason: 'manyPaidSoftwareReason',
+  limitExemption: 'limitExemption'
 } as const
 
 export type AccessRequestLineScalarFieldEnum = (typeof AccessRequestLineScalarFieldEnum)[keyof typeof AccessRequestLineScalarFieldEnum]
@@ -2497,7 +2714,8 @@ export const YearStartCommitmentRunScalarFieldEnum = {
   completedAt: 'completedAt',
   runCount: 'runCount',
   createdCount: 'createdCount',
-  skippedCount: 'skippedCount'
+  skippedCount: 'skippedCount',
+  resumeAfterId: 'resumeAfterId'
 } as const
 
 export type YearStartCommitmentRunScalarFieldEnum = (typeof YearStartCommitmentRunScalarFieldEnum)[keyof typeof YearStartCommitmentRunScalarFieldEnum]
@@ -2585,6 +2803,149 @@ export const IntakeRejectionScalarFieldEnum = {
 } as const
 
 export type IntakeRejectionScalarFieldEnum = (typeof IntakeRejectionScalarFieldEnum)[keyof typeof IntakeRejectionScalarFieldEnum]
+
+
+export const UsageSourceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  applicationId: 'applicationId',
+  name: 'name',
+  identifierType: 'identifierType',
+  reportShape: 'reportShape',
+  template: 'template',
+  timeZone: 'timeZone',
+  activityDefinition: 'activityDefinition',
+  definitionStrictness: 'definitionStrictness',
+  evidenceDirection: 'evidenceDirection',
+  capMemberList: 'capMemberList',
+  capLastActivity: 'capLastActivity',
+  capEventDetail: 'capEventDetail',
+  capMaxHistoryDays: 'capMaxHistoryDays',
+  retiredAt: 'retiredAt',
+  createdByAppUserId: 'createdByAppUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UsageSourceScalarFieldEnum = (typeof UsageSourceScalarFieldEnum)[keyof typeof UsageSourceScalarFieldEnum]
+
+
+export const UsageImportScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  sourceId: 'sourceId',
+  format: 'format',
+  status: 'status',
+  coverageFrom: 'coverageFrom',
+  coverageTo: 'coverageTo',
+  coverageBasis: 'coverageBasis',
+  contentHash: 'contentHash',
+  previewVersion: 'previewVersion',
+  summary: 'summary',
+  result: 'result',
+  confirmKey: 'confirmKey',
+  noticeMode: 'noticeMode',
+  noticeAt: 'noticeAt',
+  expiresAt: 'expiresAt',
+  uploadedByAppUserId: 'uploadedByAppUserId',
+  confirmedByAppUserId: 'confirmedByAppUserId',
+  createdAt: 'createdAt',
+  confirmedAt: 'confirmedAt',
+  cancelledAt: 'cancelledAt'
+} as const
+
+export type UsageImportScalarFieldEnum = (typeof UsageImportScalarFieldEnum)[keyof typeof UsageImportScalarFieldEnum]
+
+
+export const UsageImportRowScalarFieldEnum = {
+  importId: 'importId',
+  lineNumber: 'lineNumber',
+  cells: 'cells',
+  identifierRaw: 'identifierRaw',
+  identifierNormalized: 'identifierNormalized',
+  outcome: 'outcome',
+  employeeId: 'employeeId',
+  matchMethod: 'matchMethod',
+  errors: 'errors'
+} as const
+
+export type UsageImportRowScalarFieldEnum = (typeof UsageImportRowScalarFieldEnum)[keyof typeof UsageImportRowScalarFieldEnum]
+
+
+export const UsageActivityDayScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  sourceId: 'sourceId',
+  importId: 'importId',
+  applicationId: 'applicationId',
+  identifierType: 'identifierType',
+  normalizedIdentifier: 'normalizedIdentifier',
+  activityDate: 'activityDate',
+  eventClass: 'eventClass',
+  basis: 'basis',
+  supersededByImportId: 'supersededByImportId',
+  createdAt: 'createdAt'
+} as const
+
+export type UsageActivityDayScalarFieldEnum = (typeof UsageActivityDayScalarFieldEnum)[keyof typeof UsageActivityDayScalarFieldEnum]
+
+
+export const UsageIdentityMappingScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  applicationId: 'applicationId',
+  identifierType: 'identifierType',
+  normalizedIdentifier: 'normalizedIdentifier',
+  rawIdentifier: 'rawIdentifier',
+  employeeId: 'employeeId',
+  method: 'method',
+  confidence: 'confidence',
+  confirmedByAppUserId: 'confirmedByAppUserId',
+  createdAt: 'createdAt',
+  endedAt: 'endedAt',
+  endedByAppUserId: 'endedByAppUserId',
+  endReason: 'endReason'
+} as const
+
+export type UsageIdentityMappingScalarFieldEnum = (typeof UsageIdentityMappingScalarFieldEnum)[keyof typeof UsageIdentityMappingScalarFieldEnum]
+
+
+export const UsageUnmatchedIdentityScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  applicationId: 'applicationId',
+  sourceId: 'sourceId',
+  identifierType: 'identifierType',
+  normalizedIdentifier: 'normalizedIdentifier',
+  rawIdentifier: 'rawIdentifier',
+  reason: 'reason',
+  status: 'status',
+  candidateEmployeeIds: 'candidateEmployeeIds',
+  firstImportId: 'firstImportId',
+  lastImportId: 'lastImportId',
+  resolvedMappingId: 'resolvedMappingId',
+  handledByAppUserId: 'handledByAppUserId',
+  handledAt: 'handledAt',
+  note: 'note'
+} as const
+
+export type UsageUnmatchedIdentityScalarFieldEnum = (typeof UsageUnmatchedIdentityScalarFieldEnum)[keyof typeof UsageUnmatchedIdentityScalarFieldEnum]
+
+
+export const UsageNoAssignmentFindingScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  applicationId: 'applicationId',
+  employeeId: 'employeeId',
+  firstActivityDate: 'firstActivityDate',
+  lastActivityDate: 'lastActivityDate',
+  lastImportId: 'lastImportId',
+  status: 'status',
+  closedAt: 'closedAt',
+  closedReason: 'closedReason'
+} as const
+
+export type UsageNoAssignmentFindingScalarFieldEnum = (typeof UsageNoAssignmentFindingScalarFieldEnum)[keyof typeof UsageNoAssignmentFindingScalarFieldEnum]
 
 
 export const SortOrder = {
