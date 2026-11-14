@@ -48,6 +48,11 @@ export type DepartmentTransferMinAggregateOutputType = {
   cancelledReason: string | null
   closedAt: Date | null
   closedByAppUserId: string | null
+  closedBySystem: boolean | null
+  supersededByCaseId: string | null
+  graceEndsOn: Date | null
+  graceReminderOn: Date | null
+  remindedAt: Date | null
   noticeId: string | null
 }
 
@@ -75,6 +80,11 @@ export type DepartmentTransferMaxAggregateOutputType = {
   cancelledReason: string | null
   closedAt: Date | null
   closedByAppUserId: string | null
+  closedBySystem: boolean | null
+  supersededByCaseId: string | null
+  graceEndsOn: Date | null
+  graceReminderOn: Date | null
+  remindedAt: Date | null
   noticeId: string | null
 }
 
@@ -103,6 +113,13 @@ export type DepartmentTransferCountAggregateOutputType = {
   cancelledReason: number
   closedAt: number
   closedByAppUserId: number
+  closedBySystem: number
+  supersededByCaseId: number
+  graceEndsOn: number
+  graceReminderOn: number
+  remindedAt: number
+  snapshotBefore: number
+  snapshotAfter: number
   noticeId: number
   _all: number
 }
@@ -132,6 +149,11 @@ export type DepartmentTransferMinAggregateInputType = {
   cancelledReason?: true
   closedAt?: true
   closedByAppUserId?: true
+  closedBySystem?: true
+  supersededByCaseId?: true
+  graceEndsOn?: true
+  graceReminderOn?: true
+  remindedAt?: true
   noticeId?: true
 }
 
@@ -159,6 +181,11 @@ export type DepartmentTransferMaxAggregateInputType = {
   cancelledReason?: true
   closedAt?: true
   closedByAppUserId?: true
+  closedBySystem?: true
+  supersededByCaseId?: true
+  graceEndsOn?: true
+  graceReminderOn?: true
+  remindedAt?: true
   noticeId?: true
 }
 
@@ -187,6 +214,13 @@ export type DepartmentTransferCountAggregateInputType = {
   cancelledReason?: true
   closedAt?: true
   closedByAppUserId?: true
+  closedBySystem?: true
+  supersededByCaseId?: true
+  graceEndsOn?: true
+  graceReminderOn?: true
+  remindedAt?: true
+  snapshotBefore?: true
+  snapshotAfter?: true
   noticeId?: true
   _all?: true
 }
@@ -274,10 +308,10 @@ export type DepartmentTransferGroupByOutputType = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover: runtime.JsonValue | null
-  groundsType: string
+  groundsType: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date
+  groundsIssuer: string | null
+  groundsIssuedOn: Date | null
   recordedByAppUserId: string | null
   recordedByTicketId: string | null
   recordedAt: Date
@@ -288,6 +322,13 @@ export type DepartmentTransferGroupByOutputType = {
   cancelledReason: string | null
   closedAt: Date | null
   closedByAppUserId: string | null
+  closedBySystem: boolean
+  supersededByCaseId: string | null
+  graceEndsOn: Date | null
+  graceReminderOn: Date | null
+  remindedAt: Date | null
+  snapshotBefore: runtime.JsonValue | null
+  snapshotAfter: runtime.JsonValue | null
   noticeId: string | null
   _count: DepartmentTransferCountAggregateOutputType | null
   _min: DepartmentTransferMinAggregateOutputType | null
@@ -323,10 +364,10 @@ export type DepartmentTransferWhereInput = {
   closesPlacementId?: Prisma.UuidFilter<"DepartmentTransfer"> | string
   opensPlacementId?: Prisma.UuidFilter<"DepartmentTransfer"> | string
   headHandover?: Prisma.JsonNullableFilter<"DepartmentTransfer">
-  groundsType?: Prisma.StringFilter<"DepartmentTransfer"> | string
+  groundsType?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
   groundsReference?: Prisma.StringFilter<"DepartmentTransfer"> | string
-  groundsIssuer?: Prisma.StringFilter<"DepartmentTransfer"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"DepartmentTransfer"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
   recordedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
   recordedByTicketId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
   recordedAt?: Prisma.DateTimeFilter<"DepartmentTransfer"> | Date | string
@@ -337,9 +378,17 @@ export type DepartmentTransferWhereInput = {
   cancelledReason?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
   closedAt?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
+  closedBySystem?: Prisma.BoolFilter<"DepartmentTransfer"> | boolean
+  supersededByCaseId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
+  graceEndsOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  graceReminderOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  remindedAt?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  snapshotBefore?: Prisma.JsonNullableFilter<"DepartmentTransfer">
+  snapshotAfter?: Prisma.JsonNullableFilter<"DepartmentTransfer">
   noticeId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   notice?: Prisma.XOR<Prisma.PersonnelNoticeNullableScalarRelationFilter, Prisma.PersonnelNoticeWhereInput> | null
+  supersededByCase?: Prisma.XOR<Prisma.OffboardingCaseNullableScalarRelationFilter, Prisma.OffboardingCaseWhereInput> | null
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   fromDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   toDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
@@ -347,6 +396,7 @@ export type DepartmentTransferWhereInput = {
   cancelledByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
   changes?: Prisma.DepartmentTransferChangeListRelationFilter
   reviews?: Prisma.TransferReviewListRelationFilter
+  itAdminHandover?: Prisma.XOR<Prisma.ItAdminHandoverNullableScalarRelationFilter, Prisma.ItAdminHandoverWhereInput> | null
 }
 
 export type DepartmentTransferOrderByWithRelationInput = {
@@ -360,10 +410,10 @@ export type DepartmentTransferOrderByWithRelationInput = {
   closesPlacementId?: Prisma.SortOrder
   opensPlacementId?: Prisma.SortOrder
   headHandover?: Prisma.SortOrderInput | Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByTicketId?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedAt?: Prisma.SortOrder
@@ -374,9 +424,17 @@ export type DepartmentTransferOrderByWithRelationInput = {
   cancelledReason?: Prisma.SortOrderInput | Prisma.SortOrder
   closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  closedBySystem?: Prisma.SortOrder
+  supersededByCaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  graceEndsOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  graceReminderOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  remindedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  snapshotBefore?: Prisma.SortOrderInput | Prisma.SortOrder
+  snapshotAfter?: Prisma.SortOrderInput | Prisma.SortOrder
   noticeId?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   notice?: Prisma.PersonnelNoticeOrderByWithRelationInput
+  supersededByCase?: Prisma.OffboardingCaseOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
   fromDepartment?: Prisma.DepartmentOrderByWithRelationInput
   toDepartment?: Prisma.DepartmentOrderByWithRelationInput
@@ -384,6 +442,7 @@ export type DepartmentTransferOrderByWithRelationInput = {
   cancelledByTicket?: Prisma.SuperAdminEventTicketOrderByWithRelationInput
   changes?: Prisma.DepartmentTransferChangeOrderByRelationAggregateInput
   reviews?: Prisma.TransferReviewOrderByRelationAggregateInput
+  itAdminHandover?: Prisma.ItAdminHandoverOrderByWithRelationInput
 }
 
 export type DepartmentTransferWhereUniqueInput = Prisma.AtLeast<{
@@ -401,10 +460,10 @@ export type DepartmentTransferWhereUniqueInput = Prisma.AtLeast<{
   closesPlacementId?: Prisma.UuidFilter<"DepartmentTransfer"> | string
   opensPlacementId?: Prisma.UuidFilter<"DepartmentTransfer"> | string
   headHandover?: Prisma.JsonNullableFilter<"DepartmentTransfer">
-  groundsType?: Prisma.StringFilter<"DepartmentTransfer"> | string
+  groundsType?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
   groundsReference?: Prisma.StringFilter<"DepartmentTransfer"> | string
-  groundsIssuer?: Prisma.StringFilter<"DepartmentTransfer"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"DepartmentTransfer"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
   recordedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
   recordedByTicketId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
   recordedAt?: Prisma.DateTimeFilter<"DepartmentTransfer"> | Date | string
@@ -415,8 +474,16 @@ export type DepartmentTransferWhereUniqueInput = Prisma.AtLeast<{
   cancelledReason?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
   closedAt?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
+  closedBySystem?: Prisma.BoolFilter<"DepartmentTransfer"> | boolean
+  supersededByCaseId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
+  graceEndsOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  graceReminderOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  remindedAt?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  snapshotBefore?: Prisma.JsonNullableFilter<"DepartmentTransfer">
+  snapshotAfter?: Prisma.JsonNullableFilter<"DepartmentTransfer">
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   notice?: Prisma.XOR<Prisma.PersonnelNoticeNullableScalarRelationFilter, Prisma.PersonnelNoticeWhereInput> | null
+  supersededByCase?: Prisma.XOR<Prisma.OffboardingCaseNullableScalarRelationFilter, Prisma.OffboardingCaseWhereInput> | null
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   fromDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   toDepartment?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
@@ -424,6 +491,7 @@ export type DepartmentTransferWhereUniqueInput = Prisma.AtLeast<{
   cancelledByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
   changes?: Prisma.DepartmentTransferChangeListRelationFilter
   reviews?: Prisma.TransferReviewListRelationFilter
+  itAdminHandover?: Prisma.XOR<Prisma.ItAdminHandoverNullableScalarRelationFilter, Prisma.ItAdminHandoverWhereInput> | null
 }, "id" | "noticeId">
 
 export type DepartmentTransferOrderByWithAggregationInput = {
@@ -437,10 +505,10 @@ export type DepartmentTransferOrderByWithAggregationInput = {
   closesPlacementId?: Prisma.SortOrder
   opensPlacementId?: Prisma.SortOrder
   headHandover?: Prisma.SortOrderInput | Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByTicketId?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedAt?: Prisma.SortOrder
@@ -451,6 +519,13 @@ export type DepartmentTransferOrderByWithAggregationInput = {
   cancelledReason?: Prisma.SortOrderInput | Prisma.SortOrder
   closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  closedBySystem?: Prisma.SortOrder
+  supersededByCaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  graceEndsOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  graceReminderOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  remindedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  snapshotBefore?: Prisma.SortOrderInput | Prisma.SortOrder
+  snapshotAfter?: Prisma.SortOrderInput | Prisma.SortOrder
   noticeId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DepartmentTransferCountOrderByAggregateInput
   _max?: Prisma.DepartmentTransferMaxOrderByAggregateInput
@@ -471,10 +546,10 @@ export type DepartmentTransferScalarWhereWithAggregatesInput = {
   closesPlacementId?: Prisma.UuidWithAggregatesFilter<"DepartmentTransfer"> | string
   opensPlacementId?: Prisma.UuidWithAggregatesFilter<"DepartmentTransfer"> | string
   headHandover?: Prisma.JsonNullableWithAggregatesFilter<"DepartmentTransfer">
-  groundsType?: Prisma.StringWithAggregatesFilter<"DepartmentTransfer"> | string
+  groundsType?: Prisma.StringNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
   groundsReference?: Prisma.StringWithAggregatesFilter<"DepartmentTransfer"> | string
-  groundsIssuer?: Prisma.StringWithAggregatesFilter<"DepartmentTransfer"> | string
-  groundsIssuedOn?: Prisma.DateTimeWithAggregatesFilter<"DepartmentTransfer"> | Date | string
+  groundsIssuer?: Prisma.StringNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"DepartmentTransfer"> | Date | string | null
   recordedByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
   recordedByTicketId?: Prisma.UuidNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
   recordedAt?: Prisma.DateTimeWithAggregatesFilter<"DepartmentTransfer"> | Date | string
@@ -485,6 +560,13 @@ export type DepartmentTransferScalarWhereWithAggregatesInput = {
   cancelledReason?: Prisma.StringNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
   closedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DepartmentTransfer"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
+  closedBySystem?: Prisma.BoolWithAggregatesFilter<"DepartmentTransfer"> | boolean
+  supersededByCaseId?: Prisma.UuidNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
+  graceEndsOn?: Prisma.DateTimeNullableWithAggregatesFilter<"DepartmentTransfer"> | Date | string | null
+  graceReminderOn?: Prisma.DateTimeNullableWithAggregatesFilter<"DepartmentTransfer"> | Date | string | null
+  remindedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DepartmentTransfer"> | Date | string | null
+  snapshotBefore?: Prisma.JsonNullableWithAggregatesFilter<"DepartmentTransfer">
+  snapshotAfter?: Prisma.JsonNullableWithAggregatesFilter<"DepartmentTransfer">
   noticeId?: Prisma.UuidNullableWithAggregatesFilter<"DepartmentTransfer"> | string | null
 }
 
@@ -495,10 +577,10 @@ export type DepartmentTransferCreateInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -507,8 +589,15 @@ export type DepartmentTransferCreateInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
@@ -516,6 +605,7 @@ export type DepartmentTransferCreateInput = {
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateInput = {
@@ -529,10 +619,10 @@ export type DepartmentTransferUncheckedCreateInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -543,9 +633,17 @@ export type DepartmentTransferUncheckedCreateInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUpdateInput = {
@@ -555,10 +653,10 @@ export type DepartmentTransferUpdateInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -567,8 +665,15 @@ export type DepartmentTransferUpdateInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
@@ -576,6 +681,7 @@ export type DepartmentTransferUpdateInput = {
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateInput = {
@@ -589,10 +695,10 @@ export type DepartmentTransferUncheckedUpdateInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -603,9 +709,17 @@ export type DepartmentTransferUncheckedUpdateInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferCreateManyInput = {
@@ -619,10 +733,10 @@ export type DepartmentTransferCreateManyInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -633,6 +747,13 @@ export type DepartmentTransferCreateManyInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
 }
 
@@ -643,10 +764,10 @@ export type DepartmentTransferUpdateManyMutationInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -655,6 +776,12 @@ export type DepartmentTransferUpdateManyMutationInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type DepartmentTransferUncheckedUpdateManyInput = {
@@ -668,10 +795,10 @@ export type DepartmentTransferUncheckedUpdateManyInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -682,6 +809,13 @@ export type DepartmentTransferUncheckedUpdateManyInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -720,6 +854,13 @@ export type DepartmentTransferCountOrderByAggregateInput = {
   cancelledReason?: Prisma.SortOrder
   closedAt?: Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrder
+  closedBySystem?: Prisma.SortOrder
+  supersededByCaseId?: Prisma.SortOrder
+  graceEndsOn?: Prisma.SortOrder
+  graceReminderOn?: Prisma.SortOrder
+  remindedAt?: Prisma.SortOrder
+  snapshotBefore?: Prisma.SortOrder
+  snapshotAfter?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
 }
 
@@ -747,6 +888,11 @@ export type DepartmentTransferMaxOrderByAggregateInput = {
   cancelledReason?: Prisma.SortOrder
   closedAt?: Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrder
+  closedBySystem?: Prisma.SortOrder
+  supersededByCaseId?: Prisma.SortOrder
+  graceEndsOn?: Prisma.SortOrder
+  graceReminderOn?: Prisma.SortOrder
+  remindedAt?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
 }
 
@@ -774,6 +920,11 @@ export type DepartmentTransferMinOrderByAggregateInput = {
   cancelledReason?: Prisma.SortOrder
   closedAt?: Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrder
+  closedBySystem?: Prisma.SortOrder
+  supersededByCaseId?: Prisma.SortOrder
+  graceEndsOn?: Prisma.SortOrder
+  graceReminderOn?: Prisma.SortOrder
+  remindedAt?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
 }
 
@@ -989,6 +1140,48 @@ export type DepartmentTransferUpdateOneWithoutReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentTransferUpdateToOneWithWhereWithoutReviewsInput, Prisma.DepartmentTransferUpdateWithoutReviewsInput>, Prisma.DepartmentTransferUncheckedUpdateWithoutReviewsInput>
 }
 
+export type DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput = {
+  create?: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput> | Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput[] | Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput[]
+  connectOrCreate?: Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput | Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput[]
+  createMany?: Prisma.DepartmentTransferCreateManySupersededByCaseInputEnvelope
+  connect?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+}
+
+export type DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput = {
+  create?: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput> | Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput[] | Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput[]
+  connectOrCreate?: Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput | Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput[]
+  createMany?: Prisma.DepartmentTransferCreateManySupersededByCaseInputEnvelope
+  connect?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+}
+
+export type DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput> | Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput[] | Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput[]
+  connectOrCreate?: Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput | Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput[]
+  upsert?: Prisma.DepartmentTransferUpsertWithWhereUniqueWithoutSupersededByCaseInput | Prisma.DepartmentTransferUpsertWithWhereUniqueWithoutSupersededByCaseInput[]
+  createMany?: Prisma.DepartmentTransferCreateManySupersededByCaseInputEnvelope
+  set?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  disconnect?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  delete?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  connect?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  update?: Prisma.DepartmentTransferUpdateWithWhereUniqueWithoutSupersededByCaseInput | Prisma.DepartmentTransferUpdateWithWhereUniqueWithoutSupersededByCaseInput[]
+  updateMany?: Prisma.DepartmentTransferUpdateManyWithWhereWithoutSupersededByCaseInput | Prisma.DepartmentTransferUpdateManyWithWhereWithoutSupersededByCaseInput[]
+  deleteMany?: Prisma.DepartmentTransferScalarWhereInput | Prisma.DepartmentTransferScalarWhereInput[]
+}
+
+export type DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput> | Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput[] | Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput[]
+  connectOrCreate?: Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput | Prisma.DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput[]
+  upsert?: Prisma.DepartmentTransferUpsertWithWhereUniqueWithoutSupersededByCaseInput | Prisma.DepartmentTransferUpsertWithWhereUniqueWithoutSupersededByCaseInput[]
+  createMany?: Prisma.DepartmentTransferCreateManySupersededByCaseInputEnvelope
+  set?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  disconnect?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  delete?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  connect?: Prisma.DepartmentTransferWhereUniqueInput | Prisma.DepartmentTransferWhereUniqueInput[]
+  update?: Prisma.DepartmentTransferUpdateWithWhereUniqueWithoutSupersededByCaseInput | Prisma.DepartmentTransferUpdateWithWhereUniqueWithoutSupersededByCaseInput[]
+  updateMany?: Prisma.DepartmentTransferUpdateManyWithWhereWithoutSupersededByCaseInput | Prisma.DepartmentTransferUpdateManyWithWhereWithoutSupersededByCaseInput[]
+  deleteMany?: Prisma.DepartmentTransferScalarWhereInput | Prisma.DepartmentTransferScalarWhereInput[]
+}
+
 export type DepartmentTransferCreateNestedOneWithoutNoticeInput = {
   create?: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutNoticeInput, Prisma.DepartmentTransferUncheckedCreateWithoutNoticeInput>
   connectOrCreate?: Prisma.DepartmentTransferCreateOrConnectWithoutNoticeInput
@@ -1105,6 +1298,22 @@ export type DepartmentTransferUncheckedUpdateManyWithoutCancelledByTicketNestedI
   deleteMany?: Prisma.DepartmentTransferScalarWhereInput | Prisma.DepartmentTransferScalarWhereInput[]
 }
 
+export type DepartmentTransferCreateNestedOneWithoutItAdminHandoverInput = {
+  create?: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutItAdminHandoverInput, Prisma.DepartmentTransferUncheckedCreateWithoutItAdminHandoverInput>
+  connectOrCreate?: Prisma.DepartmentTransferCreateOrConnectWithoutItAdminHandoverInput
+  connect?: Prisma.DepartmentTransferWhereUniqueInput
+}
+
+export type DepartmentTransferUpdateOneWithoutItAdminHandoverNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutItAdminHandoverInput, Prisma.DepartmentTransferUncheckedCreateWithoutItAdminHandoverInput>
+  connectOrCreate?: Prisma.DepartmentTransferCreateOrConnectWithoutItAdminHandoverInput
+  upsert?: Prisma.DepartmentTransferUpsertWithoutItAdminHandoverInput
+  disconnect?: Prisma.DepartmentTransferWhereInput | boolean
+  delete?: Prisma.DepartmentTransferWhereInput | boolean
+  connect?: Prisma.DepartmentTransferWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentTransferUpdateToOneWithWhereWithoutItAdminHandoverInput, Prisma.DepartmentTransferUpdateWithoutItAdminHandoverInput>, Prisma.DepartmentTransferUncheckedUpdateWithoutItAdminHandoverInput>
+}
+
 export type DepartmentTransferCreateWithoutOrganizationInput = {
   id?: string
   effectiveOn: Date | string
@@ -1112,10 +1321,10 @@ export type DepartmentTransferCreateWithoutOrganizationInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1124,7 +1333,14 @@ export type DepartmentTransferCreateWithoutOrganizationInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
@@ -1132,6 +1348,7 @@ export type DepartmentTransferCreateWithoutOrganizationInput = {
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutOrganizationInput = {
@@ -1144,10 +1361,10 @@ export type DepartmentTransferUncheckedCreateWithoutOrganizationInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1158,9 +1375,17 @@ export type DepartmentTransferUncheckedCreateWithoutOrganizationInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutOrganizationInput = {
@@ -1203,10 +1428,10 @@ export type DepartmentTransferScalarWhereInput = {
   closesPlacementId?: Prisma.UuidFilter<"DepartmentTransfer"> | string
   opensPlacementId?: Prisma.UuidFilter<"DepartmentTransfer"> | string
   headHandover?: Prisma.JsonNullableFilter<"DepartmentTransfer">
-  groundsType?: Prisma.StringFilter<"DepartmentTransfer"> | string
+  groundsType?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
   groundsReference?: Prisma.StringFilter<"DepartmentTransfer"> | string
-  groundsIssuer?: Prisma.StringFilter<"DepartmentTransfer"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"DepartmentTransfer"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
   recordedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
   recordedByTicketId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
   recordedAt?: Prisma.DateTimeFilter<"DepartmentTransfer"> | Date | string
@@ -1217,6 +1442,13 @@ export type DepartmentTransferScalarWhereInput = {
   cancelledReason?: Prisma.StringNullableFilter<"DepartmentTransfer"> | string | null
   closedAt?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
+  closedBySystem?: Prisma.BoolFilter<"DepartmentTransfer"> | boolean
+  supersededByCaseId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
+  graceEndsOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  graceReminderOn?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  remindedAt?: Prisma.DateTimeNullableFilter<"DepartmentTransfer"> | Date | string | null
+  snapshotBefore?: Prisma.JsonNullableFilter<"DepartmentTransfer">
+  snapshotAfter?: Prisma.JsonNullableFilter<"DepartmentTransfer">
   noticeId?: Prisma.UuidNullableFilter<"DepartmentTransfer"> | string | null
 }
 
@@ -1227,10 +1459,10 @@ export type DepartmentTransferCreateWithoutFromDepartmentInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1239,14 +1471,22 @@ export type DepartmentTransferCreateWithoutFromDepartmentInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutFromDepartmentInput = {
@@ -1259,10 +1499,10 @@ export type DepartmentTransferUncheckedCreateWithoutFromDepartmentInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1273,9 +1513,17 @@ export type DepartmentTransferUncheckedCreateWithoutFromDepartmentInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutFromDepartmentInput = {
@@ -1295,10 +1543,10 @@ export type DepartmentTransferCreateWithoutToDepartmentInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1307,14 +1555,22 @@ export type DepartmentTransferCreateWithoutToDepartmentInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutToDepartmentInput = {
@@ -1327,10 +1583,10 @@ export type DepartmentTransferUncheckedCreateWithoutToDepartmentInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1341,9 +1597,17 @@ export type DepartmentTransferUncheckedCreateWithoutToDepartmentInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutToDepartmentInput = {
@@ -1395,10 +1659,10 @@ export type DepartmentTransferCreateWithoutEmployeeInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1407,14 +1671,22 @@ export type DepartmentTransferCreateWithoutEmployeeInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutEmployeeInput = {
@@ -1427,10 +1699,10 @@ export type DepartmentTransferUncheckedCreateWithoutEmployeeInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1441,9 +1713,17 @@ export type DepartmentTransferUncheckedCreateWithoutEmployeeInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutEmployeeInput = {
@@ -1479,10 +1759,10 @@ export type DepartmentTransferCreateWithoutChangesInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1491,14 +1771,22 @@ export type DepartmentTransferCreateWithoutChangesInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutChangesInput = {
@@ -1512,10 +1800,10 @@ export type DepartmentTransferUncheckedCreateWithoutChangesInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1526,8 +1814,16 @@ export type DepartmentTransferUncheckedCreateWithoutChangesInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutChangesInput = {
@@ -1553,10 +1849,10 @@ export type DepartmentTransferUpdateWithoutChangesInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1565,14 +1861,22 @@ export type DepartmentTransferUpdateWithoutChangesInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutChangesInput = {
@@ -1586,10 +1890,10 @@ export type DepartmentTransferUncheckedUpdateWithoutChangesInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1600,8 +1904,16 @@ export type DepartmentTransferUncheckedUpdateWithoutChangesInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferCreateWithoutReviewsInput = {
@@ -1611,10 +1923,10 @@ export type DepartmentTransferCreateWithoutReviewsInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1623,14 +1935,22 @@ export type DepartmentTransferCreateWithoutReviewsInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutReviewsInput = {
@@ -1644,10 +1964,10 @@ export type DepartmentTransferUncheckedCreateWithoutReviewsInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1658,8 +1978,16 @@ export type DepartmentTransferUncheckedCreateWithoutReviewsInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutReviewsInput = {
@@ -1685,10 +2013,10 @@ export type DepartmentTransferUpdateWithoutReviewsInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1697,14 +2025,22 @@ export type DepartmentTransferUpdateWithoutReviewsInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutReviewsInput = {
@@ -1718,10 +2054,10 @@ export type DepartmentTransferUncheckedUpdateWithoutReviewsInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1732,8 +2068,116 @@ export type DepartmentTransferUncheckedUpdateWithoutReviewsInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
+}
+
+export type DepartmentTransferCreateWithoutSupersededByCaseInput = {
+  id?: string
+  effectiveOn: Date | string
+  status?: $Enums.DepartmentTransferStatus
+  closesPlacementId: string
+  opensPlacementId: string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  recordedByAppUserId?: string | null
+  recordedAt?: Date | string
+  effectiveAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledReason?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
+  notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
+  fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
+  toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
+  changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
+  reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
+}
+
+export type DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput = {
+  id?: string
+  organizationId: string
+  employeeId: string
+  fromDepartmentId: string
+  toDepartmentId: string
+  effectiveOn: Date | string
+  status?: $Enums.DepartmentTransferStatus
+  closesPlacementId: string
+  opensPlacementId: string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  recordedByAppUserId?: string | null
+  recordedByTicketId?: string | null
+  recordedAt?: Date | string
+  effectiveAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledByTicketId?: string | null
+  cancelledReason?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  noticeId?: string | null
+  changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
+  reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
+}
+
+export type DepartmentTransferCreateOrConnectWithoutSupersededByCaseInput = {
+  where: Prisma.DepartmentTransferWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput>
+}
+
+export type DepartmentTransferCreateManySupersededByCaseInputEnvelope = {
+  data: Prisma.DepartmentTransferCreateManySupersededByCaseInput | Prisma.DepartmentTransferCreateManySupersededByCaseInput[]
+  skipDuplicates?: boolean
+}
+
+export type DepartmentTransferUpsertWithWhereUniqueWithoutSupersededByCaseInput = {
+  where: Prisma.DepartmentTransferWhereUniqueInput
+  update: Prisma.XOR<Prisma.DepartmentTransferUpdateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedUpdateWithoutSupersededByCaseInput>
+  create: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedCreateWithoutSupersededByCaseInput>
+}
+
+export type DepartmentTransferUpdateWithWhereUniqueWithoutSupersededByCaseInput = {
+  where: Prisma.DepartmentTransferWhereUniqueInput
+  data: Prisma.XOR<Prisma.DepartmentTransferUpdateWithoutSupersededByCaseInput, Prisma.DepartmentTransferUncheckedUpdateWithoutSupersededByCaseInput>
+}
+
+export type DepartmentTransferUpdateManyWithWhereWithoutSupersededByCaseInput = {
+  where: Prisma.DepartmentTransferScalarWhereInput
+  data: Prisma.XOR<Prisma.DepartmentTransferUpdateManyMutationInput, Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseInput>
 }
 
 export type DepartmentTransferCreateWithoutNoticeInput = {
@@ -1743,10 +2187,10 @@ export type DepartmentTransferCreateWithoutNoticeInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1755,7 +2199,14 @@ export type DepartmentTransferCreateWithoutNoticeInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
@@ -1763,6 +2214,7 @@ export type DepartmentTransferCreateWithoutNoticeInput = {
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutNoticeInput = {
@@ -1776,10 +2228,10 @@ export type DepartmentTransferUncheckedCreateWithoutNoticeInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1790,8 +2242,16 @@ export type DepartmentTransferUncheckedCreateWithoutNoticeInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutNoticeInput = {
@@ -1817,10 +2277,10 @@ export type DepartmentTransferUpdateWithoutNoticeInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1829,7 +2289,14 @@ export type DepartmentTransferUpdateWithoutNoticeInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
@@ -1837,6 +2304,7 @@ export type DepartmentTransferUpdateWithoutNoticeInput = {
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutNoticeInput = {
@@ -1850,10 +2318,10 @@ export type DepartmentTransferUncheckedUpdateWithoutNoticeInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1864,8 +2332,16 @@ export type DepartmentTransferUncheckedUpdateWithoutNoticeInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferCreateWithoutRecordedByTicketInput = {
@@ -1875,10 +2351,10 @@ export type DepartmentTransferCreateWithoutRecordedByTicketInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1887,14 +2363,22 @@ export type DepartmentTransferCreateWithoutRecordedByTicketInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutRecordedByTicketInput = {
@@ -1908,10 +2392,10 @@ export type DepartmentTransferUncheckedCreateWithoutRecordedByTicketInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1921,9 +2405,17 @@ export type DepartmentTransferUncheckedCreateWithoutRecordedByTicketInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutRecordedByTicketInput = {
@@ -1943,10 +2435,10 @@ export type DepartmentTransferCreateWithoutCancelledByTicketInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -1955,14 +2447,22 @@ export type DepartmentTransferCreateWithoutCancelledByTicketInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
   notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
   employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
   fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
   toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
   changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferUncheckedCreateWithoutCancelledByTicketInput = {
@@ -1976,10 +2476,10 @@ export type DepartmentTransferUncheckedCreateWithoutCancelledByTicketInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -1989,9 +2489,17 @@ export type DepartmentTransferUncheckedCreateWithoutCancelledByTicketInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
   reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutDepartmentTransferInput
 }
 
 export type DepartmentTransferCreateOrConnectWithoutCancelledByTicketInput = {
@@ -2036,8 +2544,46 @@ export type DepartmentTransferUpdateManyWithWhereWithoutCancelledByTicketInput =
   data: Prisma.XOR<Prisma.DepartmentTransferUpdateManyMutationInput, Prisma.DepartmentTransferUncheckedUpdateManyWithoutCancelledByTicketInput>
 }
 
-export type DepartmentTransferCreateManyOrganizationInput = {
+export type DepartmentTransferCreateWithoutItAdminHandoverInput = {
   id?: string
+  effectiveOn: Date | string
+  status?: $Enums.DepartmentTransferStatus
+  closesPlacementId: string
+  opensPlacementId: string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  recordedByAppUserId?: string | null
+  recordedAt?: Date | string
+  effectiveAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledReason?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentTransfersInput
+  notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutTransferInput
+  supersededByCase?: Prisma.OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutDepartmentTransfersInput
+  fromDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersFromInput
+  toDepartment: Prisma.DepartmentCreateNestedOneWithoutTransfersToInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersRecordedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransfersCancelledInput
+  changes?: Prisma.DepartmentTransferChangeCreateNestedManyWithoutTransferInput
+  reviews?: Prisma.TransferReviewCreateNestedManyWithoutTransferInput
+}
+
+export type DepartmentTransferUncheckedCreateWithoutItAdminHandoverInput = {
+  id?: string
+  organizationId: string
   employeeId: string
   fromDepartmentId: string
   toDepartmentId: string
@@ -2046,10 +2592,10 @@ export type DepartmentTransferCreateManyOrganizationInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -2060,6 +2606,139 @@ export type DepartmentTransferCreateManyOrganizationInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  noticeId?: string | null
+  changes?: Prisma.DepartmentTransferChangeUncheckedCreateNestedManyWithoutTransferInput
+  reviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutTransferInput
+}
+
+export type DepartmentTransferCreateOrConnectWithoutItAdminHandoverInput = {
+  where: Prisma.DepartmentTransferWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutItAdminHandoverInput, Prisma.DepartmentTransferUncheckedCreateWithoutItAdminHandoverInput>
+}
+
+export type DepartmentTransferUpsertWithoutItAdminHandoverInput = {
+  update: Prisma.XOR<Prisma.DepartmentTransferUpdateWithoutItAdminHandoverInput, Prisma.DepartmentTransferUncheckedUpdateWithoutItAdminHandoverInput>
+  create: Prisma.XOR<Prisma.DepartmentTransferCreateWithoutItAdminHandoverInput, Prisma.DepartmentTransferUncheckedCreateWithoutItAdminHandoverInput>
+  where?: Prisma.DepartmentTransferWhereInput
+}
+
+export type DepartmentTransferUpdateToOneWithWhereWithoutItAdminHandoverInput = {
+  where?: Prisma.DepartmentTransferWhereInput
+  data: Prisma.XOR<Prisma.DepartmentTransferUpdateWithoutItAdminHandoverInput, Prisma.DepartmentTransferUncheckedUpdateWithoutItAdminHandoverInput>
+}
+
+export type DepartmentTransferUpdateWithoutItAdminHandoverInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  effectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumDepartmentTransferStatusFieldUpdateOperationsInput | $Enums.DepartmentTransferStatus
+  closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
+  notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
+  fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
+  toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
+  changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
+  reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+}
+
+export type DepartmentTransferUncheckedUpdateWithoutItAdminHandoverInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  fromDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  toDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  effectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumDepartmentTransferStatusFieldUpdateOperationsInput | $Enums.DepartmentTransferStatus
+  closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
+  reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+}
+
+export type DepartmentTransferCreateManyOrganizationInput = {
+  id?: string
+  employeeId: string
+  fromDepartmentId: string
+  toDepartmentId: string
+  effectiveOn: Date | string
+  status?: $Enums.DepartmentTransferStatus
+  closesPlacementId: string
+  opensPlacementId: string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  recordedByAppUserId?: string | null
+  recordedByTicketId?: string | null
+  recordedAt?: Date | string
+  effectiveAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledByTicketId?: string | null
+  cancelledReason?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
 }
 
@@ -2070,10 +2749,10 @@ export type DepartmentTransferUpdateWithoutOrganizationInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2082,7 +2761,14 @@ export type DepartmentTransferUpdateWithoutOrganizationInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
@@ -2090,6 +2776,7 @@ export type DepartmentTransferUpdateWithoutOrganizationInput = {
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutOrganizationInput = {
@@ -2102,10 +2789,10 @@ export type DepartmentTransferUncheckedUpdateWithoutOrganizationInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2116,9 +2803,17 @@ export type DepartmentTransferUncheckedUpdateWithoutOrganizationInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateManyWithoutOrganizationInput = {
@@ -2131,10 +2826,10 @@ export type DepartmentTransferUncheckedUpdateManyWithoutOrganizationInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2145,6 +2840,13 @@ export type DepartmentTransferUncheckedUpdateManyWithoutOrganizationInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -2158,10 +2860,10 @@ export type DepartmentTransferCreateManyFromDepartmentInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -2172,6 +2874,13 @@ export type DepartmentTransferCreateManyFromDepartmentInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
 }
 
@@ -2185,10 +2894,10 @@ export type DepartmentTransferCreateManyToDepartmentInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -2199,6 +2908,13 @@ export type DepartmentTransferCreateManyToDepartmentInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
 }
 
@@ -2209,10 +2925,10 @@ export type DepartmentTransferUpdateWithoutFromDepartmentInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2221,14 +2937,22 @@ export type DepartmentTransferUpdateWithoutFromDepartmentInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutFromDepartmentInput = {
@@ -2241,10 +2965,10 @@ export type DepartmentTransferUncheckedUpdateWithoutFromDepartmentInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2255,9 +2979,17 @@ export type DepartmentTransferUncheckedUpdateWithoutFromDepartmentInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentInput = {
@@ -2270,10 +3002,10 @@ export type DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2284,6 +3016,13 @@ export type DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -2294,10 +3033,10 @@ export type DepartmentTransferUpdateWithoutToDepartmentInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2306,14 +3045,22 @@ export type DepartmentTransferUpdateWithoutToDepartmentInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutToDepartmentInput = {
@@ -2326,10 +3073,10 @@ export type DepartmentTransferUncheckedUpdateWithoutToDepartmentInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2340,9 +3087,17 @@ export type DepartmentTransferUncheckedUpdateWithoutToDepartmentInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateManyWithoutToDepartmentInput = {
@@ -2355,10 +3110,10 @@ export type DepartmentTransferUncheckedUpdateManyWithoutToDepartmentInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2369,6 +3124,13 @@ export type DepartmentTransferUncheckedUpdateManyWithoutToDepartmentInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -2382,10 +3144,10 @@ export type DepartmentTransferCreateManyEmployeeInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -2396,6 +3158,13 @@ export type DepartmentTransferCreateManyEmployeeInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
 }
 
@@ -2406,10 +3175,10 @@ export type DepartmentTransferUpdateWithoutEmployeeInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2418,14 +3187,22 @@ export type DepartmentTransferUpdateWithoutEmployeeInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutEmployeeInput = {
@@ -2438,10 +3215,10 @@ export type DepartmentTransferUncheckedUpdateWithoutEmployeeInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2452,9 +3229,17 @@ export type DepartmentTransferUncheckedUpdateWithoutEmployeeInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateManyWithoutEmployeeInput = {
@@ -2467,10 +3252,10 @@ export type DepartmentTransferUncheckedUpdateManyWithoutEmployeeInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2481,6 +3266,155 @@ export type DepartmentTransferUncheckedUpdateManyWithoutEmployeeInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type DepartmentTransferCreateManySupersededByCaseInput = {
+  id?: string
+  organizationId: string
+  employeeId: string
+  fromDepartmentId: string
+  toDepartmentId: string
+  effectiveOn: Date | string
+  status?: $Enums.DepartmentTransferStatus
+  closesPlacementId: string
+  opensPlacementId: string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  recordedByAppUserId?: string | null
+  recordedByTicketId?: string | null
+  recordedAt?: Date | string
+  effectiveAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledByTicketId?: string | null
+  cancelledReason?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  noticeId?: string | null
+}
+
+export type DepartmentTransferUpdateWithoutSupersededByCaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  effectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumDepartmentTransferStatusFieldUpdateOperationsInput | $Enums.DepartmentTransferStatus
+  closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
+  notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
+  fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
+  toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
+  changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
+  reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
+}
+
+export type DepartmentTransferUncheckedUpdateWithoutSupersededByCaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  fromDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  toDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  effectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumDepartmentTransferStatusFieldUpdateOperationsInput | $Enums.DepartmentTransferStatus
+  closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
+  reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
+}
+
+export type DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  fromDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  toDepartmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  effectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumDepartmentTransferStatusFieldUpdateOperationsInput | $Enums.DepartmentTransferStatus
+  closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -2495,10 +3429,10 @@ export type DepartmentTransferCreateManyRecordedByTicketInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedAt?: Date | string
   effectiveAt?: Date | string | null
@@ -2508,6 +3442,13 @@ export type DepartmentTransferCreateManyRecordedByTicketInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
 }
 
@@ -2522,10 +3463,10 @@ export type DepartmentTransferCreateManyCancelledByTicketInput = {
   closesPlacementId: string
   opensPlacementId: string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   recordedByAppUserId?: string | null
   recordedByTicketId?: string | null
   recordedAt?: Date | string
@@ -2535,6 +3476,13 @@ export type DepartmentTransferCreateManyCancelledByTicketInput = {
   cancelledReason?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
+  closedBySystem?: boolean
+  supersededByCaseId?: string | null
+  graceEndsOn?: Date | string | null
+  graceReminderOn?: Date | string | null
+  remindedAt?: Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: string | null
 }
 
@@ -2545,10 +3493,10 @@ export type DepartmentTransferUpdateWithoutRecordedByTicketInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2557,14 +3505,22 @@ export type DepartmentTransferUpdateWithoutRecordedByTicketInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersCancelledNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutRecordedByTicketInput = {
@@ -2578,10 +3534,10 @@ export type DepartmentTransferUncheckedUpdateWithoutRecordedByTicketInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2591,9 +3547,17 @@ export type DepartmentTransferUncheckedUpdateWithoutRecordedByTicketInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateManyWithoutRecordedByTicketInput = {
@@ -2607,10 +3571,10 @@ export type DepartmentTransferUncheckedUpdateManyWithoutRecordedByTicketInput = 
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2620,6 +3584,13 @@ export type DepartmentTransferUncheckedUpdateManyWithoutRecordedByTicketInput = 
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -2630,10 +3601,10 @@ export type DepartmentTransferUpdateWithoutCancelledByTicketInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2642,14 +3613,22 @@ export type DepartmentTransferUpdateWithoutCancelledByTicketInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   notice?: Prisma.PersonnelNoticeUpdateOneWithoutTransferNestedInput
+  supersededByCase?: Prisma.OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutDepartmentTransfersNestedInput
   fromDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersFromNestedInput
   toDepartment?: Prisma.DepartmentUpdateOneRequiredWithoutTransfersToNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransfersRecordedNestedInput
   changes?: Prisma.DepartmentTransferChangeUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateWithoutCancelledByTicketInput = {
@@ -2663,10 +3642,10 @@ export type DepartmentTransferUncheckedUpdateWithoutCancelledByTicketInput = {
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2676,9 +3655,17 @@ export type DepartmentTransferUncheckedUpdateWithoutCancelledByTicketInput = {
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.DepartmentTransferChangeUncheckedUpdateManyWithoutTransferNestedInput
   reviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutTransferNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutDepartmentTransferNestedInput
 }
 
 export type DepartmentTransferUncheckedUpdateManyWithoutCancelledByTicketInput = {
@@ -2692,10 +3679,10 @@ export type DepartmentTransferUncheckedUpdateManyWithoutCancelledByTicketInput =
   closesPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   opensPlacementId?: Prisma.StringFieldUpdateOperationsInput | string
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2705,6 +3692,13 @@ export type DepartmentTransferUncheckedUpdateManyWithoutCancelledByTicketInput =
   cancelledReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedBySystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  supersededByCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  graceEndsOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  graceReminderOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  remindedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  snapshotBefore?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  snapshotAfter?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -2773,9 +3767,17 @@ export type DepartmentTransferSelect<ExtArgs extends runtime.Types.Extensions.In
   cancelledReason?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
+  closedBySystem?: boolean
+  supersededByCaseId?: boolean
+  graceEndsOn?: boolean
+  graceReminderOn?: boolean
+  remindedAt?: boolean
+  snapshotBefore?: boolean
+  snapshotAfter?: boolean
   noticeId?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.DepartmentTransfer$noticeArgs<ExtArgs>
+  supersededByCase?: boolean | Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   fromDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   toDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -2783,6 +3785,7 @@ export type DepartmentTransferSelect<ExtArgs extends runtime.Types.Extensions.In
   cancelledByTicket?: boolean | Prisma.DepartmentTransfer$cancelledByTicketArgs<ExtArgs>
   changes?: boolean | Prisma.DepartmentTransfer$changesArgs<ExtArgs>
   reviews?: boolean | Prisma.DepartmentTransfer$reviewsArgs<ExtArgs>
+  itAdminHandover?: boolean | Prisma.DepartmentTransfer$itAdminHandoverArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentTransferCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["departmentTransfer"]>
 
@@ -2811,9 +3814,17 @@ export type DepartmentTransferSelectCreateManyAndReturn<ExtArgs extends runtime.
   cancelledReason?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
+  closedBySystem?: boolean
+  supersededByCaseId?: boolean
+  graceEndsOn?: boolean
+  graceReminderOn?: boolean
+  remindedAt?: boolean
+  snapshotBefore?: boolean
+  snapshotAfter?: boolean
   noticeId?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.DepartmentTransfer$noticeArgs<ExtArgs>
+  supersededByCase?: boolean | Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   fromDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   toDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -2846,9 +3857,17 @@ export type DepartmentTransferSelectUpdateManyAndReturn<ExtArgs extends runtime.
   cancelledReason?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
+  closedBySystem?: boolean
+  supersededByCaseId?: boolean
+  graceEndsOn?: boolean
+  graceReminderOn?: boolean
+  remindedAt?: boolean
+  snapshotBefore?: boolean
+  snapshotAfter?: boolean
   noticeId?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.DepartmentTransfer$noticeArgs<ExtArgs>
+  supersededByCase?: boolean | Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   fromDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   toDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -2881,13 +3900,21 @@ export type DepartmentTransferSelectScalar = {
   cancelledReason?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
+  closedBySystem?: boolean
+  supersededByCaseId?: boolean
+  graceEndsOn?: boolean
+  graceReminderOn?: boolean
+  remindedAt?: boolean
+  snapshotBefore?: boolean
+  snapshotAfter?: boolean
   noticeId?: boolean
 }
 
-export type DepartmentTransferOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "fromDepartmentId" | "toDepartmentId" | "effectiveOn" | "status" | "closesPlacementId" | "opensPlacementId" | "headHandover" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "effectiveAt" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelledReason" | "closedAt" | "closedByAppUserId" | "noticeId", ExtArgs["result"]["departmentTransfer"]>
+export type DepartmentTransferOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "fromDepartmentId" | "toDepartmentId" | "effectiveOn" | "status" | "closesPlacementId" | "opensPlacementId" | "headHandover" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "effectiveAt" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelledReason" | "closedAt" | "closedByAppUserId" | "closedBySystem" | "supersededByCaseId" | "graceEndsOn" | "graceReminderOn" | "remindedAt" | "snapshotBefore" | "snapshotAfter" | "noticeId", ExtArgs["result"]["departmentTransfer"]>
 export type DepartmentTransferInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.DepartmentTransfer$noticeArgs<ExtArgs>
+  supersededByCase?: boolean | Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   fromDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   toDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -2895,11 +3922,13 @@ export type DepartmentTransferInclude<ExtArgs extends runtime.Types.Extensions.I
   cancelledByTicket?: boolean | Prisma.DepartmentTransfer$cancelledByTicketArgs<ExtArgs>
   changes?: boolean | Prisma.DepartmentTransfer$changesArgs<ExtArgs>
   reviews?: boolean | Prisma.DepartmentTransfer$reviewsArgs<ExtArgs>
+  itAdminHandover?: boolean | Prisma.DepartmentTransfer$itAdminHandoverArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentTransferCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DepartmentTransferIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.DepartmentTransfer$noticeArgs<ExtArgs>
+  supersededByCase?: boolean | Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   fromDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   toDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -2909,6 +3938,7 @@ export type DepartmentTransferIncludeCreateManyAndReturn<ExtArgs extends runtime
 export type DepartmentTransferIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.DepartmentTransfer$noticeArgs<ExtArgs>
+  supersededByCase?: boolean | Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   fromDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   toDepartment?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -2921,6 +3951,7 @@ export type $DepartmentTransferPayload<ExtArgs extends runtime.Types.Extensions.
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     notice: Prisma.$PersonnelNoticePayload<ExtArgs> | null
+    supersededByCase: Prisma.$OffboardingCasePayload<ExtArgs> | null
     employee: Prisma.$EmployeePayload<ExtArgs>
     fromDepartment: Prisma.$DepartmentPayload<ExtArgs>
     toDepartment: Prisma.$DepartmentPayload<ExtArgs>
@@ -2928,6 +3959,7 @@ export type $DepartmentTransferPayload<ExtArgs extends runtime.Types.Extensions.
     cancelledByTicket: Prisma.$SuperAdminEventTicketPayload<ExtArgs> | null
     changes: Prisma.$DepartmentTransferChangePayload<ExtArgs>[]
     reviews: Prisma.$TransferReviewPayload<ExtArgs>[]
+    itAdminHandover: Prisma.$ItAdminHandoverPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2940,10 +3972,10 @@ export type $DepartmentTransferPayload<ExtArgs extends runtime.Types.Extensions.
     closesPlacementId: string
     opensPlacementId: string
     headHandover: runtime.JsonValue | null
-    groundsType: string
+    groundsType: string | null
     groundsReference: string
-    groundsIssuer: string
-    groundsIssuedOn: Date
+    groundsIssuer: string | null
+    groundsIssuedOn: Date | null
     recordedByAppUserId: string | null
     recordedByTicketId: string | null
     recordedAt: Date
@@ -2954,6 +3986,13 @@ export type $DepartmentTransferPayload<ExtArgs extends runtime.Types.Extensions.
     cancelledReason: string | null
     closedAt: Date | null
     closedByAppUserId: string | null
+    closedBySystem: boolean
+    supersededByCaseId: string | null
+    graceEndsOn: Date | null
+    graceReminderOn: Date | null
+    remindedAt: Date | null
+    snapshotBefore: runtime.JsonValue | null
+    snapshotAfter: runtime.JsonValue | null
     noticeId: string | null
   }, ExtArgs["result"]["departmentTransfer"]>
   composites: {}
@@ -3351,6 +4390,7 @@ export interface Prisma__DepartmentTransferClient<T, Null = never, ExtArgs exten
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   notice<T extends Prisma.DepartmentTransfer$noticeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentTransfer$noticeArgs<ExtArgs>>): Prisma.Prisma__PersonnelNoticeClient<runtime.Types.Result.GetResult<Prisma.$PersonnelNoticePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  supersededByCase<T extends Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentTransfer$supersededByCaseArgs<ExtArgs>>): Prisma.Prisma__OffboardingCaseClient<runtime.Types.Result.GetResult<Prisma.$OffboardingCasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   fromDepartment<T extends Prisma.DepartmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   toDepartment<T extends Prisma.DepartmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -3358,6 +4398,7 @@ export interface Prisma__DepartmentTransferClient<T, Null = never, ExtArgs exten
   cancelledByTicket<T extends Prisma.DepartmentTransfer$cancelledByTicketArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentTransfer$cancelledByTicketArgs<ExtArgs>>): Prisma.Prisma__SuperAdminEventTicketClient<runtime.Types.Result.GetResult<Prisma.$SuperAdminEventTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   changes<T extends Prisma.DepartmentTransfer$changesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentTransfer$changesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentTransferChangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.DepartmentTransfer$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentTransfer$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransferReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  itAdminHandover<T extends Prisma.DepartmentTransfer$itAdminHandoverArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentTransfer$itAdminHandoverArgs<ExtArgs>>): Prisma.Prisma__ItAdminHandoverClient<runtime.Types.Result.GetResult<Prisma.$ItAdminHandoverPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3411,6 +4452,13 @@ export interface DepartmentTransferFieldRefs {
   readonly cancelledReason: Prisma.FieldRef<"DepartmentTransfer", 'String'>
   readonly closedAt: Prisma.FieldRef<"DepartmentTransfer", 'DateTime'>
   readonly closedByAppUserId: Prisma.FieldRef<"DepartmentTransfer", 'String'>
+  readonly closedBySystem: Prisma.FieldRef<"DepartmentTransfer", 'Boolean'>
+  readonly supersededByCaseId: Prisma.FieldRef<"DepartmentTransfer", 'String'>
+  readonly graceEndsOn: Prisma.FieldRef<"DepartmentTransfer", 'DateTime'>
+  readonly graceReminderOn: Prisma.FieldRef<"DepartmentTransfer", 'DateTime'>
+  readonly remindedAt: Prisma.FieldRef<"DepartmentTransfer", 'DateTime'>
+  readonly snapshotBefore: Prisma.FieldRef<"DepartmentTransfer", 'Json'>
+  readonly snapshotAfter: Prisma.FieldRef<"DepartmentTransfer", 'Json'>
   readonly noticeId: Prisma.FieldRef<"DepartmentTransfer", 'String'>
 }
     
@@ -3832,6 +4880,25 @@ export type DepartmentTransfer$noticeArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
+ * DepartmentTransfer.supersededByCase
+ */
+export type DepartmentTransfer$supersededByCaseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OffboardingCase
+   */
+  select?: Prisma.OffboardingCaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OffboardingCase
+   */
+  omit?: Prisma.OffboardingCaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OffboardingCaseInclude<ExtArgs> | null
+  where?: Prisma.OffboardingCaseWhereInput
+}
+
+/**
  * DepartmentTransfer.recordedByTicket
  */
 export type DepartmentTransfer$recordedByTicketArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3915,6 +4982,25 @@ export type DepartmentTransfer$reviewsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.TransferReviewScalarFieldEnum | Prisma.TransferReviewScalarFieldEnum[]
+}
+
+/**
+ * DepartmentTransfer.itAdminHandover
+ */
+export type DepartmentTransfer$itAdminHandoverArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ItAdminHandover
+   */
+  select?: Prisma.ItAdminHandoverSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ItAdminHandover
+   */
+  omit?: Prisma.ItAdminHandoverOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItAdminHandoverInclude<ExtArgs> | null
+  where?: Prisma.ItAdminHandoverWhereInput
 }
 
 /**

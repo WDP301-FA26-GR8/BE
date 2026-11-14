@@ -252,9 +252,12 @@ export type EmployeeWhereInput = {
   itAdminOf?: Prisma.DepartmentListRelationFilter
   headPeriods?: Prisma.DepartmentHeadPeriodListRelationFilter
   ownedApplications?: Prisma.ApplicationListRelationFilter
+  applicationsInCharge?: Prisma.ApplicationListRelationFilter
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceMemberships?: Prisma.PlanWorkspaceAdminListRelationFilter
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverListRelationFilter
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
   subscriptionsInCharge?: Prisma.SubscriptionListRelationFilter
   planTermOpinions?: Prisma.PlanTermOpinionListRelationFilter
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerListRelationFilter
@@ -330,9 +333,12 @@ export type EmployeeOrderByWithRelationInput = {
   itAdminOf?: Prisma.DepartmentOrderByRelationAggregateInput
   headPeriods?: Prisma.DepartmentHeadPeriodOrderByRelationAggregateInput
   ownedApplications?: Prisma.ApplicationOrderByRelationAggregateInput
+  applicationsInCharge?: Prisma.ApplicationOrderByRelationAggregateInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileOrderByRelationAggregateInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileOrderByRelationAggregateInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminOrderByRelationAggregateInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverOrderByRelationAggregateInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalOrderByRelationAggregateInput
   subscriptionsInCharge?: Prisma.SubscriptionOrderByRelationAggregateInput
   planTermOpinions?: Prisma.PlanTermOpinionOrderByRelationAggregateInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerOrderByRelationAggregateInput
@@ -413,9 +419,12 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   itAdminOf?: Prisma.DepartmentListRelationFilter
   headPeriods?: Prisma.DepartmentHeadPeriodListRelationFilter
   ownedApplications?: Prisma.ApplicationListRelationFilter
+  applicationsInCharge?: Prisma.ApplicationListRelationFilter
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileListRelationFilter
   workspaceMemberships?: Prisma.PlanWorkspaceAdminListRelationFilter
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverListRelationFilter
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
   subscriptionsInCharge?: Prisma.SubscriptionListRelationFilter
   planTermOpinions?: Prisma.PlanTermOpinionListRelationFilter
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerListRelationFilter
@@ -528,9 +537,12 @@ export type EmployeeCreateInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -605,9 +617,12 @@ export type EmployeeUncheckedCreateInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -682,9 +697,12 @@ export type EmployeeUpdateInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -759,9 +777,12 @@ export type EmployeeUncheckedUpdateInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -1008,6 +1029,12 @@ export type EmployeeCreateNestedOneWithoutOwnedApplicationsInput = {
   connect?: Prisma.EmployeeWhereUniqueInput
 }
 
+export type EmployeeCreateNestedOneWithoutApplicationsInChargeInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutApplicationsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutApplicationsInChargeInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutApplicationsInChargeInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
 export type EmployeeUpdateOneWithoutOwnedApplicationsNestedInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutOwnedApplicationsInput, Prisma.EmployeeUncheckedCreateWithoutOwnedApplicationsInput>
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutOwnedApplicationsInput
@@ -1016,6 +1043,16 @@ export type EmployeeUpdateOneWithoutOwnedApplicationsNestedInput = {
   delete?: Prisma.EmployeeWhereInput | boolean
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutOwnedApplicationsInput, Prisma.EmployeeUpdateWithoutOwnedApplicationsInput>, Prisma.EmployeeUncheckedUpdateWithoutOwnedApplicationsInput>
+}
+
+export type EmployeeUpdateOneWithoutApplicationsInChargeNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutApplicationsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutApplicationsInChargeInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutApplicationsInChargeInput
+  upsert?: Prisma.EmployeeUpsertWithoutApplicationsInChargeInput
+  disconnect?: Prisma.EmployeeWhereInput | boolean
+  delete?: Prisma.EmployeeWhereInput | boolean
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutApplicationsInChargeInput, Prisma.EmployeeUpdateWithoutApplicationsInChargeInput>, Prisma.EmployeeUncheckedUpdateWithoutApplicationsInChargeInput>
 }
 
 export type EmployeeCreateNestedOneWithoutWorkspacePrimaryOwnerOfInput = {
@@ -1254,6 +1291,20 @@ export type EmployeeUpdateOneWithoutHandoverDutiesConfirmedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutHandoverDutiesConfirmedInput, Prisma.EmployeeUpdateWithoutHandoverDutiesConfirmedInput>, Prisma.EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput>
 }
 
+export type EmployeeCreateNestedOneWithoutDepartmentSoftwareProposalsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutDepartmentSoftwareProposalsInput, Prisma.EmployeeUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutDepartmentSoftwareProposalsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutDepartmentSoftwareProposalsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutDepartmentSoftwareProposalsInput, Prisma.EmployeeUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutDepartmentSoftwareProposalsInput
+  upsert?: Prisma.EmployeeUpsertWithoutDepartmentSoftwareProposalsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutDepartmentSoftwareProposalsInput, Prisma.EmployeeUpdateWithoutDepartmentSoftwareProposalsInput>, Prisma.EmployeeUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+}
+
 export type EmployeeCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutOrganizationInput, Prisma.EmployeeUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeCreateWithoutOrganizationInput[] | Prisma.EmployeeUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeCreateOrConnectWithoutOrganizationInput[]
@@ -1464,6 +1515,22 @@ export type EmployeeUpdateOneRequiredWithoutSuperAdminEventTicketsAboutNestedInp
   upsert?: Prisma.EmployeeUpsertWithoutSuperAdminEventTicketsAboutInput
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutSuperAdminEventTicketsAboutInput, Prisma.EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput>, Prisma.EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput>
+}
+
+export type EmployeeCreateNestedOneWithoutItAdminHandoversReceivedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutItAdminHandoversReceivedInput, Prisma.EmployeeUncheckedCreateWithoutItAdminHandoversReceivedInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutItAdminHandoversReceivedInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneWithoutItAdminHandoversReceivedNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutItAdminHandoversReceivedInput, Prisma.EmployeeUncheckedCreateWithoutItAdminHandoversReceivedInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutItAdminHandoversReceivedInput
+  upsert?: Prisma.EmployeeUpsertWithoutItAdminHandoversReceivedInput
+  disconnect?: Prisma.EmployeeWhereInput | boolean
+  delete?: Prisma.EmployeeWhereInput | boolean
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutItAdminHandoversReceivedInput, Prisma.EmployeeUpdateWithoutItAdminHandoversReceivedInput>, Prisma.EmployeeUncheckedUpdateWithoutItAdminHandoversReceivedInput>
 }
 
 export type EmployeeCreateNestedOneWithoutAccessRequestsMadeInput = {
@@ -1919,9 +1986,12 @@ export type EmployeeCreateWithoutCommitmentReleasesInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -1995,9 +2065,12 @@ export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2087,9 +2160,12 @@ export type EmployeeUpdateWithoutCommitmentReleasesInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -2163,9 +2239,12 @@ export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2239,9 +2318,12 @@ export type EmployeeCreateWithoutInvoicesRecordedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -2315,9 +2397,12 @@ export type EmployeeUncheckedCreateWithoutInvoicesRecordedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2407,9 +2492,12 @@ export type EmployeeUpdateWithoutInvoicesRecordedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -2483,9 +2571,12 @@ export type EmployeeUncheckedUpdateWithoutInvoicesRecordedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2559,9 +2650,12 @@ export type EmployeeCreateWithoutBudgetCyclesOpenedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -2635,9 +2729,12 @@ export type EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2716,9 +2813,12 @@ export type EmployeeCreateWithoutBudgetCyclesPublishedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -2792,9 +2892,12 @@ export type EmployeeUncheckedCreateWithoutBudgetCyclesPublishedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2884,9 +2987,12 @@ export type EmployeeUpdateWithoutBudgetCyclesOpenedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -2960,9 +3066,12 @@ export type EmployeeUncheckedUpdateWithoutBudgetCyclesOpenedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3047,9 +3156,12 @@ export type EmployeeUpdateWithoutBudgetCyclesPublishedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -3123,9 +3235,12 @@ export type EmployeeUncheckedUpdateWithoutBudgetCyclesPublishedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3198,9 +3313,12 @@ export type EmployeeCreateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -3274,9 +3392,12 @@ export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3337,6 +3458,169 @@ export type EmployeeCreateOrConnectWithoutOwnedApplicationsInput = {
   create: Prisma.XOR<Prisma.EmployeeCreateWithoutOwnedApplicationsInput, Prisma.EmployeeUncheckedCreateWithoutOwnedApplicationsInput>
 }
 
+export type EmployeeCreateWithoutApplicationsInChargeInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutApplicationsInChargeInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutApplicationsInChargeInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutApplicationsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutApplicationsInChargeInput>
+}
+
 export type EmployeeUpsertWithoutOwnedApplicationsInput = {
   update: Prisma.XOR<Prisma.EmployeeUpdateWithoutOwnedApplicationsInput, Prisma.EmployeeUncheckedUpdateWithoutOwnedApplicationsInput>
   create: Prisma.XOR<Prisma.EmployeeCreateWithoutOwnedApplicationsInput, Prisma.EmployeeUncheckedCreateWithoutOwnedApplicationsInput>
@@ -3366,9 +3650,12 @@ export type EmployeeUpdateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -3442,9 +3729,181 @@ export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUpsertWithoutApplicationsInChargeInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutApplicationsInChargeInput, Prisma.EmployeeUncheckedUpdateWithoutApplicationsInChargeInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutApplicationsInChargeInput, Prisma.EmployeeUncheckedCreateWithoutApplicationsInChargeInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutApplicationsInChargeInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutApplicationsInChargeInput, Prisma.EmployeeUncheckedUpdateWithoutApplicationsInChargeInput>
+}
+
+export type EmployeeUpdateWithoutApplicationsInChargeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutApplicationsInChargeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3519,8 +3978,11 @@ export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -3595,8 +4057,11 @@ export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3676,8 +4141,11 @@ export type EmployeeCreateWithoutWorkspaceEmergencyHolderOfInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -3752,8 +4220,11 @@ export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3844,8 +4315,11 @@ export type EmployeeUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -3920,8 +4394,11 @@ export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4007,8 +4484,11 @@ export type EmployeeUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -4083,8 +4563,11 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4159,8 +4642,11 @@ export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -4235,8 +4721,11 @@ export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4327,8 +4816,11 @@ export type EmployeeUpdateWithoutWorkspaceMembershipsInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -4403,8 +4895,11 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4479,9 +4974,12 @@ export type EmployeeCreateWithoutSubscriptionsInChargeInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -4555,9 +5053,12 @@ export type EmployeeUncheckedCreateWithoutSubscriptionsInChargeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4647,9 +5148,12 @@ export type EmployeeUpdateWithoutSubscriptionsInChargeInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -4723,9 +5227,12 @@ export type EmployeeUncheckedUpdateWithoutSubscriptionsInChargeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4799,9 +5306,12 @@ export type EmployeeCreateWithoutPlanTermOpinionsInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -4875,9 +5385,12 @@ export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4967,9 +5480,12 @@ export type EmployeeUpdateWithoutPlanTermOpinionsInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -5043,9 +5559,12 @@ export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5119,9 +5638,12 @@ export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
@@ -5195,9 +5717,12 @@ export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5287,9 +5812,12 @@ export type EmployeeUpdateWithoutApplicationBusinessOwnersInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -5363,9 +5891,12 @@ export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5439,9 +5970,12 @@ export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -5515,9 +6049,12 @@ export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5607,9 +6144,12 @@ export type EmployeeUpdateWithoutRetirementConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -5683,9 +6223,12 @@ export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5759,9 +6302,12 @@ export type EmployeeCreateWithoutDeviceRegistrationsHeldInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -5835,9 +6381,12 @@ export type EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5927,9 +6476,12 @@ export type EmployeeUpdateWithoutDeviceRegistrationsHeldInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -6003,9 +6555,12 @@ export type EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6078,9 +6633,12 @@ export type EmployeeCreateWithoutAppUserInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -6154,9 +6712,12 @@ export type EmployeeUncheckedCreateWithoutAppUserInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6246,9 +6807,12 @@ export type EmployeeUpdateWithoutAppUserInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -6322,9 +6886,12 @@ export type EmployeeUncheckedUpdateWithoutAppUserInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6399,9 +6966,12 @@ export type EmployeeCreateWithoutAccessBlockInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -6475,9 +7045,12 @@ export type EmployeeUncheckedCreateWithoutAccessBlockInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6567,9 +7140,12 @@ export type EmployeeUpdateWithoutAccessBlockInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -6643,9 +7219,12 @@ export type EmployeeUncheckedUpdateWithoutAccessBlockInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6719,9 +7298,12 @@ export type EmployeeCreateWithoutLicenseAssignmentsInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -6795,9 +7377,12 @@ export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -6887,9 +7472,12 @@ export type EmployeeUpdateWithoutLicenseAssignmentsInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -6963,9 +7551,12 @@ export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7039,9 +7630,12 @@ export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -7115,9 +7709,12 @@ export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7207,9 +7804,12 @@ export type EmployeeUpdateWithoutProvisioningTasksInChargeInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -7283,9 +7883,12 @@ export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7359,9 +7962,12 @@ export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -7435,9 +8041,12 @@ export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7527,9 +8136,12 @@ export type EmployeeUpdateWithoutRevocationReasonsDecidedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -7603,9 +8215,12 @@ export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -7679,9 +8294,12 @@ export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -7755,9 +8373,12 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7836,9 +8457,12 @@ export type EmployeeCreateWithoutHandoverDutiesFixedToInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -7912,9 +8536,12 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -7993,9 +8620,12 @@ export type EmployeeCreateWithoutHandoverDutiesConfirmedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -8069,9 +8699,12 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8161,9 +8794,12 @@ export type EmployeeUpdateWithoutHandoverDutiesAboutInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -8237,9 +8873,12 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8324,9 +8963,12 @@ export type EmployeeUpdateWithoutHandoverDutiesFixedToInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -8400,9 +9042,12 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8487,9 +9132,12 @@ export type EmployeeUpdateWithoutHandoverDutiesConfirmedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -8563,9 +9211,12 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -8620,6 +9271,338 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
+export type EmployeeCreateWithoutDepartmentSoftwareProposalsInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutDepartmentSoftwareProposalsInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutDepartmentSoftwareProposalsInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutDepartmentSoftwareProposalsInput, Prisma.EmployeeUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+}
+
+export type EmployeeUpsertWithoutDepartmentSoftwareProposalsInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutDepartmentSoftwareProposalsInput, Prisma.EmployeeUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutDepartmentSoftwareProposalsInput, Prisma.EmployeeUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutDepartmentSoftwareProposalsInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutDepartmentSoftwareProposalsInput, Prisma.EmployeeUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+}
+
+export type EmployeeUpdateWithoutDepartmentSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutDepartmentSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
 export type EmployeeCreateWithoutOrganizationInput = {
   id?: string
   employeeCode: string
@@ -8638,9 +9621,12 @@ export type EmployeeCreateWithoutOrganizationInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -8714,9 +9700,12 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -8835,9 +9824,12 @@ export type EmployeeCreateWithoutItAdminOfInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -8911,9 +9903,12 @@ export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9003,9 +9998,12 @@ export type EmployeeUpdateWithoutItAdminOfInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -9079,9 +10077,12 @@ export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9155,9 +10156,12 @@ export type EmployeeCreateWithoutHeadPeriodsInput = {
   appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -9231,9 +10235,12 @@ export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
   appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9323,9 +10330,12 @@ export type EmployeeUpdateWithoutHeadPeriodsInput = {
   appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -9399,9 +10409,12 @@ export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
   appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9475,9 +10488,12 @@ export type EmployeeCreateWithoutPlacementsInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -9551,9 +10567,12 @@ export type EmployeeUncheckedCreateWithoutPlacementsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9643,9 +10662,12 @@ export type EmployeeUpdateWithoutPlacementsInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -9719,9 +10741,12 @@ export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -9796,9 +10821,12 @@ export type EmployeeCreateWithoutDepartmentTransfersInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -9872,9 +10900,12 @@ export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -9964,9 +10995,12 @@ export type EmployeeUpdateWithoutDepartmentTransfersInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -10040,9 +11074,12 @@ export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10116,9 +11153,12 @@ export type EmployeeCreateWithoutTransferReviewsAboutInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -10192,9 +11232,12 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10284,9 +11327,12 @@ export type EmployeeUpdateWithoutTransferReviewsAboutInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -10360,9 +11406,12 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10436,9 +11485,12 @@ export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -10512,9 +11564,12 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10604,9 +11659,12 @@ export type EmployeeUpdateWithoutTransferReviewsDecidedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -10680,9 +11738,12 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -10756,9 +11817,12 @@ export type EmployeeCreateWithoutEmployeeLeavesInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -10832,9 +11896,12 @@ export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -10924,9 +11991,12 @@ export type EmployeeUpdateWithoutEmployeeLeavesInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -11000,9 +12070,12 @@ export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11076,9 +12149,12 @@ export type EmployeeCreateWithoutOffboardingCasesInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -11152,9 +12228,12 @@ export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11244,9 +12323,12 @@ export type EmployeeUpdateWithoutOffboardingCasesInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -11320,9 +12402,12 @@ export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11396,9 +12481,12 @@ export type EmployeeCreateWithoutNoticesAboutInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -11472,9 +12560,12 @@ export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11553,9 +12644,12 @@ export type EmployeeCreateWithoutNoticesSentInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -11629,9 +12723,12 @@ export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -11721,9 +12818,12 @@ export type EmployeeUpdateWithoutNoticesAboutInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -11797,9 +12897,12 @@ export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -11884,9 +12987,12 @@ export type EmployeeUpdateWithoutNoticesSentInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -11960,9 +13066,12 @@ export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12036,9 +13145,12 @@ export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -12112,9 +13224,12 @@ export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12204,9 +13319,12 @@ export type EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -12280,9 +13398,12 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -12337,6 +13458,338 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
+export type EmployeeCreateWithoutItAdminHandoversReceivedInput = {
+  id?: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
+  subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutItAdminHandoversReceivedInput = {
+  id?: string
+  organizationId: string
+  employeeCode: string
+  fullName: string
+  workEmail?: string | null
+  normalizedWorkEmail?: string | null
+  jobTitle?: string | null
+  employmentType: $Enums.EmploymentType
+  hireDate: Date | string
+  status?: $Enums.EmployeeStatus
+  workState?: $Enums.EmployeeWorkState
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutEmployeeInput
+  appUser?: Prisma.AppUserUncheckedCreateNestedOneWithoutEmployeeInput
+  itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
+  ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutDefaultResponsibleInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedCreateNestedManyWithoutDecidedByInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutRequesterInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutWithdrawnByInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCancelledByInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutResponsibleInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedManyWithoutBoundaryDecidedByInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHolderInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutHandoverConfirmedByInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutEmployeeInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmerInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedCreateNestedManyWithoutHolderInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutConfirmedByInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutEndedByInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedCreateNestedManyWithoutEmployeeInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutAssigneeInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDecidedByInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRanByInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutSubmittedByInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutDecidedByInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutConfirmedByInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAskedByInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutReleasedByInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRecordedByInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOpenedByInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutPublishedByInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutAnsweredByInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutHolderInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedCreateNestedManyWithoutEmployeeInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutHolderInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutChangedByInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutDecidedByInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutProposedOwnerInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutSavedByInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutRejectedByInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutCompletedByInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutEmployeeInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedCreateNestedManyWithoutDecidedByInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutEmployeeInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutEmployeeInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutSubjectInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedCreateNestedOneWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutItAdminHandoversReceivedInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutItAdminHandoversReceivedInput, Prisma.EmployeeUncheckedCreateWithoutItAdminHandoversReceivedInput>
+}
+
+export type EmployeeUpsertWithoutItAdminHandoversReceivedInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutItAdminHandoversReceivedInput, Prisma.EmployeeUncheckedUpdateWithoutItAdminHandoversReceivedInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutItAdminHandoversReceivedInput, Prisma.EmployeeUncheckedCreateWithoutItAdminHandoversReceivedInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutItAdminHandoversReceivedInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutItAdminHandoversReceivedInput, Prisma.EmployeeUncheckedUpdateWithoutItAdminHandoversReceivedInput>
+}
+
+export type EmployeeUpdateWithoutItAdminHandoversReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUpdateOneWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutItAdminHandoversReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  workEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normalizedWorkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
+  hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutEmployeeNestedInput
+  appUser?: Prisma.AppUserUncheckedUpdateOneWithoutEmployeeNestedInput
+  itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
+  ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
+  workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
+  workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
+  planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  provisioningTasksInCharge?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutDefaultResponsibleNestedInput
+  revocationReasonsDecided?: Prisma.ProvisioningTaskReasonUncheckedUpdateManyWithoutDecidedByNestedInput
+  retirementConfirmationsGiven?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  accessRequestsMade?: Prisma.AccessRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  accessRequestsWithdrawn?: Prisma.AccessRequestUncheckedUpdateManyWithoutWithdrawnByNestedInput
+  accessRequestsCancelled?: Prisma.AccessRequestUncheckedUpdateManyWithoutCancelledByNestedInput
+  serviceAccountsAnsweredFor?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutResponsibleNestedInput
+  serviceAccountBoundariesDecided?: Prisma.AccessRequestServiceAccountUncheckedUpdateManyWithoutBoundaryDecidedByNestedInput
+  returnRequestsSent?: Prisma.ReturnRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  returnRequestsHeld?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHolderNestedInput
+  returnHandoversConfirmed?: Prisma.ReturnRequestUncheckedUpdateManyWithoutHandoverConfirmedByNestedInput
+  handoverDutiesAbout?: Prisma.HandoverDutyUncheckedUpdateManyWithoutEmployeeNestedInput
+  handoverDutiesFixedTo?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmerNestedInput
+  deviceRegistrationsHeld?: Prisma.DeviceRegistrationUncheckedUpdateManyWithoutHolderNestedInput
+  handoverDutiesConfirmed?: Prisma.HandoverDutyUncheckedUpdateManyWithoutConfirmedByNestedInput
+  accessRequestBeneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestLinesEnded?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutEndedByNestedInput
+  lineDecisionsGiven?: Prisma.AccessRequestLineDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  supplementDropsAbout?: Prisma.RequestSupplementDropUncheckedUpdateManyWithoutEmployeeNestedInput
+  accessRequestStepsAssigned?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutAssigneeNestedInput
+  approvalRecordsGiven?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDecidedByNestedInput
+  requestBudgetChecksRun?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRanByNestedInput
+  spendBatchesSubmitted?: Prisma.SpendBatchUncheckedUpdateManyWithoutSubmittedByNestedInput
+  spendDecisionsGiven?: Prisma.SpendDecisionUncheckedUpdateManyWithoutDecidedByNestedInput
+  reserveConfirmationsGiven?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutConfirmedByNestedInput
+  budgetQuestionsAsked?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAskedByNestedInput
+  commitmentReleases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutReleasedByNestedInput
+  invoicesRecorded?: Prisma.InvoiceUncheckedUpdateManyWithoutRecordedByNestedInput
+  budgetCyclesOpened?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOpenedByNestedInput
+  budgetCyclesPublished?: Prisma.BudgetCycleUncheckedUpdateManyWithoutPublishedByNestedInput
+  budgetQuestionsAnswered?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutAnsweredByNestedInput
+  stepSlaRemindersHeld?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutHolderNestedInput
+  stepSlaRemindersReceived?: Prisma.StepSlaReminderRecipientUncheckedUpdateManyWithoutEmployeeNestedInput
+  congestionIncidentsAbout?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutHolderNestedInput
+  requestSupplementsMade?: Prisma.RequestSupplementUncheckedUpdateManyWithoutChangedByNestedInput
+  requestFinanceReviewsGiven?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutDecidedByNestedInput
+  assessmentsProposedOwner?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerNestedInput
+  assessmentsSaved?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByNestedInput
+  assessmentsRejected?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByNestedInput
+  assessmentsCompleted?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByNestedInput
+  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsAbout?: Prisma.TransferReviewUncheckedUpdateManyWithoutEmployeeNestedInput
+  transferReviewsDecided?: Prisma.TransferReviewItemUncheckedUpdateManyWithoutDecidedByNestedInput
+  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutEmployeeNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesAbout?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutEmployeeNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderNestedInput
+  superAdminEventTicketsAbout?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutSubjectNestedInput
+  accessBlock?: Prisma.EmployeeAccessBlockUncheckedUpdateOneWithoutEmployeeNestedInput
+}
+
 export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   id?: string
   employeeCode: string
@@ -12356,9 +13809,12 @@ export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -12432,9 +13888,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12513,9 +13972,12 @@ export type EmployeeCreateWithoutAccessRequestsWithdrawnInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -12589,9 +14051,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12670,9 +14135,12 @@ export type EmployeeCreateWithoutAccessRequestsCancelledInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -12746,9 +14214,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -12838,9 +14309,12 @@ export type EmployeeUpdateWithoutAccessRequestsMadeInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -12914,9 +14388,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13001,9 +14478,12 @@ export type EmployeeUpdateWithoutAccessRequestsWithdrawnInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -13077,9 +14557,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13164,9 +14647,12 @@ export type EmployeeUpdateWithoutAccessRequestsCancelledInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -13240,9 +14726,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13316,9 +14805,12 @@ export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -13392,9 +14884,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13484,9 +14979,12 @@ export type EmployeeUpdateWithoutAccessRequestBeneficiariesInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -13560,9 +15058,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13636,9 +15137,12 @@ export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -13712,9 +15216,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -13804,9 +15311,12 @@ export type EmployeeUpdateWithoutAccessRequestLinesEndedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -13880,9 +15390,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -13956,9 +15469,12 @@ export type EmployeeCreateWithoutLineDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -14032,9 +15548,12 @@ export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -14124,9 +15643,12 @@ export type EmployeeUpdateWithoutLineDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -14200,9 +15722,12 @@ export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14276,9 +15801,12 @@ export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -14352,9 +15880,12 @@ export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -14444,9 +15975,12 @@ export type EmployeeUpdateWithoutAccessRequestStepsAssignedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -14520,9 +16054,12 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14596,9 +16133,12 @@ export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -14672,9 +16212,12 @@ export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -14764,9 +16307,12 @@ export type EmployeeUpdateWithoutApprovalRecordsGivenInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -14840,9 +16386,12 @@ export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -14916,9 +16465,12 @@ export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -14992,9 +16544,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15073,9 +16628,12 @@ export type EmployeeCreateWithoutAssessmentsRejectedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -15149,9 +16707,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15230,9 +16791,12 @@ export type EmployeeCreateWithoutAssessmentsSavedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -15306,9 +16870,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15387,9 +16954,12 @@ export type EmployeeCreateWithoutAssessmentsCompletedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -15463,9 +17033,12 @@ export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -15555,9 +17128,12 @@ export type EmployeeUpdateWithoutAssessmentsProposedOwnerInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -15631,9 +17207,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15718,9 +17297,12 @@ export type EmployeeUpdateWithoutAssessmentsRejectedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -15794,9 +17376,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -15881,9 +17466,12 @@ export type EmployeeUpdateWithoutAssessmentsSavedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -15957,9 +17545,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16044,9 +17635,12 @@ export type EmployeeUpdateWithoutAssessmentsCompletedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -16120,9 +17714,12 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16196,9 +17793,12 @@ export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -16272,9 +17872,12 @@ export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -16364,9 +17967,12 @@ export type EmployeeUpdateWithoutRequestBudgetChecksRunInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -16440,9 +18046,12 @@ export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16516,9 +18125,12 @@ export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -16592,9 +18204,12 @@ export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -16684,9 +18299,12 @@ export type EmployeeUpdateWithoutRequestFinanceReviewsGivenInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -16760,9 +18378,12 @@ export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -16836,9 +18457,12 @@ export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -16912,9 +18536,12 @@ export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17004,9 +18631,12 @@ export type EmployeeUpdateWithoutSpendBatchesSubmittedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -17080,9 +18710,12 @@ export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -17156,9 +18789,12 @@ export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -17232,9 +18868,12 @@ export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17324,9 +18963,12 @@ export type EmployeeUpdateWithoutRequestSupplementsMadeInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -17400,9 +19042,12 @@ export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -17476,9 +19121,12 @@ export type EmployeeCreateWithoutSupplementDropsAboutInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -17552,9 +19200,12 @@ export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17644,9 +19295,12 @@ export type EmployeeUpdateWithoutSupplementDropsAboutInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -17720,9 +19374,12 @@ export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -17796,9 +19453,12 @@ export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -17872,9 +19532,12 @@ export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -17964,9 +19627,12 @@ export type EmployeeUpdateWithoutSpendDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -18040,9 +19706,12 @@ export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18116,9 +19785,12 @@ export type EmployeeCreateWithoutReserveConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -18192,9 +19864,12 @@ export type EmployeeUncheckedCreateWithoutReserveConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -18284,9 +19959,12 @@ export type EmployeeUpdateWithoutReserveConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -18360,9 +20038,12 @@ export type EmployeeUncheckedUpdateWithoutReserveConfirmationsGivenInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18436,9 +20117,12 @@ export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -18512,9 +20196,12 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -18593,9 +20280,12 @@ export type EmployeeCreateWithoutBudgetQuestionsAnsweredInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -18669,9 +20359,12 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -18761,9 +20454,12 @@ export type EmployeeUpdateWithoutBudgetQuestionsAskedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -18837,9 +20533,12 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -18924,9 +20623,12 @@ export type EmployeeUpdateWithoutBudgetQuestionsAnsweredInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -19000,9 +20702,12 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19076,9 +20781,12 @@ export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -19152,9 +20860,12 @@ export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -19233,9 +20944,12 @@ export type EmployeeCreateWithoutServiceAccountBoundariesDecidedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -19309,9 +21023,12 @@ export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput =
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -19401,9 +21118,12 @@ export type EmployeeUpdateWithoutServiceAccountsAnsweredForInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -19477,9 +21197,12 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19564,9 +21287,12 @@ export type EmployeeUpdateWithoutServiceAccountBoundariesDecidedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -19640,9 +21366,12 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput =
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -19716,9 +21445,12 @@ export type EmployeeCreateWithoutReturnRequestsSentInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -19792,9 +21524,12 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -19873,9 +21608,12 @@ export type EmployeeCreateWithoutReturnRequestsHeldInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -19949,9 +21687,12 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -20030,9 +21771,12 @@ export type EmployeeCreateWithoutReturnHandoversConfirmedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -20106,9 +21850,12 @@ export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -20198,9 +21945,12 @@ export type EmployeeUpdateWithoutReturnRequestsSentInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -20274,9 +22024,12 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -20361,9 +22114,12 @@ export type EmployeeUpdateWithoutReturnRequestsHeldInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -20437,9 +22193,12 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -20524,9 +22283,12 @@ export type EmployeeUpdateWithoutReturnHandoversConfirmedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -20600,9 +22362,12 @@ export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -20676,9 +22441,12 @@ export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -20752,9 +22520,12 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -20844,9 +22615,12 @@ export type EmployeeUpdateWithoutStepSlaRemindersHeldInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -20920,9 +22694,12 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -20996,9 +22773,12 @@ export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -21072,9 +22852,12 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -21164,9 +22947,12 @@ export type EmployeeUpdateWithoutStepSlaRemindersReceivedInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -21240,9 +23026,12 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -21316,9 +23105,12 @@ export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
   itAdminOf?: Prisma.DepartmentCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutEmployeeInput
@@ -21392,9 +23184,12 @@ export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedCreateNestedManyWithoutItAdminInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutEmployeeInput
   ownedApplications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutPrimaryOwnerInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedManyWithoutEmergencyHolderInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutEmployeeInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutDoneToEmployeeInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutProposedByInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutResponsibleItAdminInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutBusinessOwnerInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutEmployeeInput
@@ -21484,9 +23279,12 @@ export type EmployeeUpdateWithoutCongestionIncidentsAboutInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -21560,9 +23358,12 @@ export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -21650,9 +23451,12 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   itAdminOf?: Prisma.DepartmentUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutEmployeeNestedInput
@@ -21726,9 +23530,12 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   itAdminOf?: Prisma.DepartmentUncheckedUpdateManyWithoutItAdminNestedInput
   headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutEmployeeNestedInput
   ownedApplications?: Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput
+  applicationsInCharge?: Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   workspacePrimaryOwnerOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerNestedInput
   workspaceEmergencyHolderOf?: Prisma.PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderNestedInput
   workspaceMemberships?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutEmployeeNestedInput
+  itAdminHandoversReceived?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutDoneToEmployeeNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutProposedByNestedInput
   subscriptionsInCharge?: Prisma.SubscriptionUncheckedUpdateManyWithoutResponsibleItAdminNestedInput
   planTermOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutBusinessOwnerNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -21809,9 +23616,12 @@ export type EmployeeCountOutputType = {
   itAdminOf: number
   headPeriods: number
   ownedApplications: number
+  applicationsInCharge: number
   workspacePrimaryOwnerOf: number
   workspaceEmergencyHolderOf: number
   workspaceMemberships: number
+  itAdminHandoversReceived: number
+  departmentSoftwareProposals: number
   subscriptionsInCharge: number
   planTermOpinions: number
   applicationBusinessOwners: number
@@ -21871,9 +23681,12 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   itAdminOf?: boolean | EmployeeCountOutputTypeCountItAdminOfArgs
   headPeriods?: boolean | EmployeeCountOutputTypeCountHeadPeriodsArgs
   ownedApplications?: boolean | EmployeeCountOutputTypeCountOwnedApplicationsArgs
+  applicationsInCharge?: boolean | EmployeeCountOutputTypeCountApplicationsInChargeArgs
   workspacePrimaryOwnerOf?: boolean | EmployeeCountOutputTypeCountWorkspacePrimaryOwnerOfArgs
   workspaceEmergencyHolderOf?: boolean | EmployeeCountOutputTypeCountWorkspaceEmergencyHolderOfArgs
   workspaceMemberships?: boolean | EmployeeCountOutputTypeCountWorkspaceMembershipsArgs
+  itAdminHandoversReceived?: boolean | EmployeeCountOutputTypeCountItAdminHandoversReceivedArgs
+  departmentSoftwareProposals?: boolean | EmployeeCountOutputTypeCountDepartmentSoftwareProposalsArgs
   subscriptionsInCharge?: boolean | EmployeeCountOutputTypeCountSubscriptionsInChargeArgs
   planTermOpinions?: boolean | EmployeeCountOutputTypeCountPlanTermOpinionsArgs
   applicationBusinessOwners?: boolean | EmployeeCountOutputTypeCountApplicationBusinessOwnersArgs
@@ -21969,6 +23782,13 @@ export type EmployeeCountOutputTypeCountOwnedApplicationsArgs<ExtArgs extends ru
 /**
  * EmployeeCountOutputType without action
  */
+export type EmployeeCountOutputTypeCountApplicationsInChargeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
 export type EmployeeCountOutputTypeCountWorkspacePrimaryOwnerOfArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PlanWorkspaceProfileWhereInput
 }
@@ -21985,6 +23805,20 @@ export type EmployeeCountOutputTypeCountWorkspaceEmergencyHolderOfArgs<ExtArgs e
  */
 export type EmployeeCountOutputTypeCountWorkspaceMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PlanWorkspaceAdminWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountItAdminHandoversReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ItAdminHandoverWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountDepartmentSoftwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
 }
 
 /**
@@ -22372,9 +24206,12 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   itAdminOf?: boolean | Prisma.Employee$itAdminOfArgs<ExtArgs>
   headPeriods?: boolean | Prisma.Employee$headPeriodsArgs<ExtArgs>
   ownedApplications?: boolean | Prisma.Employee$ownedApplicationsArgs<ExtArgs>
+  applicationsInCharge?: boolean | Prisma.Employee$applicationsInChargeArgs<ExtArgs>
   workspacePrimaryOwnerOf?: boolean | Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>
   workspaceEmergencyHolderOf?: boolean | Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>
   workspaceMemberships?: boolean | Prisma.Employee$workspaceMembershipsArgs<ExtArgs>
+  itAdminHandoversReceived?: boolean | Prisma.Employee$itAdminHandoversReceivedArgs<ExtArgs>
+  departmentSoftwareProposals?: boolean | Prisma.Employee$departmentSoftwareProposalsArgs<ExtArgs>
   subscriptionsInCharge?: boolean | Prisma.Employee$subscriptionsInChargeArgs<ExtArgs>
   planTermOpinions?: boolean | Prisma.Employee$planTermOpinionsArgs<ExtArgs>
   applicationBusinessOwners?: boolean | Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs>
@@ -22489,9 +24326,12 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   itAdminOf?: boolean | Prisma.Employee$itAdminOfArgs<ExtArgs>
   headPeriods?: boolean | Prisma.Employee$headPeriodsArgs<ExtArgs>
   ownedApplications?: boolean | Prisma.Employee$ownedApplicationsArgs<ExtArgs>
+  applicationsInCharge?: boolean | Prisma.Employee$applicationsInChargeArgs<ExtArgs>
   workspacePrimaryOwnerOf?: boolean | Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>
   workspaceEmergencyHolderOf?: boolean | Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>
   workspaceMemberships?: boolean | Prisma.Employee$workspaceMembershipsArgs<ExtArgs>
+  itAdminHandoversReceived?: boolean | Prisma.Employee$itAdminHandoversReceivedArgs<ExtArgs>
+  departmentSoftwareProposals?: boolean | Prisma.Employee$departmentSoftwareProposalsArgs<ExtArgs>
   subscriptionsInCharge?: boolean | Prisma.Employee$subscriptionsInChargeArgs<ExtArgs>
   planTermOpinions?: boolean | Prisma.Employee$planTermOpinionsArgs<ExtArgs>
   applicationBusinessOwners?: boolean | Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs>
@@ -22563,9 +24403,12 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     itAdminOf: Prisma.$DepartmentPayload<ExtArgs>[]
     headPeriods: Prisma.$DepartmentHeadPeriodPayload<ExtArgs>[]
     ownedApplications: Prisma.$ApplicationPayload<ExtArgs>[]
+    applicationsInCharge: Prisma.$ApplicationPayload<ExtArgs>[]
     workspacePrimaryOwnerOf: Prisma.$PlanWorkspaceProfilePayload<ExtArgs>[]
     workspaceEmergencyHolderOf: Prisma.$PlanWorkspaceProfilePayload<ExtArgs>[]
     workspaceMemberships: Prisma.$PlanWorkspaceAdminPayload<ExtArgs>[]
+    itAdminHandoversReceived: Prisma.$ItAdminHandoverPayload<ExtArgs>[]
+    departmentSoftwareProposals: Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>[]
     subscriptionsInCharge: Prisma.$SubscriptionPayload<ExtArgs>[]
     planTermOpinions: Prisma.$PlanTermOpinionPayload<ExtArgs>[]
     applicationBusinessOwners: Prisma.$ApplicationBusinessOwnerPayload<ExtArgs>[]
@@ -23034,9 +24877,12 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   itAdminOf<T extends Prisma.Employee$itAdminOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$itAdminOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   headPeriods<T extends Prisma.Employee$headPeriodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$headPeriodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentHeadPeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ownedApplications<T extends Prisma.Employee$ownedApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$ownedApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  applicationsInCharge<T extends Prisma.Employee$applicationsInChargeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$applicationsInChargeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspacePrimaryOwnerOf<T extends Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspacePrimaryOwnerOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspaceEmergencyHolderOf<T extends Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspaceEmergencyHolderOfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspaceMemberships<T extends Prisma.Employee$workspaceMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$workspaceMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanWorkspaceAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  itAdminHandoversReceived<T extends Prisma.Employee$itAdminHandoversReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$itAdminHandoversReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItAdminHandoverPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  departmentSoftwareProposals<T extends Prisma.Employee$departmentSoftwareProposalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$departmentSoftwareProposalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptionsInCharge<T extends Prisma.Employee$subscriptionsInChargeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$subscriptionsInChargeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   planTermOpinions<T extends Prisma.Employee$planTermOpinionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$planTermOpinionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanTermOpinionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   applicationBusinessOwners<T extends Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$applicationBusinessOwnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationBusinessOwnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -23648,6 +25494,30 @@ export type Employee$ownedApplicationsArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
+ * Employee.applicationsInCharge
+ */
+export type Employee$applicationsInChargeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Application
+   */
+  select?: Prisma.ApplicationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Application
+   */
+  omit?: Prisma.ApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationInclude<ExtArgs> | null
+  where?: Prisma.ApplicationWhereInput
+  orderBy?: Prisma.ApplicationOrderByWithRelationInput | Prisma.ApplicationOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationScalarFieldEnum | Prisma.ApplicationScalarFieldEnum[]
+}
+
+/**
  * Employee.workspacePrimaryOwnerOf
  */
 export type Employee$workspacePrimaryOwnerOfArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -23717,6 +25587,54 @@ export type Employee$workspaceMembershipsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.PlanWorkspaceAdminScalarFieldEnum | Prisma.PlanWorkspaceAdminScalarFieldEnum[]
+}
+
+/**
+ * Employee.itAdminHandoversReceived
+ */
+export type Employee$itAdminHandoversReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ItAdminHandover
+   */
+  select?: Prisma.ItAdminHandoverSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ItAdminHandover
+   */
+  omit?: Prisma.ItAdminHandoverOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItAdminHandoverInclude<ExtArgs> | null
+  where?: Prisma.ItAdminHandoverWhereInput
+  orderBy?: Prisma.ItAdminHandoverOrderByWithRelationInput | Prisma.ItAdminHandoverOrderByWithRelationInput[]
+  cursor?: Prisma.ItAdminHandoverWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ItAdminHandoverScalarFieldEnum | Prisma.ItAdminHandoverScalarFieldEnum[]
+}
+
+/**
+ * Employee.departmentSoftwareProposals
+ */
+export type Employee$departmentSoftwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentSoftwareProposal
+   */
+  select?: Prisma.DepartmentSoftwareProposalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentSoftwareProposal
+   */
+  omit?: Prisma.DepartmentSoftwareProposalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentSoftwareProposalInclude<ExtArgs> | null
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
+  orderBy?: Prisma.DepartmentSoftwareProposalOrderByWithRelationInput | Prisma.DepartmentSoftwareProposalOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentSoftwareProposalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentSoftwareProposalScalarFieldEnum | Prisma.DepartmentSoftwareProposalScalarFieldEnum[]
 }
 
 /**

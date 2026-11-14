@@ -73,14 +73,6 @@ export class CatalogApi {
   }
 
   /**
-   * The first `limit` applications in use whose Business Owner is this employee, and how many there are (a read, `US-03-01`
-   * AC-13): a person who moves to another department or leaves needs someone to take them over (`US-04-06`).
-   */
-  getApplicationsOwnedBy(employeeId: string, limit: number, tx?: DbTx) {
-    return this.applicationLookup.ownedBy(employeeId, limit, tx);
-  }
-
-  /**
    * The applications with these ids as a collector's allowlist needs to judge them: name, kind, whether the application is a
    * communication service (never reported, `QĐ-62o`) and whether it is retired. An id that does not exist is absent.
    */
@@ -96,9 +88,9 @@ export class CatalogApi {
     return this.plans.workspaceDutiesOf(employeeIds, tx);
   }
 
-  /** The plans with these ids by name, with their application, as far as they exist. */
-  getPlanSummaries(ids: readonly string[]): Promise<PlanSummary[]> {
-    return this.onboarding.planSummaries(ids);
+  /** The plans with these ids by name, with their application, as far as they exist; `tx` reads in the caller's transaction, which sees the plans it made. */
+  getPlanSummaries(ids: readonly string[], tx?: DbTx): Promise<PlanSummary[]> {
+    return this.onboarding.planSummaries(ids, tx);
   }
 
   /**
@@ -128,10 +120,16 @@ export class CatalogApi {
   /**
    * Buys one more seat on the subscription, in the transaction of the caller, which holds it locked through `lockSeatTarget`: `purchased_quantity`
    * rises by one (a K2 or K4 pool topped up with a grant, or the seat a K1 grant buys for its holder). It asks no Cost Center of the department
-   * that owns the subscription, if any. Throws PoolSeatNotAddableError for a subscription that is absent or a draft.
+   * that owns the subscription, if any. A rise of a K2 or K4 pool is told to the IT Admin who answers for it, with `requestId` (the request the seat is
+   * bought for) when the caller has one (`QĐ-110v`); a K1 purchase tells nobody (`S-4`). Throws PoolSeatNotAddableError for a subscription that is absent or a draft.
    */
-  addPoolSeat(tx: DbTx, actor: AuthenticatedPrincipal, subscriptionId: string): Promise<number> {
-    return this.subscriptions.addSeat(tx, actor, subscriptionId);
+  addPoolSeat(
+    tx: DbTx,
+    actor: AuthenticatedPrincipal,
+    subscriptionId: string,
+    requestId: string | null = null,
+  ): Promise<number> {
+    return this.subscriptions.addSeat(tx, actor, subscriptionId, requestId);
   }
 
   /** What one subscription is bought at (unit price and billing cycle); null when it has no price. */
@@ -194,19 +192,19 @@ export class CatalogApi {
     return this.plans.vendorIdsOf(planIds);
   }
 
-  /** The Business Owner of the application of the plan now, or null when the plan does not exist. */
-  getPlanBusinessOwnerId(planId: string, tx?: DbTx): Promise<string | null> {
-    return this.plans.businessOwnerIdOf(planId, tx);
+  /** The IT Admin responsible for the application of the plan now (`QĐ-111g`), or null when there is none or the plan does not exist. */
+  getPlanResponsibleItAdminId(planId: string, tx?: DbTx): Promise<string | null> {
+    return this.plans.responsibleItAdminIdOf(planId, tx);
   }
 
   /**
-   * Registers software the company built itself, with its Business Owner and one plan granted by hand, in the transaction
-   * of the caller (`US-05-20`). A Business Owner who has left, or a name already taken, is a `REFUSED` answer.
+   * Registers software the company built itself, with the calling IT Admin responsible for it and one plan granted by hand, in the
+   * transaction of the caller (`US-05-20`). A name already taken is a `REFUSED` answer.
    */
   registerInternalSoftware(
     tx: DbTx,
     actor: AuthenticatedPrincipal,
-    input: { name: string; businessOwnerEmployeeId: string; dataSensitivity: 'LOW' | 'MEDIUM' | 'HIGH' },
+    input: { name: string; dataSensitivity: 'LOW' | 'MEDIUM' | 'HIGH' },
   ): Promise<InternalRegistration> {
     return this.internalRegistration.register(tx, actor, input);
   }

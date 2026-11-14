@@ -150,19 +150,6 @@ const NESTED_ARRAYS_SECOND_HALF: readonly NestedArrayEntry[] = [
     removeWhen: 'Review when noticeWarnings or SubscriptionWarning changes.',
   },
   {
-    key: 'planTermsGet#opinions',
-    classification: 'bounded',
-    findings: ['LD-06'],
-    owner: 'catalog-application-plan-read-contracts',
-    businessMaximum: {
-      maxItems: 50,
-      source:
-        'OPINIONS_IN_VIEW in plan-terms.service.ts (the newest; opinionTotal counts all, GET /plans/{id}/term-opinions pages them)',
-    },
-    rationale: 'The newest opinions on the plan terms.',
-    removeWhen: 'Review when OPINIONS_IN_VIEW changes.',
-  },
-  {
     key: 'planTermsGet#warnings',
     classification: 'bounded',
     findings: ['LD-16'],
@@ -177,11 +164,6 @@ const NESTED_ARRAYS_SECOND_HALF: readonly NestedArrayEntry[] = [
   },
   ...(
     [
-      [
-        'confirmations',
-        'retirement.confirmations',
-        'The newest Business Owner confirmations; confirmationTotal counts all.',
-      ],
       [
         'assignments',
         'retirement.blockers.assignments',
@@ -320,20 +302,6 @@ const NESTED_ARRAYS_SECOND_HALF: readonly NestedArrayEntry[] = [
       'The fields one edit of a version changed, with their values before and after (F66, spec J.4); the history is paged.',
     removeWhen:
       'Review when a field is added to the figures or to a line of a version, or HISTORY_CHANGES_MAX changes.',
-  },
-  {
-    key: 'transferReviewGet#unfinishedRequests',
-    classification: 'bounded',
-    findings: ['LD-14'],
-    owner: 'g0-g6-final-business-baseline-remediation',
-    businessMaximum: {
-      maxItems: 20,
-      source:
-        'UNFINISHED_REQUESTS_MAX in transfer-review.dto.ts, the maxItems of the schema, and the take of unfinishedRequestsOf in transfer-review-view.service.ts: the open Requests of the person who moved, for the head to read beside the tools (F29)',
-    },
-    rationale:
-      'The open Requests of the person who was transferred, information only (F29); the Request list has the rest.',
-    removeWhen: 'Review when UNFINISHED_REQUESTS_MAX changes or the review shows the Requests as a paged subresource.',
   },
   {
     key: 'employeeGet#placements',

@@ -3,13 +3,9 @@ import type { RouteErrorStatus } from './openapi-example-manifest';
 /** Part of ROUTE_ERROR_CODES (catalog), traced on BE `ea73c2f` (25/10/2026): see openapi-example-manifest.ts. */
 export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<RouteErrorStatus, readonly string[]>>>> =
   {
-    applicationBusinessOwnerHistory: {
-      '404': ['APPLICATION.NOT_FOUND'],
-    },
     applicationCreate: {
       '409': ['APPLICATION.DICTIONARY_GROUP_CHANGED', 'APPLICATION.DICTIONARY_LINE_TAKEN', 'APPLICATION.NAME_TAKEN'],
       '422': [
-        'APPLICATION.BUSINESS_OWNER_INVALID',
         'APPLICATION.DICTIONARY_LINE_MISMATCH',
         'APPLICATION.DICTIONARY_LINE_NOT_FOUND',
         'APPLICATION.DOMAIN_INVALID',
@@ -26,15 +22,14 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
     applicationGet: {
       '404': ['APPLICATION.NOT_FOUND'],
     },
+    applicationResponsibilityTransfer: {
+      '403': ['APPLICATION.RESPONSIBILITY_NOT_YOURS'],
+      '404': ['APPLICATION.NOT_FOUND'],
+      '422': ['APPLICATION.RESPONSIBLE_NOT_IT_ADMIN'],
+    },
     applicationRetire: {
       '404': ['APPLICATION.NOT_FOUND'],
       '409': ['APPLICATION.ALREADY_RETIRED', 'APPLICATION.RETIREMENT_BLOCKED'],
-      '422': ['APPLICATION.RETIREMENT_NEEDS_CONFIRMATION'],
-    },
-    applicationRetirementConfirm: {
-      '404': ['APPLICATION.NOT_FOUND'],
-      '409': ['APPLICATION.ALREADY_RETIRED'],
-      '422': ['APPLICATION.RETIREMENT_NOTE_REQUIRED', 'APPLICATION.RETIREMENT_NOT_BUSINESS_OWNER'],
     },
     applicationRetirementGet: {
       '404': ['APPLICATION.NOT_FOUND'],
@@ -43,7 +38,6 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
       '404': ['APPLICATION.NOT_FOUND'],
       '409': ['APPLICATION.DICTIONARY_GROUP_CHANGED', 'APPLICATION.DICTIONARY_LINE_TAKEN', 'APPLICATION.NAME_TAKEN'],
       '422': [
-        'APPLICATION.BUSINESS_OWNER_INVALID',
         'APPLICATION.DICTIONARY_LINE_MISMATCH',
         'APPLICATION.DICTIONARY_LINE_NOT_FOUND',
         'APPLICATION.DOMAIN_INVALID',
@@ -94,6 +88,7 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
     planCreate: {
       '409': ['PLAN.NAME_TAKEN'],
       '422': [
+        'PLAN.ADMIN_CONSOLE_NOT_APPLICABLE',
         'PLAN.APPLICATION_NOT_FOUND',
         'PLAN.APPLICATION_RETIRED',
         'PLAN.CONTROL_LEVEL_REQUIRED',
@@ -108,13 +103,6 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
     },
     planGet: {
       '404': ['PLAN.NOT_FOUND'],
-    },
-    planTermOpinionList: {
-      '404': ['PLAN.NOT_FOUND'],
-    },
-    planTermOpinionRecord: {
-      '404': ['PLAN.NOT_FOUND'],
-      '422': ['PLAN_TERMS.NOT_APPLICABLE', 'PLAN_TERMS.TEXT_INVALID'],
     },
     planTermsGet: {
       '404': ['PLAN.NOT_FOUND'],
@@ -138,6 +126,7 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
         'PLAN.WORKSPACE_PROFILE_BLOCKS_TYPE_CHANGE',
       ],
       '422': [
+        'PLAN.ADMIN_CONSOLE_NOT_APPLICABLE',
         'PLAN.CONTROL_LEVEL_REQUIRED',
         'PLAN.DATA_LOSS_NOTE_REQUIRED',
         'PLAN.NAME_INVALID',
@@ -153,6 +142,7 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
       '404': ['PLAN.NOT_FOUND'],
       '422': [
         'PLAN.PRIMARY_OWNER_NOT_LISTED',
+        'PLAN.VENDOR_ADMINS_INVALID',
         'PLAN.WORKSPACE_LIMIT_EXCEEDED',
         'PLAN.WORKSPACE_MEMBER_DUPLICATE',
         'PLAN.WORKSPACE_PERSON_INVALID',
@@ -184,6 +174,7 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
         'SUBSCRIPTION.RESPONSIBLE_NOT_IT_ADMIN',
         'SUBSCRIPTION.RESPONSIBLE_REQUIRED',
         'SUBSCRIPTION.STILL_DRAFT',
+        'SUBSCRIPTION.VENDOR_ADMINS_REQUIRED',
       ],
     },
     subscriptionCreate: {
@@ -206,6 +197,7 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
         'SUBSCRIPTION.PLAN_NOT_FOUND',
         'SUBSCRIPTION.RESPONSIBLE_NOT_IT_ADMIN',
         'SUBSCRIPTION.RESPONSIBLE_REQUIRED',
+        'SUBSCRIPTION.VENDOR_ADMINS_REQUIRED',
       ],
     },
     subscriptionGet: {
@@ -231,6 +223,7 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
         'SUBSCRIPTION.RESPONSIBLE_REQUIRED',
         'SUBSCRIPTION.STILL_DRAFT',
         'SUBSCRIPTION.UPDATE_EMPTY',
+        'SUBSCRIPTION.VENDOR_ADMINS_REQUIRED',
       ],
     },
     vendorGroupCreate: {

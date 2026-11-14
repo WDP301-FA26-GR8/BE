@@ -132,7 +132,8 @@ export const CommitmentReleaseReason = {
   REMAINDER: 'REMAINDER',
   REVOKED: 'REVOKED',
   LATE_GRANT: 'LATE_GRANT',
-  GRANTED_FROM_POOL: 'GRANTED_FROM_POOL'
+  GRANTED_FROM_POOL: 'GRANTED_FROM_POOL',
+  TRANSFER_EFFECTIVE: 'TRANSFER_EFFECTIVE'
 } as const
 
 export type CommitmentReleaseReason = (typeof CommitmentReleaseReason)[keyof typeof CommitmentReleaseReason]
@@ -350,7 +351,8 @@ export const DeviceRegistrationEndCause = {
   HOLDER_CHANGED: 'HOLDER_CHANGED',
   DEVICE_RETIRED: 'DEVICE_RETIRED',
   DEPARTURE: 'DEPARTURE',
-  EMPLOYEE_LEFT: 'EMPLOYEE_LEFT'
+  EMPLOYEE_LEFT: 'EMPLOYEE_LEFT',
+  DEPARTURE_BLOCKED: 'DEPARTURE_BLOCKED'
 } as const
 
 export type DeviceRegistrationEndCause = (typeof DeviceRegistrationEndCause)[keyof typeof DeviceRegistrationEndCause]
@@ -504,7 +506,8 @@ export const AssignmentSource = {
   BASELINE: 'BASELINE',
   HANDOVER: 'HANDOVER',
   REQUEST: 'REQUEST',
-  RENEWAL_CARRY: 'RENEWAL_CARRY'
+  RENEWAL_CARRY: 'RENEWAL_CARRY',
+  MACHINE_ACCOUNT_CONVERSION: 'MACHINE_ACCOUNT_CONVERSION'
 } as const
 
 export type AssignmentSource = (typeof AssignmentSource)[keyof typeof AssignmentSource]
@@ -581,7 +584,8 @@ export const RevocationSource = {
   SUBSCRIPTION_EXPIRED: 'SUBSCRIPTION_EXPIRED',
   NOT_LEGALIZED: 'NOT_LEGALIZED',
   RE_EXECUTION: 'RE_EXECUTION',
-  POST_SETUP_REVIEW: 'POST_SETUP_REVIEW'
+  POST_SETUP_REVIEW: 'POST_SETUP_REVIEW',
+  TRANSFER: 'TRANSFER'
 } as const
 
 export type RevocationSource = (typeof RevocationSource)[keyof typeof RevocationSource]
@@ -754,6 +758,15 @@ export const RenewalDeadlineOutcome = {
 } as const
 
 export type RenewalDeadlineOutcome = (typeof RenewalDeadlineOutcome)[keyof typeof RenewalDeadlineOutcome]
+
+
+export const DepartmentSoftwareProposalState = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type DepartmentSoftwareProposalState = (typeof DepartmentSoftwareProposalState)[keyof typeof DepartmentSoftwareProposalState]
 
 
 export const EmailOutboxStatus = {
@@ -1061,7 +1074,12 @@ export const OffboardingChangeKind = {
   MARKED_LEFT: 'MARKED_LEFT',
   ACCOUNT_LOCK_RECORDED: 'ACCOUNT_LOCK_RECORDED',
   REVOCATIONS_OPENED: 'REVOCATIONS_OPENED',
-  CLOSED: 'CLOSED'
+  CLOSED: 'CLOSED',
+  ACCESS_BLOCKED: 'ACCESS_BLOCKED',
+  REVOCATIONS_WITHDRAWN: 'REVOCATIONS_WITHDRAWN',
+  IT_ADMIN_HANDED_OVER: 'IT_ADMIN_HANDED_OVER',
+  CLOSED_BY_SYSTEM: 'CLOSED_BY_SYSTEM',
+  MAILBOX_LOCKED: 'MAILBOX_LOCKED'
 } as const
 
 export type OffboardingChangeKind = (typeof OffboardingChangeKind)[keyof typeof OffboardingChangeKind]
@@ -1177,7 +1195,10 @@ export type AccessRequestState = (typeof AccessRequestState)[keyof typeof Access
 export const AccessRequestCancelCause = {
   BENEFICIARY_LEFT: 'BENEFICIARY_LEFT',
   BENEFICIARY_TRANSFERRED: 'BENEFICIARY_TRANSFERRED',
-  SPENDING_APPROVER_PARTY: 'SPENDING_APPROVER_PARTY'
+  SPENDING_APPROVER_PARTY: 'SPENDING_APPROVER_PARTY',
+  SYSTEM_BENEFICIARY_LEFT: 'SYSTEM_BENEFICIARY_LEFT',
+  SYSTEM_BENEFICIARY_TRANSFERRED: 'SYSTEM_BENEFICIARY_TRANSFERRED',
+  SYSTEM_SCOPE_REMOVED: 'SYSTEM_SCOPE_REMOVED'
 } as const
 
 export type AccessRequestCancelCause = (typeof AccessRequestCancelCause)[keyof typeof AccessRequestCancelCause]

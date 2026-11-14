@@ -436,6 +436,16 @@ export type SubscriptionDeadlineEvent = Prisma.SubscriptionDeadlineEventModel
  */
 export type PoolGrantAvoidedCost = Prisma.PoolGrantAvoidedCostModel
 /**
+ * Model DepartmentSoftwareEntry
+ * 
+ */
+export type DepartmentSoftwareEntry = Prisma.DepartmentSoftwareEntryModel
+/**
+ * Model DepartmentSoftwareProposal
+ * 
+ */
+export type DepartmentSoftwareProposal = Prisma.DepartmentSoftwareProposalModel
+/**
  * Model EmailOutbox
  * 
  */
@@ -605,6 +615,11 @@ export type SuperAdminEventTicket = Prisma.SuperAdminEventTicketModel
  * 
  */
 export type PersonnelNoticeCounter = Prisma.PersonnelNoticeCounterModel
+/**
+ * Model ItAdminHandover
+ * 
+ */
+export type ItAdminHandover = Prisma.ItAdminHandoverModel
 /**
  * Model AccessRequest
  * 

@@ -1873,6 +1873,23 @@ export type EnumRenewalDeadlineOutcomeWithAggregatesFilter<$PrismaModel = never>
   _max?: Prisma.NestedEnumRenewalDeadlineOutcomeFilter<$PrismaModel>
 }
 
+export type EnumDepartmentSoftwareProposalStateFilter<$PrismaModel = never> = {
+  equals?: $Enums.DepartmentSoftwareProposalState | Prisma.EnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  in?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDepartmentSoftwareProposalStateFilter<$PrismaModel> | $Enums.DepartmentSoftwareProposalState
+}
+
+export type EnumDepartmentSoftwareProposalStateWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DepartmentSoftwareProposalState | Prisma.EnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  in?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDepartmentSoftwareProposalStateWithAggregatesFilter<$PrismaModel> | $Enums.DepartmentSoftwareProposalState
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDepartmentSoftwareProposalStateFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDepartmentSoftwareProposalStateFilter<$PrismaModel>
+}
+
 export type EnumEmailOutboxStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.EmailOutboxStatus | Prisma.EnumEmailOutboxStatusFieldRefInput<$PrismaModel>
   in?: $Enums.EmailOutboxStatus[] | Prisma.ListEnumEmailOutboxStatusFieldRefInput<$PrismaModel>
@@ -5368,6 +5385,23 @@ export type NestedEnumRenewalDeadlineOutcomeWithAggregatesFilter<$PrismaModel = 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumRenewalDeadlineOutcomeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumRenewalDeadlineOutcomeFilter<$PrismaModel>
+}
+
+export type NestedEnumDepartmentSoftwareProposalStateFilter<$PrismaModel = never> = {
+  equals?: $Enums.DepartmentSoftwareProposalState | Prisma.EnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  in?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDepartmentSoftwareProposalStateFilter<$PrismaModel> | $Enums.DepartmentSoftwareProposalState
+}
+
+export type NestedEnumDepartmentSoftwareProposalStateWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DepartmentSoftwareProposalState | Prisma.EnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  in?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DepartmentSoftwareProposalState[] | Prisma.ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDepartmentSoftwareProposalStateWithAggregatesFilter<$PrismaModel> | $Enums.DepartmentSoftwareProposalState
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDepartmentSoftwareProposalStateFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDepartmentSoftwareProposalStateFilter<$PrismaModel>
 }
 
 export type NestedEnumEmailOutboxStatusFilter<$PrismaModel = never> = {

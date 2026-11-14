@@ -202,10 +202,10 @@ export type DepartmentTransferChangeGroupByOutputType = {
   oldEffectiveOn: Date
   newEffectiveOn: Date | null
   reason: string
-  groundsType: string
+  groundsType: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date
+  groundsIssuer: string | null
+  groundsIssuedOn: Date | null
   changedByAppUserId: string | null
   changedByTicketId: string | null
   changedAt: Date
@@ -239,10 +239,10 @@ export type DepartmentTransferChangeWhereInput = {
   oldEffectiveOn?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
   newEffectiveOn?: Prisma.DateTimeNullableFilter<"DepartmentTransferChange"> | Date | string | null
   reason?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsType?: Prisma.StringFilter<"DepartmentTransferChange"> | string
+  groundsType?: Prisma.StringNullableFilter<"DepartmentTransferChange"> | string | null
   groundsReference?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsIssuer?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"DepartmentTransferChange"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"DepartmentTransferChange"> | Date | string | null
   changedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransferChange"> | string | null
   changedByTicketId?: Prisma.UuidNullableFilter<"DepartmentTransferChange"> | string | null
   changedAt?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
@@ -257,10 +257,10 @@ export type DepartmentTransferChangeOrderByWithRelationInput = {
   oldEffectiveOn?: Prisma.SortOrder
   newEffectiveOn?: Prisma.SortOrderInput | Prisma.SortOrder
   reason?: Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   changedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   changedByTicketId?: Prisma.SortOrderInput | Prisma.SortOrder
   changedAt?: Prisma.SortOrder
@@ -278,10 +278,10 @@ export type DepartmentTransferChangeWhereUniqueInput = Prisma.AtLeast<{
   oldEffectiveOn?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
   newEffectiveOn?: Prisma.DateTimeNullableFilter<"DepartmentTransferChange"> | Date | string | null
   reason?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsType?: Prisma.StringFilter<"DepartmentTransferChange"> | string
+  groundsType?: Prisma.StringNullableFilter<"DepartmentTransferChange"> | string | null
   groundsReference?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsIssuer?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"DepartmentTransferChange"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"DepartmentTransferChange"> | Date | string | null
   changedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransferChange"> | string | null
   changedByTicketId?: Prisma.UuidNullableFilter<"DepartmentTransferChange"> | string | null
   changedAt?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
@@ -296,10 +296,10 @@ export type DepartmentTransferChangeOrderByWithAggregationInput = {
   oldEffectiveOn?: Prisma.SortOrder
   newEffectiveOn?: Prisma.SortOrderInput | Prisma.SortOrder
   reason?: Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   changedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   changedByTicketId?: Prisma.SortOrderInput | Prisma.SortOrder
   changedAt?: Prisma.SortOrder
@@ -318,10 +318,10 @@ export type DepartmentTransferChangeScalarWhereWithAggregatesInput = {
   oldEffectiveOn?: Prisma.DateTimeWithAggregatesFilter<"DepartmentTransferChange"> | Date | string
   newEffectiveOn?: Prisma.DateTimeNullableWithAggregatesFilter<"DepartmentTransferChange"> | Date | string | null
   reason?: Prisma.StringWithAggregatesFilter<"DepartmentTransferChange"> | string
-  groundsType?: Prisma.StringWithAggregatesFilter<"DepartmentTransferChange"> | string
+  groundsType?: Prisma.StringNullableWithAggregatesFilter<"DepartmentTransferChange"> | string | null
   groundsReference?: Prisma.StringWithAggregatesFilter<"DepartmentTransferChange"> | string
-  groundsIssuer?: Prisma.StringWithAggregatesFilter<"DepartmentTransferChange"> | string
-  groundsIssuedOn?: Prisma.DateTimeWithAggregatesFilter<"DepartmentTransferChange"> | Date | string
+  groundsIssuer?: Prisma.StringNullableWithAggregatesFilter<"DepartmentTransferChange"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"DepartmentTransferChange"> | Date | string | null
   changedByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"DepartmentTransferChange"> | string | null
   changedByTicketId?: Prisma.UuidNullableWithAggregatesFilter<"DepartmentTransferChange"> | string | null
   changedAt?: Prisma.DateTimeWithAggregatesFilter<"DepartmentTransferChange"> | Date | string
@@ -333,10 +333,10 @@ export type DepartmentTransferChangeCreateInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedAt?: Date | string
   transfer: Prisma.DepartmentTransferCreateNestedOneWithoutChangesInput
@@ -350,10 +350,10 @@ export type DepartmentTransferChangeUncheckedCreateInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedByTicketId?: string | null
   changedAt?: Date | string
@@ -365,10 +365,10 @@ export type DepartmentTransferChangeUpdateInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transfer?: Prisma.DepartmentTransferUpdateOneRequiredWithoutChangesNestedInput
@@ -382,10 +382,10 @@ export type DepartmentTransferChangeUncheckedUpdateInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -398,10 +398,10 @@ export type DepartmentTransferChangeCreateManyInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedByTicketId?: string | null
   changedAt?: Date | string
@@ -413,10 +413,10 @@ export type DepartmentTransferChangeUpdateManyMutationInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -428,10 +428,10 @@ export type DepartmentTransferChangeUncheckedUpdateManyInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -589,10 +589,10 @@ export type DepartmentTransferChangeCreateWithoutTransferInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedAt?: Date | string
   changedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutTransferChangesInput
@@ -604,10 +604,10 @@ export type DepartmentTransferChangeUncheckedCreateWithoutTransferInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedByTicketId?: string | null
   changedAt?: Date | string
@@ -649,10 +649,10 @@ export type DepartmentTransferChangeScalarWhereInput = {
   oldEffectiveOn?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
   newEffectiveOn?: Prisma.DateTimeNullableFilter<"DepartmentTransferChange"> | Date | string | null
   reason?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsType?: Prisma.StringFilter<"DepartmentTransferChange"> | string
+  groundsType?: Prisma.StringNullableFilter<"DepartmentTransferChange"> | string | null
   groundsReference?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsIssuer?: Prisma.StringFilter<"DepartmentTransferChange"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"DepartmentTransferChange"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"DepartmentTransferChange"> | Date | string | null
   changedByAppUserId?: Prisma.UuidNullableFilter<"DepartmentTransferChange"> | string | null
   changedByTicketId?: Prisma.UuidNullableFilter<"DepartmentTransferChange"> | string | null
   changedAt?: Prisma.DateTimeFilter<"DepartmentTransferChange"> | Date | string
@@ -664,10 +664,10 @@ export type DepartmentTransferChangeCreateWithoutChangedByTicketInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedAt?: Date | string
   transfer: Prisma.DepartmentTransferCreateNestedOneWithoutChangesInput
@@ -680,10 +680,10 @@ export type DepartmentTransferChangeUncheckedCreateWithoutChangedByTicketInput =
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedAt?: Date | string
 }
@@ -720,10 +720,10 @@ export type DepartmentTransferChangeCreateManyTransferInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedByTicketId?: string | null
   changedAt?: Date | string
@@ -735,10 +735,10 @@ export type DepartmentTransferChangeUpdateWithoutTransferInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutTransferChangesNestedInput
@@ -750,10 +750,10 @@ export type DepartmentTransferChangeUncheckedUpdateWithoutTransferInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -765,10 +765,10 @@ export type DepartmentTransferChangeUncheckedUpdateManyWithoutTransferInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -781,10 +781,10 @@ export type DepartmentTransferChangeCreateManyChangedByTicketInput = {
   oldEffectiveOn: Date | string
   newEffectiveOn?: Date | string | null
   reason: string
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   changedByAppUserId?: string | null
   changedAt?: Date | string
 }
@@ -795,10 +795,10 @@ export type DepartmentTransferChangeUpdateWithoutChangedByTicketInput = {
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transfer?: Prisma.DepartmentTransferUpdateOneRequiredWithoutChangesNestedInput
@@ -811,10 +811,10 @@ export type DepartmentTransferChangeUncheckedUpdateWithoutChangedByTicketInput =
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -826,10 +826,10 @@ export type DepartmentTransferChangeUncheckedUpdateManyWithoutChangedByTicketInp
   oldEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   newEffectiveOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   changedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -933,10 +933,10 @@ export type $DepartmentTransferChangePayload<ExtArgs extends runtime.Types.Exten
     oldEffectiveOn: Date
     newEffectiveOn: Date | null
     reason: string
-    groundsType: string
+    groundsType: string | null
     groundsReference: string
-    groundsIssuer: string
-    groundsIssuedOn: Date
+    groundsIssuer: string | null
+    groundsIssuedOn: Date | null
     changedByAppUserId: string | null
     changedByTicketId: string | null
     changedAt: Date

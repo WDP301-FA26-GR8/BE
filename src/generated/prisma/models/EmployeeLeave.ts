@@ -235,10 +235,10 @@ export type EmployeeLeaveGroupByOutputType = {
   endedOn: Date | null
   endKind: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId: string | null
-  groundsType: string
+  groundsType: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date
+  groundsIssuer: string | null
+  groundsIssuedOn: Date | null
   startedByAppUserId: string | null
   startedByTicketId: string | null
   startedAt: Date
@@ -277,10 +277,10 @@ export type EmployeeLeaveWhereInput = {
   endedOn?: Prisma.DateTimeNullableFilter<"EmployeeLeave"> | Date | string | null
   endKind?: Prisma.EnumEmployeeLeaveEndKindNullableFilter<"EmployeeLeave"> | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
-  groundsType?: Prisma.StringFilter<"EmployeeLeave"> | string
+  groundsType?: Prisma.StringNullableFilter<"EmployeeLeave"> | string | null
   groundsReference?: Prisma.StringFilter<"EmployeeLeave"> | string
-  groundsIssuer?: Prisma.StringFilter<"EmployeeLeave"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"EmployeeLeave"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"EmployeeLeave"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"EmployeeLeave"> | Date | string | null
   startedByAppUserId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
   startedByTicketId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
   startedAt?: Prisma.DateTimeFilter<"EmployeeLeave"> | Date | string
@@ -305,10 +305,10 @@ export type EmployeeLeaveOrderByWithRelationInput = {
   endedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   endKind?: Prisma.SortOrderInput | Prisma.SortOrder
   resumesLeaveId?: Prisma.SortOrderInput | Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   startedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   startedByTicketId?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrder
@@ -337,10 +337,10 @@ export type EmployeeLeaveWhereUniqueInput = Prisma.AtLeast<{
   endedOn?: Prisma.DateTimeNullableFilter<"EmployeeLeave"> | Date | string | null
   endKind?: Prisma.EnumEmployeeLeaveEndKindNullableFilter<"EmployeeLeave"> | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
-  groundsType?: Prisma.StringFilter<"EmployeeLeave"> | string
+  groundsType?: Prisma.StringNullableFilter<"EmployeeLeave"> | string | null
   groundsReference?: Prisma.StringFilter<"EmployeeLeave"> | string
-  groundsIssuer?: Prisma.StringFilter<"EmployeeLeave"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"EmployeeLeave"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"EmployeeLeave"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"EmployeeLeave"> | Date | string | null
   startedByAppUserId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
   startedByTicketId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
   startedAt?: Prisma.DateTimeFilter<"EmployeeLeave"> | Date | string
@@ -364,10 +364,10 @@ export type EmployeeLeaveOrderByWithAggregationInput = {
   endedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   endKind?: Prisma.SortOrderInput | Prisma.SortOrder
   resumesLeaveId?: Prisma.SortOrderInput | Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   startedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   startedByTicketId?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrder
@@ -391,10 +391,10 @@ export type EmployeeLeaveScalarWhereWithAggregatesInput = {
   endedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployeeLeave"> | Date | string | null
   endKind?: Prisma.EnumEmployeeLeaveEndKindNullableWithAggregatesFilter<"EmployeeLeave"> | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.UuidNullableWithAggregatesFilter<"EmployeeLeave"> | string | null
-  groundsType?: Prisma.StringWithAggregatesFilter<"EmployeeLeave"> | string
+  groundsType?: Prisma.StringNullableWithAggregatesFilter<"EmployeeLeave"> | string | null
   groundsReference?: Prisma.StringWithAggregatesFilter<"EmployeeLeave"> | string
-  groundsIssuer?: Prisma.StringWithAggregatesFilter<"EmployeeLeave"> | string
-  groundsIssuedOn?: Prisma.DateTimeWithAggregatesFilter<"EmployeeLeave"> | Date | string
+  groundsIssuer?: Prisma.StringNullableWithAggregatesFilter<"EmployeeLeave"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployeeLeave"> | Date | string | null
   startedByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"EmployeeLeave"> | string | null
   startedByTicketId?: Prisma.UuidNullableWithAggregatesFilter<"EmployeeLeave"> | string | null
   startedAt?: Prisma.DateTimeWithAggregatesFilter<"EmployeeLeave"> | Date | string
@@ -409,10 +409,10 @@ export type EmployeeLeaveCreateInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -435,10 +435,10 @@ export type EmployeeLeaveUncheckedCreateInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -455,10 +455,10 @@ export type EmployeeLeaveUpdateInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -481,10 +481,10 @@ export type EmployeeLeaveUncheckedUpdateInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -504,10 +504,10 @@ export type EmployeeLeaveCreateManyInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -522,10 +522,10 @@ export type EmployeeLeaveUpdateManyMutationInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -541,10 +541,10 @@ export type EmployeeLeaveUncheckedUpdateManyInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -880,10 +880,10 @@ export type EmployeeLeaveCreateWithoutOrganizationInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -904,10 +904,10 @@ export type EmployeeLeaveUncheckedCreateWithoutOrganizationInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -956,10 +956,10 @@ export type EmployeeLeaveScalarWhereInput = {
   endedOn?: Prisma.DateTimeNullableFilter<"EmployeeLeave"> | Date | string | null
   endKind?: Prisma.EnumEmployeeLeaveEndKindNullableFilter<"EmployeeLeave"> | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
-  groundsType?: Prisma.StringFilter<"EmployeeLeave"> | string
+  groundsType?: Prisma.StringNullableFilter<"EmployeeLeave"> | string | null
   groundsReference?: Prisma.StringFilter<"EmployeeLeave"> | string
-  groundsIssuer?: Prisma.StringFilter<"EmployeeLeave"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"EmployeeLeave"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"EmployeeLeave"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"EmployeeLeave"> | Date | string | null
   startedByAppUserId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
   startedByTicketId?: Prisma.UuidNullableFilter<"EmployeeLeave"> | string | null
   startedAt?: Prisma.DateTimeFilter<"EmployeeLeave"> | Date | string
@@ -974,10 +974,10 @@ export type EmployeeLeaveCreateWithoutEmployeeInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -998,10 +998,10 @@ export type EmployeeLeaveUncheckedCreateWithoutEmployeeInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1044,10 +1044,10 @@ export type EmployeeLeaveCreateWithoutResumedByInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -1069,10 +1069,10 @@ export type EmployeeLeaveUncheckedCreateWithoutResumedByInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1093,10 +1093,10 @@ export type EmployeeLeaveCreateWithoutResumesInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -1117,10 +1117,10 @@ export type EmployeeLeaveUncheckedCreateWithoutResumesInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1158,10 +1158,10 @@ export type EmployeeLeaveUpdateWithoutResumedByInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1183,10 +1183,10 @@ export type EmployeeLeaveUncheckedUpdateWithoutResumedByInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1218,10 +1218,10 @@ export type EmployeeLeaveCreateWithoutChangesInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -1243,10 +1243,10 @@ export type EmployeeLeaveUncheckedCreateWithoutChangesInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1278,10 +1278,10 @@ export type EmployeeLeaveUpdateWithoutChangesInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1303,10 +1303,10 @@ export type EmployeeLeaveUncheckedUpdateWithoutChangesInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1322,10 +1322,10 @@ export type EmployeeLeaveCreateWithoutNoticeInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -1347,10 +1347,10 @@ export type EmployeeLeaveUncheckedCreateWithoutNoticeInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1382,10 +1382,10 @@ export type EmployeeLeaveUpdateWithoutNoticeInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1407,10 +1407,10 @@ export type EmployeeLeaveUncheckedUpdateWithoutNoticeInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1426,10 +1426,10 @@ export type EmployeeLeaveCreateWithoutStartedByTicketInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -1451,10 +1451,10 @@ export type EmployeeLeaveUncheckedCreateWithoutStartedByTicketInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -1498,10 +1498,10 @@ export type EmployeeLeaveCreateManyOrganizationInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1516,10 +1516,10 @@ export type EmployeeLeaveUpdateWithoutOrganizationInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1540,10 +1540,10 @@ export type EmployeeLeaveUncheckedUpdateWithoutOrganizationInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1562,10 +1562,10 @@ export type EmployeeLeaveUncheckedUpdateManyWithoutOrganizationInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1582,10 +1582,10 @@ export type EmployeeLeaveCreateManyEmployeeInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1600,10 +1600,10 @@ export type EmployeeLeaveUpdateWithoutEmployeeInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1624,10 +1624,10 @@ export type EmployeeLeaveUncheckedUpdateWithoutEmployeeInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1646,10 +1646,10 @@ export type EmployeeLeaveUncheckedUpdateManyWithoutEmployeeInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1666,10 +1666,10 @@ export type EmployeeLeaveCreateManyResumesInput = {
   status?: $Enums.EmployeeLeaveStatus
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedByTicketId?: string | null
   startedAt?: Date | string
@@ -1684,10 +1684,10 @@ export type EmployeeLeaveUpdateWithoutResumesInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1708,10 +1708,10 @@ export type EmployeeLeaveUncheckedUpdateWithoutResumesInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1730,10 +1730,10 @@ export type EmployeeLeaveUncheckedUpdateManyWithoutResumesInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1751,10 +1751,10 @@ export type EmployeeLeaveCreateManyStartedByTicketInput = {
   endedOn?: Date | string | null
   endKind?: $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: string | null
-  groundsType: string
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   startedByAppUserId?: string | null
   startedAt?: Date | string
   returnOverdueNoticedFor?: Date | string | null
@@ -1768,10 +1768,10 @@ export type EmployeeLeaveUpdateWithoutStartedByTicketInput = {
   status?: Prisma.EnumEmployeeLeaveStatusFieldUpdateOperationsInput | $Enums.EmployeeLeaveStatus
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1793,10 +1793,10 @@ export type EmployeeLeaveUncheckedUpdateWithoutStartedByTicketInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1815,10 +1815,10 @@ export type EmployeeLeaveUncheckedUpdateManyWithoutStartedByTicketInput = {
   endedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endKind?: Prisma.NullableEnumEmployeeLeaveEndKindFieldUpdateOperationsInput | $Enums.EmployeeLeaveEndKind | null
   resumesLeaveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnOverdueNoticedFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2014,10 +2014,10 @@ export type $EmployeeLeavePayload<ExtArgs extends runtime.Types.Extensions.Inter
     endedOn: Date | null
     endKind: $Enums.EmployeeLeaveEndKind | null
     resumesLeaveId: string | null
-    groundsType: string
+    groundsType: string | null
     groundsReference: string
-    groundsIssuer: string
-    groundsIssuedOn: Date
+    groundsIssuer: string | null
+    groundsIssuedOn: Date | null
     startedByAppUserId: string | null
     startedByTicketId: string | null
     startedAt: Date
