@@ -2,18 +2,16 @@ import { Injectable } from '@nestjs/common';
 import type { BusinessDate } from '../../../core/business-date';
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
-import { SubscriptionPeriodApi } from '../../catalog/public/subscription-period.api';
 import { IdentityAccessApi } from '../../identity-access/public/identity-access.api';
 import { OrganizationReadApi } from '../../organization/public/organization-read.api';
 import { renewalDeciderOf } from './decision/renewal-decision.policy';
+import { renewalNamedItAdminOf } from './renewal-it-admin.policy';
 import type { DeciderRole } from './subscription-renewal.types';
 
 /** The people a renewal concerns, as they hold their roles now (an unlocked read unless a transaction is given). */
 export interface RenewalPeople {
   itAdmin: string | null;
   finance: string | null;
-  /** The Business Owner while they still work; null once they have left (`BR-06.7`). */
-  businessOwner: string | null;
   approver: string | null;
   superAdmin: string | null;
 }
@@ -23,7 +21,7 @@ export type RenewalReadScope = { kind: 'ALL'; itAdmin: boolean } | { kind: 'DEPA
 
 /**
  * Who a renewal concerns (`US-11-01`, `US-11-05`, `QĐ-94d`(2)): the IT Admin in charge of the department that owns the subscription
- * (any usable IT Admin while that department names none), Finance, the Business Owner, the head of the owner department — who
+ * (any usable IT Admin while that department names none or theirs is not usable), Finance, the head of the owner department — who
  * confirms the proposal on the day of the decision, whatever role their account holds, and nobody in their place — and the Super
  * Admin. The person who decides spending is no longer among those who decide a renewal, but still hears of an incident
  * (`QĐ-98f`).
@@ -33,14 +31,27 @@ export class RenewalPartiesService {
   constructor(
     private readonly organizationReads: OrganizationReadApi,
     private readonly identity: IdentityAccessApi,
-    private readonly periods: SubscriptionPeriodApi,
   ) {}
 
-  /** The IT Admin in charge of the owner department, else the first usable IT Admin; null when there is none. */
-  async itAdminOf(departmentId: string, tx?: DbTx): Promise<string | null> {
+  /**
+   * The IT Admin of the period (`QĐ-111g`, `BB-9`): the one responsible for the subscription while they are a usable IT Admin, else the IT
+   * Admin in charge of the owner department while they are one too, else the first usable IT Admin; null when there is none. The
+   * department is read first and both named are tested in ONE read; the first usable IT Admin is read only when neither is usable.
+   */
+  async itAdminOf(
+    period: { ownerDepartmentId: string; responsibleItAdminEmployeeId: string | null },
+    tx?: DbTx,
+  ): Promise<string | null> {
+    const inCharge = await this.organizationReads.getItAdminInChargeOfDepartment(period.ownerDepartmentId, tx);
+    const named = [...new Set([period.responsibleItAdminEmployeeId, inCharge].filter((id) => id !== null))];
+    const usable = await this.identity.findUsableItAdminEmployeeIds(named, tx);
+
     return (
-      (await this.organizationReads.getItAdminInChargeOfDepartment(departmentId, tx)) ??
-      (await this.identity.findFirstUsableItAdminEmployeeId(tx))
+      renewalNamedItAdminOf({
+        responsibleItAdminEmployeeId: period.responsibleItAdminEmployeeId,
+        departmentItAdminEmployeeId: inCharge,
+        usableItAdminEmployeeIds: usable,
+      }) ?? (await this.identity.findFirstUsableItAdminEmployeeId(tx))
     );
   }
 
@@ -102,13 +113,12 @@ export class RenewalPartiesService {
 
   /** Everyone a milestone of the period may be sent to: the shared people and those of the period itself. */
   async peopleOf(
-    period: { ownerDepartmentId: string; applicationId: string },
+    period: { ownerDepartmentId: string; responsibleItAdminEmployeeId: string | null },
     shared: Pick<RenewalPeople, 'finance' | 'approver' | 'superAdmin'>,
   ): Promise<RenewalPeople> {
     return {
       ...shared,
-      itAdmin: await this.itAdminOf(period.ownerDepartmentId),
-      businessOwner: await this.periods.getRenewalAlertRecipient(period.applicationId),
+      itAdmin: await this.itAdminOf(period),
     };
   }
 }

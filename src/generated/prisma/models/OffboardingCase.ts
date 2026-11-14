@@ -38,6 +38,9 @@ export type OffboardingCaseMinAggregateOutputType = {
   lastWorkingDay: Date | null
   departureEffectiveOn: Date | null
   handoverDueOn: Date | null
+  revocationDueOn: Date | null
+  blockAnnouncedAt: Date | null
+  accountLockOverdueAt: Date | null
   groundsType: string | null
   groundsReference: string | null
   groundsIssuer: string | null
@@ -53,6 +56,9 @@ export type OffboardingCaseMinAggregateOutputType = {
   accountLockByAppUserId: string | null
   accountLockAt: Date | null
   accountLockNote: string | null
+  mailboxLockAt: Date | null
+  mailboxLockByAppUserId: string | null
+  mailboxLockNote: string | null
   closedAt: Date | null
   closedByAppUserId: string | null
   recordedByAppUserId: string | null
@@ -75,6 +81,9 @@ export type OffboardingCaseMaxAggregateOutputType = {
   lastWorkingDay: Date | null
   departureEffectiveOn: Date | null
   handoverDueOn: Date | null
+  revocationDueOn: Date | null
+  blockAnnouncedAt: Date | null
+  accountLockOverdueAt: Date | null
   groundsType: string | null
   groundsReference: string | null
   groundsIssuer: string | null
@@ -90,6 +99,9 @@ export type OffboardingCaseMaxAggregateOutputType = {
   accountLockByAppUserId: string | null
   accountLockAt: Date | null
   accountLockNote: string | null
+  mailboxLockAt: Date | null
+  mailboxLockByAppUserId: string | null
+  mailboxLockNote: string | null
   closedAt: Date | null
   closedByAppUserId: string | null
   recordedByAppUserId: string | null
@@ -112,6 +124,9 @@ export type OffboardingCaseCountAggregateOutputType = {
   lastWorkingDay: number
   departureEffectiveOn: number
   handoverDueOn: number
+  revocationDueOn: number
+  blockAnnouncedAt: number
+  accountLockOverdueAt: number
   groundsType: number
   groundsReference: number
   groundsIssuer: number
@@ -128,6 +143,9 @@ export type OffboardingCaseCountAggregateOutputType = {
   accountLockByAppUserId: number
   accountLockAt: number
   accountLockNote: number
+  mailboxLockAt: number
+  mailboxLockByAppUserId: number
+  mailboxLockNote: number
   closedAt: number
   closedByAppUserId: number
   recordedByAppUserId: number
@@ -153,6 +171,9 @@ export type OffboardingCaseMinAggregateInputType = {
   lastWorkingDay?: true
   departureEffectiveOn?: true
   handoverDueOn?: true
+  revocationDueOn?: true
+  blockAnnouncedAt?: true
+  accountLockOverdueAt?: true
   groundsType?: true
   groundsReference?: true
   groundsIssuer?: true
@@ -168,6 +189,9 @@ export type OffboardingCaseMinAggregateInputType = {
   accountLockByAppUserId?: true
   accountLockAt?: true
   accountLockNote?: true
+  mailboxLockAt?: true
+  mailboxLockByAppUserId?: true
+  mailboxLockNote?: true
   closedAt?: true
   closedByAppUserId?: true
   recordedByAppUserId?: true
@@ -190,6 +214,9 @@ export type OffboardingCaseMaxAggregateInputType = {
   lastWorkingDay?: true
   departureEffectiveOn?: true
   handoverDueOn?: true
+  revocationDueOn?: true
+  blockAnnouncedAt?: true
+  accountLockOverdueAt?: true
   groundsType?: true
   groundsReference?: true
   groundsIssuer?: true
@@ -205,6 +232,9 @@ export type OffboardingCaseMaxAggregateInputType = {
   accountLockByAppUserId?: true
   accountLockAt?: true
   accountLockNote?: true
+  mailboxLockAt?: true
+  mailboxLockByAppUserId?: true
+  mailboxLockNote?: true
   closedAt?: true
   closedByAppUserId?: true
   recordedByAppUserId?: true
@@ -227,6 +257,9 @@ export type OffboardingCaseCountAggregateInputType = {
   lastWorkingDay?: true
   departureEffectiveOn?: true
   handoverDueOn?: true
+  revocationDueOn?: true
+  blockAnnouncedAt?: true
+  accountLockOverdueAt?: true
   groundsType?: true
   groundsReference?: true
   groundsIssuer?: true
@@ -243,6 +276,9 @@ export type OffboardingCaseCountAggregateInputType = {
   accountLockByAppUserId?: true
   accountLockAt?: true
   accountLockNote?: true
+  mailboxLockAt?: true
+  mailboxLockByAppUserId?: true
+  mailboxLockNote?: true
   closedAt?: true
   closedByAppUserId?: true
   recordedByAppUserId?: true
@@ -339,10 +375,13 @@ export type OffboardingCaseGroupByOutputType = {
   lastWorkingDay: Date
   departureEffectiveOn: Date
   handoverDueOn: Date | null
-  groundsType: string
+  revocationDueOn: Date | null
+  blockAnnouncedAt: Date | null
+  accountLockOverdueAt: Date | null
+  groundsType: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date
+  groundsIssuer: string | null
+  groundsIssuedOn: Date | null
   headHandover: runtime.JsonValue | null
   placementClosedId: string | null
   leftOn: Date | null
@@ -355,6 +394,9 @@ export type OffboardingCaseGroupByOutputType = {
   accountLockByAppUserId: string | null
   accountLockAt: Date | null
   accountLockNote: string | null
+  mailboxLockAt: Date | null
+  mailboxLockByAppUserId: string | null
+  mailboxLockNote: string | null
   closedAt: Date | null
   closedByAppUserId: string | null
   recordedByAppUserId: string | null
@@ -399,10 +441,13 @@ export type OffboardingCaseWhereInput = {
   lastWorkingDay?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   handoverDueOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
-  groundsType?: Prisma.StringFilter<"OffboardingCase"> | string
+  revocationDueOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  blockAnnouncedAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  accountLockOverdueAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  groundsType?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
   groundsReference?: Prisma.StringFilter<"OffboardingCase"> | string
-  groundsIssuer?: Prisma.StringFilter<"OffboardingCase"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   headHandover?: Prisma.JsonNullableFilter<"OffboardingCase">
   placementClosedId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   leftOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
@@ -415,6 +460,9 @@ export type OffboardingCaseWhereInput = {
   accountLockByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   accountLockAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   accountLockNote?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
+  mailboxLockAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  mailboxLockByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  mailboxLockNote?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
   closedAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   recordedByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
@@ -430,6 +478,8 @@ export type OffboardingCaseWhereInput = {
   changes?: Prisma.OffboardingCaseChangeListRelationFilter
   recordedByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
   cancelledByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
+  supersededTransfers?: Prisma.DepartmentTransferListRelationFilter
+  itAdminHandover?: Prisma.XOR<Prisma.ItAdminHandoverNullableScalarRelationFilter, Prisma.ItAdminHandoverWhereInput> | null
 }
 
 export type OffboardingCaseOrderByWithRelationInput = {
@@ -446,10 +496,13 @@ export type OffboardingCaseOrderByWithRelationInput = {
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
   handoverDueOn?: Prisma.SortOrderInput | Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  revocationDueOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  blockAnnouncedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  accountLockOverdueAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   headHandover?: Prisma.SortOrderInput | Prisma.SortOrder
   placementClosedId?: Prisma.SortOrderInput | Prisma.SortOrder
   leftOn?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -462,6 +515,9 @@ export type OffboardingCaseOrderByWithRelationInput = {
   accountLockByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   accountLockAt?: Prisma.SortOrderInput | Prisma.SortOrder
   accountLockNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  mailboxLockAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  mailboxLockByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mailboxLockNote?: Prisma.SortOrderInput | Prisma.SortOrder
   closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -477,6 +533,8 @@ export type OffboardingCaseOrderByWithRelationInput = {
   changes?: Prisma.OffboardingCaseChangeOrderByRelationAggregateInput
   recordedByTicket?: Prisma.SuperAdminEventTicketOrderByWithRelationInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketOrderByWithRelationInput
+  supersededTransfers?: Prisma.DepartmentTransferOrderByRelationAggregateInput
+  itAdminHandover?: Prisma.ItAdminHandoverOrderByWithRelationInput
 }
 
 export type OffboardingCaseWhereUniqueInput = Prisma.AtLeast<{
@@ -497,10 +555,13 @@ export type OffboardingCaseWhereUniqueInput = Prisma.AtLeast<{
   lastWorkingDay?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   handoverDueOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
-  groundsType?: Prisma.StringFilter<"OffboardingCase"> | string
+  revocationDueOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  blockAnnouncedAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  accountLockOverdueAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  groundsType?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
   groundsReference?: Prisma.StringFilter<"OffboardingCase"> | string
-  groundsIssuer?: Prisma.StringFilter<"OffboardingCase"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   headHandover?: Prisma.JsonNullableFilter<"OffboardingCase">
   placementClosedId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   leftOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
@@ -513,6 +574,9 @@ export type OffboardingCaseWhereUniqueInput = Prisma.AtLeast<{
   accountLockByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   accountLockAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   accountLockNote?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
+  mailboxLockAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  mailboxLockByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  mailboxLockNote?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
   closedAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   recordedByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
@@ -527,6 +591,8 @@ export type OffboardingCaseWhereUniqueInput = Prisma.AtLeast<{
   changes?: Prisma.OffboardingCaseChangeListRelationFilter
   recordedByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
   cancelledByTicket?: Prisma.XOR<Prisma.SuperAdminEventTicketNullableScalarRelationFilter, Prisma.SuperAdminEventTicketWhereInput> | null
+  supersededTransfers?: Prisma.DepartmentTransferListRelationFilter
+  itAdminHandover?: Prisma.XOR<Prisma.ItAdminHandoverNullableScalarRelationFilter, Prisma.ItAdminHandoverWhereInput> | null
 }, "id" | "noticeId">
 
 export type OffboardingCaseOrderByWithAggregationInput = {
@@ -543,10 +609,13 @@ export type OffboardingCaseOrderByWithAggregationInput = {
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
   handoverDueOn?: Prisma.SortOrderInput | Prisma.SortOrder
-  groundsType?: Prisma.SortOrder
+  revocationDueOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  blockAnnouncedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  accountLockOverdueAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsType?: Prisma.SortOrderInput | Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
-  groundsIssuer?: Prisma.SortOrder
-  groundsIssuedOn?: Prisma.SortOrder
+  groundsIssuer?: Prisma.SortOrderInput | Prisma.SortOrder
+  groundsIssuedOn?: Prisma.SortOrderInput | Prisma.SortOrder
   headHandover?: Prisma.SortOrderInput | Prisma.SortOrder
   placementClosedId?: Prisma.SortOrderInput | Prisma.SortOrder
   leftOn?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -559,6 +628,9 @@ export type OffboardingCaseOrderByWithAggregationInput = {
   accountLockByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   accountLockAt?: Prisma.SortOrderInput | Prisma.SortOrder
   accountLockNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  mailboxLockAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  mailboxLockByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mailboxLockNote?: Prisma.SortOrderInput | Prisma.SortOrder
   closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByAppUserId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -588,10 +660,13 @@ export type OffboardingCaseScalarWhereWithAggregatesInput = {
   lastWorkingDay?: Prisma.DateTimeWithAggregatesFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeWithAggregatesFilter<"OffboardingCase"> | Date | string
   handoverDueOn?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
-  groundsType?: Prisma.StringWithAggregatesFilter<"OffboardingCase"> | string
+  revocationDueOn?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
+  blockAnnouncedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
+  accountLockOverdueAt?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
+  groundsType?: Prisma.StringNullableWithAggregatesFilter<"OffboardingCase"> | string | null
   groundsReference?: Prisma.StringWithAggregatesFilter<"OffboardingCase"> | string
-  groundsIssuer?: Prisma.StringWithAggregatesFilter<"OffboardingCase"> | string
-  groundsIssuedOn?: Prisma.DateTimeWithAggregatesFilter<"OffboardingCase"> | Date | string
+  groundsIssuer?: Prisma.StringNullableWithAggregatesFilter<"OffboardingCase"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
   headHandover?: Prisma.JsonNullableWithAggregatesFilter<"OffboardingCase">
   placementClosedId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
   leftOn?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
@@ -604,6 +679,9 @@ export type OffboardingCaseScalarWhereWithAggregatesInput = {
   accountLockByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
   accountLockAt?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
   accountLockNote?: Prisma.StringNullableWithAggregatesFilter<"OffboardingCase"> | string | null
+  mailboxLockAt?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
+  mailboxLockByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
+  mailboxLockNote?: Prisma.StringNullableWithAggregatesFilter<"OffboardingCase"> | string | null
   closedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"OffboardingCase"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
   recordedByAppUserId?: Prisma.UuidNullableWithAggregatesFilter<"OffboardingCase"> | string | null
@@ -623,10 +701,13 @@ export type OffboardingCaseCreateInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -638,6 +719,9 @@ export type OffboardingCaseCreateInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -651,6 +735,8 @@ export type OffboardingCaseCreateInput = {
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateInput = {
@@ -667,10 +753,13 @@ export type OffboardingCaseUncheckedCreateInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -683,6 +772,9 @@ export type OffboardingCaseUncheckedCreateInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -691,6 +783,8 @@ export type OffboardingCaseUncheckedCreateInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUpdateInput = {
@@ -703,10 +797,13 @@ export type OffboardingCaseUpdateInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -718,6 +815,9 @@ export type OffboardingCaseUpdateInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -731,6 +831,8 @@ export type OffboardingCaseUpdateInput = {
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateInput = {
@@ -747,10 +849,13 @@ export type OffboardingCaseUncheckedUpdateInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -763,6 +868,9 @@ export type OffboardingCaseUncheckedUpdateInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -771,6 +879,8 @@ export type OffboardingCaseUncheckedUpdateInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseCreateManyInput = {
@@ -787,10 +897,13 @@ export type OffboardingCaseCreateManyInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -803,6 +916,9 @@ export type OffboardingCaseCreateManyInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -822,10 +938,13 @@ export type OffboardingCaseUpdateManyMutationInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -837,6 +956,9 @@ export type OffboardingCaseUpdateManyMutationInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -858,10 +980,13 @@ export type OffboardingCaseUncheckedUpdateManyInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -874,6 +999,9 @@ export type OffboardingCaseUncheckedUpdateManyInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -891,6 +1019,11 @@ export type OffboardingCaseListRelationFilter = {
 
 export type OffboardingCaseOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type OffboardingCaseNullableScalarRelationFilter = {
+  is?: Prisma.OffboardingCaseWhereInput | null
+  isNot?: Prisma.OffboardingCaseWhereInput | null
 }
 
 export type EnumOffboardingRoleFlagNullableListFilter<$PrismaModel = never> = {
@@ -915,6 +1048,9 @@ export type OffboardingCaseCountOrderByAggregateInput = {
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
   handoverDueOn?: Prisma.SortOrder
+  revocationDueOn?: Prisma.SortOrder
+  blockAnnouncedAt?: Prisma.SortOrder
+  accountLockOverdueAt?: Prisma.SortOrder
   groundsType?: Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
   groundsIssuer?: Prisma.SortOrder
@@ -931,6 +1067,9 @@ export type OffboardingCaseCountOrderByAggregateInput = {
   accountLockByAppUserId?: Prisma.SortOrder
   accountLockAt?: Prisma.SortOrder
   accountLockNote?: Prisma.SortOrder
+  mailboxLockAt?: Prisma.SortOrder
+  mailboxLockByAppUserId?: Prisma.SortOrder
+  mailboxLockNote?: Prisma.SortOrder
   closedAt?: Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrder
   recordedByAppUserId?: Prisma.SortOrder
@@ -954,6 +1093,9 @@ export type OffboardingCaseMaxOrderByAggregateInput = {
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
   handoverDueOn?: Prisma.SortOrder
+  revocationDueOn?: Prisma.SortOrder
+  blockAnnouncedAt?: Prisma.SortOrder
+  accountLockOverdueAt?: Prisma.SortOrder
   groundsType?: Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
   groundsIssuer?: Prisma.SortOrder
@@ -969,6 +1111,9 @@ export type OffboardingCaseMaxOrderByAggregateInput = {
   accountLockByAppUserId?: Prisma.SortOrder
   accountLockAt?: Prisma.SortOrder
   accountLockNote?: Prisma.SortOrder
+  mailboxLockAt?: Prisma.SortOrder
+  mailboxLockByAppUserId?: Prisma.SortOrder
+  mailboxLockNote?: Prisma.SortOrder
   closedAt?: Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrder
   recordedByAppUserId?: Prisma.SortOrder
@@ -991,6 +1136,9 @@ export type OffboardingCaseMinOrderByAggregateInput = {
   lastWorkingDay?: Prisma.SortOrder
   departureEffectiveOn?: Prisma.SortOrder
   handoverDueOn?: Prisma.SortOrder
+  revocationDueOn?: Prisma.SortOrder
+  blockAnnouncedAt?: Prisma.SortOrder
+  accountLockOverdueAt?: Prisma.SortOrder
   groundsType?: Prisma.SortOrder
   groundsReference?: Prisma.SortOrder
   groundsIssuer?: Prisma.SortOrder
@@ -1006,6 +1154,9 @@ export type OffboardingCaseMinOrderByAggregateInput = {
   accountLockByAppUserId?: Prisma.SortOrder
   accountLockAt?: Prisma.SortOrder
   accountLockNote?: Prisma.SortOrder
+  mailboxLockAt?: Prisma.SortOrder
+  mailboxLockByAppUserId?: Prisma.SortOrder
+  mailboxLockNote?: Prisma.SortOrder
   closedAt?: Prisma.SortOrder
   closedByAppUserId?: Prisma.SortOrder
   recordedByAppUserId?: Prisma.SortOrder
@@ -1017,11 +1168,6 @@ export type OffboardingCaseMinOrderByAggregateInput = {
 export type OffboardingCaseScalarRelationFilter = {
   is?: Prisma.OffboardingCaseWhereInput
   isNot?: Prisma.OffboardingCaseWhereInput
-}
-
-export type OffboardingCaseNullableScalarRelationFilter = {
-  is?: Prisma.OffboardingCaseWhereInput | null
-  isNot?: Prisma.OffboardingCaseWhereInput | null
 }
 
 export type OffboardingCaseCreateNestedManyWithoutOrganizationInput = {
@@ -1192,6 +1338,22 @@ export type OffboardingCaseUncheckedUpdateManyWithoutEmployeeNestedInput = {
   deleteMany?: Prisma.OffboardingCaseScalarWhereInput | Prisma.OffboardingCaseScalarWhereInput[]
 }
 
+export type OffboardingCaseCreateNestedOneWithoutSupersededTransfersInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutSupersededTransfersInput, Prisma.OffboardingCaseUncheckedCreateWithoutSupersededTransfersInput>
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutSupersededTransfersInput
+  connect?: Prisma.OffboardingCaseWhereUniqueInput
+}
+
+export type OffboardingCaseUpdateOneWithoutSupersededTransfersNestedInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutSupersededTransfersInput, Prisma.OffboardingCaseUncheckedCreateWithoutSupersededTransfersInput>
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutSupersededTransfersInput
+  upsert?: Prisma.OffboardingCaseUpsertWithoutSupersededTransfersInput
+  disconnect?: Prisma.OffboardingCaseWhereInput | boolean
+  delete?: Prisma.OffboardingCaseWhereInput | boolean
+  connect?: Prisma.OffboardingCaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OffboardingCaseUpdateToOneWithWhereWithoutSupersededTransfersInput, Prisma.OffboardingCaseUpdateWithoutSupersededTransfersInput>, Prisma.OffboardingCaseUncheckedUpdateWithoutSupersededTransfersInput>
+}
+
 export type OffboardingCaseCreateroleFlagsInput = {
   set: $Enums.OffboardingRoleFlag[]
 }
@@ -1339,6 +1501,22 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketNestedInpu
   deleteMany?: Prisma.OffboardingCaseScalarWhereInput | Prisma.OffboardingCaseScalarWhereInput[]
 }
 
+export type OffboardingCaseCreateNestedOneWithoutItAdminHandoverInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutItAdminHandoverInput, Prisma.OffboardingCaseUncheckedCreateWithoutItAdminHandoverInput>
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutItAdminHandoverInput
+  connect?: Prisma.OffboardingCaseWhereUniqueInput
+}
+
+export type OffboardingCaseUpdateOneWithoutItAdminHandoverNestedInput = {
+  create?: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutItAdminHandoverInput, Prisma.OffboardingCaseUncheckedCreateWithoutItAdminHandoverInput>
+  connectOrCreate?: Prisma.OffboardingCaseCreateOrConnectWithoutItAdminHandoverInput
+  upsert?: Prisma.OffboardingCaseUpsertWithoutItAdminHandoverInput
+  disconnect?: Prisma.OffboardingCaseWhereInput | boolean
+  delete?: Prisma.OffboardingCaseWhereInput | boolean
+  connect?: Prisma.OffboardingCaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OffboardingCaseUpdateToOneWithWhereWithoutItAdminHandoverInput, Prisma.OffboardingCaseUpdateWithoutItAdminHandoverInput>, Prisma.OffboardingCaseUncheckedUpdateWithoutItAdminHandoverInput>
+}
+
 export type OffboardingCaseCreateWithoutOrganizationInput = {
   id?: string
   cancelledPlacementId?: string | null
@@ -1349,10 +1527,13 @@ export type OffboardingCaseCreateWithoutOrganizationInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1364,6 +1545,9 @@ export type OffboardingCaseCreateWithoutOrganizationInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1376,6 +1560,8 @@ export type OffboardingCaseCreateWithoutOrganizationInput = {
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutOrganizationInput = {
@@ -1391,10 +1577,13 @@ export type OffboardingCaseUncheckedCreateWithoutOrganizationInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1407,6 +1596,9 @@ export type OffboardingCaseUncheckedCreateWithoutOrganizationInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1415,6 +1607,8 @@ export type OffboardingCaseUncheckedCreateWithoutOrganizationInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutOrganizationInput = {
@@ -1460,10 +1654,13 @@ export type OffboardingCaseScalarWhereInput = {
   lastWorkingDay?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   departureEffectiveOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
   handoverDueOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
-  groundsType?: Prisma.StringFilter<"OffboardingCase"> | string
+  revocationDueOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  blockAnnouncedAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  accountLockOverdueAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  groundsType?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
   groundsReference?: Prisma.StringFilter<"OffboardingCase"> | string
-  groundsIssuer?: Prisma.StringFilter<"OffboardingCase"> | string
-  groundsIssuedOn?: Prisma.DateTimeFilter<"OffboardingCase"> | Date | string
+  groundsIssuer?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
+  groundsIssuedOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   headHandover?: Prisma.JsonNullableFilter<"OffboardingCase">
   placementClosedId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   leftOn?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
@@ -1476,6 +1673,9 @@ export type OffboardingCaseScalarWhereInput = {
   accountLockByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   accountLockAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   accountLockNote?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
+  mailboxLockAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
+  mailboxLockByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
+  mailboxLockNote?: Prisma.StringNullableFilter<"OffboardingCase"> | string | null
   closedAt?: Prisma.DateTimeNullableFilter<"OffboardingCase"> | Date | string | null
   closedByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
   recordedByAppUserId?: Prisma.UuidNullableFilter<"OffboardingCase"> | string | null
@@ -1495,10 +1695,13 @@ export type OffboardingCaseCreateWithoutDepartmentInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1510,6 +1713,9 @@ export type OffboardingCaseCreateWithoutDepartmentInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1522,6 +1728,8 @@ export type OffboardingCaseCreateWithoutDepartmentInput = {
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutDepartmentInput = {
@@ -1537,10 +1745,13 @@ export type OffboardingCaseUncheckedCreateWithoutDepartmentInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1553,6 +1764,9 @@ export type OffboardingCaseUncheckedCreateWithoutDepartmentInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1561,6 +1775,8 @@ export type OffboardingCaseUncheckedCreateWithoutDepartmentInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutDepartmentInput = {
@@ -1583,10 +1799,13 @@ export type OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1598,6 +1817,9 @@ export type OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1610,6 +1832,8 @@ export type OffboardingCaseCreateWithoutCancelledPlacementDepartmentInput = {
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInput = {
@@ -1625,10 +1849,13 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInp
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1641,6 +1868,9 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInp
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1649,6 +1879,8 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledPlacementDepartmentInp
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutCancelledPlacementDepartmentInput = {
@@ -1703,10 +1935,13 @@ export type OffboardingCaseCreateWithoutEmployeeInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1718,6 +1953,9 @@ export type OffboardingCaseCreateWithoutEmployeeInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1730,6 +1968,8 @@ export type OffboardingCaseCreateWithoutEmployeeInput = {
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutEmployeeInput = {
@@ -1745,10 +1985,13 @@ export type OffboardingCaseUncheckedCreateWithoutEmployeeInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1761,6 +2004,9 @@ export type OffboardingCaseUncheckedCreateWithoutEmployeeInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1769,6 +2015,8 @@ export type OffboardingCaseUncheckedCreateWithoutEmployeeInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutEmployeeInput = {
@@ -1797,7 +2045,7 @@ export type OffboardingCaseUpdateManyWithWhereWithoutEmployeeInput = {
   data: Prisma.XOR<Prisma.OffboardingCaseUpdateManyMutationInput, Prisma.OffboardingCaseUncheckedUpdateManyWithoutEmployeeInput>
 }
 
-export type OffboardingCaseCreateWithoutChangesInput = {
+export type OffboardingCaseCreateWithoutSupersededTransfersInput = {
   id?: string
   cancelledPlacementId?: string | null
   cancelledPlacementFrom?: Date | string | null
@@ -1807,10 +2055,13 @@ export type OffboardingCaseCreateWithoutChangesInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1822,6 +2073,213 @@ export type OffboardingCaseCreateWithoutChangesInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  recordedByAppUserId?: string | null
+  recordedAt?: Date | string
+  roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
+  notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
+  changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
+}
+
+export type OffboardingCaseUncheckedCreateWithoutSupersededTransfersInput = {
+  id?: string
+  organizationId: string
+  employeeId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
+  state?: $Enums.OffboardingState
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
+  priorWorkState: $Enums.EmployeeWorkState
+  lastWorkingDay: Date | string
+  departureEffectiveOn: Date | string
+  handoverDueOn?: Date | string | null
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: string | null
+  leftOn?: Date | string | null
+  leftAt?: Date | string | null
+  leftByAppUserId?: string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledByTicketId?: string | null
+  cancelReason?: string | null
+  accountLockByAppUserId?: string | null
+  accountLockAt?: Date | string | null
+  accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  recordedByAppUserId?: string | null
+  recordedByTicketId?: string | null
+  recordedAt?: Date | string
+  roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: string | null
+  changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
+}
+
+export type OffboardingCaseCreateOrConnectWithoutSupersededTransfersInput = {
+  where: Prisma.OffboardingCaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutSupersededTransfersInput, Prisma.OffboardingCaseUncheckedCreateWithoutSupersededTransfersInput>
+}
+
+export type OffboardingCaseUpsertWithoutSupersededTransfersInput = {
+  update: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutSupersededTransfersInput, Prisma.OffboardingCaseUncheckedUpdateWithoutSupersededTransfersInput>
+  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutSupersededTransfersInput, Prisma.OffboardingCaseUncheckedCreateWithoutSupersededTransfersInput>
+  where?: Prisma.OffboardingCaseWhereInput
+}
+
+export type OffboardingCaseUpdateToOneWithWhereWithoutSupersededTransfersInput = {
+  where?: Prisma.OffboardingCaseWhereInput
+  data: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutSupersededTransfersInput, Prisma.OffboardingCaseUncheckedUpdateWithoutSupersededTransfersInput>
+}
+
+export type OffboardingCaseUpdateWithoutSupersededTransfersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
+  priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
+  changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
+}
+
+export type OffboardingCaseUncheckedUpdateWithoutSupersededTransfersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
+  priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
+}
+
+export type OffboardingCaseCreateWithoutChangesInput = {
+  id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
+  state?: $Enums.OffboardingState
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
+  priorWorkState: $Enums.EmployeeWorkState
+  lastWorkingDay: Date | string
+  departureEffectiveOn: Date | string
+  handoverDueOn?: Date | string | null
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: string | null
+  leftOn?: Date | string | null
+  leftAt?: Date | string | null
+  leftByAppUserId?: string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelReason?: string | null
+  accountLockByAppUserId?: string | null
+  accountLockAt?: Date | string | null
+  accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1834,6 +2292,8 @@ export type OffboardingCaseCreateWithoutChangesInput = {
   cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutChangesInput = {
@@ -1850,10 +2310,13 @@ export type OffboardingCaseUncheckedCreateWithoutChangesInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1866,6 +2329,9 @@ export type OffboardingCaseUncheckedCreateWithoutChangesInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -1873,6 +2339,8 @@ export type OffboardingCaseUncheckedCreateWithoutChangesInput = {
   recordedAt?: Date | string
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutChangesInput = {
@@ -1901,10 +2369,13 @@ export type OffboardingCaseUpdateWithoutChangesInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1916,6 +2387,9 @@ export type OffboardingCaseUpdateWithoutChangesInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1928,6 +2402,8 @@ export type OffboardingCaseUpdateWithoutChangesInput = {
   cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutChangesInput = {
@@ -1944,10 +2420,13 @@ export type OffboardingCaseUncheckedUpdateWithoutChangesInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1960,6 +2439,9 @@ export type OffboardingCaseUncheckedUpdateWithoutChangesInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1967,6 +2449,8 @@ export type OffboardingCaseUncheckedUpdateWithoutChangesInput = {
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseCreateWithoutNoticeInput = {
@@ -1979,10 +2463,13 @@ export type OffboardingCaseCreateWithoutNoticeInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -1994,6 +2481,9 @@ export type OffboardingCaseCreateWithoutNoticeInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2006,6 +2496,8 @@ export type OffboardingCaseCreateWithoutNoticeInput = {
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutNoticeInput = {
@@ -2022,10 +2514,13 @@ export type OffboardingCaseUncheckedCreateWithoutNoticeInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2038,6 +2533,9 @@ export type OffboardingCaseUncheckedCreateWithoutNoticeInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2045,6 +2543,8 @@ export type OffboardingCaseUncheckedCreateWithoutNoticeInput = {
   recordedAt?: Date | string
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutNoticeInput = {
@@ -2073,10 +2573,13 @@ export type OffboardingCaseUpdateWithoutNoticeInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2088,6 +2591,9 @@ export type OffboardingCaseUpdateWithoutNoticeInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2100,6 +2606,8 @@ export type OffboardingCaseUpdateWithoutNoticeInput = {
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutNoticeInput = {
@@ -2116,10 +2624,13 @@ export type OffboardingCaseUncheckedUpdateWithoutNoticeInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2132,6 +2643,9 @@ export type OffboardingCaseUncheckedUpdateWithoutNoticeInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2139,6 +2653,8 @@ export type OffboardingCaseUncheckedUpdateWithoutNoticeInput = {
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseCreateWithoutRecordedByTicketInput = {
@@ -2151,10 +2667,13 @@ export type OffboardingCaseCreateWithoutRecordedByTicketInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2166,6 +2685,9 @@ export type OffboardingCaseCreateWithoutRecordedByTicketInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2178,6 +2700,8 @@ export type OffboardingCaseCreateWithoutRecordedByTicketInput = {
   cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutRecordedByTicketInput = {
@@ -2194,10 +2718,13 @@ export type OffboardingCaseUncheckedCreateWithoutRecordedByTicketInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2210,6 +2737,9 @@ export type OffboardingCaseUncheckedCreateWithoutRecordedByTicketInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2217,6 +2747,8 @@ export type OffboardingCaseUncheckedCreateWithoutRecordedByTicketInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutRecordedByTicketInput = {
@@ -2239,10 +2771,13 @@ export type OffboardingCaseCreateWithoutCancelledByTicketInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2254,6 +2789,9 @@ export type OffboardingCaseCreateWithoutCancelledByTicketInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2266,6 +2804,8 @@ export type OffboardingCaseCreateWithoutCancelledByTicketInput = {
   cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
   changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
   recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseUncheckedCreateWithoutCancelledByTicketInput = {
@@ -2282,10 +2822,13 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledByTicketInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2297,6 +2840,9 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledByTicketInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2305,6 +2851,8 @@ export type OffboardingCaseUncheckedCreateWithoutCancelledByTicketInput = {
   roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedCreateNestedOneWithoutOffboardingCaseInput
 }
 
 export type OffboardingCaseCreateOrConnectWithoutCancelledByTicketInput = {
@@ -2349,6 +2897,210 @@ export type OffboardingCaseUpdateManyWithWhereWithoutCancelledByTicketInput = {
   data: Prisma.XOR<Prisma.OffboardingCaseUpdateManyMutationInput, Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketInput>
 }
 
+export type OffboardingCaseCreateWithoutItAdminHandoverInput = {
+  id?: string
+  cancelledPlacementId?: string | null
+  cancelledPlacementFrom?: Date | string | null
+  state?: $Enums.OffboardingState
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
+  priorWorkState: $Enums.EmployeeWorkState
+  lastWorkingDay: Date | string
+  departureEffectiveOn: Date | string
+  handoverDueOn?: Date | string | null
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: string | null
+  leftOn?: Date | string | null
+  leftAt?: Date | string | null
+  leftByAppUserId?: string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelReason?: string | null
+  accountLockByAppUserId?: string | null
+  accountLockAt?: Date | string | null
+  accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  recordedByAppUserId?: string | null
+  recordedAt?: Date | string
+  roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  organization: Prisma.OrganizationCreateNestedOneWithoutOffboardingCasesInput
+  notice?: Prisma.PersonnelNoticeCreateNestedOneWithoutOffboardingCaseInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutOffboardingCasesInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutOffboardingCasesInput
+  cancelledPlacementDepartment?: Prisma.DepartmentCreateNestedOneWithoutCancelledOffboardingCasesInput
+  changes?: Prisma.OffboardingCaseChangeCreateNestedManyWithoutOffboardingCaseInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingRecordedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketCreateNestedOneWithoutOffboardingCancelledInput
+  supersededTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutSupersededByCaseInput
+}
+
+export type OffboardingCaseUncheckedCreateWithoutItAdminHandoverInput = {
+  id?: string
+  organizationId: string
+  employeeId: string
+  departmentId?: string | null
+  cancelledPlacementId?: string | null
+  cancelledPlacementDepartmentId?: string | null
+  cancelledPlacementFrom?: Date | string | null
+  state?: $Enums.OffboardingState
+  accessBlockMode: $Enums.OffboardingAccessBlockMode
+  priorWorkState: $Enums.EmployeeWorkState
+  lastWorkingDay: Date | string
+  departureEffectiveOn: Date | string
+  handoverDueOn?: Date | string | null
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
+  groundsReference: string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: string | null
+  leftOn?: Date | string | null
+  leftAt?: Date | string | null
+  leftByAppUserId?: string | null
+  cancelledAt?: Date | string | null
+  cancelledByAppUserId?: string | null
+  cancelledByTicketId?: string | null
+  cancelReason?: string | null
+  accountLockByAppUserId?: string | null
+  accountLockAt?: Date | string | null
+  accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
+  closedAt?: Date | string | null
+  closedByAppUserId?: string | null
+  recordedByAppUserId?: string | null
+  recordedByTicketId?: string | null
+  recordedAt?: Date | string
+  roleFlags?: Prisma.OffboardingCaseCreateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: string | null
+  changes?: Prisma.OffboardingCaseChangeUncheckedCreateNestedManyWithoutOffboardingCaseInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutSupersededByCaseInput
+}
+
+export type OffboardingCaseCreateOrConnectWithoutItAdminHandoverInput = {
+  where: Prisma.OffboardingCaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutItAdminHandoverInput, Prisma.OffboardingCaseUncheckedCreateWithoutItAdminHandoverInput>
+}
+
+export type OffboardingCaseUpsertWithoutItAdminHandoverInput = {
+  update: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutItAdminHandoverInput, Prisma.OffboardingCaseUncheckedUpdateWithoutItAdminHandoverInput>
+  create: Prisma.XOR<Prisma.OffboardingCaseCreateWithoutItAdminHandoverInput, Prisma.OffboardingCaseUncheckedCreateWithoutItAdminHandoverInput>
+  where?: Prisma.OffboardingCaseWhereInput
+}
+
+export type OffboardingCaseUpdateToOneWithWhereWithoutItAdminHandoverInput = {
+  where?: Prisma.OffboardingCaseWhereInput
+  data: Prisma.XOR<Prisma.OffboardingCaseUpdateWithoutItAdminHandoverInput, Prisma.OffboardingCaseUncheckedUpdateWithoutItAdminHandoverInput>
+}
+
+export type OffboardingCaseUpdateWithoutItAdminHandoverInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
+  priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  notice?: Prisma.PersonnelNoticeUpdateOneWithoutOffboardingCaseNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutOffboardingCasesNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutOffboardingCasesNestedInput
+  cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
+  changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
+  recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
+  cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+}
+
+export type OffboardingCaseUncheckedUpdateWithoutItAdminHandoverInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledPlacementFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  state?: Prisma.EnumOffboardingStateFieldUpdateOperationsInput | $Enums.OffboardingState
+  accessBlockMode?: Prisma.EnumOffboardingAccessBlockModeFieldUpdateOperationsInput | $Enums.OffboardingAccessBlockMode
+  priorWorkState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
+  lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedByTicketId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
+  noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+}
+
 export type OffboardingCaseCreateManyOrganizationInput = {
   id?: string
   employeeId: string
@@ -2362,10 +3114,13 @@ export type OffboardingCaseCreateManyOrganizationInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2378,6 +3133,9 @@ export type OffboardingCaseCreateManyOrganizationInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2397,10 +3155,13 @@ export type OffboardingCaseUpdateWithoutOrganizationInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2412,6 +3173,9 @@ export type OffboardingCaseUpdateWithoutOrganizationInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2424,6 +3188,8 @@ export type OffboardingCaseUpdateWithoutOrganizationInput = {
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutOrganizationInput = {
@@ -2439,10 +3205,13 @@ export type OffboardingCaseUncheckedUpdateWithoutOrganizationInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2455,6 +3224,9 @@ export type OffboardingCaseUncheckedUpdateWithoutOrganizationInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2463,6 +3235,8 @@ export type OffboardingCaseUncheckedUpdateWithoutOrganizationInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateManyWithoutOrganizationInput = {
@@ -2478,10 +3252,13 @@ export type OffboardingCaseUncheckedUpdateManyWithoutOrganizationInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2494,6 +3271,9 @@ export type OffboardingCaseUncheckedUpdateManyWithoutOrganizationInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2516,10 +3296,13 @@ export type OffboardingCaseCreateManyDepartmentInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2532,6 +3315,9 @@ export type OffboardingCaseCreateManyDepartmentInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2554,10 +3340,13 @@ export type OffboardingCaseCreateManyCancelledPlacementDepartmentInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2570,6 +3359,9 @@ export type OffboardingCaseCreateManyCancelledPlacementDepartmentInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2589,10 +3381,13 @@ export type OffboardingCaseUpdateWithoutDepartmentInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2604,6 +3399,9 @@ export type OffboardingCaseUpdateWithoutDepartmentInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2616,6 +3414,8 @@ export type OffboardingCaseUpdateWithoutDepartmentInput = {
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutDepartmentInput = {
@@ -2631,10 +3431,13 @@ export type OffboardingCaseUncheckedUpdateWithoutDepartmentInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2647,6 +3450,9 @@ export type OffboardingCaseUncheckedUpdateWithoutDepartmentInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2655,6 +3461,8 @@ export type OffboardingCaseUncheckedUpdateWithoutDepartmentInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput = {
@@ -2670,10 +3478,13 @@ export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2686,6 +3497,9 @@ export type OffboardingCaseUncheckedUpdateManyWithoutDepartmentInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2705,10 +3519,13 @@ export type OffboardingCaseUpdateWithoutCancelledPlacementDepartmentInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2720,6 +3537,9 @@ export type OffboardingCaseUpdateWithoutCancelledPlacementDepartmentInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2732,6 +3552,8 @@ export type OffboardingCaseUpdateWithoutCancelledPlacementDepartmentInput = {
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInput = {
@@ -2747,10 +3569,13 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInp
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2763,6 +3588,9 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInp
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2771,6 +3599,8 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledPlacementDepartmentInp
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentInput = {
@@ -2786,10 +3616,13 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmen
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2802,6 +3635,9 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmen
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2824,10 +3660,13 @@ export type OffboardingCaseCreateManyEmployeeInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2840,6 +3679,9 @@ export type OffboardingCaseCreateManyEmployeeInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -2859,10 +3701,13 @@ export type OffboardingCaseUpdateWithoutEmployeeInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2874,6 +3719,9 @@ export type OffboardingCaseUpdateWithoutEmployeeInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2886,6 +3734,8 @@ export type OffboardingCaseUpdateWithoutEmployeeInput = {
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutEmployeeInput = {
@@ -2901,10 +3751,13 @@ export type OffboardingCaseUncheckedUpdateWithoutEmployeeInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2917,6 +3770,9 @@ export type OffboardingCaseUncheckedUpdateWithoutEmployeeInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2925,6 +3781,8 @@ export type OffboardingCaseUncheckedUpdateWithoutEmployeeInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateManyWithoutEmployeeInput = {
@@ -2940,10 +3798,13 @@ export type OffboardingCaseUncheckedUpdateManyWithoutEmployeeInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2956,6 +3817,9 @@ export type OffboardingCaseUncheckedUpdateManyWithoutEmployeeInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2979,10 +3843,13 @@ export type OffboardingCaseCreateManyRecordedByTicketInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -2995,6 +3862,9 @@ export type OffboardingCaseCreateManyRecordedByTicketInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -3017,10 +3887,13 @@ export type OffboardingCaseCreateManyCancelledByTicketInput = {
   lastWorkingDay: Date | string
   departureEffectiveOn: Date | string
   handoverDueOn?: Date | string | null
-  groundsType: string
+  revocationDueOn?: Date | string | null
+  blockAnnouncedAt?: Date | string | null
+  accountLockOverdueAt?: Date | string | null
+  groundsType?: string | null
   groundsReference: string
-  groundsIssuer: string
-  groundsIssuedOn: Date | string
+  groundsIssuer?: string | null
+  groundsIssuedOn?: Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: string | null
   leftOn?: Date | string | null
@@ -3032,6 +3905,9 @@ export type OffboardingCaseCreateManyCancelledByTicketInput = {
   accountLockByAppUserId?: string | null
   accountLockAt?: Date | string | null
   accountLockNote?: string | null
+  mailboxLockAt?: Date | string | null
+  mailboxLockByAppUserId?: string | null
+  mailboxLockNote?: string | null
   closedAt?: Date | string | null
   closedByAppUserId?: string | null
   recordedByAppUserId?: string | null
@@ -3051,10 +3927,13 @@ export type OffboardingCaseUpdateWithoutRecordedByTicketInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3066,6 +3945,9 @@ export type OffboardingCaseUpdateWithoutRecordedByTicketInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3078,6 +3960,8 @@ export type OffboardingCaseUpdateWithoutRecordedByTicketInput = {
   cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   cancelledByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingCancelledNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutRecordedByTicketInput = {
@@ -3094,10 +3978,13 @@ export type OffboardingCaseUncheckedUpdateWithoutRecordedByTicketInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3110,6 +3997,9 @@ export type OffboardingCaseUncheckedUpdateWithoutRecordedByTicketInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3117,6 +4007,8 @@ export type OffboardingCaseUncheckedUpdateWithoutRecordedByTicketInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateManyWithoutRecordedByTicketInput = {
@@ -3133,10 +4025,13 @@ export type OffboardingCaseUncheckedUpdateManyWithoutRecordedByTicketInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3149,6 +4044,9 @@ export type OffboardingCaseUncheckedUpdateManyWithoutRecordedByTicketInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3167,10 +4065,13 @@ export type OffboardingCaseUpdateWithoutCancelledByTicketInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3182,6 +4083,9 @@ export type OffboardingCaseUpdateWithoutCancelledByTicketInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3194,6 +4098,8 @@ export type OffboardingCaseUpdateWithoutCancelledByTicketInput = {
   cancelledPlacementDepartment?: Prisma.DepartmentUpdateOneWithoutCancelledOffboardingCasesNestedInput
   changes?: Prisma.OffboardingCaseChangeUpdateManyWithoutOffboardingCaseNestedInput
   recordedByTicket?: Prisma.SuperAdminEventTicketUpdateOneWithoutOffboardingRecordedNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateWithoutCancelledByTicketInput = {
@@ -3210,10 +4116,13 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledByTicketInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3225,6 +4134,9 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledByTicketInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3233,6 +4145,8 @@ export type OffboardingCaseUncheckedUpdateWithoutCancelledByTicketInput = {
   roleFlags?: Prisma.OffboardingCaseUpdateroleFlagsInput | $Enums.OffboardingRoleFlag[]
   noticeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changes?: Prisma.OffboardingCaseChangeUncheckedUpdateManyWithoutOffboardingCaseNestedInput
+  supersededTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutSupersededByCaseNestedInput
+  itAdminHandover?: Prisma.ItAdminHandoverUncheckedUpdateOneWithoutOffboardingCaseNestedInput
 }
 
 export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketInput = {
@@ -3249,10 +4163,13 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketInput = {
   lastWorkingDay?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departureEffectiveOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   handoverDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  groundsType?: Prisma.StringFieldUpdateOperationsInput | string
+  revocationDueOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blockAnnouncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accountLockOverdueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  groundsType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groundsReference?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuer?: Prisma.StringFieldUpdateOperationsInput | string
-  groundsIssuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groundsIssuer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groundsIssuedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headHandover?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   placementClosedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   leftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3264,6 +4181,9 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketInput = {
   accountLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accountLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accountLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailboxLockByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mailboxLockNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   closedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3280,10 +4200,12 @@ export type OffboardingCaseUncheckedUpdateManyWithoutCancelledByTicketInput = {
 
 export type OffboardingCaseCountOutputType = {
   changes: number
+  supersededTransfers: number
 }
 
 export type OffboardingCaseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   changes?: boolean | OffboardingCaseCountOutputTypeCountChangesArgs
+  supersededTransfers?: boolean | OffboardingCaseCountOutputTypeCountSupersededTransfersArgs
 }
 
 /**
@@ -3303,6 +4225,13 @@ export type OffboardingCaseCountOutputTypeCountChangesArgs<ExtArgs extends runti
   where?: Prisma.OffboardingCaseChangeWhereInput
 }
 
+/**
+ * OffboardingCaseCountOutputType without action
+ */
+export type OffboardingCaseCountOutputTypeCountSupersededTransfersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentTransferWhereInput
+}
+
 
 export type OffboardingCaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3318,6 +4247,9 @@ export type OffboardingCaseSelect<ExtArgs extends runtime.Types.Extensions.Inter
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
   handoverDueOn?: boolean
+  revocationDueOn?: boolean
+  blockAnnouncedAt?: boolean
+  accountLockOverdueAt?: boolean
   groundsType?: boolean
   groundsReference?: boolean
   groundsIssuer?: boolean
@@ -3334,6 +4266,9 @@ export type OffboardingCaseSelect<ExtArgs extends runtime.Types.Extensions.Inter
   accountLockByAppUserId?: boolean
   accountLockAt?: boolean
   accountLockNote?: boolean
+  mailboxLockAt?: boolean
+  mailboxLockByAppUserId?: boolean
+  mailboxLockNote?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
   recordedByAppUserId?: boolean
@@ -3349,6 +4284,8 @@ export type OffboardingCaseSelect<ExtArgs extends runtime.Types.Extensions.Inter
   changes?: boolean | Prisma.OffboardingCase$changesArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
+  supersededTransfers?: boolean | Prisma.OffboardingCase$supersededTransfersArgs<ExtArgs>
+  itAdminHandover?: boolean | Prisma.OffboardingCase$itAdminHandoverArgs<ExtArgs>
   _count?: boolean | Prisma.OffboardingCaseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["offboardingCase"]>
 
@@ -3366,6 +4303,9 @@ export type OffboardingCaseSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
   handoverDueOn?: boolean
+  revocationDueOn?: boolean
+  blockAnnouncedAt?: boolean
+  accountLockOverdueAt?: boolean
   groundsType?: boolean
   groundsReference?: boolean
   groundsIssuer?: boolean
@@ -3382,6 +4322,9 @@ export type OffboardingCaseSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   accountLockByAppUserId?: boolean
   accountLockAt?: boolean
   accountLockNote?: boolean
+  mailboxLockAt?: boolean
+  mailboxLockByAppUserId?: boolean
+  mailboxLockNote?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
   recordedByAppUserId?: boolean
@@ -3412,6 +4355,9 @@ export type OffboardingCaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
   handoverDueOn?: boolean
+  revocationDueOn?: boolean
+  blockAnnouncedAt?: boolean
+  accountLockOverdueAt?: boolean
   groundsType?: boolean
   groundsReference?: boolean
   groundsIssuer?: boolean
@@ -3428,6 +4374,9 @@ export type OffboardingCaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   accountLockByAppUserId?: boolean
   accountLockAt?: boolean
   accountLockNote?: boolean
+  mailboxLockAt?: boolean
+  mailboxLockByAppUserId?: boolean
+  mailboxLockNote?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
   recordedByAppUserId?: boolean
@@ -3458,6 +4407,9 @@ export type OffboardingCaseSelectScalar = {
   lastWorkingDay?: boolean
   departureEffectiveOn?: boolean
   handoverDueOn?: boolean
+  revocationDueOn?: boolean
+  blockAnnouncedAt?: boolean
+  accountLockOverdueAt?: boolean
   groundsType?: boolean
   groundsReference?: boolean
   groundsIssuer?: boolean
@@ -3474,6 +4426,9 @@ export type OffboardingCaseSelectScalar = {
   accountLockByAppUserId?: boolean
   accountLockAt?: boolean
   accountLockNote?: boolean
+  mailboxLockAt?: boolean
+  mailboxLockByAppUserId?: boolean
+  mailboxLockNote?: boolean
   closedAt?: boolean
   closedByAppUserId?: boolean
   recordedByAppUserId?: boolean
@@ -3483,7 +4438,7 @@ export type OffboardingCaseSelectScalar = {
   noticeId?: boolean
 }
 
-export type OffboardingCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "departmentId" | "cancelledPlacementId" | "cancelledPlacementDepartmentId" | "cancelledPlacementFrom" | "state" | "accessBlockMode" | "priorWorkState" | "lastWorkingDay" | "departureEffectiveOn" | "handoverDueOn" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "headHandover" | "placementClosedId" | "leftOn" | "leftAt" | "leftByAppUserId" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelReason" | "accountLockByAppUserId" | "accountLockAt" | "accountLockNote" | "closedAt" | "closedByAppUserId" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "roleFlags" | "noticeId", ExtArgs["result"]["offboardingCase"]>
+export type OffboardingCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "departmentId" | "cancelledPlacementId" | "cancelledPlacementDepartmentId" | "cancelledPlacementFrom" | "state" | "accessBlockMode" | "priorWorkState" | "lastWorkingDay" | "departureEffectiveOn" | "handoverDueOn" | "revocationDueOn" | "blockAnnouncedAt" | "accountLockOverdueAt" | "groundsType" | "groundsReference" | "groundsIssuer" | "groundsIssuedOn" | "headHandover" | "placementClosedId" | "leftOn" | "leftAt" | "leftByAppUserId" | "cancelledAt" | "cancelledByAppUserId" | "cancelledByTicketId" | "cancelReason" | "accountLockByAppUserId" | "accountLockAt" | "accountLockNote" | "mailboxLockAt" | "mailboxLockByAppUserId" | "mailboxLockNote" | "closedAt" | "closedByAppUserId" | "recordedByAppUserId" | "recordedByTicketId" | "recordedAt" | "roleFlags" | "noticeId", ExtArgs["result"]["offboardingCase"]>
 export type OffboardingCaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   notice?: boolean | Prisma.OffboardingCase$noticeArgs<ExtArgs>
@@ -3493,6 +4448,8 @@ export type OffboardingCaseInclude<ExtArgs extends runtime.Types.Extensions.Inte
   changes?: boolean | Prisma.OffboardingCase$changesArgs<ExtArgs>
   recordedByTicket?: boolean | Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>
   cancelledByTicket?: boolean | Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>
+  supersededTransfers?: boolean | Prisma.OffboardingCase$supersededTransfersArgs<ExtArgs>
+  itAdminHandover?: boolean | Prisma.OffboardingCase$itAdminHandoverArgs<ExtArgs>
   _count?: boolean | Prisma.OffboardingCaseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OffboardingCaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3525,6 +4482,8 @@ export type $OffboardingCasePayload<ExtArgs extends runtime.Types.Extensions.Int
     changes: Prisma.$OffboardingCaseChangePayload<ExtArgs>[]
     recordedByTicket: Prisma.$SuperAdminEventTicketPayload<ExtArgs> | null
     cancelledByTicket: Prisma.$SuperAdminEventTicketPayload<ExtArgs> | null
+    supersededTransfers: Prisma.$DepartmentTransferPayload<ExtArgs>[]
+    itAdminHandover: Prisma.$ItAdminHandoverPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3540,10 +4499,13 @@ export type $OffboardingCasePayload<ExtArgs extends runtime.Types.Extensions.Int
     lastWorkingDay: Date
     departureEffectiveOn: Date
     handoverDueOn: Date | null
-    groundsType: string
+    revocationDueOn: Date | null
+    blockAnnouncedAt: Date | null
+    accountLockOverdueAt: Date | null
+    groundsType: string | null
     groundsReference: string
-    groundsIssuer: string
-    groundsIssuedOn: Date
+    groundsIssuer: string | null
+    groundsIssuedOn: Date | null
     headHandover: runtime.JsonValue | null
     placementClosedId: string | null
     leftOn: Date | null
@@ -3556,6 +4518,9 @@ export type $OffboardingCasePayload<ExtArgs extends runtime.Types.Extensions.Int
     accountLockByAppUserId: string | null
     accountLockAt: Date | null
     accountLockNote: string | null
+    mailboxLockAt: Date | null
+    mailboxLockByAppUserId: string | null
+    mailboxLockNote: string | null
     closedAt: Date | null
     closedByAppUserId: string | null
     recordedByAppUserId: string | null
@@ -3965,6 +4930,8 @@ export interface Prisma__OffboardingCaseClient<T, Null = never, ExtArgs extends 
   changes<T extends Prisma.OffboardingCase$changesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$changesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OffboardingCaseChangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   recordedByTicket<T extends Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$recordedByTicketArgs<ExtArgs>>): Prisma.Prisma__SuperAdminEventTicketClient<runtime.Types.Result.GetResult<Prisma.$SuperAdminEventTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cancelledByTicket<T extends Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$cancelledByTicketArgs<ExtArgs>>): Prisma.Prisma__SuperAdminEventTicketClient<runtime.Types.Result.GetResult<Prisma.$SuperAdminEventTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  supersededTransfers<T extends Prisma.OffboardingCase$supersededTransfersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$supersededTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  itAdminHandover<T extends Prisma.OffboardingCase$itAdminHandoverArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffboardingCase$itAdminHandoverArgs<ExtArgs>>): Prisma.Prisma__ItAdminHandoverClient<runtime.Types.Result.GetResult<Prisma.$ItAdminHandoverPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4007,6 +4974,9 @@ export interface OffboardingCaseFieldRefs {
   readonly lastWorkingDay: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly departureEffectiveOn: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly handoverDueOn: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
+  readonly revocationDueOn: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
+  readonly blockAnnouncedAt: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
+  readonly accountLockOverdueAt: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly groundsType: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly groundsReference: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly groundsIssuer: Prisma.FieldRef<"OffboardingCase", 'String'>
@@ -4023,6 +4993,9 @@ export interface OffboardingCaseFieldRefs {
   readonly accountLockByAppUserId: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly accountLockAt: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly accountLockNote: Prisma.FieldRef<"OffboardingCase", 'String'>
+  readonly mailboxLockAt: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
+  readonly mailboxLockByAppUserId: Prisma.FieldRef<"OffboardingCase", 'String'>
+  readonly mailboxLockNote: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly closedAt: Prisma.FieldRef<"OffboardingCase", 'DateTime'>
   readonly closedByAppUserId: Prisma.FieldRef<"OffboardingCase", 'String'>
   readonly recordedByAppUserId: Prisma.FieldRef<"OffboardingCase", 'String'>
@@ -4547,6 +5520,49 @@ export type OffboardingCase$cancelledByTicketArgs<ExtArgs extends runtime.Types.
    */
   include?: Prisma.SuperAdminEventTicketInclude<ExtArgs> | null
   where?: Prisma.SuperAdminEventTicketWhereInput
+}
+
+/**
+ * OffboardingCase.supersededTransfers
+ */
+export type OffboardingCase$supersededTransfersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentTransfer
+   */
+  select?: Prisma.DepartmentTransferSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentTransfer
+   */
+  omit?: Prisma.DepartmentTransferOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentTransferInclude<ExtArgs> | null
+  where?: Prisma.DepartmentTransferWhereInput
+  orderBy?: Prisma.DepartmentTransferOrderByWithRelationInput | Prisma.DepartmentTransferOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentTransferWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentTransferScalarFieldEnum | Prisma.DepartmentTransferScalarFieldEnum[]
+}
+
+/**
+ * OffboardingCase.itAdminHandover
+ */
+export type OffboardingCase$itAdminHandoverArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ItAdminHandover
+   */
+  select?: Prisma.ItAdminHandoverSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ItAdminHandover
+   */
+  omit?: Prisma.ItAdminHandoverOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItAdminHandoverInclude<ExtArgs> | null
+  where?: Prisma.ItAdminHandoverWhereInput
 }
 
 /**

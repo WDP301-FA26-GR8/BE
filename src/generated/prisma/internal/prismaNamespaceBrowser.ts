@@ -129,6 +129,8 @@ export const ModelName = {
   SubscriptionRenewalReleasedSeat: 'SubscriptionRenewalReleasedSeat',
   SubscriptionDeadlineEvent: 'SubscriptionDeadlineEvent',
   PoolGrantAvoidedCost: 'PoolGrantAvoidedCost',
+  DepartmentSoftwareEntry: 'DepartmentSoftwareEntry',
+  DepartmentSoftwareProposal: 'DepartmentSoftwareProposal',
   EmailOutbox: 'EmailOutbox',
   InAppNotification: 'InAppNotification',
   HeldDepartmentNotification: 'HeldDepartmentNotification',
@@ -163,6 +165,7 @@ export const ModelName = {
   PersonnelNoticeVerification: 'PersonnelNoticeVerification',
   SuperAdminEventTicket: 'SuperAdminEventTicket',
   PersonnelNoticeCounter: 'PersonnelNoticeCounter',
+  ItAdminHandover: 'ItAdminHandover',
   AccessRequest: 'AccessRequest',
   AccessRequestBeneficiary: 'AccessRequestBeneficiary',
   AccessRequestLine: 'AccessRequestLine',
@@ -636,6 +639,7 @@ export const ApplicationScalarFieldEnum = {
   dictionaryLineId: 'dictionaryLineId',
   functionalGroupId: 'functionalGroupId',
   businessOwnerEmployeeId: 'businessOwnerEmployeeId',
+  responsibleItAdminEmployeeId: 'responsibleItAdminEmployeeId',
   dataSensitivity: 'dataSensitivity',
   commPersonToPersonMessaging: 'commPersonToPersonMessaging',
   commCallsOrMeetings: 'commCallsOrMeetings',
@@ -666,6 +670,7 @@ export const PlanScalarFieldEnum = {
   revocationNote: 'revocationNote',
   dataLossOnRemoval: 'dataLossOnRemoval',
   sharingPolicy: 'sharingPolicy',
+  hasAdminConsole: 'hasAdminConsole',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -695,6 +700,8 @@ export const PlanWorkspaceProfileScalarFieldEnum = {
   emergencyOccupiesSeat: 'emergencyOccupiesSeat',
   emergencyHolderEmployeeId: 'emergencyHolderEmployeeId',
   emergencyLastReviewedOn: 'emergencyLastReviewedOn',
+  ownerAccountEmail: 'ownerAccountEmail',
+  adminNote: 'adminNote',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1272,7 +1279,10 @@ export const LicenseAssignmentScalarFieldEnum = {
   failedAt: 'failedAt',
   cancelledAt: 'cancelledAt',
   predecessorId: 'predecessorId',
+  replacesAssignmentId: 'replacesAssignmentId',
   baselineImportId: 'baselineImportId',
+  isMachineAccount: 'isMachineAccount',
+  machineAccountNote: 'machineAccountNote',
   createdByAppUserId: 'createdByAppUserId',
   createdAt: 'createdAt'
 } as const
@@ -1324,12 +1334,14 @@ export const ProvisioningTaskScalarFieldEnum = {
   accessCutOn: 'accessCutOn',
   accessEvidence: 'accessEvidence',
   completionNote: 'completionNote',
+  k1Checklist: 'k1Checklist',
   dueOn: 'dueOn',
   notBefore: 'notBefore',
   purchaseKind: 'purchaseKind',
   purchaseReason: 'purchaseReason',
   purchasedAt: 'purchasedAt',
   createdByAppUserId: 'createdByAppUserId',
+  createdBySystem: 'createdBySystem',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1594,6 +1606,38 @@ export const PoolGrantAvoidedCostScalarFieldEnum = {
 } as const
 
 export type PoolGrantAvoidedCostScalarFieldEnum = (typeof PoolGrantAvoidedCostScalarFieldEnum)[keyof typeof PoolGrantAvoidedCostScalarFieldEnum]
+
+
+export const DepartmentSoftwareEntryScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  departmentId: 'departmentId',
+  applicationId: 'applicationId',
+  planId: 'planId',
+  note: 'note',
+  addedByAppUserId: 'addedByAppUserId',
+  addedAt: 'addedAt'
+} as const
+
+export type DepartmentSoftwareEntryScalarFieldEnum = (typeof DepartmentSoftwareEntryScalarFieldEnum)[keyof typeof DepartmentSoftwareEntryScalarFieldEnum]
+
+
+export const DepartmentSoftwareProposalScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  departmentId: 'departmentId',
+  applicationId: 'applicationId',
+  planId: 'planId',
+  reason: 'reason',
+  state: 'state',
+  proposedByEmployeeId: 'proposedByEmployeeId',
+  proposedAt: 'proposedAt',
+  decidedByAppUserId: 'decidedByAppUserId',
+  decidedAt: 'decidedAt',
+  decisionReason: 'decisionReason'
+} as const
+
+export type DepartmentSoftwareProposalScalarFieldEnum = (typeof DepartmentSoftwareProposalScalarFieldEnum)[keyof typeof DepartmentSoftwareProposalScalarFieldEnum]
 
 
 export const EmailOutboxScalarFieldEnum = {
@@ -1986,6 +2030,13 @@ export const DepartmentTransferScalarFieldEnum = {
   cancelledReason: 'cancelledReason',
   closedAt: 'closedAt',
   closedByAppUserId: 'closedByAppUserId',
+  closedBySystem: 'closedBySystem',
+  supersededByCaseId: 'supersededByCaseId',
+  graceEndsOn: 'graceEndsOn',
+  graceReminderOn: 'graceReminderOn',
+  remindedAt: 'remindedAt',
+  snapshotBefore: 'snapshotBefore',
+  snapshotAfter: 'snapshotAfter',
   noticeId: 'noticeId'
 } as const
 
@@ -2104,6 +2155,9 @@ export const OffboardingCaseScalarFieldEnum = {
   lastWorkingDay: 'lastWorkingDay',
   departureEffectiveOn: 'departureEffectiveOn',
   handoverDueOn: 'handoverDueOn',
+  revocationDueOn: 'revocationDueOn',
+  blockAnnouncedAt: 'blockAnnouncedAt',
+  accountLockOverdueAt: 'accountLockOverdueAt',
   groundsType: 'groundsType',
   groundsReference: 'groundsReference',
   groundsIssuer: 'groundsIssuer',
@@ -2120,6 +2174,9 @@ export const OffboardingCaseScalarFieldEnum = {
   accountLockByAppUserId: 'accountLockByAppUserId',
   accountLockAt: 'accountLockAt',
   accountLockNote: 'accountLockNote',
+  mailboxLockAt: 'mailboxLockAt',
+  mailboxLockByAppUserId: 'mailboxLockByAppUserId',
+  mailboxLockNote: 'mailboxLockNote',
   closedAt: 'closedAt',
   closedByAppUserId: 'closedByAppUserId',
   recordedByAppUserId: 'recordedByAppUserId',
@@ -2212,6 +2269,23 @@ export const PersonnelNoticeCounterScalarFieldEnum = {
 export type PersonnelNoticeCounterScalarFieldEnum = (typeof PersonnelNoticeCounterScalarFieldEnum)[keyof typeof PersonnelNoticeCounterScalarFieldEnum]
 
 
+export const ItAdminHandoverScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  offboardingCaseId: 'offboardingCaseId',
+  departmentTransferId: 'departmentTransferId',
+  subscriptionsAtRecord: 'subscriptionsAtRecord',
+  applicationsAtRecord: 'applicationsAtRecord',
+  createdAt: 'createdAt',
+  doneAt: 'doneAt',
+  doneToEmployeeId: 'doneToEmployeeId',
+  doneSubscriptions: 'doneSubscriptions',
+  doneApplications: 'doneApplications'
+} as const
+
+export type ItAdminHandoverScalarFieldEnum = (typeof ItAdminHandoverScalarFieldEnum)[keyof typeof ItAdminHandoverScalarFieldEnum]
+
+
 export const AccessRequestScalarFieldEnum = {
   routingMode: 'routingMode',
   oneStepReason: 'oneStepReason',
@@ -2220,6 +2294,7 @@ export const AccessRequestScalarFieldEnum = {
   manyPaidSoftwareCount: 'manyPaidSoftwareCount',
   manyPaidSoftwareReason: 'manyPaidSoftwareReason',
   limitExemption: 'limitExemption',
+  replacesAssignmentId: 'replacesAssignmentId',
   id: 'id',
   organizationId: 'organizationId',
   type: 'type',

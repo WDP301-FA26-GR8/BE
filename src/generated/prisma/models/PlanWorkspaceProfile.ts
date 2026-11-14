@@ -46,6 +46,8 @@ export type PlanWorkspaceProfileMinAggregateOutputType = {
   emergencyOccupiesSeat: boolean | null
   emergencyHolderEmployeeId: string | null
   emergencyLastReviewedOn: Date | null
+  ownerAccountEmail: string | null
+  adminNote: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -60,6 +62,8 @@ export type PlanWorkspaceProfileMaxAggregateOutputType = {
   emergencyOccupiesSeat: boolean | null
   emergencyHolderEmployeeId: string | null
   emergencyLastReviewedOn: Date | null
+  ownerAccountEmail: string | null
+  adminNote: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -74,6 +78,8 @@ export type PlanWorkspaceProfileCountAggregateOutputType = {
   emergencyOccupiesSeat: number
   emergencyHolderEmployeeId: number
   emergencyLastReviewedOn: number
+  ownerAccountEmail: number
+  adminNote: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -100,6 +106,8 @@ export type PlanWorkspaceProfileMinAggregateInputType = {
   emergencyOccupiesSeat?: true
   emergencyHolderEmployeeId?: true
   emergencyLastReviewedOn?: true
+  ownerAccountEmail?: true
+  adminNote?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -114,6 +122,8 @@ export type PlanWorkspaceProfileMaxAggregateInputType = {
   emergencyOccupiesSeat?: true
   emergencyHolderEmployeeId?: true
   emergencyLastReviewedOn?: true
+  ownerAccountEmail?: true
+  adminNote?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -128,6 +138,8 @@ export type PlanWorkspaceProfileCountAggregateInputType = {
   emergencyOccupiesSeat?: true
   emergencyHolderEmployeeId?: true
   emergencyLastReviewedOn?: true
+  ownerAccountEmail?: true
+  adminNote?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -229,6 +241,8 @@ export type PlanWorkspaceProfileGroupByOutputType = {
   emergencyOccupiesSeat: boolean | null
   emergencyHolderEmployeeId: string | null
   emergencyLastReviewedOn: Date | null
+  ownerAccountEmail: string | null
+  adminNote: string | null
   createdAt: Date
   updatedAt: Date
   _count: PlanWorkspaceProfileCountAggregateOutputType | null
@@ -266,6 +280,8 @@ export type PlanWorkspaceProfileWhereInput = {
   emergencyOccupiesSeat?: Prisma.BoolNullableFilter<"PlanWorkspaceProfile"> | boolean | null
   emergencyHolderEmployeeId?: Prisma.UuidNullableFilter<"PlanWorkspaceProfile"> | string | null
   emergencyLastReviewedOn?: Prisma.DateTimeNullableFilter<"PlanWorkspaceProfile"> | Date | string | null
+  ownerAccountEmail?: Prisma.StringNullableFilter<"PlanWorkspaceProfile"> | string | null
+  adminNote?: Prisma.StringNullableFilter<"PlanWorkspaceProfile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"PlanWorkspaceProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanWorkspaceProfile"> | Date | string
   plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
@@ -284,6 +300,8 @@ export type PlanWorkspaceProfileOrderByWithRelationInput = {
   emergencyOccupiesSeat?: Prisma.SortOrderInput | Prisma.SortOrder
   emergencyHolderEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   emergencyLastReviewedOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  ownerAccountEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  adminNote?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   plan?: Prisma.PlanOrderByWithRelationInput
@@ -305,6 +323,8 @@ export type PlanWorkspaceProfileWhereUniqueInput = Prisma.AtLeast<{
   emergencyOccupiesSeat?: Prisma.BoolNullableFilter<"PlanWorkspaceProfile"> | boolean | null
   emergencyHolderEmployeeId?: Prisma.UuidNullableFilter<"PlanWorkspaceProfile"> | string | null
   emergencyLastReviewedOn?: Prisma.DateTimeNullableFilter<"PlanWorkspaceProfile"> | Date | string | null
+  ownerAccountEmail?: Prisma.StringNullableFilter<"PlanWorkspaceProfile"> | string | null
+  adminNote?: Prisma.StringNullableFilter<"PlanWorkspaceProfile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"PlanWorkspaceProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanWorkspaceProfile"> | Date | string
   plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
@@ -323,6 +343,8 @@ export type PlanWorkspaceProfileOrderByWithAggregationInput = {
   emergencyOccupiesSeat?: Prisma.SortOrderInput | Prisma.SortOrder
   emergencyHolderEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   emergencyLastReviewedOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  ownerAccountEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  adminNote?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanWorkspaceProfileCountOrderByAggregateInput
@@ -345,6 +367,8 @@ export type PlanWorkspaceProfileScalarWhereWithAggregatesInput = {
   emergencyOccupiesSeat?: Prisma.BoolNullableWithAggregatesFilter<"PlanWorkspaceProfile"> | boolean | null
   emergencyHolderEmployeeId?: Prisma.UuidNullableWithAggregatesFilter<"PlanWorkspaceProfile"> | string | null
   emergencyLastReviewedOn?: Prisma.DateTimeNullableWithAggregatesFilter<"PlanWorkspaceProfile"> | Date | string | null
+  ownerAccountEmail?: Prisma.StringNullableWithAggregatesFilter<"PlanWorkspaceProfile"> | string | null
+  adminNote?: Prisma.StringNullableWithAggregatesFilter<"PlanWorkspaceProfile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PlanWorkspaceProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PlanWorkspaceProfile"> | Date | string
 }
@@ -356,6 +380,8 @@ export type PlanWorkspaceProfileCreateInput = {
   emergencyIdentity?: string | null
   emergencyOccupiesSeat?: boolean | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutWorkspaceProfileInput
@@ -374,6 +400,8 @@ export type PlanWorkspaceProfileUncheckedCreateInput = {
   emergencyOccupiesSeat?: boolean | null
   emergencyHolderEmployeeId?: string | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutProfileInput
@@ -386,6 +414,8 @@ export type PlanWorkspaceProfileUpdateInput = {
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutWorkspaceProfileNestedInput
@@ -404,6 +434,8 @@ export type PlanWorkspaceProfileUncheckedUpdateInput = {
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyHolderEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutProfileNestedInput
@@ -419,6 +451,8 @@ export type PlanWorkspaceProfileCreateManyInput = {
   emergencyOccupiesSeat?: boolean | null
   emergencyHolderEmployeeId?: string | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -430,6 +464,8 @@ export type PlanWorkspaceProfileUpdateManyMutationInput = {
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -444,6 +480,8 @@ export type PlanWorkspaceProfileUncheckedUpdateManyInput = {
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyHolderEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -463,6 +501,8 @@ export type PlanWorkspaceProfileCountOrderByAggregateInput = {
   emergencyOccupiesSeat?: Prisma.SortOrder
   emergencyHolderEmployeeId?: Prisma.SortOrder
   emergencyLastReviewedOn?: Prisma.SortOrder
+  ownerAccountEmail?: Prisma.SortOrder
+  adminNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -482,6 +522,8 @@ export type PlanWorkspaceProfileMaxOrderByAggregateInput = {
   emergencyOccupiesSeat?: Prisma.SortOrder
   emergencyHolderEmployeeId?: Prisma.SortOrder
   emergencyLastReviewedOn?: Prisma.SortOrder
+  ownerAccountEmail?: Prisma.SortOrder
+  adminNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -496,6 +538,8 @@ export type PlanWorkspaceProfileMinOrderByAggregateInput = {
   emergencyOccupiesSeat?: Prisma.SortOrder
   emergencyHolderEmployeeId?: Prisma.SortOrder
   emergencyLastReviewedOn?: Prisma.SortOrder
+  ownerAccountEmail?: Prisma.SortOrder
+  adminNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -661,6 +705,8 @@ export type PlanWorkspaceProfileCreateWithoutPlanInput = {
   emergencyIdentity?: string | null
   emergencyOccupiesSeat?: boolean | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   primaryOwner: Prisma.EmployeeCreateNestedOneWithoutWorkspacePrimaryOwnerOfInput
@@ -677,6 +723,8 @@ export type PlanWorkspaceProfileUncheckedCreateWithoutPlanInput = {
   emergencyOccupiesSeat?: boolean | null
   emergencyHolderEmployeeId?: string | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutProfileInput
@@ -705,6 +753,8 @@ export type PlanWorkspaceProfileUpdateWithoutPlanInput = {
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   primaryOwner?: Prisma.EmployeeUpdateOneRequiredWithoutWorkspacePrimaryOwnerOfNestedInput
@@ -721,6 +771,8 @@ export type PlanWorkspaceProfileUncheckedUpdateWithoutPlanInput = {
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyHolderEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutProfileNestedInput
@@ -733,6 +785,8 @@ export type PlanWorkspaceProfileCreateWithoutMembersInput = {
   emergencyIdentity?: string | null
   emergencyOccupiesSeat?: boolean | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutWorkspaceProfileInput
@@ -750,6 +804,8 @@ export type PlanWorkspaceProfileUncheckedCreateWithoutMembersInput = {
   emergencyOccupiesSeat?: boolean | null
   emergencyHolderEmployeeId?: string | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -777,6 +833,8 @@ export type PlanWorkspaceProfileUpdateWithoutMembersInput = {
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutWorkspaceProfileNestedInput
@@ -794,6 +852,8 @@ export type PlanWorkspaceProfileUncheckedUpdateWithoutMembersInput = {
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyHolderEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -805,6 +865,8 @@ export type PlanWorkspaceProfileCreateWithoutPrimaryOwnerInput = {
   emergencyIdentity?: string | null
   emergencyOccupiesSeat?: boolean | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutWorkspaceProfileInput
@@ -821,6 +883,8 @@ export type PlanWorkspaceProfileUncheckedCreateWithoutPrimaryOwnerInput = {
   emergencyOccupiesSeat?: boolean | null
   emergencyHolderEmployeeId?: string | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutProfileInput
@@ -843,6 +907,8 @@ export type PlanWorkspaceProfileCreateWithoutEmergencyHolderInput = {
   emergencyIdentity?: string | null
   emergencyOccupiesSeat?: boolean | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutWorkspaceProfileInput
@@ -859,6 +925,8 @@ export type PlanWorkspaceProfileUncheckedCreateWithoutEmergencyHolderInput = {
   emergencyIdentity?: string | null
   emergencyOccupiesSeat?: boolean | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedCreateNestedManyWithoutProfileInput
@@ -903,6 +971,8 @@ export type PlanWorkspaceProfileScalarWhereInput = {
   emergencyOccupiesSeat?: Prisma.BoolNullableFilter<"PlanWorkspaceProfile"> | boolean | null
   emergencyHolderEmployeeId?: Prisma.UuidNullableFilter<"PlanWorkspaceProfile"> | string | null
   emergencyLastReviewedOn?: Prisma.DateTimeNullableFilter<"PlanWorkspaceProfile"> | Date | string | null
+  ownerAccountEmail?: Prisma.StringNullableFilter<"PlanWorkspaceProfile"> | string | null
+  adminNote?: Prisma.StringNullableFilter<"PlanWorkspaceProfile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"PlanWorkspaceProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanWorkspaceProfile"> | Date | string
 }
@@ -932,6 +1002,8 @@ export type PlanWorkspaceProfileCreateManyPrimaryOwnerInput = {
   emergencyOccupiesSeat?: boolean | null
   emergencyHolderEmployeeId?: string | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -945,6 +1017,8 @@ export type PlanWorkspaceProfileCreateManyEmergencyHolderInput = {
   emergencyIdentity?: string | null
   emergencyOccupiesSeat?: boolean | null
   emergencyLastReviewedOn?: Date | string | null
+  ownerAccountEmail?: string | null
+  adminNote?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -956,6 +1030,8 @@ export type PlanWorkspaceProfileUpdateWithoutPrimaryOwnerInput = {
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutWorkspaceProfileNestedInput
@@ -972,6 +1048,8 @@ export type PlanWorkspaceProfileUncheckedUpdateWithoutPrimaryOwnerInput = {
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyHolderEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutProfileNestedInput
@@ -986,6 +1064,8 @@ export type PlanWorkspaceProfileUncheckedUpdateManyWithoutPrimaryOwnerInput = {
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyHolderEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -997,6 +1077,8 @@ export type PlanWorkspaceProfileUpdateWithoutEmergencyHolderInput = {
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutWorkspaceProfileNestedInput
@@ -1013,6 +1095,8 @@ export type PlanWorkspaceProfileUncheckedUpdateWithoutEmergencyHolderInput = {
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.PlanWorkspaceAdminUncheckedUpdateManyWithoutProfileNestedInput
@@ -1027,6 +1111,8 @@ export type PlanWorkspaceProfileUncheckedUpdateManyWithoutEmergencyHolderInput =
   emergencyIdentity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emergencyOccupiesSeat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   emergencyLastReviewedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ownerAccountEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adminNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1072,6 +1158,8 @@ export type PlanWorkspaceProfileSelect<ExtArgs extends runtime.Types.Extensions.
   emergencyOccupiesSeat?: boolean
   emergencyHolderEmployeeId?: boolean
   emergencyLastReviewedOn?: boolean
+  ownerAccountEmail?: boolean
+  adminNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
@@ -1091,6 +1179,8 @@ export type PlanWorkspaceProfileSelectCreateManyAndReturn<ExtArgs extends runtim
   emergencyOccupiesSeat?: boolean
   emergencyHolderEmployeeId?: boolean
   emergencyLastReviewedOn?: boolean
+  ownerAccountEmail?: boolean
+  adminNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
@@ -1108,6 +1198,8 @@ export type PlanWorkspaceProfileSelectUpdateManyAndReturn<ExtArgs extends runtim
   emergencyOccupiesSeat?: boolean
   emergencyHolderEmployeeId?: boolean
   emergencyLastReviewedOn?: boolean
+  ownerAccountEmail?: boolean
+  adminNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
@@ -1125,11 +1217,13 @@ export type PlanWorkspaceProfileSelectScalar = {
   emergencyOccupiesSeat?: boolean
   emergencyHolderEmployeeId?: boolean
   emergencyLastReviewedOn?: boolean
+  ownerAccountEmail?: boolean
+  adminNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PlanWorkspaceProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"planId" | "primaryOwnerEmployeeId" | "ownerLimit" | "adminLimit" | "ownerTransferProcedure" | "emergencyIdentity" | "emergencyOccupiesSeat" | "emergencyHolderEmployeeId" | "emergencyLastReviewedOn" | "createdAt" | "updatedAt", ExtArgs["result"]["planWorkspaceProfile"]>
+export type PlanWorkspaceProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"planId" | "primaryOwnerEmployeeId" | "ownerLimit" | "adminLimit" | "ownerTransferProcedure" | "emergencyIdentity" | "emergencyOccupiesSeat" | "emergencyHolderEmployeeId" | "emergencyLastReviewedOn" | "ownerAccountEmail" | "adminNote" | "createdAt" | "updatedAt", ExtArgs["result"]["planWorkspaceProfile"]>
 export type PlanWorkspaceProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
   primaryOwner?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1166,6 +1260,8 @@ export type $PlanWorkspaceProfilePayload<ExtArgs extends runtime.Types.Extension
     emergencyOccupiesSeat: boolean | null
     emergencyHolderEmployeeId: string | null
     emergencyLastReviewedOn: Date | null
+    ownerAccountEmail: string | null
+    adminNote: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["planWorkspaceProfile"]>
@@ -1604,6 +1700,8 @@ export interface PlanWorkspaceProfileFieldRefs {
   readonly emergencyOccupiesSeat: Prisma.FieldRef<"PlanWorkspaceProfile", 'Boolean'>
   readonly emergencyHolderEmployeeId: Prisma.FieldRef<"PlanWorkspaceProfile", 'String'>
   readonly emergencyLastReviewedOn: Prisma.FieldRef<"PlanWorkspaceProfile", 'DateTime'>
+  readonly ownerAccountEmail: Prisma.FieldRef<"PlanWorkspaceProfile", 'String'>
+  readonly adminNote: Prisma.FieldRef<"PlanWorkspaceProfile", 'String'>
   readonly createdAt: Prisma.FieldRef<"PlanWorkspaceProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PlanWorkspaceProfile", 'DateTime'>
 }

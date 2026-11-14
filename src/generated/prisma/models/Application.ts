@@ -34,6 +34,7 @@ export type ApplicationMinAggregateOutputType = {
   dictionaryLineId: string | null
   functionalGroupId: string | null
   businessOwnerEmployeeId: string | null
+  responsibleItAdminEmployeeId: string | null
   dataSensitivity: $Enums.DataSensitivity | null
   commPersonToPersonMessaging: boolean | null
   commCallsOrMeetings: boolean | null
@@ -58,6 +59,7 @@ export type ApplicationMaxAggregateOutputType = {
   dictionaryLineId: string | null
   functionalGroupId: string | null
   businessOwnerEmployeeId: string | null
+  responsibleItAdminEmployeeId: string | null
   dataSensitivity: $Enums.DataSensitivity | null
   commPersonToPersonMessaging: boolean | null
   commCallsOrMeetings: boolean | null
@@ -82,6 +84,7 @@ export type ApplicationCountAggregateOutputType = {
   dictionaryLineId: number
   functionalGroupId: number
   businessOwnerEmployeeId: number
+  responsibleItAdminEmployeeId: number
   dataSensitivity: number
   commPersonToPersonMessaging: number
   commCallsOrMeetings: number
@@ -109,6 +112,7 @@ export type ApplicationMinAggregateInputType = {
   dictionaryLineId?: true
   functionalGroupId?: true
   businessOwnerEmployeeId?: true
+  responsibleItAdminEmployeeId?: true
   dataSensitivity?: true
   commPersonToPersonMessaging?: true
   commCallsOrMeetings?: true
@@ -133,6 +137,7 @@ export type ApplicationMaxAggregateInputType = {
   dictionaryLineId?: true
   functionalGroupId?: true
   businessOwnerEmployeeId?: true
+  responsibleItAdminEmployeeId?: true
   dataSensitivity?: true
   commPersonToPersonMessaging?: true
   commCallsOrMeetings?: true
@@ -157,6 +162,7 @@ export type ApplicationCountAggregateInputType = {
   dictionaryLineId?: true
   functionalGroupId?: true
   businessOwnerEmployeeId?: true
+  responsibleItAdminEmployeeId?: true
   dataSensitivity?: true
   commPersonToPersonMessaging?: true
   commCallsOrMeetings?: true
@@ -255,6 +261,7 @@ export type ApplicationGroupByOutputType = {
   dictionaryLineId: string | null
   functionalGroupId: string | null
   businessOwnerEmployeeId: string | null
+  responsibleItAdminEmployeeId: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -301,6 +308,7 @@ export type ApplicationWhereInput = {
   dictionaryLineId?: Prisma.UuidNullableFilter<"Application"> | string | null
   functionalGroupId?: Prisma.UuidNullableFilter<"Application"> | string | null
   businessOwnerEmployeeId?: Prisma.UuidNullableFilter<"Application"> | string | null
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableFilter<"Application"> | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFilter<"Application"> | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFilter<"Application"> | boolean
   commCallsOrMeetings?: Prisma.BoolFilter<"Application"> | boolean
@@ -319,11 +327,14 @@ export type ApplicationWhereInput = {
   dictionaryLine?: Prisma.XOR<Prisma.VendorServiceLineNullableScalarRelationFilter, Prisma.VendorServiceLineWhereInput> | null
   functionalGroup?: Prisma.XOR<Prisma.FunctionalGroupNullableScalarRelationFilter, Prisma.FunctionalGroupWhereInput> | null
   businessOwner?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  responsibleItAdmin?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   proposals?: Prisma.VendorDictionaryProposalListRelationFilter
   plans?: Prisma.PlanListRelationFilter
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerListRelationFilter
   retirementConfirmation?: Prisma.XOR<Prisma.ApplicationRetirementConfirmationNullableScalarRelationFilter, Prisma.ApplicationRetirementConfirmationWhereInput> | null
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationListRelationFilter
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryListRelationFilter
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
 }
 
 export type ApplicationOrderByWithRelationInput = {
@@ -336,6 +347,7 @@ export type ApplicationOrderByWithRelationInput = {
   dictionaryLineId?: Prisma.SortOrderInput | Prisma.SortOrder
   functionalGroupId?: Prisma.SortOrderInput | Prisma.SortOrder
   businessOwnerEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   dataSensitivity?: Prisma.SortOrder
   commPersonToPersonMessaging?: Prisma.SortOrder
   commCallsOrMeetings?: Prisma.SortOrder
@@ -354,11 +366,14 @@ export type ApplicationOrderByWithRelationInput = {
   dictionaryLine?: Prisma.VendorServiceLineOrderByWithRelationInput
   functionalGroup?: Prisma.FunctionalGroupOrderByWithRelationInput
   businessOwner?: Prisma.EmployeeOrderByWithRelationInput
+  responsibleItAdmin?: Prisma.EmployeeOrderByWithRelationInput
   proposals?: Prisma.VendorDictionaryProposalOrderByRelationAggregateInput
   plans?: Prisma.PlanOrderByRelationAggregateInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerOrderByRelationAggregateInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationOrderByWithRelationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationOrderByRelationAggregateInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryOrderByRelationAggregateInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalOrderByRelationAggregateInput
 }
 
 export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
@@ -375,6 +390,7 @@ export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   dictionaryLineId?: Prisma.UuidNullableFilter<"Application"> | string | null
   functionalGroupId?: Prisma.UuidNullableFilter<"Application"> | string | null
   businessOwnerEmployeeId?: Prisma.UuidNullableFilter<"Application"> | string | null
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableFilter<"Application"> | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFilter<"Application"> | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFilter<"Application"> | boolean
   commCallsOrMeetings?: Prisma.BoolFilter<"Application"> | boolean
@@ -393,11 +409,14 @@ export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   dictionaryLine?: Prisma.XOR<Prisma.VendorServiceLineNullableScalarRelationFilter, Prisma.VendorServiceLineWhereInput> | null
   functionalGroup?: Prisma.XOR<Prisma.FunctionalGroupNullableScalarRelationFilter, Prisma.FunctionalGroupWhereInput> | null
   businessOwner?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  responsibleItAdmin?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   proposals?: Prisma.VendorDictionaryProposalListRelationFilter
   plans?: Prisma.PlanListRelationFilter
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerListRelationFilter
   retirementConfirmation?: Prisma.XOR<Prisma.ApplicationRetirementConfirmationNullableScalarRelationFilter, Prisma.ApplicationRetirementConfirmationWhereInput> | null
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationListRelationFilter
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryListRelationFilter
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
 }, "id" | "organizationId_dictionaryLineId">
 
 export type ApplicationOrderByWithAggregationInput = {
@@ -410,6 +429,7 @@ export type ApplicationOrderByWithAggregationInput = {
   dictionaryLineId?: Prisma.SortOrderInput | Prisma.SortOrder
   functionalGroupId?: Prisma.SortOrderInput | Prisma.SortOrder
   businessOwnerEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   dataSensitivity?: Prisma.SortOrder
   commPersonToPersonMessaging?: Prisma.SortOrder
   commCallsOrMeetings?: Prisma.SortOrder
@@ -441,6 +461,7 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   dictionaryLineId?: Prisma.UuidNullableWithAggregatesFilter<"Application"> | string | null
   functionalGroupId?: Prisma.UuidNullableWithAggregatesFilter<"Application"> | string | null
   businessOwnerEmployeeId?: Prisma.UuidNullableWithAggregatesFilter<"Application"> | string | null
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableWithAggregatesFilter<"Application"> | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityWithAggregatesFilter<"Application"> | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolWithAggregatesFilter<"Application"> | boolean
   commCallsOrMeetings?: Prisma.BoolWithAggregatesFilter<"Application"> | boolean
@@ -478,11 +499,14 @@ export type ApplicationCreateInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateInput = {
@@ -495,6 +519,7 @@ export type ApplicationUncheckedCreateInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -512,6 +537,8 @@ export type ApplicationUncheckedCreateInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUpdateInput = {
@@ -536,11 +563,14 @@ export type ApplicationUpdateInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateInput = {
@@ -553,6 +583,7 @@ export type ApplicationUncheckedUpdateInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -570,6 +601,8 @@ export type ApplicationUncheckedUpdateInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateManyInput = {
@@ -582,6 +615,7 @@ export type ApplicationCreateManyInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -626,6 +660,7 @@ export type ApplicationUncheckedUpdateManyInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -671,6 +706,7 @@ export type ApplicationCountOrderByAggregateInput = {
   dictionaryLineId?: Prisma.SortOrder
   functionalGroupId?: Prisma.SortOrder
   businessOwnerEmployeeId?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrder
   dataSensitivity?: Prisma.SortOrder
   commPersonToPersonMessaging?: Prisma.SortOrder
   commCallsOrMeetings?: Prisma.SortOrder
@@ -696,6 +732,7 @@ export type ApplicationMaxOrderByAggregateInput = {
   dictionaryLineId?: Prisma.SortOrder
   functionalGroupId?: Prisma.SortOrder
   businessOwnerEmployeeId?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrder
   dataSensitivity?: Prisma.SortOrder
   commPersonToPersonMessaging?: Prisma.SortOrder
   commCallsOrMeetings?: Prisma.SortOrder
@@ -720,6 +757,7 @@ export type ApplicationMinOrderByAggregateInput = {
   dictionaryLineId?: Prisma.SortOrder
   functionalGroupId?: Prisma.SortOrder
   businessOwnerEmployeeId?: Prisma.SortOrder
+  responsibleItAdminEmployeeId?: Prisma.SortOrder
   dataSensitivity?: Prisma.SortOrder
   commPersonToPersonMessaging?: Prisma.SortOrder
   commCallsOrMeetings?: Prisma.SortOrder
@@ -986,6 +1024,34 @@ export type ApplicationUncheckedUpdateManyWithoutRetirementConfirmationNestedInp
   deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
 }
 
+export type ApplicationCreateNestedOneWithoutDepartmentSoftwareEntriesInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareEntriesInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutDepartmentSoftwareEntriesInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+}
+
+export type ApplicationUpdateOneRequiredWithoutDepartmentSoftwareEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareEntriesInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutDepartmentSoftwareEntriesInput
+  upsert?: Prisma.ApplicationUpsertWithoutDepartmentSoftwareEntriesInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ApplicationUpdateToOneWithWhereWithoutDepartmentSoftwareEntriesInput, Prisma.ApplicationUpdateWithoutDepartmentSoftwareEntriesInput>, Prisma.ApplicationUncheckedUpdateWithoutDepartmentSoftwareEntriesInput>
+}
+
+export type ApplicationCreateNestedOneWithoutDepartmentSoftwareProposalsInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareProposalsInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutDepartmentSoftwareProposalsInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+}
+
+export type ApplicationUpdateOneRequiredWithoutDepartmentSoftwareProposalsNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareProposalsInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutDepartmentSoftwareProposalsInput
+  upsert?: Prisma.ApplicationUpsertWithoutDepartmentSoftwareProposalsInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ApplicationUpdateToOneWithWhereWithoutDepartmentSoftwareProposalsInput, Prisma.ApplicationUpdateWithoutDepartmentSoftwareProposalsInput>, Prisma.ApplicationUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+}
+
 export type ApplicationCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.ApplicationCreateWithoutOrganizationInput, Prisma.ApplicationUncheckedCreateWithoutOrganizationInput> | Prisma.ApplicationCreateWithoutOrganizationInput[] | Prisma.ApplicationUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutOrganizationInput | Prisma.ApplicationCreateOrConnectWithoutOrganizationInput[]
@@ -1035,10 +1101,24 @@ export type ApplicationCreateNestedManyWithoutBusinessOwnerInput = {
   connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
 }
 
+export type ApplicationCreateNestedManyWithoutResponsibleItAdminInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.ApplicationCreateWithoutResponsibleItAdminInput[] | Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput | Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.ApplicationCreateManyResponsibleItAdminInputEnvelope
+  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+}
+
 export type ApplicationUncheckedCreateNestedManyWithoutBusinessOwnerInput = {
   create?: Prisma.XOR<Prisma.ApplicationCreateWithoutBusinessOwnerInput, Prisma.ApplicationUncheckedCreateWithoutBusinessOwnerInput> | Prisma.ApplicationCreateWithoutBusinessOwnerInput[] | Prisma.ApplicationUncheckedCreateWithoutBusinessOwnerInput[]
   connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutBusinessOwnerInput | Prisma.ApplicationCreateOrConnectWithoutBusinessOwnerInput[]
   createMany?: Prisma.ApplicationCreateManyBusinessOwnerInputEnvelope
+  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+}
+
+export type ApplicationUncheckedCreateNestedManyWithoutResponsibleItAdminInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.ApplicationCreateWithoutResponsibleItAdminInput[] | Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput | Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.ApplicationCreateManyResponsibleItAdminInputEnvelope
   connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
 }
 
@@ -1056,6 +1136,20 @@ export type ApplicationUpdateManyWithoutBusinessOwnerNestedInput = {
   deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
 }
 
+export type ApplicationUpdateManyWithoutResponsibleItAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.ApplicationCreateWithoutResponsibleItAdminInput[] | Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput | Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput[]
+  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.ApplicationCreateManyResponsibleItAdminInputEnvelope
+  set?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  disconnect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  delete?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutResponsibleItAdminInput[]
+  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutResponsibleItAdminInput | Prisma.ApplicationUpdateManyWithWhereWithoutResponsibleItAdminInput[]
+  deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
+}
+
 export type ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput = {
   create?: Prisma.XOR<Prisma.ApplicationCreateWithoutBusinessOwnerInput, Prisma.ApplicationUncheckedCreateWithoutBusinessOwnerInput> | Prisma.ApplicationCreateWithoutBusinessOwnerInput[] | Prisma.ApplicationUncheckedCreateWithoutBusinessOwnerInput[]
   connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutBusinessOwnerInput | Prisma.ApplicationCreateOrConnectWithoutBusinessOwnerInput[]
@@ -1067,6 +1161,20 @@ export type ApplicationUncheckedUpdateManyWithoutBusinessOwnerNestedInput = {
   connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
   update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutBusinessOwnerInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutBusinessOwnerInput[]
   updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutBusinessOwnerInput | Prisma.ApplicationUpdateManyWithWhereWithoutBusinessOwnerInput[]
+  deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
+}
+
+export type ApplicationUncheckedUpdateManyWithoutResponsibleItAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput> | Prisma.ApplicationCreateWithoutResponsibleItAdminInput[] | Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput | Prisma.ApplicationCreateOrConnectWithoutResponsibleItAdminInput[]
+  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutResponsibleItAdminInput[]
+  createMany?: Prisma.ApplicationCreateManyResponsibleItAdminInputEnvelope
+  set?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  disconnect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  delete?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutResponsibleItAdminInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutResponsibleItAdminInput[]
+  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutResponsibleItAdminInput | Prisma.ApplicationUpdateManyWithWhereWithoutResponsibleItAdminInput[]
   deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
 }
 
@@ -1091,11 +1199,14 @@ export type ApplicationCreateWithoutDictionaryLineInput = {
   vendor?: Prisma.VendorCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutDictionaryLineInput = {
@@ -1107,6 +1218,7 @@ export type ApplicationUncheckedCreateWithoutDictionaryLineInput = {
   normalizedName: string
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1124,6 +1236,8 @@ export type ApplicationUncheckedCreateWithoutDictionaryLineInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutDictionaryLineInput = {
@@ -1165,6 +1279,7 @@ export type ApplicationScalarWhereInput = {
   dictionaryLineId?: Prisma.UuidNullableFilter<"Application"> | string | null
   functionalGroupId?: Prisma.UuidNullableFilter<"Application"> | string | null
   businessOwnerEmployeeId?: Prisma.UuidNullableFilter<"Application"> | string | null
+  responsibleItAdminEmployeeId?: Prisma.UuidNullableFilter<"Application"> | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFilter<"Application"> | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFilter<"Application"> | boolean
   commCallsOrMeetings?: Prisma.BoolFilter<"Application"> | boolean
@@ -1202,10 +1317,13 @@ export type ApplicationCreateWithoutProposalsInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutProposalsInput = {
@@ -1218,6 +1336,7 @@ export type ApplicationUncheckedCreateWithoutProposalsInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1234,6 +1353,8 @@ export type ApplicationUncheckedCreateWithoutProposalsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutProposalsInput = {
@@ -1274,10 +1395,13 @@ export type ApplicationUpdateWithoutProposalsInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutProposalsInput = {
@@ -1290,6 +1414,7 @@ export type ApplicationUncheckedUpdateWithoutProposalsInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1306,6 +1431,8 @@ export type ApplicationUncheckedUpdateWithoutProposalsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateWithoutVendorInput = {
@@ -1329,11 +1456,14 @@ export type ApplicationCreateWithoutVendorInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutVendorInput = {
@@ -1345,6 +1475,7 @@ export type ApplicationUncheckedCreateWithoutVendorInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1362,6 +1493,8 @@ export type ApplicationUncheckedCreateWithoutVendorInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutVendorInput = {
@@ -1411,11 +1544,14 @@ export type ApplicationCreateWithoutFunctionalGroupInput = {
   vendor?: Prisma.VendorCreateNestedOneWithoutApplicationsInput
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutFunctionalGroupInput = {
@@ -1427,6 +1563,7 @@ export type ApplicationUncheckedCreateWithoutFunctionalGroupInput = {
   normalizedName: string
   dictionaryLineId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1444,6 +1581,8 @@ export type ApplicationUncheckedCreateWithoutFunctionalGroupInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutFunctionalGroupInput = {
@@ -1494,10 +1633,13 @@ export type ApplicationCreateWithoutPlansInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutPlansInput = {
@@ -1510,6 +1652,7 @@ export type ApplicationUncheckedCreateWithoutPlansInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1526,6 +1669,8 @@ export type ApplicationUncheckedCreateWithoutPlansInput = {
   proposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutSourceApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutPlansInput = {
@@ -1566,10 +1711,13 @@ export type ApplicationUpdateWithoutPlansInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutPlansInput = {
@@ -1582,6 +1730,7 @@ export type ApplicationUncheckedUpdateWithoutPlansInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1598,6 +1747,8 @@ export type ApplicationUncheckedUpdateWithoutPlansInput = {
   proposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutSourceApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateWithoutApplicationBusinessOwnersInput = {
@@ -1622,10 +1773,13 @@ export type ApplicationCreateWithoutApplicationBusinessOwnersInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutApplicationBusinessOwnersInput = {
@@ -1638,6 +1792,7 @@ export type ApplicationUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1654,6 +1809,8 @@ export type ApplicationUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   proposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutApplicationBusinessOwnersInput = {
@@ -1694,10 +1851,13 @@ export type ApplicationUpdateWithoutApplicationBusinessOwnersInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
@@ -1710,6 +1870,7 @@ export type ApplicationUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1726,6 +1887,8 @@ export type ApplicationUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   proposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateWithoutRetirementConfirmationsInput = {
@@ -1750,10 +1913,13 @@ export type ApplicationCreateWithoutRetirementConfirmationsInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutRetirementConfirmationsInput = {
@@ -1766,6 +1932,7 @@ export type ApplicationUncheckedCreateWithoutRetirementConfirmationsInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1782,6 +1949,8 @@ export type ApplicationUncheckedCreateWithoutRetirementConfirmationsInput = {
   proposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutRetirementConfirmationsInput = {
@@ -1811,10 +1980,13 @@ export type ApplicationCreateWithoutRetirementConfirmationInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutRetirementConfirmationInput = {
@@ -1827,6 +1999,7 @@ export type ApplicationUncheckedCreateWithoutRetirementConfirmationInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1843,6 +2016,8 @@ export type ApplicationUncheckedCreateWithoutRetirementConfirmationInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutRetirementConfirmationInput = {
@@ -1888,10 +2063,13 @@ export type ApplicationUpdateWithoutRetirementConfirmationsInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutRetirementConfirmationsInput = {
@@ -1904,6 +2082,7 @@ export type ApplicationUncheckedUpdateWithoutRetirementConfirmationsInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1920,6 +2099,8 @@ export type ApplicationUncheckedUpdateWithoutRetirementConfirmationsInput = {
   proposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUpsertWithWhereUniqueWithoutRetirementConfirmationInput = {
@@ -1936,6 +2117,286 @@ export type ApplicationUpdateWithWhereUniqueWithoutRetirementConfirmationInput =
 export type ApplicationUpdateManyWithWhereWithoutRetirementConfirmationInput = {
   where: Prisma.ApplicationScalarWhereInput
   data: Prisma.XOR<Prisma.ApplicationUpdateManyMutationInput, Prisma.ApplicationUncheckedUpdateManyWithoutRetirementConfirmationInput>
+}
+
+export type ApplicationCreateWithoutDepartmentSoftwareEntriesInput = {
+  id?: string
+  kind: $Enums.ApplicationKind
+  name: string
+  normalizedName: string
+  dataSensitivity: $Enums.DataSensitivity
+  commPersonToPersonMessaging: boolean
+  commCallsOrMeetings: boolean
+  commMailbox: boolean
+  isCommunicationService: boolean
+  communicationNote?: string | null
+  domains?: Prisma.ApplicationCreatedomainsInput | string[]
+  catalogStatus?: $Enums.CatalogStatus
+  retiredAt?: Date | string | null
+  retiredByAppUserId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutApplicationsInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutApplicationsInput
+  dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
+  functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
+  businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
+  proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
+  retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationUncheckedCreateWithoutDepartmentSoftwareEntriesInput = {
+  id?: string
+  organizationId: string
+  kind: $Enums.ApplicationKind
+  vendorId?: string | null
+  name: string
+  normalizedName: string
+  dictionaryLineId?: string | null
+  functionalGroupId?: string | null
+  businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
+  dataSensitivity: $Enums.DataSensitivity
+  commPersonToPersonMessaging: boolean
+  commCallsOrMeetings: boolean
+  commMailbox: boolean
+  isCommunicationService: boolean
+  communicationNote?: string | null
+  domains?: Prisma.ApplicationCreatedomainsInput | string[]
+  catalogStatus?: $Enums.CatalogStatus
+  retiredAt?: Date | string | null
+  retiredByAppUserId?: string | null
+  retirementConfirmationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  proposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutSourceApplicationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationCreateOrConnectWithoutDepartmentSoftwareEntriesInput = {
+  where: Prisma.ApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareEntriesInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+}
+
+export type ApplicationUpsertWithoutDepartmentSoftwareEntriesInput = {
+  update: Prisma.XOR<Prisma.ApplicationUpdateWithoutDepartmentSoftwareEntriesInput, Prisma.ApplicationUncheckedUpdateWithoutDepartmentSoftwareEntriesInput>
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareEntriesInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+  where?: Prisma.ApplicationWhereInput
+}
+
+export type ApplicationUpdateToOneWithWhereWithoutDepartmentSoftwareEntriesInput = {
+  where?: Prisma.ApplicationWhereInput
+  data: Prisma.XOR<Prisma.ApplicationUpdateWithoutDepartmentSoftwareEntriesInput, Prisma.ApplicationUncheckedUpdateWithoutDepartmentSoftwareEntriesInput>
+}
+
+export type ApplicationUpdateWithoutDepartmentSoftwareEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumApplicationKindFieldUpdateOperationsInput | $Enums.ApplicationKind
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
+  commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commMailbox?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCommunicationService?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  communicationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  domains?: Prisma.ApplicationUpdatedomainsInput | string[]
+  catalogStatus?: Prisma.EnumCatalogStatusFieldUpdateOperationsInput | $Enums.CatalogStatus
+  retiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retiredByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutApplicationsNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutApplicationsNestedInput
+  dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
+  functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
+  businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
+  proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
+  retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
+}
+
+export type ApplicationUncheckedUpdateWithoutDepartmentSoftwareEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumApplicationKindFieldUpdateOperationsInput | $Enums.ApplicationKind
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
+  commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commMailbox?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCommunicationService?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  communicationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  domains?: Prisma.ApplicationUpdatedomainsInput | string[]
+  catalogStatus?: Prisma.EnumCatalogStatusFieldUpdateOperationsInput | $Enums.CatalogStatus
+  retiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retiredByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retirementConfirmationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutSourceApplicationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type ApplicationCreateWithoutDepartmentSoftwareProposalsInput = {
+  id?: string
+  kind: $Enums.ApplicationKind
+  name: string
+  normalizedName: string
+  dataSensitivity: $Enums.DataSensitivity
+  commPersonToPersonMessaging: boolean
+  commCallsOrMeetings: boolean
+  commMailbox: boolean
+  isCommunicationService: boolean
+  communicationNote?: string | null
+  domains?: Prisma.ApplicationCreatedomainsInput | string[]
+  catalogStatus?: $Enums.CatalogStatus
+  retiredAt?: Date | string | null
+  retiredByAppUserId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutApplicationsInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutApplicationsInput
+  dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
+  functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
+  businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
+  proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
+  retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationUncheckedCreateWithoutDepartmentSoftwareProposalsInput = {
+  id?: string
+  organizationId: string
+  kind: $Enums.ApplicationKind
+  vendorId?: string | null
+  name: string
+  normalizedName: string
+  dictionaryLineId?: string | null
+  functionalGroupId?: string | null
+  businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
+  dataSensitivity: $Enums.DataSensitivity
+  commPersonToPersonMessaging: boolean
+  commCallsOrMeetings: boolean
+  commMailbox: boolean
+  isCommunicationService: boolean
+  communicationNote?: string | null
+  domains?: Prisma.ApplicationCreatedomainsInput | string[]
+  catalogStatus?: $Enums.CatalogStatus
+  retiredAt?: Date | string | null
+  retiredByAppUserId?: string | null
+  retirementConfirmationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  proposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutSourceApplicationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationCreateOrConnectWithoutDepartmentSoftwareProposalsInput = {
+  where: Prisma.ApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareProposalsInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+}
+
+export type ApplicationUpsertWithoutDepartmentSoftwareProposalsInput = {
+  update: Prisma.XOR<Prisma.ApplicationUpdateWithoutDepartmentSoftwareProposalsInput, Prisma.ApplicationUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutDepartmentSoftwareProposalsInput, Prisma.ApplicationUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  where?: Prisma.ApplicationWhereInput
+}
+
+export type ApplicationUpdateToOneWithWhereWithoutDepartmentSoftwareProposalsInput = {
+  where?: Prisma.ApplicationWhereInput
+  data: Prisma.XOR<Prisma.ApplicationUpdateWithoutDepartmentSoftwareProposalsInput, Prisma.ApplicationUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+}
+
+export type ApplicationUpdateWithoutDepartmentSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumApplicationKindFieldUpdateOperationsInput | $Enums.ApplicationKind
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
+  commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commMailbox?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCommunicationService?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  communicationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  domains?: Prisma.ApplicationUpdatedomainsInput | string[]
+  catalogStatus?: Prisma.EnumCatalogStatusFieldUpdateOperationsInput | $Enums.CatalogStatus
+  retiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retiredByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutApplicationsNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutApplicationsNestedInput
+  dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
+  functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
+  businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
+  proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
+  retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+}
+
+export type ApplicationUncheckedUpdateWithoutDepartmentSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumApplicationKindFieldUpdateOperationsInput | $Enums.ApplicationKind
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
+  commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commMailbox?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCommunicationService?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  communicationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  domains?: Prisma.ApplicationUpdatedomainsInput | string[]
+  catalogStatus?: Prisma.EnumCatalogStatusFieldUpdateOperationsInput | $Enums.CatalogStatus
+  retiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retiredByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retirementConfirmationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutSourceApplicationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateWithoutOrganizationInput = {
@@ -1959,11 +2420,14 @@ export type ApplicationCreateWithoutOrganizationInput = {
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
   businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutOrganizationInput = {
@@ -1975,6 +2439,7 @@ export type ApplicationUncheckedCreateWithoutOrganizationInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -1992,6 +2457,8 @@ export type ApplicationUncheckedCreateWithoutOrganizationInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutOrganizationInput = {
@@ -2041,11 +2508,14 @@ export type ApplicationCreateWithoutBusinessOwnerInput = {
   vendor?: Prisma.VendorCreateNestedOneWithoutApplicationsInput
   dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
   functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
+  responsibleItAdmin?: Prisma.EmployeeCreateNestedOneWithoutApplicationsInChargeInput
   proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
   plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutBusinessOwnerInput = {
@@ -2057,6 +2527,7 @@ export type ApplicationUncheckedCreateWithoutBusinessOwnerInput = {
   normalizedName: string
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -2074,6 +2545,8 @@ export type ApplicationUncheckedCreateWithoutBusinessOwnerInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutBusinessOwnerInput = {
@@ -2083,6 +2556,78 @@ export type ApplicationCreateOrConnectWithoutBusinessOwnerInput = {
 
 export type ApplicationCreateManyBusinessOwnerInputEnvelope = {
   data: Prisma.ApplicationCreateManyBusinessOwnerInput | Prisma.ApplicationCreateManyBusinessOwnerInput[]
+  skipDuplicates?: boolean
+}
+
+export type ApplicationCreateWithoutResponsibleItAdminInput = {
+  id?: string
+  kind: $Enums.ApplicationKind
+  name: string
+  normalizedName: string
+  dataSensitivity: $Enums.DataSensitivity
+  commPersonToPersonMessaging: boolean
+  commCallsOrMeetings: boolean
+  commMailbox: boolean
+  isCommunicationService: boolean
+  communicationNote?: string | null
+  domains?: Prisma.ApplicationCreatedomainsInput | string[]
+  catalogStatus?: $Enums.CatalogStatus
+  retiredAt?: Date | string | null
+  retiredByAppUserId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutApplicationsInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutApplicationsInput
+  dictionaryLine?: Prisma.VendorServiceLineCreateNestedOneWithoutApplicationsInput
+  functionalGroup?: Prisma.FunctionalGroupCreateNestedOneWithoutApplicationsInput
+  businessOwner?: Prisma.EmployeeCreateNestedOneWithoutOwnedApplicationsInput
+  proposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutSourceApplicationInput
+  plans?: Prisma.PlanCreateNestedManyWithoutApplicationInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerCreateNestedManyWithoutApplicationInput
+  retirementConfirmation?: Prisma.ApplicationRetirementConfirmationCreateNestedOneWithoutRetiredApplicationsInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationUncheckedCreateWithoutResponsibleItAdminInput = {
+  id?: string
+  organizationId: string
+  kind: $Enums.ApplicationKind
+  vendorId?: string | null
+  name: string
+  normalizedName: string
+  dictionaryLineId?: string | null
+  functionalGroupId?: string | null
+  businessOwnerEmployeeId?: string | null
+  dataSensitivity: $Enums.DataSensitivity
+  commPersonToPersonMessaging: boolean
+  commCallsOrMeetings: boolean
+  commMailbox: boolean
+  isCommunicationService: boolean
+  communicationNote?: string | null
+  domains?: Prisma.ApplicationCreatedomainsInput | string[]
+  catalogStatus?: $Enums.CatalogStatus
+  retiredAt?: Date | string | null
+  retiredByAppUserId?: string | null
+  retirementConfirmationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  proposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutSourceApplicationInput
+  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutApplicationInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedCreateNestedManyWithoutApplicationInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutApplicationInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationCreateOrConnectWithoutResponsibleItAdminInput = {
+  where: Prisma.ApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput>
+}
+
+export type ApplicationCreateManyResponsibleItAdminInputEnvelope = {
+  data: Prisma.ApplicationCreateManyResponsibleItAdminInput | Prisma.ApplicationCreateManyResponsibleItAdminInput[]
   skipDuplicates?: boolean
 }
 
@@ -2102,6 +2647,22 @@ export type ApplicationUpdateManyWithWhereWithoutBusinessOwnerInput = {
   data: Prisma.XOR<Prisma.ApplicationUpdateManyMutationInput, Prisma.ApplicationUncheckedUpdateManyWithoutBusinessOwnerInput>
 }
 
+export type ApplicationUpsertWithWhereUniqueWithoutResponsibleItAdminInput = {
+  where: Prisma.ApplicationWhereUniqueInput
+  update: Prisma.XOR<Prisma.ApplicationUpdateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedUpdateWithoutResponsibleItAdminInput>
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedCreateWithoutResponsibleItAdminInput>
+}
+
+export type ApplicationUpdateWithWhereUniqueWithoutResponsibleItAdminInput = {
+  where: Prisma.ApplicationWhereUniqueInput
+  data: Prisma.XOR<Prisma.ApplicationUpdateWithoutResponsibleItAdminInput, Prisma.ApplicationUncheckedUpdateWithoutResponsibleItAdminInput>
+}
+
+export type ApplicationUpdateManyWithWhereWithoutResponsibleItAdminInput = {
+  where: Prisma.ApplicationScalarWhereInput
+  data: Prisma.XOR<Prisma.ApplicationUpdateManyMutationInput, Prisma.ApplicationUncheckedUpdateManyWithoutResponsibleItAdminInput>
+}
+
 export type ApplicationCreateManyDictionaryLineInput = {
   id?: string
   organizationId: string
@@ -2111,6 +2672,7 @@ export type ApplicationCreateManyDictionaryLineInput = {
   normalizedName: string
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -2147,11 +2709,14 @@ export type ApplicationUpdateWithoutDictionaryLineInput = {
   vendor?: Prisma.VendorUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutDictionaryLineInput = {
@@ -2163,6 +2728,7 @@ export type ApplicationUncheckedUpdateWithoutDictionaryLineInput = {
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2180,6 +2746,8 @@ export type ApplicationUncheckedUpdateWithoutDictionaryLineInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateManyWithoutDictionaryLineInput = {
@@ -2191,6 +2759,7 @@ export type ApplicationUncheckedUpdateManyWithoutDictionaryLineInput = {
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2215,6 +2784,7 @@ export type ApplicationCreateManyVendorInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -2251,11 +2821,14 @@ export type ApplicationUpdateWithoutVendorInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutVendorInput = {
@@ -2267,6 +2840,7 @@ export type ApplicationUncheckedUpdateWithoutVendorInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2284,6 +2858,8 @@ export type ApplicationUncheckedUpdateWithoutVendorInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateManyWithoutVendorInput = {
@@ -2295,6 +2871,7 @@ export type ApplicationUncheckedUpdateManyWithoutVendorInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2319,6 +2896,7 @@ export type ApplicationCreateManyFunctionalGroupInput = {
   normalizedName: string
   dictionaryLineId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -2355,11 +2933,14 @@ export type ApplicationUpdateWithoutFunctionalGroupInput = {
   vendor?: Prisma.VendorUpdateOneWithoutApplicationsNestedInput
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutFunctionalGroupInput = {
@@ -2371,6 +2952,7 @@ export type ApplicationUncheckedUpdateWithoutFunctionalGroupInput = {
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2388,6 +2970,8 @@ export type ApplicationUncheckedUpdateWithoutFunctionalGroupInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateManyWithoutFunctionalGroupInput = {
@@ -2399,6 +2983,7 @@ export type ApplicationUncheckedUpdateManyWithoutFunctionalGroupInput = {
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2424,6 +3009,7 @@ export type ApplicationCreateManyRetirementConfirmationInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -2460,10 +3046,13 @@ export type ApplicationUpdateWithoutRetirementConfirmationInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutRetirementConfirmationInput = {
@@ -2476,6 +3065,7 @@ export type ApplicationUncheckedUpdateWithoutRetirementConfirmationInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2492,6 +3082,8 @@ export type ApplicationUncheckedUpdateWithoutRetirementConfirmationInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateManyWithoutRetirementConfirmationInput = {
@@ -2504,6 +3096,7 @@ export type ApplicationUncheckedUpdateManyWithoutRetirementConfirmationInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2527,6 +3120,7 @@ export type ApplicationCreateManyOrganizationInput = {
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
   businessOwnerEmployeeId?: string | null
+  responsibleItAdminEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -2563,11 +3157,14 @@ export type ApplicationUpdateWithoutOrganizationInput = {
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
   businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutOrganizationInput = {
@@ -2579,6 +3176,7 @@ export type ApplicationUncheckedUpdateWithoutOrganizationInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2596,6 +3194,8 @@ export type ApplicationUncheckedUpdateWithoutOrganizationInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateManyWithoutOrganizationInput = {
@@ -2607,6 +3207,7 @@ export type ApplicationUncheckedUpdateManyWithoutOrganizationInput = {
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2631,6 +3232,32 @@ export type ApplicationCreateManyBusinessOwnerInput = {
   normalizedName: string
   dictionaryLineId?: string | null
   functionalGroupId?: string | null
+  responsibleItAdminEmployeeId?: string | null
+  dataSensitivity: $Enums.DataSensitivity
+  commPersonToPersonMessaging: boolean
+  commCallsOrMeetings: boolean
+  commMailbox: boolean
+  isCommunicationService: boolean
+  communicationNote?: string | null
+  domains?: Prisma.ApplicationCreatedomainsInput | string[]
+  catalogStatus?: $Enums.CatalogStatus
+  retiredAt?: Date | string | null
+  retiredByAppUserId?: string | null
+  retirementConfirmationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ApplicationCreateManyResponsibleItAdminInput = {
+  id?: string
+  organizationId: string
+  kind: $Enums.ApplicationKind
+  vendorId?: string | null
+  name: string
+  normalizedName: string
+  dictionaryLineId?: string | null
+  functionalGroupId?: string | null
+  businessOwnerEmployeeId?: string | null
   dataSensitivity: $Enums.DataSensitivity
   commPersonToPersonMessaging: boolean
   commCallsOrMeetings: boolean
@@ -2667,11 +3294,14 @@ export type ApplicationUpdateWithoutBusinessOwnerInput = {
   vendor?: Prisma.VendorUpdateOneWithoutApplicationsNestedInput
   dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
   functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
+  responsibleItAdmin?: Prisma.EmployeeUpdateOneWithoutApplicationsInChargeNestedInput
   proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
   retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutBusinessOwnerInput = {
@@ -2683,6 +3313,7 @@ export type ApplicationUncheckedUpdateWithoutBusinessOwnerInput = {
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2700,6 +3331,8 @@ export type ApplicationUncheckedUpdateWithoutBusinessOwnerInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
   applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
   retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateManyWithoutBusinessOwnerInput = {
@@ -2711,6 +3344,94 @@ export type ApplicationUncheckedUpdateManyWithoutBusinessOwnerInput = {
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsibleItAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
+  commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commMailbox?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCommunicationService?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  communicationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  domains?: Prisma.ApplicationUpdatedomainsInput | string[]
+  catalogStatus?: Prisma.EnumCatalogStatusFieldUpdateOperationsInput | $Enums.CatalogStatus
+  retiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retiredByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retirementConfirmationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ApplicationUpdateWithoutResponsibleItAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumApplicationKindFieldUpdateOperationsInput | $Enums.ApplicationKind
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
+  commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commMailbox?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCommunicationService?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  communicationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  domains?: Prisma.ApplicationUpdatedomainsInput | string[]
+  catalogStatus?: Prisma.EnumCatalogStatusFieldUpdateOperationsInput | $Enums.CatalogStatus
+  retiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retiredByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutApplicationsNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutApplicationsNestedInput
+  dictionaryLine?: Prisma.VendorServiceLineUpdateOneWithoutApplicationsNestedInput
+  functionalGroup?: Prisma.FunctionalGroupUpdateOneWithoutApplicationsNestedInput
+  businessOwner?: Prisma.EmployeeUpdateOneWithoutOwnedApplicationsNestedInput
+  proposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutSourceApplicationNestedInput
+  plans?: Prisma.PlanUpdateManyWithoutApplicationNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUpdateManyWithoutApplicationNestedInput
+  retirementConfirmation?: Prisma.ApplicationRetirementConfirmationUpdateOneWithoutRetiredApplicationsNestedInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutApplicationNestedInput
+}
+
+export type ApplicationUncheckedUpdateWithoutResponsibleItAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumApplicationKindFieldUpdateOperationsInput | $Enums.ApplicationKind
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
+  commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  commMailbox?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCommunicationService?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  communicationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  domains?: Prisma.ApplicationUpdatedomainsInput | string[]
+  catalogStatus?: Prisma.EnumCatalogStatusFieldUpdateOperationsInput | $Enums.CatalogStatus
+  retiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retiredByAppUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retirementConfirmationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutSourceApplicationNestedInput
+  plans?: Prisma.PlanUncheckedUpdateManyWithoutApplicationNestedInput
+  applicationBusinessOwners?: Prisma.ApplicationBusinessOwnerUncheckedUpdateManyWithoutApplicationNestedInput
+  retirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutApplicationNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type ApplicationUncheckedUpdateManyWithoutResponsibleItAdminInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumApplicationKindFieldUpdateOperationsInput | $Enums.ApplicationKind
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  dictionaryLineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  functionalGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataSensitivity?: Prisma.EnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity
   commPersonToPersonMessaging?: Prisma.BoolFieldUpdateOperationsInput | boolean
   commCallsOrMeetings?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2736,6 +3457,8 @@ export type ApplicationCountOutputType = {
   plans: number
   applicationBusinessOwners: number
   retirementConfirmations: number
+  departmentSoftwareEntries: number
+  departmentSoftwareProposals: number
 }
 
 export type ApplicationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2743,6 +3466,8 @@ export type ApplicationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exten
   plans?: boolean | ApplicationCountOutputTypeCountPlansArgs
   applicationBusinessOwners?: boolean | ApplicationCountOutputTypeCountApplicationBusinessOwnersArgs
   retirementConfirmations?: boolean | ApplicationCountOutputTypeCountRetirementConfirmationsArgs
+  departmentSoftwareEntries?: boolean | ApplicationCountOutputTypeCountDepartmentSoftwareEntriesArgs
+  departmentSoftwareProposals?: boolean | ApplicationCountOutputTypeCountDepartmentSoftwareProposalsArgs
 }
 
 /**
@@ -2783,6 +3508,20 @@ export type ApplicationCountOutputTypeCountRetirementConfirmationsArgs<ExtArgs e
   where?: Prisma.ApplicationRetirementConfirmationWhereInput
 }
 
+/**
+ * ApplicationCountOutputType without action
+ */
+export type ApplicationCountOutputTypeCountDepartmentSoftwareEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentSoftwareEntryWhereInput
+}
+
+/**
+ * ApplicationCountOutputType without action
+ */
+export type ApplicationCountOutputTypeCountDepartmentSoftwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
+}
+
 
 export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2794,6 +3533,7 @@ export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   dictionaryLineId?: boolean
   functionalGroupId?: boolean
   businessOwnerEmployeeId?: boolean
+  responsibleItAdminEmployeeId?: boolean
   dataSensitivity?: boolean
   commPersonToPersonMessaging?: boolean
   commCallsOrMeetings?: boolean
@@ -2812,11 +3552,14 @@ export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   dictionaryLine?: boolean | Prisma.Application$dictionaryLineArgs<ExtArgs>
   functionalGroup?: boolean | Prisma.Application$functionalGroupArgs<ExtArgs>
   businessOwner?: boolean | Prisma.Application$businessOwnerArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Application$responsibleItAdminArgs<ExtArgs>
   proposals?: boolean | Prisma.Application$proposalsArgs<ExtArgs>
   plans?: boolean | Prisma.Application$plansArgs<ExtArgs>
   applicationBusinessOwners?: boolean | Prisma.Application$applicationBusinessOwnersArgs<ExtArgs>
   retirementConfirmation?: boolean | Prisma.Application$retirementConfirmationArgs<ExtArgs>
   retirementConfirmations?: boolean | Prisma.Application$retirementConfirmationsArgs<ExtArgs>
+  departmentSoftwareEntries?: boolean | Prisma.Application$departmentSoftwareEntriesArgs<ExtArgs>
+  departmentSoftwareProposals?: boolean | Prisma.Application$departmentSoftwareProposalsArgs<ExtArgs>
   _count?: boolean | Prisma.ApplicationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
@@ -2830,6 +3573,7 @@ export type ApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   dictionaryLineId?: boolean
   functionalGroupId?: boolean
   businessOwnerEmployeeId?: boolean
+  responsibleItAdminEmployeeId?: boolean
   dataSensitivity?: boolean
   commPersonToPersonMessaging?: boolean
   commCallsOrMeetings?: boolean
@@ -2848,6 +3592,7 @@ export type ApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   dictionaryLine?: boolean | Prisma.Application$dictionaryLineArgs<ExtArgs>
   functionalGroup?: boolean | Prisma.Application$functionalGroupArgs<ExtArgs>
   businessOwner?: boolean | Prisma.Application$businessOwnerArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Application$responsibleItAdminArgs<ExtArgs>
   retirementConfirmation?: boolean | Prisma.Application$retirementConfirmationArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
@@ -2861,6 +3606,7 @@ export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   dictionaryLineId?: boolean
   functionalGroupId?: boolean
   businessOwnerEmployeeId?: boolean
+  responsibleItAdminEmployeeId?: boolean
   dataSensitivity?: boolean
   commPersonToPersonMessaging?: boolean
   commCallsOrMeetings?: boolean
@@ -2879,6 +3625,7 @@ export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   dictionaryLine?: boolean | Prisma.Application$dictionaryLineArgs<ExtArgs>
   functionalGroup?: boolean | Prisma.Application$functionalGroupArgs<ExtArgs>
   businessOwner?: boolean | Prisma.Application$businessOwnerArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Application$responsibleItAdminArgs<ExtArgs>
   retirementConfirmation?: boolean | Prisma.Application$retirementConfirmationArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
@@ -2892,6 +3639,7 @@ export type ApplicationSelectScalar = {
   dictionaryLineId?: boolean
   functionalGroupId?: boolean
   businessOwnerEmployeeId?: boolean
+  responsibleItAdminEmployeeId?: boolean
   dataSensitivity?: boolean
   commPersonToPersonMessaging?: boolean
   commCallsOrMeetings?: boolean
@@ -2907,18 +3655,21 @@ export type ApplicationSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "kind" | "vendorId" | "name" | "normalizedName" | "dictionaryLineId" | "functionalGroupId" | "businessOwnerEmployeeId" | "dataSensitivity" | "commPersonToPersonMessaging" | "commCallsOrMeetings" | "commMailbox" | "isCommunicationService" | "communicationNote" | "domains" | "catalogStatus" | "retiredAt" | "retiredByAppUserId" | "retirementConfirmationId" | "createdAt" | "updatedAt", ExtArgs["result"]["application"]>
+export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "kind" | "vendorId" | "name" | "normalizedName" | "dictionaryLineId" | "functionalGroupId" | "businessOwnerEmployeeId" | "responsibleItAdminEmployeeId" | "dataSensitivity" | "commPersonToPersonMessaging" | "commCallsOrMeetings" | "commMailbox" | "isCommunicationService" | "communicationNote" | "domains" | "catalogStatus" | "retiredAt" | "retiredByAppUserId" | "retirementConfirmationId" | "createdAt" | "updatedAt", ExtArgs["result"]["application"]>
 export type ApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   vendor?: boolean | Prisma.Application$vendorArgs<ExtArgs>
   dictionaryLine?: boolean | Prisma.Application$dictionaryLineArgs<ExtArgs>
   functionalGroup?: boolean | Prisma.Application$functionalGroupArgs<ExtArgs>
   businessOwner?: boolean | Prisma.Application$businessOwnerArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Application$responsibleItAdminArgs<ExtArgs>
   proposals?: boolean | Prisma.Application$proposalsArgs<ExtArgs>
   plans?: boolean | Prisma.Application$plansArgs<ExtArgs>
   applicationBusinessOwners?: boolean | Prisma.Application$applicationBusinessOwnersArgs<ExtArgs>
   retirementConfirmation?: boolean | Prisma.Application$retirementConfirmationArgs<ExtArgs>
   retirementConfirmations?: boolean | Prisma.Application$retirementConfirmationsArgs<ExtArgs>
+  departmentSoftwareEntries?: boolean | Prisma.Application$departmentSoftwareEntriesArgs<ExtArgs>
+  departmentSoftwareProposals?: boolean | Prisma.Application$departmentSoftwareProposalsArgs<ExtArgs>
   _count?: boolean | Prisma.ApplicationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ApplicationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2927,6 +3678,7 @@ export type ApplicationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.
   dictionaryLine?: boolean | Prisma.Application$dictionaryLineArgs<ExtArgs>
   functionalGroup?: boolean | Prisma.Application$functionalGroupArgs<ExtArgs>
   businessOwner?: boolean | Prisma.Application$businessOwnerArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Application$responsibleItAdminArgs<ExtArgs>
   retirementConfirmation?: boolean | Prisma.Application$retirementConfirmationArgs<ExtArgs>
 }
 export type ApplicationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2935,6 +3687,7 @@ export type ApplicationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.
   dictionaryLine?: boolean | Prisma.Application$dictionaryLineArgs<ExtArgs>
   functionalGroup?: boolean | Prisma.Application$functionalGroupArgs<ExtArgs>
   businessOwner?: boolean | Prisma.Application$businessOwnerArgs<ExtArgs>
+  responsibleItAdmin?: boolean | Prisma.Application$responsibleItAdminArgs<ExtArgs>
   retirementConfirmation?: boolean | Prisma.Application$retirementConfirmationArgs<ExtArgs>
 }
 
@@ -2946,11 +3699,14 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
     dictionaryLine: Prisma.$VendorServiceLinePayload<ExtArgs> | null
     functionalGroup: Prisma.$FunctionalGroupPayload<ExtArgs> | null
     businessOwner: Prisma.$EmployeePayload<ExtArgs> | null
+    responsibleItAdmin: Prisma.$EmployeePayload<ExtArgs> | null
     proposals: Prisma.$VendorDictionaryProposalPayload<ExtArgs>[]
     plans: Prisma.$PlanPayload<ExtArgs>[]
     applicationBusinessOwners: Prisma.$ApplicationBusinessOwnerPayload<ExtArgs>[]
     retirementConfirmation: Prisma.$ApplicationRetirementConfirmationPayload<ExtArgs> | null
     retirementConfirmations: Prisma.$ApplicationRetirementConfirmationPayload<ExtArgs>[]
+    departmentSoftwareEntries: Prisma.$DepartmentSoftwareEntryPayload<ExtArgs>[]
+    departmentSoftwareProposals: Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2962,6 +3718,7 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
     dictionaryLineId: string | null
     functionalGroupId: string | null
     businessOwnerEmployeeId: string | null
+    responsibleItAdminEmployeeId: string | null
     dataSensitivity: $Enums.DataSensitivity
     commPersonToPersonMessaging: boolean
     commCallsOrMeetings: boolean
@@ -3374,11 +4131,14 @@ export interface Prisma__ApplicationClient<T, Null = never, ExtArgs extends runt
   dictionaryLine<T extends Prisma.Application$dictionaryLineArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$dictionaryLineArgs<ExtArgs>>): Prisma.Prisma__VendorServiceLineClient<runtime.Types.Result.GetResult<Prisma.$VendorServiceLinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   functionalGroup<T extends Prisma.Application$functionalGroupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$functionalGroupArgs<ExtArgs>>): Prisma.Prisma__FunctionalGroupClient<runtime.Types.Result.GetResult<Prisma.$FunctionalGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   businessOwner<T extends Prisma.Application$businessOwnerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$businessOwnerArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  responsibleItAdmin<T extends Prisma.Application$responsibleItAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$responsibleItAdminArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   proposals<T extends Prisma.Application$proposalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$proposalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorDictionaryProposalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   plans<T extends Prisma.Application$plansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$plansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   applicationBusinessOwners<T extends Prisma.Application$applicationBusinessOwnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$applicationBusinessOwnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationBusinessOwnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   retirementConfirmation<T extends Prisma.Application$retirementConfirmationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$retirementConfirmationArgs<ExtArgs>>): Prisma.Prisma__ApplicationRetirementConfirmationClient<runtime.Types.Result.GetResult<Prisma.$ApplicationRetirementConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   retirementConfirmations<T extends Prisma.Application$retirementConfirmationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$retirementConfirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationRetirementConfirmationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  departmentSoftwareEntries<T extends Prisma.Application$departmentSoftwareEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$departmentSoftwareEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentSoftwareEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  departmentSoftwareProposals<T extends Prisma.Application$departmentSoftwareProposalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$departmentSoftwareProposalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3417,6 +4177,7 @@ export interface ApplicationFieldRefs {
   readonly dictionaryLineId: Prisma.FieldRef<"Application", 'String'>
   readonly functionalGroupId: Prisma.FieldRef<"Application", 'String'>
   readonly businessOwnerEmployeeId: Prisma.FieldRef<"Application", 'String'>
+  readonly responsibleItAdminEmployeeId: Prisma.FieldRef<"Application", 'String'>
   readonly dataSensitivity: Prisma.FieldRef<"Application", 'DataSensitivity'>
   readonly commPersonToPersonMessaging: Prisma.FieldRef<"Application", 'Boolean'>
   readonly commCallsOrMeetings: Prisma.FieldRef<"Application", 'Boolean'>
@@ -3907,6 +4668,25 @@ export type Application$businessOwnerArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
+ * Application.responsibleItAdmin
+ */
+export type Application$responsibleItAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+}
+
+/**
  * Application.proposals
  */
 export type Application$proposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4019,6 +4799,54 @@ export type Application$retirementConfirmationsArgs<ExtArgs extends runtime.Type
   take?: number
   skip?: number
   distinct?: Prisma.ApplicationRetirementConfirmationScalarFieldEnum | Prisma.ApplicationRetirementConfirmationScalarFieldEnum[]
+}
+
+/**
+ * Application.departmentSoftwareEntries
+ */
+export type Application$departmentSoftwareEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentSoftwareEntry
+   */
+  select?: Prisma.DepartmentSoftwareEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentSoftwareEntry
+   */
+  omit?: Prisma.DepartmentSoftwareEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentSoftwareEntryInclude<ExtArgs> | null
+  where?: Prisma.DepartmentSoftwareEntryWhereInput
+  orderBy?: Prisma.DepartmentSoftwareEntryOrderByWithRelationInput | Prisma.DepartmentSoftwareEntryOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentSoftwareEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentSoftwareEntryScalarFieldEnum | Prisma.DepartmentSoftwareEntryScalarFieldEnum[]
+}
+
+/**
+ * Application.departmentSoftwareProposals
+ */
+export type Application$departmentSoftwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentSoftwareProposal
+   */
+  select?: Prisma.DepartmentSoftwareProposalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentSoftwareProposal
+   */
+  omit?: Prisma.DepartmentSoftwareProposalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentSoftwareProposalInclude<ExtArgs> | null
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
+  orderBy?: Prisma.DepartmentSoftwareProposalOrderByWithRelationInput | Prisma.DepartmentSoftwareProposalOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentSoftwareProposalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentSoftwareProposalScalarFieldEnum | Prisma.DepartmentSoftwareProposalScalarFieldEnum[]
 }
 
 /**

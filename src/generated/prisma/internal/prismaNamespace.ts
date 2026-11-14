@@ -475,6 +475,8 @@ export const ModelName = {
   SubscriptionRenewalReleasedSeat: 'SubscriptionRenewalReleasedSeat',
   SubscriptionDeadlineEvent: 'SubscriptionDeadlineEvent',
   PoolGrantAvoidedCost: 'PoolGrantAvoidedCost',
+  DepartmentSoftwareEntry: 'DepartmentSoftwareEntry',
+  DepartmentSoftwareProposal: 'DepartmentSoftwareProposal',
   EmailOutbox: 'EmailOutbox',
   InAppNotification: 'InAppNotification',
   HeldDepartmentNotification: 'HeldDepartmentNotification',
@@ -509,6 +511,7 @@ export const ModelName = {
   PersonnelNoticeVerification: 'PersonnelNoticeVerification',
   SuperAdminEventTicket: 'SuperAdminEventTicket',
   PersonnelNoticeCounter: 'PersonnelNoticeCounter',
+  ItAdminHandover: 'ItAdminHandover',
   AccessRequest: 'AccessRequest',
   AccessRequestBeneficiary: 'AccessRequestBeneficiary',
   AccessRequestLine: 'AccessRequestLine',
@@ -565,7 +568,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aiInvocation" | "aiInvocationContent" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "budgetCycle" | "budgetDepartmentCeiling" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planUsageRate" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "assignmentRenewalWindow" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "poolGrantAvoidedCost" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "ghostSeatRuleRun" | "ghostSeatRuleSkip" | "ghostSeatRecommendation" | "ghostSeatDecision" | "ghostSeatReturn" | "ghostSeatExemption" | "ghostSeatApplicationThreshold" | "ghostSeatSeatState" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "requestReserveConfirmation" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "yearStartCommitmentRun" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection" | "usageSource" | "usageImport" | "usageImportRow" | "usageActivityDay" | "usageIdentityMapping" | "usageUnmatchedIdentity" | "usageNoAssignmentFinding"
+    modelProps: "aiInvocation" | "aiInvocationContent" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "budgetCycle" | "budgetDepartmentCeiling" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planUsageRate" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "assignmentRenewalWindow" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "poolGrantAvoidedCost" | "departmentSoftwareEntry" | "departmentSoftwareProposal" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "ghostSeatRuleRun" | "ghostSeatRuleSkip" | "ghostSeatRecommendation" | "ghostSeatDecision" | "ghostSeatReturn" | "ghostSeatExemption" | "ghostSeatApplicationThreshold" | "ghostSeatSeatState" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "itAdminHandover" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "requestReserveConfirmation" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "yearStartCommitmentRun" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection" | "usageSource" | "usageImport" | "usageImportRow" | "usageActivityDay" | "usageIdentityMapping" | "usageUnmatchedIdentity" | "usageNoAssignmentFinding"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -6341,6 +6344,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DepartmentSoftwareEntry: {
+      payload: Prisma.$DepartmentSoftwareEntryPayload<ExtArgs>
+      fields: Prisma.DepartmentSoftwareEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DepartmentSoftwareEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DepartmentSoftwareEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.DepartmentSoftwareEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DepartmentSoftwareEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>
+        }
+        findMany: {
+          args: Prisma.DepartmentSoftwareEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>[]
+        }
+        create: {
+          args: Prisma.DepartmentSoftwareEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>
+        }
+        createMany: {
+          args: Prisma.DepartmentSoftwareEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DepartmentSoftwareEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.DepartmentSoftwareEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>
+        }
+        update: {
+          args: Prisma.DepartmentSoftwareEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.DepartmentSoftwareEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DepartmentSoftwareEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DepartmentSoftwareEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.DepartmentSoftwareEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.DepartmentSoftwareEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDepartmentSoftwareEntry>
+        }
+        groupBy: {
+          args: Prisma.DepartmentSoftwareEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DepartmentSoftwareEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DepartmentSoftwareEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DepartmentSoftwareEntryCountAggregateOutputType> | number
+        }
+      }
+    }
+    DepartmentSoftwareProposal: {
+      payload: Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>
+      fields: Prisma.DepartmentSoftwareProposalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DepartmentSoftwareProposalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DepartmentSoftwareProposalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>
+        }
+        findFirst: {
+          args: Prisma.DepartmentSoftwareProposalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DepartmentSoftwareProposalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>
+        }
+        findMany: {
+          args: Prisma.DepartmentSoftwareProposalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>[]
+        }
+        create: {
+          args: Prisma.DepartmentSoftwareProposalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>
+        }
+        createMany: {
+          args: Prisma.DepartmentSoftwareProposalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DepartmentSoftwareProposalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>[]
+        }
+        delete: {
+          args: Prisma.DepartmentSoftwareProposalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>
+        }
+        update: {
+          args: Prisma.DepartmentSoftwareProposalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>
+        }
+        deleteMany: {
+          args: Prisma.DepartmentSoftwareProposalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DepartmentSoftwareProposalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DepartmentSoftwareProposalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>[]
+        }
+        upsert: {
+          args: Prisma.DepartmentSoftwareProposalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DepartmentSoftwareProposalPayload>
+        }
+        aggregate: {
+          args: Prisma.DepartmentSoftwareProposalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDepartmentSoftwareProposal>
+        }
+        groupBy: {
+          args: Prisma.DepartmentSoftwareProposalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DepartmentSoftwareProposalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DepartmentSoftwareProposalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DepartmentSoftwareProposalCountAggregateOutputType> | number
+        }
+      }
+    }
     EmailOutbox: {
       payload: Prisma.$EmailOutboxPayload<ExtArgs>
       fields: Prisma.EmailOutboxFieldRefs
@@ -8854,6 +9005,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.PersonnelNoticeCounterCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.PersonnelNoticeCounterCountAggregateOutputType> | number
+        }
+      }
+    }
+    ItAdminHandover: {
+      payload: Prisma.$ItAdminHandoverPayload<ExtArgs>
+      fields: Prisma.ItAdminHandoverFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ItAdminHandoverFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ItAdminHandoverFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>
+        }
+        findFirst: {
+          args: Prisma.ItAdminHandoverFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ItAdminHandoverFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>
+        }
+        findMany: {
+          args: Prisma.ItAdminHandoverFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>[]
+        }
+        create: {
+          args: Prisma.ItAdminHandoverCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>
+        }
+        createMany: {
+          args: Prisma.ItAdminHandoverCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ItAdminHandoverCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>[]
+        }
+        delete: {
+          args: Prisma.ItAdminHandoverDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>
+        }
+        update: {
+          args: Prisma.ItAdminHandoverUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>
+        }
+        deleteMany: {
+          args: Prisma.ItAdminHandoverDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ItAdminHandoverUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ItAdminHandoverUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>[]
+        }
+        upsert: {
+          args: Prisma.ItAdminHandoverUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItAdminHandoverPayload>
+        }
+        aggregate: {
+          args: Prisma.ItAdminHandoverAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateItAdminHandover>
+        }
+        groupBy: {
+          args: Prisma.ItAdminHandoverGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ItAdminHandoverGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ItAdminHandoverCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ItAdminHandoverCountAggregateOutputType> | number
         }
       }
     }
@@ -12344,6 +12569,7 @@ export const ApplicationScalarFieldEnum = {
   dictionaryLineId: 'dictionaryLineId',
   functionalGroupId: 'functionalGroupId',
   businessOwnerEmployeeId: 'businessOwnerEmployeeId',
+  responsibleItAdminEmployeeId: 'responsibleItAdminEmployeeId',
   dataSensitivity: 'dataSensitivity',
   commPersonToPersonMessaging: 'commPersonToPersonMessaging',
   commCallsOrMeetings: 'commCallsOrMeetings',
@@ -12374,6 +12600,7 @@ export const PlanScalarFieldEnum = {
   revocationNote: 'revocationNote',
   dataLossOnRemoval: 'dataLossOnRemoval',
   sharingPolicy: 'sharingPolicy',
+  hasAdminConsole: 'hasAdminConsole',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -12403,6 +12630,8 @@ export const PlanWorkspaceProfileScalarFieldEnum = {
   emergencyOccupiesSeat: 'emergencyOccupiesSeat',
   emergencyHolderEmployeeId: 'emergencyHolderEmployeeId',
   emergencyLastReviewedOn: 'emergencyLastReviewedOn',
+  ownerAccountEmail: 'ownerAccountEmail',
+  adminNote: 'adminNote',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -12980,7 +13209,10 @@ export const LicenseAssignmentScalarFieldEnum = {
   failedAt: 'failedAt',
   cancelledAt: 'cancelledAt',
   predecessorId: 'predecessorId',
+  replacesAssignmentId: 'replacesAssignmentId',
   baselineImportId: 'baselineImportId',
+  isMachineAccount: 'isMachineAccount',
+  machineAccountNote: 'machineAccountNote',
   createdByAppUserId: 'createdByAppUserId',
   createdAt: 'createdAt'
 } as const
@@ -13032,12 +13264,14 @@ export const ProvisioningTaskScalarFieldEnum = {
   accessCutOn: 'accessCutOn',
   accessEvidence: 'accessEvidence',
   completionNote: 'completionNote',
+  k1Checklist: 'k1Checklist',
   dueOn: 'dueOn',
   notBefore: 'notBefore',
   purchaseKind: 'purchaseKind',
   purchaseReason: 'purchaseReason',
   purchasedAt: 'purchasedAt',
   createdByAppUserId: 'createdByAppUserId',
+  createdBySystem: 'createdBySystem',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -13302,6 +13536,38 @@ export const PoolGrantAvoidedCostScalarFieldEnum = {
 } as const
 
 export type PoolGrantAvoidedCostScalarFieldEnum = (typeof PoolGrantAvoidedCostScalarFieldEnum)[keyof typeof PoolGrantAvoidedCostScalarFieldEnum]
+
+
+export const DepartmentSoftwareEntryScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  departmentId: 'departmentId',
+  applicationId: 'applicationId',
+  planId: 'planId',
+  note: 'note',
+  addedByAppUserId: 'addedByAppUserId',
+  addedAt: 'addedAt'
+} as const
+
+export type DepartmentSoftwareEntryScalarFieldEnum = (typeof DepartmentSoftwareEntryScalarFieldEnum)[keyof typeof DepartmentSoftwareEntryScalarFieldEnum]
+
+
+export const DepartmentSoftwareProposalScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  departmentId: 'departmentId',
+  applicationId: 'applicationId',
+  planId: 'planId',
+  reason: 'reason',
+  state: 'state',
+  proposedByEmployeeId: 'proposedByEmployeeId',
+  proposedAt: 'proposedAt',
+  decidedByAppUserId: 'decidedByAppUserId',
+  decidedAt: 'decidedAt',
+  decisionReason: 'decisionReason'
+} as const
+
+export type DepartmentSoftwareProposalScalarFieldEnum = (typeof DepartmentSoftwareProposalScalarFieldEnum)[keyof typeof DepartmentSoftwareProposalScalarFieldEnum]
 
 
 export const EmailOutboxScalarFieldEnum = {
@@ -13694,6 +13960,13 @@ export const DepartmentTransferScalarFieldEnum = {
   cancelledReason: 'cancelledReason',
   closedAt: 'closedAt',
   closedByAppUserId: 'closedByAppUserId',
+  closedBySystem: 'closedBySystem',
+  supersededByCaseId: 'supersededByCaseId',
+  graceEndsOn: 'graceEndsOn',
+  graceReminderOn: 'graceReminderOn',
+  remindedAt: 'remindedAt',
+  snapshotBefore: 'snapshotBefore',
+  snapshotAfter: 'snapshotAfter',
   noticeId: 'noticeId'
 } as const
 
@@ -13812,6 +14085,9 @@ export const OffboardingCaseScalarFieldEnum = {
   lastWorkingDay: 'lastWorkingDay',
   departureEffectiveOn: 'departureEffectiveOn',
   handoverDueOn: 'handoverDueOn',
+  revocationDueOn: 'revocationDueOn',
+  blockAnnouncedAt: 'blockAnnouncedAt',
+  accountLockOverdueAt: 'accountLockOverdueAt',
   groundsType: 'groundsType',
   groundsReference: 'groundsReference',
   groundsIssuer: 'groundsIssuer',
@@ -13828,6 +14104,9 @@ export const OffboardingCaseScalarFieldEnum = {
   accountLockByAppUserId: 'accountLockByAppUserId',
   accountLockAt: 'accountLockAt',
   accountLockNote: 'accountLockNote',
+  mailboxLockAt: 'mailboxLockAt',
+  mailboxLockByAppUserId: 'mailboxLockByAppUserId',
+  mailboxLockNote: 'mailboxLockNote',
   closedAt: 'closedAt',
   closedByAppUserId: 'closedByAppUserId',
   recordedByAppUserId: 'recordedByAppUserId',
@@ -13920,6 +14199,23 @@ export const PersonnelNoticeCounterScalarFieldEnum = {
 export type PersonnelNoticeCounterScalarFieldEnum = (typeof PersonnelNoticeCounterScalarFieldEnum)[keyof typeof PersonnelNoticeCounterScalarFieldEnum]
 
 
+export const ItAdminHandoverScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  offboardingCaseId: 'offboardingCaseId',
+  departmentTransferId: 'departmentTransferId',
+  subscriptionsAtRecord: 'subscriptionsAtRecord',
+  applicationsAtRecord: 'applicationsAtRecord',
+  createdAt: 'createdAt',
+  doneAt: 'doneAt',
+  doneToEmployeeId: 'doneToEmployeeId',
+  doneSubscriptions: 'doneSubscriptions',
+  doneApplications: 'doneApplications'
+} as const
+
+export type ItAdminHandoverScalarFieldEnum = (typeof ItAdminHandoverScalarFieldEnum)[keyof typeof ItAdminHandoverScalarFieldEnum]
+
+
 export const AccessRequestScalarFieldEnum = {
   routingMode: 'routingMode',
   oneStepReason: 'oneStepReason',
@@ -13928,6 +14224,7 @@ export const AccessRequestScalarFieldEnum = {
   manyPaidSoftwareCount: 'manyPaidSoftwareCount',
   manyPaidSoftwareReason: 'manyPaidSoftwareReason',
   limitExemption: 'limitExemption',
+  replacesAssignmentId: 'replacesAssignmentId',
   id: 'id',
   organizationId: 'organizationId',
   type: 'type',
@@ -15908,6 +16205,20 @@ export type ListEnumRenewalDeadlineOutcomeFieldRefInput<$PrismaModel> = FieldRef
 
 
 /**
+ * Reference to a field of type 'DepartmentSoftwareProposalState'
+ */
+export type EnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DepartmentSoftwareProposalState'>
+    
+
+
+/**
+ * Reference to a field of type 'DepartmentSoftwareProposalState[]'
+ */
+export type ListEnumDepartmentSoftwareProposalStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DepartmentSoftwareProposalState[]'>
+    
+
+
+/**
  * Reference to a field of type 'EmailOutboxStatus'
  */
 export type EnumEmailOutboxStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmailOutboxStatus'>
@@ -17465,6 +17776,8 @@ export type GlobalOmitConfig = {
   subscriptionRenewalReleasedSeat?: Prisma.SubscriptionRenewalReleasedSeatOmit
   subscriptionDeadlineEvent?: Prisma.SubscriptionDeadlineEventOmit
   poolGrantAvoidedCost?: Prisma.PoolGrantAvoidedCostOmit
+  departmentSoftwareEntry?: Prisma.DepartmentSoftwareEntryOmit
+  departmentSoftwareProposal?: Prisma.DepartmentSoftwareProposalOmit
   emailOutbox?: Prisma.EmailOutboxOmit
   inAppNotification?: Prisma.InAppNotificationOmit
   heldDepartmentNotification?: Prisma.HeldDepartmentNotificationOmit
@@ -17499,6 +17812,7 @@ export type GlobalOmitConfig = {
   personnelNoticeVerification?: Prisma.PersonnelNoticeVerificationOmit
   superAdminEventTicket?: Prisma.SuperAdminEventTicketOmit
   personnelNoticeCounter?: Prisma.PersonnelNoticeCounterOmit
+  itAdminHandover?: Prisma.ItAdminHandoverOmit
   accessRequest?: Prisma.AccessRequestOmit
   accessRequestBeneficiary?: Prisma.AccessRequestBeneficiaryOmit
   accessRequestLine?: Prisma.AccessRequestLineOmit

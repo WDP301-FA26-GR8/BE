@@ -56,6 +56,7 @@ export type AccessRequestMinAggregateOutputType = {
   manyPaidSoftwareCount: number | null
   manyPaidSoftwareReason: string | null
   limitExemption: string | null
+  replacesAssignmentId: string | null
   id: string | null
   organizationId: string | null
   type: $Enums.AccessRequestType | null
@@ -108,6 +109,7 @@ export type AccessRequestMaxAggregateOutputType = {
   manyPaidSoftwareCount: number | null
   manyPaidSoftwareReason: string | null
   limitExemption: string | null
+  replacesAssignmentId: string | null
   id: string | null
   organizationId: string | null
   type: $Enums.AccessRequestType | null
@@ -160,6 +162,7 @@ export type AccessRequestCountAggregateOutputType = {
   manyPaidSoftwareCount: number
   manyPaidSoftwareReason: number
   limitExemption: number
+  replacesAssignmentId: number
   id: number
   organizationId: number
   type: number
@@ -238,6 +241,7 @@ export type AccessRequestMinAggregateInputType = {
   manyPaidSoftwareCount?: true
   manyPaidSoftwareReason?: true
   limitExemption?: true
+  replacesAssignmentId?: true
   id?: true
   organizationId?: true
   type?: true
@@ -290,6 +294,7 @@ export type AccessRequestMaxAggregateInputType = {
   manyPaidSoftwareCount?: true
   manyPaidSoftwareReason?: true
   limitExemption?: true
+  replacesAssignmentId?: true
   id?: true
   organizationId?: true
   type?: true
@@ -342,6 +347,7 @@ export type AccessRequestCountAggregateInputType = {
   manyPaidSoftwareCount?: true
   manyPaidSoftwareReason?: true
   limitExemption?: true
+  replacesAssignmentId?: true
   id?: true
   organizationId?: true
   type?: true
@@ -483,6 +489,7 @@ export type AccessRequestGroupByOutputType = {
   manyPaidSoftwareCount: number | null
   manyPaidSoftwareReason: string | null
   limitExemption: string | null
+  replacesAssignmentId: string | null
   id: string
   organizationId: string
   type: $Enums.AccessRequestType
@@ -560,6 +567,7 @@ export type AccessRequestWhereInput = {
   manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
   manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   limitExemption?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  replacesAssignmentId?: Prisma.UuidNullableFilter<"AccessRequest"> | string | null
   id?: Prisma.UuidFilter<"AccessRequest"> | string
   organizationId?: Prisma.UuidFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeFilter<"AccessRequest"> | $Enums.AccessRequestType
@@ -632,6 +640,7 @@ export type AccessRequestWhereInput = {
   serviceAccount?: Prisma.XOR<Prisma.AccessRequestServiceAccountNullableScalarRelationFilter, Prisma.AccessRequestServiceAccountWhereInput> | null
   renewal?: Prisma.XOR<Prisma.AccessRequestRenewalNullableScalarRelationFilter, Prisma.AccessRequestRenewalWhereInput> | null
   returnsFromHere?: Prisma.ReturnRequestListRelationFilter
+  replacesAssignment?: Prisma.XOR<Prisma.LicenseAssignmentNullableScalarRelationFilter, Prisma.LicenseAssignmentWhereInput> | null
 }
 
 export type AccessRequestOrderByWithRelationInput = {
@@ -642,6 +651,7 @@ export type AccessRequestOrderByWithRelationInput = {
   manyPaidSoftwareCount?: Prisma.SortOrderInput | Prisma.SortOrder
   manyPaidSoftwareReason?: Prisma.SortOrderInput | Prisma.SortOrder
   limitExemption?: Prisma.SortOrderInput | Prisma.SortOrder
+  replacesAssignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -714,6 +724,7 @@ export type AccessRequestOrderByWithRelationInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountOrderByWithRelationInput
   renewal?: Prisma.AccessRequestRenewalOrderByWithRelationInput
   returnsFromHere?: Prisma.ReturnRequestOrderByRelationAggregateInput
+  replacesAssignment?: Prisma.LicenseAssignmentOrderByWithRelationInput
 }
 
 export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -728,6 +739,7 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
   manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
   manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   limitExemption?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  replacesAssignmentId?: Prisma.UuidNullableFilter<"AccessRequest"> | string | null
   organizationId?: Prisma.UuidFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeFilter<"AccessRequest"> | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFilter<"AccessRequest"> | $Enums.AccessRequestBranch
@@ -799,6 +811,7 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
   serviceAccount?: Prisma.XOR<Prisma.AccessRequestServiceAccountNullableScalarRelationFilter, Prisma.AccessRequestServiceAccountWhereInput> | null
   renewal?: Prisma.XOR<Prisma.AccessRequestRenewalNullableScalarRelationFilter, Prisma.AccessRequestRenewalWhereInput> | null
   returnsFromHere?: Prisma.ReturnRequestListRelationFilter
+  replacesAssignment?: Prisma.XOR<Prisma.LicenseAssignmentNullableScalarRelationFilter, Prisma.LicenseAssignmentWhereInput> | null
 }, "id">
 
 export type AccessRequestOrderByWithAggregationInput = {
@@ -809,6 +822,7 @@ export type AccessRequestOrderByWithAggregationInput = {
   manyPaidSoftwareCount?: Prisma.SortOrderInput | Prisma.SortOrder
   manyPaidSoftwareReason?: Prisma.SortOrderInput | Prisma.SortOrder
   limitExemption?: Prisma.SortOrderInput | Prisma.SortOrder
+  replacesAssignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -871,6 +885,7 @@ export type AccessRequestScalarWhereWithAggregatesInput = {
   manyPaidSoftwareCount?: Prisma.IntNullableWithAggregatesFilter<"AccessRequest"> | number | null
   manyPaidSoftwareReason?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
   limitExemption?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
+  replacesAssignmentId?: Prisma.UuidNullableWithAggregatesFilter<"AccessRequest"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"AccessRequest"> | string
   organizationId?: Prisma.UuidWithAggregatesFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeWithAggregatesFilter<"AccessRequest"> | $Enums.AccessRequestType
@@ -989,6 +1004,7 @@ export type AccessRequestCreateInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateInput = {
@@ -999,6 +1015,7 @@ export type AccessRequestUncheckedCreateInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -1137,6 +1154,7 @@ export type AccessRequestUpdateInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateInput = {
@@ -1147,6 +1165,7 @@ export type AccessRequestUncheckedUpdateInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -1221,6 +1240,7 @@ export type AccessRequestCreateManyInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -1321,6 +1341,7 @@ export type AccessRequestUncheckedUpdateManyInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -1390,6 +1411,7 @@ export type AccessRequestCountOrderByAggregateInput = {
   manyPaidSoftwareCount?: Prisma.SortOrder
   manyPaidSoftwareReason?: Prisma.SortOrder
   limitExemption?: Prisma.SortOrder
+  replacesAssignmentId?: Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -1455,6 +1477,7 @@ export type AccessRequestMaxOrderByAggregateInput = {
   manyPaidSoftwareCount?: Prisma.SortOrder
   manyPaidSoftwareReason?: Prisma.SortOrder
   limitExemption?: Prisma.SortOrder
+  replacesAssignmentId?: Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -1507,6 +1530,7 @@ export type AccessRequestMinOrderByAggregateInput = {
   manyPaidSoftwareCount?: Prisma.SortOrder
   manyPaidSoftwareReason?: Prisma.SortOrder
   limitExemption?: Prisma.SortOrder
+  replacesAssignmentId?: Prisma.SortOrder
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -1662,6 +1686,48 @@ export type AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInp
   connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
   update?: Prisma.AccessRequestUpdateWithWhereUniqueWithoutAmountCurrencyRecordInput | Prisma.AccessRequestUpdateWithWhereUniqueWithoutAmountCurrencyRecordInput[]
   updateMany?: Prisma.AccessRequestUpdateManyWithWhereWithoutAmountCurrencyRecordInput | Prisma.AccessRequestUpdateManyWithWhereWithoutAmountCurrencyRecordInput[]
+  deleteMany?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
+}
+
+export type AccessRequestCreateNestedManyWithoutReplacesAssignmentInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput> | Prisma.AccessRequestCreateWithoutReplacesAssignmentInput[] | Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput | Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput[]
+  createMany?: Prisma.AccessRequestCreateManyReplacesAssignmentInputEnvelope
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+}
+
+export type AccessRequestUncheckedCreateNestedManyWithoutReplacesAssignmentInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput> | Prisma.AccessRequestCreateWithoutReplacesAssignmentInput[] | Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput | Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput[]
+  createMany?: Prisma.AccessRequestCreateManyReplacesAssignmentInputEnvelope
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+}
+
+export type AccessRequestUpdateManyWithoutReplacesAssignmentNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput> | Prisma.AccessRequestCreateWithoutReplacesAssignmentInput[] | Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput | Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput[]
+  upsert?: Prisma.AccessRequestUpsertWithWhereUniqueWithoutReplacesAssignmentInput | Prisma.AccessRequestUpsertWithWhereUniqueWithoutReplacesAssignmentInput[]
+  createMany?: Prisma.AccessRequestCreateManyReplacesAssignmentInputEnvelope
+  set?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  delete?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  update?: Prisma.AccessRequestUpdateWithWhereUniqueWithoutReplacesAssignmentInput | Prisma.AccessRequestUpdateWithWhereUniqueWithoutReplacesAssignmentInput[]
+  updateMany?: Prisma.AccessRequestUpdateManyWithWhereWithoutReplacesAssignmentInput | Prisma.AccessRequestUpdateManyWithWhereWithoutReplacesAssignmentInput[]
+  deleteMany?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
+}
+
+export type AccessRequestUncheckedUpdateManyWithoutReplacesAssignmentNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput> | Prisma.AccessRequestCreateWithoutReplacesAssignmentInput[] | Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput | Prisma.AccessRequestCreateOrConnectWithoutReplacesAssignmentInput[]
+  upsert?: Prisma.AccessRequestUpsertWithWhereUniqueWithoutReplacesAssignmentInput | Prisma.AccessRequestUpsertWithWhereUniqueWithoutReplacesAssignmentInput[]
+  createMany?: Prisma.AccessRequestCreateManyReplacesAssignmentInputEnvelope
+  set?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  delete?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  update?: Prisma.AccessRequestUpdateWithWhereUniqueWithoutReplacesAssignmentInput | Prisma.AccessRequestUpdateWithWhereUniqueWithoutReplacesAssignmentInput[]
+  updateMany?: Prisma.AccessRequestUpdateManyWithWhereWithoutReplacesAssignmentInput | Prisma.AccessRequestUpdateManyWithWhereWithoutReplacesAssignmentInput[]
   deleteMany?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
 }
 
@@ -2284,6 +2350,7 @@ export type AccessRequestCreateWithoutBudgetCommitmentsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutBudgetCommitmentsInput = {
@@ -2294,6 +2361,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetCommitmentsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -2446,6 +2514,7 @@ export type AccessRequestUpdateWithoutBudgetCommitmentsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutBudgetCommitmentsInput = {
@@ -2456,6 +2525,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetCommitmentsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -2592,6 +2662,7 @@ export type AccessRequestCreateWithoutPlanInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutPlanInput = {
@@ -2602,6 +2673,7 @@ export type AccessRequestUncheckedCreateWithoutPlanInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -2704,6 +2776,7 @@ export type AccessRequestScalarWhereInput = {
   manyPaidSoftwareCount?: Prisma.IntNullableFilter<"AccessRequest"> | number | null
   manyPaidSoftwareReason?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
   limitExemption?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  replacesAssignmentId?: Prisma.UuidNullableFilter<"AccessRequest"> | string | null
   id?: Prisma.UuidFilter<"AccessRequest"> | string
   organizationId?: Prisma.UuidFilter<"AccessRequest"> | string
   type?: Prisma.EnumAccessRequestTypeFilter<"AccessRequest"> | $Enums.AccessRequestType
@@ -2821,6 +2894,7 @@ export type AccessRequestCreateWithoutAmountCurrencyRecordInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutAmountCurrencyRecordInput = {
@@ -2831,6 +2905,7 @@ export type AccessRequestUncheckedCreateWithoutAmountCurrencyRecordInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -2922,6 +2997,180 @@ export type AccessRequestUpdateManyWithWhereWithoutAmountCurrencyRecordInput = {
   data: Prisma.XOR<Prisma.AccessRequestUpdateManyMutationInput, Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordInput>
 }
 
+export type AccessRequestCreateWithoutReplacesAssignmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
+  id?: string
+  type?: $Enums.AccessRequestType
+  branch: $Enums.AccessRequestBranch
+  state: $Enums.AccessRequestState
+  businessReason: string
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
+  pricingStatus?: $Enums.AccessRequestPricingStatus
+  priceMissingReason?: string | null
+  expectedSpendOn?: Date | string | null
+  budgetYear?: number | null
+  amountMinor?: bigint | number | null
+  unitPriceMinor?: bigint | number | null
+  billingCycle?: $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: string | null
+  planLinePosition?: number | null
+  planLineConfirmed?: boolean
+  offPlan?: boolean
+  delegatedBatchId?: string | null
+  expectedEndDate?: Date | string | null
+  policy: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Date | string | null
+  withdrawalReason?: string | null
+  withdrawnAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelCause?: $Enums.AccessRequestCancelCause | null
+  cancelNote?: string | null
+  grantCompletedAt?: Date | string | null
+  spendQueuedAt?: Date | string | null
+  createdByAppUserId: string
+  submittedAt?: Date | string | null
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutAccessRequestsInput
+  plan?: Prisma.PlanCreateNestedOneWithoutAccessRequestsInput
+  requester: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsMadeInput
+  withdrawnBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsWithdrawnInput
+  cancelledBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsCancelledInput
+  department: Prisma.DepartmentCreateNestedOneWithoutAccessRequestsInput
+  costCenter?: Prisma.CostCenterCreateNestedOneWithoutAccessRequestsInput
+  amountCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAccessRequestAmountsInput
+  beneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutRequestInput
+  lines?: Prisma.AccessRequestLineCreateNestedManyWithoutRequestInput
+  lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutRequestInput
+  steps?: Prisma.AccessRequestStepCreateNestedManyWithoutRequestInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutRequestInput
+  proposal?: Prisma.AccessRequestProposalCreateNestedOneWithoutRequestInput
+  assessment?: Prisma.AccessRequestAssessmentCreateNestedOneWithoutRequestInput
+  budgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRequestInput
+  financeReviews?: Prisma.RequestFinanceReviewCreateNestedManyWithoutRequestInput
+  batchItems?: Prisma.SpendBatchItemCreateNestedManyWithoutRequestInput
+  supplements?: Prisma.RequestSupplementCreateNestedManyWithoutRequestInput
+  spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
+  budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
+  renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+}
+
+export type AccessRequestUncheckedCreateWithoutReplacesAssignmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
+  id?: string
+  organizationId: string
+  type?: $Enums.AccessRequestType
+  branch: $Enums.AccessRequestBranch
+  state: $Enums.AccessRequestState
+  planId?: string | null
+  requesterEmployeeId: string
+  departmentId: string
+  costCenterId?: string | null
+  businessReason: string
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
+  pricingStatus?: $Enums.AccessRequestPricingStatus
+  priceMissingReason?: string | null
+  expectedSpendOn?: Date | string | null
+  budgetYear?: number | null
+  amountMinor?: bigint | number | null
+  amountCurrency?: string | null
+  unitPriceMinor?: bigint | number | null
+  billingCycle?: $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: string | null
+  planLinePosition?: number | null
+  planLineConfirmed?: boolean
+  offPlan?: boolean
+  delegatedBatchId?: string | null
+  expectedEndDate?: Date | string | null
+  policy: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Date | string | null
+  withdrawnByEmployeeId?: string | null
+  withdrawalReason?: string | null
+  withdrawnAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByEmployeeId?: string | null
+  cancelCause?: $Enums.AccessRequestCancelCause | null
+  cancelNote?: string | null
+  grantCompletedAt?: Date | string | null
+  spendQueuedAt?: Date | string | null
+  createdByAppUserId: string
+  submittedAt?: Date | string | null
+  updatedAt?: Date | string
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutRequestInput
+  lines?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutRequestInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutRequestInput
+  steps?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutRequestInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutRequestInput
+  proposal?: Prisma.AccessRequestProposalUncheckedCreateNestedOneWithoutRequestInput
+  assessment?: Prisma.AccessRequestAssessmentUncheckedCreateNestedOneWithoutRequestInput
+  budgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRequestInput
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutRequestInput
+  batchItems?: Prisma.SpendBatchItemUncheckedCreateNestedManyWithoutRequestInput
+  supplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutRequestInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
+  renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
+}
+
+export type AccessRequestCreateOrConnectWithoutReplacesAssignmentInput = {
+  where: Prisma.AccessRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput>
+}
+
+export type AccessRequestCreateManyReplacesAssignmentInputEnvelope = {
+  data: Prisma.AccessRequestCreateManyReplacesAssignmentInput | Prisma.AccessRequestCreateManyReplacesAssignmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type AccessRequestUpsertWithWhereUniqueWithoutReplacesAssignmentInput = {
+  where: Prisma.AccessRequestWhereUniqueInput
+  update: Prisma.XOR<Prisma.AccessRequestUpdateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedUpdateWithoutReplacesAssignmentInput>
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedCreateWithoutReplacesAssignmentInput>
+}
+
+export type AccessRequestUpdateWithWhereUniqueWithoutReplacesAssignmentInput = {
+  where: Prisma.AccessRequestWhereUniqueInput
+  data: Prisma.XOR<Prisma.AccessRequestUpdateWithoutReplacesAssignmentInput, Prisma.AccessRequestUncheckedUpdateWithoutReplacesAssignmentInput>
+}
+
+export type AccessRequestUpdateManyWithWhereWithoutReplacesAssignmentInput = {
+  where: Prisma.AccessRequestScalarWhereInput
+  data: Prisma.XOR<Prisma.AccessRequestUpdateManyMutationInput, Prisma.AccessRequestUncheckedUpdateManyWithoutReplacesAssignmentInput>
+}
+
 export type AccessRequestCreateWithoutOrganizationInput = {
   routingMode?: $Enums.RequestRoutingMode
   oneStepReason?: string | null
@@ -2993,6 +3242,7 @@ export type AccessRequestCreateWithoutOrganizationInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutOrganizationInput = {
@@ -3003,6 +3253,7 @@ export type AccessRequestUncheckedCreateWithoutOrganizationInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -3165,6 +3416,7 @@ export type AccessRequestCreateWithoutCostCenterInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutCostCenterInput = {
@@ -3175,6 +3427,7 @@ export type AccessRequestUncheckedCreateWithoutCostCenterInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3337,6 +3590,7 @@ export type AccessRequestCreateWithoutDepartmentInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutDepartmentInput = {
@@ -3347,6 +3601,7 @@ export type AccessRequestUncheckedCreateWithoutDepartmentInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3509,6 +3764,7 @@ export type AccessRequestCreateWithoutRequesterInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutRequesterInput = {
@@ -3519,6 +3775,7 @@ export type AccessRequestUncheckedCreateWithoutRequesterInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3665,6 +3922,7 @@ export type AccessRequestCreateWithoutWithdrawnByInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutWithdrawnByInput = {
@@ -3675,6 +3933,7 @@ export type AccessRequestUncheckedCreateWithoutWithdrawnByInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -3821,6 +4080,7 @@ export type AccessRequestCreateWithoutCancelledByInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutCancelledByInput = {
@@ -3831,6 +4091,7 @@ export type AccessRequestUncheckedCreateWithoutCancelledByInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4025,6 +4286,7 @@ export type AccessRequestCreateWithoutBeneficiariesInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutBeneficiariesInput = {
@@ -4035,6 +4297,7 @@ export type AccessRequestUncheckedCreateWithoutBeneficiariesInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4187,6 +4450,7 @@ export type AccessRequestUpdateWithoutBeneficiariesInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutBeneficiariesInput = {
@@ -4197,6 +4461,7 @@ export type AccessRequestUncheckedUpdateWithoutBeneficiariesInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -4333,6 +4598,7 @@ export type AccessRequestCreateWithoutLinesInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutLinesInput = {
@@ -4343,6 +4609,7 @@ export type AccessRequestUncheckedCreateWithoutLinesInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4495,6 +4762,7 @@ export type AccessRequestUpdateWithoutLinesInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutLinesInput = {
@@ -4505,6 +4773,7 @@ export type AccessRequestUncheckedUpdateWithoutLinesInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -4641,6 +4910,7 @@ export type AccessRequestCreateWithoutLineAmountsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutLineAmountsInput = {
@@ -4651,6 +4921,7 @@ export type AccessRequestUncheckedCreateWithoutLineAmountsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -4803,6 +5074,7 @@ export type AccessRequestUpdateWithoutLineAmountsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutLineAmountsInput = {
@@ -4813,6 +5085,7 @@ export type AccessRequestUncheckedUpdateWithoutLineAmountsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -4949,6 +5222,7 @@ export type AccessRequestCreateWithoutStepsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutStepsInput = {
@@ -4959,6 +5233,7 @@ export type AccessRequestUncheckedCreateWithoutStepsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -5111,6 +5386,7 @@ export type AccessRequestUpdateWithoutStepsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutStepsInput = {
@@ -5121,6 +5397,7 @@ export type AccessRequestUncheckedUpdateWithoutStepsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -5257,6 +5534,7 @@ export type AccessRequestCreateWithoutApprovalRecordsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutApprovalRecordsInput = {
@@ -5267,6 +5545,7 @@ export type AccessRequestUncheckedCreateWithoutApprovalRecordsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -5419,6 +5698,7 @@ export type AccessRequestUpdateWithoutApprovalRecordsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutApprovalRecordsInput = {
@@ -5429,6 +5709,7 @@ export type AccessRequestUncheckedUpdateWithoutApprovalRecordsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -5565,6 +5846,7 @@ export type AccessRequestCreateWithoutProposalInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutProposalInput = {
@@ -5575,6 +5857,7 @@ export type AccessRequestUncheckedCreateWithoutProposalInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -5727,6 +6010,7 @@ export type AccessRequestUpdateWithoutProposalInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutProposalInput = {
@@ -5737,6 +6021,7 @@ export type AccessRequestUncheckedUpdateWithoutProposalInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -5873,6 +6158,7 @@ export type AccessRequestCreateWithoutAssessmentInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutAssessmentInput = {
@@ -5883,6 +6169,7 @@ export type AccessRequestUncheckedCreateWithoutAssessmentInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6035,6 +6322,7 @@ export type AccessRequestUpdateWithoutAssessmentInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutAssessmentInput = {
@@ -6045,6 +6333,7 @@ export type AccessRequestUncheckedUpdateWithoutAssessmentInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -6181,6 +6470,7 @@ export type AccessRequestCreateWithoutBudgetChecksInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutBudgetChecksInput = {
@@ -6191,6 +6481,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetChecksInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6343,6 +6634,7 @@ export type AccessRequestUpdateWithoutBudgetChecksInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutBudgetChecksInput = {
@@ -6353,6 +6645,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetChecksInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -6489,6 +6782,7 @@ export type AccessRequestCreateWithoutFinanceReviewsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutFinanceReviewsInput = {
@@ -6499,6 +6793,7 @@ export type AccessRequestUncheckedCreateWithoutFinanceReviewsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6651,6 +6946,7 @@ export type AccessRequestUpdateWithoutFinanceReviewsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutFinanceReviewsInput = {
@@ -6661,6 +6957,7 @@ export type AccessRequestUncheckedUpdateWithoutFinanceReviewsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -6797,6 +7094,7 @@ export type AccessRequestCreateWithoutBatchItemsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutBatchItemsInput = {
@@ -6807,6 +7105,7 @@ export type AccessRequestUncheckedCreateWithoutBatchItemsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -6959,6 +7258,7 @@ export type AccessRequestUpdateWithoutBatchItemsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutBatchItemsInput = {
@@ -6969,6 +7269,7 @@ export type AccessRequestUncheckedUpdateWithoutBatchItemsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -7105,6 +7406,7 @@ export type AccessRequestCreateWithoutSupplementsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutSupplementsInput = {
@@ -7115,6 +7417,7 @@ export type AccessRequestUncheckedCreateWithoutSupplementsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -7267,6 +7570,7 @@ export type AccessRequestUpdateWithoutSupplementsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutSupplementsInput = {
@@ -7277,6 +7581,7 @@ export type AccessRequestUncheckedUpdateWithoutSupplementsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -7413,6 +7718,7 @@ export type AccessRequestCreateWithoutSpendDecisionsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutSpendDecisionsInput = {
@@ -7423,6 +7729,7 @@ export type AccessRequestUncheckedCreateWithoutSpendDecisionsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -7575,6 +7882,7 @@ export type AccessRequestUpdateWithoutSpendDecisionsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
@@ -7585,6 +7893,7 @@ export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -7721,6 +8030,7 @@ export type AccessRequestCreateWithoutReserveConfirmationsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutReserveConfirmationsInput = {
@@ -7731,6 +8041,7 @@ export type AccessRequestUncheckedCreateWithoutReserveConfirmationsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -7883,6 +8194,7 @@ export type AccessRequestUpdateWithoutReserveConfirmationsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput = {
@@ -7893,6 +8205,7 @@ export type AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8029,6 +8342,7 @@ export type AccessRequestCreateWithoutBudgetInformationInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
@@ -8039,6 +8353,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -8191,6 +8506,7 @@ export type AccessRequestUpdateWithoutBudgetInformationInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutBudgetInformationInput = {
@@ -8201,6 +8517,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetInformationInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8337,6 +8654,7 @@ export type AccessRequestCreateWithoutControlledWaitAlertsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutControlledWaitAlertsInput = {
@@ -8347,6 +8665,7 @@ export type AccessRequestUncheckedCreateWithoutControlledWaitAlertsInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -8499,6 +8818,7 @@ export type AccessRequestUpdateWithoutControlledWaitAlertsInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutControlledWaitAlertsInput = {
@@ -8509,6 +8829,7 @@ export type AccessRequestUncheckedUpdateWithoutControlledWaitAlertsInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8645,6 +8966,7 @@ export type AccessRequestCreateWithoutServiceAccountInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutServiceAccountInput = {
@@ -8655,6 +8977,7 @@ export type AccessRequestUncheckedCreateWithoutServiceAccountInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -8807,6 +9130,7 @@ export type AccessRequestUpdateWithoutServiceAccountInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutServiceAccountInput = {
@@ -8817,6 +9141,7 @@ export type AccessRequestUncheckedUpdateWithoutServiceAccountInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -8953,6 +9278,7 @@ export type AccessRequestCreateWithoutReturnsFromHereInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutReturnsFromHereInput = {
@@ -8963,6 +9289,7 @@ export type AccessRequestUncheckedCreateWithoutReturnsFromHereInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9115,6 +9442,7 @@ export type AccessRequestUpdateWithoutReturnsFromHereInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutReturnsFromHereInput = {
@@ -9125,6 +9453,7 @@ export type AccessRequestUncheckedUpdateWithoutReturnsFromHereInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9261,6 +9590,7 @@ export type AccessRequestCreateWithoutRenewalInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutRenewalInput = {
@@ -9271,6 +9601,7 @@ export type AccessRequestUncheckedCreateWithoutRenewalInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9423,6 +9754,7 @@ export type AccessRequestUpdateWithoutRenewalInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutRenewalInput = {
@@ -9433,6 +9765,7 @@ export type AccessRequestUncheckedUpdateWithoutRenewalInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9569,6 +9902,7 @@ export type AccessRequestCreateWithoutStepSlaRemindersInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutStepSlaRemindersInput = {
@@ -9579,6 +9913,7 @@ export type AccessRequestUncheckedCreateWithoutStepSlaRemindersInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9731,6 +10066,7 @@ export type AccessRequestUpdateWithoutStepSlaRemindersInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput = {
@@ -9741,6 +10077,7 @@ export type AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -9814,6 +10151,7 @@ export type AccessRequestCreateManyPlanInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -9930,6 +10268,7 @@ export type AccessRequestUpdateWithoutPlanInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutPlanInput = {
@@ -9940,6 +10279,7 @@ export type AccessRequestUncheckedUpdateWithoutPlanInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10013,6 +10353,7 @@ export type AccessRequestUncheckedUpdateManyWithoutPlanInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10066,6 +10407,7 @@ export type AccessRequestCreateManyAmountCurrencyRecordInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -10182,6 +10524,7 @@ export type AccessRequestUpdateWithoutAmountCurrencyRecordInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutAmountCurrencyRecordInput = {
@@ -10192,6 +10535,7 @@ export type AccessRequestUncheckedUpdateWithoutAmountCurrencyRecordInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10265,6 +10609,7 @@ export type AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10310,6 +10655,262 @@ export type AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type AccessRequestCreateManyReplacesAssignmentInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
+  id?: string
+  organizationId: string
+  type?: $Enums.AccessRequestType
+  branch: $Enums.AccessRequestBranch
+  state: $Enums.AccessRequestState
+  planId?: string | null
+  requesterEmployeeId: string
+  departmentId: string
+  costCenterId?: string | null
+  businessReason: string
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
+  pricingStatus?: $Enums.AccessRequestPricingStatus
+  priceMissingReason?: string | null
+  expectedSpendOn?: Date | string | null
+  budgetYear?: number | null
+  amountMinor?: bigint | number | null
+  amountCurrency?: string | null
+  unitPriceMinor?: bigint | number | null
+  billingCycle?: $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: string | null
+  planLinePosition?: number | null
+  planLineConfirmed?: boolean
+  offPlan?: boolean
+  delegatedBatchId?: string | null
+  expectedEndDate?: Date | string | null
+  policy: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Date | string | null
+  withdrawnByEmployeeId?: string | null
+  withdrawalReason?: string | null
+  withdrawnAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByEmployeeId?: string | null
+  cancelCause?: $Enums.AccessRequestCancelCause | null
+  cancelNote?: string | null
+  grantCompletedAt?: Date | string | null
+  spendQueuedAt?: Date | string | null
+  createdByAppUserId: string
+  submittedAt?: Date | string | null
+  updatedAt?: Date | string
+}
+
+export type AccessRequestUpdateWithoutReplacesAssignmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
+  branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
+  state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
+  businessReason?: Prisma.StringFieldUpdateOperationsInput | string
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
+  priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planLinePosition?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  planLineConfirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  delegatedBatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  policy?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
+  cancelNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  spendQueuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutAccessRequestsNestedInput
+  plan?: Prisma.PlanUpdateOneWithoutAccessRequestsNestedInput
+  requester?: Prisma.EmployeeUpdateOneRequiredWithoutAccessRequestsMadeNestedInput
+  withdrawnBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestsWithdrawnNestedInput
+  cancelledBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestsCancelledNestedInput
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutAccessRequestsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneWithoutAccessRequestsNestedInput
+  amountCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAccessRequestAmountsNestedInput
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutRequestNestedInput
+  lines?: Prisma.AccessRequestLineUpdateManyWithoutRequestNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutRequestNestedInput
+  steps?: Prisma.AccessRequestStepUpdateManyWithoutRequestNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutRequestNestedInput
+  proposal?: Prisma.AccessRequestProposalUpdateOneWithoutRequestNestedInput
+  assessment?: Prisma.AccessRequestAssessmentUpdateOneWithoutRequestNestedInput
+  budgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutRequestNestedInput
+  financeReviews?: Prisma.RequestFinanceReviewUpdateManyWithoutRequestNestedInput
+  batchItems?: Prisma.SpendBatchItemUpdateManyWithoutRequestNestedInput
+  supplements?: Prisma.RequestSupplementUpdateManyWithoutRequestNestedInput
+  spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
+  renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+}
+
+export type AccessRequestUncheckedUpdateWithoutReplacesAssignmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
+  branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
+  state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
+  planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessReason?: Prisma.StringFieldUpdateOperationsInput | string
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
+  priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  amountCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planLinePosition?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  planLineConfirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  delegatedBatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  policy?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
+  cancelNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  spendQueuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutRequestNestedInput
+  lines?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutRequestNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutRequestNestedInput
+  steps?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutRequestNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutRequestNestedInput
+  proposal?: Prisma.AccessRequestProposalUncheckedUpdateOneWithoutRequestNestedInput
+  assessment?: Prisma.AccessRequestAssessmentUncheckedUpdateOneWithoutRequestNestedInput
+  budgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRequestNestedInput
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutRequestNestedInput
+  batchItems?: Prisma.SpendBatchItemUncheckedUpdateManyWithoutRequestNestedInput
+  supplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutRequestNestedInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
+  renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
+}
+
+export type AccessRequestUncheckedUpdateManyWithoutReplacesAssignmentInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
+  branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
+  state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
+  planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessReason?: Prisma.StringFieldUpdateOperationsInput | string
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
+  priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  amountCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planLinePosition?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  planLineConfirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  delegatedBatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  policy?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
+  cancelNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  spendQueuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type AccessRequestCreateManyOrganizationInput = {
   routingMode?: $Enums.RequestRoutingMode
   oneStepReason?: string | null
@@ -10318,6 +10919,7 @@ export type AccessRequestCreateManyOrganizationInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   type?: $Enums.AccessRequestType
   branch: $Enums.AccessRequestBranch
@@ -10434,6 +11036,7 @@ export type AccessRequestUpdateWithoutOrganizationInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutOrganizationInput = {
@@ -10444,6 +11047,7 @@ export type AccessRequestUncheckedUpdateWithoutOrganizationInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -10517,6 +11121,7 @@ export type AccessRequestUncheckedUpdateManyWithoutOrganizationInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
   branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
@@ -10570,6 +11175,7 @@ export type AccessRequestCreateManyCostCenterInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -10686,6 +11292,7 @@ export type AccessRequestUpdateWithoutCostCenterInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutCostCenterInput = {
@@ -10696,6 +11303,7 @@ export type AccessRequestUncheckedUpdateWithoutCostCenterInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10769,6 +11377,7 @@ export type AccessRequestUncheckedUpdateManyWithoutCostCenterInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -10822,6 +11431,7 @@ export type AccessRequestCreateManyDepartmentInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -10938,6 +11548,7 @@ export type AccessRequestUpdateWithoutDepartmentInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutDepartmentInput = {
@@ -10948,6 +11559,7 @@ export type AccessRequestUncheckedUpdateWithoutDepartmentInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11021,6 +11633,7 @@ export type AccessRequestUncheckedUpdateManyWithoutDepartmentInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11074,6 +11687,7 @@ export type AccessRequestCreateManyRequesterInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -11127,6 +11741,7 @@ export type AccessRequestCreateManyWithdrawnByInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -11180,6 +11795,7 @@ export type AccessRequestCreateManyCancelledByInput = {
   manyPaidSoftwareCount?: number | null
   manyPaidSoftwareReason?: string | null
   limitExemption?: string | null
+  replacesAssignmentId?: string | null
   id?: string
   organizationId: string
   type?: $Enums.AccessRequestType
@@ -11296,6 +11912,7 @@ export type AccessRequestUpdateWithoutRequesterInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutRequesterInput = {
@@ -11306,6 +11923,7 @@ export type AccessRequestUncheckedUpdateWithoutRequesterInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11379,6 +11997,7 @@ export type AccessRequestUncheckedUpdateManyWithoutRequesterInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11495,6 +12114,7 @@ export type AccessRequestUpdateWithoutWithdrawnByInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutWithdrawnByInput = {
@@ -11505,6 +12125,7 @@ export type AccessRequestUncheckedUpdateWithoutWithdrawnByInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11578,6 +12199,7 @@ export type AccessRequestUncheckedUpdateManyWithoutWithdrawnByInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11694,6 +12316,7 @@ export type AccessRequestUpdateWithoutCancelledByInput = {
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutCancelledByInput = {
@@ -11704,6 +12327,7 @@ export type AccessRequestUncheckedUpdateWithoutCancelledByInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11777,6 +12401,7 @@ export type AccessRequestUncheckedUpdateManyWithoutCancelledByInput = {
   manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
@@ -11996,6 +12621,7 @@ export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.Interna
   manyPaidSoftwareCount?: boolean
   manyPaidSoftwareReason?: boolean
   limitExemption?: boolean
+  replacesAssignmentId?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -12068,6 +12694,7 @@ export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.Interna
   serviceAccount?: boolean | Prisma.AccessRequest$serviceAccountArgs<ExtArgs>
   renewal?: boolean | Prisma.AccessRequest$renewalArgs<ExtArgs>
   returnsFromHere?: boolean | Prisma.AccessRequest$returnsFromHereArgs<ExtArgs>
+  replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
   _count?: boolean | Prisma.AccessRequestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequest"]>
 
@@ -12079,6 +12706,7 @@ export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   manyPaidSoftwareCount?: boolean
   manyPaidSoftwareReason?: boolean
   limitExemption?: boolean
+  replacesAssignmentId?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -12131,6 +12759,7 @@ export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.AccessRequest$costCenterArgs<ExtArgs>
   amountCurrencyRecord?: boolean | Prisma.AccessRequest$amountCurrencyRecordArgs<ExtArgs>
+  replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -12141,6 +12770,7 @@ export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   manyPaidSoftwareCount?: boolean
   manyPaidSoftwareReason?: boolean
   limitExemption?: boolean
+  replacesAssignmentId?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -12193,6 +12823,7 @@ export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.AccessRequest$costCenterArgs<ExtArgs>
   amountCurrencyRecord?: boolean | Prisma.AccessRequest$amountCurrencyRecordArgs<ExtArgs>
+  replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectScalar = {
@@ -12203,6 +12834,7 @@ export type AccessRequestSelectScalar = {
   manyPaidSoftwareCount?: boolean
   manyPaidSoftwareReason?: boolean
   limitExemption?: boolean
+  replacesAssignmentId?: boolean
   id?: boolean
   organizationId?: boolean
   type?: boolean
@@ -12249,7 +12881,7 @@ export type AccessRequestSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"routingMode" | "oneStepReason" | "oneStepBlockedReason" | "manyPaidSoftware" | "manyPaidSoftwareCount" | "manyPaidSoftwareReason" | "limitExemption" | "id" | "organizationId" | "type" | "branch" | "state" | "planId" | "requesterEmployeeId" | "departmentId" | "costCenterId" | "businessReason" | "termMonths" | "amountMonths" | "priceKind" | "grantedOn" | "nextYearAmountMinor" | "pricingStatus" | "priceMissingReason" | "expectedSpendOn" | "budgetYear" | "amountMinor" | "amountCurrency" | "unitPriceMinor" | "billingCycle" | "paymentSchedule" | "planLineVersionId" | "planLinePosition" | "planLineConfirmed" | "offPlan" | "delegatedBatchId" | "expectedEndDate" | "policy" | "withdrawalRequestedAt" | "withdrawnByEmployeeId" | "withdrawalReason" | "withdrawnAt" | "cancelledAt" | "cancelledByEmployeeId" | "cancelCause" | "cancelNote" | "grantCompletedAt" | "spendQueuedAt" | "createdByAppUserId" | "submittedAt" | "updatedAt", ExtArgs["result"]["accessRequest"]>
+export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"routingMode" | "oneStepReason" | "oneStepBlockedReason" | "manyPaidSoftware" | "manyPaidSoftwareCount" | "manyPaidSoftwareReason" | "limitExemption" | "replacesAssignmentId" | "id" | "organizationId" | "type" | "branch" | "state" | "planId" | "requesterEmployeeId" | "departmentId" | "costCenterId" | "businessReason" | "termMonths" | "amountMonths" | "priceKind" | "grantedOn" | "nextYearAmountMinor" | "pricingStatus" | "priceMissingReason" | "expectedSpendOn" | "budgetYear" | "amountMinor" | "amountCurrency" | "unitPriceMinor" | "billingCycle" | "paymentSchedule" | "planLineVersionId" | "planLinePosition" | "planLineConfirmed" | "offPlan" | "delegatedBatchId" | "expectedEndDate" | "policy" | "withdrawalRequestedAt" | "withdrawnByEmployeeId" | "withdrawalReason" | "withdrawnAt" | "cancelledAt" | "cancelledByEmployeeId" | "cancelCause" | "cancelNote" | "grantCompletedAt" | "spendQueuedAt" | "createdByAppUserId" | "submittedAt" | "updatedAt", ExtArgs["result"]["accessRequest"]>
 export type AccessRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   plan?: boolean | Prisma.AccessRequest$planArgs<ExtArgs>
@@ -12279,6 +12911,7 @@ export type AccessRequestInclude<ExtArgs extends runtime.Types.Extensions.Intern
   serviceAccount?: boolean | Prisma.AccessRequest$serviceAccountArgs<ExtArgs>
   renewal?: boolean | Prisma.AccessRequest$renewalArgs<ExtArgs>
   returnsFromHere?: boolean | Prisma.AccessRequest$returnsFromHereArgs<ExtArgs>
+  replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
   _count?: boolean | Prisma.AccessRequestCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AccessRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -12290,6 +12923,7 @@ export type AccessRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Type
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.AccessRequest$costCenterArgs<ExtArgs>
   amountCurrencyRecord?: boolean | Prisma.AccessRequest$amountCurrencyRecordArgs<ExtArgs>
+  replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
 }
 export type AccessRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -12300,6 +12934,7 @@ export type AccessRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.AccessRequest$costCenterArgs<ExtArgs>
   amountCurrencyRecord?: boolean | Prisma.AccessRequest$amountCurrencyRecordArgs<ExtArgs>
+  replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
 }
 
 export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -12333,6 +12968,7 @@ export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.Inter
     serviceAccount: Prisma.$AccessRequestServiceAccountPayload<ExtArgs> | null
     renewal: Prisma.$AccessRequestRenewalPayload<ExtArgs> | null
     returnsFromHere: Prisma.$ReturnRequestPayload<ExtArgs>[]
+    replacesAssignment: Prisma.$LicenseAssignmentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     routingMode: $Enums.RequestRoutingMode
@@ -12342,6 +12978,7 @@ export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.Inter
     manyPaidSoftwareCount: number | null
     manyPaidSoftwareReason: string | null
     limitExemption: string | null
+    replacesAssignmentId: string | null
     id: string
     organizationId: string
     type: $Enums.AccessRequestType
@@ -12808,6 +13445,7 @@ export interface Prisma__AccessRequestClient<T, Null = never, ExtArgs extends ru
   serviceAccount<T extends Prisma.AccessRequest$serviceAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$serviceAccountArgs<ExtArgs>>): Prisma.Prisma__AccessRequestServiceAccountClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestServiceAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   renewal<T extends Prisma.AccessRequest$renewalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$renewalArgs<ExtArgs>>): Prisma.Prisma__AccessRequestRenewalClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestRenewalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   returnsFromHere<T extends Prisma.AccessRequest$returnsFromHereArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$returnsFromHereArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  replacesAssignment<T extends Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>>): Prisma.Prisma__LicenseAssignmentClient<runtime.Types.Result.GetResult<Prisma.$LicenseAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12844,6 +13482,7 @@ export interface AccessRequestFieldRefs {
   readonly manyPaidSoftwareCount: Prisma.FieldRef<"AccessRequest", 'Int'>
   readonly manyPaidSoftwareReason: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly limitExemption: Prisma.FieldRef<"AccessRequest", 'String'>
+  readonly replacesAssignmentId: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly id: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly organizationId: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly type: Prisma.FieldRef<"AccessRequest", 'AccessRequestType'>
@@ -13841,6 +14480,25 @@ export type AccessRequest$returnsFromHereArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.ReturnRequestScalarFieldEnum | Prisma.ReturnRequestScalarFieldEnum[]
+}
+
+/**
+ * AccessRequest.replacesAssignment
+ */
+export type AccessRequest$replacesAssignmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LicenseAssignment
+   */
+  select?: Prisma.LicenseAssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LicenseAssignment
+   */
+  omit?: Prisma.LicenseAssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LicenseAssignmentInclude<ExtArgs> | null
+  where?: Prisma.LicenseAssignmentWhereInput
 }
 
 /**

@@ -191,6 +191,21 @@ export class OrganizationReadApi {
     return this.departments.memberIdsOn(departmentId, onDate ?? (await this.businessToday(new Date(), tx)), tx);
   }
 
+  /**
+   * Everyone placed in any of these departments on `onDate` (default today), each employee once, in one statement whatever the number of
+   * departments: what a reader of many departments needs instead of `getDepartmentMemberIds` for each. A department that does not exist
+   * adds nobody (where `getDepartmentMemberIds` answers null for it).
+   */
+  async getMemberIdsOfDepartments(
+    departmentIds: readonly string[],
+    onDate?: BusinessDate,
+    tx?: DbTx,
+  ): Promise<string[]> {
+    if (departmentIds.length === 0) return [];
+
+    return this.departments.memberIdsOfMany(departmentIds, onDate ?? (await this.businessToday(new Date(), tx)), tx);
+  }
+
   /** Who heads each of these departments on `onDate`; a department nobody heads is absent. */
   getDepartmentHeads(ids: string[], onDate: BusinessDate, tx?: DbTx): Promise<Map<string, DepartmentHeadRecord>> {
     return this.departments.headsOn(ids, onDate, tx);
@@ -275,6 +290,14 @@ export class OrganizationReadApi {
     excludeEmployeeIds: readonly string[] = [],
   ): Promise<EmployeeCandidate[]> {
     return this.employees.searchActive(search, onDate, limit, excludeEmployeeIds);
+  }
+
+  /** One page of the employees among `employeeIds` (code and name), by code, matched on code or name, with the total (one snapshot). */
+  getEmployeePageAmong(
+    employeeIds: readonly string[],
+    query: { search?: string | undefined; skip: number; take: number },
+  ): Promise<{ items: { id: string; employeeCode: string; fullName: string }[]; total: number }> {
+    return this.employees.pageAmong(employeeIds, query.search, query.skip, query.take);
   }
 
   getEmployeeProfile(employeeId: string, onDate: Date): Promise<EmployeeProfile | null> {

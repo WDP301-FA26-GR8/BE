@@ -241,6 +241,8 @@ export type DepartmentWhereInput = {
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   handoverDuties?: Prisma.HandoverDutyListRelationFilter
   accessRequests?: Prisma.AccessRequestListRelationFilter
+  softwareEntries?: Prisma.DepartmentSoftwareEntryListRelationFilter
+  softwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
   approvalRecords?: Prisma.ApprovalRecordListRelationFilter
   spendBatches?: Prisma.SpendBatchListRelationFilter
   transfersFrom?: Prisma.DepartmentTransferListRelationFilter
@@ -278,6 +280,8 @@ export type DepartmentOrderByWithRelationInput = {
   returnRequests?: Prisma.ReturnRequestOrderByRelationAggregateInput
   handoverDuties?: Prisma.HandoverDutyOrderByRelationAggregateInput
   accessRequests?: Prisma.AccessRequestOrderByRelationAggregateInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryOrderByRelationAggregateInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalOrderByRelationAggregateInput
   approvalRecords?: Prisma.ApprovalRecordOrderByRelationAggregateInput
   spendBatches?: Prisma.SpendBatchOrderByRelationAggregateInput
   transfersFrom?: Prisma.DepartmentTransferOrderByRelationAggregateInput
@@ -319,6 +323,8 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   returnRequests?: Prisma.ReturnRequestListRelationFilter
   handoverDuties?: Prisma.HandoverDutyListRelationFilter
   accessRequests?: Prisma.AccessRequestListRelationFilter
+  softwareEntries?: Prisma.DepartmentSoftwareEntryListRelationFilter
+  softwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
   approvalRecords?: Prisma.ApprovalRecordListRelationFilter
   spendBatches?: Prisma.SpendBatchListRelationFilter
   transfersFrom?: Prisma.DepartmentTransferListRelationFilter
@@ -388,6 +394,8 @@ export type DepartmentCreateInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -423,6 +431,8 @@ export type DepartmentUncheckedCreateInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -458,6 +468,8 @@ export type DepartmentUpdateInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -493,6 +505,8 @@ export type DepartmentUncheckedUpdateInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -688,6 +702,34 @@ export type DepartmentUpdateOneWithoutHandoverDutiesNestedInput = {
   delete?: Prisma.DepartmentWhereInput | boolean
   connect?: Prisma.DepartmentWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutHandoverDutiesInput, Prisma.DepartmentUpdateWithoutHandoverDutiesInput>, Prisma.DepartmentUncheckedUpdateWithoutHandoverDutiesInput>
+}
+
+export type DepartmentCreateNestedOneWithoutSoftwareEntriesInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareEntriesInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareEntriesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutSoftwareEntriesInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneRequiredWithoutSoftwareEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareEntriesInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareEntriesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutSoftwareEntriesInput
+  upsert?: Prisma.DepartmentUpsertWithoutSoftwareEntriesInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutSoftwareEntriesInput, Prisma.DepartmentUpdateWithoutSoftwareEntriesInput>, Prisma.DepartmentUncheckedUpdateWithoutSoftwareEntriesInput>
+}
+
+export type DepartmentCreateNestedOneWithoutSoftwareProposalsInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareProposalsInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareProposalsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutSoftwareProposalsInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneRequiredWithoutSoftwareProposalsNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareProposalsInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareProposalsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutSoftwareProposalsInput
+  upsert?: Prisma.DepartmentUpsertWithoutSoftwareProposalsInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutSoftwareProposalsInput, Prisma.DepartmentUpdateWithoutSoftwareProposalsInput>, Prisma.DepartmentUncheckedUpdateWithoutSoftwareProposalsInput>
 }
 
 export type DepartmentCreateNestedOneWithoutHeldNotificationsInput = {
@@ -1028,6 +1070,8 @@ export type DepartmentCreateWithoutBudgetCeilingsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -1062,6 +1106,8 @@ export type DepartmentUncheckedCreateWithoutBudgetCeilingsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -1112,6 +1158,8 @@ export type DepartmentUpdateWithoutBudgetCeilingsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -1146,6 +1194,8 @@ export type DepartmentUncheckedUpdateWithoutBudgetCeilingsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -1181,6 +1231,8 @@ export type DepartmentCreateWithoutOwnedSubscriptionsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -1215,6 +1267,8 @@ export type DepartmentUncheckedCreateWithoutOwnedSubscriptionsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -1265,6 +1319,8 @@ export type DepartmentUpdateWithoutOwnedSubscriptionsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -1299,6 +1355,8 @@ export type DepartmentUncheckedUpdateWithoutOwnedSubscriptionsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -1333,6 +1391,8 @@ export type DepartmentCreateWithoutOwnerAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -1367,6 +1427,8 @@ export type DepartmentUncheckedCreateWithoutOwnerAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -1417,6 +1479,8 @@ export type DepartmentUpdateWithoutOwnerAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -1451,6 +1515,8 @@ export type DepartmentUncheckedUpdateWithoutOwnerAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -1484,6 +1550,8 @@ export type DepartmentCreateWithoutOwnedServiceAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -1518,6 +1586,8 @@ export type DepartmentUncheckedCreateWithoutOwnedServiceAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -1568,6 +1638,8 @@ export type DepartmentUpdateWithoutOwnedServiceAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -1602,6 +1674,8 @@ export type DepartmentUncheckedUpdateWithoutOwnedServiceAssignmentsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -1636,6 +1710,8 @@ export type DepartmentCreateWithoutHandoverDutiesInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOwningDepartmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -1670,6 +1746,8 @@ export type DepartmentUncheckedCreateWithoutHandoverDutiesInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOwningDepartmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -1720,6 +1798,8 @@ export type DepartmentUpdateWithoutHandoverDutiesInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOwningDepartmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -1754,6 +1834,328 @@ export type DepartmentUncheckedUpdateWithoutHandoverDutiesInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOwningDepartmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
+  transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
+  transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
+  noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
+  ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutSoftwareEntriesInput = {
+  id?: string
+  code: string
+  name: string
+  functionDescription?: string | null
+  status?: $Enums.DepartmentStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deactivatedAt?: Date | string | null
+  effectiveFrom?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutDepartmentInput
+  itAdmin?: Prisma.EmployeeCreateNestedOneWithoutItAdminOfInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutDepartmentInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutDepartmentInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOwningDepartmentInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
+  transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
+  transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
+  noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
+  ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutDepartmentInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutSoftwareEntriesInput = {
+  id?: string
+  organizationId: string
+  code: string
+  name: string
+  functionDescription?: string | null
+  status?: $Enums.DepartmentStatus
+  itAdminEmployeeId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deactivatedAt?: Date | string | null
+  effectiveFrom?: Date | string
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutDepartmentInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutDepartmentInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOwningDepartmentInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
+  transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
+  transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
+  noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
+  ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutDepartmentInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutSoftwareEntriesInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareEntriesInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareEntriesInput>
+}
+
+export type DepartmentUpsertWithoutSoftwareEntriesInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutSoftwareEntriesInput, Prisma.DepartmentUncheckedUpdateWithoutSoftwareEntriesInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareEntriesInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareEntriesInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutSoftwareEntriesInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutSoftwareEntriesInput, Prisma.DepartmentUncheckedUpdateWithoutSoftwareEntriesInput>
+}
+
+export type DepartmentUpdateWithoutSoftwareEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  functionDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumDepartmentStatusFieldUpdateOperationsInput | $Enums.DepartmentStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deactivatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutDepartmentNestedInput
+  itAdmin?: Prisma.EmployeeUpdateOneWithoutItAdminOfNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutDepartmentNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutDepartmentNestedInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOwningDepartmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
+  transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
+  transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
+  noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
+  ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutDepartmentNestedInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutSoftwareEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  functionDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumDepartmentStatusFieldUpdateOperationsInput | $Enums.DepartmentStatus
+  itAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deactivatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutDepartmentNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutDepartmentNestedInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOwningDepartmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
+  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
+  transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
+  transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
+  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutDepartmentNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutCancelledPlacementDepartmentNestedInput
+  noticesTargeting?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutTargetDepartmentNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutSenderDepartmentNestedInput
+  ownedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOwnerDepartmentNestedInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutSoftwareProposalsInput = {
+  id?: string
+  code: string
+  name: string
+  functionDescription?: string | null
+  status?: $Enums.DepartmentStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deactivatedAt?: Date | string | null
+  effectiveFrom?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
+  costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutDepartmentInput
+  itAdmin?: Prisma.EmployeeCreateNestedOneWithoutItAdminOfInput
+  placements?: Prisma.EmployeePlacementCreateNestedManyWithoutDepartmentInput
+  headPeriods?: Prisma.DepartmentHeadPeriodCreateNestedManyWithoutDepartmentInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOwningDepartmentInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
+  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
+  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
+  transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
+  transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
+  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutDepartmentInput
+  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutCancelledPlacementDepartmentInput
+  noticesTargeting?: Prisma.PersonnelNoticeCreateNestedManyWithoutTargetDepartmentInput
+  noticesSent?: Prisma.PersonnelNoticeCreateNestedManyWithoutSenderDepartmentInput
+  ownedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOwnerDepartmentInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutDepartmentInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutSoftwareProposalsInput = {
+  id?: string
+  organizationId: string
+  code: string
+  name: string
+  functionDescription?: string | null
+  status?: $Enums.DepartmentStatus
+  itAdminEmployeeId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deactivatedAt?: Date | string | null
+  effectiveFrom?: Date | string
+  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
+  placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutDepartmentInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedCreateNestedManyWithoutDepartmentInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOwningDepartmentInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
+  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
+  transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
+  transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
+  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutDepartmentInput
+  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutDepartmentInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutCancelledPlacementDepartmentInput
+  noticesTargeting?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutTargetDepartmentInput
+  noticesSent?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutSenderDepartmentInput
+  ownedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOwnerDepartmentInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutDepartmentInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutSoftwareProposalsInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareProposalsInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareProposalsInput>
+}
+
+export type DepartmentUpsertWithoutSoftwareProposalsInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutSoftwareProposalsInput, Prisma.DepartmentUncheckedUpdateWithoutSoftwareProposalsInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutSoftwareProposalsInput, Prisma.DepartmentUncheckedCreateWithoutSoftwareProposalsInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutSoftwareProposalsInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutSoftwareProposalsInput, Prisma.DepartmentUncheckedUpdateWithoutSoftwareProposalsInput>
+}
+
+export type DepartmentUpdateWithoutSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  functionDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumDepartmentStatusFieldUpdateOperationsInput | $Enums.DepartmentStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deactivatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
+  costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutDepartmentNestedInput
+  itAdmin?: Prisma.EmployeeUpdateOneWithoutItAdminOfNestedInput
+  placements?: Prisma.EmployeePlacementUpdateManyWithoutDepartmentNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUpdateManyWithoutDepartmentNestedInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOwningDepartmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
+  spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
+  transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
+  transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
+  transferReviews?: Prisma.TransferReviewUpdateManyWithoutDepartmentNestedInput
+  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutDepartmentNestedInput
+  cancelledOffboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutCancelledPlacementDepartmentNestedInput
+  noticesTargeting?: Prisma.PersonnelNoticeUpdateManyWithoutTargetDepartmentNestedInput
+  noticesSent?: Prisma.PersonnelNoticeUpdateManyWithoutSenderDepartmentNestedInput
+  ownedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutOwnerDepartmentNestedInput
+  ownerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutDepartmentNestedInput
+  heldNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  functionDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumDepartmentStatusFieldUpdateOperationsInput | $Enums.DepartmentStatus
+  itAdminEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deactivatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
+  budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
+  costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
+  placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutDepartmentNestedInput
+  headPeriods?: Prisma.DepartmentHeadPeriodUncheckedUpdateManyWithoutDepartmentNestedInput
+  ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOwningDepartmentNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -1789,6 +2191,8 @@ export type DepartmentCreateWithoutHeldNotificationsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -1823,6 +2227,8 @@ export type DepartmentUncheckedCreateWithoutHeldNotificationsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -1873,6 +2279,8 @@ export type DepartmentUpdateWithoutHeldNotificationsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -1907,6 +2315,8 @@ export type DepartmentUncheckedUpdateWithoutHeldNotificationsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -1940,6 +2350,8 @@ export type DepartmentCreateWithoutOrganizationInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -1974,6 +2386,8 @@ export type DepartmentUncheckedCreateWithoutOrganizationInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -2051,6 +2465,8 @@ export type DepartmentCreateWithoutCostCentersInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -2085,6 +2501,8 @@ export type DepartmentUncheckedCreateWithoutCostCentersInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -2135,6 +2553,8 @@ export type DepartmentUpdateWithoutCostCentersInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -2169,6 +2589,8 @@ export type DepartmentUncheckedUpdateWithoutCostCentersInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -2203,6 +2625,8 @@ export type DepartmentCreateWithoutHeadPeriodsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -2237,6 +2661,8 @@ export type DepartmentUncheckedCreateWithoutHeadPeriodsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -2287,6 +2713,8 @@ export type DepartmentUpdateWithoutHeadPeriodsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -2321,6 +2749,8 @@ export type DepartmentUncheckedUpdateWithoutHeadPeriodsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -2355,6 +2785,8 @@ export type DepartmentCreateWithoutCostCenterLinksInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -2389,6 +2821,8 @@ export type DepartmentUncheckedCreateWithoutCostCenterLinksInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -2439,6 +2873,8 @@ export type DepartmentUpdateWithoutCostCenterLinksInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -2473,6 +2909,8 @@ export type DepartmentUncheckedUpdateWithoutCostCenterLinksInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -2507,6 +2945,8 @@ export type DepartmentCreateWithoutItAdminInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -2541,6 +2981,8 @@ export type DepartmentUncheckedCreateWithoutItAdminInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -2601,6 +3043,8 @@ export type DepartmentCreateWithoutPlacementsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -2635,6 +3079,8 @@ export type DepartmentUncheckedCreateWithoutPlacementsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -2685,6 +3131,8 @@ export type DepartmentUpdateWithoutPlacementsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -2719,6 +3167,8 @@ export type DepartmentUncheckedUpdateWithoutPlacementsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -2754,6 +3204,8 @@ export type DepartmentCreateWithoutTransfersFromInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
@@ -2788,6 +3240,8 @@ export type DepartmentUncheckedCreateWithoutTransfersFromInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
@@ -2827,6 +3281,8 @@ export type DepartmentCreateWithoutTransfersToInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -2861,6 +3317,8 @@ export type DepartmentUncheckedCreateWithoutTransfersToInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -2911,6 +3369,8 @@ export type DepartmentUpdateWithoutTransfersFromInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
@@ -2945,6 +3405,8 @@ export type DepartmentUncheckedUpdateWithoutTransfersFromInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
@@ -2990,6 +3452,8 @@ export type DepartmentUpdateWithoutTransfersToInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -3024,6 +3488,8 @@ export type DepartmentUncheckedUpdateWithoutTransfersToInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -3058,6 +3524,8 @@ export type DepartmentCreateWithoutTransferReviewsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -3092,6 +3560,8 @@ export type DepartmentUncheckedCreateWithoutTransferReviewsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -3142,6 +3612,8 @@ export type DepartmentUpdateWithoutTransferReviewsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -3176,6 +3648,8 @@ export type DepartmentUncheckedUpdateWithoutTransferReviewsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -3210,6 +3684,8 @@ export type DepartmentCreateWithoutOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -3244,6 +3720,8 @@ export type DepartmentUncheckedCreateWithoutOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -3283,6 +3761,8 @@ export type DepartmentCreateWithoutCancelledOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -3317,6 +3797,8 @@ export type DepartmentUncheckedCreateWithoutCancelledOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -3367,6 +3849,8 @@ export type DepartmentUpdateWithoutOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -3401,6 +3885,8 @@ export type DepartmentUncheckedUpdateWithoutOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -3446,6 +3932,8 @@ export type DepartmentUpdateWithoutCancelledOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -3480,6 +3968,8 @@ export type DepartmentUncheckedUpdateWithoutCancelledOffboardingCasesInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -3514,6 +4004,8 @@ export type DepartmentCreateWithoutNoticesTargetingInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -3548,6 +4040,8 @@ export type DepartmentUncheckedCreateWithoutNoticesTargetingInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -3587,6 +4081,8 @@ export type DepartmentCreateWithoutNoticesSentInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -3621,6 +4117,8 @@ export type DepartmentUncheckedCreateWithoutNoticesSentInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -3671,6 +4169,8 @@ export type DepartmentUpdateWithoutNoticesTargetingInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -3705,6 +4205,8 @@ export type DepartmentUncheckedUpdateWithoutNoticesTargetingInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -3750,6 +4252,8 @@ export type DepartmentUpdateWithoutNoticesSentInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -3784,6 +4288,8 @@ export type DepartmentUncheckedUpdateWithoutNoticesSentInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -3817,6 +4323,8 @@ export type DepartmentCreateWithoutAccessRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOwningDepartmentInput
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -3851,6 +4359,8 @@ export type DepartmentUncheckedCreateWithoutAccessRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOwningDepartmentInput
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -3901,6 +4411,8 @@ export type DepartmentUpdateWithoutAccessRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOwningDepartmentNestedInput
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -3935,6 +4447,8 @@ export type DepartmentUncheckedUpdateWithoutAccessRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOwningDepartmentNestedInput
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -3970,6 +4484,8 @@ export type DepartmentCreateWithoutApprovalRecordsInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
@@ -4004,6 +4520,8 @@ export type DepartmentUncheckedCreateWithoutApprovalRecordsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
@@ -4054,6 +4572,8 @@ export type DepartmentUpdateWithoutApprovalRecordsInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
@@ -4088,6 +4608,8 @@ export type DepartmentUncheckedUpdateWithoutApprovalRecordsInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
@@ -4122,6 +4644,8 @@ export type DepartmentCreateWithoutSpendBatchesInput = {
   returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferCreateNestedManyWithoutToDepartmentInput
@@ -4156,6 +4680,8 @@ export type DepartmentUncheckedCreateWithoutSpendBatchesInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
   transfersTo?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutToDepartmentInput
@@ -4206,6 +4732,8 @@ export type DepartmentUpdateWithoutSpendBatchesInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUpdateManyWithoutToDepartmentNestedInput
@@ -4240,6 +4768,8 @@ export type DepartmentUncheckedUpdateWithoutSpendBatchesInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
   transfersTo?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
@@ -4273,6 +4803,8 @@ export type DepartmentCreateWithoutReturnRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOwningDepartmentInput
   handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferCreateNestedManyWithoutFromDepartmentInput
@@ -4307,6 +4839,8 @@ export type DepartmentUncheckedCreateWithoutReturnRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOwningDepartmentInput
   handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutDepartmentInput
   accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutDepartmentInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutDepartmentInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutDepartmentInput
   spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutDepartmentInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
@@ -4357,6 +4891,8 @@ export type DepartmentUpdateWithoutReturnRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOwningDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -4391,6 +4927,8 @@ export type DepartmentUncheckedUpdateWithoutReturnRequestsInput = {
   ownedServiceAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOwningDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -4438,6 +4976,8 @@ export type DepartmentUpdateWithoutOrganizationInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -4472,6 +5012,8 @@ export type DepartmentUncheckedUpdateWithoutOrganizationInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -4532,6 +5074,8 @@ export type DepartmentUpdateWithoutItAdminInput = {
   returnRequests?: Prisma.ReturnRequestUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUpdateManyWithoutFromDepartmentNestedInput
@@ -4566,6 +5110,8 @@ export type DepartmentUncheckedUpdateWithoutItAdminInput = {
   returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutDepartmentNestedInput
   handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutDepartmentNestedInput
   accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutDepartmentNestedInput
+  softwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutDepartmentNestedInput
   approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutDepartmentNestedInput
   spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutDepartmentNestedInput
   transfersFrom?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
@@ -4608,6 +5154,8 @@ export type DepartmentCountOutputType = {
   returnRequests: number
   handoverDuties: number
   accessRequests: number
+  softwareEntries: number
+  softwareProposals: number
   approvalRecords: number
   spendBatches: number
   transfersFrom: number
@@ -4632,6 +5180,8 @@ export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   returnRequests?: boolean | DepartmentCountOutputTypeCountReturnRequestsArgs
   handoverDuties?: boolean | DepartmentCountOutputTypeCountHandoverDutiesArgs
   accessRequests?: boolean | DepartmentCountOutputTypeCountAccessRequestsArgs
+  softwareEntries?: boolean | DepartmentCountOutputTypeCountSoftwareEntriesArgs
+  softwareProposals?: boolean | DepartmentCountOutputTypeCountSoftwareProposalsArgs
   approvalRecords?: boolean | DepartmentCountOutputTypeCountApprovalRecordsArgs
   spendBatches?: boolean | DepartmentCountOutputTypeCountSpendBatchesArgs
   transfersFrom?: boolean | DepartmentCountOutputTypeCountTransfersFromArgs
@@ -4717,6 +5267,20 @@ export type DepartmentCountOutputTypeCountHandoverDutiesArgs<ExtArgs extends run
  */
 export type DepartmentCountOutputTypeCountAccessRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AccessRequestWhereInput
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountSoftwareEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentSoftwareEntryWhereInput
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountSoftwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
 }
 
 /**
@@ -4827,6 +5391,8 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   returnRequests?: boolean | Prisma.Department$returnRequestsArgs<ExtArgs>
   handoverDuties?: boolean | Prisma.Department$handoverDutiesArgs<ExtArgs>
   accessRequests?: boolean | Prisma.Department$accessRequestsArgs<ExtArgs>
+  softwareEntries?: boolean | Prisma.Department$softwareEntriesArgs<ExtArgs>
+  softwareProposals?: boolean | Prisma.Department$softwareProposalsArgs<ExtArgs>
   approvalRecords?: boolean | Prisma.Department$approvalRecordsArgs<ExtArgs>
   spendBatches?: boolean | Prisma.Department$spendBatchesArgs<ExtArgs>
   transfersFrom?: boolean | Prisma.Department$transfersFromArgs<ExtArgs>
@@ -4901,6 +5467,8 @@ export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   returnRequests?: boolean | Prisma.Department$returnRequestsArgs<ExtArgs>
   handoverDuties?: boolean | Prisma.Department$handoverDutiesArgs<ExtArgs>
   accessRequests?: boolean | Prisma.Department$accessRequestsArgs<ExtArgs>
+  softwareEntries?: boolean | Prisma.Department$softwareEntriesArgs<ExtArgs>
+  softwareProposals?: boolean | Prisma.Department$softwareProposalsArgs<ExtArgs>
   approvalRecords?: boolean | Prisma.Department$approvalRecordsArgs<ExtArgs>
   spendBatches?: boolean | Prisma.Department$spendBatchesArgs<ExtArgs>
   transfersFrom?: boolean | Prisma.Department$transfersFromArgs<ExtArgs>
@@ -4938,6 +5506,8 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     returnRequests: Prisma.$ReturnRequestPayload<ExtArgs>[]
     handoverDuties: Prisma.$HandoverDutyPayload<ExtArgs>[]
     accessRequests: Prisma.$AccessRequestPayload<ExtArgs>[]
+    softwareEntries: Prisma.$DepartmentSoftwareEntryPayload<ExtArgs>[]
+    softwareProposals: Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>[]
     approvalRecords: Prisma.$ApprovalRecordPayload<ExtArgs>[]
     spendBatches: Prisma.$SpendBatchPayload<ExtArgs>[]
     transfersFrom: Prisma.$DepartmentTransferPayload<ExtArgs>[]
@@ -5368,6 +5938,8 @@ export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runti
   returnRequests<T extends Prisma.Department$returnRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$returnRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   handoverDuties<T extends Prisma.Department$handoverDutiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$handoverDutiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HandoverDutyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessRequests<T extends Prisma.Department$accessRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$accessRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  softwareEntries<T extends Prisma.Department$softwareEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$softwareEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentSoftwareEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  softwareProposals<T extends Prisma.Department$softwareProposalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$softwareProposalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   approvalRecords<T extends Prisma.Department$approvalRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$approvalRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApprovalRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   spendBatches<T extends Prisma.Department$spendBatchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$spendBatchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SpendBatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transfersFrom<T extends Prisma.Department$transfersFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$transfersFromArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6053,6 +6625,54 @@ export type Department$accessRequestsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.AccessRequestScalarFieldEnum | Prisma.AccessRequestScalarFieldEnum[]
+}
+
+/**
+ * Department.softwareEntries
+ */
+export type Department$softwareEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentSoftwareEntry
+   */
+  select?: Prisma.DepartmentSoftwareEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentSoftwareEntry
+   */
+  omit?: Prisma.DepartmentSoftwareEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentSoftwareEntryInclude<ExtArgs> | null
+  where?: Prisma.DepartmentSoftwareEntryWhereInput
+  orderBy?: Prisma.DepartmentSoftwareEntryOrderByWithRelationInput | Prisma.DepartmentSoftwareEntryOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentSoftwareEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentSoftwareEntryScalarFieldEnum | Prisma.DepartmentSoftwareEntryScalarFieldEnum[]
+}
+
+/**
+ * Department.softwareProposals
+ */
+export type Department$softwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentSoftwareProposal
+   */
+  select?: Prisma.DepartmentSoftwareProposalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentSoftwareProposal
+   */
+  omit?: Prisma.DepartmentSoftwareProposalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentSoftwareProposalInclude<ExtArgs> | null
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
+  orderBy?: Prisma.DepartmentSoftwareProposalOrderByWithRelationInput | Prisma.DepartmentSoftwareProposalOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentSoftwareProposalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentSoftwareProposalScalarFieldEnum | Prisma.DepartmentSoftwareProposalScalarFieldEnum[]
 }
 
 /**

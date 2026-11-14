@@ -36,6 +36,7 @@ export type PlanMinAggregateOutputType = {
   revocationNote: string | null
   dataLossOnRemoval: boolean | null
   sharingPolicy: $Enums.SharingPolicy | null
+  hasAdminConsole: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -52,6 +53,7 @@ export type PlanMaxAggregateOutputType = {
   revocationNote: string | null
   dataLossOnRemoval: boolean | null
   sharingPolicy: $Enums.SharingPolicy | null
+  hasAdminConsole: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -68,6 +70,7 @@ export type PlanCountAggregateOutputType = {
   revocationNote: number
   dataLossOnRemoval: number
   sharingPolicy: number
+  hasAdminConsole: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -86,6 +89,7 @@ export type PlanMinAggregateInputType = {
   revocationNote?: true
   dataLossOnRemoval?: true
   sharingPolicy?: true
+  hasAdminConsole?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -102,6 +106,7 @@ export type PlanMaxAggregateInputType = {
   revocationNote?: true
   dataLossOnRemoval?: true
   sharingPolicy?: true
+  hasAdminConsole?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -118,6 +123,7 @@ export type PlanCountAggregateInputType = {
   revocationNote?: true
   dataLossOnRemoval?: true
   sharingPolicy?: true
+  hasAdminConsole?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -207,6 +213,7 @@ export type PlanGroupByOutputType = {
   revocationNote: string | null
   dataLossOnRemoval: boolean
   sharingPolicy: $Enums.SharingPolicy | null
+  hasAdminConsole: boolean
   createdAt: Date
   updatedAt: Date
   _count: PlanCountAggregateOutputType | null
@@ -244,6 +251,7 @@ export type PlanWhereInput = {
   revocationNote?: Prisma.StringNullableFilter<"Plan"> | string | null
   dataLossOnRemoval?: Prisma.BoolFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableFilter<"Plan"> | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFilter<"Plan"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -262,6 +270,8 @@ export type PlanWhereInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentListRelationFilter
   budgetProposalLines?: Prisma.BudgetProposalLineListRelationFilter
   budgetVersionLines?: Prisma.BudgetVersionLineListRelationFilter
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryListRelationFilter
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
 }
 
 export type PlanOrderByWithRelationInput = {
@@ -276,6 +286,7 @@ export type PlanOrderByWithRelationInput = {
   revocationNote?: Prisma.SortOrderInput | Prisma.SortOrder
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasAdminConsole?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -294,6 +305,8 @@ export type PlanOrderByWithRelationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentOrderByRelationAggregateInput
   budgetProposalLines?: Prisma.BudgetProposalLineOrderByRelationAggregateInput
   budgetVersionLines?: Prisma.BudgetVersionLineOrderByRelationAggregateInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryOrderByRelationAggregateInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalOrderByRelationAggregateInput
 }
 
 export type PlanWhereUniqueInput = Prisma.AtLeast<{
@@ -312,6 +325,7 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   revocationNote?: Prisma.StringNullableFilter<"Plan"> | string | null
   dataLossOnRemoval?: Prisma.BoolFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableFilter<"Plan"> | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFilter<"Plan"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -330,6 +344,8 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   assessmentsAlternative?: Prisma.AccessRequestAssessmentListRelationFilter
   budgetProposalLines?: Prisma.BudgetProposalLineListRelationFilter
   budgetVersionLines?: Prisma.BudgetVersionLineListRelationFilter
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryListRelationFilter
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalListRelationFilter
 }, "id" | "organizationId_applicationId_normalizedName">
 
 export type PlanOrderByWithAggregationInput = {
@@ -344,6 +360,7 @@ export type PlanOrderByWithAggregationInput = {
   revocationNote?: Prisma.SortOrderInput | Prisma.SortOrder
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasAdminConsole?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanCountOrderByAggregateInput
@@ -366,6 +383,7 @@ export type PlanScalarWhereWithAggregatesInput = {
   revocationNote?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
   dataLossOnRemoval?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableWithAggregatesFilter<"Plan"> | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
 }
@@ -380,6 +398,7 @@ export type PlanCreateInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -398,6 +417,8 @@ export type PlanCreateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateInput = {
@@ -412,6 +433,7 @@ export type PlanUncheckedCreateInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -428,6 +450,8 @@ export type PlanUncheckedCreateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUpdateInput = {
@@ -440,6 +464,7 @@ export type PlanUpdateInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -458,6 +483,8 @@ export type PlanUpdateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateInput = {
@@ -472,6 +499,7 @@ export type PlanUncheckedUpdateInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -488,6 +516,8 @@ export type PlanUncheckedUpdateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateManyInput = {
@@ -502,6 +532,7 @@ export type PlanCreateManyInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -516,6 +547,7 @@ export type PlanUpdateManyMutationInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -532,6 +564,7 @@ export type PlanUncheckedUpdateManyInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -569,6 +602,7 @@ export type PlanCountOrderByAggregateInput = {
   revocationNote?: Prisma.SortOrder
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrder
+  hasAdminConsole?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -585,6 +619,7 @@ export type PlanMaxOrderByAggregateInput = {
   revocationNote?: Prisma.SortOrder
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrder
+  hasAdminConsole?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -601,6 +636,7 @@ export type PlanMinOrderByAggregateInput = {
   revocationNote?: Prisma.SortOrder
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrder
+  hasAdminConsole?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -812,6 +848,38 @@ export type PlanUpdateOneRequiredWithoutPoolGrantAvoidedCostsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutPoolGrantAvoidedCostsInput, Prisma.PlanUpdateWithoutPoolGrantAvoidedCostsInput>, Prisma.PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput>
 }
 
+export type PlanCreateNestedOneWithoutDepartmentSoftwareEntriesInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareEntriesInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutDepartmentSoftwareEntriesInput
+  connect?: Prisma.PlanWhereUniqueInput
+}
+
+export type PlanUpdateOneWithoutDepartmentSoftwareEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareEntriesInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutDepartmentSoftwareEntriesInput
+  upsert?: Prisma.PlanUpsertWithoutDepartmentSoftwareEntriesInput
+  disconnect?: Prisma.PlanWhereInput | boolean
+  delete?: Prisma.PlanWhereInput | boolean
+  connect?: Prisma.PlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutDepartmentSoftwareEntriesInput, Prisma.PlanUpdateWithoutDepartmentSoftwareEntriesInput>, Prisma.PlanUncheckedUpdateWithoutDepartmentSoftwareEntriesInput>
+}
+
+export type PlanCreateNestedOneWithoutDepartmentSoftwareProposalsInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareProposalsInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutDepartmentSoftwareProposalsInput
+  connect?: Prisma.PlanWhereUniqueInput
+}
+
+export type PlanUpdateOneWithoutDepartmentSoftwareProposalsNestedInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareProposalsInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutDepartmentSoftwareProposalsInput
+  upsert?: Prisma.PlanUpsertWithoutDepartmentSoftwareProposalsInput
+  disconnect?: Prisma.PlanWhereInput | boolean
+  delete?: Prisma.PlanWhereInput | boolean
+  connect?: Prisma.PlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutDepartmentSoftwareProposalsInput, Prisma.PlanUpdateWithoutDepartmentSoftwareProposalsInput>, Prisma.PlanUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+}
+
 export type PlanCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.PlanCreateWithoutOrganizationInput, Prisma.PlanUncheckedCreateWithoutOrganizationInput> | Prisma.PlanCreateWithoutOrganizationInput[] | Prisma.PlanUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.PlanCreateOrConnectWithoutOrganizationInput | Prisma.PlanCreateOrConnectWithoutOrganizationInput[]
@@ -926,6 +994,7 @@ export type PlanCreateWithoutBudgetProposalLinesInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -943,6 +1012,8 @@ export type PlanCreateWithoutBudgetProposalLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutBudgetProposalLinesInput = {
@@ -957,6 +1028,7 @@ export type PlanUncheckedCreateWithoutBudgetProposalLinesInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -972,6 +1044,8 @@ export type PlanUncheckedCreateWithoutBudgetProposalLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutBudgetProposalLinesInput = {
@@ -1000,6 +1074,7 @@ export type PlanUpdateWithoutBudgetProposalLinesInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1017,6 +1092,8 @@ export type PlanUpdateWithoutBudgetProposalLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutBudgetProposalLinesInput = {
@@ -1031,6 +1108,7 @@ export type PlanUncheckedUpdateWithoutBudgetProposalLinesInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1046,6 +1124,8 @@ export type PlanUncheckedUpdateWithoutBudgetProposalLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutBudgetVersionLinesInput = {
@@ -1058,6 +1138,7 @@ export type PlanCreateWithoutBudgetVersionLinesInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1075,6 +1156,8 @@ export type PlanCreateWithoutBudgetVersionLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutBudgetVersionLinesInput = {
@@ -1089,6 +1172,7 @@ export type PlanUncheckedCreateWithoutBudgetVersionLinesInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1104,6 +1188,8 @@ export type PlanUncheckedCreateWithoutBudgetVersionLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutBudgetVersionLinesInput = {
@@ -1132,6 +1218,7 @@ export type PlanUpdateWithoutBudgetVersionLinesInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1149,6 +1236,8 @@ export type PlanUpdateWithoutBudgetVersionLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutBudgetVersionLinesInput = {
@@ -1163,6 +1252,7 @@ export type PlanUncheckedUpdateWithoutBudgetVersionLinesInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1178,6 +1268,8 @@ export type PlanUncheckedUpdateWithoutBudgetVersionLinesInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutApplicationInput = {
@@ -1190,6 +1282,7 @@ export type PlanCreateWithoutApplicationInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1207,6 +1300,8 @@ export type PlanCreateWithoutApplicationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutApplicationInput = {
@@ -1220,6 +1315,7 @@ export type PlanUncheckedCreateWithoutApplicationInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1236,6 +1332,8 @@ export type PlanUncheckedCreateWithoutApplicationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutApplicationInput = {
@@ -1279,6 +1377,7 @@ export type PlanScalarWhereInput = {
   revocationNote?: Prisma.StringNullableFilter<"Plan"> | string | null
   dataLossOnRemoval?: Prisma.BoolFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableFilter<"Plan"> | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFilter<"Plan"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
 }
@@ -1293,6 +1392,7 @@ export type PlanCreateWithoutUsageRateInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1310,6 +1410,8 @@ export type PlanCreateWithoutUsageRateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutUsageRateInput = {
@@ -1324,6 +1426,7 @@ export type PlanUncheckedCreateWithoutUsageRateInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1339,6 +1442,8 @@ export type PlanUncheckedCreateWithoutUsageRateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutUsageRateInput = {
@@ -1367,6 +1472,7 @@ export type PlanUpdateWithoutUsageRateInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1384,6 +1490,8 @@ export type PlanUpdateWithoutUsageRateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutUsageRateInput = {
@@ -1398,6 +1506,7 @@ export type PlanUncheckedUpdateWithoutUsageRateInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1413,6 +1522,8 @@ export type PlanUncheckedUpdateWithoutUsageRateInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutWorkspaceProfileInput = {
@@ -1425,6 +1536,7 @@ export type PlanCreateWithoutWorkspaceProfileInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1442,6 +1554,8 @@ export type PlanCreateWithoutWorkspaceProfileInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutWorkspaceProfileInput = {
@@ -1456,6 +1570,7 @@ export type PlanUncheckedCreateWithoutWorkspaceProfileInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
@@ -1471,6 +1586,8 @@ export type PlanUncheckedCreateWithoutWorkspaceProfileInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutWorkspaceProfileInput = {
@@ -1499,6 +1616,7 @@ export type PlanUpdateWithoutWorkspaceProfileInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1516,6 +1634,8 @@ export type PlanUpdateWithoutWorkspaceProfileInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutWorkspaceProfileInput = {
@@ -1530,6 +1650,7 @@ export type PlanUncheckedUpdateWithoutWorkspaceProfileInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
@@ -1545,6 +1666,8 @@ export type PlanUncheckedUpdateWithoutWorkspaceProfileInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutSubscriptionsInput = {
@@ -1557,6 +1680,7 @@ export type PlanCreateWithoutSubscriptionsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1574,6 +1698,8 @@ export type PlanCreateWithoutSubscriptionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutSubscriptionsInput = {
@@ -1588,6 +1714,7 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1603,6 +1730,8 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutSubscriptionsInput = {
@@ -1631,6 +1760,7 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1648,6 +1778,8 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
@@ -1662,6 +1794,7 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1677,6 +1810,8 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutTermsInput = {
@@ -1689,6 +1824,7 @@ export type PlanCreateWithoutTermsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1706,6 +1842,8 @@ export type PlanCreateWithoutTermsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutTermsInput = {
@@ -1720,6 +1858,7 @@ export type PlanUncheckedCreateWithoutTermsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1735,6 +1874,8 @@ export type PlanUncheckedCreateWithoutTermsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutTermsInput = {
@@ -1763,6 +1904,7 @@ export type PlanUpdateWithoutTermsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1780,6 +1922,8 @@ export type PlanUpdateWithoutTermsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutTermsInput = {
@@ -1794,6 +1938,7 @@ export type PlanUncheckedUpdateWithoutTermsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1809,6 +1954,8 @@ export type PlanUncheckedUpdateWithoutTermsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutTermOpinionsInput = {
@@ -1821,6 +1968,7 @@ export type PlanCreateWithoutTermOpinionsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1838,6 +1986,8 @@ export type PlanCreateWithoutTermOpinionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutTermOpinionsInput = {
@@ -1852,6 +2002,7 @@ export type PlanUncheckedCreateWithoutTermOpinionsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1867,6 +2018,8 @@ export type PlanUncheckedCreateWithoutTermOpinionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutTermOpinionsInput = {
@@ -1895,6 +2048,7 @@ export type PlanUpdateWithoutTermOpinionsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1912,6 +2066,8 @@ export type PlanUpdateWithoutTermOpinionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutTermOpinionsInput = {
@@ -1926,6 +2082,7 @@ export type PlanUncheckedUpdateWithoutTermOpinionsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1941,6 +2098,8 @@ export type PlanUncheckedUpdateWithoutTermOpinionsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutSeatBaselineImportsInput = {
@@ -1953,6 +2112,7 @@ export type PlanCreateWithoutSeatBaselineImportsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1970,6 +2130,8 @@ export type PlanCreateWithoutSeatBaselineImportsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutSeatBaselineImportsInput = {
@@ -1984,6 +2146,7 @@ export type PlanUncheckedCreateWithoutSeatBaselineImportsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1999,6 +2162,8 @@ export type PlanUncheckedCreateWithoutSeatBaselineImportsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutSeatBaselineImportsInput = {
@@ -2027,6 +2192,7 @@ export type PlanUpdateWithoutSeatBaselineImportsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2044,6 +2210,8 @@ export type PlanUpdateWithoutSeatBaselineImportsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutSeatBaselineImportsInput = {
@@ -2058,6 +2226,7 @@ export type PlanUncheckedUpdateWithoutSeatBaselineImportsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2073,6 +2242,8 @@ export type PlanUncheckedUpdateWithoutSeatBaselineImportsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutLicenseAssignmentsInput = {
@@ -2085,6 +2256,7 @@ export type PlanCreateWithoutLicenseAssignmentsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2102,6 +2274,8 @@ export type PlanCreateWithoutLicenseAssignmentsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutLicenseAssignmentsInput = {
@@ -2116,6 +2290,7 @@ export type PlanUncheckedCreateWithoutLicenseAssignmentsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2131,6 +2306,8 @@ export type PlanUncheckedCreateWithoutLicenseAssignmentsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutLicenseAssignmentsInput = {
@@ -2159,6 +2336,7 @@ export type PlanUpdateWithoutLicenseAssignmentsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2176,6 +2354,8 @@ export type PlanUpdateWithoutLicenseAssignmentsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutLicenseAssignmentsInput = {
@@ -2190,6 +2370,7 @@ export type PlanUncheckedUpdateWithoutLicenseAssignmentsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2205,6 +2386,8 @@ export type PlanUncheckedUpdateWithoutLicenseAssignmentsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutPoolGrantAvoidedCostsInput = {
@@ -2217,6 +2400,7 @@ export type PlanCreateWithoutPoolGrantAvoidedCostsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2234,6 +2418,8 @@ export type PlanCreateWithoutPoolGrantAvoidedCostsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
@@ -2248,6 +2434,7 @@ export type PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2263,6 +2450,8 @@ export type PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutPoolGrantAvoidedCostsInput = {
@@ -2291,6 +2480,7 @@ export type PlanUpdateWithoutPoolGrantAvoidedCostsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2308,6 +2498,8 @@ export type PlanUpdateWithoutPoolGrantAvoidedCostsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
@@ -2322,6 +2514,7 @@ export type PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2337,6 +2530,296 @@ export type PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanCreateWithoutDepartmentSoftwareEntriesInput = {
+  id?: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
+  application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
+  terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
+}
+
+export type PlanUncheckedCreateWithoutDepartmentSoftwareEntriesInput = {
+  id?: string
+  organizationId: string
+  applicationId: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
+  terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
+}
+
+export type PlanCreateOrConnectWithoutDepartmentSoftwareEntriesInput = {
+  where: Prisma.PlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareEntriesInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+}
+
+export type PlanUpsertWithoutDepartmentSoftwareEntriesInput = {
+  update: Prisma.XOR<Prisma.PlanUpdateWithoutDepartmentSoftwareEntriesInput, Prisma.PlanUncheckedUpdateWithoutDepartmentSoftwareEntriesInput>
+  create: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareEntriesInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareEntriesInput>
+  where?: Prisma.PlanWhereInput
+}
+
+export type PlanUpdateToOneWithWhereWithoutDepartmentSoftwareEntriesInput = {
+  where?: Prisma.PlanWhereInput
+  data: Prisma.XOR<Prisma.PlanUpdateWithoutDepartmentSoftwareEntriesInput, Prisma.PlanUncheckedUpdateWithoutDepartmentSoftwareEntriesInput>
+}
+
+export type PlanUpdateWithoutDepartmentSoftwareEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
+  application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanUncheckedUpdateWithoutDepartmentSoftwareEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanCreateWithoutDepartmentSoftwareProposalsInput = {
+  id?: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
+  application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateCreateNestedOneWithoutPlanInput
+  terms?: Prisma.PlanTermsCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+}
+
+export type PlanUncheckedCreateWithoutDepartmentSoftwareProposalsInput = {
+  id?: string
+  organizationId: string
+  applicationId: string
+  name: string
+  normalizedName: string
+  provisioningType: $Enums.ProvisioningType
+  pricingModel?: $Enums.PricingModel | null
+  controlLevel?: $Enums.ControlLevel | null
+  revocationNote?: string | null
+  dataLossOnRemoval?: boolean
+  sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  usageRate?: Prisma.PlanUsageRateUncheckedCreateNestedOneWithoutPlanInput
+  terms?: Prisma.PlanTermsUncheckedCreateNestedOneWithoutPlanInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedCreateNestedManyWithoutPlanInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutPlanInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutPlanInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutPlanInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutPlanInput
+  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutPlanInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+}
+
+export type PlanCreateOrConnectWithoutDepartmentSoftwareProposalsInput = {
+  where: Prisma.PlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareProposalsInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+}
+
+export type PlanUpsertWithoutDepartmentSoftwareProposalsInput = {
+  update: Prisma.XOR<Prisma.PlanUpdateWithoutDepartmentSoftwareProposalsInput, Prisma.PlanUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+  create: Prisma.XOR<Prisma.PlanCreateWithoutDepartmentSoftwareProposalsInput, Prisma.PlanUncheckedCreateWithoutDepartmentSoftwareProposalsInput>
+  where?: Prisma.PlanWhereInput
+}
+
+export type PlanUpdateToOneWithWhereWithoutDepartmentSoftwareProposalsInput = {
+  where?: Prisma.PlanWhereInput
+  data: Prisma.XOR<Prisma.PlanUpdateWithoutDepartmentSoftwareProposalsInput, Prisma.PlanUncheckedUpdateWithoutDepartmentSoftwareProposalsInput>
+}
+
+export type PlanUpdateWithoutDepartmentSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
+  application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUpdateOneWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanUncheckedUpdateWithoutDepartmentSoftwareProposalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  provisioningType?: Prisma.EnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType
+  pricingModel?: Prisma.NullableEnumPricingModelFieldUpdateOperationsInput | $Enums.PricingModel | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  usageRate?: Prisma.PlanUsageRateUncheckedUpdateOneWithoutPlanNestedInput
+  terms?: Prisma.PlanTermsUncheckedUpdateOneWithoutPlanNestedInput
+  termOpinions?: Prisma.PlanTermOpinionUncheckedUpdateManyWithoutPlanNestedInput
+  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutPlanNestedInput
+  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutPlanNestedInput
+  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutPlanNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutPlanNestedInput
+  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutPlanNestedInput
+  assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
+  assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
+  budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
+  budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutOrganizationInput = {
@@ -2349,6 +2832,7 @@ export type PlanCreateWithoutOrganizationInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
@@ -2366,6 +2850,8 @@ export type PlanCreateWithoutOrganizationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutOrganizationInput = {
@@ -2379,6 +2865,7 @@ export type PlanUncheckedCreateWithoutOrganizationInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2395,6 +2882,8 @@ export type PlanUncheckedCreateWithoutOrganizationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutOrganizationInput = {
@@ -2433,6 +2922,7 @@ export type PlanCreateWithoutAccessRequestsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2450,6 +2940,8 @@ export type PlanCreateWithoutAccessRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutAccessRequestsInput = {
@@ -2464,6 +2956,7 @@ export type PlanUncheckedCreateWithoutAccessRequestsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2479,6 +2972,8 @@ export type PlanUncheckedCreateWithoutAccessRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutAccessRequestsInput = {
@@ -2507,6 +3002,7 @@ export type PlanUpdateWithoutAccessRequestsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2524,6 +3020,8 @@ export type PlanUpdateWithoutAccessRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutAccessRequestsInput = {
@@ -2538,6 +3036,7 @@ export type PlanUncheckedUpdateWithoutAccessRequestsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2553,6 +3052,8 @@ export type PlanUncheckedUpdateWithoutAccessRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutAssessmentsEquivalentInput = {
@@ -2565,6 +3066,7 @@ export type PlanCreateWithoutAssessmentsEquivalentInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2582,6 +3084,8 @@ export type PlanCreateWithoutAssessmentsEquivalentInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutAssessmentsEquivalentInput = {
@@ -2596,6 +3100,7 @@ export type PlanUncheckedCreateWithoutAssessmentsEquivalentInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2611,6 +3116,8 @@ export type PlanUncheckedCreateWithoutAssessmentsEquivalentInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutAssessmentsEquivalentInput = {
@@ -2628,6 +3135,7 @@ export type PlanCreateWithoutAssessmentsAlternativeInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2645,6 +3153,8 @@ export type PlanCreateWithoutAssessmentsAlternativeInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutEquivalentInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutAssessmentsAlternativeInput = {
@@ -2659,6 +3169,7 @@ export type PlanUncheckedCreateWithoutAssessmentsAlternativeInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2674,6 +3185,8 @@ export type PlanUncheckedCreateWithoutAssessmentsAlternativeInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutEquivalentInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutAssessmentsAlternativeInput = {
@@ -2702,6 +3215,7 @@ export type PlanUpdateWithoutAssessmentsEquivalentInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2719,6 +3233,8 @@ export type PlanUpdateWithoutAssessmentsEquivalentInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutAssessmentsEquivalentInput = {
@@ -2733,6 +3249,7 @@ export type PlanUncheckedUpdateWithoutAssessmentsEquivalentInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2748,6 +3265,8 @@ export type PlanUncheckedUpdateWithoutAssessmentsEquivalentInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUpsertWithoutAssessmentsAlternativeInput = {
@@ -2771,6 +3290,7 @@ export type PlanUpdateWithoutAssessmentsAlternativeInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2788,6 +3308,8 @@ export type PlanUpdateWithoutAssessmentsAlternativeInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUpdateManyWithoutEquivalentNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutAssessmentsAlternativeInput = {
@@ -2802,6 +3324,7 @@ export type PlanUncheckedUpdateWithoutAssessmentsAlternativeInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2817,6 +3340,8 @@ export type PlanUncheckedUpdateWithoutAssessmentsAlternativeInput = {
   assessmentsEquivalent?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutReturnRequestsInput = {
@@ -2829,6 +3354,7 @@ export type PlanCreateWithoutReturnRequestsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2846,6 +3372,8 @@ export type PlanCreateWithoutReturnRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutReturnRequestsInput = {
@@ -2860,6 +3388,7 @@ export type PlanUncheckedCreateWithoutReturnRequestsInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2875,6 +3404,8 @@ export type PlanUncheckedCreateWithoutReturnRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutAlternativePlanInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedCreateNestedManyWithoutPlanInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutPlanInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutReturnRequestsInput = {
@@ -2903,6 +3434,7 @@ export type PlanUpdateWithoutReturnRequestsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2920,6 +3452,8 @@ export type PlanUpdateWithoutReturnRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutReturnRequestsInput = {
@@ -2934,6 +3468,7 @@ export type PlanUncheckedUpdateWithoutReturnRequestsInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2949,6 +3484,8 @@ export type PlanUncheckedUpdateWithoutReturnRequestsInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateManyApplicationInput = {
@@ -2962,6 +3499,7 @@ export type PlanCreateManyApplicationInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2976,6 +3514,7 @@ export type PlanUpdateWithoutApplicationInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2993,6 +3532,8 @@ export type PlanUpdateWithoutApplicationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutApplicationInput = {
@@ -3006,6 +3547,7 @@ export type PlanUncheckedUpdateWithoutApplicationInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3022,6 +3564,8 @@ export type PlanUncheckedUpdateWithoutApplicationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateManyWithoutApplicationInput = {
@@ -3035,6 +3579,7 @@ export type PlanUncheckedUpdateManyWithoutApplicationInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -3050,6 +3595,7 @@ export type PlanCreateManyOrganizationInput = {
   revocationNote?: string | null
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
+  hasAdminConsole?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -3064,6 +3610,7 @@ export type PlanUpdateWithoutOrganizationInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
@@ -3081,6 +3628,8 @@ export type PlanUpdateWithoutOrganizationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutOrganizationInput = {
@@ -3094,6 +3643,7 @@ export type PlanUncheckedUpdateWithoutOrganizationInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3110,6 +3660,8 @@ export type PlanUncheckedUpdateWithoutOrganizationInput = {
   assessmentsAlternative?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanNestedInput
   budgetProposalLines?: Prisma.BudgetProposalLineUncheckedUpdateManyWithoutPlanNestedInput
   budgetVersionLines?: Prisma.BudgetVersionLineUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutPlanNestedInput
+  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateManyWithoutOrganizationInput = {
@@ -3123,6 +3675,7 @@ export type PlanUncheckedUpdateManyWithoutOrganizationInput = {
   revocationNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
+  hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -3144,6 +3697,8 @@ export type PlanCountOutputType = {
   assessmentsAlternative: number
   budgetProposalLines: number
   budgetVersionLines: number
+  departmentSoftwareEntries: number
+  departmentSoftwareProposals: number
 }
 
 export type PlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3158,6 +3713,8 @@ export type PlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   assessmentsAlternative?: boolean | PlanCountOutputTypeCountAssessmentsAlternativeArgs
   budgetProposalLines?: boolean | PlanCountOutputTypeCountBudgetProposalLinesArgs
   budgetVersionLines?: boolean | PlanCountOutputTypeCountBudgetVersionLinesArgs
+  departmentSoftwareEntries?: boolean | PlanCountOutputTypeCountDepartmentSoftwareEntriesArgs
+  departmentSoftwareProposals?: boolean | PlanCountOutputTypeCountDepartmentSoftwareProposalsArgs
 }
 
 /**
@@ -3247,6 +3804,20 @@ export type PlanCountOutputTypeCountBudgetVersionLinesArgs<ExtArgs extends runti
   where?: Prisma.BudgetVersionLineWhereInput
 }
 
+/**
+ * PlanCountOutputType without action
+ */
+export type PlanCountOutputTypeCountDepartmentSoftwareEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentSoftwareEntryWhereInput
+}
+
+/**
+ * PlanCountOutputType without action
+ */
+export type PlanCountOutputTypeCountDepartmentSoftwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
+}
+
 
 export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3260,6 +3831,7 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   revocationNote?: boolean
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
+  hasAdminConsole?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -3278,6 +3850,8 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   assessmentsAlternative?: boolean | Prisma.Plan$assessmentsAlternativeArgs<ExtArgs>
   budgetProposalLines?: boolean | Prisma.Plan$budgetProposalLinesArgs<ExtArgs>
   budgetVersionLines?: boolean | Prisma.Plan$budgetVersionLinesArgs<ExtArgs>
+  departmentSoftwareEntries?: boolean | Prisma.Plan$departmentSoftwareEntriesArgs<ExtArgs>
+  departmentSoftwareProposals?: boolean | Prisma.Plan$departmentSoftwareProposalsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["plan"]>
 
@@ -3293,6 +3867,7 @@ export type PlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   revocationNote?: boolean
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
+  hasAdminConsole?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -3311,6 +3886,7 @@ export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   revocationNote?: boolean
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
+  hasAdminConsole?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -3329,11 +3905,12 @@ export type PlanSelectScalar = {
   revocationNote?: boolean
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
+  hasAdminConsole?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "applicationId" | "name" | "normalizedName" | "provisioningType" | "pricingModel" | "controlLevel" | "revocationNote" | "dataLossOnRemoval" | "sharingPolicy" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
+export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "applicationId" | "name" | "normalizedName" | "provisioningType" | "pricingModel" | "controlLevel" | "revocationNote" | "dataLossOnRemoval" | "sharingPolicy" | "hasAdminConsole" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
 export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -3351,6 +3928,8 @@ export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   assessmentsAlternative?: boolean | Prisma.Plan$assessmentsAlternativeArgs<ExtArgs>
   budgetProposalLines?: boolean | Prisma.Plan$budgetProposalLinesArgs<ExtArgs>
   budgetVersionLines?: boolean | Prisma.Plan$budgetVersionLinesArgs<ExtArgs>
+  departmentSoftwareEntries?: boolean | Prisma.Plan$departmentSoftwareEntriesArgs<ExtArgs>
+  departmentSoftwareProposals?: boolean | Prisma.Plan$departmentSoftwareProposalsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlanIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3381,6 +3960,8 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     assessmentsAlternative: Prisma.$AccessRequestAssessmentPayload<ExtArgs>[]
     budgetProposalLines: Prisma.$BudgetProposalLinePayload<ExtArgs>[]
     budgetVersionLines: Prisma.$BudgetVersionLinePayload<ExtArgs>[]
+    departmentSoftwareEntries: Prisma.$DepartmentSoftwareEntryPayload<ExtArgs>[]
+    departmentSoftwareProposals: Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3394,6 +3975,7 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     revocationNote: string | null
     dataLossOnRemoval: boolean
     sharingPolicy: $Enums.SharingPolicy | null
+    hasAdminConsole: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["plan"]>
@@ -3806,6 +4388,8 @@ export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Typ
   assessmentsAlternative<T extends Prisma.Plan$assessmentsAlternativeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$assessmentsAlternativeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetProposalLines<T extends Prisma.Plan$budgetProposalLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$budgetProposalLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetProposalLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   budgetVersionLines<T extends Prisma.Plan$budgetVersionLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$budgetVersionLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetVersionLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  departmentSoftwareEntries<T extends Prisma.Plan$departmentSoftwareEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$departmentSoftwareEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentSoftwareEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  departmentSoftwareProposals<T extends Prisma.Plan$departmentSoftwareProposalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$departmentSoftwareProposalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentSoftwareProposalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3846,6 +4430,7 @@ export interface PlanFieldRefs {
   readonly revocationNote: Prisma.FieldRef<"Plan", 'String'>
   readonly dataLossOnRemoval: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly sharingPolicy: Prisma.FieldRef<"Plan", 'SharingPolicy'>
+  readonly hasAdminConsole: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Plan", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Plan", 'DateTime'>
 }
@@ -4567,6 +5152,54 @@ export type Plan$budgetVersionLinesArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.BudgetVersionLineScalarFieldEnum | Prisma.BudgetVersionLineScalarFieldEnum[]
+}
+
+/**
+ * Plan.departmentSoftwareEntries
+ */
+export type Plan$departmentSoftwareEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentSoftwareEntry
+   */
+  select?: Prisma.DepartmentSoftwareEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentSoftwareEntry
+   */
+  omit?: Prisma.DepartmentSoftwareEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentSoftwareEntryInclude<ExtArgs> | null
+  where?: Prisma.DepartmentSoftwareEntryWhereInput
+  orderBy?: Prisma.DepartmentSoftwareEntryOrderByWithRelationInput | Prisma.DepartmentSoftwareEntryOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentSoftwareEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentSoftwareEntryScalarFieldEnum | Prisma.DepartmentSoftwareEntryScalarFieldEnum[]
+}
+
+/**
+ * Plan.departmentSoftwareProposals
+ */
+export type Plan$departmentSoftwareProposalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentSoftwareProposal
+   */
+  select?: Prisma.DepartmentSoftwareProposalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DepartmentSoftwareProposal
+   */
+  omit?: Prisma.DepartmentSoftwareProposalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentSoftwareProposalInclude<ExtArgs> | null
+  where?: Prisma.DepartmentSoftwareProposalWhereInput
+  orderBy?: Prisma.DepartmentSoftwareProposalOrderByWithRelationInput | Prisma.DepartmentSoftwareProposalOrderByWithRelationInput[]
+  cursor?: Prisma.DepartmentSoftwareProposalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DepartmentSoftwareProposalScalarFieldEnum | Prisma.DepartmentSoftwareProposalScalarFieldEnum[]
 }
 
 /**
