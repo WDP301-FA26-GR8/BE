@@ -35,6 +35,10 @@ export type AppUserMinAggregateOutputType = {
   emailVerificationSource: $Enums.EmailVerificationSource | null
   emailVerifiedAt: Date | null
   employeeLeftOn: Date | null
+  avatarObjectKey: string | null
+  avatarContentType: string | null
+  avatarUpdatedAt: Date | null
+  workPhone: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +54,10 @@ export type AppUserMaxAggregateOutputType = {
   emailVerificationSource: $Enums.EmailVerificationSource | null
   emailVerifiedAt: Date | null
   employeeLeftOn: Date | null
+  avatarObjectKey: string | null
+  avatarContentType: string | null
+  avatarUpdatedAt: Date | null
+  workPhone: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,6 +73,10 @@ export type AppUserCountAggregateOutputType = {
   emailVerificationSource: number
   emailVerifiedAt: number
   employeeLeftOn: number
+  avatarObjectKey: number
+  avatarContentType: number
+  avatarUpdatedAt: number
+  workPhone: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -82,6 +94,10 @@ export type AppUserMinAggregateInputType = {
   emailVerificationSource?: true
   emailVerifiedAt?: true
   employeeLeftOn?: true
+  avatarObjectKey?: true
+  avatarContentType?: true
+  avatarUpdatedAt?: true
+  workPhone?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -97,6 +113,10 @@ export type AppUserMaxAggregateInputType = {
   emailVerificationSource?: true
   emailVerifiedAt?: true
   employeeLeftOn?: true
+  avatarObjectKey?: true
+  avatarContentType?: true
+  avatarUpdatedAt?: true
+  workPhone?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +132,10 @@ export type AppUserCountAggregateInputType = {
   emailVerificationSource?: true
   emailVerifiedAt?: true
   employeeLeftOn?: true
+  avatarObjectKey?: true
+  avatarContentType?: true
+  avatarUpdatedAt?: true
+  workPhone?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -200,6 +224,10 @@ export type AppUserGroupByOutputType = {
   emailVerificationSource: $Enums.EmailVerificationSource | null
   emailVerifiedAt: Date | null
   employeeLeftOn: Date | null
+  avatarObjectKey: string | null
+  avatarContentType: string | null
+  avatarUpdatedAt: Date | null
+  workPhone: string | null
   createdAt: Date
   updatedAt: Date
   _count: AppUserCountAggregateOutputType | null
@@ -236,6 +264,10 @@ export type AppUserWhereInput = {
   emailVerificationSource?: Prisma.EnumEmailVerificationSourceNullableFilter<"AppUser"> | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.DateTimeNullableFilter<"AppUser"> | Date | string | null
   employeeLeftOn?: Prisma.DateTimeNullableFilter<"AppUser"> | Date | string | null
+  avatarObjectKey?: Prisma.StringNullableFilter<"AppUser"> | string | null
+  avatarContentType?: Prisma.StringNullableFilter<"AppUser"> | string | null
+  avatarUpdatedAt?: Prisma.DateTimeNullableFilter<"AppUser"> | Date | string | null
+  workPhone?: Prisma.StringNullableFilter<"AppUser"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AppUser"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AppUser"> | Date | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
@@ -256,6 +288,10 @@ export type AppUserOrderByWithRelationInput = {
   emailVerificationSource?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   employeeLeftOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarObjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarContentType?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   employee?: Prisma.EmployeeOrderByWithRelationInput
@@ -280,6 +316,10 @@ export type AppUserWhereUniqueInput = Prisma.AtLeast<{
   emailVerificationSource?: Prisma.EnumEmailVerificationSourceNullableFilter<"AppUser"> | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.DateTimeNullableFilter<"AppUser"> | Date | string | null
   employeeLeftOn?: Prisma.DateTimeNullableFilter<"AppUser"> | Date | string | null
+  avatarObjectKey?: Prisma.StringNullableFilter<"AppUser"> | string | null
+  avatarContentType?: Prisma.StringNullableFilter<"AppUser"> | string | null
+  avatarUpdatedAt?: Prisma.DateTimeNullableFilter<"AppUser"> | Date | string | null
+  workPhone?: Prisma.StringNullableFilter<"AppUser"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AppUser"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AppUser"> | Date | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
@@ -300,6 +340,10 @@ export type AppUserOrderByWithAggregationInput = {
   emailVerificationSource?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   employeeLeftOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarObjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarContentType?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AppUserCountOrderByAggregateInput
@@ -321,6 +365,10 @@ export type AppUserScalarWhereWithAggregatesInput = {
   emailVerificationSource?: Prisma.EnumEmailVerificationSourceNullableWithAggregatesFilter<"AppUser"> | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AppUser"> | Date | string | null
   employeeLeftOn?: Prisma.DateTimeNullableWithAggregatesFilter<"AppUser"> | Date | string | null
+  avatarObjectKey?: Prisma.StringNullableWithAggregatesFilter<"AppUser"> | string | null
+  avatarContentType?: Prisma.StringNullableWithAggregatesFilter<"AppUser"> | string | null
+  avatarUpdatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AppUser"> | Date | string | null
+  workPhone?: Prisma.StringNullableWithAggregatesFilter<"AppUser"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AppUser"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AppUser"> | Date | string
 }
@@ -335,6 +383,10 @@ export type AppUserCreateInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAppUserInput
@@ -355,6 +407,10 @@ export type AppUserUncheckedCreateInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   credential?: Prisma.PasswordCredentialUncheckedCreateNestedOneWithoutAppUserInput
@@ -373,6 +429,10 @@ export type AppUserUpdateInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAppUserNestedInput
@@ -393,6 +453,10 @@ export type AppUserUncheckedUpdateInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credential?: Prisma.PasswordCredentialUncheckedUpdateOneWithoutAppUserNestedInput
@@ -412,6 +476,10 @@ export type AppUserCreateManyInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -426,6 +494,10 @@ export type AppUserUpdateManyMutationInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -441,6 +513,10 @@ export type AppUserUncheckedUpdateManyInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -461,6 +537,10 @@ export type AppUserCountOrderByAggregateInput = {
   emailVerificationSource?: Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrder
   employeeLeftOn?: Prisma.SortOrder
+  avatarObjectKey?: Prisma.SortOrder
+  avatarContentType?: Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrder
+  workPhone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -476,6 +556,10 @@ export type AppUserMaxOrderByAggregateInput = {
   emailVerificationSource?: Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrder
   employeeLeftOn?: Prisma.SortOrder
+  avatarObjectKey?: Prisma.SortOrder
+  avatarContentType?: Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrder
+  workPhone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -491,6 +575,10 @@ export type AppUserMinOrderByAggregateInput = {
   emailVerificationSource?: Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrder
   employeeLeftOn?: Prisma.SortOrder
+  avatarObjectKey?: Prisma.SortOrder
+  avatarContentType?: Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrder
+  workPhone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -615,6 +703,10 @@ export type AppUserCreateWithoutCredentialInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAppUserInput
@@ -634,6 +726,10 @@ export type AppUserUncheckedCreateWithoutCredentialInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   roleGrants?: Prisma.RoleGrantUncheckedCreateNestedManyWithoutAppUserInput
@@ -667,6 +763,10 @@ export type AppUserUpdateWithoutCredentialInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAppUserNestedInput
@@ -686,6 +786,10 @@ export type AppUserUncheckedUpdateWithoutCredentialInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleGrants?: Prisma.RoleGrantUncheckedUpdateManyWithoutAppUserNestedInput
@@ -703,6 +807,10 @@ export type AppUserCreateWithoutRoleGrantsInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAppUserInput
@@ -722,6 +830,10 @@ export type AppUserUncheckedCreateWithoutRoleGrantsInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   credential?: Prisma.PasswordCredentialUncheckedCreateNestedOneWithoutAppUserInput
@@ -755,6 +867,10 @@ export type AppUserUpdateWithoutRoleGrantsInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAppUserNestedInput
@@ -774,6 +890,10 @@ export type AppUserUncheckedUpdateWithoutRoleGrantsInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credential?: Prisma.PasswordCredentialUncheckedUpdateOneWithoutAppUserNestedInput
@@ -791,6 +911,10 @@ export type AppUserCreateWithoutSessionsInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAppUserInput
@@ -810,6 +934,10 @@ export type AppUserUncheckedCreateWithoutSessionsInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   credential?: Prisma.PasswordCredentialUncheckedCreateNestedOneWithoutAppUserInput
@@ -843,6 +971,10 @@ export type AppUserUpdateWithoutSessionsInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAppUserNestedInput
@@ -862,6 +994,10 @@ export type AppUserUncheckedUpdateWithoutSessionsInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credential?: Prisma.PasswordCredentialUncheckedUpdateOneWithoutAppUserNestedInput
@@ -879,6 +1015,10 @@ export type AppUserCreateWithoutActionTokensInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAppUserInput
@@ -898,6 +1038,10 @@ export type AppUserUncheckedCreateWithoutActionTokensInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   credential?: Prisma.PasswordCredentialUncheckedCreateNestedOneWithoutAppUserInput
@@ -931,6 +1075,10 @@ export type AppUserUpdateWithoutActionTokensInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAppUserNestedInput
@@ -950,6 +1098,10 @@ export type AppUserUncheckedUpdateWithoutActionTokensInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credential?: Prisma.PasswordCredentialUncheckedUpdateOneWithoutAppUserNestedInput
@@ -967,6 +1119,10 @@ export type AppUserCreateWithoutEmployeeInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   credential?: Prisma.PasswordCredentialCreateNestedOneWithoutAppUserInput
@@ -985,6 +1141,10 @@ export type AppUserUncheckedCreateWithoutEmployeeInput = {
   emailVerificationSource?: $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Date | string | null
   employeeLeftOn?: Date | string | null
+  avatarObjectKey?: string | null
+  avatarContentType?: string | null
+  avatarUpdatedAt?: Date | string | null
+  workPhone?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   credential?: Prisma.PasswordCredentialUncheckedCreateNestedOneWithoutAppUserInput
@@ -1019,6 +1179,10 @@ export type AppUserUpdateWithoutEmployeeInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credential?: Prisma.PasswordCredentialUpdateOneWithoutAppUserNestedInput
@@ -1037,6 +1201,10 @@ export type AppUserUncheckedUpdateWithoutEmployeeInput = {
   emailVerificationSource?: Prisma.NullableEnumEmailVerificationSourceFieldUpdateOperationsInput | $Enums.EmailVerificationSource | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employeeLeftOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credential?: Prisma.PasswordCredentialUncheckedUpdateOneWithoutAppUserNestedInput
@@ -1105,6 +1273,10 @@ export type AppUserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   emailVerificationSource?: boolean
   emailVerifiedAt?: boolean
   employeeLeftOn?: boolean
+  avatarObjectKey?: boolean
+  avatarContentType?: boolean
+  avatarUpdatedAt?: boolean
+  workPhone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1126,6 +1298,10 @@ export type AppUserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   emailVerificationSource?: boolean
   emailVerifiedAt?: boolean
   employeeLeftOn?: boolean
+  avatarObjectKey?: boolean
+  avatarContentType?: boolean
+  avatarUpdatedAt?: boolean
+  workPhone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1142,6 +1318,10 @@ export type AppUserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   emailVerificationSource?: boolean
   emailVerifiedAt?: boolean
   employeeLeftOn?: boolean
+  avatarObjectKey?: boolean
+  avatarContentType?: boolean
+  avatarUpdatedAt?: boolean
+  workPhone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1158,11 +1338,15 @@ export type AppUserSelectScalar = {
   emailVerificationSource?: boolean
   emailVerifiedAt?: boolean
   employeeLeftOn?: boolean
+  avatarObjectKey?: boolean
+  avatarContentType?: boolean
+  avatarUpdatedAt?: boolean
+  workPhone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AppUserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "loginEmail" | "normalizedLoginEmail" | "status" | "activationState" | "emailVerificationSource" | "emailVerifiedAt" | "employeeLeftOn" | "createdAt" | "updatedAt", ExtArgs["result"]["appUser"]>
+export type AppUserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "loginEmail" | "normalizedLoginEmail" | "status" | "activationState" | "emailVerificationSource" | "emailVerifiedAt" | "employeeLeftOn" | "avatarObjectKey" | "avatarContentType" | "avatarUpdatedAt" | "workPhone" | "createdAt" | "updatedAt", ExtArgs["result"]["appUser"]>
 export type AppUserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   credential?: boolean | Prisma.AppUser$credentialArgs<ExtArgs>
@@ -1198,6 +1382,10 @@ export type $AppUserPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     emailVerificationSource: $Enums.EmailVerificationSource | null
     emailVerifiedAt: Date | null
     employeeLeftOn: Date | null
+    avatarObjectKey: string | null
+    avatarContentType: string | null
+    avatarUpdatedAt: Date | null
+    workPhone: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["appUser"]>
@@ -1638,6 +1826,10 @@ export interface AppUserFieldRefs {
   readonly emailVerificationSource: Prisma.FieldRef<"AppUser", 'EmailVerificationSource'>
   readonly emailVerifiedAt: Prisma.FieldRef<"AppUser", 'DateTime'>
   readonly employeeLeftOn: Prisma.FieldRef<"AppUser", 'DateTime'>
+  readonly avatarObjectKey: Prisma.FieldRef<"AppUser", 'String'>
+  readonly avatarContentType: Prisma.FieldRef<"AppUser", 'String'>
+  readonly avatarUpdatedAt: Prisma.FieldRef<"AppUser", 'DateTime'>
+  readonly workPhone: Prisma.FieldRef<"AppUser", 'String'>
   readonly createdAt: Prisma.FieldRef<"AppUser", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"AppUser", 'DateTime'>
 }

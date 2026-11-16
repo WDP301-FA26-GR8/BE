@@ -639,6 +639,7 @@ export type AccessRequestWhereInput = {
   stepSlaReminders?: Prisma.StepSlaReminderListRelationFilter
   serviceAccount?: Prisma.XOR<Prisma.AccessRequestServiceAccountNullableScalarRelationFilter, Prisma.AccessRequestServiceAccountWhereInput> | null
   renewal?: Prisma.XOR<Prisma.AccessRequestRenewalNullableScalarRelationFilter, Prisma.AccessRequestRenewalWhereInput> | null
+  purchaseInvoices?: Prisma.PurchaseInvoiceListRelationFilter
   returnsFromHere?: Prisma.ReturnRequestListRelationFilter
   replacesAssignment?: Prisma.XOR<Prisma.LicenseAssignmentNullableScalarRelationFilter, Prisma.LicenseAssignmentWhereInput> | null
 }
@@ -723,6 +724,7 @@ export type AccessRequestOrderByWithRelationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderOrderByRelationAggregateInput
   serviceAccount?: Prisma.AccessRequestServiceAccountOrderByWithRelationInput
   renewal?: Prisma.AccessRequestRenewalOrderByWithRelationInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceOrderByRelationAggregateInput
   returnsFromHere?: Prisma.ReturnRequestOrderByRelationAggregateInput
   replacesAssignment?: Prisma.LicenseAssignmentOrderByWithRelationInput
 }
@@ -810,6 +812,7 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
   stepSlaReminders?: Prisma.StepSlaReminderListRelationFilter
   serviceAccount?: Prisma.XOR<Prisma.AccessRequestServiceAccountNullableScalarRelationFilter, Prisma.AccessRequestServiceAccountWhereInput> | null
   renewal?: Prisma.XOR<Prisma.AccessRequestRenewalNullableScalarRelationFilter, Prisma.AccessRequestRenewalWhereInput> | null
+  purchaseInvoices?: Prisma.PurchaseInvoiceListRelationFilter
   returnsFromHere?: Prisma.ReturnRequestListRelationFilter
   replacesAssignment?: Prisma.XOR<Prisma.LicenseAssignmentNullableScalarRelationFilter, Prisma.LicenseAssignmentWhereInput> | null
 }, "id">
@@ -1003,6 +1006,7 @@ export type AccessRequestCreateInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -1079,6 +1083,7 @@ export type AccessRequestUncheckedCreateInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -1153,6 +1158,7 @@ export type AccessRequestUpdateInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -1229,6 +1235,7 @@ export type AccessRequestUncheckedUpdateInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -2279,6 +2286,22 @@ export type AccessRequestUpdateOneRequiredWithoutStepSlaRemindersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestUpdateToOneWithWhereWithoutStepSlaRemindersInput, Prisma.AccessRequestUpdateWithoutStepSlaRemindersInput>, Prisma.AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput>
 }
 
+export type AccessRequestCreateNestedOneWithoutPurchaseInvoicesInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutPurchaseInvoicesInput, Prisma.AccessRequestUncheckedCreateWithoutPurchaseInvoicesInput>
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutPurchaseInvoicesInput
+  connect?: Prisma.AccessRequestWhereUniqueInput
+}
+
+export type AccessRequestUpdateOneWithoutPurchaseInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutPurchaseInvoicesInput, Prisma.AccessRequestUncheckedCreateWithoutPurchaseInvoicesInput>
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutPurchaseInvoicesInput
+  upsert?: Prisma.AccessRequestUpsertWithoutPurchaseInvoicesInput
+  disconnect?: Prisma.AccessRequestWhereInput | boolean
+  delete?: Prisma.AccessRequestWhereInput | boolean
+  connect?: Prisma.AccessRequestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestUpdateToOneWithWhereWithoutPurchaseInvoicesInput, Prisma.AccessRequestUpdateWithoutPurchaseInvoicesInput>, Prisma.AccessRequestUncheckedUpdateWithoutPurchaseInvoicesInput>
+}
+
 export type AccessRequestCreateWithoutBudgetCommitmentsInput = {
   routingMode?: $Enums.RequestRoutingMode
   oneStepReason?: string | null
@@ -2349,6 +2372,7 @@ export type AccessRequestCreateWithoutBudgetCommitmentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -2424,6 +2448,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetCommitmentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -2513,6 +2538,7 @@ export type AccessRequestUpdateWithoutBudgetCommitmentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -2588,6 +2614,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetCommitmentsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -2661,6 +2688,7 @@ export type AccessRequestCreateWithoutPlanInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -2736,6 +2764,7 @@ export type AccessRequestUncheckedCreateWithoutPlanInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -2893,6 +2922,7 @@ export type AccessRequestCreateWithoutAmountCurrencyRecordInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -2968,6 +2998,7 @@ export type AccessRequestUncheckedCreateWithoutAmountCurrencyRecordInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -3068,6 +3099,7 @@ export type AccessRequestCreateWithoutReplacesAssignmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -3142,6 +3174,7 @@ export type AccessRequestUncheckedCreateWithoutReplacesAssignmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -3241,6 +3274,7 @@ export type AccessRequestCreateWithoutOrganizationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -3316,6 +3350,7 @@ export type AccessRequestUncheckedCreateWithoutOrganizationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -3415,6 +3450,7 @@ export type AccessRequestCreateWithoutCostCenterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -3490,6 +3526,7 @@ export type AccessRequestUncheckedCreateWithoutCostCenterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -3589,6 +3626,7 @@ export type AccessRequestCreateWithoutDepartmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -3664,6 +3702,7 @@ export type AccessRequestUncheckedCreateWithoutDepartmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -3763,6 +3802,7 @@ export type AccessRequestCreateWithoutRequesterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -3838,6 +3878,7 @@ export type AccessRequestUncheckedCreateWithoutRequesterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -3921,6 +3962,7 @@ export type AccessRequestCreateWithoutWithdrawnByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -3996,6 +4038,7 @@ export type AccessRequestUncheckedCreateWithoutWithdrawnByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -4079,6 +4122,7 @@ export type AccessRequestCreateWithoutCancelledByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -4154,6 +4198,7 @@ export type AccessRequestUncheckedCreateWithoutCancelledByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -4285,6 +4330,7 @@ export type AccessRequestCreateWithoutBeneficiariesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -4360,6 +4406,7 @@ export type AccessRequestUncheckedCreateWithoutBeneficiariesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -4449,6 +4496,7 @@ export type AccessRequestUpdateWithoutBeneficiariesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -4524,6 +4572,7 @@ export type AccessRequestUncheckedUpdateWithoutBeneficiariesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -4597,6 +4646,7 @@ export type AccessRequestCreateWithoutLinesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -4672,6 +4722,7 @@ export type AccessRequestUncheckedCreateWithoutLinesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -4761,6 +4812,7 @@ export type AccessRequestUpdateWithoutLinesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -4836,6 +4888,7 @@ export type AccessRequestUncheckedUpdateWithoutLinesInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -4909,6 +4962,7 @@ export type AccessRequestCreateWithoutLineAmountsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -4984,6 +5038,7 @@ export type AccessRequestUncheckedCreateWithoutLineAmountsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -5073,6 +5128,7 @@ export type AccessRequestUpdateWithoutLineAmountsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -5148,6 +5204,7 @@ export type AccessRequestUncheckedUpdateWithoutLineAmountsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -5221,6 +5278,7 @@ export type AccessRequestCreateWithoutStepsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -5296,6 +5354,7 @@ export type AccessRequestUncheckedCreateWithoutStepsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -5385,6 +5444,7 @@ export type AccessRequestUpdateWithoutStepsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -5460,6 +5520,7 @@ export type AccessRequestUncheckedUpdateWithoutStepsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -5533,6 +5594,7 @@ export type AccessRequestCreateWithoutApprovalRecordsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -5608,6 +5670,7 @@ export type AccessRequestUncheckedCreateWithoutApprovalRecordsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -5697,6 +5760,7 @@ export type AccessRequestUpdateWithoutApprovalRecordsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -5772,6 +5836,7 @@ export type AccessRequestUncheckedUpdateWithoutApprovalRecordsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -5845,6 +5910,7 @@ export type AccessRequestCreateWithoutProposalInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -5920,6 +5986,7 @@ export type AccessRequestUncheckedCreateWithoutProposalInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -6009,6 +6076,7 @@ export type AccessRequestUpdateWithoutProposalInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -6084,6 +6152,7 @@ export type AccessRequestUncheckedUpdateWithoutProposalInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -6157,6 +6226,7 @@ export type AccessRequestCreateWithoutAssessmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -6232,6 +6302,7 @@ export type AccessRequestUncheckedCreateWithoutAssessmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -6321,6 +6392,7 @@ export type AccessRequestUpdateWithoutAssessmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -6396,6 +6468,7 @@ export type AccessRequestUncheckedUpdateWithoutAssessmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -6469,6 +6542,7 @@ export type AccessRequestCreateWithoutBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -6544,6 +6618,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -6633,6 +6708,7 @@ export type AccessRequestUpdateWithoutBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -6708,6 +6784,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetChecksInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -6781,6 +6858,7 @@ export type AccessRequestCreateWithoutFinanceReviewsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -6856,6 +6934,7 @@ export type AccessRequestUncheckedCreateWithoutFinanceReviewsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -6945,6 +7024,7 @@ export type AccessRequestUpdateWithoutFinanceReviewsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -7020,6 +7100,7 @@ export type AccessRequestUncheckedUpdateWithoutFinanceReviewsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -7093,6 +7174,7 @@ export type AccessRequestCreateWithoutBatchItemsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -7168,6 +7250,7 @@ export type AccessRequestUncheckedCreateWithoutBatchItemsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -7257,6 +7340,7 @@ export type AccessRequestUpdateWithoutBatchItemsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -7332,6 +7416,7 @@ export type AccessRequestUncheckedUpdateWithoutBatchItemsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -7405,6 +7490,7 @@ export type AccessRequestCreateWithoutSupplementsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -7480,6 +7566,7 @@ export type AccessRequestUncheckedCreateWithoutSupplementsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -7569,6 +7656,7 @@ export type AccessRequestUpdateWithoutSupplementsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -7644,6 +7732,7 @@ export type AccessRequestUncheckedUpdateWithoutSupplementsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -7717,6 +7806,7 @@ export type AccessRequestCreateWithoutSpendDecisionsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -7792,6 +7882,7 @@ export type AccessRequestUncheckedCreateWithoutSpendDecisionsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -7881,6 +7972,7 @@ export type AccessRequestUpdateWithoutSpendDecisionsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -7956,6 +8048,7 @@ export type AccessRequestUncheckedUpdateWithoutSpendDecisionsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -8029,6 +8122,7 @@ export type AccessRequestCreateWithoutReserveConfirmationsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -8104,6 +8198,7 @@ export type AccessRequestUncheckedCreateWithoutReserveConfirmationsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -8193,6 +8288,7 @@ export type AccessRequestUpdateWithoutReserveConfirmationsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -8268,6 +8364,7 @@ export type AccessRequestUncheckedUpdateWithoutReserveConfirmationsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -8341,6 +8438,7 @@ export type AccessRequestCreateWithoutBudgetInformationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -8416,6 +8514,7 @@ export type AccessRequestUncheckedCreateWithoutBudgetInformationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -8505,6 +8604,7 @@ export type AccessRequestUpdateWithoutBudgetInformationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -8580,6 +8680,7 @@ export type AccessRequestUncheckedUpdateWithoutBudgetInformationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -8653,6 +8754,7 @@ export type AccessRequestCreateWithoutControlledWaitAlertsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -8728,6 +8830,7 @@ export type AccessRequestUncheckedCreateWithoutControlledWaitAlertsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -8817,6 +8920,7 @@ export type AccessRequestUpdateWithoutControlledWaitAlertsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -8892,6 +8996,7 @@ export type AccessRequestUncheckedUpdateWithoutControlledWaitAlertsInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -8965,6 +9070,7 @@ export type AccessRequestCreateWithoutServiceAccountInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -9040,6 +9146,7 @@ export type AccessRequestUncheckedCreateWithoutServiceAccountInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -9129,6 +9236,7 @@ export type AccessRequestUpdateWithoutServiceAccountInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -9204,6 +9312,7 @@ export type AccessRequestUncheckedUpdateWithoutServiceAccountInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -9278,6 +9387,7 @@ export type AccessRequestCreateWithoutReturnsFromHereInput = {
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
 
@@ -9353,6 +9463,7 @@ export type AccessRequestUncheckedCreateWithoutReturnsFromHereInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
 }
 
 export type AccessRequestCreateOrConnectWithoutReturnsFromHereInput = {
@@ -9442,6 +9553,7 @@ export type AccessRequestUpdateWithoutReturnsFromHereInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
 
@@ -9517,6 +9629,7 @@ export type AccessRequestUncheckedUpdateWithoutReturnsFromHereInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
 }
 
 export type AccessRequestCreateWithoutRenewalInput = {
@@ -9589,6 +9702,7 @@ export type AccessRequestCreateWithoutRenewalInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -9664,6 +9778,7 @@ export type AccessRequestUncheckedCreateWithoutRenewalInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -9753,6 +9868,7 @@ export type AccessRequestUpdateWithoutRenewalInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -9828,6 +9944,7 @@ export type AccessRequestUncheckedUpdateWithoutRenewalInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -9901,6 +10018,7 @@ export type AccessRequestCreateWithoutStepSlaRemindersInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
   replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
 }
@@ -9976,6 +10094,7 @@ export type AccessRequestUncheckedCreateWithoutStepSlaRemindersInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
   renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedCreateNestedManyWithoutRequestInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
 }
 
@@ -10065,6 +10184,7 @@ export type AccessRequestUpdateWithoutStepSlaRemindersInput = {
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -10138,6 +10258,323 @@ export type AccessRequestUncheckedUpdateWithoutStepSlaRemindersInput = {
   budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
   reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
   controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
+  renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
+  returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
+}
+
+export type AccessRequestCreateWithoutPurchaseInvoicesInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
+  id?: string
+  type?: $Enums.AccessRequestType
+  branch: $Enums.AccessRequestBranch
+  state: $Enums.AccessRequestState
+  businessReason: string
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
+  pricingStatus?: $Enums.AccessRequestPricingStatus
+  priceMissingReason?: string | null
+  expectedSpendOn?: Date | string | null
+  budgetYear?: number | null
+  amountMinor?: bigint | number | null
+  unitPriceMinor?: bigint | number | null
+  billingCycle?: $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: string | null
+  planLinePosition?: number | null
+  planLineConfirmed?: boolean
+  offPlan?: boolean
+  delegatedBatchId?: string | null
+  expectedEndDate?: Date | string | null
+  policy: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Date | string | null
+  withdrawalReason?: string | null
+  withdrawnAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelCause?: $Enums.AccessRequestCancelCause | null
+  cancelNote?: string | null
+  grantCompletedAt?: Date | string | null
+  spendQueuedAt?: Date | string | null
+  createdByAppUserId: string
+  submittedAt?: Date | string | null
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutAccessRequestsInput
+  plan?: Prisma.PlanCreateNestedOneWithoutAccessRequestsInput
+  requester: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsMadeInput
+  withdrawnBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsWithdrawnInput
+  cancelledBy?: Prisma.EmployeeCreateNestedOneWithoutAccessRequestsCancelledInput
+  department: Prisma.DepartmentCreateNestedOneWithoutAccessRequestsInput
+  costCenter?: Prisma.CostCenterCreateNestedOneWithoutAccessRequestsInput
+  amountCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAccessRequestAmountsInput
+  beneficiaries?: Prisma.AccessRequestBeneficiaryCreateNestedManyWithoutRequestInput
+  lines?: Prisma.AccessRequestLineCreateNestedManyWithoutRequestInput
+  lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutRequestInput
+  steps?: Prisma.AccessRequestStepCreateNestedManyWithoutRequestInput
+  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutRequestInput
+  proposal?: Prisma.AccessRequestProposalCreateNestedOneWithoutRequestInput
+  assessment?: Prisma.AccessRequestAssessmentCreateNestedOneWithoutRequestInput
+  budgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutRequestInput
+  financeReviews?: Prisma.RequestFinanceReviewCreateNestedManyWithoutRequestInput
+  batchItems?: Prisma.SpendBatchItemCreateNestedManyWithoutRequestInput
+  supplements?: Prisma.RequestSupplementCreateNestedManyWithoutRequestInput
+  spendDecisions?: Prisma.SpendDecisionCreateNestedManyWithoutRequestInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutRequestInput
+  budgetInformation?: Prisma.BudgetInformationRequestCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutRequestInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutRequestInput
+  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutRequestInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountCreateNestedOneWithoutRequestInput
+  renewal?: Prisma.AccessRequestRenewalCreateNestedOneWithoutRequestInput
+  returnsFromHere?: Prisma.ReturnRequestCreateNestedManyWithoutOriginRequestInput
+  replacesAssignment?: Prisma.LicenseAssignmentCreateNestedOneWithoutReplacedByRequestsInput
+}
+
+export type AccessRequestUncheckedCreateWithoutPurchaseInvoicesInput = {
+  routingMode?: $Enums.RequestRoutingMode
+  oneStepReason?: string | null
+  oneStepBlockedReason?: string | null
+  manyPaidSoftware?: boolean
+  manyPaidSoftwareCount?: number | null
+  manyPaidSoftwareReason?: string | null
+  limitExemption?: string | null
+  replacesAssignmentId?: string | null
+  id?: string
+  organizationId: string
+  type?: $Enums.AccessRequestType
+  branch: $Enums.AccessRequestBranch
+  state: $Enums.AccessRequestState
+  planId?: string | null
+  requesterEmployeeId: string
+  departmentId: string
+  costCenterId?: string | null
+  businessReason: string
+  termMonths?: number | null
+  amountMonths?: number | null
+  priceKind?: $Enums.AccessRequestPriceKind | null
+  grantedOn?: Date | string | null
+  nextYearAmountMinor?: bigint | number | null
+  pricingStatus?: $Enums.AccessRequestPricingStatus
+  priceMissingReason?: string | null
+  expectedSpendOn?: Date | string | null
+  budgetYear?: number | null
+  amountMinor?: bigint | number | null
+  amountCurrency?: string | null
+  unitPriceMinor?: bigint | number | null
+  billingCycle?: $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: string | null
+  planLinePosition?: number | null
+  planLineConfirmed?: boolean
+  offPlan?: boolean
+  delegatedBatchId?: string | null
+  expectedEndDate?: Date | string | null
+  policy: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Date | string | null
+  withdrawnByEmployeeId?: string | null
+  withdrawalReason?: string | null
+  withdrawnAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  cancelledByEmployeeId?: string | null
+  cancelCause?: $Enums.AccessRequestCancelCause | null
+  cancelNote?: string | null
+  grantCompletedAt?: Date | string | null
+  spendQueuedAt?: Date | string | null
+  createdByAppUserId: string
+  submittedAt?: Date | string | null
+  updatedAt?: Date | string
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedCreateNestedManyWithoutRequestInput
+  lines?: Prisma.AccessRequestLineUncheckedCreateNestedManyWithoutRequestInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutRequestInput
+  steps?: Prisma.AccessRequestStepUncheckedCreateNestedManyWithoutRequestInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutRequestInput
+  proposal?: Prisma.AccessRequestProposalUncheckedCreateNestedOneWithoutRequestInput
+  assessment?: Prisma.AccessRequestAssessmentUncheckedCreateNestedOneWithoutRequestInput
+  budgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutRequestInput
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedCreateNestedManyWithoutRequestInput
+  batchItems?: Prisma.SpendBatchItemUncheckedCreateNestedManyWithoutRequestInput
+  supplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutRequestInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedCreateNestedManyWithoutRequestInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutRequestInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedCreateNestedManyWithoutRequestInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutRequestInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutRequestInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutRequestInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedCreateNestedOneWithoutRequestInput
+  renewal?: Prisma.AccessRequestRenewalUncheckedCreateNestedOneWithoutRequestInput
+  returnsFromHere?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOriginRequestInput
+}
+
+export type AccessRequestCreateOrConnectWithoutPurchaseInvoicesInput = {
+  where: Prisma.AccessRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutPurchaseInvoicesInput, Prisma.AccessRequestUncheckedCreateWithoutPurchaseInvoicesInput>
+}
+
+export type AccessRequestUpsertWithoutPurchaseInvoicesInput = {
+  update: Prisma.XOR<Prisma.AccessRequestUpdateWithoutPurchaseInvoicesInput, Prisma.AccessRequestUncheckedUpdateWithoutPurchaseInvoicesInput>
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutPurchaseInvoicesInput, Prisma.AccessRequestUncheckedCreateWithoutPurchaseInvoicesInput>
+  where?: Prisma.AccessRequestWhereInput
+}
+
+export type AccessRequestUpdateToOneWithWhereWithoutPurchaseInvoicesInput = {
+  where?: Prisma.AccessRequestWhereInput
+  data: Prisma.XOR<Prisma.AccessRequestUpdateWithoutPurchaseInvoicesInput, Prisma.AccessRequestUncheckedUpdateWithoutPurchaseInvoicesInput>
+}
+
+export type AccessRequestUpdateWithoutPurchaseInvoicesInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
+  branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
+  state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
+  businessReason?: Prisma.StringFieldUpdateOperationsInput | string
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
+  priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planLinePosition?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  planLineConfirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  delegatedBatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  policy?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
+  cancelNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  spendQueuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutAccessRequestsNestedInput
+  plan?: Prisma.PlanUpdateOneWithoutAccessRequestsNestedInput
+  requester?: Prisma.EmployeeUpdateOneRequiredWithoutAccessRequestsMadeNestedInput
+  withdrawnBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestsWithdrawnNestedInput
+  cancelledBy?: Prisma.EmployeeUpdateOneWithoutAccessRequestsCancelledNestedInput
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutAccessRequestsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneWithoutAccessRequestsNestedInput
+  amountCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAccessRequestAmountsNestedInput
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUpdateManyWithoutRequestNestedInput
+  lines?: Prisma.AccessRequestLineUpdateManyWithoutRequestNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutRequestNestedInput
+  steps?: Prisma.AccessRequestStepUpdateManyWithoutRequestNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutRequestNestedInput
+  proposal?: Prisma.AccessRequestProposalUpdateOneWithoutRequestNestedInput
+  assessment?: Prisma.AccessRequestAssessmentUpdateOneWithoutRequestNestedInput
+  budgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutRequestNestedInput
+  financeReviews?: Prisma.RequestFinanceReviewUpdateManyWithoutRequestNestedInput
+  batchItems?: Prisma.SpendBatchItemUpdateManyWithoutRequestNestedInput
+  supplements?: Prisma.RequestSupplementUpdateManyWithoutRequestNestedInput
+  spendDecisions?: Prisma.SpendDecisionUpdateManyWithoutRequestNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutRequestNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutRequestNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutRequestNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
+  serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
+  renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
+  replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
+}
+
+export type AccessRequestUncheckedUpdateWithoutPurchaseInvoicesInput = {
+  routingMode?: Prisma.EnumRequestRoutingModeFieldUpdateOperationsInput | $Enums.RequestRoutingMode
+  oneStepReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oneStepBlockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manyPaidSoftware?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  manyPaidSoftwareCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  manyPaidSoftwareReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  limitExemption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAccessRequestTypeFieldUpdateOperationsInput | $Enums.AccessRequestType
+  branch?: Prisma.EnumAccessRequestBranchFieldUpdateOperationsInput | $Enums.AccessRequestBranch
+  state?: Prisma.EnumAccessRequestStateFieldUpdateOperationsInput | $Enums.AccessRequestState
+  planId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requesterEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  businessReason?: Prisma.StringFieldUpdateOperationsInput | string
+  termMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceKind?: Prisma.NullableEnumAccessRequestPriceKindFieldUpdateOperationsInput | $Enums.AccessRequestPriceKind | null
+  grantedOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nextYearAmountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pricingStatus?: Prisma.EnumAccessRequestPricingStatusFieldUpdateOperationsInput | $Enums.AccessRequestPricingStatus
+  priceMissingReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSpendOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budgetYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  amountMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  amountCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  billingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  paymentSchedule?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  planLineVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planLinePosition?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  planLineConfirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  delegatedBatchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  policy?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  withdrawalRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelCause?: Prisma.NullableEnumAccessRequestCancelCauseFieldUpdateOperationsInput | $Enums.AccessRequestCancelCause | null
+  cancelNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  spendQueuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  beneficiaries?: Prisma.AccessRequestBeneficiaryUncheckedUpdateManyWithoutRequestNestedInput
+  lines?: Prisma.AccessRequestLineUncheckedUpdateManyWithoutRequestNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutRequestNestedInput
+  steps?: Prisma.AccessRequestStepUncheckedUpdateManyWithoutRequestNestedInput
+  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutRequestNestedInput
+  proposal?: Prisma.AccessRequestProposalUncheckedUpdateOneWithoutRequestNestedInput
+  assessment?: Prisma.AccessRequestAssessmentUncheckedUpdateOneWithoutRequestNestedInput
+  budgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutRequestNestedInput
+  financeReviews?: Prisma.RequestFinanceReviewUncheckedUpdateManyWithoutRequestNestedInput
+  batchItems?: Prisma.SpendBatchItemUncheckedUpdateManyWithoutRequestNestedInput
+  supplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutRequestNestedInput
+  spendDecisions?: Prisma.SpendDecisionUncheckedUpdateManyWithoutRequestNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutRequestNestedInput
+  budgetInformation?: Prisma.BudgetInformationRequestUncheckedUpdateManyWithoutRequestNestedInput
+  reserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutRequestNestedInput
+  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutRequestNestedInput
+  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
@@ -10267,6 +10704,7 @@ export type AccessRequestUpdateWithoutPlanInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -10342,6 +10780,7 @@ export type AccessRequestUncheckedUpdateWithoutPlanInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -10523,6 +10962,7 @@ export type AccessRequestUpdateWithoutAmountCurrencyRecordInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -10598,6 +11038,7 @@ export type AccessRequestUncheckedUpdateWithoutAmountCurrencyRecordInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -10780,6 +11221,7 @@ export type AccessRequestUpdateWithoutReplacesAssignmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -10854,6 +11296,7 @@ export type AccessRequestUncheckedUpdateWithoutReplacesAssignmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -11035,6 +11478,7 @@ export type AccessRequestUpdateWithoutOrganizationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -11110,6 +11554,7 @@ export type AccessRequestUncheckedUpdateWithoutOrganizationInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -11291,6 +11736,7 @@ export type AccessRequestUpdateWithoutCostCenterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -11366,6 +11812,7 @@ export type AccessRequestUncheckedUpdateWithoutCostCenterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -11547,6 +11994,7 @@ export type AccessRequestUpdateWithoutDepartmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -11622,6 +12070,7 @@ export type AccessRequestUncheckedUpdateWithoutDepartmentInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -11911,6 +12360,7 @@ export type AccessRequestUpdateWithoutRequesterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -11986,6 +12436,7 @@ export type AccessRequestUncheckedUpdateWithoutRequesterInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -12113,6 +12564,7 @@ export type AccessRequestUpdateWithoutWithdrawnByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -12188,6 +12640,7 @@ export type AccessRequestUncheckedUpdateWithoutWithdrawnByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -12315,6 +12768,7 @@ export type AccessRequestUpdateWithoutCancelledByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUpdateManyWithoutOriginRequestNestedInput
   replacesAssignment?: Prisma.LicenseAssignmentUpdateOneWithoutReplacedByRequestsNestedInput
 }
@@ -12390,6 +12844,7 @@ export type AccessRequestUncheckedUpdateWithoutCancelledByInput = {
   stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutRequestNestedInput
   serviceAccount?: Prisma.AccessRequestServiceAccountUncheckedUpdateOneWithoutRequestNestedInput
   renewal?: Prisma.AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput
+  purchaseInvoices?: Prisma.PurchaseInvoiceUncheckedUpdateManyWithoutRequestNestedInput
   returnsFromHere?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOriginRequestNestedInput
 }
 
@@ -12468,6 +12923,7 @@ export type AccessRequestCountOutputType = {
   reserveConfirmations: number
   controlledWaitAlerts: number
   stepSlaReminders: number
+  purchaseInvoices: number
   returnsFromHere: number
 }
 
@@ -12487,6 +12943,7 @@ export type AccessRequestCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   reserveConfirmations?: boolean | AccessRequestCountOutputTypeCountReserveConfirmationsArgs
   controlledWaitAlerts?: boolean | AccessRequestCountOutputTypeCountControlledWaitAlertsArgs
   stepSlaReminders?: boolean | AccessRequestCountOutputTypeCountStepSlaRemindersArgs
+  purchaseInvoices?: boolean | AccessRequestCountOutputTypeCountPurchaseInvoicesArgs
   returnsFromHere?: boolean | AccessRequestCountOutputTypeCountReturnsFromHereArgs
 }
 
@@ -12608,6 +13065,13 @@ export type AccessRequestCountOutputTypeCountStepSlaRemindersArgs<ExtArgs extend
 /**
  * AccessRequestCountOutputType without action
  */
+export type AccessRequestCountOutputTypeCountPurchaseInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PurchaseInvoiceWhereInput
+}
+
+/**
+ * AccessRequestCountOutputType without action
+ */
 export type AccessRequestCountOutputTypeCountReturnsFromHereArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ReturnRequestWhereInput
 }
@@ -12693,6 +13157,7 @@ export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.Interna
   stepSlaReminders?: boolean | Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs>
   serviceAccount?: boolean | Prisma.AccessRequest$serviceAccountArgs<ExtArgs>
   renewal?: boolean | Prisma.AccessRequest$renewalArgs<ExtArgs>
+  purchaseInvoices?: boolean | Prisma.AccessRequest$purchaseInvoicesArgs<ExtArgs>
   returnsFromHere?: boolean | Prisma.AccessRequest$returnsFromHereArgs<ExtArgs>
   replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
   _count?: boolean | Prisma.AccessRequestCountOutputTypeDefaultArgs<ExtArgs>
@@ -12910,6 +13375,7 @@ export type AccessRequestInclude<ExtArgs extends runtime.Types.Extensions.Intern
   stepSlaReminders?: boolean | Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs>
   serviceAccount?: boolean | Prisma.AccessRequest$serviceAccountArgs<ExtArgs>
   renewal?: boolean | Prisma.AccessRequest$renewalArgs<ExtArgs>
+  purchaseInvoices?: boolean | Prisma.AccessRequest$purchaseInvoicesArgs<ExtArgs>
   returnsFromHere?: boolean | Prisma.AccessRequest$returnsFromHereArgs<ExtArgs>
   replacesAssignment?: boolean | Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>
   _count?: boolean | Prisma.AccessRequestCountOutputTypeDefaultArgs<ExtArgs>
@@ -12967,6 +13433,7 @@ export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.Inter
     stepSlaReminders: Prisma.$StepSlaReminderPayload<ExtArgs>[]
     serviceAccount: Prisma.$AccessRequestServiceAccountPayload<ExtArgs> | null
     renewal: Prisma.$AccessRequestRenewalPayload<ExtArgs> | null
+    purchaseInvoices: Prisma.$PurchaseInvoicePayload<ExtArgs>[]
     returnsFromHere: Prisma.$ReturnRequestPayload<ExtArgs>[]
     replacesAssignment: Prisma.$LicenseAssignmentPayload<ExtArgs> | null
   }
@@ -13444,6 +13911,7 @@ export interface Prisma__AccessRequestClient<T, Null = never, ExtArgs extends ru
   stepSlaReminders<T extends Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$stepSlaRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StepSlaReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   serviceAccount<T extends Prisma.AccessRequest$serviceAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$serviceAccountArgs<ExtArgs>>): Prisma.Prisma__AccessRequestServiceAccountClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestServiceAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   renewal<T extends Prisma.AccessRequest$renewalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$renewalArgs<ExtArgs>>): Prisma.Prisma__AccessRequestRenewalClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestRenewalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  purchaseInvoices<T extends Prisma.AccessRequest$purchaseInvoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$purchaseInvoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   returnsFromHere<T extends Prisma.AccessRequest$returnsFromHereArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$returnsFromHereArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   replacesAssignment<T extends Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$replacesAssignmentArgs<ExtArgs>>): Prisma.Prisma__LicenseAssignmentClient<runtime.Types.Result.GetResult<Prisma.$LicenseAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -14456,6 +14924,30 @@ export type AccessRequest$renewalArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.AccessRequestRenewalInclude<ExtArgs> | null
   where?: Prisma.AccessRequestRenewalWhereInput
+}
+
+/**
+ * AccessRequest.purchaseInvoices
+ */
+export type AccessRequest$purchaseInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PurchaseInvoice
+   */
+  select?: Prisma.PurchaseInvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PurchaseInvoice
+   */
+  omit?: Prisma.PurchaseInvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PurchaseInvoiceInclude<ExtArgs> | null
+  where?: Prisma.PurchaseInvoiceWhereInput
+  orderBy?: Prisma.PurchaseInvoiceOrderByWithRelationInput | Prisma.PurchaseInvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.PurchaseInvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PurchaseInvoiceScalarFieldEnum | Prisma.PurchaseInvoiceScalarFieldEnum[]
 }
 
 /**

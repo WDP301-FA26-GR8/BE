@@ -41,6 +41,7 @@ export type AccessRequestProposalMinAggregateOutputType = {
   purpose: string | null
   dataDescription: string | null
   expectedUsers: number | null
+  existingApplicationId: string | null
 }
 
 export type AccessRequestProposalMaxAggregateOutputType = {
@@ -50,6 +51,7 @@ export type AccessRequestProposalMaxAggregateOutputType = {
   purpose: string | null
   dataDescription: string | null
   expectedUsers: number | null
+  existingApplicationId: string | null
 }
 
 export type AccessRequestProposalCountAggregateOutputType = {
@@ -59,6 +61,7 @@ export type AccessRequestProposalCountAggregateOutputType = {
   purpose: number
   dataDescription: number
   expectedUsers: number
+  existingApplicationId: number
   _all: number
 }
 
@@ -78,6 +81,7 @@ export type AccessRequestProposalMinAggregateInputType = {
   purpose?: true
   dataDescription?: true
   expectedUsers?: true
+  existingApplicationId?: true
 }
 
 export type AccessRequestProposalMaxAggregateInputType = {
@@ -87,6 +91,7 @@ export type AccessRequestProposalMaxAggregateInputType = {
   purpose?: true
   dataDescription?: true
   expectedUsers?: true
+  existingApplicationId?: true
 }
 
 export type AccessRequestProposalCountAggregateInputType = {
@@ -96,6 +101,7 @@ export type AccessRequestProposalCountAggregateInputType = {
   purpose?: true
   dataDescription?: true
   expectedUsers?: true
+  existingApplicationId?: true
   _all?: true
 }
 
@@ -192,6 +198,7 @@ export type AccessRequestProposalGroupByOutputType = {
   purpose: string
   dataDescription: string
   expectedUsers: number
+  existingApplicationId: string | null
   _count: AccessRequestProposalCountAggregateOutputType | null
   _avg: AccessRequestProposalAvgAggregateOutputType | null
   _sum: AccessRequestProposalSumAggregateOutputType | null
@@ -224,7 +231,9 @@ export type AccessRequestProposalWhereInput = {
   purpose?: Prisma.StringFilter<"AccessRequestProposal"> | string
   dataDescription?: Prisma.StringFilter<"AccessRequestProposal"> | string
   expectedUsers?: Prisma.IntFilter<"AccessRequestProposal"> | number
+  existingApplicationId?: Prisma.UuidNullableFilter<"AccessRequestProposal"> | string | null
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
+  existingApplication?: Prisma.XOR<Prisma.ApplicationNullableScalarRelationFilter, Prisma.ApplicationWhereInput> | null
 }
 
 export type AccessRequestProposalOrderByWithRelationInput = {
@@ -234,7 +243,9 @@ export type AccessRequestProposalOrderByWithRelationInput = {
   purpose?: Prisma.SortOrder
   dataDescription?: Prisma.SortOrder
   expectedUsers?: Prisma.SortOrder
+  existingApplicationId?: Prisma.SortOrderInput | Prisma.SortOrder
   request?: Prisma.AccessRequestOrderByWithRelationInput
+  existingApplication?: Prisma.ApplicationOrderByWithRelationInput
 }
 
 export type AccessRequestProposalWhereUniqueInput = Prisma.AtLeast<{
@@ -247,7 +258,9 @@ export type AccessRequestProposalWhereUniqueInput = Prisma.AtLeast<{
   purpose?: Prisma.StringFilter<"AccessRequestProposal"> | string
   dataDescription?: Prisma.StringFilter<"AccessRequestProposal"> | string
   expectedUsers?: Prisma.IntFilter<"AccessRequestProposal"> | number
+  existingApplicationId?: Prisma.UuidNullableFilter<"AccessRequestProposal"> | string | null
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
+  existingApplication?: Prisma.XOR<Prisma.ApplicationNullableScalarRelationFilter, Prisma.ApplicationWhereInput> | null
 }, "requestId">
 
 export type AccessRequestProposalOrderByWithAggregationInput = {
@@ -257,6 +270,7 @@ export type AccessRequestProposalOrderByWithAggregationInput = {
   purpose?: Prisma.SortOrder
   dataDescription?: Prisma.SortOrder
   expectedUsers?: Prisma.SortOrder
+  existingApplicationId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AccessRequestProposalCountOrderByAggregateInput
   _avg?: Prisma.AccessRequestProposalAvgOrderByAggregateInput
   _max?: Prisma.AccessRequestProposalMaxOrderByAggregateInput
@@ -274,6 +288,7 @@ export type AccessRequestProposalScalarWhereWithAggregatesInput = {
   purpose?: Prisma.StringWithAggregatesFilter<"AccessRequestProposal"> | string
   dataDescription?: Prisma.StringWithAggregatesFilter<"AccessRequestProposal"> | string
   expectedUsers?: Prisma.IntWithAggregatesFilter<"AccessRequestProposal"> | number
+  existingApplicationId?: Prisma.UuidNullableWithAggregatesFilter<"AccessRequestProposal"> | string | null
 }
 
 export type AccessRequestProposalCreateInput = {
@@ -283,6 +298,7 @@ export type AccessRequestProposalCreateInput = {
   dataDescription: string
   expectedUsers: number
   request: Prisma.AccessRequestCreateNestedOneWithoutProposalInput
+  existingApplication?: Prisma.ApplicationCreateNestedOneWithoutShortProposalsInput
 }
 
 export type AccessRequestProposalUncheckedCreateInput = {
@@ -292,6 +308,7 @@ export type AccessRequestProposalUncheckedCreateInput = {
   purpose: string
   dataDescription: string
   expectedUsers: number
+  existingApplicationId?: string | null
 }
 
 export type AccessRequestProposalUpdateInput = {
@@ -301,6 +318,7 @@ export type AccessRequestProposalUpdateInput = {
   dataDescription?: Prisma.StringFieldUpdateOperationsInput | string
   expectedUsers?: Prisma.IntFieldUpdateOperationsInput | number
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutProposalNestedInput
+  existingApplication?: Prisma.ApplicationUpdateOneWithoutShortProposalsNestedInput
 }
 
 export type AccessRequestProposalUncheckedUpdateInput = {
@@ -310,6 +328,7 @@ export type AccessRequestProposalUncheckedUpdateInput = {
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   dataDescription?: Prisma.StringFieldUpdateOperationsInput | string
   expectedUsers?: Prisma.IntFieldUpdateOperationsInput | number
+  existingApplicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessRequestProposalCreateManyInput = {
@@ -319,6 +338,7 @@ export type AccessRequestProposalCreateManyInput = {
   purpose: string
   dataDescription: string
   expectedUsers: number
+  existingApplicationId?: string | null
 }
 
 export type AccessRequestProposalUpdateManyMutationInput = {
@@ -336,6 +356,17 @@ export type AccessRequestProposalUncheckedUpdateManyInput = {
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   dataDescription?: Prisma.StringFieldUpdateOperationsInput | string
   expectedUsers?: Prisma.IntFieldUpdateOperationsInput | number
+  existingApplicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type AccessRequestProposalListRelationFilter = {
+  every?: Prisma.AccessRequestProposalWhereInput
+  some?: Prisma.AccessRequestProposalWhereInput
+  none?: Prisma.AccessRequestProposalWhereInput
+}
+
+export type AccessRequestProposalOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type AccessRequestProposalNullableScalarRelationFilter = {
@@ -350,6 +381,7 @@ export type AccessRequestProposalCountOrderByAggregateInput = {
   purpose?: Prisma.SortOrder
   dataDescription?: Prisma.SortOrder
   expectedUsers?: Prisma.SortOrder
+  existingApplicationId?: Prisma.SortOrder
 }
 
 export type AccessRequestProposalAvgOrderByAggregateInput = {
@@ -363,6 +395,7 @@ export type AccessRequestProposalMaxOrderByAggregateInput = {
   purpose?: Prisma.SortOrder
   dataDescription?: Prisma.SortOrder
   expectedUsers?: Prisma.SortOrder
+  existingApplicationId?: Prisma.SortOrder
 }
 
 export type AccessRequestProposalMinOrderByAggregateInput = {
@@ -372,10 +405,53 @@ export type AccessRequestProposalMinOrderByAggregateInput = {
   purpose?: Prisma.SortOrder
   dataDescription?: Prisma.SortOrder
   expectedUsers?: Prisma.SortOrder
+  existingApplicationId?: Prisma.SortOrder
 }
 
 export type AccessRequestProposalSumOrderByAggregateInput = {
   expectedUsers?: Prisma.SortOrder
+}
+
+export type AccessRequestProposalCreateNestedManyWithoutExistingApplicationInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput> | Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput[] | Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput[]
+  connectOrCreate?: Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput | Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput[]
+  createMany?: Prisma.AccessRequestProposalCreateManyExistingApplicationInputEnvelope
+  connect?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+}
+
+export type AccessRequestProposalUncheckedCreateNestedManyWithoutExistingApplicationInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput> | Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput[] | Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput[]
+  connectOrCreate?: Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput | Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput[]
+  createMany?: Prisma.AccessRequestProposalCreateManyExistingApplicationInputEnvelope
+  connect?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+}
+
+export type AccessRequestProposalUpdateManyWithoutExistingApplicationNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput> | Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput[] | Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput[]
+  connectOrCreate?: Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput | Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput[]
+  upsert?: Prisma.AccessRequestProposalUpsertWithWhereUniqueWithoutExistingApplicationInput | Prisma.AccessRequestProposalUpsertWithWhereUniqueWithoutExistingApplicationInput[]
+  createMany?: Prisma.AccessRequestProposalCreateManyExistingApplicationInputEnvelope
+  set?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  delete?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  connect?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  update?: Prisma.AccessRequestProposalUpdateWithWhereUniqueWithoutExistingApplicationInput | Prisma.AccessRequestProposalUpdateWithWhereUniqueWithoutExistingApplicationInput[]
+  updateMany?: Prisma.AccessRequestProposalUpdateManyWithWhereWithoutExistingApplicationInput | Prisma.AccessRequestProposalUpdateManyWithWhereWithoutExistingApplicationInput[]
+  deleteMany?: Prisma.AccessRequestProposalScalarWhereInput | Prisma.AccessRequestProposalScalarWhereInput[]
+}
+
+export type AccessRequestProposalUncheckedUpdateManyWithoutExistingApplicationNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput> | Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput[] | Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput[]
+  connectOrCreate?: Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput | Prisma.AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput[]
+  upsert?: Prisma.AccessRequestProposalUpsertWithWhereUniqueWithoutExistingApplicationInput | Prisma.AccessRequestProposalUpsertWithWhereUniqueWithoutExistingApplicationInput[]
+  createMany?: Prisma.AccessRequestProposalCreateManyExistingApplicationInputEnvelope
+  set?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  delete?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  connect?: Prisma.AccessRequestProposalWhereUniqueInput | Prisma.AccessRequestProposalWhereUniqueInput[]
+  update?: Prisma.AccessRequestProposalUpdateWithWhereUniqueWithoutExistingApplicationInput | Prisma.AccessRequestProposalUpdateWithWhereUniqueWithoutExistingApplicationInput[]
+  updateMany?: Prisma.AccessRequestProposalUpdateManyWithWhereWithoutExistingApplicationInput | Prisma.AccessRequestProposalUpdateManyWithWhereWithoutExistingApplicationInput[]
+  deleteMany?: Prisma.AccessRequestProposalScalarWhereInput | Prisma.AccessRequestProposalScalarWhereInput[]
 }
 
 export type AccessRequestProposalCreateNestedOneWithoutRequestInput = {
@@ -410,12 +486,70 @@ export type AccessRequestProposalUncheckedUpdateOneWithoutRequestNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestProposalUpdateToOneWithWhereWithoutRequestInput, Prisma.AccessRequestProposalUpdateWithoutRequestInput>, Prisma.AccessRequestProposalUncheckedUpdateWithoutRequestInput>
 }
 
+export type AccessRequestProposalCreateWithoutExistingApplicationInput = {
+  softwareName: string
+  homepageUrl: string
+  purpose: string
+  dataDescription: string
+  expectedUsers: number
+  request: Prisma.AccessRequestCreateNestedOneWithoutProposalInput
+}
+
+export type AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput = {
+  requestId: string
+  softwareName: string
+  homepageUrl: string
+  purpose: string
+  dataDescription: string
+  expectedUsers: number
+}
+
+export type AccessRequestProposalCreateOrConnectWithoutExistingApplicationInput = {
+  where: Prisma.AccessRequestProposalWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput>
+}
+
+export type AccessRequestProposalCreateManyExistingApplicationInputEnvelope = {
+  data: Prisma.AccessRequestProposalCreateManyExistingApplicationInput | Prisma.AccessRequestProposalCreateManyExistingApplicationInput[]
+  skipDuplicates?: boolean
+}
+
+export type AccessRequestProposalUpsertWithWhereUniqueWithoutExistingApplicationInput = {
+  where: Prisma.AccessRequestProposalWhereUniqueInput
+  update: Prisma.XOR<Prisma.AccessRequestProposalUpdateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedUpdateWithoutExistingApplicationInput>
+  create: Prisma.XOR<Prisma.AccessRequestProposalCreateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedCreateWithoutExistingApplicationInput>
+}
+
+export type AccessRequestProposalUpdateWithWhereUniqueWithoutExistingApplicationInput = {
+  where: Prisma.AccessRequestProposalWhereUniqueInput
+  data: Prisma.XOR<Prisma.AccessRequestProposalUpdateWithoutExistingApplicationInput, Prisma.AccessRequestProposalUncheckedUpdateWithoutExistingApplicationInput>
+}
+
+export type AccessRequestProposalUpdateManyWithWhereWithoutExistingApplicationInput = {
+  where: Prisma.AccessRequestProposalScalarWhereInput
+  data: Prisma.XOR<Prisma.AccessRequestProposalUpdateManyMutationInput, Prisma.AccessRequestProposalUncheckedUpdateManyWithoutExistingApplicationInput>
+}
+
+export type AccessRequestProposalScalarWhereInput = {
+  AND?: Prisma.AccessRequestProposalScalarWhereInput | Prisma.AccessRequestProposalScalarWhereInput[]
+  OR?: Prisma.AccessRequestProposalScalarWhereInput[]
+  NOT?: Prisma.AccessRequestProposalScalarWhereInput | Prisma.AccessRequestProposalScalarWhereInput[]
+  requestId?: Prisma.UuidFilter<"AccessRequestProposal"> | string
+  softwareName?: Prisma.StringFilter<"AccessRequestProposal"> | string
+  homepageUrl?: Prisma.StringFilter<"AccessRequestProposal"> | string
+  purpose?: Prisma.StringFilter<"AccessRequestProposal"> | string
+  dataDescription?: Prisma.StringFilter<"AccessRequestProposal"> | string
+  expectedUsers?: Prisma.IntFilter<"AccessRequestProposal"> | number
+  existingApplicationId?: Prisma.UuidNullableFilter<"AccessRequestProposal"> | string | null
+}
+
 export type AccessRequestProposalCreateWithoutRequestInput = {
   softwareName: string
   homepageUrl: string
   purpose: string
   dataDescription: string
   expectedUsers: number
+  existingApplication?: Prisma.ApplicationCreateNestedOneWithoutShortProposalsInput
 }
 
 export type AccessRequestProposalUncheckedCreateWithoutRequestInput = {
@@ -424,6 +558,7 @@ export type AccessRequestProposalUncheckedCreateWithoutRequestInput = {
   purpose: string
   dataDescription: string
   expectedUsers: number
+  existingApplicationId?: string | null
 }
 
 export type AccessRequestProposalCreateOrConnectWithoutRequestInput = {
@@ -448,9 +583,47 @@ export type AccessRequestProposalUpdateWithoutRequestInput = {
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   dataDescription?: Prisma.StringFieldUpdateOperationsInput | string
   expectedUsers?: Prisma.IntFieldUpdateOperationsInput | number
+  existingApplication?: Prisma.ApplicationUpdateOneWithoutShortProposalsNestedInput
 }
 
 export type AccessRequestProposalUncheckedUpdateWithoutRequestInput = {
+  softwareName?: Prisma.StringFieldUpdateOperationsInput | string
+  homepageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  dataDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  expectedUsers?: Prisma.IntFieldUpdateOperationsInput | number
+  existingApplicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type AccessRequestProposalCreateManyExistingApplicationInput = {
+  requestId: string
+  softwareName: string
+  homepageUrl: string
+  purpose: string
+  dataDescription: string
+  expectedUsers: number
+}
+
+export type AccessRequestProposalUpdateWithoutExistingApplicationInput = {
+  softwareName?: Prisma.StringFieldUpdateOperationsInput | string
+  homepageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  dataDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  expectedUsers?: Prisma.IntFieldUpdateOperationsInput | number
+  request?: Prisma.AccessRequestUpdateOneRequiredWithoutProposalNestedInput
+}
+
+export type AccessRequestProposalUncheckedUpdateWithoutExistingApplicationInput = {
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  softwareName?: Prisma.StringFieldUpdateOperationsInput | string
+  homepageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  dataDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  expectedUsers?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type AccessRequestProposalUncheckedUpdateManyWithoutExistingApplicationInput = {
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
   softwareName?: Prisma.StringFieldUpdateOperationsInput | string
   homepageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
@@ -467,7 +640,9 @@ export type AccessRequestProposalSelect<ExtArgs extends runtime.Types.Extensions
   purpose?: boolean
   dataDescription?: boolean
   expectedUsers?: boolean
+  existingApplicationId?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
+  existingApplication?: boolean | Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequestProposal"]>
 
 export type AccessRequestProposalSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -477,7 +652,9 @@ export type AccessRequestProposalSelectCreateManyAndReturn<ExtArgs extends runti
   purpose?: boolean
   dataDescription?: boolean
   expectedUsers?: boolean
+  existingApplicationId?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
+  existingApplication?: boolean | Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequestProposal"]>
 
 export type AccessRequestProposalSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -487,7 +664,9 @@ export type AccessRequestProposalSelectUpdateManyAndReturn<ExtArgs extends runti
   purpose?: boolean
   dataDescription?: boolean
   expectedUsers?: boolean
+  existingApplicationId?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
+  existingApplication?: boolean | Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequestProposal"]>
 
 export type AccessRequestProposalSelectScalar = {
@@ -497,23 +676,28 @@ export type AccessRequestProposalSelectScalar = {
   purpose?: boolean
   dataDescription?: boolean
   expectedUsers?: boolean
+  existingApplicationId?: boolean
 }
 
-export type AccessRequestProposalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "softwareName" | "homepageUrl" | "purpose" | "dataDescription" | "expectedUsers", ExtArgs["result"]["accessRequestProposal"]>
+export type AccessRequestProposalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "softwareName" | "homepageUrl" | "purpose" | "dataDescription" | "expectedUsers" | "existingApplicationId", ExtArgs["result"]["accessRequestProposal"]>
 export type AccessRequestProposalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
+  existingApplication?: boolean | Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs>
 }
 export type AccessRequestProposalIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
+  existingApplication?: boolean | Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs>
 }
 export type AccessRequestProposalIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
+  existingApplication?: boolean | Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs>
 }
 
 export type $AccessRequestProposalPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AccessRequestProposal"
   objects: {
     request: Prisma.$AccessRequestPayload<ExtArgs>
+    existingApplication: Prisma.$ApplicationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     requestId: string
@@ -522,6 +706,7 @@ export type $AccessRequestProposalPayload<ExtArgs extends runtime.Types.Extensio
     purpose: string
     dataDescription: string
     expectedUsers: number
+    existingApplicationId: string | null
   }, ExtArgs["result"]["accessRequestProposal"]>
   composites: {}
 }
@@ -917,6 +1102,7 @@ readonly fields: AccessRequestProposalFieldRefs;
 export interface Prisma__AccessRequestProposalClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   request<T extends Prisma.AccessRequestDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestDefaultArgs<ExtArgs>>): Prisma.Prisma__AccessRequestClient<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  existingApplication<T extends Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestProposal$existingApplicationArgs<ExtArgs>>): Prisma.Prisma__ApplicationClient<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -952,6 +1138,7 @@ export interface AccessRequestProposalFieldRefs {
   readonly purpose: Prisma.FieldRef<"AccessRequestProposal", 'String'>
   readonly dataDescription: Prisma.FieldRef<"AccessRequestProposal", 'String'>
   readonly expectedUsers: Prisma.FieldRef<"AccessRequestProposal", 'Int'>
+  readonly existingApplicationId: Prisma.FieldRef<"AccessRequestProposal", 'String'>
 }
     
 
@@ -1350,6 +1537,25 @@ export type AccessRequestProposalDeleteManyArgs<ExtArgs extends runtime.Types.Ex
    * Limit how many AccessRequestProposals to delete.
    */
   limit?: number
+}
+
+/**
+ * AccessRequestProposal.existingApplication
+ */
+export type AccessRequestProposal$existingApplicationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Application
+   */
+  select?: Prisma.ApplicationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Application
+   */
+  omit?: Prisma.ApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationInclude<ExtArgs> | null
+  where?: Prisma.ApplicationWhereInput
 }
 
 /**

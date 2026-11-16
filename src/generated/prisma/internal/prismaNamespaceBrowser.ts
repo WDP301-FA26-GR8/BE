@@ -67,6 +67,13 @@ export const ModelName = {
   BudgetAttachment: 'BudgetAttachment',
   BudgetCycle: 'BudgetCycle',
   BudgetDepartmentCeiling: 'BudgetDepartmentCeiling',
+  SeatMonthCharge: 'SeatMonthCharge',
+  SeatMonthRun: 'SeatMonthRun',
+  BudgetReviewPeriod: 'BudgetReviewPeriod',
+  BudgetReviewLine: 'BudgetReviewLine',
+  BudgetCommitmentSeatMonthReversal: 'BudgetCommitmentSeatMonthReversal',
+  BudgetAdjustment: 'BudgetAdjustment',
+  BudgetThresholdAlert: 'BudgetThresholdAlert',
   VendorGroup: 'VendorGroup',
   VendorServiceLine: 'VendorServiceLine',
   VendorDictionaryProposal: 'VendorDictionaryProposal',
@@ -84,6 +91,7 @@ export const ModelName = {
   ApplicationBusinessOwner: 'ApplicationBusinessOwner',
   ApplicationRetirementConfirmation: 'ApplicationRetirementConfirmation',
   Contract: 'Contract',
+  ContractSubscription: 'ContractSubscription',
   DocumentAttachment: 'DocumentAttachment',
   EmployeeImport: 'EmployeeImport',
   EmployeeImportRow: 'EmployeeImportRow',
@@ -112,6 +120,7 @@ export const ModelName = {
   AccountActionToken: 'AccountActionToken',
   RecoveryTicket: 'RecoveryTicket',
   EmployeeAccessBlock: 'EmployeeAccessBlock',
+  AvatarPurge: 'AvatarPurge',
   LicenseAssignment: 'LicenseAssignment',
   SeatBaselineState: 'SeatBaselineState',
   ProvisioningTask: 'ProvisioningTask',
@@ -144,6 +153,7 @@ export const ModelName = {
   GhostSeatExemption: 'GhostSeatExemption',
   GhostSeatApplicationThreshold: 'GhostSeatApplicationThreshold',
   GhostSeatSeatState: 'GhostSeatSeatState',
+  GhostSeatEscalation: 'GhostSeatEscalation',
   Organization: 'Organization',
   CostCenter: 'CostCenter',
   Department: 'Department',
@@ -166,6 +176,10 @@ export const ModelName = {
   SuperAdminEventTicket: 'SuperAdminEventTicket',
   PersonnelNoticeCounter: 'PersonnelNoticeCounter',
   ItAdminHandover: 'ItAdminHandover',
+  Policy: 'Policy',
+  PolicyVersion: 'PolicyVersion',
+  PolicyAcknowledgement: 'PolicyAcknowledgement',
+  DecisionChecklist: 'DecisionChecklist',
   AccessRequest: 'AccessRequest',
   AccessRequestBeneficiary: 'AccessRequestBeneficiary',
   AccessRequestLine: 'AccessRequestLine',
@@ -194,6 +208,9 @@ export const ModelName = {
   StepSlaReminderRecipient: 'StepSlaReminderRecipient',
   CongestionIncident: 'CongestionIncident',
   YearStartCommitmentRun: 'YearStartCommitmentRun',
+  PurchaseInvoice: 'PurchaseInvoice',
+  PurchaseInvoiceDocument: 'PurchaseInvoiceDocument',
+  InvoiceDiscrepancyCase: 'InvoiceDiscrepancyCase',
   CollectorAllowlistVersion: 'CollectorAllowlistVersion',
   CollectorAllowlistEntry: 'CollectorAllowlistEntry',
   AiUsageDay: 'AiUsageDay',
@@ -206,7 +223,9 @@ export const ModelName = {
   UsageActivityDay: 'UsageActivityDay',
   UsageIdentityMapping: 'UsageIdentityMapping',
   UsageUnmatchedIdentity: 'UsageUnmatchedIdentity',
-  UsageNoAssignmentFinding: 'UsageNoAssignmentFinding'
+  UsageNoAssignmentFinding: 'UsageNoAssignmentFinding',
+  VendorAccountDiscrepancy: 'VendorAccountDiscrepancy',
+  OutOfProcessCase: 'OutOfProcessCase'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -291,6 +310,7 @@ export const BudgetProposalScalarFieldEnum = {
   previousProposalId: 'previousProposalId',
   successorOfProposalId: 'successorOfProposalId',
   totalMinor: 'totalMinor',
+  note: 'note',
   currency: 'currency',
   submittedByEmployeeId: 'submittedByEmployeeId',
   submittedAt: 'submittedAt',
@@ -442,6 +462,7 @@ export const BudgetCommitmentScalarFieldEnum = {
   snapshotCheckId: 'snapshotCheckId',
   origin: 'origin',
   seatMonthlyMinor: 'seatMonthlyMinor',
+  seatMonthReversedMinor: 'seatMonthReversedMinor',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -478,7 +499,14 @@ export const InvoiceScalarFieldEnum = {
   matchResult: 'matchResult',
   note: 'note',
   recordedByEmployeeId: 'recordedByEmployeeId',
-  recordedAt: 'recordedAt'
+  recordedAt: 'recordedAt',
+  serviceMonth: 'serviceMonth',
+  purchaseInvoiceId: 'purchaseInvoiceId',
+  subscriptionId: 'subscriptionId',
+  costCenterId: 'costCenterId',
+  outOfProcessCaseId: 'outOfProcessCaseId',
+  unallocatedReason: 'unallocatedReason',
+  departmentId: 'departmentId'
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
@@ -561,6 +589,145 @@ export const BudgetDepartmentCeilingScalarFieldEnum = {
 export type BudgetDepartmentCeilingScalarFieldEnum = (typeof BudgetDepartmentCeilingScalarFieldEnum)[keyof typeof BudgetDepartmentCeilingScalarFieldEnum]
 
 
+export const SeatMonthChargeScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  subscriptionId: 'subscriptionId',
+  assignmentId: 'assignmentId',
+  employeeId: 'employeeId',
+  departmentId: 'departmentId',
+  costCenterId: 'costCenterId',
+  month: 'month',
+  days: 'days',
+  daysInMonth: 'daysInMonth',
+  monthlyPriceMinor: 'monthlyPriceMinor',
+  amountMinor: 'amountMinor',
+  commitmentId: 'commitmentId',
+  appliedMinor: 'appliedMinor',
+  computedAt: 'computedAt'
+} as const
+
+export type SeatMonthChargeScalarFieldEnum = (typeof SeatMonthChargeScalarFieldEnum)[keyof typeof SeatMonthChargeScalarFieldEnum]
+
+
+export const SeatMonthRunScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  subscriptionId: 'subscriptionId',
+  month: 'month',
+  rows: 'rows',
+  completedAt: 'completedAt'
+} as const
+
+export type SeatMonthRunScalarFieldEnum = (typeof SeatMonthRunScalarFieldEnum)[keyof typeof SeatMonthRunScalarFieldEnum]
+
+
+export const BudgetReviewPeriodScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  year: 'year',
+  month: 'month',
+  kind: 'kind',
+  state: 'state',
+  currency: 'currency',
+  snapshotByEmployeeId: 'snapshotByEmployeeId',
+  snapshotAt: 'snapshotAt',
+  signedByEmployeeId: 'signedByEmployeeId',
+  signedAt: 'signedAt',
+  note: 'note',
+  companySpentMinor: 'companySpentMinor',
+  sharedPoolUnallocatedMinor: 'sharedPoolUnallocatedMinor',
+  sharedPoolReserveMinor: 'sharedPoolReserveMinor',
+  annualCeilingMinor: 'annualCeilingMinor',
+  explanationsDueOn: 'explanationsDueOn'
+} as const
+
+export type BudgetReviewPeriodScalarFieldEnum = (typeof BudgetReviewPeriodScalarFieldEnum)[keyof typeof BudgetReviewPeriodScalarFieldEnum]
+
+
+export const BudgetReviewLineScalarFieldEnum = {
+  id: 'id',
+  periodId: 'periodId',
+  costCenterId: 'costCenterId',
+  baseMinor: 'baseMinor',
+  reserveMinor: 'reserveMinor',
+  spentMinor: 'spentMinor',
+  spentAfterMonthMinor: 'spentAfterMonthMinor',
+  committedMinor: 'committedMinor',
+  pendingSpendMinor: 'pendingSpendMinor',
+  remainingMinor: 'remainingMinor',
+  invoiceNetMinor: 'invoiceNetMinor',
+  invoiceActualMinor: 'invoiceActualMinor',
+  variancePpm: 'variancePpm',
+  priceIncreaseMinor: 'priceIncreaseMinor',
+  forecastMinor: 'forecastMinor',
+  paceBasisPoints: 'paceBasisPoints',
+  light: 'light',
+  explanationStatus: 'explanationStatus',
+  explanationCause: 'explanationCause',
+  explanationPersistence: 'explanationPersistence',
+  explanationAction: 'explanationAction',
+  explanationNeedsAmountMinor: 'explanationNeedsAmountMinor',
+  explanationNeedsNote: 'explanationNeedsNote',
+  explainedByEmployeeId: 'explainedByEmployeeId',
+  explainedAt: 'explainedAt'
+} as const
+
+export type BudgetReviewLineScalarFieldEnum = (typeof BudgetReviewLineScalarFieldEnum)[keyof typeof BudgetReviewLineScalarFieldEnum]
+
+
+export const BudgetCommitmentSeatMonthReversalScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  commitmentId: 'commitmentId',
+  subscriptionId: 'subscriptionId',
+  assignmentId: 'assignmentId',
+  departmentId: 'departmentId',
+  month: 'month',
+  amountMinor: 'amountMinor',
+  reason: 'reason',
+  createdAt: 'createdAt'
+} as const
+
+export type BudgetCommitmentSeatMonthReversalScalarFieldEnum = (typeof BudgetCommitmentSeatMonthReversalScalarFieldEnum)[keyof typeof BudgetCommitmentSeatMonthReversalScalarFieldEnum]
+
+
+export const BudgetAdjustmentScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  year: 'year',
+  kind: 'kind',
+  fromCostCenterId: 'fromCostCenterId',
+  toCostCenterId: 'toCostCenterId',
+  amountMinor: 'amountMinor',
+  currency: 'currency',
+  reason: 'reason',
+  transferReason: 'transferReason',
+  state: 'state',
+  createdByEmployeeId: 'createdByEmployeeId',
+  createdAt: 'createdAt',
+  decidedByEmployeeId: 'decidedByEmployeeId',
+  decidedAt: 'decidedAt',
+  decisionReason: 'decisionReason',
+  createdVersionId: 'createdVersionId'
+} as const
+
+export type BudgetAdjustmentScalarFieldEnum = (typeof BudgetAdjustmentScalarFieldEnum)[keyof typeof BudgetAdjustmentScalarFieldEnum]
+
+
+export const BudgetThresholdAlertScalarFieldEnum = {
+  id: 'id',
+  costCenterId: 'costCenterId',
+  year: 'year',
+  threshold: 'threshold',
+  episode: 'episode',
+  baseMinor: 'baseMinor',
+  createdAt: 'createdAt'
+} as const
+
+export type BudgetThresholdAlertScalarFieldEnum = (typeof BudgetThresholdAlertScalarFieldEnum)[keyof typeof BudgetThresholdAlertScalarFieldEnum]
+
+
 export const VendorGroupScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -622,6 +789,7 @@ export const FunctionalGroupScalarFieldEnum = {
   name: 'name',
   normalizedName: 'normalizedName',
   status: 'status',
+  systemKey: 'systemKey',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -641,6 +809,7 @@ export const ApplicationScalarFieldEnum = {
   businessOwnerEmployeeId: 'businessOwnerEmployeeId',
   responsibleItAdminEmployeeId: 'responsibleItAdminEmployeeId',
   dataSensitivity: 'dataSensitivity',
+  logoUrl: 'logoUrl',
   commPersonToPersonMessaging: 'commPersonToPersonMessaging',
   commCallsOrMeetings: 'commCallsOrMeetings',
   commMailbox: 'commMailbox',
@@ -734,6 +903,8 @@ export const SubscriptionScalarFieldEnum = {
   priceReportingMinor: 'priceReportingMinor',
   priceReportingCurrency: 'priceReportingCurrency',
   priceExchangeRateId: 'priceExchangeRateId',
+  originalUnitPriceMinor: 'originalUnitPriceMinor',
+  originalCurrency: 'originalCurrency',
   billingCycle: 'billingCycle',
   commitmentTermMonths: 'commitmentTermMonths',
   startDate: 'startDate',
@@ -827,11 +998,29 @@ export const ContractScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
   name: 'name',
+  vendorId: 'vendorId',
+  number: 'number',
+  numberKey: 'numberKey',
+  effectiveFrom: 'effectiveFrom',
+  effectiveTo: 'effectiveTo',
+  note: 'note',
   createdByAppUserId: 'createdByAppUserId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
+
+
+export const ContractSubscriptionScalarFieldEnum = {
+  id: 'id',
+  contractId: 'contractId',
+  subscriptionId: 'subscriptionId',
+  linkedByAppUserId: 'linkedByAppUserId',
+  linkedAt: 'linkedAt'
+} as const
+
+export type ContractSubscriptionScalarFieldEnum = (typeof ContractSubscriptionScalarFieldEnum)[keyof typeof ContractSubscriptionScalarFieldEnum]
 
 
 export const DocumentAttachmentScalarFieldEnum = {
@@ -847,6 +1036,8 @@ export const DocumentAttachmentScalarFieldEnum = {
   uploadedByAppUserId: 'uploadedByAppUserId',
   contractId: 'contractId',
   signerEmployeeId: 'signerEmployeeId',
+  purchaseInvoiceId: 'purchaseInvoiceId',
+  outOfProcessCaseId: 'outOfProcessCaseId',
   attachedAt: 'attachedAt',
   createdAt: 'createdAt'
 } as const
@@ -1136,6 +1327,10 @@ export const AppUserScalarFieldEnum = {
   emailVerificationSource: 'emailVerificationSource',
   emailVerifiedAt: 'emailVerifiedAt',
   employeeLeftOn: 'employeeLeftOn',
+  avatarObjectKey: 'avatarObjectKey',
+  avatarContentType: 'avatarContentType',
+  avatarUpdatedAt: 'avatarUpdatedAt',
+  workPhone: 'workPhone',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1256,6 +1451,17 @@ export const EmployeeAccessBlockScalarFieldEnum = {
 } as const
 
 export type EmployeeAccessBlockScalarFieldEnum = (typeof EmployeeAccessBlockScalarFieldEnum)[keyof typeof EmployeeAccessBlockScalarFieldEnum]
+
+
+export const AvatarPurgeScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  objectKey: 'objectKey',
+  requestedAt: 'requestedAt',
+  purgedAt: 'purgedAt'
+} as const
+
+export type AvatarPurgeScalarFieldEnum = (typeof AvatarPurgeScalarFieldEnum)[keyof typeof AvatarPurgeScalarFieldEnum]
 
 
 export const LicenseAssignmentScalarFieldEnum = {
@@ -1875,6 +2081,20 @@ export const GhostSeatSeatStateScalarFieldEnum = {
 export type GhostSeatSeatStateScalarFieldEnum = (typeof GhostSeatSeatStateScalarFieldEnum)[keyof typeof GhostSeatSeatStateScalarFieldEnum]
 
 
+export const GhostSeatEscalationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  requestedByAppUserId: 'requestedByAppUserId',
+  idempotencyKeyHash: 'idempotencyKeyHash',
+  requestHash: 'requestHash',
+  note: 'note',
+  results: 'results',
+  createdAt: 'createdAt'
+} as const
+
+export type GhostSeatEscalationScalarFieldEnum = (typeof GhostSeatEscalationScalarFieldEnum)[keyof typeof GhostSeatEscalationScalarFieldEnum]
+
+
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1972,6 +2192,7 @@ export const EmployeeScalarFieldEnum = {
   jobTitle: 'jobTitle',
   employmentType: 'employmentType',
   hireDate: 'hireDate',
+  contractEndDate: 'contractEndDate',
   status: 'status',
   workState: 'workState',
   createdAt: 'createdAt',
@@ -2286,6 +2507,67 @@ export const ItAdminHandoverScalarFieldEnum = {
 export type ItAdminHandoverScalarFieldEnum = (typeof ItAdminHandoverScalarFieldEnum)[keyof typeof ItAdminHandoverScalarFieldEnum]
 
 
+export const PolicyScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  code: 'code',
+  createdAt: 'createdAt'
+} as const
+
+export type PolicyScalarFieldEnum = (typeof PolicyScalarFieldEnum)[keyof typeof PolicyScalarFieldEnum]
+
+
+export const PolicyVersionScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  policyId: 'policyId',
+  versionNumber: 'versionNumber',
+  title: 'title',
+  content: 'content',
+  applicableRoles: 'applicableRoles',
+  changeNote: 'changeNote',
+  requiresReacknowledgement: 'requiresReacknowledgement',
+  draftedByAppUserId: 'draftedByAppUserId',
+  publishedByAppUserId: 'publishedByAppUserId',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PolicyVersionScalarFieldEnum = (typeof PolicyVersionScalarFieldEnum)[keyof typeof PolicyVersionScalarFieldEnum]
+
+
+export const PolicyAcknowledgementScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  policyVersionId: 'policyVersionId',
+  employeeId: 'employeeId',
+  appUserId: 'appUserId',
+  acknowledgedAt: 'acknowledgedAt'
+} as const
+
+export type PolicyAcknowledgementScalarFieldEnum = (typeof PolicyAcknowledgementScalarFieldEnum)[keyof typeof PolicyAcknowledgementScalarFieldEnum]
+
+
+export const DecisionChecklistScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  policyVersionId: 'policyVersionId',
+  stepCode: 'stepCode',
+  subjectKind: 'subjectKind',
+  subjectId: 'subjectId',
+  lineEmployeeId: 'lineEmployeeId',
+  decidedByEmployeeId: 'decidedByEmployeeId',
+  decision: 'decision',
+  answers: 'answers',
+  hasNo: 'hasNo',
+  decidedAt: 'decidedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type DecisionChecklistScalarFieldEnum = (typeof DecisionChecklistScalarFieldEnum)[keyof typeof DecisionChecklistScalarFieldEnum]
+
+
 export const AccessRequestScalarFieldEnum = {
   routingMode: 'routingMode',
   oneStepReason: 'oneStepReason',
@@ -2395,6 +2677,7 @@ export const AccessRequestLineAmountScalarFieldEnum = {
   budgetYear: 'budgetYear',
   amountMinor: 'amountMinor',
   currency: 'currency',
+  held: 'held',
   releasedAt: 'releasedAt'
 } as const
 
@@ -2445,7 +2728,8 @@ export const AccessRequestProposalScalarFieldEnum = {
   homepageUrl: 'homepageUrl',
   purpose: 'purpose',
   dataDescription: 'dataDescription',
-  expectedUsers: 'expectedUsers'
+  expectedUsers: 'expectedUsers',
+  existingApplicationId: 'existingApplicationId'
 } as const
 
 export type AccessRequestProposalScalarFieldEnum = (typeof AccessRequestProposalScalarFieldEnum)[keyof typeof AccessRequestProposalScalarFieldEnum]
@@ -2477,6 +2761,8 @@ export const AccessRequestAssessmentScalarFieldEnum = {
   quoteBillingCycle: 'quoteBillingCycle',
   quoteValidFrom: 'quoteValidFrom',
   quoteValidUntil: 'quoteValidUntil',
+  quoteOriginalUnitPriceMinor: 'quoteOriginalUnitPriceMinor',
+  quoteOriginalCurrency: 'quoteOriginalCurrency',
   commitmentMonths: 'commitmentMonths',
   paymentFrequency: 'paymentFrequency',
   firstPaymentOn: 'firstPaymentOn',
@@ -2796,6 +3082,73 @@ export const YearStartCommitmentRunScalarFieldEnum = {
 export type YearStartCommitmentRunScalarFieldEnum = (typeof YearStartCommitmentRunScalarFieldEnum)[keyof typeof YearStartCommitmentRunScalarFieldEnum]
 
 
+export const PurchaseInvoiceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  linkKind: 'linkKind',
+  requestId: 'requestId',
+  provisioningTaskId: 'provisioningTaskId',
+  subscriptionId: 'subscriptionId',
+  vendorId: 'vendorId',
+  number: 'number',
+  issuedOn: 'issuedOn',
+  serviceMonth: 'serviceMonth',
+  label: 'label',
+  periodIndex: 'periodIndex',
+  periodCount: 'periodCount',
+  quantity: 'quantity',
+  unitPriceOriginalMinor: 'unitPriceOriginalMinor',
+  unitPriceOriginalCurrency: 'unitPriceOriginalCurrency',
+  netMinor: 'netMinor',
+  deductibleTaxMinor: 'deductibleTaxMinor',
+  nonDeductibleTaxMinor: 'nonDeductibleTaxMinor',
+  matchResult: 'matchResult',
+  paymentSource: 'paymentSource',
+  flags: 'flags',
+  chargedCostCenterId: 'chargedCostCenterId',
+  unallocatedReason: 'unallocatedReason',
+  state: 'state',
+  submittedByEmployeeId: 'submittedByEmployeeId',
+  submittedAt: 'submittedAt',
+  decidedByEmployeeId: 'decidedByEmployeeId',
+  decidedAt: 'decidedAt',
+  returnReason: 'returnReason',
+  resubmissionOfId: 'resubmissionOfId',
+  invoiceId: 'invoiceId',
+  expectedQuantity: 'expectedQuantity',
+  expectedUnitPriceOriginalMinor: 'expectedUnitPriceOriginalMinor',
+  expectedUnitPriceOriginalCurrency: 'expectedUnitPriceOriginalCurrency'
+} as const
+
+export type PurchaseInvoiceScalarFieldEnum = (typeof PurchaseInvoiceScalarFieldEnum)[keyof typeof PurchaseInvoiceScalarFieldEnum]
+
+
+export const PurchaseInvoiceDocumentScalarFieldEnum = {
+  purchaseInvoiceId: 'purchaseInvoiceId',
+  documentId: 'documentId',
+  position: 'position'
+} as const
+
+export type PurchaseInvoiceDocumentScalarFieldEnum = (typeof PurchaseInvoiceDocumentScalarFieldEnum)[keyof typeof PurchaseInvoiceDocumentScalarFieldEnum]
+
+
+export const InvoiceDiscrepancyCaseScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  purchaseInvoiceId: 'purchaseInvoiceId',
+  mismatches: 'mismatches',
+  state: 'state',
+  openedAt: 'openedAt',
+  closedByEmployeeId: 'closedByEmployeeId',
+  closedAt: 'closedAt',
+  outcome: 'outcome',
+  reason: 'reason',
+  differenceMinor: 'differenceMinor'
+} as const
+
+export type InvoiceDiscrepancyCaseScalarFieldEnum = (typeof InvoiceDiscrepancyCaseScalarFieldEnum)[keyof typeof InvoiceDiscrepancyCaseScalarFieldEnum]
+
+
 export const CollectorAllowlistVersionScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
@@ -3021,6 +3374,56 @@ export const UsageNoAssignmentFindingScalarFieldEnum = {
 } as const
 
 export type UsageNoAssignmentFindingScalarFieldEnum = (typeof UsageNoAssignmentFindingScalarFieldEnum)[keyof typeof UsageNoAssignmentFindingScalarFieldEnum]
+
+
+export const VendorAccountDiscrepancyScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  source: 'source',
+  sourceRef: 'sourceRef',
+  applicationId: 'applicationId',
+  vendorId: 'vendorId',
+  employeeId: 'employeeId',
+  identity: 'identity',
+  internalValue: 'internalValue',
+  vendorValue: 'vendorValue',
+  evidenceOn: 'evidenceOn',
+  firstSeenAt: 'firstSeenAt',
+  lastSeenAt: 'lastSeenAt',
+  state: 'state',
+  decision: 'decision',
+  decisionNote: 'decisionNote',
+  decidedByEmployeeId: 'decidedByEmployeeId',
+  decidedAt: 'decidedAt',
+  outOfProcessCaseId: 'outOfProcessCaseId',
+  reopenedFromId: 'reopenedFromId'
+} as const
+
+export type VendorAccountDiscrepancyScalarFieldEnum = (typeof VendorAccountDiscrepancyScalarFieldEnum)[keyof typeof VendorAccountDiscrepancyScalarFieldEnum]
+
+
+export const OutOfProcessCaseScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  discrepancyId: 'discrepancyId',
+  applicationId: 'applicationId',
+  vendorId: 'vendorId',
+  openedAt: 'openedAt',
+  state: 'state',
+  outcome: 'outcome',
+  note: 'note',
+  closedByEmployeeId: 'closedByEmployeeId',
+  closedAt: 'closedAt',
+  amountMinor: 'amountMinor',
+  costCenterId: 'costCenterId',
+  documentIds: 'documentIds',
+  identityKey: 'identityKey',
+  companyAsset: 'companyAsset',
+  concludedOn: 'concludedOn',
+  renewalCancelled: 'renewalCancelled'
+} as const
+
+export type OutOfProcessCaseScalarFieldEnum = (typeof OutOfProcessCaseScalarFieldEnum)[keyof typeof OutOfProcessCaseScalarFieldEnum]
 
 
 export const SortOrder = {

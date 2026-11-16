@@ -28,24 +28,45 @@ export type ContractMinAggregateOutputType = {
   id: string | null
   organizationId: string | null
   name: string | null
+  vendorId: string | null
+  number: string | null
+  numberKey: string | null
+  effectiveFrom: Date | null
+  effectiveTo: Date | null
+  note: string | null
   createdByAppUserId: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type ContractMaxAggregateOutputType = {
   id: string | null
   organizationId: string | null
   name: string | null
+  vendorId: string | null
+  number: string | null
+  numberKey: string | null
+  effectiveFrom: Date | null
+  effectiveTo: Date | null
+  note: string | null
   createdByAppUserId: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type ContractCountAggregateOutputType = {
   id: number
   organizationId: number
   name: number
+  vendorId: number
+  number: number
+  numberKey: number
+  effectiveFrom: number
+  effectiveTo: number
+  note: number
   createdByAppUserId: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -54,24 +75,45 @@ export type ContractMinAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  vendorId?: true
+  number?: true
+  numberKey?: true
+  effectiveFrom?: true
+  effectiveTo?: true
+  note?: true
   createdByAppUserId?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type ContractMaxAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  vendorId?: true
+  number?: true
+  numberKey?: true
+  effectiveFrom?: true
+  effectiveTo?: true
+  note?: true
   createdByAppUserId?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type ContractCountAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  vendorId?: true
+  number?: true
+  numberKey?: true
+  effectiveFrom?: true
+  effectiveTo?: true
+  note?: true
   createdByAppUserId?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -151,8 +193,15 @@ export type ContractGroupByOutputType = {
   id: string
   organizationId: string
   name: string
+  vendorId: string | null
+  number: string | null
+  numberKey: string | null
+  effectiveFrom: Date | null
+  effectiveTo: Date | null
+  note: string | null
   createdByAppUserId: string
   createdAt: Date
+  updatedAt: Date
   _count: ContractCountAggregateOutputType | null
   _min: ContractMinAggregateOutputType | null
   _max: ContractMaxAggregateOutputType | null
@@ -180,41 +229,76 @@ export type ContractWhereInput = {
   id?: Prisma.UuidFilter<"Contract"> | string
   organizationId?: Prisma.UuidFilter<"Contract"> | string
   name?: Prisma.StringFilter<"Contract"> | string
+  vendorId?: Prisma.UuidNullableFilter<"Contract"> | string | null
+  number?: Prisma.StringNullableFilter<"Contract"> | string | null
+  numberKey?: Prisma.StringNullableFilter<"Contract"> | string | null
+  effectiveFrom?: Prisma.DateTimeNullableFilter<"Contract"> | Date | string | null
+  effectiveTo?: Prisma.DateTimeNullableFilter<"Contract"> | Date | string | null
+  note?: Prisma.StringNullableFilter<"Contract"> | string | null
   createdByAppUserId?: Prisma.UuidFilter<"Contract"> | string
   createdAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
   documents?: Prisma.DocumentAttachmentListRelationFilter
+  subscriptions?: Prisma.ContractSubscriptionListRelationFilter
 }
 
 export type ContractOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  vendorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  number?: Prisma.SortOrderInput | Prisma.SortOrder
+  numberKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  effectiveFrom?: Prisma.SortOrderInput | Prisma.SortOrder
+  effectiveTo?: Prisma.SortOrderInput | Prisma.SortOrder
+  note?: Prisma.SortOrderInput | Prisma.SortOrder
   createdByAppUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
+  vendor?: Prisma.VendorOrderByWithRelationInput
   documents?: Prisma.DocumentAttachmentOrderByRelationAggregateInput
+  subscriptions?: Prisma.ContractSubscriptionOrderByRelationAggregateInput
 }
 
 export type ContractWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  organizationId_numberKey?: Prisma.ContractOrganizationIdNumberKeyCompoundUniqueInput
   AND?: Prisma.ContractWhereInput | Prisma.ContractWhereInput[]
   OR?: Prisma.ContractWhereInput[]
   NOT?: Prisma.ContractWhereInput | Prisma.ContractWhereInput[]
   organizationId?: Prisma.UuidFilter<"Contract"> | string
   name?: Prisma.StringFilter<"Contract"> | string
+  vendorId?: Prisma.UuidNullableFilter<"Contract"> | string | null
+  number?: Prisma.StringNullableFilter<"Contract"> | string | null
+  numberKey?: Prisma.StringNullableFilter<"Contract"> | string | null
+  effectiveFrom?: Prisma.DateTimeNullableFilter<"Contract"> | Date | string | null
+  effectiveTo?: Prisma.DateTimeNullableFilter<"Contract"> | Date | string | null
+  note?: Prisma.StringNullableFilter<"Contract"> | string | null
   createdByAppUserId?: Prisma.UuidFilter<"Contract"> | string
   createdAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
   documents?: Prisma.DocumentAttachmentListRelationFilter
-}, "id">
+  subscriptions?: Prisma.ContractSubscriptionListRelationFilter
+}, "id" | "organizationId_numberKey">
 
 export type ContractOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  vendorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  number?: Prisma.SortOrderInput | Prisma.SortOrder
+  numberKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  effectiveFrom?: Prisma.SortOrderInput | Prisma.SortOrder
+  effectiveTo?: Prisma.SortOrderInput | Prisma.SortOrder
+  note?: Prisma.SortOrderInput | Prisma.SortOrder
   createdByAppUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.ContractCountOrderByAggregateInput
   _max?: Prisma.ContractMaxOrderByAggregateInput
   _min?: Prisma.ContractMinOrderByAggregateInput
@@ -227,96 +311,126 @@ export type ContractScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Contract"> | string
   organizationId?: Prisma.UuidWithAggregatesFilter<"Contract"> | string
   name?: Prisma.StringWithAggregatesFilter<"Contract"> | string
+  vendorId?: Prisma.UuidNullableWithAggregatesFilter<"Contract"> | string | null
+  number?: Prisma.StringNullableWithAggregatesFilter<"Contract"> | string | null
+  numberKey?: Prisma.StringNullableWithAggregatesFilter<"Contract"> | string | null
+  effectiveFrom?: Prisma.DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
+  effectiveTo?: Prisma.DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
+  note?: Prisma.StringNullableWithAggregatesFilter<"Contract"> | string | null
   createdByAppUserId?: Prisma.UuidWithAggregatesFilter<"Contract"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Contract"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Contract"> | Date | string
 }
 
 export type ContractCreateInput = {
   id?: string
   name: string
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutContractsInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutContractsInput
   documents?: Prisma.DocumentAttachmentCreateNestedManyWithoutContractInput
+  subscriptions?: Prisma.ContractSubscriptionCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateInput = {
   id?: string
   organizationId: string
   name: string
+  vendorId?: string | null
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   documents?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutContractInput
+  subscriptions?: Prisma.ContractSubscriptionUncheckedCreateNestedManyWithoutContractInput
 }
 
 export type ContractUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutContractsNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutContractsNestedInput
   documents?: Prisma.DocumentAttachmentUpdateManyWithoutContractNestedInput
+  subscriptions?: Prisma.ContractSubscriptionUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutContractNestedInput
+  subscriptions?: Prisma.ContractSubscriptionUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractCreateManyInput = {
   id?: string
   organizationId: string
   name: string
+  vendorId?: string | null
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type ContractUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ContractUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ContractCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  organizationId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  createdByAppUserId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
-
-export type ContractMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  organizationId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  createdByAppUserId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
-
-export type ContractMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  organizationId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  createdByAppUserId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
-
-export type ContractNullableScalarRelationFilter = {
-  is?: Prisma.ContractWhereInput | null
-  isNot?: Prisma.ContractWhereInput | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ContractListRelationFilter = {
@@ -327,6 +441,122 @@ export type ContractListRelationFilter = {
 
 export type ContractOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type ContractOrganizationIdNumberKeyCompoundUniqueInput = {
+  organizationId: string
+  numberKey: string
+}
+
+export type ContractCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  vendorId?: Prisma.SortOrder
+  number?: Prisma.SortOrder
+  numberKey?: Prisma.SortOrder
+  effectiveFrom?: Prisma.SortOrder
+  effectiveTo?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  createdByAppUserId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type ContractMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  vendorId?: Prisma.SortOrder
+  number?: Prisma.SortOrder
+  numberKey?: Prisma.SortOrder
+  effectiveFrom?: Prisma.SortOrder
+  effectiveTo?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  createdByAppUserId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type ContractMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  vendorId?: Prisma.SortOrder
+  number?: Prisma.SortOrder
+  numberKey?: Prisma.SortOrder
+  effectiveFrom?: Prisma.SortOrder
+  effectiveTo?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  createdByAppUserId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type ContractScalarRelationFilter = {
+  is?: Prisma.ContractWhereInput
+  isNot?: Prisma.ContractWhereInput
+}
+
+export type ContractNullableScalarRelationFilter = {
+  is?: Prisma.ContractWhereInput | null
+  isNot?: Prisma.ContractWhereInput | null
+}
+
+export type ContractCreateNestedManyWithoutVendorInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutVendorInput, Prisma.ContractUncheckedCreateWithoutVendorInput> | Prisma.ContractCreateWithoutVendorInput[] | Prisma.ContractUncheckedCreateWithoutVendorInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutVendorInput | Prisma.ContractCreateOrConnectWithoutVendorInput[]
+  createMany?: Prisma.ContractCreateManyVendorInputEnvelope
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+}
+
+export type ContractUncheckedCreateNestedManyWithoutVendorInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutVendorInput, Prisma.ContractUncheckedCreateWithoutVendorInput> | Prisma.ContractCreateWithoutVendorInput[] | Prisma.ContractUncheckedCreateWithoutVendorInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutVendorInput | Prisma.ContractCreateOrConnectWithoutVendorInput[]
+  createMany?: Prisma.ContractCreateManyVendorInputEnvelope
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+}
+
+export type ContractUpdateManyWithoutVendorNestedInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutVendorInput, Prisma.ContractUncheckedCreateWithoutVendorInput> | Prisma.ContractCreateWithoutVendorInput[] | Prisma.ContractUncheckedCreateWithoutVendorInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutVendorInput | Prisma.ContractCreateOrConnectWithoutVendorInput[]
+  upsert?: Prisma.ContractUpsertWithWhereUniqueWithoutVendorInput | Prisma.ContractUpsertWithWhereUniqueWithoutVendorInput[]
+  createMany?: Prisma.ContractCreateManyVendorInputEnvelope
+  set?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  disconnect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  delete?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  update?: Prisma.ContractUpdateWithWhereUniqueWithoutVendorInput | Prisma.ContractUpdateWithWhereUniqueWithoutVendorInput[]
+  updateMany?: Prisma.ContractUpdateManyWithWhereWithoutVendorInput | Prisma.ContractUpdateManyWithWhereWithoutVendorInput[]
+  deleteMany?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
+}
+
+export type ContractUncheckedUpdateManyWithoutVendorNestedInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutVendorInput, Prisma.ContractUncheckedCreateWithoutVendorInput> | Prisma.ContractCreateWithoutVendorInput[] | Prisma.ContractUncheckedCreateWithoutVendorInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutVendorInput | Prisma.ContractCreateOrConnectWithoutVendorInput[]
+  upsert?: Prisma.ContractUpsertWithWhereUniqueWithoutVendorInput | Prisma.ContractUpsertWithWhereUniqueWithoutVendorInput[]
+  createMany?: Prisma.ContractCreateManyVendorInputEnvelope
+  set?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  disconnect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  delete?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  update?: Prisma.ContractUpdateWithWhereUniqueWithoutVendorInput | Prisma.ContractUpdateWithWhereUniqueWithoutVendorInput[]
+  updateMany?: Prisma.ContractUpdateManyWithWhereWithoutVendorInput | Prisma.ContractUpdateManyWithWhereWithoutVendorInput[]
+  deleteMany?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
+}
+
+export type ContractCreateNestedOneWithoutSubscriptionsInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutSubscriptionsInput, Prisma.ContractUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutSubscriptionsInput
+  connect?: Prisma.ContractWhereUniqueInput
+}
+
+export type ContractUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutSubscriptionsInput, Prisma.ContractUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutSubscriptionsInput
+  upsert?: Prisma.ContractUpsertWithoutSubscriptionsInput
+  connect?: Prisma.ContractWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContractUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.ContractUpdateWithoutSubscriptionsInput>, Prisma.ContractUncheckedUpdateWithoutSubscriptionsInput>
 }
 
 export type ContractCreateNestedOneWithoutDocumentsInput = {
@@ -387,20 +617,192 @@ export type ContractUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
 }
 
+export type ContractCreateWithoutVendorInput = {
+  id?: string
+  name: string
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutContractsInput
+  documents?: Prisma.DocumentAttachmentCreateNestedManyWithoutContractInput
+  subscriptions?: Prisma.ContractSubscriptionCreateNestedManyWithoutContractInput
+}
+
+export type ContractUncheckedCreateWithoutVendorInput = {
+  id?: string
+  organizationId: string
+  name: string
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  documents?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutContractInput
+  subscriptions?: Prisma.ContractSubscriptionUncheckedCreateNestedManyWithoutContractInput
+}
+
+export type ContractCreateOrConnectWithoutVendorInput = {
+  where: Prisma.ContractWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContractCreateWithoutVendorInput, Prisma.ContractUncheckedCreateWithoutVendorInput>
+}
+
+export type ContractCreateManyVendorInputEnvelope = {
+  data: Prisma.ContractCreateManyVendorInput | Prisma.ContractCreateManyVendorInput[]
+  skipDuplicates?: boolean
+}
+
+export type ContractUpsertWithWhereUniqueWithoutVendorInput = {
+  where: Prisma.ContractWhereUniqueInput
+  update: Prisma.XOR<Prisma.ContractUpdateWithoutVendorInput, Prisma.ContractUncheckedUpdateWithoutVendorInput>
+  create: Prisma.XOR<Prisma.ContractCreateWithoutVendorInput, Prisma.ContractUncheckedCreateWithoutVendorInput>
+}
+
+export type ContractUpdateWithWhereUniqueWithoutVendorInput = {
+  where: Prisma.ContractWhereUniqueInput
+  data: Prisma.XOR<Prisma.ContractUpdateWithoutVendorInput, Prisma.ContractUncheckedUpdateWithoutVendorInput>
+}
+
+export type ContractUpdateManyWithWhereWithoutVendorInput = {
+  where: Prisma.ContractScalarWhereInput
+  data: Prisma.XOR<Prisma.ContractUpdateManyMutationInput, Prisma.ContractUncheckedUpdateManyWithoutVendorInput>
+}
+
+export type ContractScalarWhereInput = {
+  AND?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
+  OR?: Prisma.ContractScalarWhereInput[]
+  NOT?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
+  id?: Prisma.UuidFilter<"Contract"> | string
+  organizationId?: Prisma.UuidFilter<"Contract"> | string
+  name?: Prisma.StringFilter<"Contract"> | string
+  vendorId?: Prisma.UuidNullableFilter<"Contract"> | string | null
+  number?: Prisma.StringNullableFilter<"Contract"> | string | null
+  numberKey?: Prisma.StringNullableFilter<"Contract"> | string | null
+  effectiveFrom?: Prisma.DateTimeNullableFilter<"Contract"> | Date | string | null
+  effectiveTo?: Prisma.DateTimeNullableFilter<"Contract"> | Date | string | null
+  note?: Prisma.StringNullableFilter<"Contract"> | string | null
+  createdByAppUserId?: Prisma.UuidFilter<"Contract"> | string
+  createdAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
+}
+
+export type ContractCreateWithoutSubscriptionsInput = {
+  id?: string
+  name: string
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutContractsInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutContractsInput
+  documents?: Prisma.DocumentAttachmentCreateNestedManyWithoutContractInput
+}
+
+export type ContractUncheckedCreateWithoutSubscriptionsInput = {
+  id?: string
+  organizationId: string
+  name: string
+  vendorId?: string | null
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  documents?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutContractInput
+}
+
+export type ContractCreateOrConnectWithoutSubscriptionsInput = {
+  where: Prisma.ContractWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContractCreateWithoutSubscriptionsInput, Prisma.ContractUncheckedCreateWithoutSubscriptionsInput>
+}
+
+export type ContractUpsertWithoutSubscriptionsInput = {
+  update: Prisma.XOR<Prisma.ContractUpdateWithoutSubscriptionsInput, Prisma.ContractUncheckedUpdateWithoutSubscriptionsInput>
+  create: Prisma.XOR<Prisma.ContractCreateWithoutSubscriptionsInput, Prisma.ContractUncheckedCreateWithoutSubscriptionsInput>
+  where?: Prisma.ContractWhereInput
+}
+
+export type ContractUpdateToOneWithWhereWithoutSubscriptionsInput = {
+  where?: Prisma.ContractWhereInput
+  data: Prisma.XOR<Prisma.ContractUpdateWithoutSubscriptionsInput, Prisma.ContractUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type ContractUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutContractsNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutContractsNestedInput
+  documents?: Prisma.DocumentAttachmentUpdateManyWithoutContractNestedInput
+}
+
+export type ContractUncheckedUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutContractNestedInput
+}
+
 export type ContractCreateWithoutDocumentsInput = {
   id?: string
   name: string
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutContractsInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutContractsInput
+  subscriptions?: Prisma.ContractSubscriptionCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateWithoutDocumentsInput = {
   id?: string
   organizationId: string
   name: string
+  vendorId?: string | null
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
+  subscriptions?: Prisma.ContractSubscriptionUncheckedCreateNestedManyWithoutContractInput
 }
 
 export type ContractCreateOrConnectWithoutDocumentsInput = {
@@ -422,33 +824,65 @@ export type ContractUpdateToOneWithWhereWithoutDocumentsInput = {
 export type ContractUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutContractsNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutContractsNestedInput
+  subscriptions?: Prisma.ContractSubscriptionUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.ContractSubscriptionUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractCreateWithoutOrganizationInput = {
   id?: string
   name: string
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
+  vendor?: Prisma.VendorCreateNestedOneWithoutContractsInput
   documents?: Prisma.DocumentAttachmentCreateNestedManyWithoutContractInput
+  subscriptions?: Prisma.ContractSubscriptionCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateWithoutOrganizationInput = {
   id?: string
   name: string
+  vendorId?: string | null
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   documents?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutContractInput
+  subscriptions?: Prisma.ContractSubscriptionUncheckedCreateNestedManyWithoutContractInput
 }
 
 export type ContractCreateOrConnectWithoutOrganizationInput = {
@@ -477,45 +911,124 @@ export type ContractUpdateManyWithWhereWithoutOrganizationInput = {
   data: Prisma.XOR<Prisma.ContractUpdateManyMutationInput, Prisma.ContractUncheckedUpdateManyWithoutOrganizationInput>
 }
 
-export type ContractScalarWhereInput = {
-  AND?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
-  OR?: Prisma.ContractScalarWhereInput[]
-  NOT?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
-  id?: Prisma.UuidFilter<"Contract"> | string
-  organizationId?: Prisma.UuidFilter<"Contract"> | string
-  name?: Prisma.StringFilter<"Contract"> | string
-  createdByAppUserId?: Prisma.UuidFilter<"Contract"> | string
-  createdAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
+export type ContractCreateManyVendorInput = {
+  id?: string
+  organizationId: string
+  name: string
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
+  createdByAppUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ContractUpdateWithoutVendorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutContractsNestedInput
+  documents?: Prisma.DocumentAttachmentUpdateManyWithoutContractNestedInput
+  subscriptions?: Prisma.ContractSubscriptionUpdateManyWithoutContractNestedInput
+}
+
+export type ContractUncheckedUpdateWithoutVendorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutContractNestedInput
+  subscriptions?: Prisma.ContractSubscriptionUncheckedUpdateManyWithoutContractNestedInput
+}
+
+export type ContractUncheckedUpdateManyWithoutVendorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ContractCreateManyOrganizationInput = {
   id?: string
   name: string
+  vendorId?: string | null
+  number?: string | null
+  numberKey?: string | null
+  effectiveFrom?: Date | string | null
+  effectiveTo?: Date | string | null
+  note?: string | null
   createdByAppUserId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type ContractUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vendor?: Prisma.VendorUpdateOneWithoutContractsNestedInput
   documents?: Prisma.DocumentAttachmentUpdateManyWithoutContractNestedInput
+  subscriptions?: Prisma.ContractSubscriptionUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutContractNestedInput
+  subscriptions?: Prisma.ContractSubscriptionUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numberKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAppUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -525,10 +1038,12 @@ export type ContractUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type ContractCountOutputType = {
   documents: number
+  subscriptions: number
 }
 
 export type ContractCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   documents?: boolean | ContractCountOutputTypeCountDocumentsArgs
+  subscriptions?: boolean | ContractCountOutputTypeCountSubscriptionsArgs
 }
 
 /**
@@ -548,15 +1063,31 @@ export type ContractCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.DocumentAttachmentWhereInput
 }
 
+/**
+ * ContractCountOutputType without action
+ */
+export type ContractCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContractSubscriptionWhereInput
+}
+
 
 export type ContractSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  vendorId?: boolean
+  number?: boolean
+  numberKey?: boolean
+  effectiveFrom?: boolean
+  effectiveTo?: boolean
+  note?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.Contract$vendorArgs<ExtArgs>
   documents?: boolean | Prisma.Contract$documentsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Contract$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.ContractCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contract"]>
 
@@ -564,53 +1095,89 @@ export type ContractSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  vendorId?: boolean
+  number?: boolean
+  numberKey?: boolean
+  effectiveFrom?: boolean
+  effectiveTo?: boolean
+  note?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.Contract$vendorArgs<ExtArgs>
 }, ExtArgs["result"]["contract"]>
 
 export type ContractSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  vendorId?: boolean
+  number?: boolean
+  numberKey?: boolean
+  effectiveFrom?: boolean
+  effectiveTo?: boolean
+  note?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.Contract$vendorArgs<ExtArgs>
 }, ExtArgs["result"]["contract"]>
 
 export type ContractSelectScalar = {
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  vendorId?: boolean
+  number?: boolean
+  numberKey?: boolean
+  effectiveFrom?: boolean
+  effectiveTo?: boolean
+  note?: boolean
   createdByAppUserId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type ContractOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "createdByAppUserId" | "createdAt", ExtArgs["result"]["contract"]>
+export type ContractOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "vendorId" | "number" | "numberKey" | "effectiveFrom" | "effectiveTo" | "note" | "createdByAppUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["contract"]>
 export type ContractInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.Contract$vendorArgs<ExtArgs>
   documents?: boolean | Prisma.Contract$documentsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Contract$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.ContractCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ContractIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.Contract$vendorArgs<ExtArgs>
 }
 export type ContractIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.Contract$vendorArgs<ExtArgs>
 }
 
 export type $ContractPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Contract"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
+    vendor: Prisma.$VendorPayload<ExtArgs> | null
     documents: Prisma.$DocumentAttachmentPayload<ExtArgs>[]
+    subscriptions: Prisma.$ContractSubscriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     organizationId: string
     name: string
+    vendorId: string | null
+    number: string | null
+    numberKey: string | null
+    effectiveFrom: Date | null
+    effectiveTo: Date | null
+    note: string | null
     createdByAppUserId: string
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["contract"]>
   composites: {}
 }
@@ -1006,7 +1573,9 @@ readonly fields: ContractFieldRefs;
 export interface Prisma__ContractClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  vendor<T extends Prisma.Contract$vendorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contract$vendorArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   documents<T extends Prisma.Contract$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contract$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.Contract$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contract$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContractSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1039,8 +1608,15 @@ export interface ContractFieldRefs {
   readonly id: Prisma.FieldRef<"Contract", 'String'>
   readonly organizationId: Prisma.FieldRef<"Contract", 'String'>
   readonly name: Prisma.FieldRef<"Contract", 'String'>
+  readonly vendorId: Prisma.FieldRef<"Contract", 'String'>
+  readonly number: Prisma.FieldRef<"Contract", 'String'>
+  readonly numberKey: Prisma.FieldRef<"Contract", 'String'>
+  readonly effectiveFrom: Prisma.FieldRef<"Contract", 'DateTime'>
+  readonly effectiveTo: Prisma.FieldRef<"Contract", 'DateTime'>
+  readonly note: Prisma.FieldRef<"Contract", 'String'>
   readonly createdByAppUserId: Prisma.FieldRef<"Contract", 'String'>
   readonly createdAt: Prisma.FieldRef<"Contract", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Contract", 'DateTime'>
 }
     
 
@@ -1442,6 +2018,25 @@ export type ContractDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * Contract.vendor
+ */
+export type Contract$vendorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Vendor
+   */
+  select?: Prisma.VendorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Vendor
+   */
+  omit?: Prisma.VendorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorInclude<ExtArgs> | null
+  where?: Prisma.VendorWhereInput
+}
+
+/**
  * Contract.documents
  */
 export type Contract$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1463,6 +2058,30 @@ export type Contract$documentsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.DocumentAttachmentScalarFieldEnum | Prisma.DocumentAttachmentScalarFieldEnum[]
+}
+
+/**
+ * Contract.subscriptions
+ */
+export type Contract$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContractSubscription
+   */
+  select?: Prisma.ContractSubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContractSubscription
+   */
+  omit?: Prisma.ContractSubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContractSubscriptionInclude<ExtArgs> | null
+  where?: Prisma.ContractSubscriptionWhereInput
+  orderBy?: Prisma.ContractSubscriptionOrderByWithRelationInput | Prisma.ContractSubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.ContractSubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContractSubscriptionScalarFieldEnum | Prisma.ContractSubscriptionScalarFieldEnum[]
 }
 
 /**
