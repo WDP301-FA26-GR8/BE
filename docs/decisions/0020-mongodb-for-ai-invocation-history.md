@@ -2,10 +2,10 @@
 
 ## Trạng thái
 
-**Proposed** — 15/11/2026, ghi bởi `ai-history-mongodb-infrastructure` theo [đề xuất lịch sử AI dùng
-MongoDB](../workspace/proposals/ai-history-mongodb/spec.md) (draft 13/11/2026). Proposed chưa phải Accepted: chưa có sự kiện
-Owner review. ADR này **chưa** thay `QĐ-79a`, `QĐ-79c`, `QĐ-102h` của Docs; chỉ khi Owner chấp nhận và nguồn Docs ghi quyết
-định thay thế thì dữ liệu AI mới được chuyển sang MongoDB.
+**Accepted (WDP, Owner 17/11/2026: Mongo prod trong compose)** — đề xuất ghi 15/11/2026 bởi `ai-history-mongodb-infrastructure` theo
+[đề xuất lịch sử AI dùng MongoDB](../workspace/proposals/ai-history-mongodb/spec.md) (draft 13/11/2026). Quyết định chấp nhận
+**chỉ áp cho repo WDP** (môn WDP301): MongoDB production là service `mongodb` trong `docker-compose.prod.yml` trên VPS, không dùng
+Atlas. ADR này **không** thay `QĐ-79a`, `QĐ-79c`, `QĐ-102h` của đồ án SaaS-Sentry (BE SEP, Docs không đổi).
 
 ## Bối cảnh
 
@@ -55,7 +55,8 @@ Owner review. ADR này **chưa** thay `QĐ-79a`, `QĐ-79c`, `QĐ-102h` của Doc
   Compose ở ba điểm phải giữ khi dùng Atlas: endpoint công khai nên chỉ allowlist IP cần thiết (không `0.0.0.0/0`), TLS
   và mật khẩu bắt buộc; gói miễn phí không có backup tự động (cần xác nhận trên trang Atlas trước khi dựa vào), nên
   backup/restore phải tự làm nếu lịch sử cần giữ; dữ liệu lịch sử chứa tên và lý do của người dùng nên tới khi chốt
-  `OQ-26`/`OQ-G-06` chỉ dùng dữ liệu giả lập trên Atlas. Service `mongodb` của Compose vẫn giữ cho ai không dùng Atlas.
+  `OQ-26`/`OQ-G-06` chỉ dùng dữ liệu giả lập trên Atlas. Atlas chỉ dành cho dev với dữ liệu giả lập; production dùng service `mongodb` của `docker-compose.prod.yml` với user riêng (root user
+  đặt trong `.env` của host, cùng user đó trong `MONGODB_URI` của `.env.app`).
 - Driver 7 bỏ hạn thao tác toàn client (`timeoutMS` không còn tác dụng): `MONGODB_OPERATION_TIMEOUT_MS` được áp vào
   `connectTimeoutMS`, `socketTimeoutMS`, `waitQueueTimeoutMS`; truy vấn cần giới hạn phía server tự đặt `maxTimeMS`.
 - Driver 7 nạp module `os` bằng `import()` động nếu không được truyền sẵn; Jest (chạy trong `vm`) từ chối, driver gửi metadata
@@ -66,7 +67,7 @@ Owner review. ADR này **chưa** thay `QĐ-79a`, `QĐ-79c`, `QĐ-102h` của Doc
 
 ## Triển khai (16/11/2026)
 
-Đã triển khai theo yêu cầu của người giao việc ngày 16/11/2026; trạng thái vẫn **Proposed** cho tới khi có sự kiện Owner review.
+Đã triển khai theo yêu cầu của người giao việc ngày 16/11/2026; Owner chấp nhận cho WDP ngày 17/11/2026 (trạng thái ở trên).
 Lựa chọn của người giao việc: chuyển rồi xóa bảng cũ trong một migration (không giai đoạn hai nguồn đọc), worker giao outbox.
 
 - Migration `20261116100000_ai_history_mongodb`: thêm cột `history_*` vào `ai_invocations`, bảng `ai_invocation_results` và outbox
@@ -80,5 +81,9 @@ Lựa chọn của người giao việc: chuyển rồi xóa bảng cũ trong m�
   `PURGE_REQUESTED`); lệnh trả exit 1 khi còn tombstone chưa vào MongoDB.
 - Chưa làm so với đề xuất: API danh sách/chi tiết metadata (§7.1, §7.2), giới hạn backlog `AI.HISTORY_BACKLOG_FULL` (§6.2), ngưỡng
   kích thước 2 MiB và `captureStatus` (§5.2), backfill/cutover nhiều giai đoạn (§9), tách quyền MongoDB theo process.
-- `docker-compose.prod.yml` chưa có MongoDB: production phải trỏ `MONGODB_URI` tới một MongoDB có xác thực trước khi deploy bản
-  này, nếu không API, worker và `ops:ai-purge` từ chối khởi động.
+- Production (17/11/2026): `docker-compose.prod.yml` có service `mongodb` (`mongo:8.0`, chỉ trong `slm-network`, không publish cổng,
+  volume `mongodb-data`, healthcheck có xác thực, `restart: unless-stopped`); `api` và `worker` đợi nó healthy. `deploy-release.sh`
+  dừng **trước** `migrate deploy` nếu host thiếu `MONGODB_ROOT_USER`/`MONGODB_ROOT_PASSWORD` (`.env`) hoặc `MONGODB_URI` có user và
+  password (`.env.app`), hoặc `mongodb` không healthy, hoặc URI của API không xác thực được; deploy và rollback không bao giờ dừng
+  hay xóa service/volume này. Các bước trên VPS và sao lưu: [WDP MongoDB deploy](../operations/wdp-mongodb-deploy.md).
+- Còn lại (không làm trong WDP-1): user Mongo tách quyền theo process (API/worker/purge đang dùng chung một user); mã hóa/ rotate mật khẩu.

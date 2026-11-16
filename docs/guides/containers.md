@@ -53,8 +53,10 @@ The runtime defaults to production. Supply DATABASE_URL and HTTPS CORS_ORIGINS.
 Redis is not required today: the queue is standby infrastructure with no consumer yet, and it validates Redis only when a future
 module mounts it. MongoDB **is required**: the API, the worker and `ops:ai-purge` mount `MongoInfrastructureModule` (the raw
 history of the AI calls, ADR-0020), so production refuses to start without a `MONGODB_URI` that carries a username and a password.
-`docker-compose.prod.yml` has no MongoDB service yet: point `MONGODB_URI` at a MongoDB you run (a private network, or an Atlas
-cluster with an IP allowlist). MongoDB being down after a valid start does not stop the API: the history waits in the outbox. Object storage is mounted by the API (ADR-0014) and so needs an HTTPS
+`docker-compose.prod.yml` runs it as the `mongodb` service (WDP, Owner decision of 17/11/2026; Atlas is for development with
+synthetic data only): no published port, root user from `MONGODB_ROOT_USER`/`MONGODB_ROOT_PASSWORD` in `.env`, volume `mongodb-data`,
+and `MONGODB_URI=mongodb://<user>:<password>@mongodb:27017/?authSource=admin` in `.env.app`. The deploy script checks both before it
+migrates (see [WDP MongoDB deploy](../operations/wdp-mongodb-deploy.md)). MongoDB being down after a valid start does not stop the API: the history waits in the outbox. Object storage is mounted by the API (ADR-0014) and so needs an HTTPS
 OBJECT_STORAGE_ENDPOINT with OBJECT_STORAGE_BUCKET and the access key (the variables marked
 `@production-required-when-mounted` in `.env.example`); the worker and the commands do not read them. The endpoint is
 the one the browser uploads to and the one signed links open: its host is written into every link, so it must be
