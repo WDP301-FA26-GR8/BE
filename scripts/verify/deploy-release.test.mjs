@@ -47,7 +47,9 @@ const CANDIDATE = {
 };
 const MALFORMED_CADDY = ':80 {\n  MALFORMED directive\n}\n';
 /** The `.env` of H7 (the live one in every case) and the one kept before the first H7 rollout. */
-const H7_ENV = `ENV_GENERATION=h7\nPOSTGRES_PASSWORD=${SECRET}\nDATABASE_DEPLOY_PASSWORD=${SECRET}\n`;
+const H7_ENV = `ENV_GENERATION=h7\nPOSTGRES_PASSWORD=${SECRET}\nDATABASE_DEPLOY_PASSWORD=${SECRET}\nMONGODB_ROOT_USER=slm_mongo\nMONGODB_ROOT_PASSWORD=${SECRET}\n`;
+/** ADR-0020: the URI the API and the worker read from `.env.app`. */
+const MONGO_URI_LINE = `MONGODB_URI=mongodb://slm_mongo:${SECRET}@mongodb:27017/?authSource=admin\n`;
 const PRE_H7_ENV = `ENV_GENERATION=pre-h7\nPOSTGRES_PASSWORD=${SECRET}\nAUTH_ACCESS_TOKEN_SECRET=${SECRET}\n`;
 /**
  * P04-CPE-04: the labels `docker image inspect --format '{{json .Config.Labels}}'` prints for an image that reads the
@@ -326,7 +328,7 @@ const setup = (() => {
  * `noFlock` leaves PATH with the fakes only, so that no `flock` can be found.
  */
 function host({
-  appEnv = `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nSMTP_HOST=smtp.example.com\n`,
+  appEnv = `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nSMTP_HOST=smtp.example.com\n${MONGO_URI_LINE}`,
   fresh = false,
   preH7 = false,
   noFlock = false,
@@ -790,6 +792,8 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
     ['the candidate Caddyfile cannot be checked', 'caddy validate', 1],
     ['the image cannot be pulled', 'pull api worker', 1],
     ['the database cannot start', 'up -d --no-recreate postgres', 1],
+    ['MongoDB does not become healthy (ADR-0020)', 'up -d --no-recreate --wait', 1],
+    ['the MONGODB_URI of the API cannot reach MongoDB (ADR-0020)', 'api node -e', 1],
     ['the backup fails', 'pg_dump', 1],
     ['the backup is unreadable', 'pg_restore', 1],
     ['the preflight blocks', 'migration-preflight-cli', 2],
@@ -808,6 +812,85 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
       assert.equal(result.output.includes(SECRET), false);
     });
   }
+
+  it('starts MongoDB and proves the URI of the API before the backup and migrate deploy, and never stops or removes it (ADR-0020)', () => {
+    const target = host();
+    const result = deploy(target);
+
+    assert.equal(result.status, 0, result.output);
+    const order = [
+      step(result, / up -d --no-recreate postgres$/),
+      step(result, / up -d --no-recreate --wait --wait-timeout 120 mongodb$/),
+      step(result, / run --rm --no-deps -T api node -e /),
+      step(result, / backup pg_dump /),
+      step(result, / migrate node node_modules\/prisma\/build\/index\.js migrate deploy$/),
+    ];
+    assert.ok(
+      order.every((index) => index >= 0),
+      `missing step in ${result.calls.join('\n')}`,
+    );
+    assert.deepEqual(
+      order,
+      [...order].sort((a, b) => a - b),
+    );
+    // Neither the deploy nor a recovery names the service or its volume: no stop, rm, down, volume or orphan removal.
+    for (const call of result.calls) {
+      // The two steps that start and probe it; the probe's own code names the driver.
+      if (
+        / up -d --no-recreate --wait --wait-timeout 120 mongodb$/.test(call) ||
+        / run --rm --no-deps -T api node -e /.test(call)
+      )
+        continue;
+      assert.doesNotMatch(call, /\bmongodb\b|mongodb-data|--remove-orphans|volume rm| down( |$)/);
+    }
+    assert.equal(result.output.includes(SECRET), false);
+  });
+
+  it('stops before any docker call when the host has no MongoDB settings (ADR-0020)', () => {
+    for (const [name, env] of [
+      ['.env without the root user', (v) => v.replace(/MONGODB_ROOT_USER=.*\n/, '')],
+      ['.env without the root password', (v) => v.replace(/MONGODB_ROOT_PASSWORD=.*\n/, '')],
+    ]) {
+      const target = host();
+      const path = join(target.app, '.env');
+      writeFileSync(path, env(readFileSync(path, 'utf8')));
+      const result = deploy(target);
+
+      assert.equal(result.status, 1, name);
+      assert.deepEqual(result.calls, [], name);
+      assert.match(result.output, /MONGODB_ROOT_USER and MONGODB_ROOT_PASSWORD/);
+      assert.deepEqual(live(target), LIVE);
+      assert.equal(result.output.includes(SECRET), false);
+    }
+    for (const appEnv of [
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\n`,
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nMONGODB_URI=mongodb://mongodb:27017\n`,
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nMONGODB_URI=mongodb://slm_mongo@mongodb:27017\n`,
+    ]) {
+      const target = host({ appEnv });
+      const result = deploy(target);
+
+      assert.equal(result.status, 1);
+      assert.deepEqual(result.calls, []);
+      assert.match(result.output, /MONGODB_URI with a user and a password/);
+      assert.equal(result.output.includes(SECRET), false);
+    }
+  });
+
+  it('does not backup or migrate when MongoDB is not ready (ADR-0020)', () => {
+    for (const fail of ['up -d --no-recreate --wait', 'api node -e']) {
+      const target = host();
+      const result = deploy(target, { fail });
+
+      assert.equal(result.status, 1);
+      assert.equal(
+        result.calls.some((call) => / backup pg_dump | migrate deploy$/.test(call)),
+        false,
+        result.calls.join('\n'),
+      );
+      assert.deepEqual(live(target), LIVE);
+    }
+  });
 
   for (const [what, mvFail] of [
     ['the first rename (docker-compose.prod.yml)', '.docker-compose.prod.yml.promote'],
@@ -1664,8 +1747,8 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
   it('stops before any docker call without .env.app, or with a database variable in it', () => {
     for (const appEnv of [
       null,
-      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nPOSTGRES_PASSWORD=${SECRET}\n`,
-      'export PGPASSWORD=x\n',
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nPOSTGRES_PASSWORD=${SECRET}\n${MONGO_URI_LINE}`,
+      `export PGPASSWORD=x\n${MONGO_URI_LINE}`,
     ]) {
       const target = host({ appEnv });
       const result = deploy(target);
