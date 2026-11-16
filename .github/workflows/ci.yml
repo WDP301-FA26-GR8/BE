@@ -171,7 +171,7 @@ jobs:
       - name: Validate production Compose configuration
         run: |
           : > .env.app
-          printf 'POSTGRES_PASSWORD=ci-placeholder-bootstrap\nDATABASE_DEPLOY_PASSWORD=ci-placeholder-deploy\nDATABASE_RUNTIME_PASSWORD=ci-placeholder-runtime\n' > "$RUNNER_TEMP/prod.env"
+          printf 'POSTGRES_PASSWORD=ci-placeholder-bootstrap\nDATABASE_DEPLOY_PASSWORD=ci-placeholder-deploy\nDATABASE_RUNTIME_PASSWORD=ci-placeholder-runtime\nMONGODB_ROOT_USER=ci-placeholder-mongo-user\nMONGODB_ROOT_PASSWORD=ci-placeholder-mongo-password\n' > "$RUNNER_TEMP/prod.env"
           docker compose --env-file "$RUNNER_TEMP/prod.env" -f docker-compose.prod.yml --profile deploy --profile admin config --quiet
           grep -v RUNTIME "$RUNNER_TEMP/prod.env" > "$RUNNER_TEMP/prod-missing.env"
           if docker compose --env-file "$RUNNER_TEMP/prod-missing.env" -f docker-compose.prod.yml config --quiet 2>/dev/null; then

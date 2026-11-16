@@ -87806,7 +87806,7 @@
             }
           },
           "503": {
-            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE, SERVICE_UNAVAILABLE), or the history store (MongoDB) cannot give the content now (AI.HISTORY_UNAVAILABLE). Nothing was recorded.",
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },

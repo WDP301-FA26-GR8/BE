@@ -3,11 +3,10 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import {
   ApiErrorResponses,
   FORBIDDEN_EXAMPLE,
+  GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
   UNAUTHENTICATED_RESPONSE,
   VALIDATION_EXAMPLE,
 } from '../../../infrastructure/http/decorators/api-error-responses.decorator';
-import { TOKEN_VERIFICATION_UNAVAILABLE_ERROR } from '../../../infrastructure/http/errors/access-errors';
-import { SERVICE_UNAVAILABLE_ERROR } from '../../../infrastructure/http/errors/service-unavailable';
 import { ApiSuccessResponse } from '../../../infrastructure/http/decorators/api-success-response.decorator';
 import { RequireRoles } from '../../../infrastructure/security/decorators/access.decorators';
 import { CurrentPrincipal } from '../../../infrastructure/security/models/current-principal';
@@ -43,12 +42,11 @@ export class InvocationContentController {
       description: 'Only the Super Admin reads the content of a call of the AI, whoever made the call.',
       examples: [FORBIDDEN_EXAMPLE],
     },
+    // The 503 of every guarded route, and AI.HISTORY_UNAVAILABLE when the history store (MongoDB) cannot give the content now:
+    // nothing is recorded in that case.
     {
-      status: HttpStatus.SERVICE_UNAVAILABLE,
-      description:
-        'Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE, SERVICE_UNAVAILABLE), or ' +
-        'the history store (MongoDB) cannot give the content now (AI.HISTORY_UNAVAILABLE). Nothing was recorded.',
-      examples: [TOKEN_VERIFICATION_UNAVAILABLE_ERROR, SERVICE_UNAVAILABLE_ERROR, EXAMPLES.HISTORY_UNAVAILABLE],
+      ...GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
+      examples: [...GUARDED_SERVICE_UNAVAILABLE_RESPONSE.examples, EXAMPLES.HISTORY_UNAVAILABLE],
     },
     {
       status: HttpStatus.CONFLICT,
