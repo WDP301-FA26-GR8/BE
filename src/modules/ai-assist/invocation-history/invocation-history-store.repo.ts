@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { type Collection, MongoServerError } from 'mongodb';
+import { BSON, type Collection, MongoServerError } from 'mongodb';
 import { z } from 'zod';
 import { MongoConnection } from '../../../infrastructure/mongodb/mongodb-connection.service';
 import { MongoUnavailableError } from '../../../infrastructure/mongodb/mongodb.errors';
@@ -108,7 +108,7 @@ const NON_RETRYABLE_WRITE_CODES: ReadonlySet<number> = new Set([121, 10334]);
 function writeFailure(error: unknown): HistoryWriteRefusedError | MongoUnavailableError {
   const refused =
     (error instanceof MongoServerError && NON_RETRYABLE_WRITE_CODES.has(Number(error.code))) ||
-    (error instanceof Error && error.name === 'BSONError');
+    error instanceof BSON.BSONError;
 
   return refused ? new HistoryWriteRefusedError('PAYLOAD_INVALID') : unavailable(error);
 }

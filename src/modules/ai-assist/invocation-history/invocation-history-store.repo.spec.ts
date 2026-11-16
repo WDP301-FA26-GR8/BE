@@ -1,4 +1,4 @@
-import { type Db, MongoServerError } from 'mongodb';
+import { BSON, type Db, MongoServerError } from 'mongodb';
 import type { MongoConnection } from '../../../infrastructure/mongodb/mongodb-connection.service';
 import { MongoUnavailableError } from '../../../infrastructure/mongodb/mongodb.errors';
 import { HistoryWriteRefusedError } from './invocation-history.errors';
@@ -76,7 +76,7 @@ describe('InvocationHistoryStoreRepo', () => {
         'the document is over the size limit (10334)',
         () => new MongoServerError({ code: 10334, errmsg: 'BSONObj size is invalid' }),
       ],
-      ['the driver cannot encode it', () => Object.assign(new Error('Unsupported type'), { name: 'BSONError' })],
+      ['the driver cannot encode it', () => new BSON.BSONError('Unsupported type')],
     ])('refuses for good when %s: the delivery parks it, MongoDB is not down', async (_what, failure) => {
       const { store, collection } = world();
       collection.updateOne.mockRejectedValue(failure());
