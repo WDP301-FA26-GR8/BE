@@ -2,6 +2,13 @@ import request from 'supertest';
 import { QueueSummaryRunService } from '../../src/modules/ai-assist/queue-summary/queue-summary-run.service';
 import type { ApiAccount } from './api-accounts';
 import { declareSubscription } from './builders/catalog.builder';
+import {
+  type DisposableHistoryStore,
+  deliverHistory,
+  dropHistoryStore,
+  historyDocument,
+  provisionHistoryStore,
+} from './disposable-history-store';
 import { FakeAiService } from './fake-ai-service';
 import { GroupHarness } from './group-harness';
 import type { Unit } from './spend-harness';
@@ -53,10 +60,13 @@ export const AI_SWITCHES = ['AI_ENABLED', 'AI_ACCESS_REQUEST_SUMMARY_ENABLED'] a
 /**
  * The group harness with the AI summary of the approval queue (`US-15-05`) wired to a local stand-in of the AI service
  * (`fake-ai-service.ts`) over real HTTP: the two switches, the three routes, the content route of the Super Admin, and the reads of
- * what the database keeps. `settled` waits for every run the API started in its background. No assertion lives here.
+ * what the databases keep (PostgreSQL, and the MongoDB of the raw history, one of its own per suite: `TEST_MONGODB_URI`).
+ * `settled` waits for every run the API started in its background and delivers its history. No assertion lives here.
  */
 export class AiSummaryHarness extends GroupHarness {
   readonly ai = new FakeAiService();
+  /** The MongoDB of the raw history of this suite (ADR-0020). */
+  history: DisposableHistoryStore | undefined;
   private unitNumber = 0;
 
   /** `timeoutMs`: the deadline of one call to the AI service, its retry included. */
@@ -66,7 +76,11 @@ export class AiSummaryHarness extends GroupHarness {
 
   override async start(options: Parameters<GroupHarness['start']>[0] = {}): Promise<void> {
     await this.ai.start();
-    await super.start({ ...options, env: { ...this.ai.environment(this.timeoutMs), ...(options.env ?? {}) } });
+    this.history = await provisionHistoryStore();
+    await super.start({
+      ...options,
+      env: { ...this.ai.environment(this.timeoutMs), ...this.history.env, ...(options.env ?? {}) },
+    });
   }
 
   override async stop(): Promise<void> {
@@ -76,6 +90,7 @@ export class AiSummaryHarness extends GroupHarness {
     } finally {
       // Never left listening, even when the application failed to start or to close.
       await this.ai.stop();
+      if (this.history) await dropHistoryStore(this.history);
     }
   }
 
@@ -145,9 +160,13 @@ export class AiSummaryHarness extends GroupHarness {
       .get(`/api/v1/ai/invocations/${invocationId}/content`)
       .set({ Authorization: `Bearer ${token}` });
 
-  /** Resolves when every run of the AI the API started has ended. */
+  /**
+   * Resolves when every run of the AI the API started has ended and its raw history is in MongoDB: what the worker would have done
+   * by the time a person reads it.
+   */
   async settled(): Promise<void> {
     await this.ctx.app.get(QueueSummaryRunService, { strict: false }).idle();
+    await deliverHistory(this.ctx.app);
   }
 
   async revisionOf(account: ApiAccount): Promise<string> {
@@ -200,13 +219,21 @@ export class AiSummaryHarness extends GroupHarness {
     return Number(rows[0].n);
   }
 
-  async contentRow(invocationId: string): Promise<Record<string, unknown> | undefined> {
+  /** The result the checks kept for the call, as PostgreSQL holds it. */
+  async resultRow(invocationId: string): Promise<Record<string, unknown> | undefined> {
     return (
       await this.ctx.sql.query<Record<string, unknown>>(
-        `SELECT * FROM ai_invocation_contents WHERE invocation_id = $1`,
+        `SELECT * FROM ai_invocation_results WHERE invocation_id = $1`,
         [invocationId],
       )
     ).rows[0];
+  }
+
+  /** The document of the raw history of the call, as MongoDB holds it; null when MongoDB never got it. */
+  async historyDocument(invocationId: string): Promise<Record<string, unknown> | null> {
+    if (!this.history) throw new Error('the harness has not started');
+
+    return historyDocument(this.history, invocationId);
   }
 
   /** The audit events about a call, oldest first. */

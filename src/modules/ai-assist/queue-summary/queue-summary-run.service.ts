@@ -16,6 +16,8 @@ import {
   type QueueContext,
   type QueueSummaryServiceResponse,
 } from '../ai-service/ai-service.types';
+import { InvocationHistoryRecordService } from '../invocation-history/invocation-history-record.service';
+import type { HistorySnapshot } from '../invocation-history/invocation-history.types';
 import { AiInvocationRepo } from '../invocation/invocation.repo';
 import type { InvocationMetadata, InvocationOutcome } from '../invocation/invocation.types';
 import { type SummaryActor, summaryEndedEvent } from './queue-summary-audit-event.mapper';
@@ -73,6 +75,17 @@ function failureCodeOf(error: unknown): string | null {
   return null;
 }
 
+/** The raw history of an answered call: what was sent, what came back, and why the checks rejected the lines they rejected. */
+function snapshotOf(job: QueueSummaryJob, content: NonNullable<InvocationOutcome['content']>): HistorySnapshot {
+  return {
+    context: job.context,
+    promptText: content.promptText,
+    rawResponse: content.rawResponse,
+    parsed: content.parsed,
+    validation: content.result === null ? null : { rejections: content.result.rejections },
+  };
+}
+
 const failed = (errorCode: string, metadata: InvocationMetadata | null = null): InvocationOutcome => ({
   status: 'FAILED',
   errorCode,
@@ -82,10 +95,10 @@ const failed = (errorCode: string, metadata: InvocationMetadata | null = null): 
 
 /**
  * Runs a recorded call in the background of the API: RUNNING, the AI service, the checks of the answer, the source read again,
- * then COMPLETED, NO_VALID_OUTPUT or FAILED with the audit event, in one transaction. A failure of any kind ends as a state with a
- * stable code, never as an error of the request that started it; the log names the call, the feature, the status, the time and the
- * code, never what was said. A run that cannot even record its end stays RUNNING until a request of its owner takes it for
- * stuck.
+ * then COMPLETED, NO_VALID_OUTPUT or FAILED with the audit event and the raw history queued for MongoDB, in one transaction. A
+ * failure of any kind ends as a state with a stable code, never as an error of the request that started it; the log names the call,
+ * the feature, the status, the time and the code, never what was said. A run that cannot even record its end stays RUNNING until a
+ * request of its owner takes it for stuck.
  */
 @Injectable()
 export class QueueSummaryRunService implements OnModuleDestroy {
@@ -100,7 +113,13 @@ export class QueueSummaryRunService implements OnModuleDestroy {
     private readonly source: RequestsAiSourceApi,
     private readonly audit: AuditApi,
     private readonly client: AiServiceClient,
+    private readonly history: InvocationHistoryRecordService,
   ) {}
+
+  /** False when no AI service is configured: the feature answers that it is unavailable and starts nothing. */
+  available(): boolean {
+    return this.client.configured();
+  }
 
   /** Starts the run and returns at once: the caller has already answered the person. */
   start(job: QueueSummaryJob): void {
@@ -204,7 +223,18 @@ export class QueueSummaryRunService implements OnModuleDestroy {
   private async finish(job: QueueSummaryJob, outcome: InvocationOutcome): Promise<void> {
     const result = outcome.content?.result ?? null;
     const recorded = await this.runner.run(async (tx) => {
-      if (!(await this.repo.finish(tx, job.invocationId, outcome, new Date()))) return false;
+      const at = new Date();
+      if (!(await this.repo.finish(tx, job.invocationId, outcome, at))) return false;
+      // A call the model answered replaces the snapshot of its admission with the whole of it; a call it never answered keeps that
+      // one (the context, nothing else): nothing is made up.
+      if (outcome.content !== null) {
+        await this.history.recordAnswered(tx, {
+          invocationId: job.invocationId,
+          organizationId: job.organizationId,
+          snapshot: snapshotOf(job, outcome.content),
+          at,
+        });
+      }
       await this.audit.record(
         tx,
         summaryEndedEvent(job.actor, job.organizationId, job.invocationId, {

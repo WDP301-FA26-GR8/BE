@@ -58,6 +58,27 @@ describe('QueueSummaryRunService', () => {
   });
   afterEach(() => jest.restoreAllMocks());
 
+  it('queues the whole raw history of an answered call after the snapshot of its admission, in the transaction of the end', async () => {
+    const { history, row } = await ran(GOOD);
+
+    const snapshots = history.snapshots.get(row.id) ?? [];
+    expect(snapshots).toHaveLength(2);
+    expect(snapshots[0]).toMatchObject({ promptText: null, rawResponse: null, parsed: null, validation: null });
+    expect(snapshots[1]).toMatchObject({
+      promptText: expect.stringContaining('PROMPT') as unknown,
+      rawResponse: expect.stringContaining('RAW') as unknown,
+      parsed: { items: expect.any(Array) as unknown },
+      validation: { rejections: [] },
+    });
+    expect(snapshots[1].context).toEqual(snapshots[0].context);
+  });
+
+  it('keeps only the snapshot of the admission for a call the model never answered: nothing is made up', async () => {
+    const { history, row } = await ran(() => new AiServiceUnavailableError(503, null));
+
+    expect(history.snapshots.get(row.id)).toHaveLength(1);
+  });
+
   it('sends the context with opaque references and keeps the metadata, the content and the checked lines', async () => {
     const { ai, row, finished } = await ran(GOOD);
 

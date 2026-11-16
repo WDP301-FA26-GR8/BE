@@ -1,9 +1,11 @@
 # Containers and migrations
 
-`docker compose up -d --wait` starts local PostgreSQL only; that is all the API and the worker need. Redis and MinIO are
-optional and start only under their named profiles (`--profile queue`, `--profile storage`), for trying the queue and
-object storage the API mounts for contract files. The queue is standby infrastructure with no consumer yet (kept by the Owner,
-OD-R5; not mounted, E2 = A, H6.4). Ports bind to loopback.
+`docker compose up -d --wait` starts local PostgreSQL only; that is all the API and the worker need. Redis, MinIO and
+MongoDB are optional and start only under their named profiles (`--profile queue`, `--profile storage`, `--profile
+history`), for trying the queue, the object storage the API mounts for contract files, and the AI history store. The queue
+is standby infrastructure with no consumer yet (kept by the Owner, OD-R5; not mounted, E2 = A, H6.4). MongoDB (`mongo:8.0`,
+no authentication locally; ADR-0020) holds the raw history of the AI calls: without it the API still runs and the history
+waits in the outbox until MongoDB is back (or point `MONGODB_URI` at an Atlas cluster). Ports bind to loopback.
 Check for port conflicts before starting; do not stop unrelated services.
 Create the configured MinIO bucket before using storage. The API refuses the public default credentials of MinIO
 (`minioadmin`) in every environment but `NODE_ENV=test` (SEC-04): set your own `MINIO_ROOT_USER`/`MINIO_ROOT_PASSWORD`
@@ -16,8 +18,8 @@ cannot be pulled. The first build downloads Go dependencies and can take several
 This is a local development service; review storage support/security separately for production.
 [Official source-build instructions](https://github.com/minio/minio/releases/tag/RELEASE.2025-10-15T17-29-55Z).
 
-For port conflicts set POSTGRES_PORT, REDIS_PORT, MINIO_PORT and MINIO_CONSOLE_PORT
-in your shell/.env, and align DATABASE_URL/OBJECT_STORAGE_ENDPOINT with those host ports.
+For port conflicts set POSTGRES_PORT, REDIS_PORT, MINIO_PORT, MINIO_CONSOLE_PORT and MONGODB_PORT
+in your shell/.env, and align DATABASE_URL/OBJECT_STORAGE_ENDPOINT/MONGODB_URI with those host ports.
 All variable names (application and Compose-only) are listed in [.env.example](../../.env.example), with the variables
 production requires and how to generate secrets; it carries no values and is not a production configuration.
 
@@ -49,7 +51,10 @@ docker build --target migrate -t slm-migrate:foundation .
 
 The runtime defaults to production. Supply DATABASE_URL and HTTPS CORS_ORIGINS.
 Redis is not required today: the queue is standby infrastructure with no consumer yet, and it validates Redis only when a future
-module mounts it. Object storage is mounted by the API (ADR-0014) and so needs an HTTPS
+module mounts it. MongoDB **is required**: the API, the worker and `ops:ai-purge` mount `MongoInfrastructureModule` (the raw
+history of the AI calls, ADR-0020), so production refuses to start without a `MONGODB_URI` that carries a username and a password.
+`docker-compose.prod.yml` has no MongoDB service yet: point `MONGODB_URI` at a MongoDB you run (a private network, or an Atlas
+cluster with an IP allowlist). MongoDB being down after a valid start does not stop the API: the history waits in the outbox. Object storage is mounted by the API (ADR-0014) and so needs an HTTPS
 OBJECT_STORAGE_ENDPOINT with OBJECT_STORAGE_BUCKET and the access key (the variables marked
 `@production-required-when-mounted` in `.env.example`); the worker and the commands do not read them. The endpoint is
 the one the browser uploads to and the one signed links open: its host is written into every link, so it must be

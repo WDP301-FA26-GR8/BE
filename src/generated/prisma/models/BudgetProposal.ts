@@ -744,14 +744,6 @@ export type BudgetProposalUncheckedCreateNestedOneWithoutSuccessorOfInput = {
   connect?: Prisma.BudgetProposalWhereUniqueInput
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type EnumBudgetProposalStateFieldUpdateOperationsInput = {
   set?: $Enums.BudgetProposalState
 }

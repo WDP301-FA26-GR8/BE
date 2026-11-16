@@ -8,6 +8,7 @@ import {
   OBJECT_STORAGE_ENVIRONMENT_KEYS,
   validateObjectStorageEnvironment,
 } from '../object-storage/object-storage.config';
+import { MONGO_ENVIRONMENT_KEYS, validateMongoEnvironment } from '../mongodb/mongodb.config';
 import { QUEUE_ENVIRONMENT_KEYS, validateQueueEnvironment } from '../queue/queue.config';
 import { EnvironmentValidationError, validateEnvironment } from './env-schema';
 
@@ -31,11 +32,19 @@ const COMPOSE_ONLY = new Set([
   'MINIO_ROOT_PASSWORD',
   'MINIO_PORT',
   'MINIO_CONSOLE_PORT',
+  'MONGODB_PORT',
   'DOMAIN',
 ]);
 
-/** Owned by modules the API and the worker do not mount today (the Owner keeps them on standby); validated when a later slice mounts them. */
-const NOT_MOUNTED: ReadonlySet<string> = new Set([...OBJECT_STORAGE_ENVIRONMENT_KEYS, ...QUEUE_ENVIRONMENT_KEYS]);
+/**
+ * Not in the shared API and worker schema: each is validated by its own module when that module is mounted. Object storage and the
+ * queue are on standby (the Owner keeps them); MongoDB is mounted by `ai-assist` (ADR-0020) and checks itself when it starts.
+ */
+const NOT_MOUNTED: ReadonlySet<string> = new Set([
+  ...OBJECT_STORAGE_ENVIRONMENT_KEYS,
+  ...QUEUE_ENVIRONMENT_KEYS,
+  ...MONGO_ENVIRONMENT_KEYS,
+]);
 
 /**
  * Owned and checked by one module when it is mounted, and read by nothing else: the AI service of `ai-assist`.
@@ -127,7 +136,7 @@ describe('.env.example', () => {
     ).toEqual([]);
   });
 
-  it('marks exactly what object storage and the queue require in production once their module is mounted (ADR-0014, E2 = A)', () => {
+  it('marks exactly what object storage, the queue and MongoDB require in production once their module is mounted (ADR-0014, E2 = A, ADR-0020)', () => {
     const required = (validate: () => unknown): string[] => {
       try {
         validate();
@@ -145,6 +154,7 @@ describe('.env.example', () => {
       [
         ...required(() => validateObjectStorageEnvironment({ NODE_ENV: 'production' })),
         ...required(() => validateQueueEnvironment({ NODE_ENV: 'production' })),
+        ...required(() => validateMongoEnvironment({ NODE_ENV: 'production' })),
         // Not a Joi requirement but a production rule of the queue: an unauthenticated Redis is refused.
         'REDIS_PASSWORD',
       ].sort(),

@@ -70,6 +70,19 @@ chậm; hành vi SQL không đổi. CI làm tương tự trong `.github/actions/
 suite CLI biên dịch mã nguồn bằng ts-node mỗi lần gọi (luôn đúng code đang sửa, nhưng chậm); đặt `dist` thì phải
 `pnpm build` trước.
 
+Suite của `test/integration/ai-assist/` còn cần một MongoDB trên máy này cho lịch sử AI
+([ADR-0020](../docs/decisions/0020-mongodb-for-ai-invocation-history.md)): `TEST_MONGODB_URI` (chỉ nhận địa chỉ loopback,
+không đọc `.env`), mỗi suite một database `slm_it_*` xóa khi xong.
+
+```powershell
+docker compose --profile history up -d --wait mongodb
+$env:TEST_MONGODB_URI = 'mongodb://127.0.0.1:27017'
+pnpm test:integration -- test/integration/ai-assist
+```
+
+Một suite gọi lệnh CLI với `NODE_ENV=test` phải truyền database qua `TEST_DATABASE_URL`: chỉ `DATABASE_URL` thì
+`resolveDatabaseUrl` gắn thêm `_test` và lệnh không tìm thấy database.
+
 - Lượt chạy migrate **một lần** vào database mẫu; mỗi file sao một database riêng từ mẫu, nên các file chạy song song
   được. File đụng tài nguyên chung của cả cluster (tạo role H7, dùng superuser) nằm ở `test/integration/_serial/`.
 - File mà kết quả phụ thuộc giới hạn thời gian ngắn (một lời gọi kết thúc trong timeout đã cấu hình, vài giây) đặt cạnh

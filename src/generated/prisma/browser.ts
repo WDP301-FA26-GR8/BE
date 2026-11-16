@@ -23,10 +23,15 @@ export * from './enums';
  */
 export type AiInvocation = Prisma.AiInvocationModel
 /**
- * Model AiInvocationContent
+ * Model AiInvocationResult
  * 
  */
-export type AiInvocationContent = Prisma.AiInvocationContentModel
+export type AiInvocationResult = Prisma.AiInvocationResultModel
+/**
+ * Model AiHistoryDelivery
+ * 
+ */
+export type AiHistoryDelivery = Prisma.AiHistoryDeliveryModel
 /**
  * Model AuditEvent
  * 

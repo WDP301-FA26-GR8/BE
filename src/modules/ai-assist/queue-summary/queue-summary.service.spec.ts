@@ -93,7 +93,7 @@ describe('QueueSummaryService.create', () => {
   });
 
   it('reads the first 20 steps in one transaction, records the call as PENDING with its context and audit, and runs it', async () => {
-    const { service, runs, repo, source, events, actor, revision } = world();
+    const { service, runs, repo, history, source, events, actor, revision } = world();
 
     const created = await service.create(actor, { queueRevision: revision() });
 
@@ -107,7 +107,12 @@ describe('QueueSummaryService.create', () => {
       actorEmployeeId: EMPLOYEE,
       sourceRevision: revision(),
     });
-    expect(row?.context.requests.map((line) => line.sourceRef)).toEqual(['R001', 'R002', 'R003']);
+    expect(history.latest(created.invocationId)).toMatchObject({ promptText: null, rawResponse: null, parsed: null });
+    expect(history.latest(created.invocationId)?.context.requests.map((line) => line.sourceRef)).toEqual([
+      'R001',
+      'R002',
+      'R003',
+    ]);
     expect(events[0]).toMatchObject({
       organizationId: ORGANIZATION_ID,
       actorKind: 'USER',

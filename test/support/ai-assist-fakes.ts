@@ -9,6 +9,9 @@ import type {
   QueueSummaryServiceRequest,
   QueueSummaryServiceResponse,
 } from '../../src/modules/ai-assist/ai-service/ai-service.types';
+import type { InvocationHistoryRecordService } from '../../src/modules/ai-assist/invocation-history/invocation-history-record.service';
+import type { HistorySnapshot } from '../../src/modules/ai-assist/invocation-history/invocation-history.types';
+import type { InvocationResult } from '../../src/modules/ai-assist/invocation/invocation-result.json';
 import type { AiInvocationRepo } from '../../src/modules/ai-assist/invocation/invocation.repo';
 import type {
   InvocationKey,
@@ -33,10 +36,9 @@ import type { AiSourceStep } from '../../src/modules/requests/public/requests.ty
 export const ORGANIZATION_ID = '0a000000-0000-4000-8000-000000000001';
 const TX = { fake: 'transaction' } as unknown as DbTx;
 
-/** A row of `ai_invocations` with its content, as the fake keeps it. */
+/** A row of `ai_invocations` with how it ended, as the fake keeps it. */
 export interface FakeInvocationRow extends InvocationRecord {
   finishedAt: Date | null;
-  context: NewInvocation['context'];
   outcome: InvocationOutcome | null;
 }
 
@@ -77,7 +79,6 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
       startedAt: null,
       finishedAt: input.status === 'FAILED' ? input.at : null,
       result: null,
-      context: input.context,
       outcome: null,
     });
 
@@ -134,6 +135,21 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
     return Promise.resolve(row && row.actorAppUserId === actorAppUserId ? { ...row } : null);
   }
 
+  resultOf(_tx: DbTx, id: string): Promise<InvocationResult | null> {
+    return Promise.resolve(this.rows.get(id)?.result ?? null);
+  }
+
+  dropResults(_tx: DbTx, ids: string[]): Promise<void> {
+    for (const id of ids) {
+      const row = this.rows.get(id);
+      if (!row) continue;
+      row.result = null;
+      if (row.status === 'COMPLETED') row.status = 'STALE';
+    }
+
+    return Promise.resolve();
+  }
+
   /** A row put straight into the store, for a state the service cannot reach by itself (a run that stopped). */
   put(row: Partial<FakeInvocationRow> & Pick<FakeInvocationRow, 'status' | 'actorAppUserId'>): string {
     const id = row.id ?? randomUUID();
@@ -148,12 +164,41 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
       startedAt: null,
       finishedAt: null,
       result: null,
-      context: { generatedAt: new Date().toISOString(), requests: [] },
       outcome: null,
       ...row,
     });
 
     return id;
+  }
+}
+
+/** The outbox of the raw history: every snapshot recorded, in order, per call. */
+export class FakeHistoryRecord implements Pick<InvocationHistoryRecordService, 'recordAdmitted' | 'recordAnswered'> {
+  readonly snapshots = new Map<string, HistorySnapshot[]>();
+
+  recordAdmitted(_tx: DbTx, call: { invocationId: string; context: HistorySnapshot['context'] }): Promise<boolean> {
+    return this.push(call.invocationId, {
+      context: call.context,
+      promptText: null,
+      rawResponse: null,
+      parsed: null,
+      validation: null,
+    });
+  }
+
+  recordAnswered(_tx: DbTx, call: { invocationId: string; snapshot: HistorySnapshot }): Promise<boolean> {
+    return this.push(call.invocationId, call.snapshot);
+  }
+
+  /** The snapshot recorded last for the call. */
+  latest(invocationId: string): HistorySnapshot | undefined {
+    return this.snapshots.get(invocationId)?.at(-1);
+  }
+
+  private push(invocationId: string, snapshot: HistorySnapshot): Promise<boolean> {
+    this.snapshots.set(invocationId, [...(this.snapshots.get(invocationId) ?? []), snapshot]);
+
+    return Promise.resolve(true);
   }
 }
 
@@ -253,6 +298,7 @@ export function sourceStep(index: number, overrides: Partial<AiSourceStep> = {})
 /** The service of the summary on the fakes above, with both switches ON unless told otherwise. */
 export function queueSummaryWorld() {
   const repo = new FakeInvocationRepo();
+  const history = new FakeHistoryRecord();
   const source = new FakeStepSource();
   const ai = new FakeAiService();
   const events: AuditEventInput[] = [];
@@ -276,8 +322,9 @@ export function queueSummaryWorld() {
   } as unknown as OrganizationReadApi;
   const facade = source as unknown as RequestsAiSourceApi;
   const fakeRepo = repo as unknown as AiInvocationRepo;
-  const runs = new QueueSummaryRunService(runner, fakeRepo, facade, audit, ai);
-  const service = new QueueSummaryService(runner, fakeRepo, facade, parameters, organizations, audit, ai, runs);
+  const record = history as unknown as InvocationHistoryRecordService;
+  const runs = new QueueSummaryRunService(runner, fakeRepo, facade, audit, ai, record);
+  const service = new QueueSummaryService(runner, fakeRepo, facade, parameters, organizations, audit, record, runs);
 
-  return { service, runs, repo, source, ai, events, switches };
+  return { service, runs, repo, history, source, ai, events, switches };
 }

@@ -9,7 +9,8 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/AiInvocation'
-export type * from './models/AiInvocationContent'
+export type * from './models/AiInvocationResult'
+export type * from './models/AiHistoryDelivery'
 export type * from './models/AuditEvent'
 export type * from './models/BudgetProposal'
 export type * from './models/BudgetProposalLine'

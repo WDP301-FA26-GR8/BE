@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   AiInvocation: 'AiInvocation',
-  AiInvocationContent: 'AiInvocationContent',
+  AiInvocationResult: 'AiInvocationResult',
+  AiHistoryDelivery: 'AiHistoryDelivery',
   AuditEvent: 'AuditEvent',
   BudgetProposal: 'BudgetProposal',
   BudgetProposalLine: 'BudgetProposalLine',
@@ -244,23 +245,46 @@ export const AiInvocationScalarFieldEnum = {
   errorCode: 'errorCode',
   createdAt: 'createdAt',
   startedAt: 'startedAt',
-  finishedAt: 'finishedAt'
+  finishedAt: 'finishedAt',
+  historyState: 'historyState',
+  historyVersion: 'historyVersion',
+  historyStoredVersion: 'historyStoredVersion',
+  historyGeneration: 'historyGeneration',
+  historyErrorCode: 'historyErrorCode',
+  historyPurgedAt: 'historyPurgedAt'
 } as const
 
 export type AiInvocationScalarFieldEnum = (typeof AiInvocationScalarFieldEnum)[keyof typeof AiInvocationScalarFieldEnum]
 
 
-export const AiInvocationContentScalarFieldEnum = {
+export const AiInvocationResultScalarFieldEnum = {
   invocationId: 'invocationId',
-  context: 'context',
-  promptText: 'promptText',
-  rawResponse: 'rawResponse',
-  parsed: 'parsed',
   result: 'result',
   createdAt: 'createdAt'
 } as const
 
-export type AiInvocationContentScalarFieldEnum = (typeof AiInvocationContentScalarFieldEnum)[keyof typeof AiInvocationContentScalarFieldEnum]
+export type AiInvocationResultScalarFieldEnum = (typeof AiInvocationResultScalarFieldEnum)[keyof typeof AiInvocationResultScalarFieldEnum]
+
+
+export const AiHistoryDeliveryScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  invocationId: 'invocationId',
+  generation: 'generation',
+  version: 'version',
+  operation: 'operation',
+  payload: 'payload',
+  attempts: 'attempts',
+  availableAt: 'availableAt',
+  leaseToken: 'leaseToken',
+  leaseUntil: 'leaseUntil',
+  closedAt: 'closedAt',
+  parkedAt: 'parkedAt',
+  lastErrorCode: 'lastErrorCode',
+  createdAt: 'createdAt'
+} as const
+
+export type AiHistoryDeliveryScalarFieldEnum = (typeof AiHistoryDeliveryScalarFieldEnum)[keyof typeof AiHistoryDeliveryScalarFieldEnum]
 
 
 export const AuditEventScalarFieldEnum = {
