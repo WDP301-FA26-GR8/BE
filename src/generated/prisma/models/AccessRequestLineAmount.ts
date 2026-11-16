@@ -42,6 +42,7 @@ export type AccessRequestLineAmountMinAggregateOutputType = {
   budgetYear: number | null
   amountMinor: bigint | null
   currency: string | null
+  held: boolean | null
   releasedAt: Date | null
 }
 
@@ -51,6 +52,7 @@ export type AccessRequestLineAmountMaxAggregateOutputType = {
   budgetYear: number | null
   amountMinor: bigint | null
   currency: string | null
+  held: boolean | null
   releasedAt: Date | null
 }
 
@@ -60,6 +62,7 @@ export type AccessRequestLineAmountCountAggregateOutputType = {
   budgetYear: number
   amountMinor: number
   currency: number
+  held: number
   releasedAt: number
   _all: number
 }
@@ -81,6 +84,7 @@ export type AccessRequestLineAmountMinAggregateInputType = {
   budgetYear?: true
   amountMinor?: true
   currency?: true
+  held?: true
   releasedAt?: true
 }
 
@@ -90,6 +94,7 @@ export type AccessRequestLineAmountMaxAggregateInputType = {
   budgetYear?: true
   amountMinor?: true
   currency?: true
+  held?: true
   releasedAt?: true
 }
 
@@ -99,6 +104,7 @@ export type AccessRequestLineAmountCountAggregateInputType = {
   budgetYear?: true
   amountMinor?: true
   currency?: true
+  held?: true
   releasedAt?: true
   _all?: true
 }
@@ -195,6 +201,7 @@ export type AccessRequestLineAmountGroupByOutputType = {
   budgetYear: number
   amountMinor: bigint
   currency: string
+  held: boolean
   releasedAt: Date | null
   _count: AccessRequestLineAmountCountAggregateOutputType | null
   _avg: AccessRequestLineAmountAvgAggregateOutputType | null
@@ -227,6 +234,7 @@ export type AccessRequestLineAmountWhereInput = {
   budgetYear?: Prisma.IntFilter<"AccessRequestLineAmount"> | number
   amountMinor?: Prisma.BigIntFilter<"AccessRequestLineAmount"> | bigint | number
   currency?: Prisma.StringFilter<"AccessRequestLineAmount"> | string
+  held?: Prisma.BoolFilter<"AccessRequestLineAmount"> | boolean
   releasedAt?: Prisma.DateTimeNullableFilter<"AccessRequestLineAmount"> | Date | string | null
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   line?: Prisma.XOR<Prisma.AccessRequestLineScalarRelationFilter, Prisma.AccessRequestLineWhereInput>
@@ -239,6 +247,7 @@ export type AccessRequestLineAmountOrderByWithRelationInput = {
   budgetYear?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
+  held?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   request?: Prisma.AccessRequestOrderByWithRelationInput
   line?: Prisma.AccessRequestLineOrderByWithRelationInput
@@ -255,6 +264,7 @@ export type AccessRequestLineAmountWhereUniqueInput = Prisma.AtLeast<{
   budgetYear?: Prisma.IntFilter<"AccessRequestLineAmount"> | number
   amountMinor?: Prisma.BigIntFilter<"AccessRequestLineAmount"> | bigint | number
   currency?: Prisma.StringFilter<"AccessRequestLineAmount"> | string
+  held?: Prisma.BoolFilter<"AccessRequestLineAmount"> | boolean
   releasedAt?: Prisma.DateTimeNullableFilter<"AccessRequestLineAmount"> | Date | string | null
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
   line?: Prisma.XOR<Prisma.AccessRequestLineScalarRelationFilter, Prisma.AccessRequestLineWhereInput>
@@ -267,6 +277,7 @@ export type AccessRequestLineAmountOrderByWithAggregationInput = {
   budgetYear?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
+  held?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AccessRequestLineAmountCountOrderByAggregateInput
   _avg?: Prisma.AccessRequestLineAmountAvgOrderByAggregateInput
@@ -284,12 +295,14 @@ export type AccessRequestLineAmountScalarWhereWithAggregatesInput = {
   budgetYear?: Prisma.IntWithAggregatesFilter<"AccessRequestLineAmount"> | number
   amountMinor?: Prisma.BigIntWithAggregatesFilter<"AccessRequestLineAmount"> | bigint | number
   currency?: Prisma.StringWithAggregatesFilter<"AccessRequestLineAmount"> | string
+  held?: Prisma.BoolWithAggregatesFilter<"AccessRequestLineAmount"> | boolean
   releasedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequestLineAmount"> | Date | string | null
 }
 
 export type AccessRequestLineAmountCreateInput = {
   budgetYear: number
   amountMinor: bigint | number
+  held?: boolean
   releasedAt?: Date | string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLineAmountsInput
   line: Prisma.AccessRequestLineCreateNestedOneWithoutAmountsInput
@@ -302,12 +315,14 @@ export type AccessRequestLineAmountUncheckedCreateInput = {
   budgetYear: number
   amountMinor: bigint | number
   currency: string
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
 export type AccessRequestLineAmountUpdateInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLineAmountsNestedInput
   line?: Prisma.AccessRequestLineUpdateOneRequiredWithoutAmountsNestedInput
@@ -320,6 +335,7 @@ export type AccessRequestLineAmountUncheckedUpdateInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -329,12 +345,14 @@ export type AccessRequestLineAmountCreateManyInput = {
   budgetYear: number
   amountMinor: bigint | number
   currency: string
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
 export type AccessRequestLineAmountUpdateManyMutationInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -344,6 +362,7 @@ export type AccessRequestLineAmountUncheckedUpdateManyInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -369,6 +388,7 @@ export type AccessRequestLineAmountCountOrderByAggregateInput = {
   budgetYear?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
+  held?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrder
 }
 
@@ -383,6 +403,7 @@ export type AccessRequestLineAmountMaxOrderByAggregateInput = {
   budgetYear?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
+  held?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrder
 }
 
@@ -392,6 +413,7 @@ export type AccessRequestLineAmountMinOrderByAggregateInput = {
   budgetYear?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
+  held?: Prisma.SortOrder
   releasedAt?: Prisma.SortOrder
 }
 
@@ -529,6 +551,7 @@ export type AccessRequestLineAmountUncheckedUpdateManyWithoutLineNestedInput = {
 export type AccessRequestLineAmountCreateWithoutCurrencyRecordInput = {
   budgetYear: number
   amountMinor: bigint | number
+  held?: boolean
   releasedAt?: Date | string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLineAmountsInput
   line: Prisma.AccessRequestLineCreateNestedOneWithoutAmountsInput
@@ -539,6 +562,7 @@ export type AccessRequestLineAmountUncheckedCreateWithoutCurrencyRecordInput = {
   employeeId: string
   budgetYear: number
   amountMinor: bigint | number
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
@@ -577,12 +601,14 @@ export type AccessRequestLineAmountScalarWhereInput = {
   budgetYear?: Prisma.IntFilter<"AccessRequestLineAmount"> | number
   amountMinor?: Prisma.BigIntFilter<"AccessRequestLineAmount"> | bigint | number
   currency?: Prisma.StringFilter<"AccessRequestLineAmount"> | string
+  held?: Prisma.BoolFilter<"AccessRequestLineAmount"> | boolean
   releasedAt?: Prisma.DateTimeNullableFilter<"AccessRequestLineAmount"> | Date | string | null
 }
 
 export type AccessRequestLineAmountCreateWithoutRequestInput = {
   budgetYear: number
   amountMinor: bigint | number
+  held?: boolean
   releasedAt?: Date | string | null
   line: Prisma.AccessRequestLineCreateNestedOneWithoutAmountsInput
   currencyRecord: Prisma.CurrencyCreateNestedOneWithoutLineAmountsInput
@@ -593,6 +619,7 @@ export type AccessRequestLineAmountUncheckedCreateWithoutRequestInput = {
   budgetYear: number
   amountMinor: bigint | number
   currency: string
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
@@ -625,6 +652,7 @@ export type AccessRequestLineAmountUpdateManyWithWhereWithoutRequestInput = {
 export type AccessRequestLineAmountCreateWithoutLineInput = {
   budgetYear: number
   amountMinor: bigint | number
+  held?: boolean
   releasedAt?: Date | string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutLineAmountsInput
   currencyRecord: Prisma.CurrencyCreateNestedOneWithoutLineAmountsInput
@@ -634,6 +662,7 @@ export type AccessRequestLineAmountUncheckedCreateWithoutLineInput = {
   budgetYear: number
   amountMinor: bigint | number
   currency: string
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
@@ -668,12 +697,14 @@ export type AccessRequestLineAmountCreateManyCurrencyRecordInput = {
   employeeId: string
   budgetYear: number
   amountMinor: bigint | number
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
 export type AccessRequestLineAmountUpdateWithoutCurrencyRecordInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLineAmountsNestedInput
   line?: Prisma.AccessRequestLineUpdateOneRequiredWithoutAmountsNestedInput
@@ -684,6 +715,7 @@ export type AccessRequestLineAmountUncheckedUpdateWithoutCurrencyRecordInput = {
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -692,6 +724,7 @@ export type AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordInput
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -700,12 +733,14 @@ export type AccessRequestLineAmountCreateManyRequestInput = {
   budgetYear: number
   amountMinor: bigint | number
   currency: string
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
 export type AccessRequestLineAmountUpdateWithoutRequestInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   line?: Prisma.AccessRequestLineUpdateOneRequiredWithoutAmountsNestedInput
   currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutLineAmountsNestedInput
@@ -716,6 +751,7 @@ export type AccessRequestLineAmountUncheckedUpdateWithoutRequestInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -724,6 +760,7 @@ export type AccessRequestLineAmountUncheckedUpdateManyWithoutRequestInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -731,12 +768,14 @@ export type AccessRequestLineAmountCreateManyLineInput = {
   budgetYear: number
   amountMinor: bigint | number
   currency: string
+  held?: boolean
   releasedAt?: Date | string | null
 }
 
 export type AccessRequestLineAmountUpdateWithoutLineInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutLineAmountsNestedInput
   currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutLineAmountsNestedInput
@@ -746,6 +785,7 @@ export type AccessRequestLineAmountUncheckedUpdateWithoutLineInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -753,6 +793,7 @@ export type AccessRequestLineAmountUncheckedUpdateManyWithoutLineInput = {
   budgetYear?: Prisma.IntFieldUpdateOperationsInput | number
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
+  held?: Prisma.BoolFieldUpdateOperationsInput | boolean
   releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -764,6 +805,7 @@ export type AccessRequestLineAmountSelect<ExtArgs extends runtime.Types.Extensio
   budgetYear?: boolean
   amountMinor?: boolean
   currency?: boolean
+  held?: boolean
   releasedAt?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   line?: boolean | Prisma.AccessRequestLineDefaultArgs<ExtArgs>
@@ -776,6 +818,7 @@ export type AccessRequestLineAmountSelectCreateManyAndReturn<ExtArgs extends run
   budgetYear?: boolean
   amountMinor?: boolean
   currency?: boolean
+  held?: boolean
   releasedAt?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   line?: boolean | Prisma.AccessRequestLineDefaultArgs<ExtArgs>
@@ -788,6 +831,7 @@ export type AccessRequestLineAmountSelectUpdateManyAndReturn<ExtArgs extends run
   budgetYear?: boolean
   amountMinor?: boolean
   currency?: boolean
+  held?: boolean
   releasedAt?: boolean
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   line?: boolean | Prisma.AccessRequestLineDefaultArgs<ExtArgs>
@@ -800,10 +844,11 @@ export type AccessRequestLineAmountSelectScalar = {
   budgetYear?: boolean
   amountMinor?: boolean
   currency?: boolean
+  held?: boolean
   releasedAt?: boolean
 }
 
-export type AccessRequestLineAmountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "employeeId" | "budgetYear" | "amountMinor" | "currency" | "releasedAt", ExtArgs["result"]["accessRequestLineAmount"]>
+export type AccessRequestLineAmountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "employeeId" | "budgetYear" | "amountMinor" | "currency" | "held" | "releasedAt", ExtArgs["result"]["accessRequestLineAmount"]>
 export type AccessRequestLineAmountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   line?: boolean | Prisma.AccessRequestLineDefaultArgs<ExtArgs>
@@ -833,6 +878,7 @@ export type $AccessRequestLineAmountPayload<ExtArgs extends runtime.Types.Extens
     budgetYear: number
     amountMinor: bigint
     currency: string
+    held: boolean
     releasedAt: Date | null
   }, ExtArgs["result"]["accessRequestLineAmount"]>
   composites: {}
@@ -1265,6 +1311,7 @@ export interface AccessRequestLineAmountFieldRefs {
   readonly budgetYear: Prisma.FieldRef<"AccessRequestLineAmount", 'Int'>
   readonly amountMinor: Prisma.FieldRef<"AccessRequestLineAmount", 'BigInt'>
   readonly currency: Prisma.FieldRef<"AccessRequestLineAmount", 'String'>
+  readonly held: Prisma.FieldRef<"AccessRequestLineAmount", 'Boolean'>
   readonly releasedAt: Prisma.FieldRef<"AccessRequestLineAmount", 'DateTime'>
 }
     

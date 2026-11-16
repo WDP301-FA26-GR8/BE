@@ -204,6 +204,8 @@ export type CurrencyWhereInput = {
   subscriptions?: Prisma.SubscriptionListRelationFilter
   accessRequestAmounts?: Prisma.AccessRequestListRelationFilter
   assessmentQuotes?: Prisma.AccessRequestAssessmentListRelationFilter
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentListRelationFilter
+  subscriptionOriginals?: Prisma.SubscriptionListRelationFilter
   requestBudgetChecks?: Prisma.RequestBudgetCheckListRelationFilter
   requestSupplements?: Prisma.RequestSupplementListRelationFilter
   lineAmounts?: Prisma.AccessRequestLineAmountListRelationFilter
@@ -223,6 +225,8 @@ export type CurrencyOrderByWithRelationInput = {
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
   accessRequestAmounts?: Prisma.AccessRequestOrderByRelationAggregateInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentOrderByRelationAggregateInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentOrderByRelationAggregateInput
+  subscriptionOriginals?: Prisma.SubscriptionOrderByRelationAggregateInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckOrderByRelationAggregateInput
   requestSupplements?: Prisma.RequestSupplementOrderByRelationAggregateInput
   lineAmounts?: Prisma.AccessRequestLineAmountOrderByRelationAggregateInput
@@ -245,6 +249,8 @@ export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
   subscriptions?: Prisma.SubscriptionListRelationFilter
   accessRequestAmounts?: Prisma.AccessRequestListRelationFilter
   assessmentQuotes?: Prisma.AccessRequestAssessmentListRelationFilter
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentListRelationFilter
+  subscriptionOriginals?: Prisma.SubscriptionListRelationFilter
   requestBudgetChecks?: Prisma.RequestBudgetCheckListRelationFilter
   requestSupplements?: Prisma.RequestSupplementListRelationFilter
   lineAmounts?: Prisma.AccessRequestLineAmountListRelationFilter
@@ -284,6 +290,8 @@ export type CurrencyCreateInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -303,6 +311,8 @@ export type CurrencyUncheckedCreateInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -322,6 +332,8 @@ export type CurrencyUpdateInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -341,6 +353,8 @@ export type CurrencyUncheckedUpdateInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -482,6 +496,12 @@ export type CurrencyCreateNestedOneWithoutSubscriptionsInput = {
   connect?: Prisma.CurrencyWhereUniqueInput
 }
 
+export type CurrencyCreateNestedOneWithoutSubscriptionOriginalsInput = {
+  create?: Prisma.XOR<Prisma.CurrencyCreateWithoutSubscriptionOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutSubscriptionOriginalsInput>
+  connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutSubscriptionOriginalsInput
+  connect?: Prisma.CurrencyWhereUniqueInput
+}
+
 export type CurrencyUpdateOneWithoutSubscriptionsNestedInput = {
   create?: Prisma.XOR<Prisma.CurrencyCreateWithoutSubscriptionsInput, Prisma.CurrencyUncheckedCreateWithoutSubscriptionsInput>
   connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutSubscriptionsInput
@@ -490,6 +510,16 @@ export type CurrencyUpdateOneWithoutSubscriptionsNestedInput = {
   delete?: Prisma.CurrencyWhereInput | boolean
   connect?: Prisma.CurrencyWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.CurrencyUpdateWithoutSubscriptionsInput>, Prisma.CurrencyUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type CurrencyUpdateOneWithoutSubscriptionOriginalsNestedInput = {
+  create?: Prisma.XOR<Prisma.CurrencyCreateWithoutSubscriptionOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutSubscriptionOriginalsInput>
+  connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutSubscriptionOriginalsInput
+  upsert?: Prisma.CurrencyUpsertWithoutSubscriptionOriginalsInput
+  disconnect?: Prisma.CurrencyWhereInput | boolean
+  delete?: Prisma.CurrencyWhereInput | boolean
+  connect?: Prisma.CurrencyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutSubscriptionOriginalsInput, Prisma.CurrencyUpdateWithoutSubscriptionOriginalsInput>, Prisma.CurrencyUncheckedUpdateWithoutSubscriptionOriginalsInput>
 }
 
 export type CurrencyCreateNestedOneWithoutRatesInput = {
@@ -556,6 +586,12 @@ export type CurrencyCreateNestedOneWithoutAssessmentQuotesInput = {
   connect?: Prisma.CurrencyWhereUniqueInput
 }
 
+export type CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput = {
+  create?: Prisma.XOR<Prisma.CurrencyCreateWithoutAssessmentQuoteOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutAssessmentQuoteOriginalsInput>
+  connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutAssessmentQuoteOriginalsInput
+  connect?: Prisma.CurrencyWhereUniqueInput
+}
+
 export type CurrencyUpdateOneWithoutAssessmentQuotesNestedInput = {
   create?: Prisma.XOR<Prisma.CurrencyCreateWithoutAssessmentQuotesInput, Prisma.CurrencyUncheckedCreateWithoutAssessmentQuotesInput>
   connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutAssessmentQuotesInput
@@ -564,6 +600,16 @@ export type CurrencyUpdateOneWithoutAssessmentQuotesNestedInput = {
   delete?: Prisma.CurrencyWhereInput | boolean
   connect?: Prisma.CurrencyWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutAssessmentQuotesInput, Prisma.CurrencyUpdateWithoutAssessmentQuotesInput>, Prisma.CurrencyUncheckedUpdateWithoutAssessmentQuotesInput>
+}
+
+export type CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput = {
+  create?: Prisma.XOR<Prisma.CurrencyCreateWithoutAssessmentQuoteOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutAssessmentQuoteOriginalsInput>
+  connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutAssessmentQuoteOriginalsInput
+  upsert?: Prisma.CurrencyUpsertWithoutAssessmentQuoteOriginalsInput
+  disconnect?: Prisma.CurrencyWhereInput | boolean
+  delete?: Prisma.CurrencyWhereInput | boolean
+  connect?: Prisma.CurrencyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutAssessmentQuoteOriginalsInput, Prisma.CurrencyUpdateWithoutAssessmentQuoteOriginalsInput>, Prisma.CurrencyUncheckedUpdateWithoutAssessmentQuoteOriginalsInput>
 }
 
 export type CurrencyCreateNestedOneWithoutRequestBudgetChecksInput = {
@@ -604,6 +650,8 @@ export type CurrencyCreateWithoutBudgetProposalsInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -622,6 +670,8 @@ export type CurrencyUncheckedCreateWithoutBudgetProposalsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -656,6 +706,8 @@ export type CurrencyUpdateWithoutBudgetProposalsInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -674,6 +726,8 @@ export type CurrencyUncheckedUpdateWithoutBudgetProposalsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -692,6 +746,8 @@ export type CurrencyCreateWithoutBudgetVersionsInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -710,6 +766,8 @@ export type CurrencyUncheckedCreateWithoutBudgetVersionsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -744,6 +802,8 @@ export type CurrencyUpdateWithoutBudgetVersionsInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -762,6 +822,8 @@ export type CurrencyUncheckedUpdateWithoutBudgetVersionsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -780,6 +842,8 @@ export type CurrencyCreateWithoutBudgetCommitmentsInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -798,6 +862,8 @@ export type CurrencyUncheckedCreateWithoutBudgetCommitmentsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -832,6 +898,8 @@ export type CurrencyUpdateWithoutBudgetCommitmentsInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -850,6 +918,8 @@ export type CurrencyUncheckedUpdateWithoutBudgetCommitmentsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -868,6 +938,8 @@ export type CurrencyCreateWithoutInvoicesInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -886,6 +958,8 @@ export type CurrencyUncheckedCreateWithoutInvoicesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -920,6 +994,8 @@ export type CurrencyUpdateWithoutInvoicesInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -938,6 +1014,8 @@ export type CurrencyUncheckedUpdateWithoutInvoicesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -956,6 +1034,8 @@ export type CurrencyCreateWithoutBudgetCyclesInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -974,6 +1054,8 @@ export type CurrencyUncheckedCreateWithoutBudgetCyclesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1008,6 +1090,8 @@ export type CurrencyUpdateWithoutBudgetCyclesInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -1026,6 +1110,8 @@ export type CurrencyUncheckedUpdateWithoutBudgetCyclesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1043,6 +1129,8 @@ export type CurrencyCreateWithoutSubscriptionsInput = {
   rates?: Prisma.ExchangeRateCreateNestedManyWithoutCurrencyRefInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -1061,6 +1149,8 @@ export type CurrencyUncheckedCreateWithoutSubscriptionsInput = {
   rates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutCurrencyRefInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1075,6 +1165,51 @@ export type CurrencyUncheckedCreateWithoutSubscriptionsInput = {
 export type CurrencyCreateOrConnectWithoutSubscriptionsInput = {
   where: Prisma.CurrencyWhereUniqueInput
   create: Prisma.XOR<Prisma.CurrencyCreateWithoutSubscriptionsInput, Prisma.CurrencyUncheckedCreateWithoutSubscriptionsInput>
+}
+
+export type CurrencyCreateWithoutSubscriptionOriginalsInput = {
+  code: string
+  name: string
+  minorUnit: number
+  rates?: Prisma.ExchangeRateCreateNestedManyWithoutCurrencyRefInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
+  accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
+  lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutCurrencyRecordInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
+  organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
+}
+
+export type CurrencyUncheckedCreateWithoutSubscriptionOriginalsInput = {
+  code: string
+  name: string
+  minorUnit: number
+  rates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutCurrencyRefInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
+  accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
+}
+
+export type CurrencyCreateOrConnectWithoutSubscriptionOriginalsInput = {
+  where: Prisma.CurrencyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CurrencyCreateWithoutSubscriptionOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutSubscriptionOriginalsInput>
 }
 
 export type CurrencyUpsertWithoutSubscriptionsInput = {
@@ -1095,6 +1230,8 @@ export type CurrencyUpdateWithoutSubscriptionsInput = {
   rates?: Prisma.ExchangeRateUpdateManyWithoutCurrencyRefNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -1113,6 +1250,59 @@ export type CurrencyUncheckedUpdateWithoutSubscriptionsInput = {
   rates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutCurrencyRefNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
+}
+
+export type CurrencyUpsertWithoutSubscriptionOriginalsInput = {
+  update: Prisma.XOR<Prisma.CurrencyUpdateWithoutSubscriptionOriginalsInput, Prisma.CurrencyUncheckedUpdateWithoutSubscriptionOriginalsInput>
+  create: Prisma.XOR<Prisma.CurrencyCreateWithoutSubscriptionOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutSubscriptionOriginalsInput>
+  where?: Prisma.CurrencyWhereInput
+}
+
+export type CurrencyUpdateToOneWithWhereWithoutSubscriptionOriginalsInput = {
+  where?: Prisma.CurrencyWhereInput
+  data: Prisma.XOR<Prisma.CurrencyUpdateWithoutSubscriptionOriginalsInput, Prisma.CurrencyUncheckedUpdateWithoutSubscriptionOriginalsInput>
+}
+
+export type CurrencyUpdateWithoutSubscriptionOriginalsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  minorUnit?: Prisma.IntFieldUpdateOperationsInput | number
+  rates?: Prisma.ExchangeRateUpdateManyWithoutCurrencyRefNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
+  accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutCurrencyRecordNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
+  organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
+}
+
+export type CurrencyUncheckedUpdateWithoutSubscriptionOriginalsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  minorUnit?: Prisma.IntFieldUpdateOperationsInput | number
+  rates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutCurrencyRefNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
+  accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1131,6 +1321,8 @@ export type CurrencyCreateWithoutRatesInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -1149,6 +1341,8 @@ export type CurrencyUncheckedCreateWithoutRatesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1183,6 +1377,8 @@ export type CurrencyUpdateWithoutRatesInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -1201,6 +1397,8 @@ export type CurrencyUncheckedUpdateWithoutRatesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1220,6 +1418,8 @@ export type CurrencyCreateWithoutOrganizationsInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -1238,6 +1438,8 @@ export type CurrencyUncheckedCreateWithoutOrganizationsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1272,6 +1474,8 @@ export type CurrencyUpdateWithoutOrganizationsInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -1290,6 +1494,8 @@ export type CurrencyUncheckedUpdateWithoutOrganizationsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1307,6 +1513,8 @@ export type CurrencyCreateWithoutAccessRequestAmountsInput = {
   rates?: Prisma.ExchangeRateCreateNestedManyWithoutCurrencyRefInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -1325,6 +1533,8 @@ export type CurrencyUncheckedCreateWithoutAccessRequestAmountsInput = {
   rates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutCurrencyRefInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1359,6 +1569,8 @@ export type CurrencyUpdateWithoutAccessRequestAmountsInput = {
   rates?: Prisma.ExchangeRateUpdateManyWithoutCurrencyRefNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -1377,6 +1589,8 @@ export type CurrencyUncheckedUpdateWithoutAccessRequestAmountsInput = {
   rates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutCurrencyRefNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1396,6 +1610,8 @@ export type CurrencyCreateWithoutLineAmountsInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
@@ -1414,6 +1630,8 @@ export type CurrencyUncheckedCreateWithoutLineAmountsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1448,6 +1666,8 @@ export type CurrencyUpdateWithoutLineAmountsInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
@@ -1466,6 +1686,8 @@ export type CurrencyUncheckedUpdateWithoutLineAmountsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1483,6 +1705,8 @@ export type CurrencyCreateWithoutAssessmentQuotesInput = {
   rates?: Prisma.ExchangeRateCreateNestedManyWithoutCurrencyRefInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
@@ -1501,6 +1725,8 @@ export type CurrencyUncheckedCreateWithoutAssessmentQuotesInput = {
   rates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutCurrencyRefInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1515,6 +1741,51 @@ export type CurrencyUncheckedCreateWithoutAssessmentQuotesInput = {
 export type CurrencyCreateOrConnectWithoutAssessmentQuotesInput = {
   where: Prisma.CurrencyWhereUniqueInput
   create: Prisma.XOR<Prisma.CurrencyCreateWithoutAssessmentQuotesInput, Prisma.CurrencyUncheckedCreateWithoutAssessmentQuotesInput>
+}
+
+export type CurrencyCreateWithoutAssessmentQuoteOriginalsInput = {
+  code: string
+  name: string
+  minorUnit: number
+  rates?: Prisma.ExchangeRateCreateNestedManyWithoutCurrencyRefInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
+  accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
+  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
+  lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
+  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
+  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutCurrencyRecordInput
+  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutCurrencyRecordInput
+  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCurrencyRecordInput
+  organizations?: Prisma.OrganizationCreateNestedManyWithoutReportingCurrencyRecordInput
+}
+
+export type CurrencyUncheckedCreateWithoutAssessmentQuoteOriginalsInput = {
+  code: string
+  name: string
+  minorUnit: number
+  rates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutCurrencyRefInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
+  accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCurrencyRecordInput
+  organizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutReportingCurrencyRecordInput
+}
+
+export type CurrencyCreateOrConnectWithoutAssessmentQuoteOriginalsInput = {
+  where: Prisma.CurrencyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CurrencyCreateWithoutAssessmentQuoteOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutAssessmentQuoteOriginalsInput>
 }
 
 export type CurrencyUpsertWithoutAssessmentQuotesInput = {
@@ -1535,6 +1806,8 @@ export type CurrencyUpdateWithoutAssessmentQuotesInput = {
   rates?: Prisma.ExchangeRateUpdateManyWithoutCurrencyRefNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
@@ -1553,6 +1826,59 @@ export type CurrencyUncheckedUpdateWithoutAssessmentQuotesInput = {
   rates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutCurrencyRefNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCurrencyRecordNestedInput
+  organizations?: Prisma.OrganizationUncheckedUpdateManyWithoutReportingCurrencyRecordNestedInput
+}
+
+export type CurrencyUpsertWithoutAssessmentQuoteOriginalsInput = {
+  update: Prisma.XOR<Prisma.CurrencyUpdateWithoutAssessmentQuoteOriginalsInput, Prisma.CurrencyUncheckedUpdateWithoutAssessmentQuoteOriginalsInput>
+  create: Prisma.XOR<Prisma.CurrencyCreateWithoutAssessmentQuoteOriginalsInput, Prisma.CurrencyUncheckedCreateWithoutAssessmentQuoteOriginalsInput>
+  where?: Prisma.CurrencyWhereInput
+}
+
+export type CurrencyUpdateToOneWithWhereWithoutAssessmentQuoteOriginalsInput = {
+  where?: Prisma.CurrencyWhereInput
+  data: Prisma.XOR<Prisma.CurrencyUpdateWithoutAssessmentQuoteOriginalsInput, Prisma.CurrencyUncheckedUpdateWithoutAssessmentQuoteOriginalsInput>
+}
+
+export type CurrencyUpdateWithoutAssessmentQuoteOriginalsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  minorUnit?: Prisma.IntFieldUpdateOperationsInput | number
+  rates?: Prisma.ExchangeRateUpdateManyWithoutCurrencyRefNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
+  accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
+  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
+  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
+  lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
+  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutCurrencyRecordNestedInput
+  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutCurrencyRecordNestedInput
+  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutCurrencyRecordNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCurrencyRecordNestedInput
+  organizations?: Prisma.OrganizationUpdateManyWithoutReportingCurrencyRecordNestedInput
+}
+
+export type CurrencyUncheckedUpdateWithoutAssessmentQuoteOriginalsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  minorUnit?: Prisma.IntFieldUpdateOperationsInput | number
+  rates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutCurrencyRefNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
+  accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
+  assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1572,6 +1898,8 @@ export type CurrencyCreateWithoutRequestBudgetChecksInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
@@ -1590,6 +1918,8 @@ export type CurrencyUncheckedCreateWithoutRequestBudgetChecksInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1624,6 +1954,8 @@ export type CurrencyUpdateWithoutRequestBudgetChecksInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
@@ -1642,6 +1974,8 @@ export type CurrencyUncheckedUpdateWithoutRequestBudgetChecksInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1660,6 +1994,8 @@ export type CurrencyCreateWithoutRequestSupplementsInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutCurrencyRecordInput
@@ -1678,6 +2014,8 @@ export type CurrencyUncheckedCreateWithoutRequestSupplementsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPriceCurrencyInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutAmountCurrencyRecordInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOriginalCurrencyRecordInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutCurrencyRecordInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedCreateNestedManyWithoutCurrencyRecordInput
   budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutCurrencyRecordInput
@@ -1712,6 +2050,8 @@ export type CurrencyUpdateWithoutRequestSupplementsInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutCurrencyRecordNestedInput
@@ -1730,6 +2070,8 @@ export type CurrencyUncheckedUpdateWithoutRequestSupplementsInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPriceCurrencyNestedInput
   accessRequestAmounts?: Prisma.AccessRequestUncheckedUpdateManyWithoutAmountCurrencyRecordNestedInput
   assessmentQuotes?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput
+  assessmentQuoteOriginals?: Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput
+  subscriptionOriginals?: Prisma.SubscriptionUncheckedUpdateManyWithoutOriginalCurrencyRecordNestedInput
   requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   lineAmounts?: Prisma.AccessRequestLineAmountUncheckedUpdateManyWithoutCurrencyRecordNestedInput
   budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordNestedInput
@@ -1750,6 +2092,8 @@ export type CurrencyCountOutputType = {
   subscriptions: number
   accessRequestAmounts: number
   assessmentQuotes: number
+  assessmentQuoteOriginals: number
+  subscriptionOriginals: number
   requestBudgetChecks: number
   requestSupplements: number
   lineAmounts: number
@@ -1766,6 +2110,8 @@ export type CurrencyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   subscriptions?: boolean | CurrencyCountOutputTypeCountSubscriptionsArgs
   accessRequestAmounts?: boolean | CurrencyCountOutputTypeCountAccessRequestAmountsArgs
   assessmentQuotes?: boolean | CurrencyCountOutputTypeCountAssessmentQuotesArgs
+  assessmentQuoteOriginals?: boolean | CurrencyCountOutputTypeCountAssessmentQuoteOriginalsArgs
+  subscriptionOriginals?: boolean | CurrencyCountOutputTypeCountSubscriptionOriginalsArgs
   requestBudgetChecks?: boolean | CurrencyCountOutputTypeCountRequestBudgetChecksArgs
   requestSupplements?: boolean | CurrencyCountOutputTypeCountRequestSupplementsArgs
   lineAmounts?: boolean | CurrencyCountOutputTypeCountLineAmountsArgs
@@ -1813,6 +2159,20 @@ export type CurrencyCountOutputTypeCountAccessRequestAmountsArgs<ExtArgs extends
  */
 export type CurrencyCountOutputTypeCountAssessmentQuotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AccessRequestAssessmentWhereInput
+}
+
+/**
+ * CurrencyCountOutputType without action
+ */
+export type CurrencyCountOutputTypeCountAssessmentQuoteOriginalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessRequestAssessmentWhereInput
+}
+
+/**
+ * CurrencyCountOutputType without action
+ */
+export type CurrencyCountOutputTypeCountSubscriptionOriginalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
 }
 
 /**
@@ -1887,6 +2247,8 @@ export type CurrencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   subscriptions?: boolean | Prisma.Currency$subscriptionsArgs<ExtArgs>
   accessRequestAmounts?: boolean | Prisma.Currency$accessRequestAmountsArgs<ExtArgs>
   assessmentQuotes?: boolean | Prisma.Currency$assessmentQuotesArgs<ExtArgs>
+  assessmentQuoteOriginals?: boolean | Prisma.Currency$assessmentQuoteOriginalsArgs<ExtArgs>
+  subscriptionOriginals?: boolean | Prisma.Currency$subscriptionOriginalsArgs<ExtArgs>
   requestBudgetChecks?: boolean | Prisma.Currency$requestBudgetChecksArgs<ExtArgs>
   requestSupplements?: boolean | Prisma.Currency$requestSupplementsArgs<ExtArgs>
   lineAmounts?: boolean | Prisma.Currency$lineAmountsArgs<ExtArgs>
@@ -1923,6 +2285,8 @@ export type CurrencyInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   subscriptions?: boolean | Prisma.Currency$subscriptionsArgs<ExtArgs>
   accessRequestAmounts?: boolean | Prisma.Currency$accessRequestAmountsArgs<ExtArgs>
   assessmentQuotes?: boolean | Prisma.Currency$assessmentQuotesArgs<ExtArgs>
+  assessmentQuoteOriginals?: boolean | Prisma.Currency$assessmentQuoteOriginalsArgs<ExtArgs>
+  subscriptionOriginals?: boolean | Prisma.Currency$subscriptionOriginalsArgs<ExtArgs>
   requestBudgetChecks?: boolean | Prisma.Currency$requestBudgetChecksArgs<ExtArgs>
   requestSupplements?: boolean | Prisma.Currency$requestSupplementsArgs<ExtArgs>
   lineAmounts?: boolean | Prisma.Currency$lineAmountsArgs<ExtArgs>
@@ -1944,6 +2308,8 @@ export type $CurrencyPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
     accessRequestAmounts: Prisma.$AccessRequestPayload<ExtArgs>[]
     assessmentQuotes: Prisma.$AccessRequestAssessmentPayload<ExtArgs>[]
+    assessmentQuoteOriginals: Prisma.$AccessRequestAssessmentPayload<ExtArgs>[]
+    subscriptionOriginals: Prisma.$SubscriptionPayload<ExtArgs>[]
     requestBudgetChecks: Prisma.$RequestBudgetCheckPayload<ExtArgs>[]
     requestSupplements: Prisma.$RequestSupplementPayload<ExtArgs>[]
     lineAmounts: Prisma.$AccessRequestLineAmountPayload<ExtArgs>[]
@@ -2356,6 +2722,8 @@ export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends runtime
   subscriptions<T extends Prisma.Currency$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessRequestAmounts<T extends Prisma.Currency$accessRequestAmountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$accessRequestAmountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assessmentQuotes<T extends Prisma.Currency$assessmentQuotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$assessmentQuotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assessmentQuoteOriginals<T extends Prisma.Currency$assessmentQuoteOriginalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$assessmentQuoteOriginalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptionOriginals<T extends Prisma.Currency$subscriptionOriginalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$subscriptionOriginalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   requestBudgetChecks<T extends Prisma.Currency$requestBudgetChecksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$requestBudgetChecksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestBudgetCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   requestSupplements<T extends Prisma.Currency$requestSupplementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$requestSupplementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestSupplementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lineAmounts<T extends Prisma.Currency$lineAmountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$lineAmountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestLineAmountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2883,6 +3251,54 @@ export type Currency$assessmentQuotesArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.AccessRequestAssessmentScalarFieldEnum | Prisma.AccessRequestAssessmentScalarFieldEnum[]
+}
+
+/**
+ * Currency.assessmentQuoteOriginals
+ */
+export type Currency$assessmentQuoteOriginalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessRequestAssessment
+   */
+  select?: Prisma.AccessRequestAssessmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessRequestAssessment
+   */
+  omit?: Prisma.AccessRequestAssessmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessRequestAssessmentInclude<ExtArgs> | null
+  where?: Prisma.AccessRequestAssessmentWhereInput
+  orderBy?: Prisma.AccessRequestAssessmentOrderByWithRelationInput | Prisma.AccessRequestAssessmentOrderByWithRelationInput[]
+  cursor?: Prisma.AccessRequestAssessmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessRequestAssessmentScalarFieldEnum | Prisma.AccessRequestAssessmentScalarFieldEnum[]
+}
+
+/**
+ * Currency.subscriptionOriginals
+ */
+export type Currency$subscriptionOriginalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
 }
 
 /**

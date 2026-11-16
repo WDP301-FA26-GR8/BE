@@ -114,9 +114,10 @@ export type BudgetVersionHistoryEntry = Prisma.BudgetVersionHistoryEntryModel
 export type BudgetAttachment = Prisma.BudgetAttachmentModel
 /**
  * Model BudgetCycle
- * The budget cycle of a year (QĐ-103i, BR-MF4-01): the deadlines, the annual ceiling of the software budget, the shared-pool reserve
- * and the ceilings of the departments. Finance opens, changes and publishes it. `publishedAt` is set while it is published and cleared
- * when a ceiling is changed; `firstPublishedAt` is never cleared (from it a department head may submit the proposal of the year).
+ * The budget cycle of a year (QĐ-103i, BR-MF4-01, QĐ-111z): the deadlines, the annual ceiling of the software budget and the shared-pool
+ * reserve. It is a draft while `openedAt` is NULL (Finance edits or deletes it freely), open from then until the submission deadline, and
+ * locked after it. `publishedAt`, `publishedByEmployeeId`, `firstPublishedAt` and the ceilings of the departments are no longer written
+ * (QĐ-111aa); the columns stay for the cycles written before.
  */
 export type BudgetCycle = Prisma.BudgetCycleModel
 /**
@@ -125,6 +126,57 @@ export type BudgetCycle = Prisma.BudgetCycleModel
  * the priority items; `totalMinor` is their sum. `publishedTotalMinor` is the total the head was told at the last publication.
  */
 export type BudgetDepartmentCeiling = Prisma.BudgetDepartmentCeilingModel
+/**
+ * Model SeatMonthCharge
+ * What one seat of a K2 pool cost one department in one month that has ended (SM-1, QĐ-103k, QĐ-111bg): the days the seat was held in that
+ * department over the days of the month, times the price of a month, one row for each seat, month and department. The rows of a subscription and
+ * a month are replaced together until a review period signs the month, so the table is not evidence in itself. `costCenterId` is null for a
+ * department that has no Cost Center yet (shown as the line "not allocated to a Cost Center"); `commitmentId` and `appliedMinor` say what of
+ * the amount took the commitment of the seat down. The ids of other contexts are values, not foreign keys.
+ */
+export type SeatMonthCharge = Prisma.SeatMonthChargeModel
+/**
+ * Model SeatMonthRun
+ * FIX-SM1 SM1-03: the mark that one subscription was charged for one month that has ended (written in the same transaction as its seat-month rows),
+ * so the sweeper charges the subscriptions of a month that have no mark and a failure in the middle of a pass never loses the ones after it. A month
+ * charged on request charges every subscription again. The ids of other contexts are values, not foreign keys.
+ */
+export type SeatMonthRun = Prisma.SeatMonthRunModel
+/**
+ * Model BudgetReviewPeriod
+ * RV-1 (QĐ-111ae, R-2): the close of a month. A picture of the figures of each Cost Center that has an effective budget of the year, and of the company, taken when Finance
+ * closes a month that has ended; the figures are never changed (a trigger), a late invoice is a change after the picture. `kind` is QUARTER for March, June and September;
+ * `state` moves SNAPSHOT, AWAITING_EXPLANATIONS (RV-3), SIGNED, forward only. The ids of other contexts are values, not foreign keys.
+ */
+export type BudgetReviewPeriod = Prisma.BudgetReviewPeriodModel
+/**
+ * Model BudgetReviewLine
+ * RV-1: one Cost Center in a period: its effective budget, what it spent, held, had waiting for the spend decision, what was left, the difference k of its invoices, the price
+ * increase already known, the forecast of the end of the year, the pace and the light. All figure columns are refused to every UPDATE (a trigger).
+ */
+export type BudgetReviewLine = Prisma.BudgetReviewLineModel
+/**
+ * Model BudgetCommitmentSeatMonthReversal
+ * FIX-SM1 SM1-06: what a seat-month gave back to a commitment when the month was charged again (the seat was taken back, its days moved, the department changed
+ * Cost Center). Append-only: the database refuses to change or remove a row, and refuses to lower `applied_minor` of a commitment by anything but what these rows
+ * add up to (`seat_month_reversed_minor`). The ids of other contexts are values, not foreign keys.
+ */
+export type BudgetCommitmentSeatMonthReversal = Prisma.BudgetCommitmentSeatMonthReversalModel
+/**
+ * Model BudgetAdjustment
+ * AD-1 (QĐ-111ag, QĐ-111bh, C-1): an adjustment of the budget in the year, one record and four kinds. Finance makes it, the spending approver decides it. It is added to or taken
+ * from the BASE of a Cost Center (the reserve stays); CEILING_REDUCTION lowers the annual ceiling of the cycle. A Cost Center with no version of the year that is given money gets
+ * one when the adjustment is approved (R-48), named in `createdVersionId`, so that the amount is counted once. What it asks for never changes and it is never removed (a trigger).
+ * The ids of the Cost Centers are values of another context, not foreign keys. `kind`: SUPPLEMENT, TRANSFER, RETURN, CEILING_REDUCTION. `state`: PENDING, APPROVED, REJECTED.
+ */
+export type BudgetAdjustment = Prisma.BudgetAdjustmentModel
+/**
+ * Model BudgetThresholdAlert
+ * RV-2 (QĐ-111af, R-5, R-28): an alert of 80 or 100 percent of the base of a budget that was told. One row for each CROSSING of a Cost Center, a year and a threshold (`episode`: 1 for the first, one more than
+ * the last read under the lock of the budget year; FIX-RV23 RV2-01): the use that goes over and stays is told once, the use that goes back under and over again is told again, whatever the base. `baseMinor` is
+ * the EFFECTIVE base the use went over, what was told. Written `ON CONFLICT DO NOTHING` (MAJ-10). The id of the Cost Center is a value of another context, not a foreign key.
+ */
+export type BudgetThresholdAlert = Prisma.BudgetThresholdAlertModel
 /**
  * Model VendorGroup
  * 
@@ -210,6 +262,11 @@ export type ApplicationRetirementConfirmation = Prisma.ApplicationRetirementConf
  * 
  */
 export type Contract = Prisma.ContractModel
+/**
+ * Model ContractSubscription
+ * 
+ */
+export type ContractSubscription = Prisma.ContractSubscriptionModel
 /**
  * Model DocumentAttachment
  * 
@@ -350,6 +407,11 @@ export type RecoveryTicket = Prisma.RecoveryTicketModel
  * 
  */
 export type EmployeeAccessBlock = Prisma.EmployeeAccessBlockModel
+/**
+ * Model AvatarPurge
+ * 
+ */
+export type AvatarPurge = Prisma.AvatarPurgeModel
 /**
  * Model LicenseAssignment
  * 
@@ -511,6 +573,11 @@ export type GhostSeatApplicationThreshold = Prisma.GhostSeatApplicationThreshold
  */
 export type GhostSeatSeatState = Prisma.GhostSeatSeatStateModel
 /**
+ * Model GhostSeatEscalation
+ * 
+ */
+export type GhostSeatEscalation = Prisma.GhostSeatEscalationModel
+/**
  * Model Organization
  * 
  */
@@ -620,6 +687,26 @@ export type PersonnelNoticeCounter = Prisma.PersonnelNoticeCounterModel
  * 
  */
 export type ItAdminHandover = Prisma.ItAdminHandoverModel
+/**
+ * Model Policy
+ * 
+ */
+export type Policy = Prisma.PolicyModel
+/**
+ * Model PolicyVersion
+ * 
+ */
+export type PolicyVersion = Prisma.PolicyVersionModel
+/**
+ * Model PolicyAcknowledgement
+ * 
+ */
+export type PolicyAcknowledgement = Prisma.PolicyAcknowledgementModel
+/**
+ * Model DecisionChecklist
+ * 
+ */
+export type DecisionChecklist = Prisma.DecisionChecklistModel
 /**
  * Model AccessRequest
  * 
@@ -769,6 +856,21 @@ export type CongestionIncident = Prisma.CongestionIncidentModel
  */
 export type YearStartCommitmentRun = Prisma.YearStartCommitmentRunModel
 /**
+ * Model PurchaseInvoice
+ * 
+ */
+export type PurchaseInvoice = Prisma.PurchaseInvoiceModel
+/**
+ * Model PurchaseInvoiceDocument
+ * 
+ */
+export type PurchaseInvoiceDocument = Prisma.PurchaseInvoiceDocumentModel
+/**
+ * Model InvoiceDiscrepancyCase
+ * 
+ */
+export type InvoiceDiscrepancyCase = Prisma.InvoiceDiscrepancyCaseModel
+/**
  * Model CollectorAllowlistVersion
  * 
  */
@@ -833,3 +935,13 @@ export type UsageUnmatchedIdentity = Prisma.UsageUnmatchedIdentityModel
  * 
  */
 export type UsageNoAssignmentFinding = Prisma.UsageNoAssignmentFindingModel
+/**
+ * Model VendorAccountDiscrepancy
+ * 
+ */
+export type VendorAccountDiscrepancy = Prisma.VendorAccountDiscrepancyModel
+/**
+ * Model OutOfProcessCase
+ * 
+ */
+export type OutOfProcessCase = Prisma.OutOfProcessCaseModel

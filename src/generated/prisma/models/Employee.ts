@@ -34,6 +34,7 @@ export type EmployeeMinAggregateOutputType = {
   jobTitle: string | null
   employmentType: $Enums.EmploymentType | null
   hireDate: Date | null
+  contractEndDate: Date | null
   status: $Enums.EmployeeStatus | null
   workState: $Enums.EmployeeWorkState | null
   createdAt: Date | null
@@ -50,6 +51,7 @@ export type EmployeeMaxAggregateOutputType = {
   jobTitle: string | null
   employmentType: $Enums.EmploymentType | null
   hireDate: Date | null
+  contractEndDate: Date | null
   status: $Enums.EmployeeStatus | null
   workState: $Enums.EmployeeWorkState | null
   createdAt: Date | null
@@ -66,6 +68,7 @@ export type EmployeeCountAggregateOutputType = {
   jobTitle: number
   employmentType: number
   hireDate: number
+  contractEndDate: number
   status: number
   workState: number
   createdAt: number
@@ -84,6 +87,7 @@ export type EmployeeMinAggregateInputType = {
   jobTitle?: true
   employmentType?: true
   hireDate?: true
+  contractEndDate?: true
   status?: true
   workState?: true
   createdAt?: true
@@ -100,6 +104,7 @@ export type EmployeeMaxAggregateInputType = {
   jobTitle?: true
   employmentType?: true
   hireDate?: true
+  contractEndDate?: true
   status?: true
   workState?: true
   createdAt?: true
@@ -116,6 +121,7 @@ export type EmployeeCountAggregateInputType = {
   jobTitle?: true
   employmentType?: true
   hireDate?: true
+  contractEndDate?: true
   status?: true
   workState?: true
   createdAt?: true
@@ -205,6 +211,7 @@ export type EmployeeGroupByOutputType = {
   jobTitle: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date
+  contractEndDate: Date | null
   status: $Enums.EmployeeStatus
   workState: $Enums.EmployeeWorkState
   createdAt: Date
@@ -242,6 +249,7 @@ export type EmployeeWhereInput = {
   jobTitle?: Prisma.StringNullableFilter<"Employee"> | string | null
   employmentType?: Prisma.EnumEmploymentTypeFilter<"Employee"> | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFilter<"Employee"> | Date | string
+  contractEndDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFilter<"Employee"> | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
@@ -323,6 +331,7 @@ export type EmployeeOrderByWithRelationInput = {
   jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
   employmentType?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
+  contractEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   workState?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -409,6 +418,7 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   jobTitle?: Prisma.StringNullableFilter<"Employee"> | string | null
   employmentType?: Prisma.EnumEmploymentTypeFilter<"Employee"> | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFilter<"Employee"> | Date | string
+  contractEndDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFilter<"Employee"> | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
@@ -490,6 +500,7 @@ export type EmployeeOrderByWithAggregationInput = {
   jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
   employmentType?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
+  contractEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   workState?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -512,6 +523,7 @@ export type EmployeeScalarWhereWithAggregatesInput = {
   jobTitle?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
   employmentType?: Prisma.EnumEmploymentTypeWithAggregatesFilter<"Employee"> | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
+  contractEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
   status?: Prisma.EnumEmployeeStatusWithAggregatesFilter<"Employee"> | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateWithAggregatesFilter<"Employee"> | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
@@ -527,6 +539,7 @@ export type EmployeeCreateInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -608,6 +621,7 @@ export type EmployeeUncheckedCreateInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -687,6 +701,7 @@ export type EmployeeUpdateInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -768,6 +783,7 @@ export type EmployeeUncheckedUpdateInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -848,6 +864,7 @@ export type EmployeeCreateManyInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -863,6 +880,7 @@ export type EmployeeUpdateManyMutationInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -879,6 +897,7 @@ export type EmployeeUncheckedUpdateManyInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -925,6 +944,7 @@ export type EmployeeCountOrderByAggregateInput = {
   jobTitle?: Prisma.SortOrder
   employmentType?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
+  contractEndDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
   workState?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -941,6 +961,7 @@ export type EmployeeMaxOrderByAggregateInput = {
   jobTitle?: Prisma.SortOrder
   employmentType?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
+  contractEndDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
   workState?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -957,6 +978,7 @@ export type EmployeeMinOrderByAggregateInput = {
   jobTitle?: Prisma.SortOrder
   employmentType?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
+  contractEndDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
   workState?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1005,10 +1027,12 @@ export type EmployeeCreateNestedOneWithoutBudgetCyclesPublishedInput = {
   connect?: Prisma.EmployeeWhereUniqueInput
 }
 
-export type EmployeeUpdateOneRequiredWithoutBudgetCyclesOpenedNestedInput = {
+export type EmployeeUpdateOneWithoutBudgetCyclesOpenedNestedInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput>
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutBudgetCyclesOpenedInput
   upsert?: Prisma.EmployeeUpsertWithoutBudgetCyclesOpenedInput
+  disconnect?: Prisma.EmployeeWhereInput | boolean
+  delete?: Prisma.EmployeeWhereInput | boolean
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutBudgetCyclesOpenedInput, Prisma.EmployeeUpdateWithoutBudgetCyclesOpenedInput>, Prisma.EmployeeUncheckedUpdateWithoutBudgetCyclesOpenedInput>
 }
@@ -1976,6 +2000,7 @@ export type EmployeeCreateWithoutCommitmentReleasesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2056,6 +2081,7 @@ export type EmployeeUncheckedCreateWithoutCommitmentReleasesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2150,6 +2176,7 @@ export type EmployeeUpdateWithoutCommitmentReleasesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2230,6 +2257,7 @@ export type EmployeeUncheckedUpdateWithoutCommitmentReleasesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2308,6 +2336,7 @@ export type EmployeeCreateWithoutInvoicesRecordedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2388,6 +2417,7 @@ export type EmployeeUncheckedCreateWithoutInvoicesRecordedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2482,6 +2512,7 @@ export type EmployeeUpdateWithoutInvoicesRecordedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2562,6 +2593,7 @@ export type EmployeeUncheckedUpdateWithoutInvoicesRecordedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2640,6 +2672,7 @@ export type EmployeeCreateWithoutBudgetCyclesOpenedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2720,6 +2753,7 @@ export type EmployeeUncheckedCreateWithoutBudgetCyclesOpenedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2803,6 +2837,7 @@ export type EmployeeCreateWithoutBudgetCyclesPublishedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2883,6 +2918,7 @@ export type EmployeeUncheckedCreateWithoutBudgetCyclesPublishedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -2977,6 +3013,7 @@ export type EmployeeUpdateWithoutBudgetCyclesOpenedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3057,6 +3094,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetCyclesOpenedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3146,6 +3184,7 @@ export type EmployeeUpdateWithoutBudgetCyclesPublishedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3226,6 +3265,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetCyclesPublishedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3304,6 +3344,7 @@ export type EmployeeCreateWithoutOwnedApplicationsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -3384,6 +3425,7 @@ export type EmployeeUncheckedCreateWithoutOwnedApplicationsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -3467,6 +3509,7 @@ export type EmployeeCreateWithoutApplicationsInChargeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -3547,6 +3590,7 @@ export type EmployeeUncheckedCreateWithoutApplicationsInChargeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -3641,6 +3685,7 @@ export type EmployeeUpdateWithoutOwnedApplicationsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3721,6 +3766,7 @@ export type EmployeeUncheckedUpdateWithoutOwnedApplicationsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3810,6 +3856,7 @@ export type EmployeeUpdateWithoutApplicationsInChargeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3890,6 +3937,7 @@ export type EmployeeUncheckedUpdateWithoutApplicationsInChargeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3968,6 +4016,7 @@ export type EmployeeCreateWithoutWorkspacePrimaryOwnerOfInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -4048,6 +4097,7 @@ export type EmployeeUncheckedCreateWithoutWorkspacePrimaryOwnerOfInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -4131,6 +4181,7 @@ export type EmployeeCreateWithoutWorkspaceEmergencyHolderOfInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -4211,6 +4262,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceEmergencyHolderOfInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -4305,6 +4357,7 @@ export type EmployeeUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4385,6 +4438,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspacePrimaryOwnerOfInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4474,6 +4528,7 @@ export type EmployeeUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4554,6 +4609,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceEmergencyHolderOfInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4632,6 +4688,7 @@ export type EmployeeCreateWithoutWorkspaceMembershipsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -4712,6 +4769,7 @@ export type EmployeeUncheckedCreateWithoutWorkspaceMembershipsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -4806,6 +4864,7 @@ export type EmployeeUpdateWithoutWorkspaceMembershipsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4886,6 +4945,7 @@ export type EmployeeUncheckedUpdateWithoutWorkspaceMembershipsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4964,6 +5024,7 @@ export type EmployeeCreateWithoutSubscriptionsInChargeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -5044,6 +5105,7 @@ export type EmployeeUncheckedCreateWithoutSubscriptionsInChargeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -5138,6 +5200,7 @@ export type EmployeeUpdateWithoutSubscriptionsInChargeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5218,6 +5281,7 @@ export type EmployeeUncheckedUpdateWithoutSubscriptionsInChargeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5296,6 +5360,7 @@ export type EmployeeCreateWithoutPlanTermOpinionsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -5376,6 +5441,7 @@ export type EmployeeUncheckedCreateWithoutPlanTermOpinionsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -5470,6 +5536,7 @@ export type EmployeeUpdateWithoutPlanTermOpinionsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5550,6 +5617,7 @@ export type EmployeeUncheckedUpdateWithoutPlanTermOpinionsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5628,6 +5696,7 @@ export type EmployeeCreateWithoutApplicationBusinessOwnersInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -5708,6 +5777,7 @@ export type EmployeeUncheckedCreateWithoutApplicationBusinessOwnersInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -5802,6 +5872,7 @@ export type EmployeeUpdateWithoutApplicationBusinessOwnersInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5882,6 +5953,7 @@ export type EmployeeUncheckedUpdateWithoutApplicationBusinessOwnersInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5960,6 +6032,7 @@ export type EmployeeCreateWithoutRetirementConfirmationsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -6040,6 +6113,7 @@ export type EmployeeUncheckedCreateWithoutRetirementConfirmationsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -6134,6 +6208,7 @@ export type EmployeeUpdateWithoutRetirementConfirmationsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6214,6 +6289,7 @@ export type EmployeeUncheckedUpdateWithoutRetirementConfirmationsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6292,6 +6368,7 @@ export type EmployeeCreateWithoutDeviceRegistrationsHeldInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -6372,6 +6449,7 @@ export type EmployeeUncheckedCreateWithoutDeviceRegistrationsHeldInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -6466,6 +6544,7 @@ export type EmployeeUpdateWithoutDeviceRegistrationsHeldInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6546,6 +6625,7 @@ export type EmployeeUncheckedUpdateWithoutDeviceRegistrationsHeldInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6624,6 +6704,7 @@ export type EmployeeCreateWithoutAppUserInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -6704,6 +6785,7 @@ export type EmployeeUncheckedCreateWithoutAppUserInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -6798,6 +6880,7 @@ export type EmployeeUpdateWithoutAppUserInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6878,6 +6961,7 @@ export type EmployeeUncheckedUpdateWithoutAppUserInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6956,6 +7040,7 @@ export type EmployeeCreateWithoutAccessBlockInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -7036,6 +7121,7 @@ export type EmployeeUncheckedCreateWithoutAccessBlockInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -7130,6 +7216,7 @@ export type EmployeeUpdateWithoutAccessBlockInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -7210,6 +7297,7 @@ export type EmployeeUncheckedUpdateWithoutAccessBlockInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -7288,6 +7376,7 @@ export type EmployeeCreateWithoutLicenseAssignmentsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -7368,6 +7457,7 @@ export type EmployeeUncheckedCreateWithoutLicenseAssignmentsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -7462,6 +7552,7 @@ export type EmployeeUpdateWithoutLicenseAssignmentsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -7542,6 +7633,7 @@ export type EmployeeUncheckedUpdateWithoutLicenseAssignmentsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -7620,6 +7712,7 @@ export type EmployeeCreateWithoutProvisioningTasksInChargeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -7700,6 +7793,7 @@ export type EmployeeUncheckedCreateWithoutProvisioningTasksInChargeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -7794,6 +7888,7 @@ export type EmployeeUpdateWithoutProvisioningTasksInChargeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -7874,6 +7969,7 @@ export type EmployeeUncheckedUpdateWithoutProvisioningTasksInChargeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -7952,6 +8048,7 @@ export type EmployeeCreateWithoutRevocationReasonsDecidedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8032,6 +8129,7 @@ export type EmployeeUncheckedCreateWithoutRevocationReasonsDecidedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8126,6 +8224,7 @@ export type EmployeeUpdateWithoutRevocationReasonsDecidedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -8206,6 +8305,7 @@ export type EmployeeUncheckedUpdateWithoutRevocationReasonsDecidedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -8284,6 +8384,7 @@ export type EmployeeCreateWithoutHandoverDutiesAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8364,6 +8465,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8447,6 +8549,7 @@ export type EmployeeCreateWithoutHandoverDutiesFixedToInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8527,6 +8630,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesFixedToInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8610,6 +8714,7 @@ export type EmployeeCreateWithoutHandoverDutiesConfirmedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8690,6 +8795,7 @@ export type EmployeeUncheckedCreateWithoutHandoverDutiesConfirmedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -8784,6 +8890,7 @@ export type EmployeeUpdateWithoutHandoverDutiesAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -8864,6 +8971,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -8953,6 +9061,7 @@ export type EmployeeUpdateWithoutHandoverDutiesFixedToInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -9033,6 +9142,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesFixedToInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -9122,6 +9232,7 @@ export type EmployeeUpdateWithoutHandoverDutiesConfirmedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -9202,6 +9313,7 @@ export type EmployeeUncheckedUpdateWithoutHandoverDutiesConfirmedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -9280,6 +9392,7 @@ export type EmployeeCreateWithoutDepartmentSoftwareProposalsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -9360,6 +9473,7 @@ export type EmployeeUncheckedCreateWithoutDepartmentSoftwareProposalsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -9454,6 +9568,7 @@ export type EmployeeUpdateWithoutDepartmentSoftwareProposalsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -9534,6 +9649,7 @@ export type EmployeeUncheckedUpdateWithoutDepartmentSoftwareProposalsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -9612,6 +9728,7 @@ export type EmployeeCreateWithoutOrganizationInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -9691,6 +9808,7 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -9800,6 +9918,7 @@ export type EmployeeScalarWhereInput = {
   jobTitle?: Prisma.StringNullableFilter<"Employee"> | string | null
   employmentType?: Prisma.EnumEmploymentTypeFilter<"Employee"> | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFilter<"Employee"> | Date | string
+  contractEndDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFilter<"Employee"> | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
@@ -9815,6 +9934,7 @@ export type EmployeeCreateWithoutItAdminOfInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -9895,6 +10015,7 @@ export type EmployeeUncheckedCreateWithoutItAdminOfInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -9989,6 +10110,7 @@ export type EmployeeUpdateWithoutItAdminOfInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -10069,6 +10191,7 @@ export type EmployeeUncheckedUpdateWithoutItAdminOfInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -10147,6 +10270,7 @@ export type EmployeeCreateWithoutHeadPeriodsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -10227,6 +10351,7 @@ export type EmployeeUncheckedCreateWithoutHeadPeriodsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -10321,6 +10446,7 @@ export type EmployeeUpdateWithoutHeadPeriodsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -10401,6 +10527,7 @@ export type EmployeeUncheckedUpdateWithoutHeadPeriodsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -10479,6 +10606,7 @@ export type EmployeeCreateWithoutPlacementsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -10559,6 +10687,7 @@ export type EmployeeUncheckedCreateWithoutPlacementsInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -10653,6 +10782,7 @@ export type EmployeeUpdateWithoutPlacementsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -10733,6 +10863,7 @@ export type EmployeeUncheckedUpdateWithoutPlacementsInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -10811,6 +10942,7 @@ export type EmployeeCreateWithoutDepartmentTransfersInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -10891,6 +11023,7 @@ export type EmployeeUncheckedCreateWithoutDepartmentTransfersInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -10985,6 +11118,7 @@ export type EmployeeUpdateWithoutDepartmentTransfersInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -11065,6 +11199,7 @@ export type EmployeeUncheckedUpdateWithoutDepartmentTransfersInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -11143,6 +11278,7 @@ export type EmployeeCreateWithoutTransferReviewsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -11223,6 +11359,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -11317,6 +11454,7 @@ export type EmployeeUpdateWithoutTransferReviewsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -11397,6 +11535,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -11475,6 +11614,7 @@ export type EmployeeCreateWithoutTransferReviewsDecidedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -11555,6 +11695,7 @@ export type EmployeeUncheckedCreateWithoutTransferReviewsDecidedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -11649,6 +11790,7 @@ export type EmployeeUpdateWithoutTransferReviewsDecidedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -11729,6 +11871,7 @@ export type EmployeeUncheckedUpdateWithoutTransferReviewsDecidedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -11807,6 +11950,7 @@ export type EmployeeCreateWithoutEmployeeLeavesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -11887,6 +12031,7 @@ export type EmployeeUncheckedCreateWithoutEmployeeLeavesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -11981,6 +12126,7 @@ export type EmployeeUpdateWithoutEmployeeLeavesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -12061,6 +12207,7 @@ export type EmployeeUncheckedUpdateWithoutEmployeeLeavesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -12139,6 +12286,7 @@ export type EmployeeCreateWithoutOffboardingCasesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -12219,6 +12367,7 @@ export type EmployeeUncheckedCreateWithoutOffboardingCasesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -12313,6 +12462,7 @@ export type EmployeeUpdateWithoutOffboardingCasesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -12393,6 +12543,7 @@ export type EmployeeUncheckedUpdateWithoutOffboardingCasesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -12471,6 +12622,7 @@ export type EmployeeCreateWithoutNoticesAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -12551,6 +12703,7 @@ export type EmployeeUncheckedCreateWithoutNoticesAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -12634,6 +12787,7 @@ export type EmployeeCreateWithoutNoticesSentInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -12714,6 +12868,7 @@ export type EmployeeUncheckedCreateWithoutNoticesSentInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -12808,6 +12963,7 @@ export type EmployeeUpdateWithoutNoticesAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -12888,6 +13044,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -12977,6 +13134,7 @@ export type EmployeeUpdateWithoutNoticesSentInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -13057,6 +13215,7 @@ export type EmployeeUncheckedUpdateWithoutNoticesSentInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -13135,6 +13294,7 @@ export type EmployeeCreateWithoutSuperAdminEventTicketsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -13215,6 +13375,7 @@ export type EmployeeUncheckedCreateWithoutSuperAdminEventTicketsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -13309,6 +13470,7 @@ export type EmployeeUpdateWithoutSuperAdminEventTicketsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -13389,6 +13551,7 @@ export type EmployeeUncheckedUpdateWithoutSuperAdminEventTicketsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -13467,6 +13630,7 @@ export type EmployeeCreateWithoutItAdminHandoversReceivedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -13547,6 +13711,7 @@ export type EmployeeUncheckedCreateWithoutItAdminHandoversReceivedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -13641,6 +13806,7 @@ export type EmployeeUpdateWithoutItAdminHandoversReceivedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -13721,6 +13887,7 @@ export type EmployeeUncheckedUpdateWithoutItAdminHandoversReceivedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -13799,6 +13966,7 @@ export type EmployeeCreateWithoutAccessRequestsMadeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -13879,6 +14047,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsMadeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -13962,6 +14131,7 @@ export type EmployeeCreateWithoutAccessRequestsWithdrawnInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -14042,6 +14212,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsWithdrawnInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -14125,6 +14296,7 @@ export type EmployeeCreateWithoutAccessRequestsCancelledInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -14205,6 +14377,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestsCancelledInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -14299,6 +14472,7 @@ export type EmployeeUpdateWithoutAccessRequestsMadeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -14379,6 +14553,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsMadeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -14468,6 +14643,7 @@ export type EmployeeUpdateWithoutAccessRequestsWithdrawnInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -14548,6 +14724,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsWithdrawnInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -14637,6 +14814,7 @@ export type EmployeeUpdateWithoutAccessRequestsCancelledInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -14717,6 +14895,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestsCancelledInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -14795,6 +14974,7 @@ export type EmployeeCreateWithoutAccessRequestBeneficiariesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -14875,6 +15055,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestBeneficiariesInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -14969,6 +15150,7 @@ export type EmployeeUpdateWithoutAccessRequestBeneficiariesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -15049,6 +15231,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestBeneficiariesInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -15127,6 +15310,7 @@ export type EmployeeCreateWithoutAccessRequestLinesEndedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -15207,6 +15391,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestLinesEndedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -15301,6 +15486,7 @@ export type EmployeeUpdateWithoutAccessRequestLinesEndedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -15381,6 +15567,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestLinesEndedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -15459,6 +15646,7 @@ export type EmployeeCreateWithoutLineDecisionsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -15539,6 +15727,7 @@ export type EmployeeUncheckedCreateWithoutLineDecisionsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -15633,6 +15822,7 @@ export type EmployeeUpdateWithoutLineDecisionsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -15713,6 +15903,7 @@ export type EmployeeUncheckedUpdateWithoutLineDecisionsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -15791,6 +15982,7 @@ export type EmployeeCreateWithoutAccessRequestStepsAssignedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -15871,6 +16063,7 @@ export type EmployeeUncheckedCreateWithoutAccessRequestStepsAssignedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -15965,6 +16158,7 @@ export type EmployeeUpdateWithoutAccessRequestStepsAssignedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -16045,6 +16239,7 @@ export type EmployeeUncheckedUpdateWithoutAccessRequestStepsAssignedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -16123,6 +16318,7 @@ export type EmployeeCreateWithoutApprovalRecordsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16203,6 +16399,7 @@ export type EmployeeUncheckedCreateWithoutApprovalRecordsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16297,6 +16494,7 @@ export type EmployeeUpdateWithoutApprovalRecordsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -16377,6 +16575,7 @@ export type EmployeeUncheckedUpdateWithoutApprovalRecordsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -16455,6 +16654,7 @@ export type EmployeeCreateWithoutAssessmentsProposedOwnerInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16535,6 +16735,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsProposedOwnerInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16618,6 +16819,7 @@ export type EmployeeCreateWithoutAssessmentsRejectedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16698,6 +16900,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsRejectedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16781,6 +16984,7 @@ export type EmployeeCreateWithoutAssessmentsSavedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16861,6 +17065,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsSavedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -16944,6 +17149,7 @@ export type EmployeeCreateWithoutAssessmentsCompletedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -17024,6 +17230,7 @@ export type EmployeeUncheckedCreateWithoutAssessmentsCompletedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -17118,6 +17325,7 @@ export type EmployeeUpdateWithoutAssessmentsProposedOwnerInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17198,6 +17406,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsProposedOwnerInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17287,6 +17496,7 @@ export type EmployeeUpdateWithoutAssessmentsRejectedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17367,6 +17577,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsRejectedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17456,6 +17667,7 @@ export type EmployeeUpdateWithoutAssessmentsSavedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17536,6 +17748,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsSavedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17625,6 +17838,7 @@ export type EmployeeUpdateWithoutAssessmentsCompletedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17705,6 +17919,7 @@ export type EmployeeUncheckedUpdateWithoutAssessmentsCompletedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -17783,6 +17998,7 @@ export type EmployeeCreateWithoutRequestBudgetChecksRunInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -17863,6 +18079,7 @@ export type EmployeeUncheckedCreateWithoutRequestBudgetChecksRunInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -17957,6 +18174,7 @@ export type EmployeeUpdateWithoutRequestBudgetChecksRunInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -18037,6 +18255,7 @@ export type EmployeeUncheckedUpdateWithoutRequestBudgetChecksRunInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -18115,6 +18334,7 @@ export type EmployeeCreateWithoutRequestFinanceReviewsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -18195,6 +18415,7 @@ export type EmployeeUncheckedCreateWithoutRequestFinanceReviewsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -18289,6 +18510,7 @@ export type EmployeeUpdateWithoutRequestFinanceReviewsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -18369,6 +18591,7 @@ export type EmployeeUncheckedUpdateWithoutRequestFinanceReviewsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -18447,6 +18670,7 @@ export type EmployeeCreateWithoutSpendBatchesSubmittedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -18527,6 +18751,7 @@ export type EmployeeUncheckedCreateWithoutSpendBatchesSubmittedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -18621,6 +18846,7 @@ export type EmployeeUpdateWithoutSpendBatchesSubmittedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -18701,6 +18927,7 @@ export type EmployeeUncheckedUpdateWithoutSpendBatchesSubmittedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -18779,6 +19006,7 @@ export type EmployeeCreateWithoutRequestSupplementsMadeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -18859,6 +19087,7 @@ export type EmployeeUncheckedCreateWithoutRequestSupplementsMadeInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -18953,6 +19182,7 @@ export type EmployeeUpdateWithoutRequestSupplementsMadeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -19033,6 +19263,7 @@ export type EmployeeUncheckedUpdateWithoutRequestSupplementsMadeInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -19111,6 +19342,7 @@ export type EmployeeCreateWithoutSupplementDropsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -19191,6 +19423,7 @@ export type EmployeeUncheckedCreateWithoutSupplementDropsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -19285,6 +19518,7 @@ export type EmployeeUpdateWithoutSupplementDropsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -19365,6 +19599,7 @@ export type EmployeeUncheckedUpdateWithoutSupplementDropsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -19443,6 +19678,7 @@ export type EmployeeCreateWithoutSpendDecisionsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -19523,6 +19759,7 @@ export type EmployeeUncheckedCreateWithoutSpendDecisionsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -19617,6 +19854,7 @@ export type EmployeeUpdateWithoutSpendDecisionsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -19697,6 +19935,7 @@ export type EmployeeUncheckedUpdateWithoutSpendDecisionsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -19775,6 +20014,7 @@ export type EmployeeCreateWithoutReserveConfirmationsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -19855,6 +20095,7 @@ export type EmployeeUncheckedCreateWithoutReserveConfirmationsGivenInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -19949,6 +20190,7 @@ export type EmployeeUpdateWithoutReserveConfirmationsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -20029,6 +20271,7 @@ export type EmployeeUncheckedUpdateWithoutReserveConfirmationsGivenInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -20107,6 +20350,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAskedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -20187,6 +20431,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAskedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -20270,6 +20515,7 @@ export type EmployeeCreateWithoutBudgetQuestionsAnsweredInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -20350,6 +20596,7 @@ export type EmployeeUncheckedCreateWithoutBudgetQuestionsAnsweredInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -20444,6 +20691,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAskedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -20524,6 +20772,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAskedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -20613,6 +20862,7 @@ export type EmployeeUpdateWithoutBudgetQuestionsAnsweredInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -20693,6 +20943,7 @@ export type EmployeeUncheckedUpdateWithoutBudgetQuestionsAnsweredInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -20771,6 +21022,7 @@ export type EmployeeCreateWithoutServiceAccountsAnsweredForInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -20851,6 +21103,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountsAnsweredForInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -20934,6 +21187,7 @@ export type EmployeeCreateWithoutServiceAccountBoundariesDecidedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21014,6 +21268,7 @@ export type EmployeeUncheckedCreateWithoutServiceAccountBoundariesDecidedInput =
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21108,6 +21363,7 @@ export type EmployeeUpdateWithoutServiceAccountsAnsweredForInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -21188,6 +21444,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountsAnsweredForInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -21277,6 +21534,7 @@ export type EmployeeUpdateWithoutServiceAccountBoundariesDecidedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -21357,6 +21615,7 @@ export type EmployeeUncheckedUpdateWithoutServiceAccountBoundariesDecidedInput =
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -21435,6 +21694,7 @@ export type EmployeeCreateWithoutReturnRequestsSentInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21515,6 +21775,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsSentInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21598,6 +21859,7 @@ export type EmployeeCreateWithoutReturnRequestsHeldInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21678,6 +21940,7 @@ export type EmployeeUncheckedCreateWithoutReturnRequestsHeldInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21761,6 +22024,7 @@ export type EmployeeCreateWithoutReturnHandoversConfirmedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21841,6 +22105,7 @@ export type EmployeeUncheckedCreateWithoutReturnHandoversConfirmedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -21935,6 +22200,7 @@ export type EmployeeUpdateWithoutReturnRequestsSentInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22015,6 +22281,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsSentInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22104,6 +22371,7 @@ export type EmployeeUpdateWithoutReturnRequestsHeldInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22184,6 +22452,7 @@ export type EmployeeUncheckedUpdateWithoutReturnRequestsHeldInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22273,6 +22542,7 @@ export type EmployeeUpdateWithoutReturnHandoversConfirmedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22353,6 +22623,7 @@ export type EmployeeUncheckedUpdateWithoutReturnHandoversConfirmedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22431,6 +22702,7 @@ export type EmployeeCreateWithoutStepSlaRemindersHeldInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -22511,6 +22783,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersHeldInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -22605,6 +22878,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersHeldInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22685,6 +22959,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersHeldInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -22763,6 +23038,7 @@ export type EmployeeCreateWithoutStepSlaRemindersReceivedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -22843,6 +23119,7 @@ export type EmployeeUncheckedCreateWithoutStepSlaRemindersReceivedInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -22937,6 +23214,7 @@ export type EmployeeUpdateWithoutStepSlaRemindersReceivedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -23017,6 +23295,7 @@ export type EmployeeUncheckedUpdateWithoutStepSlaRemindersReceivedInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -23095,6 +23374,7 @@ export type EmployeeCreateWithoutCongestionIncidentsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -23175,6 +23455,7 @@ export type EmployeeUncheckedCreateWithoutCongestionIncidentsAboutInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -23269,6 +23550,7 @@ export type EmployeeUpdateWithoutCongestionIncidentsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -23349,6 +23631,7 @@ export type EmployeeUncheckedUpdateWithoutCongestionIncidentsAboutInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -23427,6 +23710,7 @@ export type EmployeeCreateManyOrganizationInput = {
   jobTitle?: string | null
   employmentType: $Enums.EmploymentType
   hireDate: Date | string
+  contractEndDate?: Date | string | null
   status?: $Enums.EmployeeStatus
   workState?: $Enums.EmployeeWorkState
   createdAt?: Date | string
@@ -23442,6 +23726,7 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -23521,6 +23806,7 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -23600,6 +23886,7 @@ export type EmployeeUncheckedUpdateManyWithoutOrganizationInput = {
   jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentType?: Prisma.EnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   workState?: Prisma.EnumEmployeeWorkStateFieldUpdateOperationsInput | $Enums.EmployeeWorkState
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -24196,6 +24483,7 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   jobTitle?: boolean
   employmentType?: boolean
   hireDate?: boolean
+  contractEndDate?: boolean
   status?: boolean
   workState?: boolean
   createdAt?: boolean
@@ -24278,6 +24566,7 @@ export type EmployeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   jobTitle?: boolean
   employmentType?: boolean
   hireDate?: boolean
+  contractEndDate?: boolean
   status?: boolean
   workState?: boolean
   createdAt?: boolean
@@ -24295,6 +24584,7 @@ export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   jobTitle?: boolean
   employmentType?: boolean
   hireDate?: boolean
+  contractEndDate?: boolean
   status?: boolean
   workState?: boolean
   createdAt?: boolean
@@ -24312,13 +24602,14 @@ export type EmployeeSelectScalar = {
   jobTitle?: boolean
   employmentType?: boolean
   hireDate?: boolean
+  contractEndDate?: boolean
   status?: boolean
   workState?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeCode" | "fullName" | "workEmail" | "normalizedWorkEmail" | "jobTitle" | "employmentType" | "hireDate" | "status" | "workState" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
+export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeCode" | "fullName" | "workEmail" | "normalizedWorkEmail" | "jobTitle" | "employmentType" | "hireDate" | "contractEndDate" | "status" | "workState" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
 export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   placements?: boolean | Prisma.Employee$placementsArgs<ExtArgs>
@@ -24473,6 +24764,7 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     jobTitle: string | null
     employmentType: $Enums.EmploymentType
     hireDate: Date
+    contractEndDate: Date | null
     status: $Enums.EmployeeStatus
     workState: $Enums.EmployeeWorkState
     createdAt: Date
@@ -24974,6 +25266,7 @@ export interface EmployeeFieldRefs {
   readonly jobTitle: Prisma.FieldRef<"Employee", 'String'>
   readonly employmentType: Prisma.FieldRef<"Employee", 'EmploymentType'>
   readonly hireDate: Prisma.FieldRef<"Employee", 'DateTime'>
+  readonly contractEndDate: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly status: Prisma.FieldRef<"Employee", 'EmployeeStatus'>
   readonly workState: Prisma.FieldRef<"Employee", 'EmployeeWorkState'>
   readonly createdAt: Prisma.FieldRef<"Employee", 'DateTime'>

@@ -32,6 +32,7 @@ export type BudgetCommitmentAvgAggregateOutputType = {
   releasedMinor: number | null
   appliedMinor: number | null
   seatMonthlyMinor: number | null
+  seatMonthReversedMinor: number | null
 }
 
 export type BudgetCommitmentSumAggregateOutputType = {
@@ -40,6 +41,7 @@ export type BudgetCommitmentSumAggregateOutputType = {
   releasedMinor: bigint | null
   appliedMinor: bigint | null
   seatMonthlyMinor: bigint | null
+  seatMonthReversedMinor: bigint | null
 }
 
 export type BudgetCommitmentMinAggregateOutputType = {
@@ -60,6 +62,7 @@ export type BudgetCommitmentMinAggregateOutputType = {
   snapshotCheckId: string | null
   origin: $Enums.CommitmentOrigin | null
   seatMonthlyMinor: bigint | null
+  seatMonthReversedMinor: bigint | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -82,6 +85,7 @@ export type BudgetCommitmentMaxAggregateOutputType = {
   snapshotCheckId: string | null
   origin: $Enums.CommitmentOrigin | null
   seatMonthlyMinor: bigint | null
+  seatMonthReversedMinor: bigint | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -104,6 +108,7 @@ export type BudgetCommitmentCountAggregateOutputType = {
   snapshotCheckId: number
   origin: number
   seatMonthlyMinor: number
+  seatMonthReversedMinor: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -116,6 +121,7 @@ export type BudgetCommitmentAvgAggregateInputType = {
   releasedMinor?: true
   appliedMinor?: true
   seatMonthlyMinor?: true
+  seatMonthReversedMinor?: true
 }
 
 export type BudgetCommitmentSumAggregateInputType = {
@@ -124,6 +130,7 @@ export type BudgetCommitmentSumAggregateInputType = {
   releasedMinor?: true
   appliedMinor?: true
   seatMonthlyMinor?: true
+  seatMonthReversedMinor?: true
 }
 
 export type BudgetCommitmentMinAggregateInputType = {
@@ -144,6 +151,7 @@ export type BudgetCommitmentMinAggregateInputType = {
   snapshotCheckId?: true
   origin?: true
   seatMonthlyMinor?: true
+  seatMonthReversedMinor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -166,6 +174,7 @@ export type BudgetCommitmentMaxAggregateInputType = {
   snapshotCheckId?: true
   origin?: true
   seatMonthlyMinor?: true
+  seatMonthReversedMinor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -188,6 +197,7 @@ export type BudgetCommitmentCountAggregateInputType = {
   snapshotCheckId?: true
   origin?: true
   seatMonthlyMinor?: true
+  seatMonthReversedMinor?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -297,6 +307,7 @@ export type BudgetCommitmentGroupByOutputType = {
   snapshotCheckId: string | null
   origin: $Enums.CommitmentOrigin
   seatMonthlyMinor: bigint | null
+  seatMonthReversedMinor: bigint
   createdAt: Date
   updatedAt: Date
   _count: BudgetCommitmentCountAggregateOutputType | null
@@ -342,6 +353,7 @@ export type BudgetCommitmentWhereInput = {
   snapshotCheckId?: Prisma.UuidNullableFilter<"BudgetCommitment"> | string | null
   origin?: Prisma.EnumCommitmentOriginFilter<"BudgetCommitment"> | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.BigIntNullableFilter<"BudgetCommitment"> | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -352,6 +364,8 @@ export type BudgetCommitmentWhereInput = {
   snapshotCheck?: Prisma.XOR<Prisma.RequestBudgetCheckNullableScalarRelationFilter, Prisma.RequestBudgetCheckWhereInput> | null
   releases?: Prisma.BudgetCommitmentReleaseListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  seatMonths?: Prisma.SeatMonthChargeListRelationFilter
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalListRelationFilter
 }
 
 export type BudgetCommitmentOrderByWithRelationInput = {
@@ -372,6 +386,7 @@ export type BudgetCommitmentOrderByWithRelationInput = {
   snapshotCheckId?: Prisma.SortOrderInput | Prisma.SortOrder
   origin?: Prisma.SortOrder
   seatMonthlyMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  seatMonthReversedMinor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -382,6 +397,8 @@ export type BudgetCommitmentOrderByWithRelationInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckOrderByWithRelationInput
   releases?: Prisma.BudgetCommitmentReleaseOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  seatMonths?: Prisma.SeatMonthChargeOrderByRelationAggregateInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalOrderByRelationAggregateInput
 }
 
 export type BudgetCommitmentWhereUniqueInput = Prisma.AtLeast<{
@@ -406,6 +423,7 @@ export type BudgetCommitmentWhereUniqueInput = Prisma.AtLeast<{
   snapshotCheckId?: Prisma.UuidNullableFilter<"BudgetCommitment"> | string | null
   origin?: Prisma.EnumCommitmentOriginFilter<"BudgetCommitment"> | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.BigIntNullableFilter<"BudgetCommitment"> | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -416,6 +434,8 @@ export type BudgetCommitmentWhereUniqueInput = Prisma.AtLeast<{
   snapshotCheck?: Prisma.XOR<Prisma.RequestBudgetCheckNullableScalarRelationFilter, Prisma.RequestBudgetCheckWhereInput> | null
   releases?: Prisma.BudgetCommitmentReleaseListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  seatMonths?: Prisma.SeatMonthChargeListRelationFilter
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalListRelationFilter
 }, "id" | "requestId_year">
 
 export type BudgetCommitmentOrderByWithAggregationInput = {
@@ -436,6 +456,7 @@ export type BudgetCommitmentOrderByWithAggregationInput = {
   snapshotCheckId?: Prisma.SortOrderInput | Prisma.SortOrder
   origin?: Prisma.SortOrder
   seatMonthlyMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  seatMonthReversedMinor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BudgetCommitmentCountOrderByAggregateInput
@@ -466,6 +487,7 @@ export type BudgetCommitmentScalarWhereWithAggregatesInput = {
   snapshotCheckId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetCommitment"> | string | null
   origin?: Prisma.EnumCommitmentOriginWithAggregatesFilter<"BudgetCommitment"> | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.BigIntNullableWithAggregatesFilter<"BudgetCommitment"> | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetCommitment"> | bigint | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BudgetCommitment"> | Date | string
 }
@@ -482,6 +504,7 @@ export type BudgetCommitmentCreateInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -492,6 +515,8 @@ export type BudgetCommitmentCreateInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateInput = {
@@ -512,10 +537,13 @@ export type BudgetCommitmentUncheckedCreateInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUpdateInput = {
@@ -530,6 +558,7 @@ export type BudgetCommitmentUpdateInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -540,6 +569,8 @@ export type BudgetCommitmentUpdateInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateInput = {
@@ -560,10 +591,13 @@ export type BudgetCommitmentUncheckedUpdateInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentCreateManyInput = {
@@ -584,6 +618,7 @@ export type BudgetCommitmentCreateManyInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -600,6 +635,7 @@ export type BudgetCommitmentUpdateManyMutationInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -622,6 +658,7 @@ export type BudgetCommitmentUncheckedUpdateManyInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -659,6 +696,7 @@ export type BudgetCommitmentCountOrderByAggregateInput = {
   snapshotCheckId?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   seatMonthlyMinor?: Prisma.SortOrder
+  seatMonthReversedMinor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -669,6 +707,7 @@ export type BudgetCommitmentAvgOrderByAggregateInput = {
   releasedMinor?: Prisma.SortOrder
   appliedMinor?: Prisma.SortOrder
   seatMonthlyMinor?: Prisma.SortOrder
+  seatMonthReversedMinor?: Prisma.SortOrder
 }
 
 export type BudgetCommitmentMaxOrderByAggregateInput = {
@@ -689,6 +728,7 @@ export type BudgetCommitmentMaxOrderByAggregateInput = {
   snapshotCheckId?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   seatMonthlyMinor?: Prisma.SortOrder
+  seatMonthReversedMinor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -711,6 +751,7 @@ export type BudgetCommitmentMinOrderByAggregateInput = {
   snapshotCheckId?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   seatMonthlyMinor?: Prisma.SortOrder
+  seatMonthReversedMinor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -721,11 +762,17 @@ export type BudgetCommitmentSumOrderByAggregateInput = {
   releasedMinor?: Prisma.SortOrder
   appliedMinor?: Prisma.SortOrder
   seatMonthlyMinor?: Prisma.SortOrder
+  seatMonthReversedMinor?: Prisma.SortOrder
 }
 
 export type BudgetCommitmentScalarRelationFilter = {
   is?: Prisma.BudgetCommitmentWhereInput
   isNot?: Prisma.BudgetCommitmentWhereInput
+}
+
+export type BudgetCommitmentNullableScalarRelationFilter = {
+  is?: Prisma.BudgetCommitmentWhereInput | null
+  isNot?: Prisma.BudgetCommitmentWhereInput | null
 }
 
 export type BudgetCommitmentCreateNestedManyWithoutAttachedVersionInput = {
@@ -798,12 +845,44 @@ export type BudgetCommitmentCreateNestedOneWithoutInvoicesInput = {
   connect?: Prisma.BudgetCommitmentWhereUniqueInput
 }
 
-export type BudgetCommitmentUpdateOneRequiredWithoutInvoicesNestedInput = {
+export type BudgetCommitmentUpdateOneWithoutInvoicesNestedInput = {
   create?: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutInvoicesInput, Prisma.BudgetCommitmentUncheckedCreateWithoutInvoicesInput>
   connectOrCreate?: Prisma.BudgetCommitmentCreateOrConnectWithoutInvoicesInput
   upsert?: Prisma.BudgetCommitmentUpsertWithoutInvoicesInput
+  disconnect?: Prisma.BudgetCommitmentWhereInput | boolean
+  delete?: Prisma.BudgetCommitmentWhereInput | boolean
   connect?: Prisma.BudgetCommitmentWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.BudgetCommitmentUpdateToOneWithWhereWithoutInvoicesInput, Prisma.BudgetCommitmentUpdateWithoutInvoicesInput>, Prisma.BudgetCommitmentUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type BudgetCommitmentCreateNestedOneWithoutSeatMonthsInput = {
+  create?: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthsInput>
+  connectOrCreate?: Prisma.BudgetCommitmentCreateOrConnectWithoutSeatMonthsInput
+  connect?: Prisma.BudgetCommitmentWhereUniqueInput
+}
+
+export type BudgetCommitmentUpdateOneWithoutSeatMonthsNestedInput = {
+  create?: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthsInput>
+  connectOrCreate?: Prisma.BudgetCommitmentCreateOrConnectWithoutSeatMonthsInput
+  upsert?: Prisma.BudgetCommitmentUpsertWithoutSeatMonthsInput
+  disconnect?: Prisma.BudgetCommitmentWhereInput | boolean
+  delete?: Prisma.BudgetCommitmentWhereInput | boolean
+  connect?: Prisma.BudgetCommitmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BudgetCommitmentUpdateToOneWithWhereWithoutSeatMonthsInput, Prisma.BudgetCommitmentUpdateWithoutSeatMonthsInput>, Prisma.BudgetCommitmentUncheckedUpdateWithoutSeatMonthsInput>
+}
+
+export type BudgetCommitmentCreateNestedOneWithoutSeatMonthReversalsInput = {
+  create?: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthReversalsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthReversalsInput>
+  connectOrCreate?: Prisma.BudgetCommitmentCreateOrConnectWithoutSeatMonthReversalsInput
+  connect?: Prisma.BudgetCommitmentWhereUniqueInput
+}
+
+export type BudgetCommitmentUpdateOneRequiredWithoutSeatMonthReversalsNestedInput = {
+  create?: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthReversalsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthReversalsInput>
+  connectOrCreate?: Prisma.BudgetCommitmentCreateOrConnectWithoutSeatMonthReversalsInput
+  upsert?: Prisma.BudgetCommitmentUpsertWithoutSeatMonthReversalsInput
+  connect?: Prisma.BudgetCommitmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BudgetCommitmentUpdateToOneWithWhereWithoutSeatMonthReversalsInput, Prisma.BudgetCommitmentUpdateWithoutSeatMonthReversalsInput>, Prisma.BudgetCommitmentUncheckedUpdateWithoutSeatMonthReversalsInput>
 }
 
 export type BudgetCommitmentCreateNestedManyWithoutCurrencyRecordInput = {
@@ -1028,6 +1107,7 @@ export type BudgetCommitmentCreateWithoutAttachedVersionInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1037,6 +1117,8 @@ export type BudgetCommitmentCreateWithoutAttachedVersionInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutAttachedVersionInput = {
@@ -1056,10 +1138,13 @@ export type BudgetCommitmentUncheckedCreateWithoutAttachedVersionInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutAttachedVersionInput = {
@@ -1109,6 +1194,7 @@ export type BudgetCommitmentScalarWhereInput = {
   snapshotCheckId?: Prisma.UuidNullableFilter<"BudgetCommitment"> | string | null
   origin?: Prisma.EnumCommitmentOriginFilter<"BudgetCommitment"> | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.BigIntNullableFilter<"BudgetCommitment"> | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFilter<"BudgetCommitment"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BudgetCommitment"> | Date | string
 }
@@ -1125,6 +1211,7 @@ export type BudgetCommitmentCreateWithoutReleasesInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1134,6 +1221,8 @@ export type BudgetCommitmentCreateWithoutReleasesInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutReleasesInput = {
@@ -1154,9 +1243,12 @@ export type BudgetCommitmentUncheckedCreateWithoutReleasesInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutReleasesInput = {
@@ -1187,6 +1279,7 @@ export type BudgetCommitmentUpdateWithoutReleasesInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1196,6 +1289,8 @@ export type BudgetCommitmentUpdateWithoutReleasesInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutReleasesInput = {
@@ -1216,9 +1311,12 @@ export type BudgetCommitmentUncheckedUpdateWithoutReleasesInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentCreateWithoutInvoicesInput = {
@@ -1233,6 +1331,7 @@ export type BudgetCommitmentCreateWithoutInvoicesInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1242,6 +1341,8 @@ export type BudgetCommitmentCreateWithoutInvoicesInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutInvoicesInput = {
@@ -1262,9 +1363,12 @@ export type BudgetCommitmentUncheckedCreateWithoutInvoicesInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutInvoicesInput = {
@@ -1295,6 +1399,7 @@ export type BudgetCommitmentUpdateWithoutInvoicesInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1304,6 +1409,8 @@ export type BudgetCommitmentUpdateWithoutInvoicesInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutInvoicesInput = {
@@ -1324,9 +1431,252 @@ export type BudgetCommitmentUncheckedUpdateWithoutInvoicesInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
+}
+
+export type BudgetCommitmentCreateWithoutSeatMonthsInput = {
+  id?: string
+  year: number
+  amountMinor: bigint | number
+  state?: $Enums.CommitmentState
+  unattachedReason?: string | null
+  attachedAt?: Date | string | null
+  releasedMinor?: bigint | number
+  releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
+  origin?: $Enums.CommitmentOrigin
+  seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
+  costCenter: Prisma.CostCenterCreateNestedOneWithoutBudgetCommitmentsInput
+  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutBudgetCommitmentsInput
+  attachedVersion?: Prisma.BudgetVersionCreateNestedOneWithoutAttachedCommitmentsInput
+  request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
+  snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
+  releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
+}
+
+export type BudgetCommitmentUncheckedCreateWithoutSeatMonthsInput = {
+  id?: string
+  organizationId: string
+  requestId: string
+  costCenterId: string
+  year: number
+  amountMinor: bigint | number
+  currency: string
+  state?: $Enums.CommitmentState
+  unattachedReason?: string | null
+  attachedVersionId?: string | null
+  attachedAt?: Date | string | null
+  releasedMinor?: bigint | number
+  releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
+  snapshotCheckId?: string | null
+  origin?: $Enums.CommitmentOrigin
+  seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
+}
+
+export type BudgetCommitmentCreateOrConnectWithoutSeatMonthsInput = {
+  where: Prisma.BudgetCommitmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthsInput>
+}
+
+export type BudgetCommitmentUpsertWithoutSeatMonthsInput = {
+  update: Prisma.XOR<Prisma.BudgetCommitmentUpdateWithoutSeatMonthsInput, Prisma.BudgetCommitmentUncheckedUpdateWithoutSeatMonthsInput>
+  create: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthsInput>
+  where?: Prisma.BudgetCommitmentWhereInput
+}
+
+export type BudgetCommitmentUpdateToOneWithWhereWithoutSeatMonthsInput = {
+  where?: Prisma.BudgetCommitmentWhereInput
+  data: Prisma.XOR<Prisma.BudgetCommitmentUpdateWithoutSeatMonthsInput, Prisma.BudgetCommitmentUncheckedUpdateWithoutSeatMonthsInput>
+}
+
+export type BudgetCommitmentUpdateWithoutSeatMonthsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  state?: Prisma.EnumCommitmentStateFieldUpdateOperationsInput | $Enums.CommitmentState
+  unattachedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
+  seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  attachedVersion?: Prisma.BudgetVersionUpdateOneWithoutAttachedCommitmentsNestedInput
+  request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
+  releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
+}
+
+export type BudgetCommitmentUncheckedUpdateWithoutSeatMonthsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.EnumCommitmentStateFieldUpdateOperationsInput | $Enums.CommitmentState
+  unattachedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
+  seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
+}
+
+export type BudgetCommitmentCreateWithoutSeatMonthReversalsInput = {
+  id?: string
+  year: number
+  amountMinor: bigint | number
+  state?: $Enums.CommitmentState
+  unattachedReason?: string | null
+  attachedAt?: Date | string | null
+  releasedMinor?: bigint | number
+  releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
+  origin?: $Enums.CommitmentOrigin
+  seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
+  costCenter: Prisma.CostCenterCreateNestedOneWithoutBudgetCommitmentsInput
+  currencyRecord: Prisma.CurrencyCreateNestedOneWithoutBudgetCommitmentsInput
+  attachedVersion?: Prisma.BudgetVersionCreateNestedOneWithoutAttachedCommitmentsInput
+  request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
+  snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
+  releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+}
+
+export type BudgetCommitmentUncheckedCreateWithoutSeatMonthReversalsInput = {
+  id?: string
+  organizationId: string
+  requestId: string
+  costCenterId: string
+  year: number
+  amountMinor: bigint | number
+  currency: string
+  state?: $Enums.CommitmentState
+  unattachedReason?: string | null
+  attachedVersionId?: string | null
+  attachedAt?: Date | string | null
+  releasedMinor?: bigint | number
+  releasedAt?: Date | string | null
+  appliedMinor?: bigint | number
+  snapshotCheckId?: string | null
+  origin?: $Enums.CommitmentOrigin
+  seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+}
+
+export type BudgetCommitmentCreateOrConnectWithoutSeatMonthReversalsInput = {
+  where: Prisma.BudgetCommitmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthReversalsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthReversalsInput>
+}
+
+export type BudgetCommitmentUpsertWithoutSeatMonthReversalsInput = {
+  update: Prisma.XOR<Prisma.BudgetCommitmentUpdateWithoutSeatMonthReversalsInput, Prisma.BudgetCommitmentUncheckedUpdateWithoutSeatMonthReversalsInput>
+  create: Prisma.XOR<Prisma.BudgetCommitmentCreateWithoutSeatMonthReversalsInput, Prisma.BudgetCommitmentUncheckedCreateWithoutSeatMonthReversalsInput>
+  where?: Prisma.BudgetCommitmentWhereInput
+}
+
+export type BudgetCommitmentUpdateToOneWithWhereWithoutSeatMonthReversalsInput = {
+  where?: Prisma.BudgetCommitmentWhereInput
+  data: Prisma.XOR<Prisma.BudgetCommitmentUpdateWithoutSeatMonthReversalsInput, Prisma.BudgetCommitmentUncheckedUpdateWithoutSeatMonthReversalsInput>
+}
+
+export type BudgetCommitmentUpdateWithoutSeatMonthReversalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  state?: Prisma.EnumCommitmentStateFieldUpdateOperationsInput | $Enums.CommitmentState
+  unattachedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
+  seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  costCenter?: Prisma.CostCenterUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  attachedVersion?: Prisma.BudgetVersionUpdateOneWithoutAttachedCommitmentsNestedInput
+  request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
+  snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
+  releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+}
+
+export type BudgetCommitmentUncheckedUpdateWithoutSeatMonthReversalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  costCenterId?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.EnumCommitmentStateFieldUpdateOperationsInput | $Enums.CommitmentState
+  unattachedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  releasedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  releasedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
+  seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentCreateWithoutCurrencyRecordInput = {
@@ -1341,6 +1691,7 @@ export type BudgetCommitmentCreateWithoutCurrencyRecordInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1350,6 +1701,8 @@ export type BudgetCommitmentCreateWithoutCurrencyRecordInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutCurrencyRecordInput = {
@@ -1369,10 +1722,13 @@ export type BudgetCommitmentUncheckedCreateWithoutCurrencyRecordInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutCurrencyRecordInput = {
@@ -1413,6 +1769,7 @@ export type BudgetCommitmentCreateWithoutOrganizationInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   costCenter: Prisma.CostCenterCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1422,6 +1779,8 @@ export type BudgetCommitmentCreateWithoutOrganizationInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutOrganizationInput = {
@@ -1441,10 +1800,13 @@ export type BudgetCommitmentUncheckedCreateWithoutOrganizationInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutOrganizationInput = {
@@ -1485,6 +1847,7 @@ export type BudgetCommitmentCreateWithoutCostCenterInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1494,6 +1857,8 @@ export type BudgetCommitmentCreateWithoutCostCenterInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutCostCenterInput = {
@@ -1513,10 +1878,13 @@ export type BudgetCommitmentUncheckedCreateWithoutCostCenterInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutCostCenterInput = {
@@ -1557,6 +1925,7 @@ export type BudgetCommitmentCreateWithoutRequestInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1566,6 +1935,8 @@ export type BudgetCommitmentCreateWithoutRequestInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckCreateNestedOneWithoutCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutRequestInput = {
@@ -1585,10 +1956,13 @@ export type BudgetCommitmentUncheckedCreateWithoutRequestInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutRequestInput = {
@@ -1629,6 +2003,7 @@ export type BudgetCommitmentCreateWithoutSnapshotCheckInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBudgetCommitmentsInput
@@ -1638,6 +2013,8 @@ export type BudgetCommitmentCreateWithoutSnapshotCheckInput = {
   request: Prisma.AccessRequestCreateNestedOneWithoutBudgetCommitmentsInput
   releases?: Prisma.BudgetCommitmentReleaseCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentUncheckedCreateWithoutSnapshotCheckInput = {
@@ -1657,10 +2034,13 @@ export type BudgetCommitmentUncheckedCreateWithoutSnapshotCheckInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedCreateNestedManyWithoutCommitmentInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedCreateNestedManyWithoutCommitmentInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedCreateNestedManyWithoutCommitmentInput
 }
 
 export type BudgetCommitmentCreateOrConnectWithoutSnapshotCheckInput = {
@@ -1706,6 +2086,7 @@ export type BudgetCommitmentCreateManyAttachedVersionInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1722,6 +2103,7 @@ export type BudgetCommitmentUpdateWithoutAttachedVersionInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1731,6 +2113,8 @@ export type BudgetCommitmentUpdateWithoutAttachedVersionInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutAttachedVersionInput = {
@@ -1750,10 +2134,13 @@ export type BudgetCommitmentUncheckedUpdateWithoutAttachedVersionInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionInput = {
@@ -1773,6 +2160,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutAttachedVersionInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1794,6 +2182,7 @@ export type BudgetCommitmentCreateManyCurrencyRecordInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1810,6 +2199,7 @@ export type BudgetCommitmentUpdateWithoutCurrencyRecordInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1819,6 +2209,8 @@ export type BudgetCommitmentUpdateWithoutCurrencyRecordInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutCurrencyRecordInput = {
@@ -1838,10 +2230,13 @@ export type BudgetCommitmentUncheckedUpdateWithoutCurrencyRecordInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordInput = {
@@ -1861,6 +2256,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutCurrencyRecordInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1882,6 +2278,7 @@ export type BudgetCommitmentCreateManyOrganizationInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1898,6 +2295,7 @@ export type BudgetCommitmentUpdateWithoutOrganizationInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   costCenter?: Prisma.CostCenterUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1907,6 +2305,8 @@ export type BudgetCommitmentUpdateWithoutOrganizationInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutOrganizationInput = {
@@ -1926,10 +2326,13 @@ export type BudgetCommitmentUncheckedUpdateWithoutOrganizationInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1949,6 +2352,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutOrganizationInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1970,6 +2374,7 @@ export type BudgetCommitmentCreateManyCostCenterInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1986,6 +2391,7 @@ export type BudgetCommitmentUpdateWithoutCostCenterInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -1995,6 +2401,8 @@ export type BudgetCommitmentUpdateWithoutCostCenterInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutCostCenterInput = {
@@ -2014,10 +2422,13 @@ export type BudgetCommitmentUncheckedUpdateWithoutCostCenterInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutCostCenterInput = {
@@ -2037,6 +2448,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutCostCenterInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2058,6 +2470,7 @@ export type BudgetCommitmentCreateManyRequestInput = {
   snapshotCheckId?: string | null
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2074,6 +2487,7 @@ export type BudgetCommitmentUpdateWithoutRequestInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -2083,6 +2497,8 @@ export type BudgetCommitmentUpdateWithoutRequestInput = {
   snapshotCheck?: Prisma.RequestBudgetCheckUpdateOneWithoutCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutRequestInput = {
@@ -2102,10 +2518,13 @@ export type BudgetCommitmentUncheckedUpdateWithoutRequestInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutRequestInput = {
@@ -2125,6 +2544,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutRequestInput = {
   snapshotCheckId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2146,6 +2566,7 @@ export type BudgetCommitmentCreateManySnapshotCheckInput = {
   appliedMinor?: bigint | number
   origin?: $Enums.CommitmentOrigin
   seatMonthlyMinor?: bigint | number | null
+  seatMonthReversedMinor?: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2162,6 +2583,7 @@ export type BudgetCommitmentUpdateWithoutSnapshotCheckInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
@@ -2171,6 +2593,8 @@ export type BudgetCommitmentUpdateWithoutSnapshotCheckInput = {
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutBudgetCommitmentsNestedInput
   releases?: Prisma.BudgetCommitmentReleaseUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateWithoutSnapshotCheckInput = {
@@ -2190,10 +2614,13 @@ export type BudgetCommitmentUncheckedUpdateWithoutSnapshotCheckInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   releases?: Prisma.BudgetCommitmentReleaseUncheckedUpdateManyWithoutCommitmentNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonths?: Prisma.SeatMonthChargeUncheckedUpdateManyWithoutCommitmentNestedInput
+  seatMonthReversals?: Prisma.BudgetCommitmentSeatMonthReversalUncheckedUpdateManyWithoutCommitmentNestedInput
 }
 
 export type BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckInput = {
@@ -2213,6 +2640,7 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckInput = {
   appliedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   origin?: Prisma.EnumCommitmentOriginFieldUpdateOperationsInput | $Enums.CommitmentOrigin
   seatMonthlyMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  seatMonthReversedMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2225,11 +2653,15 @@ export type BudgetCommitmentUncheckedUpdateManyWithoutSnapshotCheckInput = {
 export type BudgetCommitmentCountOutputType = {
   releases: number
   invoices: number
+  seatMonths: number
+  seatMonthReversals: number
 }
 
 export type BudgetCommitmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   releases?: boolean | BudgetCommitmentCountOutputTypeCountReleasesArgs
   invoices?: boolean | BudgetCommitmentCountOutputTypeCountInvoicesArgs
+  seatMonths?: boolean | BudgetCommitmentCountOutputTypeCountSeatMonthsArgs
+  seatMonthReversals?: boolean | BudgetCommitmentCountOutputTypeCountSeatMonthReversalsArgs
 }
 
 /**
@@ -2256,6 +2688,20 @@ export type BudgetCommitmentCountOutputTypeCountInvoicesArgs<ExtArgs extends run
   where?: Prisma.InvoiceWhereInput
 }
 
+/**
+ * BudgetCommitmentCountOutputType without action
+ */
+export type BudgetCommitmentCountOutputTypeCountSeatMonthsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SeatMonthChargeWhereInput
+}
+
+/**
+ * BudgetCommitmentCountOutputType without action
+ */
+export type BudgetCommitmentCountOutputTypeCountSeatMonthReversalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetCommitmentSeatMonthReversalWhereInput
+}
+
 
 export type BudgetCommitmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2275,6 +2721,7 @@ export type BudgetCommitmentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   snapshotCheckId?: boolean
   origin?: boolean
   seatMonthlyMinor?: boolean
+  seatMonthReversedMinor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -2285,6 +2732,8 @@ export type BudgetCommitmentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   snapshotCheck?: boolean | Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs>
   releases?: boolean | Prisma.BudgetCommitment$releasesArgs<ExtArgs>
   invoices?: boolean | Prisma.BudgetCommitment$invoicesArgs<ExtArgs>
+  seatMonths?: boolean | Prisma.BudgetCommitment$seatMonthsArgs<ExtArgs>
+  seatMonthReversals?: boolean | Prisma.BudgetCommitment$seatMonthReversalsArgs<ExtArgs>
   _count?: boolean | Prisma.BudgetCommitmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["budgetCommitment"]>
 
@@ -2306,6 +2755,7 @@ export type BudgetCommitmentSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   snapshotCheckId?: boolean
   origin?: boolean
   seatMonthlyMinor?: boolean
+  seatMonthReversedMinor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -2334,6 +2784,7 @@ export type BudgetCommitmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   snapshotCheckId?: boolean
   origin?: boolean
   seatMonthlyMinor?: boolean
+  seatMonthReversedMinor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -2362,11 +2813,12 @@ export type BudgetCommitmentSelectScalar = {
   snapshotCheckId?: boolean
   origin?: boolean
   seatMonthlyMinor?: boolean
+  seatMonthReversedMinor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BudgetCommitmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "costCenterId" | "year" | "amountMinor" | "currency" | "state" | "unattachedReason" | "attachedVersionId" | "attachedAt" | "releasedMinor" | "releasedAt" | "appliedMinor" | "snapshotCheckId" | "origin" | "seatMonthlyMinor" | "createdAt" | "updatedAt", ExtArgs["result"]["budgetCommitment"]>
+export type BudgetCommitmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "requestId" | "costCenterId" | "year" | "amountMinor" | "currency" | "state" | "unattachedReason" | "attachedVersionId" | "attachedAt" | "releasedMinor" | "releasedAt" | "appliedMinor" | "snapshotCheckId" | "origin" | "seatMonthlyMinor" | "seatMonthReversedMinor" | "createdAt" | "updatedAt", ExtArgs["result"]["budgetCommitment"]>
 export type BudgetCommitmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.CostCenterDefaultArgs<ExtArgs>
@@ -2376,6 +2828,8 @@ export type BudgetCommitmentInclude<ExtArgs extends runtime.Types.Extensions.Int
   snapshotCheck?: boolean | Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs>
   releases?: boolean | Prisma.BudgetCommitment$releasesArgs<ExtArgs>
   invoices?: boolean | Prisma.BudgetCommitment$invoicesArgs<ExtArgs>
+  seatMonths?: boolean | Prisma.BudgetCommitment$seatMonthsArgs<ExtArgs>
+  seatMonthReversals?: boolean | Prisma.BudgetCommitment$seatMonthReversalsArgs<ExtArgs>
   _count?: boolean | Prisma.BudgetCommitmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BudgetCommitmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2406,6 +2860,8 @@ export type $BudgetCommitmentPayload<ExtArgs extends runtime.Types.Extensions.In
     snapshotCheck: Prisma.$RequestBudgetCheckPayload<ExtArgs> | null
     releases: Prisma.$BudgetCommitmentReleasePayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    seatMonths: Prisma.$SeatMonthChargePayload<ExtArgs>[]
+    seatMonthReversals: Prisma.$BudgetCommitmentSeatMonthReversalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2425,6 +2881,7 @@ export type $BudgetCommitmentPayload<ExtArgs extends runtime.Types.Extensions.In
     snapshotCheckId: string | null
     origin: $Enums.CommitmentOrigin
     seatMonthlyMinor: bigint | null
+    seatMonthReversedMinor: bigint
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["budgetCommitment"]>
@@ -2829,6 +3286,8 @@ export interface Prisma__BudgetCommitmentClient<T, Null = never, ExtArgs extends
   snapshotCheck<T extends Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$snapshotCheckArgs<ExtArgs>>): Prisma.Prisma__RequestBudgetCheckClient<runtime.Types.Result.GetResult<Prisma.$RequestBudgetCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   releases<T extends Prisma.BudgetCommitment$releasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$releasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.BudgetCommitment$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  seatMonths<T extends Prisma.BudgetCommitment$seatMonthsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$seatMonthsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeatMonthChargePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  seatMonthReversals<T extends Prisma.BudgetCommitment$seatMonthReversalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitment$seatMonthReversalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentSeatMonthReversalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2875,6 +3334,7 @@ export interface BudgetCommitmentFieldRefs {
   readonly snapshotCheckId: Prisma.FieldRef<"BudgetCommitment", 'String'>
   readonly origin: Prisma.FieldRef<"BudgetCommitment", 'CommitmentOrigin'>
   readonly seatMonthlyMinor: Prisma.FieldRef<"BudgetCommitment", 'BigInt'>
+  readonly seatMonthReversedMinor: Prisma.FieldRef<"BudgetCommitment", 'BigInt'>
   readonly createdAt: Prisma.FieldRef<"BudgetCommitment", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BudgetCommitment", 'DateTime'>
 }
@@ -3361,6 +3821,54 @@ export type BudgetCommitment$invoicesArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * BudgetCommitment.seatMonths
+ */
+export type BudgetCommitment$seatMonthsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SeatMonthCharge
+   */
+  select?: Prisma.SeatMonthChargeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SeatMonthCharge
+   */
+  omit?: Prisma.SeatMonthChargeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SeatMonthChargeInclude<ExtArgs> | null
+  where?: Prisma.SeatMonthChargeWhereInput
+  orderBy?: Prisma.SeatMonthChargeOrderByWithRelationInput | Prisma.SeatMonthChargeOrderByWithRelationInput[]
+  cursor?: Prisma.SeatMonthChargeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SeatMonthChargeScalarFieldEnum | Prisma.SeatMonthChargeScalarFieldEnum[]
+}
+
+/**
+ * BudgetCommitment.seatMonthReversals
+ */
+export type BudgetCommitment$seatMonthReversalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetCommitmentSeatMonthReversal
+   */
+  select?: Prisma.BudgetCommitmentSeatMonthReversalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetCommitmentSeatMonthReversal
+   */
+  omit?: Prisma.BudgetCommitmentSeatMonthReversalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetCommitmentSeatMonthReversalInclude<ExtArgs> | null
+  where?: Prisma.BudgetCommitmentSeatMonthReversalWhereInput
+  orderBy?: Prisma.BudgetCommitmentSeatMonthReversalOrderByWithRelationInput | Prisma.BudgetCommitmentSeatMonthReversalOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetCommitmentSeatMonthReversalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetCommitmentSeatMonthReversalScalarFieldEnum | Prisma.BudgetCommitmentSeatMonthReversalScalarFieldEnum[]
 }
 
 /**

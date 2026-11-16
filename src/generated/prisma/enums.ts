@@ -71,7 +71,9 @@ export type BudgetLineType = (typeof BudgetLineType)[keyof typeof BudgetLineType
 
 export const BudgetVersionOrigin = {
   PROPOSAL: 'PROPOSAL',
-  BASELINE_NO_HEAD: 'BASELINE_NO_HEAD'
+  BASELINE_NO_HEAD: 'BASELINE_NO_HEAD',
+  BASELINE_NO_PROPOSAL: 'BASELINE_NO_PROPOSAL',
+  ADJUSTMENT: 'ADJUSTMENT'
 } as const
 
 export type BudgetVersionOrigin = (typeof BudgetVersionOrigin)[keyof typeof BudgetVersionOrigin]
@@ -1246,7 +1248,8 @@ export type AccessRequestStepState = (typeof AccessRequestStepState)[keyof typeo
 
 export const ApprovalDecision = {
   APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  RETURNED: 'RETURNED'
 } as const
 
 export type ApprovalDecision = (typeof ApprovalDecision)[keyof typeof ApprovalDecision]
@@ -1482,6 +1485,56 @@ export const SlaReminderRole = {
 export type SlaReminderRole = (typeof SlaReminderRole)[keyof typeof SlaReminderRole]
 
 
+export const PurchaseInvoiceLinkKind = {
+  REQUEST: 'REQUEST',
+  SUBSCRIPTION: 'SUBSCRIPTION'
+} as const
+
+export type PurchaseInvoiceLinkKind = (typeof PurchaseInvoiceLinkKind)[keyof typeof PurchaseInvoiceLinkKind]
+
+
+export const PurchaseInvoiceLabel = {
+  NEW_PURCHASE: 'NEW_PURCHASE',
+  PERIOD: 'PERIOD',
+  RENEWAL: 'RENEWAL'
+} as const
+
+export type PurchaseInvoiceLabel = (typeof PurchaseInvoiceLabel)[keyof typeof PurchaseInvoiceLabel]
+
+
+export const PurchaseInvoiceState = {
+  SUBMITTED: 'SUBMITTED',
+  CONFIRMED: 'CONFIRMED',
+  RETURNED: 'RETURNED'
+} as const
+
+export type PurchaseInvoiceState = (typeof PurchaseInvoiceState)[keyof typeof PurchaseInvoiceState]
+
+
+export const PurchaseInvoicePaymentSource = {
+  COMPANY_CARD: 'COMPANY_CARD',
+  IT_ADVANCE: 'IT_ADVANCE'
+} as const
+
+export type PurchaseInvoicePaymentSource = (typeof PurchaseInvoicePaymentSource)[keyof typeof PurchaseInvoicePaymentSource]
+
+
+export const InvoiceDiscrepancyState = {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+} as const
+
+export type InvoiceDiscrepancyState = (typeof InvoiceDiscrepancyState)[keyof typeof InvoiceDiscrepancyState]
+
+
+export const InvoiceDiscrepancyOutcome = {
+  EXPLAINED: 'EXPLAINED',
+  OUT_OF_PROCESS_SUSPECTED: 'OUT_OF_PROCESS_SUSPECTED'
+} as const
+
+export type InvoiceDiscrepancyOutcome = (typeof InvoiceDiscrepancyOutcome)[keyof typeof InvoiceDiscrepancyOutcome]
+
+
 export const AiToolKey = {
   CLAUDE_CODE: 'CLAUDE_CODE',
   CODEX: 'CODEX',
@@ -1698,3 +1751,49 @@ export const UsageFindingStatus = {
 } as const
 
 export type UsageFindingStatus = (typeof UsageFindingStatus)[keyof typeof UsageFindingStatus]
+
+
+export const VendorAccountDiscrepancySource = {
+  NO_ASSIGNMENT: 'NO_ASSIGNMENT',
+  UNMATCHED_IDENTITY: 'UNMATCHED_IDENTITY',
+  INVOICE_DIFFERENCE: 'INVOICE_DIFFERENCE',
+  COLLECTOR_UNLISTED: 'COLLECTOR_UNLISTED'
+} as const
+
+export type VendorAccountDiscrepancySource = (typeof VendorAccountDiscrepancySource)[keyof typeof VendorAccountDiscrepancySource]
+
+
+export const VendorAccountDiscrepancyState = {
+  OPEN: 'OPEN',
+  DECIDED: 'DECIDED'
+} as const
+
+export type VendorAccountDiscrepancyState = (typeof VendorAccountDiscrepancyState)[keyof typeof VendorAccountDiscrepancyState]
+
+
+export const VendorAccountDecision = {
+  LEGALIZE_VIA_REQUEST: 'LEGALIZE_VIA_REQUEST',
+  REVOKE: 'REVOKE',
+  FALSE_ALARM: 'FALSE_ALARM',
+  OUT_OF_PROCESS: 'OUT_OF_PROCESS'
+} as const
+
+export type VendorAccountDecision = (typeof VendorAccountDecision)[keyof typeof VendorAccountDecision]
+
+
+export const OutOfProcessCaseState = {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+} as const
+
+export type OutOfProcessCaseState = (typeof OutOfProcessCaseState)[keyof typeof OutOfProcessCaseState]
+
+
+export const OutOfProcessOutcome = {
+  FALSE_ALARM: 'FALSE_ALARM',
+  RECORD_SPENT: 'RECORD_SPENT',
+  REPORT_ONLY: 'REPORT_ONLY',
+  REVOKED: 'REVOKED'
+} as const
+
+export type OutOfProcessOutcome = (typeof OutOfProcessOutcome)[keyof typeof OutOfProcessOutcome]

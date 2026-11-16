@@ -28,11 +28,13 @@ export type AggregateAccessRequestAssessment = {
 
 export type AccessRequestAssessmentAvgAggregateOutputType = {
   quoteUnitPriceMinor: number | null
+  quoteOriginalUnitPriceMinor: number | null
   commitmentMonths: number | null
 }
 
 export type AccessRequestAssessmentSumAggregateOutputType = {
   quoteUnitPriceMinor: bigint | null
+  quoteOriginalUnitPriceMinor: bigint | null
   commitmentMonths: number | null
 }
 
@@ -62,6 +64,8 @@ export type AccessRequestAssessmentMinAggregateOutputType = {
   quoteBillingCycle: $Enums.BillingCycle | null
   quoteValidFrom: Date | null
   quoteValidUntil: Date | null
+  quoteOriginalUnitPriceMinor: bigint | null
+  quoteOriginalCurrency: string | null
   commitmentMonths: number | null
   paymentFrequency: $Enums.PaymentFrequency | null
   firstPaymentOn: Date | null
@@ -103,6 +107,8 @@ export type AccessRequestAssessmentMaxAggregateOutputType = {
   quoteBillingCycle: $Enums.BillingCycle | null
   quoteValidFrom: Date | null
   quoteValidUntil: Date | null
+  quoteOriginalUnitPriceMinor: bigint | null
+  quoteOriginalCurrency: string | null
   commitmentMonths: number | null
   paymentFrequency: $Enums.PaymentFrequency | null
   firstPaymentOn: Date | null
@@ -144,6 +150,8 @@ export type AccessRequestAssessmentCountAggregateOutputType = {
   quoteBillingCycle: number
   quoteValidFrom: number
   quoteValidUntil: number
+  quoteOriginalUnitPriceMinor: number
+  quoteOriginalCurrency: number
   commitmentMonths: number
   paymentFrequency: number
   firstPaymentOn: number
@@ -163,11 +171,13 @@ export type AccessRequestAssessmentCountAggregateOutputType = {
 
 export type AccessRequestAssessmentAvgAggregateInputType = {
   quoteUnitPriceMinor?: true
+  quoteOriginalUnitPriceMinor?: true
   commitmentMonths?: true
 }
 
 export type AccessRequestAssessmentSumAggregateInputType = {
   quoteUnitPriceMinor?: true
+  quoteOriginalUnitPriceMinor?: true
   commitmentMonths?: true
 }
 
@@ -197,6 +207,8 @@ export type AccessRequestAssessmentMinAggregateInputType = {
   quoteBillingCycle?: true
   quoteValidFrom?: true
   quoteValidUntil?: true
+  quoteOriginalUnitPriceMinor?: true
+  quoteOriginalCurrency?: true
   commitmentMonths?: true
   paymentFrequency?: true
   firstPaymentOn?: true
@@ -238,6 +250,8 @@ export type AccessRequestAssessmentMaxAggregateInputType = {
   quoteBillingCycle?: true
   quoteValidFrom?: true
   quoteValidUntil?: true
+  quoteOriginalUnitPriceMinor?: true
+  quoteOriginalCurrency?: true
   commitmentMonths?: true
   paymentFrequency?: true
   firstPaymentOn?: true
@@ -279,6 +293,8 @@ export type AccessRequestAssessmentCountAggregateInputType = {
   quoteBillingCycle?: true
   quoteValidFrom?: true
   quoteValidUntil?: true
+  quoteOriginalUnitPriceMinor?: true
+  quoteOriginalCurrency?: true
   commitmentMonths?: true
   paymentFrequency?: true
   firstPaymentOn?: true
@@ -407,6 +423,8 @@ export type AccessRequestAssessmentGroupByOutputType = {
   quoteBillingCycle: $Enums.BillingCycle | null
   quoteValidFrom: Date | null
   quoteValidUntil: Date | null
+  quoteOriginalUnitPriceMinor: bigint | null
+  quoteOriginalCurrency: string | null
   commitmentMonths: number | null
   paymentFrequency: $Enums.PaymentFrequency | null
   firstPaymentOn: Date | null
@@ -471,6 +489,8 @@ export type AccessRequestAssessmentWhereInput = {
   quoteBillingCycle?: Prisma.EnumBillingCycleNullableFilter<"AccessRequestAssessment"> | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.BigIntNullableFilter<"AccessRequestAssessment"> | bigint | number | null
+  quoteOriginalCurrency?: Prisma.StringNullableFilter<"AccessRequestAssessment"> | string | null
   commitmentMonths?: Prisma.IntNullableFilter<"AccessRequestAssessment"> | number | null
   paymentFrequency?: Prisma.EnumPaymentFrequencyNullableFilter<"AccessRequestAssessment"> | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
@@ -493,6 +513,7 @@ export type AccessRequestAssessmentWhereInput = {
   savedBy?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   completedBy?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   quoteCurrencyRecord?: Prisma.XOR<Prisma.CurrencyNullableScalarRelationFilter, Prisma.CurrencyWhereInput> | null
+  quoteOriginalCurrencyRecord?: Prisma.XOR<Prisma.CurrencyNullableScalarRelationFilter, Prisma.CurrencyWhereInput> | null
 }
 
 export type AccessRequestAssessmentOrderByWithRelationInput = {
@@ -521,6 +542,8 @@ export type AccessRequestAssessmentOrderByWithRelationInput = {
   quoteBillingCycle?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrderInput | Prisma.SortOrder
+  quoteOriginalUnitPriceMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  quoteOriginalCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   commitmentMonths?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentFrequency?: Prisma.SortOrderInput | Prisma.SortOrder
   firstPaymentOn?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -543,6 +566,7 @@ export type AccessRequestAssessmentOrderByWithRelationInput = {
   savedBy?: Prisma.EmployeeOrderByWithRelationInput
   completedBy?: Prisma.EmployeeOrderByWithRelationInput
   quoteCurrencyRecord?: Prisma.CurrencyOrderByWithRelationInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyOrderByWithRelationInput
 }
 
 export type AccessRequestAssessmentWhereUniqueInput = Prisma.AtLeast<{
@@ -574,6 +598,8 @@ export type AccessRequestAssessmentWhereUniqueInput = Prisma.AtLeast<{
   quoteBillingCycle?: Prisma.EnumBillingCycleNullableFilter<"AccessRequestAssessment"> | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.BigIntNullableFilter<"AccessRequestAssessment"> | bigint | number | null
+  quoteOriginalCurrency?: Prisma.StringNullableFilter<"AccessRequestAssessment"> | string | null
   commitmentMonths?: Prisma.IntNullableFilter<"AccessRequestAssessment"> | number | null
   paymentFrequency?: Prisma.EnumPaymentFrequencyNullableFilter<"AccessRequestAssessment"> | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
@@ -596,6 +622,7 @@ export type AccessRequestAssessmentWhereUniqueInput = Prisma.AtLeast<{
   savedBy?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   completedBy?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   quoteCurrencyRecord?: Prisma.XOR<Prisma.CurrencyNullableScalarRelationFilter, Prisma.CurrencyWhereInput> | null
+  quoteOriginalCurrencyRecord?: Prisma.XOR<Prisma.CurrencyNullableScalarRelationFilter, Prisma.CurrencyWhereInput> | null
 }, "requestId">
 
 export type AccessRequestAssessmentOrderByWithAggregationInput = {
@@ -624,6 +651,8 @@ export type AccessRequestAssessmentOrderByWithAggregationInput = {
   quoteBillingCycle?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrderInput | Prisma.SortOrder
+  quoteOriginalUnitPriceMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  quoteOriginalCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   commitmentMonths?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentFrequency?: Prisma.SortOrderInput | Prisma.SortOrder
   firstPaymentOn?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -673,6 +702,8 @@ export type AccessRequestAssessmentScalarWhereWithAggregatesInput = {
   quoteBillingCycle?: Prisma.EnumBillingCycleNullableWithAggregatesFilter<"AccessRequestAssessment"> | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequestAssessment"> | Date | string | null
   quoteValidUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequestAssessment"> | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.BigIntNullableWithAggregatesFilter<"AccessRequestAssessment"> | bigint | number | null
+  quoteOriginalCurrency?: Prisma.StringNullableWithAggregatesFilter<"AccessRequestAssessment"> | string | null
   commitmentMonths?: Prisma.IntNullableWithAggregatesFilter<"AccessRequestAssessment"> | number | null
   paymentFrequency?: Prisma.EnumPaymentFrequencyNullableWithAggregatesFilter<"AccessRequestAssessment"> | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequestAssessment"> | Date | string | null
@@ -709,6 +740,7 @@ export type AccessRequestAssessmentCreateInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -727,6 +759,7 @@ export type AccessRequestAssessmentCreateInput = {
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateInput = {
@@ -755,6 +788,8 @@ export type AccessRequestAssessmentUncheckedCreateInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -791,6 +826,7 @@ export type AccessRequestAssessmentUpdateInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -809,6 +845,7 @@ export type AccessRequestAssessmentUpdateInput = {
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateInput = {
@@ -837,6 +874,8 @@ export type AccessRequestAssessmentUncheckedUpdateInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -878,6 +917,8 @@ export type AccessRequestAssessmentCreateManyInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -914,6 +955,7 @@ export type AccessRequestAssessmentUpdateManyMutationInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -951,6 +993,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1007,6 +1051,8 @@ export type AccessRequestAssessmentCountOrderByAggregateInput = {
   quoteBillingCycle?: Prisma.SortOrder
   quoteValidFrom?: Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrder
+  quoteOriginalUnitPriceMinor?: Prisma.SortOrder
+  quoteOriginalCurrency?: Prisma.SortOrder
   commitmentMonths?: Prisma.SortOrder
   paymentFrequency?: Prisma.SortOrder
   firstPaymentOn?: Prisma.SortOrder
@@ -1024,6 +1070,7 @@ export type AccessRequestAssessmentCountOrderByAggregateInput = {
 
 export type AccessRequestAssessmentAvgOrderByAggregateInput = {
   quoteUnitPriceMinor?: Prisma.SortOrder
+  quoteOriginalUnitPriceMinor?: Prisma.SortOrder
   commitmentMonths?: Prisma.SortOrder
 }
 
@@ -1053,6 +1100,8 @@ export type AccessRequestAssessmentMaxOrderByAggregateInput = {
   quoteBillingCycle?: Prisma.SortOrder
   quoteValidFrom?: Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrder
+  quoteOriginalUnitPriceMinor?: Prisma.SortOrder
+  quoteOriginalCurrency?: Prisma.SortOrder
   commitmentMonths?: Prisma.SortOrder
   paymentFrequency?: Prisma.SortOrder
   firstPaymentOn?: Prisma.SortOrder
@@ -1094,6 +1143,8 @@ export type AccessRequestAssessmentMinOrderByAggregateInput = {
   quoteBillingCycle?: Prisma.SortOrder
   quoteValidFrom?: Prisma.SortOrder
   quoteValidUntil?: Prisma.SortOrder
+  quoteOriginalUnitPriceMinor?: Prisma.SortOrder
+  quoteOriginalCurrency?: Prisma.SortOrder
   commitmentMonths?: Prisma.SortOrder
   paymentFrequency?: Prisma.SortOrder
   firstPaymentOn?: Prisma.SortOrder
@@ -1111,6 +1162,7 @@ export type AccessRequestAssessmentMinOrderByAggregateInput = {
 
 export type AccessRequestAssessmentSumOrderByAggregateInput = {
   quoteUnitPriceMinor?: Prisma.SortOrder
+  quoteOriginalUnitPriceMinor?: Prisma.SortOrder
   commitmentMonths?: Prisma.SortOrder
 }
 
@@ -1247,10 +1299,24 @@ export type AccessRequestAssessmentCreateNestedManyWithoutQuoteCurrencyRecordInp
   connect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
 }
 
+export type AccessRequestAssessmentCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput> | Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput[] | Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput[]
+  connectOrCreate?: Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput[]
+  createMany?: Prisma.AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInputEnvelope
+  connect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+}
+
 export type AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteCurrencyRecordInput = {
   create?: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteCurrencyRecordInput> | Prisma.AccessRequestAssessmentCreateWithoutQuoteCurrencyRecordInput[] | Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteCurrencyRecordInput[]
   connectOrCreate?: Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteCurrencyRecordInput | Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteCurrencyRecordInput[]
   createMany?: Prisma.AccessRequestAssessmentCreateManyQuoteCurrencyRecordInputEnvelope
+  connect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+}
+
+export type AccessRequestAssessmentUncheckedCreateNestedManyWithoutQuoteOriginalCurrencyRecordInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput> | Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput[] | Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput[]
+  connectOrCreate?: Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput[]
+  createMany?: Prisma.AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInputEnvelope
   connect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
 }
 
@@ -1268,6 +1334,20 @@ export type AccessRequestAssessmentUpdateManyWithoutQuoteCurrencyRecordNestedInp
   deleteMany?: Prisma.AccessRequestAssessmentScalarWhereInput | Prisma.AccessRequestAssessmentScalarWhereInput[]
 }
 
+export type AccessRequestAssessmentUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput> | Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput[] | Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput[]
+  connectOrCreate?: Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput[]
+  upsert?: Prisma.AccessRequestAssessmentUpsertWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentUpsertWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput[]
+  createMany?: Prisma.AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInputEnvelope
+  set?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  delete?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  connect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  update?: Prisma.AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput[]
+  updateMany?: Prisma.AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteOriginalCurrencyRecordInput[]
+  deleteMany?: Prisma.AccessRequestAssessmentScalarWhereInput | Prisma.AccessRequestAssessmentScalarWhereInput[]
+}
+
 export type AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordNestedInput = {
   create?: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteCurrencyRecordInput> | Prisma.AccessRequestAssessmentCreateWithoutQuoteCurrencyRecordInput[] | Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteCurrencyRecordInput[]
   connectOrCreate?: Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteCurrencyRecordInput | Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteCurrencyRecordInput[]
@@ -1279,6 +1359,20 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecord
   connect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
   update?: Prisma.AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteCurrencyRecordInput | Prisma.AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteCurrencyRecordInput[]
   updateMany?: Prisma.AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteCurrencyRecordInput | Prisma.AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteCurrencyRecordInput[]
+  deleteMany?: Prisma.AccessRequestAssessmentScalarWhereInput | Prisma.AccessRequestAssessmentScalarWhereInput[]
+}
+
+export type AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput> | Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput[] | Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput[]
+  connectOrCreate?: Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput[]
+  upsert?: Prisma.AccessRequestAssessmentUpsertWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentUpsertWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput[]
+  createMany?: Prisma.AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInputEnvelope
+  set?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  delete?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  connect?: Prisma.AccessRequestAssessmentWhereUniqueInput | Prisma.AccessRequestAssessmentWhereUniqueInput[]
+  update?: Prisma.AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput[]
+  updateMany?: Prisma.AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteOriginalCurrencyRecordInput[]
   deleteMany?: Prisma.AccessRequestAssessmentScalarWhereInput | Prisma.AccessRequestAssessmentScalarWhereInput[]
 }
 
@@ -1494,10 +1588,6 @@ export type NullableEnumProvisioningTypeFieldUpdateOperationsInput = {
   set?: $Enums.ProvisioningType | null
 }
 
-export type NullableEnumDataSensitivityFieldUpdateOperationsInput = {
-  set?: $Enums.DataSensitivity | null
-}
-
 export type NullableEnumOpinionStatusFieldUpdateOperationsInput = {
   set?: $Enums.OpinionStatus | null
 }
@@ -1531,6 +1621,7 @@ export type AccessRequestAssessmentCreateWithoutVendorInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1548,6 +1639,7 @@ export type AccessRequestAssessmentCreateWithoutVendorInput = {
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutVendorInput = {
@@ -1575,6 +1667,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutVendorInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1645,6 +1739,8 @@ export type AccessRequestAssessmentScalarWhereInput = {
   quoteBillingCycle?: Prisma.EnumBillingCycleNullableFilter<"AccessRequestAssessment"> | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
   quoteValidUntil?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.BigIntNullableFilter<"AccessRequestAssessment"> | bigint | number | null
+  quoteOriginalCurrency?: Prisma.StringNullableFilter<"AccessRequestAssessment"> | string | null
   commitmentMonths?: Prisma.IntNullableFilter<"AccessRequestAssessment"> | number | null
   paymentFrequency?: Prisma.EnumPaymentFrequencyNullableFilter<"AccessRequestAssessment"> | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.DateTimeNullableFilter<"AccessRequestAssessment"> | Date | string | null
@@ -1681,6 +1777,7 @@ export type AccessRequestAssessmentCreateWithoutEquivalentInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1698,6 +1795,7 @@ export type AccessRequestAssessmentCreateWithoutEquivalentInput = {
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutEquivalentInput = {
@@ -1725,6 +1823,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutEquivalentInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1771,6 +1871,7 @@ export type AccessRequestAssessmentCreateWithoutAlternativePlanInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1788,6 +1889,7 @@ export type AccessRequestAssessmentCreateWithoutAlternativePlanInput = {
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutAlternativePlanInput = {
@@ -1816,6 +1918,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutAlternativePlanInput = 
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1893,6 +1997,7 @@ export type AccessRequestAssessmentCreateWithoutQuoteCurrencyRecordInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1910,6 +2015,7 @@ export type AccessRequestAssessmentCreateWithoutQuoteCurrencyRecordInput = {
   rejectedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsRejectedInput
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutQuoteCurrencyRecordInput = {
@@ -1937,6 +2043,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutQuoteCurrencyRecordInpu
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -1962,6 +2070,100 @@ export type AccessRequestAssessmentCreateManyQuoteCurrencyRecordInputEnvelope = 
   skipDuplicates?: boolean
 }
 
+export type AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput = {
+  status?: $Enums.AssessmentStatus
+  classification?: $Enums.AssessmentClassification | null
+  vendorName?: string | null
+  plannedPlanName?: string | null
+  provisioningType?: $Enums.ProvisioningType | null
+  adminConsole?: boolean | null
+  memberExport?: boolean | null
+  sso?: boolean | null
+  termsSummary?: string | null
+  memberUsageMethod?: string | null
+  grantRevokeMethod?: string | null
+  dataSensitivity?: $Enums.DataSensitivity | null
+  opinionStatus?: $Enums.OpinionStatus | null
+  opinionNote?: string | null
+  controlLevel?: $Enums.ControlLevel | null
+  controlRiskNote?: string | null
+  quoteUnitPriceMinor?: bigint | number | null
+  quoteBillingCycle?: $Enums.BillingCycle | null
+  quoteValidFrom?: Date | string | null
+  quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  commitmentMonths?: number | null
+  paymentFrequency?: $Enums.PaymentFrequency | null
+  firstPaymentOn?: Date | string | null
+  rejectionKind?: $Enums.ItRejectionKind | null
+  rejectionReason?: string | null
+  alternativeNote?: string | null
+  rejectedAt?: Date | string | null
+  completedAt?: Date | string | null
+  updatedAt?: Date | string
+  request: Prisma.AccessRequestCreateNestedOneWithoutAssessmentInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutAssessmentsInput
+  equivalent?: Prisma.PlanCreateNestedOneWithoutAssessmentsEquivalentInput
+  proposedOwner?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsProposedOwnerInput
+  alternativePlan?: Prisma.PlanCreateNestedOneWithoutAssessmentsAlternativeInput
+  rejectedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsRejectedInput
+  savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
+  completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
+  quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+}
+
+export type AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput = {
+  requestId: string
+  status?: $Enums.AssessmentStatus
+  classification?: $Enums.AssessmentClassification | null
+  vendorId?: string | null
+  vendorName?: string | null
+  plannedPlanName?: string | null
+  provisioningType?: $Enums.ProvisioningType | null
+  adminConsole?: boolean | null
+  memberExport?: boolean | null
+  sso?: boolean | null
+  termsSummary?: string | null
+  memberUsageMethod?: string | null
+  grantRevokeMethod?: string | null
+  dataSensitivity?: $Enums.DataSensitivity | null
+  opinionStatus?: $Enums.OpinionStatus | null
+  opinionNote?: string | null
+  equivalentPlanId?: string | null
+  proposedBusinessOwnerEmployeeId?: string | null
+  controlLevel?: $Enums.ControlLevel | null
+  controlRiskNote?: string | null
+  quoteUnitPriceMinor?: bigint | number | null
+  quoteCurrency?: string | null
+  quoteBillingCycle?: $Enums.BillingCycle | null
+  quoteValidFrom?: Date | string | null
+  quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  commitmentMonths?: number | null
+  paymentFrequency?: $Enums.PaymentFrequency | null
+  firstPaymentOn?: Date | string | null
+  rejectionKind?: $Enums.ItRejectionKind | null
+  rejectionReason?: string | null
+  alternativePlanId?: string | null
+  alternativeNote?: string | null
+  rejectedAt?: Date | string | null
+  rejectedByEmployeeId?: string | null
+  savedByEmployeeId?: string | null
+  completedByEmployeeId?: string | null
+  completedAt?: Date | string | null
+  updatedAt?: Date | string
+}
+
+export type AccessRequestAssessmentCreateOrConnectWithoutQuoteOriginalCurrencyRecordInput = {
+  where: Prisma.AccessRequestAssessmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput>
+}
+
+export type AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInputEnvelope = {
+  data: Prisma.AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInput | Prisma.AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInput[]
+  skipDuplicates?: boolean
+}
+
 export type AccessRequestAssessmentUpsertWithWhereUniqueWithoutQuoteCurrencyRecordInput = {
   where: Prisma.AccessRequestAssessmentWhereUniqueInput
   update: Prisma.XOR<Prisma.AccessRequestAssessmentUpdateWithoutQuoteCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedUpdateWithoutQuoteCurrencyRecordInput>
@@ -1976,6 +2178,22 @@ export type AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteCurrencyReco
 export type AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteCurrencyRecordInput = {
   where: Prisma.AccessRequestAssessmentScalarWhereInput
   data: Prisma.XOR<Prisma.AccessRequestAssessmentUpdateManyMutationInput, Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecordInput>
+}
+
+export type AccessRequestAssessmentUpsertWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput = {
+  where: Prisma.AccessRequestAssessmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.AccessRequestAssessmentUpdateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedUpdateWithoutQuoteOriginalCurrencyRecordInput>
+  create: Prisma.XOR<Prisma.AccessRequestAssessmentCreateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedCreateWithoutQuoteOriginalCurrencyRecordInput>
+}
+
+export type AccessRequestAssessmentUpdateWithWhereUniqueWithoutQuoteOriginalCurrencyRecordInput = {
+  where: Prisma.AccessRequestAssessmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.AccessRequestAssessmentUpdateWithoutQuoteOriginalCurrencyRecordInput, Prisma.AccessRequestAssessmentUncheckedUpdateWithoutQuoteOriginalCurrencyRecordInput>
+}
+
+export type AccessRequestAssessmentUpdateManyWithWhereWithoutQuoteOriginalCurrencyRecordInput = {
+  where: Prisma.AccessRequestAssessmentScalarWhereInput
+  data: Prisma.XOR<Prisma.AccessRequestAssessmentUpdateManyMutationInput, Prisma.AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordInput>
 }
 
 export type AccessRequestAssessmentCreateWithoutProposedOwnerInput = {
@@ -1999,6 +2217,7 @@ export type AccessRequestAssessmentCreateWithoutProposedOwnerInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2016,6 +2235,7 @@ export type AccessRequestAssessmentCreateWithoutProposedOwnerInput = {
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutProposedOwnerInput = {
@@ -2043,6 +2263,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutProposedOwnerInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2089,6 +2311,7 @@ export type AccessRequestAssessmentCreateWithoutSavedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2106,6 +2329,7 @@ export type AccessRequestAssessmentCreateWithoutSavedByInput = {
   rejectedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsRejectedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutSavedByInput = {
@@ -2134,6 +2358,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutSavedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2179,6 +2405,7 @@ export type AccessRequestAssessmentCreateWithoutRejectedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2196,6 +2423,7 @@ export type AccessRequestAssessmentCreateWithoutRejectedByInput = {
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutRejectedByInput = {
@@ -2224,6 +2452,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutRejectedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2269,6 +2499,7 @@ export type AccessRequestAssessmentCreateWithoutCompletedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2286,6 +2517,7 @@ export type AccessRequestAssessmentCreateWithoutCompletedByInput = {
   rejectedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsRejectedInput
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutCompletedByInput = {
@@ -2314,6 +2546,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutCompletedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2423,6 +2657,7 @@ export type AccessRequestAssessmentCreateWithoutRequestInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2440,6 +2675,7 @@ export type AccessRequestAssessmentCreateWithoutRequestInput = {
   savedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsSavedInput
   completedBy?: Prisma.EmployeeCreateNestedOneWithoutAssessmentsCompletedInput
   quoteCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuotesInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyCreateNestedOneWithoutAssessmentQuoteOriginalsInput
 }
 
 export type AccessRequestAssessmentUncheckedCreateWithoutRequestInput = {
@@ -2467,6 +2703,8 @@ export type AccessRequestAssessmentUncheckedCreateWithoutRequestInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2519,6 +2757,7 @@ export type AccessRequestAssessmentUpdateWithoutRequestInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2536,6 +2775,7 @@ export type AccessRequestAssessmentUpdateWithoutRequestInput = {
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutRequestInput = {
@@ -2563,6 +2803,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutRequestInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2603,6 +2845,8 @@ export type AccessRequestAssessmentCreateManyVendorInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2639,6 +2883,7 @@ export type AccessRequestAssessmentUpdateWithoutVendorInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2656,6 +2901,7 @@ export type AccessRequestAssessmentUpdateWithoutVendorInput = {
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutVendorInput = {
@@ -2683,6 +2929,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutVendorInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2723,6 +2971,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutVendorInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2763,6 +3013,8 @@ export type AccessRequestAssessmentCreateManyEquivalentInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2804,6 +3056,8 @@ export type AccessRequestAssessmentCreateManyAlternativePlanInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -2839,6 +3093,7 @@ export type AccessRequestAssessmentUpdateWithoutEquivalentInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2856,6 +3111,7 @@ export type AccessRequestAssessmentUpdateWithoutEquivalentInput = {
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutEquivalentInput = {
@@ -2883,6 +3139,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutEquivalentInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2923,6 +3181,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutEquivalentInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2959,6 +3219,7 @@ export type AccessRequestAssessmentUpdateWithoutAlternativePlanInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2976,6 +3237,7 @@ export type AccessRequestAssessmentUpdateWithoutAlternativePlanInput = {
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutAlternativePlanInput = {
@@ -3004,6 +3266,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutAlternativePlanInput = 
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3044,6 +3308,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutAlternativePlanInpu
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3083,6 +3349,50 @@ export type AccessRequestAssessmentCreateManyQuoteCurrencyRecordInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
+  commitmentMonths?: number | null
+  paymentFrequency?: $Enums.PaymentFrequency | null
+  firstPaymentOn?: Date | string | null
+  rejectionKind?: $Enums.ItRejectionKind | null
+  rejectionReason?: string | null
+  alternativePlanId?: string | null
+  alternativeNote?: string | null
+  rejectedAt?: Date | string | null
+  rejectedByEmployeeId?: string | null
+  savedByEmployeeId?: string | null
+  completedByEmployeeId?: string | null
+  completedAt?: Date | string | null
+  updatedAt?: Date | string
+}
+
+export type AccessRequestAssessmentCreateManyQuoteOriginalCurrencyRecordInput = {
+  requestId: string
+  status?: $Enums.AssessmentStatus
+  classification?: $Enums.AssessmentClassification | null
+  vendorId?: string | null
+  vendorName?: string | null
+  plannedPlanName?: string | null
+  provisioningType?: $Enums.ProvisioningType | null
+  adminConsole?: boolean | null
+  memberExport?: boolean | null
+  sso?: boolean | null
+  termsSummary?: string | null
+  memberUsageMethod?: string | null
+  grantRevokeMethod?: string | null
+  dataSensitivity?: $Enums.DataSensitivity | null
+  opinionStatus?: $Enums.OpinionStatus | null
+  opinionNote?: string | null
+  equivalentPlanId?: string | null
+  proposedBusinessOwnerEmployeeId?: string | null
+  controlLevel?: $Enums.ControlLevel | null
+  controlRiskNote?: string | null
+  quoteUnitPriceMinor?: bigint | number | null
+  quoteCurrency?: string | null
+  quoteBillingCycle?: $Enums.BillingCycle | null
+  quoteValidFrom?: Date | string | null
+  quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -3119,6 +3429,7 @@ export type AccessRequestAssessmentUpdateWithoutQuoteCurrencyRecordInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3136,6 +3447,7 @@ export type AccessRequestAssessmentUpdateWithoutQuoteCurrencyRecordInput = {
   rejectedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsRejectedNestedInput
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutQuoteCurrencyRecordInput = {
@@ -3163,6 +3475,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutQuoteCurrencyRecordInpu
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3203,6 +3517,134 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteCurrencyRecord
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
+  firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionKind?: Prisma.NullableEnumItRejectionKindFieldUpdateOperationsInput | $Enums.ItRejectionKind | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternativePlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternativeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  savedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AccessRequestAssessmentUpdateWithoutQuoteOriginalCurrencyRecordInput = {
+  status?: Prisma.EnumAssessmentStatusFieldUpdateOperationsInput | $Enums.AssessmentStatus
+  classification?: Prisma.NullableEnumAssessmentClassificationFieldUpdateOperationsInput | $Enums.AssessmentClassification | null
+  vendorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provisioningType?: Prisma.NullableEnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType | null
+  adminConsole?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  memberExport?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sso?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  termsSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  memberUsageMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantRevokeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataSensitivity?: Prisma.NullableEnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity | null
+  opinionStatus?: Prisma.NullableEnumOpinionStatusFieldUpdateOperationsInput | $Enums.OpinionStatus | null
+  opinionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  controlRiskNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quoteUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
+  firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionKind?: Prisma.NullableEnumItRejectionKindFieldUpdateOperationsInput | $Enums.ItRejectionKind | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternativeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  request?: Prisma.AccessRequestUpdateOneRequiredWithoutAssessmentNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutAssessmentsNestedInput
+  equivalent?: Prisma.PlanUpdateOneWithoutAssessmentsEquivalentNestedInput
+  proposedOwner?: Prisma.EmployeeUpdateOneWithoutAssessmentsProposedOwnerNestedInput
+  alternativePlan?: Prisma.PlanUpdateOneWithoutAssessmentsAlternativeNestedInput
+  rejectedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsRejectedNestedInput
+  savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
+  completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
+  quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+}
+
+export type AccessRequestAssessmentUncheckedUpdateWithoutQuoteOriginalCurrencyRecordInput = {
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAssessmentStatusFieldUpdateOperationsInput | $Enums.AssessmentStatus
+  classification?: Prisma.NullableEnumAssessmentClassificationFieldUpdateOperationsInput | $Enums.AssessmentClassification | null
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provisioningType?: Prisma.NullableEnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType | null
+  adminConsole?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  memberExport?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sso?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  termsSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  memberUsageMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantRevokeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataSensitivity?: Prisma.NullableEnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity | null
+  opinionStatus?: Prisma.NullableEnumOpinionStatusFieldUpdateOperationsInput | $Enums.OpinionStatus | null
+  opinionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  equivalentPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBusinessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  controlRiskNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quoteUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
+  firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectionKind?: Prisma.NullableEnumItRejectionKindFieldUpdateOperationsInput | $Enums.ItRejectionKind | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternativePlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternativeNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  savedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedByEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AccessRequestAssessmentUncheckedUpdateManyWithoutQuoteOriginalCurrencyRecordInput = {
+  requestId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAssessmentStatusFieldUpdateOperationsInput | $Enums.AssessmentStatus
+  classification?: Prisma.NullableEnumAssessmentClassificationFieldUpdateOperationsInput | $Enums.AssessmentClassification | null
+  vendorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vendorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provisioningType?: Prisma.NullableEnumProvisioningTypeFieldUpdateOperationsInput | $Enums.ProvisioningType | null
+  adminConsole?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  memberExport?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sso?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  termsSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  memberUsageMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantRevokeMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataSensitivity?: Prisma.NullableEnumDataSensitivityFieldUpdateOperationsInput | $Enums.DataSensitivity | null
+  opinionStatus?: Prisma.NullableEnumOpinionStatusFieldUpdateOperationsInput | $Enums.OpinionStatus | null
+  opinionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  equivalentPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proposedBusinessOwnerEmployeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  controlLevel?: Prisma.NullableEnumControlLevelFieldUpdateOperationsInput | $Enums.ControlLevel | null
+  controlRiskNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quoteUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
+  quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3243,6 +3685,8 @@ export type AccessRequestAssessmentCreateManyProposedOwnerInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -3284,6 +3728,8 @@ export type AccessRequestAssessmentCreateManySavedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -3324,6 +3770,8 @@ export type AccessRequestAssessmentCreateManyRejectedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -3364,6 +3812,8 @@ export type AccessRequestAssessmentCreateManyCompletedByInput = {
   quoteBillingCycle?: $Enums.BillingCycle | null
   quoteValidFrom?: Date | string | null
   quoteValidUntil?: Date | string | null
+  quoteOriginalUnitPriceMinor?: bigint | number | null
+  quoteOriginalCurrency?: string | null
   commitmentMonths?: number | null
   paymentFrequency?: $Enums.PaymentFrequency | null
   firstPaymentOn?: Date | string | null
@@ -3399,6 +3849,7 @@ export type AccessRequestAssessmentUpdateWithoutProposedOwnerInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3416,6 +3867,7 @@ export type AccessRequestAssessmentUpdateWithoutProposedOwnerInput = {
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutProposedOwnerInput = {
@@ -3443,6 +3895,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutProposedOwnerInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3483,6 +3937,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutProposedOwnerInput 
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3519,6 +3975,7 @@ export type AccessRequestAssessmentUpdateWithoutSavedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3536,6 +3993,7 @@ export type AccessRequestAssessmentUpdateWithoutSavedByInput = {
   rejectedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsRejectedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutSavedByInput = {
@@ -3564,6 +4022,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutSavedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3604,6 +4064,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutSavedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3639,6 +4101,7 @@ export type AccessRequestAssessmentUpdateWithoutRejectedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3656,6 +4119,7 @@ export type AccessRequestAssessmentUpdateWithoutRejectedByInput = {
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   completedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsCompletedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutRejectedByInput = {
@@ -3684,6 +4148,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutRejectedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3724,6 +4190,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutRejectedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3759,6 +4227,7 @@ export type AccessRequestAssessmentUpdateWithoutCompletedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3776,6 +4245,7 @@ export type AccessRequestAssessmentUpdateWithoutCompletedByInput = {
   rejectedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsRejectedNestedInput
   savedBy?: Prisma.EmployeeUpdateOneWithoutAssessmentsSavedNestedInput
   quoteCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuotesNestedInput
+  quoteOriginalCurrencyRecord?: Prisma.CurrencyUpdateOneWithoutAssessmentQuoteOriginalsNestedInput
 }
 
 export type AccessRequestAssessmentUncheckedUpdateWithoutCompletedByInput = {
@@ -3804,6 +4274,8 @@ export type AccessRequestAssessmentUncheckedUpdateWithoutCompletedByInput = {
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3844,6 +4316,8 @@ export type AccessRequestAssessmentUncheckedUpdateManyWithoutCompletedByInput = 
   quoteBillingCycle?: Prisma.NullableEnumBillingCycleFieldUpdateOperationsInput | $Enums.BillingCycle | null
   quoteValidFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quoteValidUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quoteOriginalUnitPriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  quoteOriginalCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   commitmentMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentFrequency?: Prisma.NullableEnumPaymentFrequencyFieldUpdateOperationsInput | $Enums.PaymentFrequency | null
   firstPaymentOn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3886,6 +4360,8 @@ export type AccessRequestAssessmentSelect<ExtArgs extends runtime.Types.Extensio
   quoteBillingCycle?: boolean
   quoteValidFrom?: boolean
   quoteValidUntil?: boolean
+  quoteOriginalUnitPriceMinor?: boolean
+  quoteOriginalCurrency?: boolean
   commitmentMonths?: boolean
   paymentFrequency?: boolean
   firstPaymentOn?: boolean
@@ -3908,6 +4384,7 @@ export type AccessRequestAssessmentSelect<ExtArgs extends runtime.Types.Extensio
   savedBy?: boolean | Prisma.AccessRequestAssessment$savedByArgs<ExtArgs>
   completedBy?: boolean | Prisma.AccessRequestAssessment$completedByArgs<ExtArgs>
   quoteCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs>
+  quoteOriginalCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequestAssessment"]>
 
 export type AccessRequestAssessmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3936,6 +4413,8 @@ export type AccessRequestAssessmentSelectCreateManyAndReturn<ExtArgs extends run
   quoteBillingCycle?: boolean
   quoteValidFrom?: boolean
   quoteValidUntil?: boolean
+  quoteOriginalUnitPriceMinor?: boolean
+  quoteOriginalCurrency?: boolean
   commitmentMonths?: boolean
   paymentFrequency?: boolean
   firstPaymentOn?: boolean
@@ -3958,6 +4437,7 @@ export type AccessRequestAssessmentSelectCreateManyAndReturn<ExtArgs extends run
   savedBy?: boolean | Prisma.AccessRequestAssessment$savedByArgs<ExtArgs>
   completedBy?: boolean | Prisma.AccessRequestAssessment$completedByArgs<ExtArgs>
   quoteCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs>
+  quoteOriginalCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequestAssessment"]>
 
 export type AccessRequestAssessmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3986,6 +4466,8 @@ export type AccessRequestAssessmentSelectUpdateManyAndReturn<ExtArgs extends run
   quoteBillingCycle?: boolean
   quoteValidFrom?: boolean
   quoteValidUntil?: boolean
+  quoteOriginalUnitPriceMinor?: boolean
+  quoteOriginalCurrency?: boolean
   commitmentMonths?: boolean
   paymentFrequency?: boolean
   firstPaymentOn?: boolean
@@ -4008,6 +4490,7 @@ export type AccessRequestAssessmentSelectUpdateManyAndReturn<ExtArgs extends run
   savedBy?: boolean | Prisma.AccessRequestAssessment$savedByArgs<ExtArgs>
   completedBy?: boolean | Prisma.AccessRequestAssessment$completedByArgs<ExtArgs>
   quoteCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs>
+  quoteOriginalCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequestAssessment"]>
 
 export type AccessRequestAssessmentSelectScalar = {
@@ -4036,6 +4519,8 @@ export type AccessRequestAssessmentSelectScalar = {
   quoteBillingCycle?: boolean
   quoteValidFrom?: boolean
   quoteValidUntil?: boolean
+  quoteOriginalUnitPriceMinor?: boolean
+  quoteOriginalCurrency?: boolean
   commitmentMonths?: boolean
   paymentFrequency?: boolean
   firstPaymentOn?: boolean
@@ -4051,7 +4536,7 @@ export type AccessRequestAssessmentSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AccessRequestAssessmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "status" | "classification" | "vendorId" | "vendorName" | "plannedPlanName" | "provisioningType" | "adminConsole" | "memberExport" | "sso" | "termsSummary" | "memberUsageMethod" | "grantRevokeMethod" | "dataSensitivity" | "opinionStatus" | "opinionNote" | "equivalentPlanId" | "proposedBusinessOwnerEmployeeId" | "controlLevel" | "controlRiskNote" | "quoteUnitPriceMinor" | "quoteCurrency" | "quoteBillingCycle" | "quoteValidFrom" | "quoteValidUntil" | "commitmentMonths" | "paymentFrequency" | "firstPaymentOn" | "rejectionKind" | "rejectionReason" | "alternativePlanId" | "alternativeNote" | "rejectedAt" | "rejectedByEmployeeId" | "savedByEmployeeId" | "completedByEmployeeId" | "completedAt" | "updatedAt", ExtArgs["result"]["accessRequestAssessment"]>
+export type AccessRequestAssessmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestId" | "status" | "classification" | "vendorId" | "vendorName" | "plannedPlanName" | "provisioningType" | "adminConsole" | "memberExport" | "sso" | "termsSummary" | "memberUsageMethod" | "grantRevokeMethod" | "dataSensitivity" | "opinionStatus" | "opinionNote" | "equivalentPlanId" | "proposedBusinessOwnerEmployeeId" | "controlLevel" | "controlRiskNote" | "quoteUnitPriceMinor" | "quoteCurrency" | "quoteBillingCycle" | "quoteValidFrom" | "quoteValidUntil" | "quoteOriginalUnitPriceMinor" | "quoteOriginalCurrency" | "commitmentMonths" | "paymentFrequency" | "firstPaymentOn" | "rejectionKind" | "rejectionReason" | "alternativePlanId" | "alternativeNote" | "rejectedAt" | "rejectedByEmployeeId" | "savedByEmployeeId" | "completedByEmployeeId" | "completedAt" | "updatedAt", ExtArgs["result"]["accessRequestAssessment"]>
 export type AccessRequestAssessmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
   vendor?: boolean | Prisma.AccessRequestAssessment$vendorArgs<ExtArgs>
@@ -4062,6 +4547,7 @@ export type AccessRequestAssessmentInclude<ExtArgs extends runtime.Types.Extensi
   savedBy?: boolean | Prisma.AccessRequestAssessment$savedByArgs<ExtArgs>
   completedBy?: boolean | Prisma.AccessRequestAssessment$completedByArgs<ExtArgs>
   quoteCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs>
+  quoteOriginalCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs>
 }
 export type AccessRequestAssessmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
@@ -4073,6 +4559,7 @@ export type AccessRequestAssessmentIncludeCreateManyAndReturn<ExtArgs extends ru
   savedBy?: boolean | Prisma.AccessRequestAssessment$savedByArgs<ExtArgs>
   completedBy?: boolean | Prisma.AccessRequestAssessment$completedByArgs<ExtArgs>
   quoteCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs>
+  quoteOriginalCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs>
 }
 export type AccessRequestAssessmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   request?: boolean | Prisma.AccessRequestDefaultArgs<ExtArgs>
@@ -4084,6 +4571,7 @@ export type AccessRequestAssessmentIncludeUpdateManyAndReturn<ExtArgs extends ru
   savedBy?: boolean | Prisma.AccessRequestAssessment$savedByArgs<ExtArgs>
   completedBy?: boolean | Prisma.AccessRequestAssessment$completedByArgs<ExtArgs>
   quoteCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs>
+  quoteOriginalCurrencyRecord?: boolean | Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs>
 }
 
 export type $AccessRequestAssessmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4098,6 +4586,7 @@ export type $AccessRequestAssessmentPayload<ExtArgs extends runtime.Types.Extens
     savedBy: Prisma.$EmployeePayload<ExtArgs> | null
     completedBy: Prisma.$EmployeePayload<ExtArgs> | null
     quoteCurrencyRecord: Prisma.$CurrencyPayload<ExtArgs> | null
+    quoteOriginalCurrencyRecord: Prisma.$CurrencyPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     requestId: string
@@ -4125,6 +4614,8 @@ export type $AccessRequestAssessmentPayload<ExtArgs extends runtime.Types.Extens
     quoteBillingCycle: $Enums.BillingCycle | null
     quoteValidFrom: Date | null
     quoteValidUntil: Date | null
+    quoteOriginalUnitPriceMinor: bigint | null
+    quoteOriginalCurrency: string | null
     commitmentMonths: number | null
     paymentFrequency: $Enums.PaymentFrequency | null
     firstPaymentOn: Date | null
@@ -4541,6 +5032,7 @@ export interface Prisma__AccessRequestAssessmentClient<T, Null = never, ExtArgs 
   savedBy<T extends Prisma.AccessRequestAssessment$savedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestAssessment$savedByArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   completedBy<T extends Prisma.AccessRequestAssessment$completedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestAssessment$completedByArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   quoteCurrencyRecord<T extends Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  quoteOriginalCurrencyRecord<T extends Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4595,6 +5087,8 @@ export interface AccessRequestAssessmentFieldRefs {
   readonly quoteBillingCycle: Prisma.FieldRef<"AccessRequestAssessment", 'BillingCycle'>
   readonly quoteValidFrom: Prisma.FieldRef<"AccessRequestAssessment", 'DateTime'>
   readonly quoteValidUntil: Prisma.FieldRef<"AccessRequestAssessment", 'DateTime'>
+  readonly quoteOriginalUnitPriceMinor: Prisma.FieldRef<"AccessRequestAssessment", 'BigInt'>
+  readonly quoteOriginalCurrency: Prisma.FieldRef<"AccessRequestAssessment", 'String'>
   readonly commitmentMonths: Prisma.FieldRef<"AccessRequestAssessment", 'Int'>
   readonly paymentFrequency: Prisma.FieldRef<"AccessRequestAssessment", 'PaymentFrequency'>
   readonly firstPaymentOn: Prisma.FieldRef<"AccessRequestAssessment", 'DateTime'>
@@ -5145,6 +5639,25 @@ export type AccessRequestAssessment$completedByArgs<ExtArgs extends runtime.Type
  * AccessRequestAssessment.quoteCurrencyRecord
  */
 export type AccessRequestAssessment$quoteCurrencyRecordArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Currency
+   */
+  select?: Prisma.CurrencySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Currency
+   */
+  omit?: Prisma.CurrencyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CurrencyInclude<ExtArgs> | null
+  where?: Prisma.CurrencyWhereInput
+}
+
+/**
+ * AccessRequestAssessment.quoteOriginalCurrencyRecord
+ */
+export type AccessRequestAssessment$quoteOriginalCurrencyRecordArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Currency
    */

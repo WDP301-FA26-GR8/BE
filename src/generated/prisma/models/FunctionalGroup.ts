@@ -30,6 +30,7 @@ export type FunctionalGroupMinAggregateOutputType = {
   name: string | null
   normalizedName: string | null
   status: $Enums.FunctionalGroupStatus | null
+  systemKey: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,6 +41,7 @@ export type FunctionalGroupMaxAggregateOutputType = {
   name: string | null
   normalizedName: string | null
   status: $Enums.FunctionalGroupStatus | null
+  systemKey: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +52,7 @@ export type FunctionalGroupCountAggregateOutputType = {
   name: number
   normalizedName: number
   status: number
+  systemKey: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -62,6 +65,7 @@ export type FunctionalGroupMinAggregateInputType = {
   name?: true
   normalizedName?: true
   status?: true
+  systemKey?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -72,6 +76,7 @@ export type FunctionalGroupMaxAggregateInputType = {
   name?: true
   normalizedName?: true
   status?: true
+  systemKey?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +87,7 @@ export type FunctionalGroupCountAggregateInputType = {
   name?: true
   normalizedName?: true
   status?: true
+  systemKey?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -165,6 +171,7 @@ export type FunctionalGroupGroupByOutputType = {
   name: string
   normalizedName: string
   status: $Enums.FunctionalGroupStatus
+  systemKey: string | null
   createdAt: Date
   updatedAt: Date
   _count: FunctionalGroupCountAggregateOutputType | null
@@ -196,6 +203,7 @@ export type FunctionalGroupWhereInput = {
   name?: Prisma.StringFilter<"FunctionalGroup"> | string
   normalizedName?: Prisma.StringFilter<"FunctionalGroup"> | string
   status?: Prisma.EnumFunctionalGroupStatusFilter<"FunctionalGroup"> | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.StringNullableFilter<"FunctionalGroup"> | string | null
   createdAt?: Prisma.DateTimeFilter<"FunctionalGroup"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FunctionalGroup"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -208,6 +216,7 @@ export type FunctionalGroupOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   normalizedName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  systemKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -217,6 +226,7 @@ export type FunctionalGroupOrderByWithRelationInput = {
 export type FunctionalGroupWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   organizationId_normalizedName?: Prisma.FunctionalGroupOrganizationIdNormalizedNameCompoundUniqueInput
+  organizationId_systemKey?: Prisma.FunctionalGroupOrganizationIdSystemKeyCompoundUniqueInput
   AND?: Prisma.FunctionalGroupWhereInput | Prisma.FunctionalGroupWhereInput[]
   OR?: Prisma.FunctionalGroupWhereInput[]
   NOT?: Prisma.FunctionalGroupWhereInput | Prisma.FunctionalGroupWhereInput[]
@@ -224,11 +234,12 @@ export type FunctionalGroupWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"FunctionalGroup"> | string
   normalizedName?: Prisma.StringFilter<"FunctionalGroup"> | string
   status?: Prisma.EnumFunctionalGroupStatusFilter<"FunctionalGroup"> | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.StringNullableFilter<"FunctionalGroup"> | string | null
   createdAt?: Prisma.DateTimeFilter<"FunctionalGroup"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FunctionalGroup"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   applications?: Prisma.ApplicationListRelationFilter
-}, "id" | "organizationId_normalizedName">
+}, "id" | "organizationId_normalizedName" | "organizationId_systemKey">
 
 export type FunctionalGroupOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -236,6 +247,7 @@ export type FunctionalGroupOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   normalizedName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  systemKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.FunctionalGroupCountOrderByAggregateInput
@@ -252,6 +264,7 @@ export type FunctionalGroupScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"FunctionalGroup"> | string
   normalizedName?: Prisma.StringWithAggregatesFilter<"FunctionalGroup"> | string
   status?: Prisma.EnumFunctionalGroupStatusWithAggregatesFilter<"FunctionalGroup"> | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.StringNullableWithAggregatesFilter<"FunctionalGroup"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"FunctionalGroup"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"FunctionalGroup"> | Date | string
 }
@@ -261,6 +274,7 @@ export type FunctionalGroupCreateInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutFunctionalGroupsInput
@@ -273,6 +287,7 @@ export type FunctionalGroupUncheckedCreateInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutFunctionalGroupInput
@@ -283,6 +298,7 @@ export type FunctionalGroupUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutFunctionalGroupsNestedInput
@@ -295,6 +311,7 @@ export type FunctionalGroupUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutFunctionalGroupNestedInput
@@ -306,6 +323,7 @@ export type FunctionalGroupCreateManyInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -315,6 +333,7 @@ export type FunctionalGroupUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -325,6 +344,7 @@ export type FunctionalGroupUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -334,12 +354,18 @@ export type FunctionalGroupOrganizationIdNormalizedNameCompoundUniqueInput = {
   normalizedName: string
 }
 
+export type FunctionalGroupOrganizationIdSystemKeyCompoundUniqueInput = {
+  organizationId: string
+  systemKey: string
+}
+
 export type FunctionalGroupCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   normalizedName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  systemKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -350,6 +376,7 @@ export type FunctionalGroupMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   normalizedName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  systemKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -360,13 +387,14 @@ export type FunctionalGroupMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   normalizedName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  systemKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
-export type FunctionalGroupNullableScalarRelationFilter = {
-  is?: Prisma.FunctionalGroupWhereInput | null
-  isNot?: Prisma.FunctionalGroupWhereInput | null
+export type FunctionalGroupScalarRelationFilter = {
+  is?: Prisma.FunctionalGroupWhereInput
+  isNot?: Prisma.FunctionalGroupWhereInput
 }
 
 export type FunctionalGroupListRelationFilter = {
@@ -389,12 +417,10 @@ export type FunctionalGroupCreateNestedOneWithoutApplicationsInput = {
   connect?: Prisma.FunctionalGroupWhereUniqueInput
 }
 
-export type FunctionalGroupUpdateOneWithoutApplicationsNestedInput = {
+export type FunctionalGroupUpdateOneRequiredWithoutApplicationsNestedInput = {
   create?: Prisma.XOR<Prisma.FunctionalGroupCreateWithoutApplicationsInput, Prisma.FunctionalGroupUncheckedCreateWithoutApplicationsInput>
   connectOrCreate?: Prisma.FunctionalGroupCreateOrConnectWithoutApplicationsInput
   upsert?: Prisma.FunctionalGroupUpsertWithoutApplicationsInput
-  disconnect?: Prisma.FunctionalGroupWhereInput | boolean
-  delete?: Prisma.FunctionalGroupWhereInput | boolean
   connect?: Prisma.FunctionalGroupWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.FunctionalGroupUpdateToOneWithWhereWithoutApplicationsInput, Prisma.FunctionalGroupUpdateWithoutApplicationsInput>, Prisma.FunctionalGroupUncheckedUpdateWithoutApplicationsInput>
 }
@@ -446,6 +472,7 @@ export type FunctionalGroupCreateWithoutApplicationsInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutFunctionalGroupsInput
@@ -457,6 +484,7 @@ export type FunctionalGroupUncheckedCreateWithoutApplicationsInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -482,6 +510,7 @@ export type FunctionalGroupUpdateWithoutApplicationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutFunctionalGroupsNestedInput
@@ -493,6 +522,7 @@ export type FunctionalGroupUncheckedUpdateWithoutApplicationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -502,6 +532,7 @@ export type FunctionalGroupCreateWithoutOrganizationInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.ApplicationCreateNestedManyWithoutFunctionalGroupInput
@@ -512,6 +543,7 @@ export type FunctionalGroupUncheckedCreateWithoutOrganizationInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutFunctionalGroupInput
@@ -552,6 +584,7 @@ export type FunctionalGroupScalarWhereInput = {
   name?: Prisma.StringFilter<"FunctionalGroup"> | string
   normalizedName?: Prisma.StringFilter<"FunctionalGroup"> | string
   status?: Prisma.EnumFunctionalGroupStatusFilter<"FunctionalGroup"> | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.StringNullableFilter<"FunctionalGroup"> | string | null
   createdAt?: Prisma.DateTimeFilter<"FunctionalGroup"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FunctionalGroup"> | Date | string
 }
@@ -561,6 +594,7 @@ export type FunctionalGroupCreateManyOrganizationInput = {
   name: string
   normalizedName: string
   status?: $Enums.FunctionalGroupStatus
+  systemKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -570,6 +604,7 @@ export type FunctionalGroupUpdateWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUpdateManyWithoutFunctionalGroupNestedInput
@@ -580,6 +615,7 @@ export type FunctionalGroupUncheckedUpdateWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutFunctionalGroupNestedInput
@@ -590,6 +626,7 @@ export type FunctionalGroupUncheckedUpdateManyWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFunctionalGroupStatusFieldUpdateOperationsInput | $Enums.FunctionalGroupStatus
+  systemKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -631,6 +668,7 @@ export type FunctionalGroupSelect<ExtArgs extends runtime.Types.Extensions.Inter
   name?: boolean
   normalizedName?: boolean
   status?: boolean
+  systemKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -644,6 +682,7 @@ export type FunctionalGroupSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   name?: boolean
   normalizedName?: boolean
   status?: boolean
+  systemKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -655,6 +694,7 @@ export type FunctionalGroupSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   name?: boolean
   normalizedName?: boolean
   status?: boolean
+  systemKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -666,11 +706,12 @@ export type FunctionalGroupSelectScalar = {
   name?: boolean
   normalizedName?: boolean
   status?: boolean
+  systemKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type FunctionalGroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "normalizedName" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["functionalGroup"]>
+export type FunctionalGroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "normalizedName" | "status" | "systemKey" | "createdAt" | "updatedAt", ExtArgs["result"]["functionalGroup"]>
 export type FunctionalGroupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   applications?: boolean | Prisma.FunctionalGroup$applicationsArgs<ExtArgs>
@@ -695,6 +736,7 @@ export type $FunctionalGroupPayload<ExtArgs extends runtime.Types.Extensions.Int
     name: string
     normalizedName: string
     status: $Enums.FunctionalGroupStatus
+    systemKey: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["functionalGroup"]>
@@ -1127,6 +1169,7 @@ export interface FunctionalGroupFieldRefs {
   readonly name: Prisma.FieldRef<"FunctionalGroup", 'String'>
   readonly normalizedName: Prisma.FieldRef<"FunctionalGroup", 'String'>
   readonly status: Prisma.FieldRef<"FunctionalGroup", 'FunctionalGroupStatus'>
+  readonly systemKey: Prisma.FieldRef<"FunctionalGroup", 'String'>
   readonly createdAt: Prisma.FieldRef<"FunctionalGroup", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"FunctionalGroup", 'DateTime'>
 }

@@ -45,6 +45,7 @@ export type BudgetProposalMinAggregateOutputType = {
   previousProposalId: string | null
   successorOfProposalId: string | null
   totalMinor: bigint | null
+  note: string | null
   currency: string | null
   submittedByEmployeeId: string | null
   submittedAt: Date | null
@@ -66,6 +67,7 @@ export type BudgetProposalMaxAggregateOutputType = {
   previousProposalId: string | null
   successorOfProposalId: string | null
   totalMinor: bigint | null
+  note: string | null
   currency: string | null
   submittedByEmployeeId: string | null
   submittedAt: Date | null
@@ -87,6 +89,7 @@ export type BudgetProposalCountAggregateOutputType = {
   previousProposalId: number
   successorOfProposalId: number
   totalMinor: number
+  note: number
   currency: number
   submittedByEmployeeId: number
   submittedAt: number
@@ -120,6 +123,7 @@ export type BudgetProposalMinAggregateInputType = {
   previousProposalId?: true
   successorOfProposalId?: true
   totalMinor?: true
+  note?: true
   currency?: true
   submittedByEmployeeId?: true
   submittedAt?: true
@@ -141,6 +145,7 @@ export type BudgetProposalMaxAggregateInputType = {
   previousProposalId?: true
   successorOfProposalId?: true
   totalMinor?: true
+  note?: true
   currency?: true
   submittedByEmployeeId?: true
   submittedAt?: true
@@ -162,6 +167,7 @@ export type BudgetProposalCountAggregateInputType = {
   previousProposalId?: true
   successorOfProposalId?: true
   totalMinor?: true
+  note?: true
   currency?: true
   submittedByEmployeeId?: true
   submittedAt?: true
@@ -270,6 +276,7 @@ export type BudgetProposalGroupByOutputType = {
   previousProposalId: string | null
   successorOfProposalId: string | null
   totalMinor: bigint
+  note: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt: Date
@@ -314,6 +321,7 @@ export type BudgetProposalWhereInput = {
   previousProposalId?: Prisma.UuidNullableFilter<"BudgetProposal"> | string | null
   successorOfProposalId?: Prisma.UuidNullableFilter<"BudgetProposal"> | string | null
   totalMinor?: Prisma.BigIntFilter<"BudgetProposal"> | bigint | number
+  note?: Prisma.StringNullableFilter<"BudgetProposal"> | string | null
   currency?: Prisma.StringFilter<"BudgetProposal"> | string
   submittedByEmployeeId?: Prisma.UuidFilter<"BudgetProposal"> | string
   submittedAt?: Prisma.DateTimeFilter<"BudgetProposal"> | Date | string
@@ -345,6 +353,7 @@ export type BudgetProposalOrderByWithRelationInput = {
   previousProposalId?: Prisma.SortOrderInput | Prisma.SortOrder
   successorOfProposalId?: Prisma.SortOrderInput | Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
+  note?: Prisma.SortOrderInput | Prisma.SortOrder
   currency?: Prisma.SortOrder
   submittedByEmployeeId?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
@@ -379,6 +388,7 @@ export type BudgetProposalWhereUniqueInput = Prisma.AtLeast<{
   state?: Prisma.EnumBudgetProposalStateFilter<"BudgetProposal"> | $Enums.BudgetProposalState
   previousProposalId?: Prisma.UuidNullableFilter<"BudgetProposal"> | string | null
   totalMinor?: Prisma.BigIntFilter<"BudgetProposal"> | bigint | number
+  note?: Prisma.StringNullableFilter<"BudgetProposal"> | string | null
   currency?: Prisma.StringFilter<"BudgetProposal"> | string
   submittedByEmployeeId?: Prisma.UuidFilter<"BudgetProposal"> | string
   submittedAt?: Prisma.DateTimeFilter<"BudgetProposal"> | Date | string
@@ -410,6 +420,7 @@ export type BudgetProposalOrderByWithAggregationInput = {
   previousProposalId?: Prisma.SortOrderInput | Prisma.SortOrder
   successorOfProposalId?: Prisma.SortOrderInput | Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
+  note?: Prisma.SortOrderInput | Prisma.SortOrder
   currency?: Prisma.SortOrder
   submittedByEmployeeId?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
@@ -439,6 +450,7 @@ export type BudgetProposalScalarWhereWithAggregatesInput = {
   previousProposalId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetProposal"> | string | null
   successorOfProposalId?: Prisma.UuidNullableWithAggregatesFilter<"BudgetProposal"> | string | null
   totalMinor?: Prisma.BigIntWithAggregatesFilter<"BudgetProposal"> | bigint | number
+  note?: Prisma.StringNullableWithAggregatesFilter<"BudgetProposal"> | string | null
   currency?: Prisma.StringWithAggregatesFilter<"BudgetProposal"> | string
   submittedByEmployeeId?: Prisma.UuidWithAggregatesFilter<"BudgetProposal"> | string
   submittedAt?: Prisma.DateTimeWithAggregatesFilter<"BudgetProposal"> | Date | string
@@ -456,6 +468,7 @@ export type BudgetProposalCreateInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -486,6 +499,7 @@ export type BudgetProposalUncheckedCreateInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -508,6 +522,7 @@ export type BudgetProposalUpdateInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -538,6 +553,7 @@ export type BudgetProposalUncheckedUpdateInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -564,6 +580,7 @@ export type BudgetProposalCreateManyInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -581,6 +598,7 @@ export type BudgetProposalUpdateManyMutationInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -601,6 +619,7 @@ export type BudgetProposalUncheckedUpdateManyInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -637,6 +656,7 @@ export type BudgetProposalCountOrderByAggregateInput = {
   previousProposalId?: Prisma.SortOrder
   successorOfProposalId?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
+  note?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   submittedByEmployeeId?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
@@ -663,6 +683,7 @@ export type BudgetProposalMaxOrderByAggregateInput = {
   previousProposalId?: Prisma.SortOrder
   successorOfProposalId?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
+  note?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   submittedByEmployeeId?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
@@ -684,6 +705,7 @@ export type BudgetProposalMinOrderByAggregateInput = {
   previousProposalId?: Prisma.SortOrder
   successorOfProposalId?: Prisma.SortOrder
   totalMinor?: Prisma.SortOrder
+  note?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   submittedByEmployeeId?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
@@ -1009,6 +1031,7 @@ export type BudgetProposalCreateWithoutNextInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1038,6 +1061,7 @@ export type BudgetProposalUncheckedCreateWithoutNextInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1064,6 +1088,7 @@ export type BudgetProposalCreateWithoutPreviousInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1092,6 +1117,7 @@ export type BudgetProposalUncheckedCreateWithoutPreviousInput = {
   state: $Enums.BudgetProposalState
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1124,6 +1150,7 @@ export type BudgetProposalCreateWithoutSuccessorInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1153,6 +1180,7 @@ export type BudgetProposalUncheckedCreateWithoutSuccessorInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1179,6 +1207,7 @@ export type BudgetProposalCreateWithoutSuccessorOfInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1207,6 +1236,7 @@ export type BudgetProposalUncheckedCreateWithoutSuccessorOfInput = {
   state: $Enums.BudgetProposalState
   previousProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1245,6 +1275,7 @@ export type BudgetProposalUpdateWithoutNextInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1274,6 +1305,7 @@ export type BudgetProposalUncheckedUpdateWithoutNextInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1318,6 +1350,7 @@ export type BudgetProposalScalarWhereInput = {
   previousProposalId?: Prisma.UuidNullableFilter<"BudgetProposal"> | string | null
   successorOfProposalId?: Prisma.UuidNullableFilter<"BudgetProposal"> | string | null
   totalMinor?: Prisma.BigIntFilter<"BudgetProposal"> | bigint | number
+  note?: Prisma.StringNullableFilter<"BudgetProposal"> | string | null
   currency?: Prisma.StringFilter<"BudgetProposal"> | string
   submittedByEmployeeId?: Prisma.UuidFilter<"BudgetProposal"> | string
   submittedAt?: Prisma.DateTimeFilter<"BudgetProposal"> | Date | string
@@ -1346,6 +1379,7 @@ export type BudgetProposalUpdateWithoutSuccessorInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1375,6 +1409,7 @@ export type BudgetProposalUncheckedUpdateWithoutSuccessorInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1407,6 +1442,7 @@ export type BudgetProposalUpdateWithoutSuccessorOfInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1435,6 +1471,7 @@ export type BudgetProposalUncheckedUpdateWithoutSuccessorOfInput = {
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1457,6 +1494,7 @@ export type BudgetProposalCreateWithoutLinesInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1486,6 +1524,7 @@ export type BudgetProposalUncheckedCreateWithoutLinesInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1523,6 +1562,7 @@ export type BudgetProposalUpdateWithoutLinesInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1552,6 +1592,7 @@ export type BudgetProposalUncheckedUpdateWithoutLinesInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1573,6 +1614,7 @@ export type BudgetProposalCreateWithoutVersionsInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1602,6 +1644,7 @@ export type BudgetProposalUncheckedCreateWithoutVersionsInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1639,6 +1682,7 @@ export type BudgetProposalUpdateWithoutVersionsInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1668,6 +1712,7 @@ export type BudgetProposalUncheckedUpdateWithoutVersionsInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1689,6 +1734,7 @@ export type BudgetProposalCreateWithoutAttachmentsInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1718,6 +1764,7 @@ export type BudgetProposalUncheckedCreateWithoutAttachmentsInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1755,6 +1802,7 @@ export type BudgetProposalUpdateWithoutAttachmentsInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1784,6 +1832,7 @@ export type BudgetProposalUncheckedUpdateWithoutAttachmentsInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1805,6 +1854,7 @@ export type BudgetProposalCreateWithoutCurrencyRecordInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1834,6 +1884,7 @@ export type BudgetProposalUncheckedCreateWithoutCurrencyRecordInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1881,6 +1932,7 @@ export type BudgetProposalCreateWithoutOrganizationInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1909,6 +1961,7 @@ export type BudgetProposalUncheckedCreateWithoutOrganizationInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -1957,6 +2010,7 @@ export type BudgetProposalCreateWithoutCostCenterInput = {
   year: number
   state: $Enums.BudgetProposalState
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -1985,6 +2039,7 @@ export type BudgetProposalUncheckedCreateWithoutCostCenterInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -2036,6 +2091,7 @@ export type BudgetProposalCreateManyPreviousInput = {
   state: $Enums.BudgetProposalState
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -2053,6 +2109,7 @@ export type BudgetProposalUpdateWithoutPreviousInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2081,6 +2138,7 @@ export type BudgetProposalUncheckedUpdateWithoutPreviousInput = {
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2106,6 +2164,7 @@ export type BudgetProposalUncheckedUpdateManyWithoutPreviousInput = {
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2127,6 +2186,7 @@ export type BudgetProposalCreateManyCurrencyRecordInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   submittedByEmployeeId: string
   submittedAt?: Date | string
   returnedReason?: string | null
@@ -2143,6 +2203,7 @@ export type BudgetProposalUpdateWithoutCurrencyRecordInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2172,6 +2233,7 @@ export type BudgetProposalUncheckedUpdateWithoutCurrencyRecordInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2197,6 +2259,7 @@ export type BudgetProposalUncheckedUpdateManyWithoutCurrencyRecordInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2216,6 +2279,7 @@ export type BudgetProposalCreateManyOrganizationInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -2233,6 +2297,7 @@ export type BudgetProposalUpdateWithoutOrganizationInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2261,6 +2326,7 @@ export type BudgetProposalUncheckedUpdateWithoutOrganizationInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2286,6 +2352,7 @@ export type BudgetProposalUncheckedUpdateManyWithoutOrganizationInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2306,6 +2373,7 @@ export type BudgetProposalCreateManyCostCenterInput = {
   previousProposalId?: string | null
   successorOfProposalId?: string | null
   totalMinor: bigint | number
+  note?: string | null
   currency: string
   submittedByEmployeeId: string
   submittedAt?: Date | string
@@ -2323,6 +2391,7 @@ export type BudgetProposalUpdateWithoutCostCenterInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumBudgetProposalStateFieldUpdateOperationsInput | $Enums.BudgetProposalState
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2351,6 +2420,7 @@ export type BudgetProposalUncheckedUpdateWithoutCostCenterInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2376,6 +2446,7 @@ export type BudgetProposalUncheckedUpdateManyWithoutCostCenterInput = {
   previousProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   successorOfProposalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   submittedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2455,6 +2526,7 @@ export type BudgetProposalSelect<ExtArgs extends runtime.Types.Extensions.Intern
   previousProposalId?: boolean
   successorOfProposalId?: boolean
   totalMinor?: boolean
+  note?: boolean
   currency?: boolean
   submittedByEmployeeId?: boolean
   submittedAt?: boolean
@@ -2487,6 +2559,7 @@ export type BudgetProposalSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   previousProposalId?: boolean
   successorOfProposalId?: boolean
   totalMinor?: boolean
+  note?: boolean
   currency?: boolean
   submittedByEmployeeId?: boolean
   submittedAt?: boolean
@@ -2513,6 +2586,7 @@ export type BudgetProposalSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   previousProposalId?: boolean
   successorOfProposalId?: boolean
   totalMinor?: boolean
+  note?: boolean
   currency?: boolean
   submittedByEmployeeId?: boolean
   submittedAt?: boolean
@@ -2539,6 +2613,7 @@ export type BudgetProposalSelectScalar = {
   previousProposalId?: boolean
   successorOfProposalId?: boolean
   totalMinor?: boolean
+  note?: boolean
   currency?: boolean
   submittedByEmployeeId?: boolean
   submittedAt?: boolean
@@ -2551,7 +2626,7 @@ export type BudgetProposalSelectScalar = {
   updatedAt?: boolean
 }
 
-export type BudgetProposalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "costCenterId" | "year" | "state" | "previousProposalId" | "successorOfProposalId" | "totalMinor" | "currency" | "submittedByEmployeeId" | "submittedAt" | "returnedReason" | "returnedByEmployeeId" | "returnedAt" | "withdrawnAt" | "succeededAt" | "closedAt" | "updatedAt", ExtArgs["result"]["budgetProposal"]>
+export type BudgetProposalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "costCenterId" | "year" | "state" | "previousProposalId" | "successorOfProposalId" | "totalMinor" | "note" | "currency" | "submittedByEmployeeId" | "submittedAt" | "returnedReason" | "returnedByEmployeeId" | "returnedAt" | "withdrawnAt" | "succeededAt" | "closedAt" | "updatedAt", ExtArgs["result"]["budgetProposal"]>
 export type BudgetProposalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   costCenter?: boolean | Prisma.CostCenterDefaultArgs<ExtArgs>
@@ -2603,6 +2678,7 @@ export type $BudgetProposalPayload<ExtArgs extends runtime.Types.Extensions.Inte
     previousProposalId: string | null
     successorOfProposalId: string | null
     totalMinor: bigint
+    note: string | null
     currency: string
     submittedByEmployeeId: string
     submittedAt: Date
@@ -3054,6 +3130,7 @@ export interface BudgetProposalFieldRefs {
   readonly previousProposalId: Prisma.FieldRef<"BudgetProposal", 'String'>
   readonly successorOfProposalId: Prisma.FieldRef<"BudgetProposal", 'String'>
   readonly totalMinor: Prisma.FieldRef<"BudgetProposal", 'BigInt'>
+  readonly note: Prisma.FieldRef<"BudgetProposal", 'String'>
   readonly currency: Prisma.FieldRef<"BudgetProposal", 'String'>
   readonly submittedByEmployeeId: Prisma.FieldRef<"BudgetProposal", 'String'>
   readonly submittedAt: Prisma.FieldRef<"BudgetProposal", 'DateTime'>

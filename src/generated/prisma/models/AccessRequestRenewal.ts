@@ -195,7 +195,7 @@ export type AccessRequestRenewalGroupByOutputType = {
   requestId: string
   assignmentId: string
   previousExpectedEndDate: Date
-  newExpectedEndDate: Date
+  newExpectedEndDate: Date | null
   consecutiveMonths: number
   successorAssignmentId: string | null
   appliedAt: Date | null
@@ -228,7 +228,7 @@ export type AccessRequestRenewalWhereInput = {
   requestId?: Prisma.UuidFilter<"AccessRequestRenewal"> | string
   assignmentId?: Prisma.UuidFilter<"AccessRequestRenewal"> | string
   previousExpectedEndDate?: Prisma.DateTimeFilter<"AccessRequestRenewal"> | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFilter<"AccessRequestRenewal"> | Date | string
+  newExpectedEndDate?: Prisma.DateTimeNullableFilter<"AccessRequestRenewal"> | Date | string | null
   consecutiveMonths?: Prisma.IntFilter<"AccessRequestRenewal"> | number
   successorAssignmentId?: Prisma.UuidNullableFilter<"AccessRequestRenewal"> | string | null
   appliedAt?: Prisma.DateTimeNullableFilter<"AccessRequestRenewal"> | Date | string | null
@@ -241,7 +241,7 @@ export type AccessRequestRenewalOrderByWithRelationInput = {
   requestId?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   previousExpectedEndDate?: Prisma.SortOrder
-  newExpectedEndDate?: Prisma.SortOrder
+  newExpectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consecutiveMonths?: Prisma.SortOrder
   successorAssignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   appliedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -258,7 +258,7 @@ export type AccessRequestRenewalWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AccessRequestRenewalWhereInput | Prisma.AccessRequestRenewalWhereInput[]
   assignmentId?: Prisma.UuidFilter<"AccessRequestRenewal"> | string
   previousExpectedEndDate?: Prisma.DateTimeFilter<"AccessRequestRenewal"> | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFilter<"AccessRequestRenewal"> | Date | string
+  newExpectedEndDate?: Prisma.DateTimeNullableFilter<"AccessRequestRenewal"> | Date | string | null
   consecutiveMonths?: Prisma.IntFilter<"AccessRequestRenewal"> | number
   appliedAt?: Prisma.DateTimeNullableFilter<"AccessRequestRenewal"> | Date | string | null
   request?: Prisma.XOR<Prisma.AccessRequestScalarRelationFilter, Prisma.AccessRequestWhereInput>
@@ -270,7 +270,7 @@ export type AccessRequestRenewalOrderByWithAggregationInput = {
   requestId?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   previousExpectedEndDate?: Prisma.SortOrder
-  newExpectedEndDate?: Prisma.SortOrder
+  newExpectedEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consecutiveMonths?: Prisma.SortOrder
   successorAssignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   appliedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -288,7 +288,7 @@ export type AccessRequestRenewalScalarWhereWithAggregatesInput = {
   requestId?: Prisma.UuidWithAggregatesFilter<"AccessRequestRenewal"> | string
   assignmentId?: Prisma.UuidWithAggregatesFilter<"AccessRequestRenewal"> | string
   previousExpectedEndDate?: Prisma.DateTimeWithAggregatesFilter<"AccessRequestRenewal"> | Date | string
-  newExpectedEndDate?: Prisma.DateTimeWithAggregatesFilter<"AccessRequestRenewal"> | Date | string
+  newExpectedEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequestRenewal"> | Date | string | null
   consecutiveMonths?: Prisma.IntWithAggregatesFilter<"AccessRequestRenewal"> | number
   successorAssignmentId?: Prisma.UuidNullableWithAggregatesFilter<"AccessRequestRenewal"> | string | null
   appliedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequestRenewal"> | Date | string | null
@@ -296,7 +296,7 @@ export type AccessRequestRenewalScalarWhereWithAggregatesInput = {
 
 export type AccessRequestRenewalCreateInput = {
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   appliedAt?: Date | string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutRenewalInput
@@ -308,7 +308,7 @@ export type AccessRequestRenewalUncheckedCreateInput = {
   requestId: string
   assignmentId: string
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   successorAssignmentId?: string | null
   appliedAt?: Date | string | null
@@ -316,7 +316,7 @@ export type AccessRequestRenewalUncheckedCreateInput = {
 
 export type AccessRequestRenewalUpdateInput = {
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutRenewalNestedInput
@@ -328,7 +328,7 @@ export type AccessRequestRenewalUncheckedUpdateInput = {
   requestId?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   successorAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -338,7 +338,7 @@ export type AccessRequestRenewalCreateManyInput = {
   requestId: string
   assignmentId: string
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   successorAssignmentId?: string | null
   appliedAt?: Date | string | null
@@ -346,7 +346,7 @@ export type AccessRequestRenewalCreateManyInput = {
 
 export type AccessRequestRenewalUpdateManyMutationInput = {
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -355,7 +355,7 @@ export type AccessRequestRenewalUncheckedUpdateManyInput = {
   requestId?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   successorAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -522,7 +522,7 @@ export type AccessRequestRenewalUncheckedUpdateOneWithoutRequestNestedInput = {
 
 export type AccessRequestRenewalCreateWithoutAssignmentInput = {
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   appliedAt?: Date | string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutRenewalInput
@@ -532,7 +532,7 @@ export type AccessRequestRenewalCreateWithoutAssignmentInput = {
 export type AccessRequestRenewalUncheckedCreateWithoutAssignmentInput = {
   requestId: string
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   successorAssignmentId?: string | null
   appliedAt?: Date | string | null
@@ -550,7 +550,7 @@ export type AccessRequestRenewalCreateManyAssignmentInputEnvelope = {
 
 export type AccessRequestRenewalCreateWithoutSuccessorInput = {
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   appliedAt?: Date | string | null
   request: Prisma.AccessRequestCreateNestedOneWithoutRenewalInput
@@ -561,7 +561,7 @@ export type AccessRequestRenewalUncheckedCreateWithoutSuccessorInput = {
   requestId: string
   assignmentId: string
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   appliedAt?: Date | string | null
 }
@@ -594,7 +594,7 @@ export type AccessRequestRenewalScalarWhereInput = {
   requestId?: Prisma.UuidFilter<"AccessRequestRenewal"> | string
   assignmentId?: Prisma.UuidFilter<"AccessRequestRenewal"> | string
   previousExpectedEndDate?: Prisma.DateTimeFilter<"AccessRequestRenewal"> | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFilter<"AccessRequestRenewal"> | Date | string
+  newExpectedEndDate?: Prisma.DateTimeNullableFilter<"AccessRequestRenewal"> | Date | string | null
   consecutiveMonths?: Prisma.IntFilter<"AccessRequestRenewal"> | number
   successorAssignmentId?: Prisma.UuidNullableFilter<"AccessRequestRenewal"> | string | null
   appliedAt?: Prisma.DateTimeNullableFilter<"AccessRequestRenewal"> | Date | string | null
@@ -613,7 +613,7 @@ export type AccessRequestRenewalUpdateToOneWithWhereWithoutSuccessorInput = {
 
 export type AccessRequestRenewalUpdateWithoutSuccessorInput = {
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutRenewalNestedInput
@@ -624,14 +624,14 @@ export type AccessRequestRenewalUncheckedUpdateWithoutSuccessorInput = {
   requestId?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type AccessRequestRenewalCreateWithoutRequestInput = {
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   appliedAt?: Date | string | null
   assignment: Prisma.LicenseAssignmentCreateNestedOneWithoutRenewalRequestsInput
@@ -641,7 +641,7 @@ export type AccessRequestRenewalCreateWithoutRequestInput = {
 export type AccessRequestRenewalUncheckedCreateWithoutRequestInput = {
   assignmentId: string
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   successorAssignmentId?: string | null
   appliedAt?: Date | string | null
@@ -665,7 +665,7 @@ export type AccessRequestRenewalUpdateToOneWithWhereWithoutRequestInput = {
 
 export type AccessRequestRenewalUpdateWithoutRequestInput = {
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assignment?: Prisma.LicenseAssignmentUpdateOneRequiredWithoutRenewalRequestsNestedInput
@@ -675,7 +675,7 @@ export type AccessRequestRenewalUpdateWithoutRequestInput = {
 export type AccessRequestRenewalUncheckedUpdateWithoutRequestInput = {
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   successorAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -684,7 +684,7 @@ export type AccessRequestRenewalUncheckedUpdateWithoutRequestInput = {
 export type AccessRequestRenewalCreateManyAssignmentInput = {
   requestId: string
   previousExpectedEndDate: Date | string
-  newExpectedEndDate: Date | string
+  newExpectedEndDate?: Date | string | null
   consecutiveMonths: number
   successorAssignmentId?: string | null
   appliedAt?: Date | string | null
@@ -692,7 +692,7 @@ export type AccessRequestRenewalCreateManyAssignmentInput = {
 
 export type AccessRequestRenewalUpdateWithoutAssignmentInput = {
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   request?: Prisma.AccessRequestUpdateOneRequiredWithoutRenewalNestedInput
@@ -702,7 +702,7 @@ export type AccessRequestRenewalUpdateWithoutAssignmentInput = {
 export type AccessRequestRenewalUncheckedUpdateWithoutAssignmentInput = {
   requestId?: Prisma.StringFieldUpdateOperationsInput | string
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   successorAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -711,7 +711,7 @@ export type AccessRequestRenewalUncheckedUpdateWithoutAssignmentInput = {
 export type AccessRequestRenewalUncheckedUpdateManyWithoutAssignmentInput = {
   requestId?: Prisma.StringFieldUpdateOperationsInput | string
   previousExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newExpectedEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newExpectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consecutiveMonths?: Prisma.IntFieldUpdateOperationsInput | number
   successorAssignmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appliedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -796,7 +796,7 @@ export type $AccessRequestRenewalPayload<ExtArgs extends runtime.Types.Extension
     requestId: string
     assignmentId: string
     previousExpectedEndDate: Date
-    newExpectedEndDate: Date
+    newExpectedEndDate: Date | null
     consecutiveMonths: number
     successorAssignmentId: string | null
     appliedAt: Date | null

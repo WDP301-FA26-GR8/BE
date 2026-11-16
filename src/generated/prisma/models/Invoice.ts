@@ -61,6 +61,13 @@ export type InvoiceMinAggregateOutputType = {
   note: string | null
   recordedByEmployeeId: string | null
   recordedAt: Date | null
+  serviceMonth: Date | null
+  purchaseInvoiceId: string | null
+  subscriptionId: string | null
+  costCenterId: string | null
+  outOfProcessCaseId: string | null
+  unallocatedReason: string | null
+  departmentId: string | null
 }
 
 export type InvoiceMaxAggregateOutputType = {
@@ -80,6 +87,13 @@ export type InvoiceMaxAggregateOutputType = {
   note: string | null
   recordedByEmployeeId: string | null
   recordedAt: Date | null
+  serviceMonth: Date | null
+  purchaseInvoiceId: string | null
+  subscriptionId: string | null
+  costCenterId: string | null
+  outOfProcessCaseId: string | null
+  unallocatedReason: string | null
+  departmentId: string | null
 }
 
 export type InvoiceCountAggregateOutputType = {
@@ -99,6 +113,13 @@ export type InvoiceCountAggregateOutputType = {
   note: number
   recordedByEmployeeId: number
   recordedAt: number
+  serviceMonth: number
+  purchaseInvoiceId: number
+  subscriptionId: number
+  costCenterId: number
+  outOfProcessCaseId: number
+  unallocatedReason: number
+  departmentId: number
   _all: number
 }
 
@@ -136,6 +157,13 @@ export type InvoiceMinAggregateInputType = {
   note?: true
   recordedByEmployeeId?: true
   recordedAt?: true
+  serviceMonth?: true
+  purchaseInvoiceId?: true
+  subscriptionId?: true
+  costCenterId?: true
+  outOfProcessCaseId?: true
+  unallocatedReason?: true
+  departmentId?: true
 }
 
 export type InvoiceMaxAggregateInputType = {
@@ -155,6 +183,13 @@ export type InvoiceMaxAggregateInputType = {
   note?: true
   recordedByEmployeeId?: true
   recordedAt?: true
+  serviceMonth?: true
+  purchaseInvoiceId?: true
+  subscriptionId?: true
+  costCenterId?: true
+  outOfProcessCaseId?: true
+  unallocatedReason?: true
+  departmentId?: true
 }
 
 export type InvoiceCountAggregateInputType = {
@@ -174,6 +209,13 @@ export type InvoiceCountAggregateInputType = {
   note?: true
   recordedByEmployeeId?: true
   recordedAt?: true
+  serviceMonth?: true
+  purchaseInvoiceId?: true
+  subscriptionId?: true
+  costCenterId?: true
+  outOfProcessCaseId?: true
+  unallocatedReason?: true
+  departmentId?: true
   _all?: true
 }
 
@@ -266,7 +308,7 @@ export type InvoiceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type InvoiceGroupByOutputType = {
   id: string
   organizationId: string
-  commitmentId: string
+  commitmentId: string | null
   vendorId: string
   number: string
   issuedOn: Date
@@ -280,6 +322,13 @@ export type InvoiceGroupByOutputType = {
   note: string | null
   recordedByEmployeeId: string
   recordedAt: Date
+  serviceMonth: Date | null
+  purchaseInvoiceId: string | null
+  subscriptionId: string | null
+  costCenterId: string | null
+  outOfProcessCaseId: string | null
+  unallocatedReason: string | null
+  departmentId: string | null
   _count: InvoiceCountAggregateOutputType | null
   _avg: InvoiceAvgAggregateOutputType | null
   _sum: InvoiceSumAggregateOutputType | null
@@ -308,7 +357,7 @@ export type InvoiceWhereInput = {
   NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   id?: Prisma.UuidFilter<"Invoice"> | string
   organizationId?: Prisma.UuidFilter<"Invoice"> | string
-  commitmentId?: Prisma.UuidFilter<"Invoice"> | string
+  commitmentId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   vendorId?: Prisma.UuidFilter<"Invoice"> | string
   number?: Prisma.StringFilter<"Invoice"> | string
   issuedOn?: Prisma.DateTimeFilter<"Invoice"> | Date | string
@@ -322,8 +371,15 @@ export type InvoiceWhereInput = {
   note?: Prisma.StringNullableFilter<"Invoice"> | string | null
   recordedByEmployeeId?: Prisma.UuidFilter<"Invoice"> | string
   recordedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
+  serviceMonth?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  purchaseInvoiceId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  costCenterId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  outOfProcessCaseId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  unallocatedReason?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  departmentId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  commitment?: Prisma.XOR<Prisma.BudgetCommitmentScalarRelationFilter, Prisma.BudgetCommitmentWhereInput>
+  commitment?: Prisma.XOR<Prisma.BudgetCommitmentNullableScalarRelationFilter, Prisma.BudgetCommitmentWhereInput> | null
   vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
   currencyRecord?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   recordedBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
@@ -332,7 +388,7 @@ export type InvoiceWhereInput = {
 export type InvoiceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  commitmentId?: Prisma.SortOrder
+  commitmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   vendorId?: Prisma.SortOrder
   number?: Prisma.SortOrder
   issuedOn?: Prisma.SortOrder
@@ -346,6 +402,13 @@ export type InvoiceOrderByWithRelationInput = {
   note?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByEmployeeId?: Prisma.SortOrder
   recordedAt?: Prisma.SortOrder
+  serviceMonth?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchaseInvoiceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  costCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  outOfProcessCaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  unallocatedReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   commitment?: Prisma.BudgetCommitmentOrderByWithRelationInput
   vendor?: Prisma.VendorOrderByWithRelationInput
@@ -355,12 +418,13 @@ export type InvoiceOrderByWithRelationInput = {
 
 export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  purchaseInvoiceId?: string
   organizationId_vendorId_number?: Prisma.InvoiceOrganizationIdVendorIdNumberCompoundUniqueInput
   AND?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   OR?: Prisma.InvoiceWhereInput[]
   NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   organizationId?: Prisma.UuidFilter<"Invoice"> | string
-  commitmentId?: Prisma.UuidFilter<"Invoice"> | string
+  commitmentId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   vendorId?: Prisma.UuidFilter<"Invoice"> | string
   number?: Prisma.StringFilter<"Invoice"> | string
   issuedOn?: Prisma.DateTimeFilter<"Invoice"> | Date | string
@@ -374,17 +438,23 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   note?: Prisma.StringNullableFilter<"Invoice"> | string | null
   recordedByEmployeeId?: Prisma.UuidFilter<"Invoice"> | string
   recordedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
+  serviceMonth?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  costCenterId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  outOfProcessCaseId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  unallocatedReason?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  departmentId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  commitment?: Prisma.XOR<Prisma.BudgetCommitmentScalarRelationFilter, Prisma.BudgetCommitmentWhereInput>
+  commitment?: Prisma.XOR<Prisma.BudgetCommitmentNullableScalarRelationFilter, Prisma.BudgetCommitmentWhereInput> | null
   vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
   currencyRecord?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   recordedBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-}, "id" | "organizationId_vendorId_number">
+}, "id" | "purchaseInvoiceId" | "organizationId_vendorId_number">
 
 export type InvoiceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  commitmentId?: Prisma.SortOrder
+  commitmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   vendorId?: Prisma.SortOrder
   number?: Prisma.SortOrder
   issuedOn?: Prisma.SortOrder
@@ -398,6 +468,13 @@ export type InvoiceOrderByWithAggregationInput = {
   note?: Prisma.SortOrderInput | Prisma.SortOrder
   recordedByEmployeeId?: Prisma.SortOrder
   recordedAt?: Prisma.SortOrder
+  serviceMonth?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchaseInvoiceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  costCenterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  outOfProcessCaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  unallocatedReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.InvoiceCountOrderByAggregateInput
   _avg?: Prisma.InvoiceAvgOrderByAggregateInput
   _max?: Prisma.InvoiceMaxOrderByAggregateInput
@@ -411,7 +488,7 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.InvoiceScalarWhereWithAggregatesInput | Prisma.InvoiceScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
   organizationId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
-  commitmentId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
+  commitmentId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
   vendorId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
   number?: Prisma.StringWithAggregatesFilter<"Invoice"> | string
   issuedOn?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
@@ -425,6 +502,13 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   note?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
   recordedByEmployeeId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
   recordedAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
+  serviceMonth?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
+  purchaseInvoiceId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
+  subscriptionId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
+  costCenterId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
+  outOfProcessCaseId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
+  unallocatedReason?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
+  departmentId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
 }
 
 export type InvoiceCreateInput = {
@@ -439,8 +523,15 @@ export type InvoiceCreateInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutInvoicesInput
-  commitment: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
+  commitment?: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
   vendor: Prisma.VendorCreateNestedOneWithoutInvoicesInput
   currencyRecord: Prisma.CurrencyCreateNestedOneWithoutInvoicesInput
   recordedBy: Prisma.EmployeeCreateNestedOneWithoutInvoicesRecordedInput
@@ -449,7 +540,7 @@ export type InvoiceCreateInput = {
 export type InvoiceUncheckedCreateInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -463,6 +554,13 @@ export type InvoiceUncheckedCreateInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceUpdateInput = {
@@ -477,8 +575,15 @@ export type InvoiceUpdateInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutInvoicesNestedInput
-  commitment?: Prisma.BudgetCommitmentUpdateOneRequiredWithoutInvoicesNestedInput
+  commitment?: Prisma.BudgetCommitmentUpdateOneWithoutInvoicesNestedInput
   vendor?: Prisma.VendorUpdateOneRequiredWithoutInvoicesNestedInput
   currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutInvoicesNestedInput
   recordedBy?: Prisma.EmployeeUpdateOneRequiredWithoutInvoicesRecordedNestedInput
@@ -487,7 +592,7 @@ export type InvoiceUpdateInput = {
 export type InvoiceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -501,12 +606,19 @@ export type InvoiceUncheckedUpdateInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceCreateManyInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -520,6 +632,13 @@ export type InvoiceCreateManyInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceUpdateManyMutationInput = {
@@ -534,12 +653,19 @@ export type InvoiceUpdateManyMutationInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -553,6 +679,13 @@ export type InvoiceUncheckedUpdateManyInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceListRelationFilter = {
@@ -588,6 +721,13 @@ export type InvoiceCountOrderByAggregateInput = {
   note?: Prisma.SortOrder
   recordedByEmployeeId?: Prisma.SortOrder
   recordedAt?: Prisma.SortOrder
+  serviceMonth?: Prisma.SortOrder
+  purchaseInvoiceId?: Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrder
+  costCenterId?: Prisma.SortOrder
+  outOfProcessCaseId?: Prisma.SortOrder
+  unallocatedReason?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
 }
 
 export type InvoiceAvgOrderByAggregateInput = {
@@ -615,6 +755,13 @@ export type InvoiceMaxOrderByAggregateInput = {
   note?: Prisma.SortOrder
   recordedByEmployeeId?: Prisma.SortOrder
   recordedAt?: Prisma.SortOrder
+  serviceMonth?: Prisma.SortOrder
+  purchaseInvoiceId?: Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrder
+  costCenterId?: Prisma.SortOrder
+  outOfProcessCaseId?: Prisma.SortOrder
+  unallocatedReason?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
 }
 
 export type InvoiceMinOrderByAggregateInput = {
@@ -634,6 +781,13 @@ export type InvoiceMinOrderByAggregateInput = {
   note?: Prisma.SortOrder
   recordedByEmployeeId?: Prisma.SortOrder
   recordedAt?: Prisma.SortOrder
+  serviceMonth?: Prisma.SortOrder
+  purchaseInvoiceId?: Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrder
+  costCenterId?: Prisma.SortOrder
+  outOfProcessCaseId?: Prisma.SortOrder
+  unallocatedReason?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
 }
 
 export type InvoiceSumOrderByAggregateInput = {
@@ -870,6 +1024,13 @@ export type InvoiceCreateWithoutCommitmentInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutInvoicesInput
   vendor: Prisma.VendorCreateNestedOneWithoutInvoicesInput
   currencyRecord: Prisma.CurrencyCreateNestedOneWithoutInvoicesInput
@@ -892,6 +1053,13 @@ export type InvoiceUncheckedCreateWithoutCommitmentInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceCreateOrConnectWithoutCommitmentInput = {
@@ -926,7 +1094,7 @@ export type InvoiceScalarWhereInput = {
   NOT?: Prisma.InvoiceScalarWhereInput | Prisma.InvoiceScalarWhereInput[]
   id?: Prisma.UuidFilter<"Invoice"> | string
   organizationId?: Prisma.UuidFilter<"Invoice"> | string
-  commitmentId?: Prisma.UuidFilter<"Invoice"> | string
+  commitmentId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   vendorId?: Prisma.UuidFilter<"Invoice"> | string
   number?: Prisma.StringFilter<"Invoice"> | string
   issuedOn?: Prisma.DateTimeFilter<"Invoice"> | Date | string
@@ -940,6 +1108,13 @@ export type InvoiceScalarWhereInput = {
   note?: Prisma.StringNullableFilter<"Invoice"> | string | null
   recordedByEmployeeId?: Prisma.UuidFilter<"Invoice"> | string
   recordedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
+  serviceMonth?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  purchaseInvoiceId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  costCenterId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  outOfProcessCaseId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
+  unallocatedReason?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  departmentId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
 }
 
 export type InvoiceCreateWithoutVendorInput = {
@@ -954,8 +1129,15 @@ export type InvoiceCreateWithoutVendorInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutInvoicesInput
-  commitment: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
+  commitment?: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
   currencyRecord: Prisma.CurrencyCreateNestedOneWithoutInvoicesInput
   recordedBy: Prisma.EmployeeCreateNestedOneWithoutInvoicesRecordedInput
 }
@@ -963,7 +1145,7 @@ export type InvoiceCreateWithoutVendorInput = {
 export type InvoiceUncheckedCreateWithoutVendorInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   number: string
   issuedOn: Date | string
   currency: string
@@ -976,6 +1158,13 @@ export type InvoiceUncheckedCreateWithoutVendorInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceCreateOrConnectWithoutVendorInput = {
@@ -1016,8 +1205,15 @@ export type InvoiceCreateWithoutCurrencyRecordInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutInvoicesInput
-  commitment: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
+  commitment?: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
   vendor: Prisma.VendorCreateNestedOneWithoutInvoicesInput
   recordedBy: Prisma.EmployeeCreateNestedOneWithoutInvoicesRecordedInput
 }
@@ -1025,7 +1221,7 @@ export type InvoiceCreateWithoutCurrencyRecordInput = {
 export type InvoiceUncheckedCreateWithoutCurrencyRecordInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -1038,6 +1234,13 @@ export type InvoiceUncheckedCreateWithoutCurrencyRecordInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceCreateOrConnectWithoutCurrencyRecordInput = {
@@ -1078,7 +1281,14 @@ export type InvoiceCreateWithoutOrganizationInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
-  commitment: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
+  commitment?: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
   vendor: Prisma.VendorCreateNestedOneWithoutInvoicesInput
   currencyRecord: Prisma.CurrencyCreateNestedOneWithoutInvoicesInput
   recordedBy: Prisma.EmployeeCreateNestedOneWithoutInvoicesRecordedInput
@@ -1086,7 +1296,7 @@ export type InvoiceCreateWithoutOrganizationInput = {
 
 export type InvoiceUncheckedCreateWithoutOrganizationInput = {
   id?: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -1100,6 +1310,13 @@ export type InvoiceUncheckedCreateWithoutOrganizationInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceCreateOrConnectWithoutOrganizationInput = {
@@ -1140,8 +1357,15 @@ export type InvoiceCreateWithoutRecordedByInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutInvoicesInput
-  commitment: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
+  commitment?: Prisma.BudgetCommitmentCreateNestedOneWithoutInvoicesInput
   vendor: Prisma.VendorCreateNestedOneWithoutInvoicesInput
   currencyRecord: Prisma.CurrencyCreateNestedOneWithoutInvoicesInput
 }
@@ -1149,7 +1373,7 @@ export type InvoiceCreateWithoutRecordedByInput = {
 export type InvoiceUncheckedCreateWithoutRecordedByInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -1162,6 +1386,13 @@ export type InvoiceUncheckedCreateWithoutRecordedByInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceCreateOrConnectWithoutRecordedByInput = {
@@ -1206,6 +1437,13 @@ export type InvoiceCreateManyCommitmentInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceUpdateWithoutCommitmentInput = {
@@ -1220,6 +1458,13 @@ export type InvoiceUpdateWithoutCommitmentInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutInvoicesNestedInput
   vendor?: Prisma.VendorUpdateOneRequiredWithoutInvoicesNestedInput
   currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutInvoicesNestedInput
@@ -1242,6 +1487,13 @@ export type InvoiceUncheckedUpdateWithoutCommitmentInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceUncheckedUpdateManyWithoutCommitmentInput = {
@@ -1260,12 +1512,19 @@ export type InvoiceUncheckedUpdateManyWithoutCommitmentInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceCreateManyVendorInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   number: string
   issuedOn: Date | string
   currency: string
@@ -1278,6 +1537,13 @@ export type InvoiceCreateManyVendorInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceUpdateWithoutVendorInput = {
@@ -1292,8 +1558,15 @@ export type InvoiceUpdateWithoutVendorInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutInvoicesNestedInput
-  commitment?: Prisma.BudgetCommitmentUpdateOneRequiredWithoutInvoicesNestedInput
+  commitment?: Prisma.BudgetCommitmentUpdateOneWithoutInvoicesNestedInput
   currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutInvoicesNestedInput
   recordedBy?: Prisma.EmployeeUpdateOneRequiredWithoutInvoicesRecordedNestedInput
 }
@@ -1301,7 +1574,7 @@ export type InvoiceUpdateWithoutVendorInput = {
 export type InvoiceUncheckedUpdateWithoutVendorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1314,12 +1587,19 @@ export type InvoiceUncheckedUpdateWithoutVendorInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceUncheckedUpdateManyWithoutVendorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1332,12 +1612,19 @@ export type InvoiceUncheckedUpdateManyWithoutVendorInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceCreateManyCurrencyRecordInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -1350,6 +1637,13 @@ export type InvoiceCreateManyCurrencyRecordInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceUpdateWithoutCurrencyRecordInput = {
@@ -1364,8 +1658,15 @@ export type InvoiceUpdateWithoutCurrencyRecordInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutInvoicesNestedInput
-  commitment?: Prisma.BudgetCommitmentUpdateOneRequiredWithoutInvoicesNestedInput
+  commitment?: Prisma.BudgetCommitmentUpdateOneWithoutInvoicesNestedInput
   vendor?: Prisma.VendorUpdateOneRequiredWithoutInvoicesNestedInput
   recordedBy?: Prisma.EmployeeUpdateOneRequiredWithoutInvoicesRecordedNestedInput
 }
@@ -1373,7 +1674,7 @@ export type InvoiceUpdateWithoutCurrencyRecordInput = {
 export type InvoiceUncheckedUpdateWithoutCurrencyRecordInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1386,12 +1687,19 @@ export type InvoiceUncheckedUpdateWithoutCurrencyRecordInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceUncheckedUpdateManyWithoutCurrencyRecordInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1404,11 +1712,18 @@ export type InvoiceUncheckedUpdateManyWithoutCurrencyRecordInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceCreateManyOrganizationInput = {
   id?: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -1422,6 +1737,13 @@ export type InvoiceCreateManyOrganizationInput = {
   note?: string | null
   recordedByEmployeeId: string
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceUpdateWithoutOrganizationInput = {
@@ -1436,7 +1758,14 @@ export type InvoiceUpdateWithoutOrganizationInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  commitment?: Prisma.BudgetCommitmentUpdateOneRequiredWithoutInvoicesNestedInput
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commitment?: Prisma.BudgetCommitmentUpdateOneWithoutInvoicesNestedInput
   vendor?: Prisma.VendorUpdateOneRequiredWithoutInvoicesNestedInput
   currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutInvoicesNestedInput
   recordedBy?: Prisma.EmployeeUpdateOneRequiredWithoutInvoicesRecordedNestedInput
@@ -1444,7 +1773,7 @@ export type InvoiceUpdateWithoutOrganizationInput = {
 
 export type InvoiceUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1458,11 +1787,18 @@ export type InvoiceUncheckedUpdateWithoutOrganizationInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1476,12 +1812,19 @@ export type InvoiceUncheckedUpdateManyWithoutOrganizationInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedByEmployeeId?: Prisma.StringFieldUpdateOperationsInput | string
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceCreateManyRecordedByInput = {
   id?: string
   organizationId: string
-  commitmentId: string
+  commitmentId?: string | null
   vendorId: string
   number: string
   issuedOn: Date | string
@@ -1494,6 +1837,13 @@ export type InvoiceCreateManyRecordedByInput = {
   matchResult: $Enums.InvoiceMatchResult
   note?: string | null
   recordedAt: Date | string
+  serviceMonth?: Date | string | null
+  purchaseInvoiceId?: string | null
+  subscriptionId?: string | null
+  costCenterId?: string | null
+  outOfProcessCaseId?: string | null
+  unallocatedReason?: string | null
+  departmentId?: string | null
 }
 
 export type InvoiceUpdateWithoutRecordedByInput = {
@@ -1508,8 +1858,15 @@ export type InvoiceUpdateWithoutRecordedByInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutInvoicesNestedInput
-  commitment?: Prisma.BudgetCommitmentUpdateOneRequiredWithoutInvoicesNestedInput
+  commitment?: Prisma.BudgetCommitmentUpdateOneWithoutInvoicesNestedInput
   vendor?: Prisma.VendorUpdateOneRequiredWithoutInvoicesNestedInput
   currencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutInvoicesNestedInput
 }
@@ -1517,7 +1874,7 @@ export type InvoiceUpdateWithoutRecordedByInput = {
 export type InvoiceUncheckedUpdateWithoutRecordedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1530,12 +1887,19 @@ export type InvoiceUncheckedUpdateWithoutRecordedByInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InvoiceUncheckedUpdateManyWithoutRecordedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  commitmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  commitmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendorId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   issuedOn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1548,6 +1912,13 @@ export type InvoiceUncheckedUpdateManyWithoutRecordedByInput = {
   matchResult?: Prisma.EnumInvoiceMatchResultFieldUpdateOperationsInput | $Enums.InvoiceMatchResult
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recordedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  serviceMonth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  purchaseInvoiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costCenterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outOfProcessCaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unallocatedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1569,8 +1940,15 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   note?: boolean
   recordedByEmployeeId?: boolean
   recordedAt?: boolean
+  serviceMonth?: boolean
+  purchaseInvoiceId?: boolean
+  subscriptionId?: boolean
+  costCenterId?: boolean
+  outOfProcessCaseId?: boolean
+  unallocatedReason?: boolean
+  departmentId?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  commitment?: boolean | Prisma.BudgetCommitmentDefaultArgs<ExtArgs>
+  commitment?: boolean | Prisma.Invoice$commitmentArgs<ExtArgs>
   vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   recordedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1593,8 +1971,15 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   note?: boolean
   recordedByEmployeeId?: boolean
   recordedAt?: boolean
+  serviceMonth?: boolean
+  purchaseInvoiceId?: boolean
+  subscriptionId?: boolean
+  costCenterId?: boolean
+  outOfProcessCaseId?: boolean
+  unallocatedReason?: boolean
+  departmentId?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  commitment?: boolean | Prisma.BudgetCommitmentDefaultArgs<ExtArgs>
+  commitment?: boolean | Prisma.Invoice$commitmentArgs<ExtArgs>
   vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   recordedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1617,8 +2002,15 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   note?: boolean
   recordedByEmployeeId?: boolean
   recordedAt?: boolean
+  serviceMonth?: boolean
+  purchaseInvoiceId?: boolean
+  subscriptionId?: boolean
+  costCenterId?: boolean
+  outOfProcessCaseId?: boolean
+  unallocatedReason?: boolean
+  departmentId?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  commitment?: boolean | Prisma.BudgetCommitmentDefaultArgs<ExtArgs>
+  commitment?: boolean | Prisma.Invoice$commitmentArgs<ExtArgs>
   vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   recordedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1641,26 +2033,33 @@ export type InvoiceSelectScalar = {
   note?: boolean
   recordedByEmployeeId?: boolean
   recordedAt?: boolean
+  serviceMonth?: boolean
+  purchaseInvoiceId?: boolean
+  subscriptionId?: boolean
+  costCenterId?: boolean
+  outOfProcessCaseId?: boolean
+  unallocatedReason?: boolean
+  departmentId?: boolean
 }
 
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "commitmentId" | "vendorId" | "number" | "issuedOn" | "currency" | "netMinor" | "deductibleTaxMinor" | "nonDeductibleTaxMinor" | "actualCostMinor" | "appliedMinor" | "matchResult" | "note" | "recordedByEmployeeId" | "recordedAt", ExtArgs["result"]["invoice"]>
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "commitmentId" | "vendorId" | "number" | "issuedOn" | "currency" | "netMinor" | "deductibleTaxMinor" | "nonDeductibleTaxMinor" | "actualCostMinor" | "appliedMinor" | "matchResult" | "note" | "recordedByEmployeeId" | "recordedAt" | "serviceMonth" | "purchaseInvoiceId" | "subscriptionId" | "costCenterId" | "outOfProcessCaseId" | "unallocatedReason" | "departmentId", ExtArgs["result"]["invoice"]>
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  commitment?: boolean | Prisma.BudgetCommitmentDefaultArgs<ExtArgs>
+  commitment?: boolean | Prisma.Invoice$commitmentArgs<ExtArgs>
   vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   recordedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  commitment?: boolean | Prisma.BudgetCommitmentDefaultArgs<ExtArgs>
+  commitment?: boolean | Prisma.Invoice$commitmentArgs<ExtArgs>
   vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   recordedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  commitment?: boolean | Prisma.BudgetCommitmentDefaultArgs<ExtArgs>
+  commitment?: boolean | Prisma.Invoice$commitmentArgs<ExtArgs>
   vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   currencyRecord?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   recordedBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1670,7 +2069,7 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Invoice"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
-    commitment: Prisma.$BudgetCommitmentPayload<ExtArgs>
+    commitment: Prisma.$BudgetCommitmentPayload<ExtArgs> | null
     vendor: Prisma.$VendorPayload<ExtArgs>
     currencyRecord: Prisma.$CurrencyPayload<ExtArgs>
     recordedBy: Prisma.$EmployeePayload<ExtArgs>
@@ -1678,7 +2077,7 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     organizationId: string
-    commitmentId: string
+    commitmentId: string | null
     vendorId: string
     number: string
     issuedOn: Date
@@ -1692,6 +2091,13 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     note: string | null
     recordedByEmployeeId: string
     recordedAt: Date
+    serviceMonth: Date | null
+    purchaseInvoiceId: string | null
+    subscriptionId: string | null
+    costCenterId: string | null
+    outOfProcessCaseId: string | null
+    unallocatedReason: string | null
+    departmentId: string | null
   }, ExtArgs["result"]["invoice"]>
   composites: {}
 }
@@ -2087,7 +2493,7 @@ readonly fields: InvoiceFieldRefs;
 export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  commitment<T extends Prisma.BudgetCommitmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BudgetCommitmentDefaultArgs<ExtArgs>>): Prisma.Prisma__BudgetCommitmentClient<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  commitment<T extends Prisma.Invoice$commitmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$commitmentArgs<ExtArgs>>): Prisma.Prisma__BudgetCommitmentClient<runtime.Types.Result.GetResult<Prisma.$BudgetCommitmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   vendor<T extends Prisma.VendorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendorDefaultArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   currencyRecord<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   recordedBy<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -2136,6 +2542,13 @@ export interface InvoiceFieldRefs {
   readonly note: Prisma.FieldRef<"Invoice", 'String'>
   readonly recordedByEmployeeId: Prisma.FieldRef<"Invoice", 'String'>
   readonly recordedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
+  readonly serviceMonth: Prisma.FieldRef<"Invoice", 'DateTime'>
+  readonly purchaseInvoiceId: Prisma.FieldRef<"Invoice", 'String'>
+  readonly subscriptionId: Prisma.FieldRef<"Invoice", 'String'>
+  readonly costCenterId: Prisma.FieldRef<"Invoice", 'String'>
+  readonly outOfProcessCaseId: Prisma.FieldRef<"Invoice", 'String'>
+  readonly unallocatedReason: Prisma.FieldRef<"Invoice", 'String'>
+  readonly departmentId: Prisma.FieldRef<"Invoice", 'String'>
 }
     
 
@@ -2534,6 +2947,25 @@ export type InvoiceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Invoices to delete.
    */
   limit?: number
+}
+
+/**
+ * Invoice.commitment
+ */
+export type Invoice$commitmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetCommitment
+   */
+  select?: Prisma.BudgetCommitmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetCommitment
+   */
+  omit?: Prisma.BudgetCommitmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetCommitmentInclude<ExtArgs> | null
+  where?: Prisma.BudgetCommitmentWhereInput
 }
 
 /**
