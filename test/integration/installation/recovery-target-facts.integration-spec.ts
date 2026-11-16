@@ -59,6 +59,8 @@ describe('ops:preflight --recovery-target counts the rows of QĐ-93 (integration
     const before = await facts();
     expect(before.rows['access-request-cancel-spending-approver-party']).toBe(0);
     expect(before.rows['access-request-step-qd93-waiting-reason']).toBe(0);
+    // The schema of this source has the outbox table, though no AI call exists: counted by the table, not by rows (ADR-0020).
+    expect(before.rows['ai-history-outbox']).toBe(1);
 
     // A request closed for another cause is not this representation, and neither is a step waiting for another reason.
     await insertRequest({

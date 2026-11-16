@@ -248,11 +248,13 @@ is ready`, `RECOVERY: FAILED — …` (the previous release does not answer read
   reads its rows. Each runtime image declares in its label `io.github.baophipham.slm.data-reads` the data representations
   it reads that an older runtime cannot (Dockerfile, stage `runtime`); an image built before that label (the compatibility
   image `fba4dfe` and every older one) declares none. `ops:preflight --recovery-target "<labels>"`, run read-only from the
-  candidate as the deploy role, counts the rows of each representation the database holds (today three:
+  candidate as the deploy role, counts the rows of each representation the database holds (today four:
   `access-request-null-cost-center`, a sent internal free Request with no Cost Center;
   `access-request-cancel-spending-approver-party`, a Request or a group line closed with cause `SPENDING_APPROVER_PARTY` and no
   closing employee; `access-request-step-qd93-waiting-reason`, a step that waits with `NO_DEPARTMENT_HEAD`, `NO_SPENDING_APPROVER`
-  or `SPENDING_APPROVER_IS_PARTY`, values an image before `QĐ-93c` cannot read) and says `COMPATIBLE` (exit 0),
+  or `SPENDING_APPROVER_IS_PARTY`, values an image before `QĐ-93c` cannot read; `ai-history-outbox`, counted by the table
+  `ai_history_deliveries` rather than by rows: once migration `20261116100000` ran, `ai_invocation_contents` is gone and no image
+  before it can serve the database, ADR-0020) and says `COMPATIBLE` (exit 0),
   `INCOMPATIBLE` (2) or `NO_HISTORY` (3: no migration ever ran here). The script judges the previous image twice:
   - **before `migrate deploy`:** an image that is not on the host (its labels cannot be read) or a database with no
     migration history while the host names a previous release (a reset database under an old release state) stops the

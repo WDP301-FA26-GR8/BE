@@ -35,6 +35,11 @@ export const DATA_REPRESENTATIONS = {
   // as `SPENDING_APPROVER_IS_PARTY`; the response schema of a release before it lists neither, so a read of the step fails (500).
   'access-request-step-qd93-waiting-reason':
     'a step, or an alert of a wait, that waits as NO_DEPARTMENT_HEAD or SPENDING_APPROVER_IS_PARTY',
+  // ADR-0020 (WDP): migration `20261116100000_ai_history_mongodb` drops `ai_invocation_contents` and adds `ai_history_deliveries`. A
+  // runtime before it keeps the content of an AI call in the dropped table, so it fails on the first summary it writes or reads
+  // whether or not any call exists yet. The representation is therefore counted by the table, not by its rows.
+  'ai-history-outbox':
+    'the outbox of the raw AI history (table ai_history_deliveries); the table ai_invocation_contents is gone',
 } as const;
 
 export type DataRepresentation = keyof typeof DATA_REPRESENTATIONS;

@@ -56,7 +56,9 @@ const PRE_H7_ENV = `ENV_GENERATION=pre-h7\nPOSTGRES_PASSWORD=${SECRET}\nAUTH_ACC
  * representation the final release writes (the Dockerfile label, pinned in recovery-target.policy.spec.ts). The previous image
  * prints `null` by default: an image built before the label, as the compatibility image `fba4dfe`.
  */
-const FINAL_LABELS = JSON.stringify({ 'io.github.baophipham.slm.data-reads': 'access-request-null-cost-center' });
+const FINAL_LABELS = JSON.stringify({
+  'io.github.baophipham.slm.data-reads': 'access-request-null-cost-center ai-history-outbox',
+});
 /** Short, still bounded, windows: the fake answers at once. */
 const QUICK = ['--ready-timeout', '2', '--stability-window', '0', '--poll-interval', '0'];
 const created = [];
@@ -233,6 +235,8 @@ case "$*" in
     fi ;;
   *" stop api worker")
     : > "$state/stopped-$generation" ;;
+  *"node_modules/prisma/build/index.js migrate deploy")
+    if [ -n "\${FAKE_OUTBOX_AT_MIGRATE:-}" ]; then : > "$state/outbox"; fi ;;
   "image inspect --format "*)
     image="\${@: -1}"
     if [ "$image" = "\${FAKE_ABSENT_IMAGE:-}" ]; then echo "Error: No such image: $image" >&2; exit 1; fi
@@ -246,6 +250,8 @@ case "$*" in
     rows="$value"
     verdict=0
     if [ "$rows" -gt 0 ] && [[ "\${@: -1}" != *access-request-null-cost-center* ]]; then verdict=2; fi
+    # ADR-0020: once migrate deploy created the outbox table (FAKE_OUTBOX_AT_MIGRATE), a runtime that does not declare it cannot serve.
+    if [ -e "$state/outbox" ] && [[ "\${@: -1}" != *ai-history-outbox* ]]; then verdict=2; echo "  - ai-history-outbox: 1 row(s), NOT read by the image"; fi
     # A release still running while it is judged keeps writing: a row after the verdict is one the verdict missed.
     image_of "$generation"
     if [ -n "\${FAKE_WRITE_DURING_JUDGE:-}" ] && [ "$generation_image" = "$FAKE_NEW_IMAGE" ] && [ ! -e "$state/stopped-$generation" ]; then
@@ -397,6 +403,7 @@ function environmentFor(target, options, log) {
   // P04-CPE-04: the labels of the previous image, what the fake database holds and how the release writes.
   const { labelsOld, absentImage, nullRows, candidateWrites, writeDuringJudge, noHistory, judgeFailsAfterRecreate } =
     options;
+  const { outboxAtMigrate } = options;
   const { bash } = setup;
   return {
     ...process.env,
@@ -428,6 +435,7 @@ function environmentFor(target, options, log) {
     ...(writeDuringJudge ? { FAKE_WRITE_DURING_JUDGE: '1' } : {}),
     ...(noHistory ? { FAKE_NO_HISTORY: '1' } : {}),
     ...(judgeFailsAfterRecreate ? { FAKE_JUDGE_FAILS_AFTER_RECREATE: '1' } : {}),
+    ...(outboxAtMigrate ? { FAKE_OUTBOX_AT_MIGRATE: '1' } : {}),
   };
 }
 
@@ -1286,6 +1294,32 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
 
       assert.equal(result.status, 1, result.output);
       assert.match(result.calls[all(result, JUDGE).at(-1)], /access-request-null-cost-center/);
+      assert.equal(recreations(result).length, 2, result.calls.join('\n'));
+      assert.match(result.output, /RECOVERY: the previous release ghcr\.io\/example\/slm-api:a{40} is ready/);
+    });
+
+    // ADR-0020: migration 20261116100000 drops ai_invocation_contents, which the release before it reads; counted by the table, not by rows.
+    it('refuses the previous image once migrate deploy created the AI history outbox: its tables are gone (ADR-0020)', () => {
+      const target = host();
+      const result = deploy(target, { badNew: 'api:notready', outboxAtMigrate: true });
+
+      assert.equal(result.status, 1, result.output);
+      // Before migrate deploy the table was absent: the previous image was still a valid way back, so the deploy went on.
+      assert.match(result.output, /is the way back of this deployment/);
+      assert.ok(step(result, / migrate node node_modules\/prisma\/build\/index\.js migrate deploy$/) > 0);
+      assert.match(
+        result.output,
+        /RECOVERY: REFUSED — ghcr\.io\/example\/slm-api:a{40} cannot read rows release [0-9a-f]{40} wrote/,
+      );
+      assert.equal(recreations(result).length, 1, result.calls.join('\n'));
+      assert.doesNotMatch(result.output, /RECOVERY: the previous release .* is ready/);
+    });
+
+    it('brings back a previous image that declares ai-history-outbox after migrate deploy created the table (ADR-0020)', () => {
+      const target = host();
+      const result = deploy(target, { badNew: 'api:notready', outboxAtMigrate: true, labelsOld: FINAL_LABELS });
+
+      assert.equal(result.status, 1, result.output);
       assert.equal(recreations(result).length, 2, result.calls.join('\n'));
       assert.match(result.output, /RECOVERY: the previous release ghcr\.io\/example\/slm-api:a{40} is ready/);
     });
