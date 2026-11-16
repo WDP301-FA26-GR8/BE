@@ -167,6 +167,7 @@ jobs:
         run: docker compose config --quiet
 
       # H7: every profile of the production file interpolates with the three role passwords, and refuses without one.
+      # ADR-0020: the same for the root user of the mongodb service.
       - name: Validate production Compose configuration
         run: |
           : > .env.app
@@ -175,6 +176,11 @@ jobs:
           grep -v RUNTIME "$RUNNER_TEMP/prod.env" > "$RUNNER_TEMP/prod-missing.env"
           if docker compose --env-file "$RUNNER_TEMP/prod-missing.env" -f docker-compose.prod.yml config --quiet 2>/dev/null; then
             echo 'docker-compose.prod.yml accepted a missing DATABASE_RUNTIME_PASSWORD' >&2
+            exit 1
+          fi
+          grep -v MONGODB_ROOT_PASSWORD "$RUNNER_TEMP/prod.env" > "$RUNNER_TEMP/prod-missing-mongo.env"
+          if docker compose --env-file "$RUNNER_TEMP/prod-missing-mongo.env" -f docker-compose.prod.yml config --quiet 2>/dev/null; then
+            echo 'docker-compose.prod.yml accepted a missing MONGODB_ROOT_PASSWORD' >&2
             exit 1
           fi
           rm .env.app
@@ -230,6 +236,14 @@ jobs:
     timeout-minutes: 70
     services:
       postgres: *postgres
+      # ADR-0020: the suites of ai-assist deliver the raw AI history to a disposable MongoDB database of their own.
+      mongo: &mongo
+        image: mongo:8.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.adminCommand({ping:1}).ok'"
+          --health-interval 5s --health-timeout 5s --health-retries 10
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -250,6 +264,7 @@ jobs:
         env:
           PATHS: ${{ needs.select.outputs.paths }}
           TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
+          TEST_MONGODB_URI: mongodb://127.0.0.1:27017
           TEST_CLI_RUNTIME: dist
         run: |
           if [ "$PATHS" = "ALL" ]; then pnpm test:integration --maxWorkers=2 --shard=${{ matrix.shard }}/3 --passWithNoTests; else pnpm test:integration --maxWorkers=2 --shard=${{ matrix.shard }}/3 --passWithNoTests $PATHS; fi
@@ -270,6 +285,7 @@ jobs:
     timeout-minutes: 70
     services:
       postgres: *postgres
+      mongo: *mongo
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -292,6 +308,7 @@ jobs:
         env:
           PATHS: ${{ needs.select.outputs.paths }}
           TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
+          TEST_MONGODB_URI: mongodb://127.0.0.1:27017
         run: |
           if [ "$PATHS" = "ALL" ]; then pnpm test:integration:timing; else pnpm test:integration:timing $PATHS; fi
 
@@ -299,6 +316,7 @@ jobs:
         if: needs.select.outputs.serial == 'SERIAL'
         env:
           TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
+          TEST_MONGODB_URI: mongodb://127.0.0.1:27017
           TEST_CLI_RUNTIME: dist
           # H7: the role-separation suites play the cluster administrator of the disposable service container only.
           TEST_DATABASE_BOOTSTRAP_URL: postgresql://ci_bootstrap:ci-bootstrap-only@127.0.0.1:5432/postgres
@@ -319,6 +337,7 @@ jobs:
     timeout-minutes: 15
     services:
       postgres: *postgres
+      mongo: *mongo
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -334,6 +353,7 @@ jobs:
       - name: Run end-to-end smoke journeys
         env:
           TEST_DATABASE_ADMIN_URL: postgresql://ci_integration:ci-integration-only@127.0.0.1:5432/postgres
+          TEST_MONGODB_URI: mongodb://127.0.0.1:27017
         run: pnpm test:e2e
 
   deploy:
