@@ -39,6 +39,32 @@ services:
       - slm-network
 
   # ----------------------------------------------------------------------------
+  # 1b. AI HISTORY STORE: MongoDB 8 (ADR-0020, WDP decision of 17/11/2026: a service here, never Atlas)
+  # Only on slm-network: no published port. `.env` gives the root user (MONGODB_ROOT_USER/MONGODB_ROOT_PASSWORD); `.env.app` gives
+  # the API and the worker `MONGODB_URI=mongodb://<that user>:<that password>@mongodb:27017/?authSource=admin`. The volume is
+  # never removed by a deploy or a rollback (scripts/ops/deploy-release.sh); back it up with mongodump
+  # (docs/operations/wdp-mongodb-deploy.md).
+  # ----------------------------------------------------------------------------
+  mongodb:
+    image: mongo:8.0
+    container_name: slm-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USER:?Set MONGODB_ROOT_USER in .env}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD:?Set MONGODB_ROOT_PASSWORD in .env}
+    volumes:
+      - mongodb-data:/data/db
+    healthcheck:
+      # Authenticated: the temporary server of the first initialisation has no user yet, so it is not "healthy" before the root user exists.
+      test: ["CMD-SHELL", "mongosh --quiet -u \"$$MONGO_INITDB_ROOT_USERNAME\" -p \"$$MONGO_INITDB_ROOT_PASSWORD\" --authenticationDatabase admin --eval 'db.adminCommand({ping:1}).ok' | grep -q 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+    networks:
+      - slm-network
+
+  # ----------------------------------------------------------------------------
   # 2. BACKEND API: NestJS Core — runtime role only
   # ----------------------------------------------------------------------------
   api:
@@ -47,6 +73,8 @@ services:
     restart: unless-stopped
     depends_on:
       postgres:
+        condition: service_healthy
+      mongodb:
         condition: service_healthy
     env_file:
       - .env.app
@@ -69,6 +97,8 @@ services:
     command: ["node", "dist/worker.js"]
     depends_on:
       postgres:
+        condition: service_healthy
+      mongodb:
         condition: service_healthy
     env_file:
       - .env.app
@@ -148,6 +178,7 @@ services:
 
 volumes:
   postgres-data:
+  mongodb-data:
   caddy-data:
   caddy-config:
 

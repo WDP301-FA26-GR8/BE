@@ -33,6 +33,9 @@ const COMPOSE_ONLY = new Set([
   'MINIO_PORT',
   'MINIO_CONSOLE_PORT',
   'MONGODB_PORT',
+  // The root user of the `mongodb` service of docker-compose.prod.yml; the application reads the user inside MONGODB_URI.
+  'MONGODB_ROOT_USER',
+  'MONGODB_ROOT_PASSWORD',
   'DOMAIN',
 ]);
 
