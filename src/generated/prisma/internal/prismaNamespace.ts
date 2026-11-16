@@ -398,7 +398,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   AiInvocation: 'AiInvocation',
-  AiInvocationContent: 'AiInvocationContent',
+  AiInvocationResult: 'AiInvocationResult',
+  AiHistoryDelivery: 'AiHistoryDelivery',
   AuditEvent: 'AuditEvent',
   BudgetProposal: 'BudgetProposal',
   BudgetProposalLine: 'BudgetProposalLine',
@@ -587,7 +588,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aiInvocation" | "aiInvocationContent" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "budgetCycle" | "budgetDepartmentCeiling" | "seatMonthCharge" | "seatMonthRun" | "budgetReviewPeriod" | "budgetReviewLine" | "budgetCommitmentSeatMonthReversal" | "budgetAdjustment" | "budgetThresholdAlert" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planUsageRate" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "contractSubscription" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "avatarPurge" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "assignmentRenewalWindow" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "poolGrantAvoidedCost" | "departmentSoftwareEntry" | "departmentSoftwareProposal" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "ghostSeatRuleRun" | "ghostSeatRuleSkip" | "ghostSeatRecommendation" | "ghostSeatDecision" | "ghostSeatReturn" | "ghostSeatExemption" | "ghostSeatApplicationThreshold" | "ghostSeatSeatState" | "ghostSeatEscalation" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "itAdminHandover" | "policy" | "policyVersion" | "policyAcknowledgement" | "decisionChecklist" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "requestReserveConfirmation" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "yearStartCommitmentRun" | "purchaseInvoice" | "purchaseInvoiceDocument" | "invoiceDiscrepancyCase" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection" | "usageSource" | "usageImport" | "usageImportRow" | "usageActivityDay" | "usageIdentityMapping" | "usageUnmatchedIdentity" | "usageNoAssignmentFinding" | "vendorAccountDiscrepancy" | "outOfProcessCase"
+    modelProps: "aiInvocation" | "aiInvocationResult" | "aiHistoryDelivery" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "budgetCycle" | "budgetDepartmentCeiling" | "seatMonthCharge" | "seatMonthRun" | "budgetReviewPeriod" | "budgetReviewLine" | "budgetCommitmentSeatMonthReversal" | "budgetAdjustment" | "budgetThresholdAlert" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planUsageRate" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "contractSubscription" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "avatarPurge" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "assignmentRenewalWindow" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "poolGrantAvoidedCost" | "departmentSoftwareEntry" | "departmentSoftwareProposal" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "ghostSeatRuleRun" | "ghostSeatRuleSkip" | "ghostSeatRecommendation" | "ghostSeatDecision" | "ghostSeatReturn" | "ghostSeatExemption" | "ghostSeatApplicationThreshold" | "ghostSeatSeatState" | "ghostSeatEscalation" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "itAdminHandover" | "policy" | "policyVersion" | "policyAcknowledgement" | "decisionChecklist" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "requestReserveConfirmation" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "yearStartCommitmentRun" | "purchaseInvoice" | "purchaseInvoiceDocument" | "invoiceDiscrepancyCase" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection" | "usageSource" | "usageImport" | "usageImportRow" | "usageActivityDay" | "usageIdentityMapping" | "usageUnmatchedIdentity" | "usageNoAssignmentFinding" | "vendorAccountDiscrepancy" | "outOfProcessCase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -665,77 +666,151 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    AiInvocationContent: {
-      payload: Prisma.$AiInvocationContentPayload<ExtArgs>
-      fields: Prisma.AiInvocationContentFieldRefs
+    AiInvocationResult: {
+      payload: Prisma.$AiInvocationResultPayload<ExtArgs>
+      fields: Prisma.AiInvocationResultFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.AiInvocationContentFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload> | null
+          args: Prisma.AiInvocationResultFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.AiInvocationContentFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>
+          args: Prisma.AiInvocationResultFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>
         }
         findFirst: {
-          args: Prisma.AiInvocationContentFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload> | null
+          args: Prisma.AiInvocationResultFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.AiInvocationContentFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>
+          args: Prisma.AiInvocationResultFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>
         }
         findMany: {
-          args: Prisma.AiInvocationContentFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>[]
+          args: Prisma.AiInvocationResultFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>[]
         }
         create: {
-          args: Prisma.AiInvocationContentCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>
+          args: Prisma.AiInvocationResultCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>
         }
         createMany: {
-          args: Prisma.AiInvocationContentCreateManyArgs<ExtArgs>
+          args: Prisma.AiInvocationResultCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.AiInvocationContentCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>[]
+          args: Prisma.AiInvocationResultCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>[]
         }
         delete: {
-          args: Prisma.AiInvocationContentDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>
+          args: Prisma.AiInvocationResultDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>
         }
         update: {
-          args: Prisma.AiInvocationContentUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>
+          args: Prisma.AiInvocationResultUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>
         }
         deleteMany: {
-          args: Prisma.AiInvocationContentDeleteManyArgs<ExtArgs>
+          args: Prisma.AiInvocationResultDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.AiInvocationContentUpdateManyArgs<ExtArgs>
+          args: Prisma.AiInvocationResultUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.AiInvocationContentUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>[]
+          args: Prisma.AiInvocationResultUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>[]
         }
         upsert: {
-          args: Prisma.AiInvocationContentUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationContentPayload>
+          args: Prisma.AiInvocationResultUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiInvocationResultPayload>
         }
         aggregate: {
-          args: Prisma.AiInvocationContentAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAiInvocationContent>
+          args: Prisma.AiInvocationResultAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAiInvocationResult>
         }
         groupBy: {
-          args: Prisma.AiInvocationContentGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AiInvocationContentGroupByOutputType>[]
+          args: Prisma.AiInvocationResultGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiInvocationResultGroupByOutputType>[]
         }
         count: {
-          args: Prisma.AiInvocationContentCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AiInvocationContentCountAggregateOutputType> | number
+          args: Prisma.AiInvocationResultCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiInvocationResultCountAggregateOutputType> | number
+        }
+      }
+    }
+    AiHistoryDelivery: {
+      payload: Prisma.$AiHistoryDeliveryPayload<ExtArgs>
+      fields: Prisma.AiHistoryDeliveryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AiHistoryDeliveryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AiHistoryDeliveryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>
+        }
+        findFirst: {
+          args: Prisma.AiHistoryDeliveryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AiHistoryDeliveryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>
+        }
+        findMany: {
+          args: Prisma.AiHistoryDeliveryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>[]
+        }
+        create: {
+          args: Prisma.AiHistoryDeliveryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>
+        }
+        createMany: {
+          args: Prisma.AiHistoryDeliveryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AiHistoryDeliveryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>[]
+        }
+        delete: {
+          args: Prisma.AiHistoryDeliveryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>
+        }
+        update: {
+          args: Prisma.AiHistoryDeliveryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>
+        }
+        deleteMany: {
+          args: Prisma.AiHistoryDeliveryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AiHistoryDeliveryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AiHistoryDeliveryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>[]
+        }
+        upsert: {
+          args: Prisma.AiHistoryDeliveryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiHistoryDeliveryPayload>
+        }
+        aggregate: {
+          args: Prisma.AiHistoryDeliveryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAiHistoryDelivery>
+        }
+        groupBy: {
+          args: Prisma.AiHistoryDeliveryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiHistoryDeliveryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AiHistoryDeliveryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiHistoryDeliveryCountAggregateOutputType> | number
         }
       }
     }
@@ -13599,23 +13674,46 @@ export const AiInvocationScalarFieldEnum = {
   errorCode: 'errorCode',
   createdAt: 'createdAt',
   startedAt: 'startedAt',
-  finishedAt: 'finishedAt'
+  finishedAt: 'finishedAt',
+  historyState: 'historyState',
+  historyVersion: 'historyVersion',
+  historyStoredVersion: 'historyStoredVersion',
+  historyGeneration: 'historyGeneration',
+  historyErrorCode: 'historyErrorCode',
+  historyPurgedAt: 'historyPurgedAt'
 } as const
 
 export type AiInvocationScalarFieldEnum = (typeof AiInvocationScalarFieldEnum)[keyof typeof AiInvocationScalarFieldEnum]
 
 
-export const AiInvocationContentScalarFieldEnum = {
+export const AiInvocationResultScalarFieldEnum = {
   invocationId: 'invocationId',
-  context: 'context',
-  promptText: 'promptText',
-  rawResponse: 'rawResponse',
-  parsed: 'parsed',
   result: 'result',
   createdAt: 'createdAt'
 } as const
 
-export type AiInvocationContentScalarFieldEnum = (typeof AiInvocationContentScalarFieldEnum)[keyof typeof AiInvocationContentScalarFieldEnum]
+export type AiInvocationResultScalarFieldEnum = (typeof AiInvocationResultScalarFieldEnum)[keyof typeof AiInvocationResultScalarFieldEnum]
+
+
+export const AiHistoryDeliveryScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  invocationId: 'invocationId',
+  generation: 'generation',
+  version: 'version',
+  operation: 'operation',
+  payload: 'payload',
+  attempts: 'attempts',
+  availableAt: 'availableAt',
+  leaseToken: 'leaseToken',
+  leaseUntil: 'leaseUntil',
+  closedAt: 'closedAt',
+  parkedAt: 'parkedAt',
+  lastErrorCode: 'lastErrorCode',
+  createdAt: 'createdAt'
+} as const
+
+export type AiHistoryDeliveryScalarFieldEnum = (typeof AiHistoryDeliveryScalarFieldEnum)[keyof typeof AiHistoryDeliveryScalarFieldEnum]
 
 
 export const AuditEventScalarFieldEnum = {
@@ -16887,6 +16985,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'AiHistoryState'
+ */
+export type EnumAiHistoryStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiHistoryState'>
+    
+
+
+/**
+ * Reference to a field of type 'AiHistoryState[]'
+ */
+export type ListEnumAiHistoryStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiHistoryState[]'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -16897,6 +17009,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'AiHistoryOperation'
+ */
+export type EnumAiHistoryOperationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiHistoryOperation'>
+    
+
+
+/**
+ * Reference to a field of type 'AiHistoryOperation[]'
+ */
+export type ListEnumAiHistoryOperationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiHistoryOperation[]'>
     
 
 
@@ -19662,7 +19788,8 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   aiInvocation?: Prisma.AiInvocationOmit
-  aiInvocationContent?: Prisma.AiInvocationContentOmit
+  aiInvocationResult?: Prisma.AiInvocationResultOmit
+  aiHistoryDelivery?: Prisma.AiHistoryDeliveryOmit
   auditEvent?: Prisma.AuditEventOmit
   budgetProposal?: Prisma.BudgetProposalOmit
   budgetProposalLine?: Prisma.BudgetProposalLineOmit

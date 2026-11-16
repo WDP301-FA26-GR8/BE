@@ -1,11 +1,11 @@
-import type { QueueContext, QueueSummaryParsed } from '../ai-service/ai-service.types';
-import type { InvocationResult } from './invocation-content.json';
+import type { QueueSummaryParsed } from '../ai-service/ai-service.types';
+import type { InvocationResult } from './invocation-result.json';
 
 /** The features of the AI that record their calls; the finance narrative (`US-15-06`) is not one yet. */
 export type AiFeature = 'ACCESS_REQUEST_QUEUE_SUMMARY';
 
 /**
- * PENDING and RUNNING are live; the others are final. STALE is written only by the purge, to a COMPLETED call whose content it
+ * PENDING and RUNNING are live; the others are final. STALE is written only by the purge, to a COMPLETED call whose history it
  * deletes.
  */
 export type InvocationStatus = 'PENDING' | 'RUNNING' | 'COMPLETED' | 'NO_VALID_OUTPUT' | 'STALE' | 'FAILED';
@@ -23,7 +23,6 @@ export interface InvocationKey {
 export interface NewInvocation extends InvocationKey {
   actorEmployeeId: string;
   sourceRevision: string;
-  context: QueueContext;
   /** PENDING for a call that will run; FAILED for one recorded as it failed (its source could not be read). */
   status: 'PENDING' | 'FAILED';
   errorCode: string | null;
@@ -65,15 +64,4 @@ export interface InvocationOutcome {
     parsed: QueueSummaryParsed | null;
     result: InvocationResult | null;
   } | null;
-}
-
-/** What was said to the model and what came back for one call, as the Super Admin reads it; the fields the table lets be empty are null. */
-export interface InvocationContentRecord {
-  invocationId: string;
-  organizationId: string;
-  context: QueueContext;
-  promptText: string | null;
-  rawResponse: string | null;
-  parsed: QueueSummaryParsed | null;
-  result: InvocationResult | null;
 }

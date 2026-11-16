@@ -233,7 +233,13 @@ describe('the AI summary when the AI is off or failing (integration, real HTTP t
         error_code: 'AI.PROVIDER_TIMEOUT',
         model_id: null,
       });
-      expect(await h.contentRow(invocationId)).toMatchObject({ prompt_text: null, raw_response: null, result: null });
+      // Taken for stuck before the model answered: no result, and the history keeps only what was sent.
+      expect(await h.resultRow(invocationId)).toBeUndefined();
+      expect(await h.historyDocument(invocationId)).toMatchObject({
+        promptText: null,
+        rawResponse: null,
+        parsed: null,
+      });
       expect((await h.aiEvents(invocationId)).map((event) => event.action)).toEqual([
         'AI_INVOCATION.REQUESTED',
         'AI_INVOCATION.FAILED',

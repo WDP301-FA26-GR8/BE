@@ -161,6 +161,8 @@ const PUBLIC_CONTRACT_EXPORTS: ReadonlySet<string> = new Set([
   'SubscriptionOwnerAssignmentCliModule: SubscriptionOwnerAssignmentApi',
   // US-15-05: the entry service of `pnpm ops:ai-purge`.
   'AiAssistPurgeCliModule: AiPurgeApi',
+  // ADR-0020: the delivery of the raw AI history to MongoDB, which the loop of the worker runs.
+  'AiAssistHistoryFacadeModule: AiHistoryDeliveryApi',
   // F01: the service `pnpm ops:cost-center-direction` runs and the organization facade asks (whether the link is activated).
   'CostCenterDirectionCliModule: CostCenterDirectionApi',
   // F19 (Task 5.5): the controlled procedure for an event about the Super Admin, and the writes of the events it runs with an operator

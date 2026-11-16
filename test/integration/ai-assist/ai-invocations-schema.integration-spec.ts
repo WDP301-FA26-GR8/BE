@@ -172,32 +172,111 @@ describe('the tables of the AI summary keep one live call for each person and qu
     },
   );
 
-  describe('ai_invocation_contents', () => {
-    it('holds the content of one call, once, and only of a call that exists', async () => {
+  it('has no ai_invocation_contents any more: the raw history is in MongoDB, the result in ai_invocation_results', async () => {
+    const { rows } = await client.query<{ name: string | null }>(
+      `SELECT to_regclass('public.ai_invocation_contents') AS name`,
+    );
+
+    expect(rows[0].name).toBeNull();
+  });
+
+  describe('ai_invocation_results', () => {
+    it('holds the result of one call, once, only of a call that exists, and never empty', async () => {
       const id = randomUUID();
-      await insertCall('RUNNING', { revision: 'rev-content', id });
-      const insert = `INSERT INTO ai_invocation_contents (invocation_id, context) VALUES ($1, '{"requests": []}'::jsonb)`;
+      await insertCall('COMPLETED', { revision: 'rev-result', id });
+      const insert = `INSERT INTO ai_invocation_results (invocation_id, result) VALUES ($1, '{"total": 0}'::jsonb)`;
 
       expect(await attempt(insert, [id])).toEqual({ code: null, constraint: null });
       expect(await attempt(insert, [id])).toMatchObject({ code: '23505' });
       expect(await attempt(insert, [randomUUID()])).toMatchObject({ code: '23503' });
-    });
-
-    it('leaves the prompt, the raw response, the parsed output and the result empty until there is something to keep, and the context never', async () => {
-      const id = randomUUID();
-      await insertCall('RUNNING', { revision: 'rev-content-null', id });
-
-      expect(await attempt(`INSERT INTO ai_invocation_contents (invocation_id) VALUES ($1)`, [id])).toMatchObject({
+      expect(
+        await attempt(`INSERT INTO ai_invocation_results (invocation_id) VALUES ($1)`, [randomUUID()]),
+      ).toMatchObject({
         code: '23502',
       });
-      await client.query(`INSERT INTO ai_invocation_contents (invocation_id, context) VALUES ($1, '{}'::jsonb)`, [id]);
-      const row = await client.query<{ created_at: Date }>(
-        `SELECT prompt_text, raw_response, parsed, result, created_at FROM ai_invocation_contents WHERE invocation_id = $1`,
+    });
+  });
+
+  describe('the history columns of ai_invocations', () => {
+    it('start PENDING at version 0 of generation 0, nothing confirmed', async () => {
+      const id = randomUUID();
+      await insertCall('PENDING', { revision: 'rev-history-default', id });
+      const { rows } = await client.query(
+        `SELECT history_state, history_version, history_stored_version, history_generation, history_purged_at
+           FROM ai_invocations WHERE id = $1`,
         [id],
       );
 
-      expect(row.rows[0]).toMatchObject({ prompt_text: null, raw_response: null, parsed: null, result: null });
-      expect(row.rows[0].created_at).toBeInstanceOf(Date);
+      expect(rows[0]).toEqual({
+        history_state: 'PENDING',
+        history_version: 0,
+        history_stored_version: 0,
+        history_generation: 0,
+        history_purged_at: null,
+      });
+    });
+
+    it('never confirm more than was written, and carry the purge stamp exactly while purging or purged', async () => {
+      const id = randomUUID();
+      await insertCall('COMPLETED', { revision: 'rev-history-check', id });
+      const update = (set: string) => attempt(`UPDATE ai_invocations SET ${set} WHERE id = $1`, [id]);
+
+      expect(await update('history_stored_version = 1')).toMatchObject({
+        code: '23514',
+        constraint: 'ai_invocations_history_versions_check',
+      });
+      expect(await update(`history_state = 'PURGING'`)).toMatchObject({
+        code: '23514',
+        constraint: 'ai_invocations_history_purged_at_check',
+      });
+      expect(await update(`history_purged_at = now()`)).toMatchObject({
+        constraint: 'ai_invocations_history_purged_at_check',
+      });
+      expect(await update(`history_state = 'PURGED', history_purged_at = now()`)).toEqual({
+        code: null,
+        constraint: null,
+      });
+    });
+  });
+
+  describe('ai_history_deliveries', () => {
+    const delivery = (id: string, operation: string, payload: string | null, extra = '') =>
+      attempt(
+        `INSERT INTO ai_history_deliveries (id, organization_id, invocation_id, generation, version, operation, payload,
+                                            available_at${extra === '' ? '' : ', ' + extra.split('=')[0]})
+         VALUES ($1, $2, $3, 0, 1, $4::"AiHistoryOperation", $5::jsonb, now()${extra === '' ? '' : ', ' + extra.split('=')[1]})`,
+        [randomUUID(), organizationId, id, operation, payload],
+      );
+
+    it('keeps one intent per call, generation, version and operation, only of a call that exists', async () => {
+      const id = randomUUID();
+      await insertCall('PENDING', { revision: 'rev-delivery', id });
+
+      expect(await delivery(id, 'SNAPSHOT', '{}')).toEqual({ code: null, constraint: null });
+      expect(await delivery(id, 'SNAPSHOT', '{}')).toMatchObject({
+        code: '23505',
+        constraint: 'ai_history_deliveries_invocation_id_generation_version_oper_key',
+      });
+      expect(await delivery(id, 'PURGE', null)).toEqual({ code: null, constraint: null });
+      expect(await delivery(randomUUID(), 'SNAPSHOT', '{}')).toMatchObject({ code: '23503' });
+    });
+
+    it('carries no content in a tombstone, and a payload in a snapshot until it is closed', async () => {
+      const id = randomUUID();
+      await insertCall('PENDING', { revision: 'rev-delivery-payload', id });
+
+      expect(await delivery(id, 'PURGE', '{}')).toMatchObject({ constraint: 'ai_history_deliveries_payload_check' });
+      expect(await delivery(id, 'SNAPSHOT', null)).toMatchObject({ constraint: 'ai_history_deliveries_payload_check' });
+      expect(await delivery(id, 'SNAPSHOT', null, 'closed_at=now()')).toEqual({ code: null, constraint: null });
+    });
+
+    it('holds a lease token exactly with its end', async () => {
+      const id = randomUUID();
+      await insertCall('PENDING', { revision: 'rev-delivery-lease', id });
+
+      expect(await delivery(id, 'SNAPSHOT', '{}', `lease_token=gen_random_uuid()`)).toMatchObject({
+        constraint: 'ai_history_deliveries_lease_check',
+      });
     });
   });
 });

@@ -12,21 +12,6 @@ import {
 } from '../../support/disposable-database';
 import { testConfig } from '../../support/test-config';
 
-const CONTEXT: NewInvocation['context'] = {
-  generatedAt: '2026-11-04T09:00:00.000Z',
-  requests: [
-    {
-      sourceRef: 'R001',
-      stepKind: 'SPEND_APPROVAL',
-      softwareName: 'Notion',
-      beneficiaryDisplayName: 'Nhóm 5 người',
-      reason: 'Họp nhóm',
-      requestedDurationLabel: '6 tháng',
-      estimatedCostRef: 'C001',
-    },
-  ],
-};
-
 const OUTCOME: InvocationOutcome = {
   status: 'COMPLETED',
   errorCode: null,
@@ -82,7 +67,6 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
     actorEmployeeId: randomUUID(),
     feature: 'ACCESS_REQUEST_QUEUE_SUMMARY',
     sourceRevision: 'a'.repeat(64),
-    context: CONTEXT,
     status: 'PENDING',
     errorCode: null,
     at: new Date(),
@@ -97,11 +81,9 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
 
     expect(isUniqueViolation(second, 'ai_invocations_active_per_revision', 'source_revision')).toBe(true);
     await expect(repo.findLive(input)).resolves.toEqual({ id, status: 'PENDING' });
-    const content = await prisma.aiInvocationContent.findUniqueOrThrow({ where: { invocationId: id } });
-    expect(content.context).toEqual(CONTEXT);
   });
 
-  it('runs a call and records its end with the metadata and the content, once', async () => {
+  it('runs a call and records its end with the metadata and the result of the checks, once', async () => {
     const input = call();
     const { id } = await runner.run((tx) => repo.insert(tx, input));
 
@@ -110,7 +92,7 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
     await expect(runner.run((tx) => repo.finish(tx, id, OUTCOME, new Date()))).resolves.toBe(true);
     await expect(runner.run((tx) => repo.finish(tx, id, OUTCOME, new Date()))).resolves.toBe(false);
 
-    const row = await prisma.aiInvocation.findUniqueOrThrow({ where: { id }, include: { content: true } });
+    const row = await prisma.aiInvocation.findUniqueOrThrow({ where: { id }, include: { result: true } });
     expect(row).toMatchObject({
       status: 'COMPLETED',
       configHash: 'f'.repeat(64),
@@ -120,7 +102,10 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
       completionTokens: 30,
     });
     expect(row.finishedAt).toBeInstanceOf(Date);
-    expect(row.content).toMatchObject({ promptText: 'the prompt', parsed: OUTCOME.content?.parsed });
+    // The prompt and the answer are the raw history (MongoDB), never a column here.
+    expect(row.result?.result).toEqual(OUTCOME.content?.result);
+    expect(JSON.stringify(row)).not.toContain('the prompt');
+    await expect(runner.run((tx) => repo.resultOf(tx, id))).resolves.toEqual(OUTCOME.content?.result);
     await expect(repo.findOwned(id, input.actorAppUserId)).resolves.toMatchObject({
       id,
       status: 'COMPLETED',
@@ -130,15 +115,31 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
     await expect(repo.findLive(input)).resolves.toEqual({ id, status: 'COMPLETED' });
   });
 
-  it('reads no call whose content was purged, and keeps the call itself', async () => {
+  it('reads no call whose history was purged, and keeps the call itself', async () => {
     const input = call();
     const { id } = await runner.run((tx) => repo.insert(tx, input));
     await expect(repo.findOwned(id, input.actorAppUserId)).resolves.toMatchObject({ id });
 
-    await prisma.aiInvocationContent.delete({ where: { invocationId: id } });
+    await prisma.aiInvocation.update({
+      where: { id },
+      data: { historyState: 'PURGING', historyPurgedAt: new Date(), historyGeneration: 1 },
+    });
 
     await expect(repo.findOwned(id, input.actorAppUserId)).resolves.toBeNull();
     await expect(prisma.aiInvocation.findUnique({ where: { id } })).resolves.toMatchObject({ id });
+  });
+
+  it('drops the results of purged calls and turns a COMPLETED call STALE, so it no longer holds its revision', async () => {
+    const input = call();
+    const { id } = await runner.run((tx) => repo.insert(tx, input));
+    await repo.markRunning(id, new Date());
+    await runner.run((tx) => repo.finish(tx, id, OUTCOME, new Date()));
+
+    await runner.run((tx) => repo.dropResults(tx, [id]));
+
+    await expect(prisma.aiInvocation.findUniqueOrThrow({ where: { id } })).resolves.toMatchObject({ status: 'STALE' });
+    await expect(runner.run((tx) => repo.resultOf(tx, id))).resolves.toBeNull();
+    await expect(repo.findLive(input)).resolves.toBeNull();
   });
 
   it('takes a call stuck for too long for FAILED, and a run that ends after that writes nothing', async () => {
@@ -152,9 +153,9 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
     await expect(runner.run((tx) => repo.expire(tx, id, cutoff, new Date()))).resolves.toBe(false);
     await expect(runner.run((tx) => repo.finish(tx, id, OUTCOME, new Date()))).resolves.toBe(false);
 
-    const row = await prisma.aiInvocation.findUniqueOrThrow({ where: { id }, include: { content: true } });
+    const row = await prisma.aiInvocation.findUniqueOrThrow({ where: { id }, include: { result: true } });
     expect(row).toMatchObject({ status: 'FAILED', errorCode: 'AI.PROVIDER_TIMEOUT', promptTokens: null });
-    expect(row.content?.promptText).toBeNull();
+    expect(row.result).toBeNull();
     // A failed call no longer holds the revision: the next one may be recorded.
     await expect(repo.findLive(input)).resolves.toBeNull();
     await expect(runner.run((tx) => repo.insert(tx, call({ actorAppUserId: input.actorAppUserId })))).resolves.toEqual({
@@ -169,10 +170,7 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
 
     await expect(runner.run((tx) => repo.stuckOf(tx, input, new Date(Date.now() - 150_000)))).resolves.toEqual([]);
     const failed = await runner.run((tx) =>
-      repo.insert(
-        tx,
-        call({ status: 'FAILED', errorCode: 'AI.SOURCE_UNREADABLE', context: { ...CONTEXT, requests: [] } }),
-      ),
+      repo.insert(tx, call({ status: 'FAILED', errorCode: 'AI.SOURCE_UNREADABLE' })),
     );
     await expect(prisma.aiInvocation.findUniqueOrThrow({ where: { id: failed.id } })).resolves.toMatchObject({
       status: 'FAILED',

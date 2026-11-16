@@ -16,6 +16,25 @@ export const AiFeature = {
 export type AiFeature = (typeof AiFeature)[keyof typeof AiFeature]
 
 
+export const AiHistoryState = {
+  PENDING: 'PENDING',
+  AVAILABLE: 'AVAILABLE',
+  ERROR: 'ERROR',
+  PURGING: 'PURGING',
+  PURGED: 'PURGED'
+} as const
+
+export type AiHistoryState = (typeof AiHistoryState)[keyof typeof AiHistoryState]
+
+
+export const AiHistoryOperation = {
+  SNAPSHOT: 'SNAPSHOT',
+  PURGE: 'PURGE'
+} as const
+
+export type AiHistoryOperation = (typeof AiHistoryOperation)[keyof typeof AiHistoryOperation]
+
+
 export const AiInvocationStatus = {
   PENDING: 'PENDING',
   RUNNING: 'RUNNING',

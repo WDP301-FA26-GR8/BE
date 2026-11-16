@@ -87655,7 +87655,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The context sent to the AI service, the prompt, the raw answer, the parsed output and the result of the checks of the backend, as stored. The fields a call never got (it failed before the model answered) are null. Every read writes the event AI_INVOCATION.CONTENT_READ with the id of the call, in the same transaction.",
+            "description": "The context sent to the AI service, the prompt, the raw answer and the parsed output, from the history store (MongoDB), and the result of the checks of the backend, from PostgreSQL. The fields a call never got (it failed before the model answered) are null. Every read writes the event AI_INVOCATION.CONTENT_READ with the id of the call; the content is returned only once that event is committed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -87721,7 +87721,7 @@
             }
           },
           "404": {
-            "description": "There is no content for the id: the call was never made, or its content was purged (AI.NOT_FOUND).",
+            "description": "There is no content for the id: the call was never made, or its history was purged (AI.NOT_FOUND).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -87733,6 +87733,27 @@
                       "error": {
                         "code": "AI.NOT_FOUND",
                         "message": "There is no such content.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The last snapshot of the history is not in the history store yet (AI.HISTORY_PENDING): the worker delivers it shortly. An earlier snapshot is never served as the last one. Nothing was recorded.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AI.HISTORY_PENDING": {
+                    "summary": "The history of this call is still being stored. Try again shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AI.HISTORY_PENDING",
+                        "message": "The history of this call is still being stored. Try again shortly.",
                         "requestId": "req_example"
                       }
                     }
@@ -87785,7 +87806,7 @@
             }
           },
           "503": {
-            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE, SERVICE_UNAVAILABLE), or the history store (MongoDB) cannot give the content now (AI.HISTORY_UNAVAILABLE). Nothing was recorded.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -87808,6 +87829,17 @@
                       "error": {
                         "code": "SERVICE_UNAVAILABLE",
                         "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "AI.HISTORY_UNAVAILABLE": {
+                    "summary": "The history of this call cannot be opened now.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AI.HISTORY_UNAVAILABLE",
+                        "message": "The history of this call cannot be opened now.",
                         "requestId": "req_example"
                       }
                     }

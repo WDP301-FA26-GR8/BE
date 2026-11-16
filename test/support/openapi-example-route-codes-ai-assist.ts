@@ -17,5 +17,8 @@ export const ROUTE_ERROR_CODES_AI_ASSIST: Readonly<
   },
   aiInvocationContentGet: {
     '404': ['AI.NOT_FOUND'],
+    // ADR-0020: the raw history is read from MongoDB once the worker delivered it.
+    '409': ['AI.HISTORY_PENDING'],
+    '503': ['AI.HISTORY_UNAVAILABLE'],
   },
 };
