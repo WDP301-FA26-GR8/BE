@@ -1,5 +1,7 @@
 import { type Db, MongoServerError } from 'mongodb';
 import type { MongoConnection } from '../../../infrastructure/mongodb/mongodb-connection.service';
+import { MongoUnavailableError } from '../../../infrastructure/mongodb/mongodb.errors';
+import { HistoryWriteRefusedError } from './invocation-history.errors';
 import { InvocationHistoryStoreRepo } from './invocation-history-store.repo';
 import type { HistorySnapshot } from './invocation-history.types';
 
@@ -45,6 +47,53 @@ describe('InvocationHistoryStoreRepo', () => {
       'ai_invocation_histories',
       expect.objectContaining({ validator: expect.any(Object) as unknown }),
     );
+  });
+
+  describe('a write MongoDB fails (O-5)', () => {
+    const ID = '7b0e4b5e-0000-4000-8000-000000000001';
+    const snapshot = {
+      invocationId: ID,
+      organizationId: 'org-1',
+      generation: 0,
+      version: 1,
+      payloadHash: 'h1',
+      snapshot: {
+        context: null,
+        promptText: 'p',
+        rawResponse: 'r',
+        parsed: null,
+        validation: null,
+      } as unknown as HistorySnapshot,
+      at: new Date(),
+    };
+
+    it.each([
+      [
+        'the validator refuses the document (121)',
+        () => new MongoServerError({ code: 121, errmsg: 'Document failed validation' }),
+      ],
+      [
+        'the document is over the size limit (10334)',
+        () => new MongoServerError({ code: 10334, errmsg: 'BSONObj size is invalid' }),
+      ],
+      ['the driver cannot encode it', () => Object.assign(new Error('Unsupported type'), { name: 'BSONError' })],
+    ])('refuses for good when %s: the delivery parks it, MongoDB is not down', async (_what, failure) => {
+      const { store, collection } = world();
+      collection.updateOne.mockRejectedValue(failure());
+
+      await expect(store.writeSnapshot(snapshot)).rejects.toMatchObject({ refusal: 'PAYLOAD_INVALID' });
+      await expect(store.writeSnapshot(snapshot)).rejects.toBeInstanceOf(HistoryWriteRefusedError);
+    });
+
+    it('stays a MongoDB that is down for a failure that may pass: a timeout, a refused connection, a server that does not answer', async () => {
+      const { store, collection } = world();
+      collection.updateOne.mockRejectedValue(new Error('connect ECONNREFUSED 10.0.0.1:27017'));
+
+      const error = await store.writeSnapshot(snapshot).catch((caught: unknown) => caught);
+
+      expect(error).toBeInstanceOf(MongoUnavailableError);
+      expect(error).not.toBeInstanceOf(HistoryWriteRefusedError);
+    });
   });
 
   describe('two deliveries of one call crossing (v1 and v2 in the same wave, no document yet)', () => {

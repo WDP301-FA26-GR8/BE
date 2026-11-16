@@ -97,6 +97,22 @@ const CROSSED_WRITE_ATTEMPTS = 3;
 
 const isDuplicateKey = (error: unknown) => error instanceof MongoServerError && error.code === DUPLICATE_KEY;
 
+/**
+ * What MongoDB answers to a write that retrying never changes: the validator of the collection refused the document (121), the
+ * document is over the size limit (10334), or the driver could not encode it (a BSON error). The same snapshot would be refused
+ * again, so the delivery parks the row (`PAYLOAD_INVALID`) instead of retrying it for ever as if MongoDB were down.
+ */
+const NON_RETRYABLE_WRITE_CODES: ReadonlySet<number> = new Set([121, 10334]);
+
+/** The error of a failed write: a refusal for good, or the one error callers handle for a MongoDB that may answer later. */
+function writeFailure(error: unknown): HistoryWriteRefusedError | MongoUnavailableError {
+  const refused =
+    (error instanceof MongoServerError && NON_RETRYABLE_WRITE_CODES.has(Number(error.code))) ||
+    (error instanceof Error && error.name === 'BSONError');
+
+  return refused ? new HistoryWriteRefusedError('PAYLOAD_INVALID') : unavailable(error);
+}
+
 /** Anything the driver throws, as the one error callers handle: its message (which can name the host) stays in `cause`. */
 function unavailable(error: unknown): MongoUnavailableError {
   return error instanceof MongoUnavailableError ? error : new MongoUnavailableError({ cause: error });
@@ -163,7 +179,7 @@ export class InvocationHistoryStoreRepo {
 
       return 'WRITTEN';
     } catch (error) {
-      if (!isDuplicateKey(error)) throw unavailable(error);
+      if (!isDuplicateKey(error)) throw writeFailure(error);
     }
     const outcome = snapshotOutcomeAgainst(await this.existing(collection, input.invocationId), input);
     if (outcome !== 'WRITTEN' && outcome !== 'OBSOLETE' && outcome !== 'RETRY')
@@ -210,7 +226,7 @@ export class InvocationHistoryStoreRepo {
 
       return 'WRITTEN';
     } catch (error) {
-      if (!isDuplicateKey(error)) throw unavailable(error);
+      if (!isDuplicateKey(error)) throw writeFailure(error);
     }
     const outcome = tombstoneOutcomeAgainst(await this.existing(collection, input.invocationId), input);
     if (outcome !== 'WRITTEN' && outcome !== 'RETRY') throw new HistoryWriteRefusedError(outcome);

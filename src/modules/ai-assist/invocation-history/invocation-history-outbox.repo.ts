@@ -146,6 +146,7 @@ export class InvocationHistoryOutboxRepo {
    * makes a PURGING history PURGED. False when the lease is no longer ours (nothing written).
    */
   async acknowledge(tx: DbTx, row: ClaimedDelivery, leaseToken: string, at: Date): Promise<boolean> {
+    await this.lockCall(tx, row.invocationId);
     if (!(await this.close(tx, row.id, leaseToken, at, null))) return false;
     if (row.operation === 'PURGE') {
       await tx.aiInvocation.updateMany({
@@ -185,6 +186,7 @@ export class InvocationHistoryOutboxRepo {
    * may be delivered already, and a purge moves the call on. False when the lease is no longer ours (nothing written).
    */
   async park(tx: DbTx, row: ClaimedDelivery, leaseToken: string, errorCode: string, at: Date): Promise<boolean> {
+    await this.lockCall(tx, row.invocationId);
     const { count } = await tx.aiHistoryDelivery.updateMany({
       where: { id: row.id, leaseToken, closedAt: null },
       data: { leaseToken: null, leaseUntil: null, parkedAt: at, lastErrorCode: errorCode },
@@ -267,6 +269,15 @@ export class InvocationHistoryOutboxRepo {
       FROM ai_history_deliveries WHERE operation = 'PURGE' AND closed_at IS NULL`;
 
     return rows[0] ?? { waiting: 0, parked: 0 };
+  }
+
+  /**
+   * The call first, its delivery rows after: the order a purge takes (`lockPurgeable`, then `beginPurge`). An acknowledgement or a park
+   * that took the delivery row first and the call second would wait for a purge that waits for it, and PostgreSQL would cancel one of
+   * them (40P01); every writer of a call and its rows now takes them in the same order.
+   */
+  private async lockCall(tx: DbTx, invocationId: string): Promise<void> {
+    await tx.$queryRaw`SELECT id FROM ai_invocations WHERE id = ${invocationId}::uuid FOR UPDATE`;
   }
 
   private async close(tx: DbTx, id: string, leaseToken: string, at: Date, code: string | null): Promise<boolean> {

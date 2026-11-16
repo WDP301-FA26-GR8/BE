@@ -24,10 +24,16 @@ dừng **trước** `migrate deploy` (không đổi gì), nhưng đừng dựa v
    `GET /api/v1/ai/invocations/{id}/content` — `409 AI.HISTORY_PENDING` ngắn lúc worker chưa giao là bình thường, `503
 AI.HISTORY_UNAVAILABLE` kéo dài là Mongo hoặc worker có vấn đề (`docker compose logs worker mongodb`).
 
-## Rollback không đụng Mongo
+## Rollback không đụng Mongo, và không dựng lại image cũ sau migrate
 
 Deploy và rollback không bao giờ dừng, tạo lại hay xóa `mongodb` và volume `mongodb-data` (không có `down`, `-v`, `--remove-orphans`).
-Rollback về release cũ **không** khôi phục bảng `ai_invocation_contents`; dữ liệu cũ của bảng đó nằm trong dump trước `migrate deploy`.
+
+Sau `migrate deploy`, bảng `ai_invocation_contents` đã mất nên image của release trước **không đọc được** CSDL, dù chưa có lần gọi AI nào.
+Vì vậy image mới khai báo representation `ai-history-outbox` trong label `io.github.baophipham.slm.data-reads` của Dockerfile, và recovery
+của `deploy-release.sh` đếm nó theo việc bảng `ai_history_deliveries` có tồn tại: nếu release mới fail **sau** migrate, recovery in
+`RECOVERY: REFUSED` và **không** dựng lại image cũ (API dừng, không có image nào phục vụ). Cách ra: sửa lỗi rồi deploy lại bằng release mới với
+`--attempt` mới. Nếu fail **trước** migrate (thiếu biến Mongo, Mongo không healthy…), CSDL chưa đổi và image cũ vẫn phục vụ bình thường.
+Dữ liệu cũ của bảng đã xóa nằm trong dump trước `migrate deploy`.
 
 ## Sao lưu MongoDB
 
