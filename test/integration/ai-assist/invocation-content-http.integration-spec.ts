@@ -73,9 +73,12 @@ describe('the content of a call of the AI over HTTP (integration, real PostgreSQ
           validation: { rejections: [] },
         }
       : { context: CONTEXT, promptText: null, rawResponse: null, parsed: null, validation: null };
+    // Due a second ago, not `now()`: the worker (here `deliverHistory`) claims the rows due by the clock of its own process, to the
+    // millisecond, while `now()` is the clock and the rounding of PostgreSQL. A row due "now" is claimed only when the claim comes
+    // late enough, so the delivery returned having taken nothing and the read answered 409 AI.HISTORY_PENDING.
     await ctx.sql.query(
       `INSERT INTO ai_history_deliveries (id, organization_id, invocation_id, generation, version, operation, payload, available_at)
-       VALUES (gen_random_uuid(), $1, $2, 0, 1, 'SNAPSHOT', $3, now())`,
+       VALUES (gen_random_uuid(), $1, $2, 0, 1, 'SNAPSHOT', $3, now() - interval '1 second')`,
       [seed.organizationId, id, snapshot],
     );
     if (options.deliver ?? true) await deliverHistory(ctx.app);
