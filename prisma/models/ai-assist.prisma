@@ -3,6 +3,22 @@ enum AiFeature {
 }
 
 // PENDING and RUNNING are live; COMPLETED, NO_VALID_OUTPUT, STALE and FAILED are final and carry `finished_at`.
+// Where the raw history of a call stands: PENDING until MongoDB confirms the last snapshot, AVAILABLE once it has, ERROR when a
+// snapshot was refused for good (an operator looks), PURGING from the purge until MongoDB confirms the tombstone, then PURGED.
+enum AiHistoryState {
+  PENDING
+  AVAILABLE
+  ERROR
+  PURGING
+  PURGED
+}
+
+// What a delivery writes into MongoDB: the whole raw history of a call (SNAPSHOT), or the tombstone that replaces it (PURGE).
+enum AiHistoryOperation {
+  SNAPSHOT
+  PURGE
+}
+
 enum AiInvocationStatus {
   PENDING
   RUNNING
@@ -12,12 +28,21 @@ enum AiInvocationStatus {
   FAILED
 }
 
+// Where the answers of a call come from, fixed when the call is made from the operating parameter `AI_PROVIDER_MODE` (QĐ-102f):
+// the AI service (MODEL) or the simulation that calls no model (SIMULATED). A call never changes source, not even when it fails.
+enum AiProviderMode {
+  MODEL
+  SIMULATED
+}
+
 // One call of an AI feature on behalf of one person (US-15-05): only what an audit or a support question needs, never what was
-// said to the model or what it answered (that is `ai_invocation_contents`, protected apart). The person and the organization are
+// said to the model or what it answered (that is the document of the call in MongoDB, `ai_invocation_histories`, ADR-0020). The person and the organization are
 // values with no foreign key, as in `in_app_notifications`: the record of a call outlives the account. `source_revision` is the
-// queue revision the call was made for. At most one call per (organization, person, feature, source_revision) is live or kept as
-// the answer: the partial unique index `ai_invocations_active_per_revision` and the CHECK
-// `ai_invocations_final_state_finished_at_check` are SQL in the migration (ADR-0005), which Prisma cannot express.
+// queue revision the call was made for, `provider_mode` the source of its answers (no default: a call that does not say it is
+// refused). At most one call per (organization, person, feature, source_revision, provider_mode) is live or kept as the answer, so
+// asking again in the other mode makes a new call instead of giving back the answer of the other source: the partial unique index
+// `ai_invocations_active_per_revision` and the CHECK `ai_invocations_final_state_finished_at_check` are SQL in the migrations
+// (ADR-0005), which Prisma cannot express.
 model AiInvocation {
   id               String             @id @default(uuid()) @db.Uuid
   organizationId   String             @map("organization_id") @db.Uuid
@@ -25,6 +50,7 @@ model AiInvocation {
   actorAppUserId   String             @map("actor_app_user_id") @db.Uuid
   actorEmployeeId  String             @map("actor_employee_id") @db.Uuid
   status           AiInvocationStatus
+  providerMode     AiProviderMode     @map("provider_mode")
   sourceRevision   String             @map("source_revision")
   configHash       String?            @map("config_hash")
   modelId          String?            @map("model_id")
@@ -39,25 +65,58 @@ model AiInvocation {
   startedAt        DateTime?          @map("started_at") @db.Timestamptz(3)
   finishedAt       DateTime?          @map("finished_at") @db.Timestamptz(3)
 
-  content AiInvocationContent?
+  // Where the raw history of the call stands in MongoDB (ADR-0020): the snapshot written last (`history_version`), the one MongoDB
+  // has confirmed (`history_stored_version`), and the purge generation, which only grows. The CHECKs are SQL in the migration.
+  historyState         AiHistoryState @default(PENDING) @map("history_state")
+  historyVersion       Int            @default(0) @map("history_version")
+  historyStoredVersion Int            @default(0) @map("history_stored_version")
+  historyGeneration    Int            @default(0) @map("history_generation")
+  historyErrorCode     String?        @map("history_error_code")
+  historyPurgedAt      DateTime?      @map("history_purged_at") @db.Timestamptz(3)
+
+  result     AiInvocationResult?
+  deliveries AiHistoryDelivery[]
 
   @@map("ai_invocations")
 }
 
-// What went to the model and what came back, kept apart from the metadata so that only the Super Admin reads it (OQ-G-06) and a
-// purge can delete the content and keep the call. It is never logged.
-model AiInvocationContent {
+// What the checks of the backend kept of an answer (US-15-05): the steps behind each reference, the lines that passed and why the
+// others were rejected. The summary of the owner is built from it on every GET, so it stays in PostgreSQL, apart from the raw history.
+// A purge deletes it.
+model AiInvocationResult {
   invocationId String   @id @map("invocation_id") @db.Uuid
-  // The allow-listed context sent to the AI service, with opaque references (R001…) in place of ids.
-  context      Json
-  promptText   String?  @map("prompt_text")
-  rawResponse  String?  @map("raw_response")
-  // The output of the AI service as it parsed it, and the result after the checks of the backend.
-  parsed       Json?
-  result       Json?
+  result       Json
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   invocation AiInvocation @relation(fields: [invocationId], references: [id], onDelete: Restrict)
 
-  @@map("ai_invocation_contents")
+  @@map("ai_invocation_results")
+}
+
+// The transactional outbox of the raw history (ADR-0020): written in the transaction that changes the call, delivered to MongoDB by
+// the worker, at least once. The payload of a SNAPSHOT is protected like the history itself (never logged, never on HTTP) and is
+// wiped once MongoDB confirms it; a PURGE carries none. `closed_at` is set when the row needs no more delivery (confirmed, or made
+// obsolete by a purge); `parked_at` when MongoDB refused it for good. The CHECKs are SQL in the migration.
+model AiHistoryDelivery {
+  id             String             @id @default(uuid()) @db.Uuid
+  organizationId String             @map("organization_id") @db.Uuid
+  invocationId   String             @map("invocation_id") @db.Uuid
+  generation     Int
+  version        Int
+  operation      AiHistoryOperation
+  payload        Json?
+  attempts       Int                @default(0)
+  availableAt    DateTime           @map("available_at") @db.Timestamptz(3)
+  leaseToken     String?            @map("lease_token") @db.Uuid
+  leaseUntil     DateTime?          @map("lease_until") @db.Timestamptz(3)
+  closedAt       DateTime?          @map("closed_at") @db.Timestamptz(3)
+  parkedAt       DateTime?          @map("parked_at") @db.Timestamptz(3)
+  lastErrorCode  String?            @map("last_error_code")
+  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  invocation AiInvocation @relation(fields: [invocationId], references: [id], onDelete: Restrict)
+
+  @@unique([invocationId, generation, version, operation])
+  @@index([availableAt])
+  @@map("ai_history_deliveries")
 }

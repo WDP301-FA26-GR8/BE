@@ -3,8 +3,10 @@ name: software-license-management
 # Local development. "docker compose up -d --wait" starts PostgreSQL only: the API and the worker need nothing else
 # today, except the contract files, which the API keeps in object storage (ADR-0014): MinIO (profile "storage") serves
 # them locally. Redis (profile "queue") is optional standby infrastructure with no consumer yet, kept for a future slice
-# that mounts the queue (Owner decisions E2 = A and OD-R5):
-# "docker compose --profile queue --profile storage up -d --wait".
+# that mounts the queue (Owner decisions E2 = A and OD-R5). MongoDB (profile "history") is the AI history store of
+# ADR-0020: the API reads it and the worker writes it; without it the history of the AI calls waits in the PostgreSQL
+# outbox (MONGODB_URI may point to an Atlas cluster instead):
+# "docker compose --profile queue --profile storage --profile history up -d --wait".
 services:
   postgres:
     image: postgres:17-alpine
@@ -67,7 +69,22 @@ services:
       timeout: 5s
       retries: 10
 
+  mongodb:
+    profiles: ['history']
+    # Local only, with no authentication (like Redis here); production requires a URI with credentials (ADR-0020).
+    image: mongo:8.0
+    ports:
+      - '127.0.0.1:${MONGODB_PORT:-27017}:27017'
+    volumes:
+      - mongodb-data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', 'db.adminCommand("ping").ok']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
 volumes:
   postgres-data:
   redis-data:
   minio-data:
+  mongodb-data:

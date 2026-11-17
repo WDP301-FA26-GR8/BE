@@ -16,6 +16,25 @@ export const AiFeature = {
 export type AiFeature = (typeof AiFeature)[keyof typeof AiFeature]
 
 
+export const AiHistoryState = {
+  PENDING: 'PENDING',
+  AVAILABLE: 'AVAILABLE',
+  ERROR: 'ERROR',
+  PURGING: 'PURGING',
+  PURGED: 'PURGED'
+} as const
+
+export type AiHistoryState = (typeof AiHistoryState)[keyof typeof AiHistoryState]
+
+
+export const AiHistoryOperation = {
+  SNAPSHOT: 'SNAPSHOT',
+  PURGE: 'PURGE'
+} as const
+
+export type AiHistoryOperation = (typeof AiHistoryOperation)[keyof typeof AiHistoryOperation]
+
+
 export const AiInvocationStatus = {
   PENDING: 'PENDING',
   RUNNING: 'RUNNING',
@@ -26,6 +45,14 @@ export const AiInvocationStatus = {
 } as const
 
 export type AiInvocationStatus = (typeof AiInvocationStatus)[keyof typeof AiInvocationStatus]
+
+
+export const AiProviderMode = {
+  MODEL: 'MODEL',
+  SIMULATED: 'SIMULATED'
+} as const
+
+export type AiProviderMode = (typeof AiProviderMode)[keyof typeof AiProviderMode]
 
 
 export const AuditActorKind = {
@@ -710,7 +737,8 @@ export type SaasIssueAuthorRole = (typeof SaasIssueAuthorRole)[keyof typeof Saas
 export const RenewalChoice = {
   RENEW: 'RENEW',
   REDUCE: 'REDUCE',
-  CANCEL: 'CANCEL'
+  CANCEL: 'CANCEL',
+  INCREASE: 'INCREASE'
 } as const
 
 export type RenewalChoice = (typeof RenewalChoice)[keyof typeof RenewalChoice]
@@ -748,7 +776,9 @@ export type RenewalOutcome = (typeof RenewalOutcome)[keyof typeof RenewalOutcome
 export const RenewalNoticeBasis = {
   DECLARED: 'DECLARED',
   INFERRED_UNCONFIRMED: 'INFERRED_UNCONFIRMED',
-  BY_END_DATE: 'BY_END_DATE'
+  BY_END_DATE: 'BY_END_DATE',
+  BY_RENEWAL_DATE: 'BY_RENEWAL_DATE',
+  BY_PAYMENT_DATE: 'BY_PAYMENT_DATE'
 } as const
 
 export type RenewalNoticeBasis = (typeof RenewalNoticeBasis)[keyof typeof RenewalNoticeBasis]

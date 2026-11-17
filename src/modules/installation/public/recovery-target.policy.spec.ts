@@ -26,6 +26,7 @@ const facts = (
     'access-request-null-cost-center': rows,
     'access-request-cancel-spending-approver-party': 0,
     'access-request-step-qd93-waiting-reason': 0,
+    'ai-history-outbox': 0,
     ...qd93,
   },
 });
@@ -116,6 +117,21 @@ describe('recovery target judgement (P04-CPE-04)', () => {
     expect(judgeRecoveryTarget(facts(0), BEFORE_QD93_READS).status).toBe('COMPATIBLE');
   });
 
+  it('refuses an image that does not declare ai-history-outbox once migration 20261116100000 ran, and accepts it before (ADR-0020)', () => {
+    // After migrate deploy the table ai_invocation_contents is gone: the image of the release before it is no way back, with or without AI calls.
+    const after = judgeRecoveryTarget(facts(0, true, { 'ai-history-outbox': 1 }), BEFORE_QD93_READS);
+    expect(after.status).toBe('INCOMPATIBLE');
+    expect(after.held).toEqual([{ representation: 'ai-history-outbox', rows: 1, readable: false }]);
+    expect(RECOVERY_TARGET_EXIT[after.status]).toBe(2);
+    expect(formatRecoveryTarget(after)).toContain('ai-history-outbox: 1 row(s), NOT read by the image');
+    // An image of this source declares it; before the migration the table is absent and the old image stays a valid way back.
+    expect(judgeRecoveryTarget(facts(0, true, { 'ai-history-outbox': 1 }), FINAL_READS).status).toBe('COMPATIBLE');
+    expect(judgeRecoveryTarget(facts(0, true, { 'ai-history-outbox': 0 }), BEFORE_QD93_READS).status).toBe(
+      'COMPATIBLE',
+    );
+    expect(FINAL_READS).toContain('ai-history-outbox');
+  });
+
   it('lets an image that declares the representation serve it (a later rollback to the final release)', () => {
     expect(judgeRecoveryTarget(facts(7), FINAL_READS)).toEqual({
       status: 'COMPATIBLE',
@@ -143,7 +159,7 @@ describe('recovery target judgement (P04-CPE-04)', () => {
     expect(text).toContain('access-request-null-cost-center: 3 row(s), NOT read by the image');
     expect(formatRecoveryTarget(judgeRecoveryTarget(facts(0, false), []))).toMatch(/^Recovery target: NO_HISTORY/);
     expect(formatRecoveryTarget(judgeRecoveryTarget(facts(3), FINAL_READS))).toMatch(
-      /^Recovery target: COMPATIBLE[\s\S]*The image declares: access-request-null-cost-center access-request-cancel-spending-approver-party access-request-step-qd93-waiting-reason\.[\s\S]*3 row\(s\), read by the image/,
+      /^Recovery target: COMPATIBLE[\s\S]*The image declares: access-request-null-cost-center access-request-cancel-spending-approver-party access-request-step-qd93-waiting-reason ai-history-outbox\.[\s\S]*3 row\(s\), read by the image/,
     );
     const report = judgeRecoveryTarget(facts(3), []);
     expect(JSON.parse(recoveryTargetJson(report))).toEqual(report);

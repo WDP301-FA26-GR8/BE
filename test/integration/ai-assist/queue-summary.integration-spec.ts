@@ -192,9 +192,11 @@ describe('the AI summary of the queue of a head (integration, real HTTP to a sta
         'invocationId',
         'lines',
         'omittedCount',
+        'simulated',
         'sourceStale',
         'status',
       ]);
+      expect(view.simulated).toBe(false);
     });
 
     it('asking again for the same revision gives back the same call: no second call to the AI service, one row', async () => {
@@ -246,6 +248,7 @@ describe('the AI summary of the queue of a head (integration, real HTTP to a sta
         ['AI_INVOCATION.CONTENT_READ', h.seed.superAdmin.appUserId],
       ]);
       expect(events[2].after).toEqual({ invocationId: view.invocationId });
+      expect(events.slice(0, 2).map((event) => event.after.providerMode)).toEqual(['MODEL', 'MODEL']);
       for (const event of events) {
         expect(Object.keys(event.after).filter((key) => SECRET_LIKE.test(key))).toEqual([]);
         expect(JSON.stringify(event.after)).not.toContain(REASONS[0]);
@@ -435,32 +438,52 @@ describe('the AI summary of the queue of a head (integration, real HTTP to a sta
   const purge = (args: string[]) =>
     runCli('ai-purge', args, {
       cwd: cliWorkingDirectory('slm-ai-queue-purge'),
-      environment: { NODE_ENV: 'production', DATABASE_URL: h.ctx.database.url },
+      // The test MongoDB has no user; outside production a URI without credentials is accepted.
+      environment: { NODE_ENV: 'test', TEST_DATABASE_URL: h.ctx.database.url, ...h.history?.env },
     });
 
   it(
-    'ops:ai-purge deletes the content of the calls and keeps their metadata; the summary and the content then read as 404',
+    'ops:ai-purge replaces the raw history with a tombstone in MongoDB, deletes the result and keeps the metadata; the summary and the content then read as 404',
     async () => {
       const u = await h.unit();
       await sendAll(u, REASONS.slice(0, 1));
       const view = await h.summarize(u.head.account);
       const today = new Date().toISOString().slice(0, 10);
       const yesterday = new Date(Date.now() - 86_400_000).toISOString().slice(0, 10);
-      const contents = async () =>
-        Number((await h.ctx.sql.query<{ n: string }>('SELECT count(*) AS n FROM ai_invocation_contents')).rows[0].n);
-      const before = await contents();
+      const live = async () =>
+        Number(
+          (
+            await h.ctx.sql.query<{ n: string }>(
+              `SELECT count(*) AS n FROM ai_invocations WHERE history_state NOT IN ('PURGING', 'PURGED')`,
+            )
+          ).rows[0].n,
+        );
+      const before = await live();
+      expect(await h.historyDocument(view.invocationId)).toMatchObject({
+        purged: false,
+        promptText: expect.any(String) as string,
+      });
 
-      // A dry run deletes nothing; a cut-off before today keeps what was made today.
+      // A dry run purges nothing; a cut-off before today keeps what was made today.
       expect((await purge(['--through', today])).code).toBe(0);
       expect((await purge(['--through', yesterday, '--apply', '--operator', 'ops@acme.example'])).code).toBe(2);
-      expect(await contents()).toBe(before);
-      expect(await h.contentRow(view.invocationId)).toBeDefined();
+      expect(await live()).toBe(before);
+      expect(await h.resultRow(view.invocationId)).toBeDefined();
 
       const result = await purge(['--through', today, '--apply', '--operator', 'ops@acme.example']);
 
       expect(result.code).toBe(0);
-      expect(await contents()).toBe(0);
-      expect(await h.contentRow(view.invocationId)).toBeUndefined();
+      expect(await live()).toBe(0);
+      expect(await h.resultRow(view.invocationId)).toBeUndefined();
+      const tombstone = await h.historyDocument(view.invocationId);
+      expect(tombstone).toMatchObject({
+        purged: true,
+        generation: 1,
+        context: null,
+        promptText: null,
+        rawResponse: null,
+      });
+      expect(JSON.stringify(tombstone)).not.toContain('PROMPT');
       // The purged call leaves the place of its revision (STALE is outside the partial unique index); it keeps its end.
       expect(await h.invocationRow(view.invocationId)).toMatchObject({
         status: 'STALE',
@@ -472,6 +495,7 @@ describe('the AI summary of the queue of a head (integration, real HTTP to a sta
         completion_tokens: 20,
         latency_ms: 12,
         source_revision: expect.any(String) as string,
+        history_state: 'PURGED',
       });
       expect(errorCodeOf(await h.read(u.head.account, view.invocationId).expect(404))).toBe('AI.NOT_FOUND');
       expect(errorCodeOf(await h.content(view.invocationId).expect(404))).toBe('AI.NOT_FOUND');

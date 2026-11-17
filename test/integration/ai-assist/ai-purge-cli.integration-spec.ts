@@ -1,43 +1,58 @@
 import { randomUUID } from 'node:crypto';
 import { CLI_COLD_START_MS, CliResult, cliWorkingDirectory, runCli, stopCliProcesses } from '../../support/cli-process';
+import {
+  type DisposableHistoryStore,
+  dropHistoryStore,
+  historyDocument,
+  provisionHistoryStore,
+} from '../../support/disposable-history-store';
 import { HttpTestApp, SeededInstallation, createHttpTestApp, seedInstallation } from '../../support/http-test-app';
 
 /**
- * `pnpm ops:ai-purge --through YYYY-MM-DD [--apply]` (`US-15-05`): the content of the calls of the AI (`ai_invocation_contents`)
- * created on or before the end of a day (UTC) is deleted, the calls themselves (`ai_invocations`) are kept, and the deletion is
- * audited as the operator in the transaction that deletes. The default run only counts.
+ * `pnpm ops:ai-purge --through YYYY-MM-DD [--apply]` (`US-15-05`, ADR-0020): the raw history of the calls of the AI created on or
+ * before the end of a day (UTC) is purged in two steps. In PostgreSQL, in one transaction with the audit event as the operator: the
+ * state PURGING, the result deleted, a tombstone queued. Then MongoDB replaces each document with a tombstone; a tombstone it did
+ * not take keeps the command at exit 1 until a run finishes it. The calls themselves (`ai_invocations`) are kept. The default run
+ * only counts.
  */
 const OPERATOR = 'ops-lead@acme.example';
 const THROUGH = '2026-10-31';
 const LIVE = new Set(['PENDING', 'RUNNING']);
 
-describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
+describe('ops:ai-purge (integration, real CLI, PostgreSQL and MongoDB)', () => {
   let ctx: HttpTestApp;
   let seed: SeededInstallation;
-  /** One call with its content for each instant, by name. */
+  let store: DisposableHistoryStore;
+  /** One call with its history for each instant, by name. */
   const ids = new Map<string, string>();
 
-  const run = (args: string[]): Promise<CliResult> =>
+  // The test MongoDB has no user; outside production a URI without credentials is accepted. Under NODE_ENV=test the
+  // database comes from TEST_DATABASE_URL (DATABASE_URL alone gets `_test` appended: resolveDatabaseUrl).
+  const run = (args: string[], mongo: Record<string, string> = store.env): Promise<CliResult> =>
     runCli('ai-purge', args, {
       cwd: cliWorkingDirectory('slm-ai-purge'),
-      environment: { NODE_ENV: 'production', DATABASE_URL: ctx.database.url },
+      environment: { NODE_ENV: 'test', TEST_DATABASE_URL: ctx.database.url, ...mongo },
     });
-  const apply = () => run(['--through', THROUGH, '--apply', '--operator', OPERATOR]);
+  const apply = (mongo?: Record<string, string>) =>
+    run(['--through', THROUGH, '--apply', '--operator', OPERATOR], mongo);
   const count = async (table: string, where = 'true'): Promise<number> =>
     Number((await ctx.sql.query<{ n: string }>(`SELECT count(*) AS n FROM ${table} WHERE ${where}`)).rows[0].n);
   const state = async () => ({
     invocations: await count('ai_invocations'),
-    contents: await count('ai_invocation_contents'),
+    live: await count('ai_invocations', `history_state NOT IN ('PURGING', 'PURGED')`),
+    results: await count('ai_invocation_results'),
     purged: await count('audit_events', `action = 'AI_INVOCATION.PURGED'`),
   });
-  const keptContents = async (): Promise<string[]> => {
-    const rows = await ctx.sql.query<{ invocation_id: string }>(
-      'SELECT invocation_id FROM ai_invocation_contents ORDER BY created_at',
+  /** The calls whose history is still there, by name, in the order they were made. */
+  const keptHistories = async (): Promise<string[]> => {
+    const rows = await ctx.sql.query<{ id: string }>(
+      `SELECT id FROM ai_invocations WHERE history_state NOT IN ('PURGING', 'PURGED') ORDER BY created_at`,
     );
     const names = new Map([...ids].map(([name, id]) => [id, name]));
 
-    return rows.rows.map((row) => names.get(row.invocation_id) ?? row.invocation_id);
+    return rows.rows.map((row) => names.get(row.id) ?? row.id);
   };
+  const document = (name: string) => historyDocument(store, ids.get(name) ?? '');
   const statuses = async (): Promise<Record<string, string>> => {
     const rows = await ctx.sql.query<{ id: string; status: string }>('SELECT id, status FROM ai_invocations');
     const byId = new Map(rows.rows.map((row) => [row.id, row.status]));
@@ -49,8 +64,8 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
     const id = randomUUID();
     ids.set(name, id);
     await ctx.sql.query(
-      `INSERT INTO ai_invocations (id, organization_id, feature, actor_app_user_id, actor_employee_id, status, source_revision, created_at, finished_at)
-       VALUES ($1, $2, 'ACCESS_REQUEST_QUEUE_SUMMARY', $3, $4, $7::"AiInvocationStatus", $5, $6, $8)`,
+      `INSERT INTO ai_invocations (id, organization_id, feature, actor_app_user_id, actor_employee_id, status, source_revision, created_at, finished_at, provider_mode)
+       VALUES ($1, $2, 'ACCESS_REQUEST_QUEUE_SUMMARY', $3, $4, $7::"AiInvocationStatus", $5, $6, $8, 'MODEL')`,
       [
         id,
         seed.organizationId,
@@ -62,29 +77,58 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
         LIVE.has(status) ? null : createdAt,
       ],
     );
+    // Version 1 of the history, delivered: confirmed in PostgreSQL and held in MongoDB.
     await ctx.sql.query(
-      `INSERT INTO ai_invocation_contents (invocation_id, context, prompt_text, raw_response, created_at)
-       VALUES ($1, '{"generatedAt":"2026-10-01T00:00:00.000Z","requests":[]}', 'a prompt', 'an answer', $2)`,
-      [id, createdAt],
+      `UPDATE ai_invocations SET history_state = 'AVAILABLE', history_version = 1, history_stored_version = 1 WHERE id = $1`,
+      [id],
     );
+    if (status === 'COMPLETED') {
+      await ctx.sql.query(`INSERT INTO ai_invocation_results (invocation_id, result, created_at) VALUES ($1, $2, $3)`, [
+        id,
+        { total: 0, steps: [], accepted: [], rejections: [] },
+        createdAt,
+      ]);
+    }
+    await store.client
+      .db(store.database)
+      .collection<{ _id: string } & Record<string, unknown>>('ai_invocation_histories')
+      .insertOne({
+        _id: id,
+        schemaVersion: 1,
+        organizationId: seed.organizationId,
+        generation: 0,
+        version: 1,
+        payloadHash: 'h',
+        purged: false,
+        context: { generatedAt: '2026-10-01T00:00:00.000Z', requests: [] },
+        promptText: 'a prompt',
+        rawResponse: 'an answer',
+        parsed: null,
+        validation: null,
+        createdAt: new Date(createdAt),
+        updatedAt: new Date(createdAt),
+        purgedAt: null,
+      });
   }
 
   beforeAll(async () => {
+    store = await provisionHistoryStore();
     ctx = await createHttpTestApp();
     seed = await seedInstallation(ctx.app);
     await insertCall('old', '2026-10-01T08:00:00.000Z');
     await insertCall('last-millisecond', '2026-10-31T23:59:59.999Z');
     await insertCall('first-millisecond-after', '2026-11-01T00:00:00.000Z');
     await insertCall('recent', '2026-11-03T08:00:00.000Z');
-    // Live calls older than the cut-off: their content is what the run in progress still has to write into.
+    // Live calls older than the cut-off: their history is what the run in progress still has to write.
     await insertCall('pending-old', '2026-10-02T08:00:00.000Z', 'PENDING');
     await insertCall('running-old', '2026-10-03T08:00:00.000Z', 'RUNNING');
-    // A call that failed holds no place of its revision: its content goes, its status stays.
+    // A call that failed holds no place of its revision: its history goes, its status stays.
     await insertCall('failed-old', '2026-10-04T08:00:00.000Z', 'FAILED');
   }, 120000);
 
   afterAll(async () => {
     await ctx?.close();
+    if (store) await dropHistoryStore(store);
     stopCliProcesses();
   });
 
@@ -93,7 +137,7 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
     async () => {
       const result = await runCli('ai-purge', ['--help'], {
         cwd: cliWorkingDirectory('slm-ai-purge'),
-        environment: { NODE_ENV: 'production' },
+        environment: { NODE_ENV: 'test' },
       });
 
       expect(result.code).toBe(0);
@@ -126,18 +170,18 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
   );
 
   it(
-    'by default only counts: it says how many contents would go and writes nothing, not a row, not an event',
+    'by default only counts: it says how many histories would go and writes nothing, not a row, not an event',
     async () => {
       const before = await state();
 
       const result = await run(['--through', THROUGH]);
 
       expect(result.code).toBe(0);
-      expect(result.stdout).toContain('mode:     DRY RUN');
-      expect(result.stdout).toContain(`through:  ${THROUGH}`);
-      expect(result.stdout).toContain('contents: 3');
-      expect(result.stdout).toContain('Nothing was deleted');
-      // Nothing of what the contents hold is printed.
+      expect(result.stdout).toContain('mode:      DRY RUN');
+      expect(result.stdout).toContain(`through:   ${THROUGH}`);
+      expect(result.stdout).toContain('histories: 3');
+      expect(result.stdout).toContain('Nothing was purged');
+      // Nothing of what the histories hold is printed.
       expect(result.stdout + result.stderr).not.toMatch(/a prompt|an answer|generatedAt/);
       expect(await state()).toEqual(before);
     },
@@ -145,18 +189,18 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
   );
 
   it(
-    'exits 2 on a dry run that finds nothing to delete',
+    'exits 2 on a dry run that finds nothing to purge',
     async () => {
       const result = await run(['--through', '2026-09-30']);
 
       expect(result.code).toBe(2);
-      expect(result.stdout).toContain('contents: 0');
+      expect(result.stdout).toContain('histories: 0');
     },
     CLI_COLD_START_MS,
   );
 
   it(
-    'rolls the deletion back and exits 1 when its audit event cannot be written: the contents stay',
+    'rolls the purge back and exits 1 when its audit event cannot be written: the histories stay, in both stores',
     async () => {
       await ctx.sql.query(`CREATE FUNCTION refuse_purge_audit() RETURNS trigger LANGUAGE plpgsql AS $$
         BEGIN
@@ -173,6 +217,7 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
 
         expect(result.code).toBe(1);
         expect(await state()).toEqual(before);
+        expect(await document('old')).toMatchObject({ purged: false, promptText: 'a prompt' });
       } finally {
         await ctx.sql.query('DROP TRIGGER refuse_purge_audit ON audit_events');
         await ctx.sql.query('DROP FUNCTION refuse_purge_audit()');
@@ -182,18 +227,26 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
   );
 
   it(
-    'with --apply deletes the contents created on or before the end of the day and keeps every call, with one OPERATOR event',
+    'with --apply and MongoDB out of reach purges in PostgreSQL at once, with one OPERATOR event, and exits 1: tombstones pending',
     async () => {
-      const result = await apply();
+      const result = await apply({
+        MONGODB_URI: 'mongodb://127.0.0.1:1',
+        MONGODB_DATABASE: store.database,
+        MONGODB_SERVER_SELECTION_TIMEOUT_MS: '200',
+      });
 
-      expect(result.code).toBe(0);
-      expect(result.stdout).toContain('mode:     APPLIED');
-      expect(result.stdout).toContain('contents: 3');
+      expect(result.code).toBe(1);
+      expect(result.stdout).toContain('histories: 3');
+      expect(result.stdout).toContain('pending:   3');
       // The last millisecond of the day goes; the first millisecond of the next day stays, and so does what is later.
-      // ... and so do the two live calls older than the cut-off: a call that is still running keeps its content.
-      expect(await keptContents()).toEqual(['pending-old', 'running-old', 'first-millisecond-after', 'recent']);
+      // ... and so do the two live calls older than the cut-off: a call that is still running keeps its history.
+      expect(await keptHistories()).toEqual(['pending-old', 'running-old', 'first-millisecond-after', 'recent']);
+      expect(await count('ai_invocations', `history_state = 'PURGING' AND history_generation = 1`)).toBe(3);
+      expect(await count('ai_history_deliveries', `operation = 'PURGE' AND closed_at IS NULL`)).toBe(3);
+      // PostgreSQL already reads the content as gone; MongoDB still holds it until the tombstone lands.
+      expect(await document('old')).toMatchObject({ purged: false });
       expect(await count('ai_invocations')).toBe(7);
-      // A completed call whose content went is STALE: it no longer holds the place of its queue revision, so the same
+      // A completed call whose history went is STALE: it no longer holds the place of its queue revision, so the same
       // revision may be asked again. The others keep their status, and every call keeps its end.
       expect(await statuses()).toEqual({
         old: 'STALE',
@@ -205,6 +258,7 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
         'failed-old': 'FAILED',
       });
       expect(await count('ai_invocations', `status = 'STALE' AND finished_at IS NULL`)).toBe(0);
+      expect(await count('ai_invocation_results')).toBe(2);
       const events = await ctx.sql.query(
         `SELECT actor_kind, actor_app_user_id, actor_roles, action, resource_type, operator_reference, after, organization_id
            FROM audit_events WHERE action = 'AI_INVOCATION.PURGED'`,
@@ -226,6 +280,35 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
   );
 
   it(
+    'run again with MongoDB finishes the purge it left: tombstones in MongoDB, PURGED, exit 0, and no second event',
+    async () => {
+      // The tombstones of the failed run wait for their retry; make them due now rather than waiting.
+      await ctx.sql.query(`UPDATE ai_history_deliveries SET available_at = now() WHERE operation = 'PURGE'`);
+
+      const result = await apply();
+
+      expect(result.code).toBe(0);
+      expect(result.stdout).toContain('histories: 0');
+      expect(result.stdout).toContain('confirmed: 3');
+      expect(result.stdout).toContain('pending:   0');
+      expect(await count('ai_invocations', `history_state = 'PURGED'`)).toBe(3);
+      for (const name of ['old', 'last-millisecond', 'failed-old']) {
+        const tombstone = await document(name);
+        expect(tombstone).toMatchObject({
+          purged: true,
+          generation: 1,
+          context: null,
+          promptText: null,
+          rawResponse: null,
+        });
+      }
+      expect(await document('recent')).toMatchObject({ purged: false, promptText: 'a prompt' });
+      expect(await count('audit_events', `action = 'AI_INVOCATION.PURGED'`)).toBe(1);
+    },
+    CLI_COLD_START_MS,
+  );
+
+  it(
     'run again exits 2 and writes no second event: only live calls are left on or before that day, and a live call is never purged',
     async () => {
       const before = await state();
@@ -233,7 +316,7 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
       const result = await apply();
 
       expect(result.code).toBe(2);
-      expect(result.stdout).toContain('contents: 0');
+      expect(result.stdout).toContain('histories: 0');
       expect(await state()).toEqual(before);
       expect(before.purged).toBe(1);
     },
@@ -245,7 +328,7 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
       const result = await run(['--through', '2026-10-03']);
 
       expect(result.code).toBe(2);
-      expect(result.stdout).toContain('contents: 0');
+      expect(result.stdout).toContain('histories: 0');
     },
     CLI_COLD_START_MS,
   );
@@ -261,7 +344,7 @@ describe('ops:ai-purge (integration, real CLI and PostgreSQL)', () => {
 
       expect(result.code).toBe(0);
       // The call of the 1st (first millisecond after), the recent one and the one of this moment; the live ones stay out.
-      expect(result.stdout).toContain('contents: 3');
+      expect(result.stdout).toContain('histories: 3');
       expect(await state()).toEqual(before);
     },
     CLI_COLD_START_MS,
