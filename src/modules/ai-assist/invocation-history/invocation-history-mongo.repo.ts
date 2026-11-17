@@ -48,6 +48,15 @@ function currentDocument(document: HistoryDocument | null, standing: HistoryStan
   return { ...document, context };
 }
 
+/** What the first phase of the read of a content settled before any transaction: the version it read and the document itself. */
+export interface PreparedContentRead {
+  invocationId: string;
+  /** The purge generation and the version of the document: the second phase checks that they are still the call's. */
+  generation: number;
+  version: number;
+  document: LiveDocument;
+}
+
 /**
  * The MongoDB history store of `AiInvocationHistoryStore` (ADR-0020, WDP): the raw history is MongoDB's and the call and the result of
  * its checks are PostgreSQL's. PostgreSQL and MongoDB share no transaction, so every method that changes something writes a record in
@@ -96,37 +105,57 @@ export class MongoInvocationHistoryRepo implements AiInvocationHistoryStore {
   }
 
   /**
-   * The content of the call for the Super Admin, or null when there is none (never made, or purged). PostgreSQL decides first
-   * whether the history may be read; MongoDB is read next; then the call is locked and checked again, so a purge or a newer snapshot
-   * that committed meanwhile is never missed. Throws InvocationContentPendingError (not in MongoDB yet) or
-   * InvocationContentUnavailableError (MongoDB down or refusing, or the history in error); nothing is recorded then.
+   * The first phase of the read of the content, with no transaction: PostgreSQL decides whether the history may be read, then
+   * MongoDB is read. A network call does not belong inside a transaction (`TransactionRunner`), and a slow MongoDB must not hold a
+   * PostgreSQL connection. Null when there is none (never made, or purged). Throws InvocationContentPendingError (not in MongoDB
+   * yet) or InvocationContentUnavailableError (MongoDB down or refusing, or the history in error); nothing is recorded then.
    */
-  async find(tx: DbTx, invocationId: string): Promise<InvocationContentRecord | null> {
-    const standing = await this.outbox.standingOf(invocationId, tx);
+  async prepareRead(invocationId: string): Promise<PreparedContentRead | null> {
+    const standing = await this.outbox.standingOf(invocationId);
     if (standing === null || isGone(standing)) return null;
     assertReadable(standing);
     const document = currentDocument(await this.documentOf(invocationId, standing.organizationId), standing);
     if (document === null) return null;
 
-    const now = await this.outbox.standingOf(invocationId, tx, true);
+    return { invocationId, generation: document.generation, version: document.version, document };
+  }
+
+  /**
+   * The second phase, in the short transaction that also writes the audit event: the call is locked (`FOR SHARE`) and checked
+   * again, so a purge or a newer snapshot that committed after the read of MongoDB is never missed. Null when the history was
+   * purged meanwhile; throws InvocationContentPendingError when a newer snapshot came.
+   */
+  async confirmRead(tx: DbTx, prepared: PreparedContentRead): Promise<InvocationContentRecord | null> {
+    const now = await this.outbox.standingOf(prepared.invocationId, tx, true);
     if (now === null || isGone(now)) return null;
     assertReadable(now);
-    if (now.generation !== document.generation || now.version !== document.version) {
+    if (now.generation !== prepared.generation || now.version !== prepared.version) {
       throw new InvocationContentPendingError();
     }
-    const providerMode = await this.invocations.providerModeOf(tx, invocationId);
+    const providerMode = await this.invocations.providerModeOf(tx, prepared.invocationId);
     if (providerMode === null) return null;
+    const { document } = prepared;
 
     return {
-      invocationId,
+      invocationId: prepared.invocationId,
       organizationId: now.organizationId,
       providerMode,
       context: document.context,
       promptText: document.promptText,
       rawResponse: document.rawResponse,
       parsed: document.parsed,
-      result: await this.invocations.resultOf(tx, invocationId),
+      result: await this.invocations.resultOf(tx, prepared.invocationId),
     };
+  }
+
+  /**
+   * The read of the port, both phases in the transaction of the caller. The query service of this repository does not use it: it
+   * calls `prepareRead` before its transaction and `confirmRead` inside it, so MongoDB is never read inside a transaction.
+   */
+  async find(tx: DbTx, invocationId: string): Promise<InvocationContentRecord | null> {
+    const prepared = await this.prepareRead(invocationId);
+
+    return prepared === null ? null : this.confirmRead(tx, prepared);
   }
 
   /** How many calls a purge through `before` (exclusive) would take; live calls (PENDING, RUNNING) never count. */

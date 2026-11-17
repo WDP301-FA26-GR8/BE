@@ -195,6 +195,50 @@ describe('MongoInvocationHistoryRepo.find', () => {
     expect(order).toEqual(['standing', 'mongo', 'lock']);
   });
 
+  it('prepareRead decides on PostgreSQL and reads MongoDB with no transaction at all: the first phase takes none', async () => {
+    const { repo, outbox, invocations, order } = world();
+
+    const prepared = await repo.prepareRead(INVOCATION_ID);
+
+    expect(prepared).toEqual({ invocationId: INVOCATION_ID, generation: 0, version: 2, document: DOCUMENT });
+    expect(order).toEqual(['standing', 'mongo']);
+    // The standing of the first phase is read without a transaction (the pool of PostgreSQL, not a held connection).
+    expect(outbox.standingOf).toHaveBeenCalledTimes(1);
+    expect(outbox.standingOf).toHaveBeenCalledWith(INVOCATION_ID);
+    expect(invocations.resultOf).not.toHaveBeenCalled();
+  });
+
+  it('confirmRead takes the lock in the transaction it is given, and reads no MongoDB', async () => {
+    const { repo, store, outbox, order } = world();
+    const prepared = await repo.prepareRead(INVOCATION_ID);
+    store.find.mockClear();
+    order.length = 0;
+
+    await expect(repo.confirmRead(TX, prepared as NonNullable<typeof prepared>)).resolves.toMatchObject({
+      invocationId: INVOCATION_ID,
+      providerMode: 'MODEL',
+      result: RESULT,
+    });
+
+    expect(order).toEqual(['lock']);
+    expect(store.find).not.toHaveBeenCalled();
+    expect(outbox.standingOf).toHaveBeenLastCalledWith(INVOCATION_ID, TX, true);
+  });
+
+  it('confirmRead gives nothing when a purge committed, and refuses a newer snapshot, between the two phases', async () => {
+    const world1 = world({ locked: { ...STANDING, state: 'PURGING' } });
+    const prepared = (await world1.repo.prepareRead(INVOCATION_ID)) as NonNullable<unknown> as Parameters<
+      typeof world1.repo.confirmRead
+    >[1];
+    await expect(world1.repo.confirmRead(TX, prepared)).resolves.toBeNull();
+
+    const world2 = world({ locked: { ...STANDING, version: 3, storedVersion: 3 } });
+    const prepared2 = (await world2.repo.prepareRead(INVOCATION_ID)) as NonNullable<unknown> as Parameters<
+      typeof world2.repo.confirmRead
+    >[1];
+    await expect(world2.repo.confirmRead(TX, prepared2)).rejects.toThrow(InvocationContentPendingError);
+  });
+
   it.each([
     ['no such call', null],
     ['a history being purging', { ...STANDING, state: 'PURGING' as const }],
