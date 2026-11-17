@@ -42,35 +42,35 @@ Tầng: T6 ([tiers.cjs](../../../scripts/arch/tiers.cjs)). Phụ thuộc: audit,
 
 ### Port lưu lịch sử AI (`AiInvocationHistoryStore`)
 
-Mọi đọc/ghi `ai_invocation_contents` (câu gửi, câu trả lời thô, kết quả đã parse, ngữ cảnh) đi qua port
-`invocation/invocation-history-store.types.ts` (QĐ-102g); bản hiện có là PostgreSQL (`AiInvocationContentRepo`, nối bằng
-`useExisting` ở `ai-assist.module.ts` và `purge/ai-assist-purge-cli.module.ts`). Port không phải extension point giữa module (không
-export ra ngoài `ai-assist`), chỉ là chỗ thay kho.
+Mọi ghi lịch sử của một lần gọi AI (câu gửi, câu trả lời thô, kết quả đã parse, ngữ cảnh), đọc nội dung cho Super Admin và purge đi
+qua port `invocation/invocation-history-store.types.ts` (QĐ-102g). Trên repo này (WDP) port được cài bởi
+`invocation-history/invocation-history-mongo.repo.ts` (`MongoInvocationHistoryRepo`), nối bằng `useExisting` ở `ai-assist.module.ts` và
+`purge/ai-assist-purge-cli.module.ts`; không có biến chọn adapter. Bản PostgreSQL của đồ án SEP (`AiInvocationContentRepo`, bảng
+`ai_invocation_contents`) **không có** ở repo này: migration `20261116100000_ai_history_mongodb` đã xóa bảng đó. Port không phải
+extension point giữa module (không export ra ngoài `ai-assist`), chỉ là chỗ thay kho.
 
-| Điểm cắm                                               | Method                                                                                                 | Gọi từ (cùng transaction với)                                |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| Nhận lần gọi (kể cả `SOURCE_UNREADABLE`, context rỗng) | `recordAdmitted(tx, call)`                                                                             | `queue-summary.service.ts` (audit `REQUESTED`)               |
-| Lần gọi kết thúc có câu trả lời                        | `recordAnswered(tx, call)` — chỉ khi run là bên kết thúc lần gọi                                       | `queue-summary-run.service.ts` (audit `COMPLETED`/`FAILED`)  |
-| Super Admin đọc nội dung                               | `find(tx, invocationId)` → bản ghi hoặc `null`                                                         | `invocation-content-query.service.ts` (audit `CONTENT_READ`) |
-| Purge: đếm / xóa                                       | `countPurgeable(before)` / `purge(tx, before)` (lần gọi `COMPLETED` có nội dung bị xóa chuyển `STALE`) | `public/ai-purge.api.ts` (audit `PURGED`)                    |
+| Điểm cắm                                               | Method                                                                                            | Gọi từ (cùng transaction với)                                                                 |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Nhận lần gọi (kể cả `SOURCE_UNREADABLE`, context rỗng) | `recordAdmitted(tx, call)`: xếp snapshot v1 vào outbox `ai_history_deliveries`                    | `queue-summary.service.ts` (audit `REQUESTED`)                                                |
+| Lần gọi kết thúc có câu trả lời                        | `recordAnswered(tx, call)`: xếp snapshot đầy đủ; chỉ khi run là bên kết thúc lần gọi              | `queue-summary-run.service.ts` (audit `COMPLETED`/`FAILED`)                                   |
+| Super Admin đọc nội dung                               | `prepareRead(id)` (không transaction) rồi `confirmRead(tx, prepared)`; `find(tx, id)` ghép cả hai | `invocation-content-query.service.ts` (audit `CONTENT_READ`; dùng hai pha, không dùng `find`) |
+| Purge: đếm / xóa                                       | `countPurgeable(before)` / `purge(tx, before)`: khóa lần gọi, xóa kết quả, bắt đầu purge          | `public/ai-purge.api.ts` (audit `PURGED`; sau commit mới ghi tombstone vào MongoDB)           |
 
-**Ranh giới đọc/ghi (đọc ngoài port, ghi trong port).** `AiInvocationRepo.findOwned` (chủ lần gọi đọc `result`, QĐ-79a) nằm
-ngoài port và đọc PostgreSQL: nó lấy **sự tồn tại của hàng `ai_invocation_contents`** làm dấu "chưa purge" (`content: { isNot: null }`)
-và đọc cột `result` của hàng đó. Hai thứ này do bản PostgreSQL của port ghi trong cùng transaction: hàng do `recordAdmitted`, cột
-`result` do `recordAnswered`. Hệ quả cho adapter khác: chỉ đổi `provide` thì **không đủ** — không ai tạo hàng PG ⇒ mọi
-`GET /ai/access-request-summaries/{invocationId}` trả 404 `AI.NOT_FOUND`, kể cả lần gọi `COMPLETED`. Adapter khác phải **hoặc** vẫn
-ghi vào PostgreSQL phần `findOwned` cần (ít nhất `invocation_id`, `created_at`, `result`), **hoặc** sửa `findOwned` và `purge` sang
-dấu của kho đó (WDP: bảng `ai_invocation_results`). Mọi lần gọi vẫn đọc `organizationId` và `providerMode` của lần gọi qua `find` từ
-`ai_invocations` (PostgreSQL), nên adapter cũng đọc hai trường đó từ PostgreSQL bằng `tx`.
+**Dữ liệu nằm ở đâu (WDP).** `ai_invocations` giữ lần gọi và trạng thái lịch sử (`history_state`/`history_version`/
+`history_stored_version`/`history_generation`); `ai_invocation_results` giữ **kết quả đã kiểm** — do `AiInvocationRepo.finish` ghi, không
+phải adapter; `ai_history_deliveries` là outbox; MongoDB (`ai_invocation_histories`) giữ nội dung thô. `AiInvocationRepo.findOwned`
+(chủ lần gọi đọc `result`, QĐ-79a) nằm ngoài port và đọc PostgreSQL: dấu "chưa purge" là `history_state` không thuộc
+`PURGING`/`PURGED`, `result` lấy từ `ai_invocation_results`. Đổi `finish` thôi ghi `result` thì `GET` tóm tắt mất hàng chờ.
+`invocationId`, `organizationId` và `providerMode` của nội dung đọc từ `ai_invocations` bằng `tx`.
 
-Thêm kho khác (ví dụ MongoDB ở repo WDP): viết một class `extends`/`implements AiInvocationHistoryStore`, đổi `provide: AiInvocationHistoryStore`
-trong hai `*.module.ts` (chọn theo env), **không sửa** `queue-summary.service.ts`, `queue-summary-run.service.ts`,
-`invocation-content-query.service.ts`. `find` trả `null` khi không có; trạng thái riêng của kho (đang ghi, kho lỗi) là lỗi do adapter
-ném và map ở `invocation-content.http-errors.ts` của nhánh đó — không thêm mã lỗi vào API đồ án.
+**Đọc nội dung trong ba pha.** Gọi mạng không được nằm trong transaction (`TransactionRunner`), nên query service không dùng `find(tx)`
+của port mà gọi `prepareRead` (PostgreSQL quyết định + đọc MongoDB, không giữ transaction) trước `runner.run`, rồi `confirmRead` (khóa
+`FOR SHARE`, kiểm lại generation/version, đọc `result`) và ghi audit trong một transaction ngắn. `find(tx, id)` vẫn có để đúng giao diện
+của port, ghép hai pha trong transaction của người gọi.
 
-Mọi method chạy trong transaction PostgreSQL của nơi gọi, và transaction đó có thể rollback sau khi method đã trả về (ví dụ ghi audit
-lỗi). Vì vậy adapter **không ghi thẳng vào kho ngoài** trong method: ghi một bản ghi chờ (outbox) vào PostgreSQL bằng `tx`, rồi một
-worker đẩy sang kho ngoài sau khi commit (cách WDP đang làm) — nếu không, rollback để lại tài liệu mồ côi ở kho ngoài.
+Mọi method ghi chạy trong transaction PostgreSQL của nơi gọi, và transaction đó có thể rollback sau khi method đã trả về (ví dụ ghi
+audit lỗi). Vì vậy adapter **không ghi thẳng vào kho ngoài** trong method: ghi một bản ghi chờ (outbox) vào PostgreSQL bằng `tx`, rồi
+worker (`history-delivery/`) đẩy sang MongoDB sau commit — nếu không, rollback để lại tài liệu mồ côi ở kho ngoài.
 
 ## Cấu hình
 
@@ -143,9 +143,9 @@ vòng.
   `true` khi lần gọi ở chế độ `SIMULATED`, ở mọi trạng thái — FE luôn hiện nhãn _Giả lập — không phải AI_).
 - Route (`@RequireRoles('SUPER_ADMIN')`): `GET /ai/invocations/{invocationId}/content` (`aiInvocationContentGet`) trả `providerMode`
   (`MODEL` | `SIMULATED`), `context`, `promptText`, `rawResponse`, `parsed` (từ MongoDB) và `result` (từ PostgreSQL); ba trường JSON là
-  object tự do, như `before`/`after` của Audit Trail; trường chưa có là `null`. `MongoInvocationHistoryRepo.find`: PostgreSQL quyết
-  định đọc được không, đọc MongoDB, rồi khóa `FOR SHARE` lần gọi, kiểm lại generation/version và đọc `result`; mọi bước trong
-  transaction của lần đọc, cùng transaction ghi `AI_INVOCATION.CONTENT_READ` (payload chỉ `invocationId`); chỉ trả sau commit. Không
+  object tự do, như `before`/`after` của Audit Trail; trường chưa có là `null`. Ba pha (`MongoInvocationHistoryRepo.prepareRead`/`confirmRead`): PostgreSQL
+  quyết định đọc được không và đọc MongoDB **trước** transaction; rồi một transaction ngắn khóa `FOR SHARE` lần gọi, kiểm lại
+  generation/version, đọc `result` và ghi `AI_INVOCATION.CONTENT_READ` (payload chỉ `invocationId`); chỉ trả sau commit. Không
   có (chưa từng có hoặc đã purge, kể cả khi MongoDB chưa nhận tombstone) ⇒ 404 `AI.NOT_FOUND`; snapshot cuối chưa được worker giao ⇒
   409 `AI.HISTORY_PENDING`; MongoDB không trả lời, từ chối hoặc document sai schema ⇒ 503 `AI.HISTORY_UNAVAILABLE`; chủ lần gọi không
   phải Super Admin ⇒ 403.

@@ -25,7 +25,7 @@ import type { AiPurgeCommand, AiPurgeResult } from './ai-purge.types';
 export class AiPurgeApi {
   constructor(
     private readonly runner: TransactionRunner,
-    private readonly contents: AiInvocationHistoryStore,
+    private readonly history: AiInvocationHistoryStore,
     private readonly outbox: InvocationHistoryOutboxRepo,
     private readonly delivery: HistoryDeliveryService,
     private readonly organizations: OrganizationReadApi,
@@ -42,7 +42,7 @@ export class AiPurgeApi {
       return {
         mode: 'DRY_RUN',
         through: command.through,
-        contentCount: await this.contents.countPurgeable(before),
+        contentCount: await this.history.countPurgeable(before),
         confirmedCount: 0,
         pendingCount: pending.waiting,
         parkedCount: pending.parked,
@@ -54,7 +54,7 @@ export class AiPurgeApi {
     const purged = await this.runner.run(async (tx) => {
       const organization = await this.organizations.getOrganization(tx);
       if (organization === null) throw new AiPurgeRefusedError('NOT_INSTALLED');
-      const count = await this.contents.purge(tx, before);
+      const count = await this.history.purge(tx, before);
       if (count === 0) return 0;
       await this.audit.record(
         tx,
