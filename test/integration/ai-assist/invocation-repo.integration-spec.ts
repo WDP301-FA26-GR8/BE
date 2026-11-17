@@ -181,4 +181,34 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
       finishedAt: expect.any(Date) as unknown,
     });
   });
+
+  it('keeps one call per queue revision and mode: the other mode is a call of its own, read back with its mode', async () => {
+    const model = call();
+    const simulated: NewInvocation = { ...model, providerMode: 'SIMULATED' };
+    const first = await runner.run((tx) => repo.insert(tx, model));
+    const second = await runner.run((tx) => repo.insert(tx, simulated));
+
+    await expect(repo.findLive(model)).resolves.toEqual({ id: first.id, status: 'PENDING' });
+    await expect(repo.findLive(simulated)).resolves.toEqual({ id: second.id, status: 'PENDING' });
+    const again = await runner.run((tx) => repo.insert(tx, simulated)).catch((error: unknown) => error);
+    expect(isUniqueViolation(again, 'ai_invocations_active_per_revision', 'source_revision')).toBe(true);
+    await expect(repo.findOwned(second.id, model.actorAppUserId)).resolves.toMatchObject({ providerMode: 'SIMULATED' });
+    await expect(runner.run((tx) => repo.providerModeOf(tx, second.id))).resolves.toBe('SIMULATED');
+  });
+
+  it('gives the stuck calls of the person in every mode, each with its mode', async () => {
+    const model = call({ at: new Date(Date.now() - 300_000) });
+    const simulated: NewInvocation = { ...model, providerMode: 'SIMULATED', sourceRevision: 'b'.repeat(64) };
+    const ids = [
+      (await runner.run((tx) => repo.insert(tx, model))).id,
+      (await runner.run((tx) => repo.insert(tx, simulated))).id,
+    ];
+
+    const stuck = await runner.run((tx) => repo.stuckOf(tx, model, new Date(Date.now() - 150_000)));
+
+    expect([...stuck].sort((a, b) => a.providerMode.localeCompare(b.providerMode))).toEqual([
+      { id: ids[0], providerMode: 'MODEL' },
+      { id: ids[1], providerMode: 'SIMULATED' },
+    ]);
+  });
 });
