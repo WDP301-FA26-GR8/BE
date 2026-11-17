@@ -22,3 +22,19 @@ export class HistoryDocumentShapeError extends Error {
     this.name = 'HistoryDocumentShapeError';
   }
 }
+
+/** `AI.HISTORY_PENDING`: the last snapshot of the history is not in MongoDB yet; an earlier one is never served as the last. */
+export class InvocationContentPendingError extends Error {
+  constructor() {
+    super('The history is not stored yet.');
+    this.name = 'InvocationContentPendingError';
+  }
+}
+
+/** `AI.HISTORY_UNAVAILABLE`: MongoDB did not answer, refused the history, or holds a document this backend does not recognise. */
+export class InvocationContentUnavailableError extends Error {
+  constructor(options?: { cause?: unknown }) {
+    super('The history cannot be read now.', options);
+    this.name = 'InvocationContentUnavailableError';
+  }
+}

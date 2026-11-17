@@ -3,10 +3,10 @@ import { ApiException } from '../../../infrastructure/http/errors/api.exception'
 import { toUnavailableApiException } from '../../../infrastructure/http/errors/service-unavailable';
 import { errorExampleOf } from '../../../infrastructure/http/openapi-error-examples';
 import {
-  InvocationContentNotFoundError,
   InvocationContentPendingError,
   InvocationContentUnavailableError,
-} from './invocation-content.errors';
+} from '../invocation-history/invocation-history.errors';
+import { InvocationContentNotFoundError } from './invocation-content.errors';
 
 /**
  * The one place the refusal of the read of a content becomes an HTTP answer; anything else reaches the global filter. The wording is

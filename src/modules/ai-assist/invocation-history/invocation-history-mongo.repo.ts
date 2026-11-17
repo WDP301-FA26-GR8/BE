@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import { MongoUnavailableError } from '../../../infrastructure/mongodb/mongodb.errors';
-import {
-  InvocationContentPendingError,
-  InvocationContentUnavailableError,
-} from '../invocation-content/invocation-content.errors';
 import { AiInvocationHistoryStore } from '../invocation/invocation-history-store.types';
 import type { InvocationContentRecord, InvocationOutcome } from '../invocation/invocation.types';
 import { AiInvocationRepo } from '../invocation/invocation.repo';
 import { InvocationHistoryOutboxRepo } from './invocation-history-outbox.repo';
 import { InvocationHistoryStoreRepo } from './invocation-history-store.repo';
-import { HistoryDocumentShapeError } from './invocation-history.errors';
+import {
+  HistoryDocumentShapeError,
+  InvocationContentPendingError,
+  InvocationContentUnavailableError,
+} from './invocation-history.errors';
 import type { HistoryDocument, HistorySnapshot, HistoryStanding } from './invocation-history.types';
 
 type Answer = NonNullable<InvocationOutcome['content']>;

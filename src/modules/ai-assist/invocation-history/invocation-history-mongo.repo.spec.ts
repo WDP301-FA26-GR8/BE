@@ -1,16 +1,16 @@
 import type { DbTx } from '../../../infrastructure/database/transaction-runner';
 import { MongoUnavailableError } from '../../../infrastructure/mongodb/mongodb.errors';
-import {
-  InvocationContentPendingError,
-  InvocationContentUnavailableError,
-} from '../invocation-content/invocation-content.errors';
 import type { InvocationResult } from '../invocation/invocation-result.json';
 import type { AiInvocationRepo } from '../invocation/invocation.repo';
 import type { InvocationOutcome } from '../invocation/invocation.types';
 import { MongoInvocationHistoryRepo } from './invocation-history-mongo.repo';
 import type { InvocationHistoryOutboxRepo } from './invocation-history-outbox.repo';
 import type { InvocationHistoryStoreRepo } from './invocation-history-store.repo';
-import { HistoryDocumentShapeError } from './invocation-history.errors';
+import {
+  HistoryDocumentShapeError,
+  InvocationContentPendingError,
+  InvocationContentUnavailableError,
+} from './invocation-history.errors';
 import type { HistoryDocument, HistoryStanding } from './invocation-history.types';
 
 const TX = { fake: 'transaction' } as unknown as DbTx;
