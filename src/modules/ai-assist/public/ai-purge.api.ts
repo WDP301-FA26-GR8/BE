@@ -7,7 +7,7 @@ import { OrganizationReadApi } from '../../organization/public/organization-read
 import { HistoryDeliveryService } from '../history-delivery/history-delivery.service';
 import { InvocationHistoryOutboxRepo } from '../invocation-history/invocation-history-outbox.repo';
 import { contentsPurgedEvent } from '../invocation/invocation-audit-event.mapper';
-import { AiInvocationRepo } from '../invocation/invocation.repo';
+import { AiInvocationHistoryStore } from '../invocation/invocation-history-store.types';
 import { AiPurgeRefusedError } from './ai-purge.errors';
 import type { AiPurgeCommand, AiPurgeResult } from './ai-purge.types';
 
@@ -25,7 +25,7 @@ import type { AiPurgeCommand, AiPurgeResult } from './ai-purge.types';
 export class AiPurgeApi {
   constructor(
     private readonly runner: TransactionRunner,
-    private readonly invocations: AiInvocationRepo,
+    private readonly contents: AiInvocationHistoryStore,
     private readonly outbox: InvocationHistoryOutboxRepo,
     private readonly delivery: HistoryDeliveryService,
     private readonly organizations: OrganizationReadApi,
@@ -42,7 +42,7 @@ export class AiPurgeApi {
       return {
         mode: 'DRY_RUN',
         through: command.through,
-        contentCount: await this.outbox.countPurgeable(before),
+        contentCount: await this.contents.countPurgeable(before),
         confirmedCount: 0,
         pendingCount: pending.waiting,
         parkedCount: pending.parked,
@@ -54,21 +54,14 @@ export class AiPurgeApi {
     const purged = await this.runner.run(async (tx) => {
       const organization = await this.organizations.getOrganization(tx);
       if (organization === null) throw new AiPurgeRefusedError('NOT_INSTALLED');
-      const ids = await this.outbox.lockPurgeable(tx, before);
-      if (ids.length === 0) return 0;
-      await this.invocations.dropResults(tx, ids);
-      await this.outbox.beginPurge(tx, ids, new Date());
+      const count = await this.contents.purge(tx, before);
+      if (count === 0) return 0;
       await this.audit.record(
         tx,
-        contentsPurgedEvent(
-          organization.id,
-          { deletedCount: ids.length, through: command.through },
-          operator,
-          randomUUID(),
-        ),
+        contentsPurgedEvent(organization.id, { deletedCount: count, through: command.through }, operator, randomUUID()),
       );
 
-      return ids.length;
+      return count;
     });
     const confirmed = await this.delivery.drainPurges();
     const pending = await this.outbox.countPendingPurges();

@@ -4,21 +4,26 @@ import type { DbTx, TransactionRunner } from '../../src/infrastructure/database/
 import type { AuthenticatedPrincipal } from '../../src/infrastructure/security/tokens/access-token-verifier.port';
 import type { AuditApi } from '../../src/modules/audit/public/audit.api';
 import type { AuditEventInput } from '../../src/modules/audit/public/audit.types';
+import { AiServiceClients } from '../../src/modules/ai-assist/ai-service/ai-service-clients.service';
+import { SimulatedAiServiceClient } from '../../src/modules/ai-assist/ai-service/ai-service-simulated-client.service';
 import { AiServiceClient } from '../../src/modules/ai-assist/ai-service/ai-service.types';
 import type {
+  AiProviderMode,
+  QueueContext,
   QueueSummaryServiceRequest,
   QueueSummaryServiceResponse,
 } from '../../src/modules/ai-assist/ai-service/ai-service.types';
-import type { InvocationHistoryRecordService } from '../../src/modules/ai-assist/invocation-history/invocation-history-record.service';
-import type { HistorySnapshot } from '../../src/modules/ai-assist/invocation-history/invocation-history.types';
+import type { AiInvocationHistoryStore } from '../../src/modules/ai-assist/invocation/invocation-history-store.types';
 import type { InvocationResult } from '../../src/modules/ai-assist/invocation/invocation-result.json';
 import type { AiInvocationRepo } from '../../src/modules/ai-assist/invocation/invocation.repo';
 import type {
   InvocationKey,
   InvocationOutcome,
+  InvocationOwner,
   InvocationRecord,
   LiveInvocation,
   NewInvocation,
+  StuckInvocation,
 } from '../../src/modules/ai-assist/invocation/invocation.types';
 import { QueueSummaryRunService } from '../../src/modules/ai-assist/queue-summary/queue-summary-run.service';
 import { QueueSummaryService } from '../../src/modules/ai-assist/queue-summary/queue-summary.service';
@@ -34,28 +39,47 @@ import type { AiSourceStep } from '../../src/modules/requests/public/requests.ty
  */
 
 export const ORGANIZATION_ID = '0a000000-0000-4000-8000-000000000001';
-const TX = { fake: 'transaction' } as unknown as DbTx;
 
-/** A row of `ai_invocations` with how it ended, as the fake keeps it. */
+/** A row of `ai_invocations` with its content, as the fake keeps it; `context` stays null until `recordAdmitted` writes it. */
 export interface FakeInvocationRow extends InvocationRecord {
   finishedAt: Date | null;
+  context: QueueContext | null;
   outcome: InvocationOutcome | null;
+}
+
+/** One call to the fake store or to the audit trail, with the transaction it was given, in the order made. */
+export interface FakeStep {
+  step: string;
+  tx: DbTx;
 }
 
 const KEPT = new Set(['PENDING', 'RUNNING', 'COMPLETED']);
 const LIVE = new Set(['PENDING', 'RUNNING']);
+const ownedBy = (row: FakeInvocationRow, owner: InvocationOwner) =>
+  row.organizationId === owner.organizationId &&
+  row.actorAppUserId === owner.actorAppUserId &&
+  row.feature === owner.feature;
+/** The columns of the partial unique index, the mode included. */
 const sameKey = (row: FakeInvocationRow, key: InvocationKey & { sourceRevision: string }) =>
-  row.organizationId === key.organizationId &&
-  row.actorAppUserId === key.actorAppUserId &&
-  row.feature === key.feature &&
-  row.sourceRevision === key.sourceRevision;
+  ownedBy(row, key) && row.providerMode === key.providerMode && row.sourceRevision === key.sourceRevision;
 const stuck = (row: FakeInvocationRow, startedBefore: Date) =>
   LIVE.has(row.status) && (row.startedAt ?? row.createdAt).getTime() < startedBefore.getTime();
 
-export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvocationRepo> {
+/**
+ * The store of the calls and, in the same object, the store of their content (`AiInvocationHistoryStore`): the specs pass it for both
+ * constructor parameters, as the one PostgreSQL schema holds both.
+ */
+export class FakeInvocationRepo
+  implements
+    Pick<AiInvocationRepo, keyof AiInvocationRepo>,
+    Pick<AiInvocationHistoryStore, 'recordAdmitted' | 'recordAnswered'>
+{
   readonly rows = new Map<string, FakeInvocationRow>();
+  /** The writes of a use case in the order made, with their transaction: `finish`, `recordAdmitted`, `recordAnswered`, `audit:…`. */
+  readonly steps: FakeStep[] = [];
 
-  insert(_tx: DbTx, input: NewInvocation): Promise<{ id: string }> {
+  insert(tx: DbTx, input: NewInvocation): Promise<{ id: string }> {
+    this.steps.push({ step: 'insert', tx });
     if (KEPT.has(input.status) && [...this.rows.values()].some((row) => KEPT.has(row.status) && sameKey(row, input))) {
       return Promise.reject(
         new Prisma.PrismaClientKnownRequestError('Unique constraint failed', {
@@ -73,16 +97,43 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
       actorAppUserId: input.actorAppUserId,
       actorEmployeeId: input.actorEmployeeId,
       status: input.status,
+      providerMode: input.providerMode,
       sourceRevision: input.sourceRevision,
       errorCode: input.errorCode,
       createdAt: input.at,
       startedAt: null,
       finishedAt: input.status === 'FAILED' ? input.at : null,
       result: null,
+      context: null,
       outcome: null,
     });
 
     return Promise.resolve({ id });
+  }
+
+  recordAdmitted(tx: DbTx, call: Parameters<AiInvocationHistoryStore['recordAdmitted']>[1]): Promise<void> {
+    this.steps.push({ step: 'recordAdmitted', tx });
+    const row = this.rows.get(call.invocationId);
+    if (!row) return Promise.reject(new Error('recordAdmitted: the call was never inserted'));
+    row.context = call.context;
+
+    return Promise.resolve();
+  }
+
+  recordAnswered(tx: DbTx, call: Parameters<AiInvocationHistoryStore['recordAnswered']>[1]): Promise<void> {
+    this.steps.push({ step: 'recordAnswered', tx });
+    const row = this.rows.get(call.invocationId);
+    if (!row) return Promise.reject(new Error('recordAnswered: the call was never inserted'));
+    row.result = call.answer.result;
+
+    return Promise.resolve();
+  }
+
+  /** The first `count` steps by name and in how many transactions they ran: a use case that admits a call runs them in one. */
+  firstSteps(count: number): { steps: string[]; transactions: number } {
+    const first = this.steps.slice(0, count);
+
+    return { steps: first.map((entry) => entry.step), transactions: new Set(first.map((entry) => entry.tx)).size };
   }
 
   findLive(key: InvocationKey & { sourceRevision: string }): Promise<LiveInvocation | null> {
@@ -91,12 +142,13 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
     return Promise.resolve(row ? { id: row.id, status: row.status as LiveInvocation['status'] } : null);
   }
 
-  stuckOf(_tx: DbTx, key: InvocationKey, startedBefore: Date): Promise<string[]> {
-    const ids = [...this.rows.values()]
-      .filter((row) => sameKey(row, { ...key, sourceRevision: row.sourceRevision }) && stuck(row, startedBefore))
-      .map((row) => row.id);
+  /** In every mode, as the repository: a run stuck is stuck whatever its source. */
+  stuckOf(_tx: DbTx, owner: InvocationOwner, startedBefore: Date): Promise<StuckInvocation[]> {
+    const found = [...this.rows.values()]
+      .filter((row) => ownedBy(row, owner) && stuck(row, startedBefore))
+      .map((row) => ({ id: row.id, providerMode: row.providerMode }));
 
-    return Promise.resolve(ids);
+    return Promise.resolve(found);
   }
 
   expire(_tx: DbTx, id: string, startedBefore: Date, at: Date): Promise<boolean> {
@@ -115,16 +167,11 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
     return Promise.resolve(true);
   }
 
-  finish(_tx: DbTx, id: string, outcome: InvocationOutcome, at: Date): Promise<boolean> {
+  finish(tx: DbTx, id: string, outcome: InvocationOutcome, at: Date): Promise<boolean> {
+    this.steps.push({ step: 'finish', tx });
     const row = this.rows.get(id);
     if (!row || row.status !== 'RUNNING') return Promise.resolve(false);
-    Object.assign(row, {
-      status: outcome.status,
-      errorCode: outcome.errorCode,
-      finishedAt: at,
-      result: outcome.content?.result ?? null,
-      outcome,
-    });
+    Object.assign(row, { status: outcome.status, errorCode: outcome.errorCode, finishedAt: at, outcome });
 
     return Promise.resolve(true);
   }
@@ -133,6 +180,10 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
     const row = this.rows.get(id);
 
     return Promise.resolve(row && row.actorAppUserId === actorAppUserId ? { ...row } : null);
+  }
+
+  providerModeOf(_tx: DbTx, id: string): Promise<AiProviderMode | null> {
+    return Promise.resolve(this.rows.get(id)?.providerMode ?? null);
   }
 
   resultOf(_tx: DbTx, id: string): Promise<InvocationResult | null> {
@@ -157,6 +208,7 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
       id,
       organizationId: ORGANIZATION_ID,
       feature: 'ACCESS_REQUEST_QUEUE_SUMMARY',
+      providerMode: 'MODEL',
       actorEmployeeId: randomUUID(),
       sourceRevision: 'r'.repeat(64),
       errorCode: null,
@@ -164,41 +216,12 @@ export class FakeInvocationRepo implements Pick<AiInvocationRepo, keyof AiInvoca
       startedAt: null,
       finishedAt: null,
       result: null,
+      context: null,
       outcome: null,
       ...row,
     });
 
     return id;
-  }
-}
-
-/** The outbox of the raw history: every snapshot recorded, in order, per call. */
-export class FakeHistoryRecord implements Pick<InvocationHistoryRecordService, 'recordAdmitted' | 'recordAnswered'> {
-  readonly snapshots = new Map<string, HistorySnapshot[]>();
-
-  recordAdmitted(_tx: DbTx, call: { invocationId: string; context: HistorySnapshot['context'] }): Promise<boolean> {
-    return this.push(call.invocationId, {
-      context: call.context,
-      promptText: null,
-      rawResponse: null,
-      parsed: null,
-      validation: null,
-    });
-  }
-
-  recordAnswered(_tx: DbTx, call: { invocationId: string; snapshot: HistorySnapshot }): Promise<boolean> {
-    return this.push(call.invocationId, call.snapshot);
-  }
-
-  /** The snapshot recorded last for the call. */
-  latest(invocationId: string): HistorySnapshot | undefined {
-    return this.snapshots.get(invocationId)?.at(-1);
-  }
-
-  private push(invocationId: string, snapshot: HistorySnapshot): Promise<boolean> {
-    this.snapshots.set(invocationId, [...(this.snapshots.get(invocationId) ?? []), snapshot]);
-
-    return Promise.resolve(true);
   }
 }
 
@@ -295,21 +318,31 @@ export function sourceStep(index: number, overrides: Partial<AiSourceStep> = {})
   };
 }
 
-/** The service of the summary on the fakes above, with both switches ON unless told otherwise. */
+/**
+ * The service of the summary on the fakes above, with both switches ON and `AI_PROVIDER_MODE` = MODEL unless told otherwise
+ * (`switches` holds the three parameters). MODEL is answered by `ai`; SIMULATED by the real simulation (`simulated`), without its
+ * wait.
+ */
 export function queueSummaryWorld() {
   const repo = new FakeInvocationRepo();
-  const history = new FakeHistoryRecord();
   const source = new FakeStepSource();
   const ai = new FakeAiService();
+  const simulated = new SimulatedAiServiceClient({ sleep: () => Promise.resolve() });
+  const clients = new AiServiceClients(ai, simulated);
   const events: AuditEventInput[] = [];
   const switches = new Map<string, string>([
     ['AI_ENABLED', 'ON'],
     ['AI_ACCESS_REQUEST_SUMMARY_ENABLED', 'ON'],
+    ['AI_PROVIDER_MODE', 'MODEL'],
   ]);
-  const runner = { run: <T>(work: (tx: DbTx) => Promise<T>) => work(TX) } as unknown as TransactionRunner;
+  // One transaction object per run, so a spec can tell whether two writes shared one.
+  const runner = {
+    run: <T>(work: (tx: DbTx) => Promise<T>) => work({ fake: 'transaction' } as unknown as DbTx),
+  } as unknown as TransactionRunner;
   const audit = {
-    record: (_tx: DbTx, event: AuditEventInput) => {
+    record: (tx: DbTx, event: AuditEventInput) => {
       events.push(event);
+      repo.steps.push({ step: `audit:${event.action}`, tx });
 
       return Promise.resolve();
     },
@@ -322,9 +355,9 @@ export function queueSummaryWorld() {
   } as unknown as OrganizationReadApi;
   const facade = source as unknown as RequestsAiSourceApi;
   const fakeRepo = repo as unknown as AiInvocationRepo;
-  const record = history as unknown as InvocationHistoryRecordService;
-  const runs = new QueueSummaryRunService(runner, fakeRepo, facade, audit, ai, record);
-  const service = new QueueSummaryService(runner, fakeRepo, facade, parameters, organizations, audit, record, runs);
+  const history = repo as unknown as AiInvocationHistoryStore;
+  const runs = new QueueSummaryRunService(runner, fakeRepo, history, facade, audit, clients);
+  const service = new QueueSummaryService(runner, fakeRepo, history, facade, parameters, organizations, audit, runs);
 
-  return { service, runs, repo, history, source, ai, events, switches };
+  return { service, runs, repo, source, ai, simulated, events, switches };
 }

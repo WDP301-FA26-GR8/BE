@@ -24,6 +24,15 @@ dừng **trước** `migrate deploy` (không đổi gì), nhưng đừng dựa v
    `GET /api/v1/ai/invocations/{id}/content` — `409 AI.HISTORY_PENDING` ngắn lúc worker chưa giao là bình thường, `503
 AI.HISTORY_UNAVAILABLE` kéo dài là Mongo hoặc worker có vấn đề (`docker compose logs worker mongodb`).
 
+## Chế độ AI (`AI_PROVIDER_MODE`, sau WDP-2)
+
+Từ nhánh `feat/wdp-p5`, tóm tắt hàng chờ AI có tham số vận hành `AI_PROVIDER_MODE` (`SIMULATED` mặc định | `MODEL`), **không phải biến
+môi trường**: Super Admin đổi qua `PUT /operating-parameters/AI_PROVIDER_MODE` (có Audit Trail), chỉ có hiệu lực khi hai công tắc
+`AI_ENABLED` và `AI_ACCESS_REQUEST_SUMMARY_ENABLED` đều `ON`. Mặc định `SIMULATED` trả câu mẫu có nhãn "Giả lập — không phải AI" mà không gọi
+dịch vụ AI. Muốn dùng model thật: đặt `AI_SERVICE_BASE_URL`/`AI_SERVICE_TOKEN` trong `.env.app`, kiểm `/healthz` của dịch vụ AI có
+`modelId` khác `stub` (câu của runner `stub` bị BE từ chối), rồi Super Admin chuyển sang `MODEL`. Lịch sử thô (MongoDB) ghi cả hai chế độ; nội dung
+Super Admin đọc có thêm `providerMode`.
+
 ## Rollback không đụng Mongo, và không dựng lại image cũ sau migrate
 
 Deploy và rollback không bao giờ dừng, tạo lại hay xóa `mongodb` và volume `mongodb-data` (không có `down`, `-v`, `--remove-orphans`).

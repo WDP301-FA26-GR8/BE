@@ -1,4 +1,4 @@
-import type { QueueSummaryParsed } from '../ai-service/ai-service.types';
+import type { AiProviderMode, QueueContext, QueueSummaryParsed } from '../ai-service/ai-service.types';
 import type { InvocationResult } from './invocation-result.json';
 
 /** The features of the AI that record their calls; the finance narrative (`US-15-06`) is not one yet. */
@@ -14,10 +14,21 @@ export type InvocationStatus = 'PENDING' | 'RUNNING' | 'COMPLETED' | 'NO_VALID_O
 export type LiveInvocation = { id: string; status: 'PENDING' | 'RUNNING' | 'COMPLETED' };
 
 /** Whose calls of which feature: the person by their account, in their organization. */
-export interface InvocationKey {
+export interface InvocationOwner {
   organizationId: string;
   actorAppUserId: string;
   feature: AiFeature;
+}
+
+/** The calls of a person and feature made in one mode: one of them at most is kept for a queue revision. */
+export interface InvocationKey extends InvocationOwner {
+  providerMode: AiProviderMode;
+}
+
+/** A call taken for stuck, with the mode it was made in. */
+export interface StuckInvocation {
+  id: string;
+  providerMode: AiProviderMode;
 }
 
 export interface NewInvocation extends InvocationKey {
@@ -64,4 +75,16 @@ export interface InvocationOutcome {
     parsed: QueueSummaryParsed | null;
     result: InvocationResult | null;
   } | null;
+}
+
+/** What was said to the model and what came back for one call, as the Super Admin reads it; the fields the table lets be empty are null. */
+export interface InvocationContentRecord {
+  invocationId: string;
+  organizationId: string;
+  providerMode: AiProviderMode;
+  context: QueueContext;
+  promptText: string | null;
+  rawResponse: string | null;
+  parsed: QueueSummaryParsed | null;
+  result: InvocationResult | null;
 }

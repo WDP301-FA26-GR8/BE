@@ -66,6 +66,7 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
     actorAppUserId: randomUUID(),
     actorEmployeeId: randomUUID(),
     feature: 'ACCESS_REQUEST_QUEUE_SUMMARY',
+    providerMode: 'MODEL',
     sourceRevision: 'a'.repeat(64),
     status: 'PENDING',
     errorCode: null,

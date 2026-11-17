@@ -17,6 +17,7 @@ import {
 } from './queue-summary.errors';
 
 const EMPLOYEE = 'e0000000-0000-4000-8000-000000000001';
+const ADMITTED = ['insert', 'recordAdmitted', 'audit:AI_INVOCATION.REQUESTED'];
 
 beforeEach(() => jest.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined));
 afterEach(() => jest.restoreAllMocks());
@@ -93,7 +94,7 @@ describe('QueueSummaryService.create', () => {
   });
 
   it('reads the first 20 steps in one transaction, records the call as PENDING with its context and audit, and runs it', async () => {
-    const { service, runs, repo, history, source, events, actor, revision } = world();
+    const { service, runs, repo, source, events, actor, revision } = world();
 
     const created = await service.create(actor, { queueRevision: revision() });
 
@@ -107,12 +108,8 @@ describe('QueueSummaryService.create', () => {
       actorEmployeeId: EMPLOYEE,
       sourceRevision: revision(),
     });
-    expect(history.latest(created.invocationId)).toMatchObject({ promptText: null, rawResponse: null, parsed: null });
-    expect(history.latest(created.invocationId)?.context.requests.map((line) => line.sourceRef)).toEqual([
-      'R001',
-      'R002',
-      'R003',
-    ]);
+    expect(row?.context?.requests.map((line) => line.sourceRef)).toEqual(['R001', 'R002', 'R003']);
+    expect(repo.firstSteps(3)).toEqual({ steps: ADMITTED, transactions: 1 });
     expect(events[0]).toMatchObject({
       organizationId: ORGANIZATION_ID,
       actorKind: 'USER',
@@ -191,6 +188,8 @@ describe('QueueSummaryService.create', () => {
 
     expect(created).toEqual({ invocationId: expect.any(String) as unknown, status: 'FAILED' });
     expect(repo.rows.get(created.invocationId)).toMatchObject({ status: 'FAILED', errorCode: 'AI.SOURCE_UNREADABLE' });
+    expect(repo.rows.get(created.invocationId)?.context).toMatchObject({ requests: [] });
+    expect(repo.firstSteps(4)).toEqual({ steps: [...ADMITTED, 'audit:AI_INVOCATION.FAILED'], transactions: 1 });
     expect(ai.summarizeQueue).not.toHaveBeenCalled();
   });
 
@@ -232,6 +231,7 @@ describe('QueueSummaryService.get', () => {
       status: 'COMPLETED',
       createdAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T.*Z$/) as unknown,
       sourceStale: false,
+      simulated: false,
       omittedCount: 0,
       errorCode: null,
       items: [

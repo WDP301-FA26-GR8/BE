@@ -75,6 +75,7 @@ describe('InvocationHistoryOutboxRepo (integration, real PostgreSQL)', () => {
         actorAppUserId: randomUUID(),
         actorEmployeeId: randomUUID(),
         feature: 'ACCESS_REQUEST_QUEUE_SUMMARY',
+        providerMode: 'MODEL',
         sourceRevision: revision.toString(16).padStart(64, '0'),
         status: 'PENDING',
         errorCode: null,

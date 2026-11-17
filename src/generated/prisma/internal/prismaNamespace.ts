@@ -13662,6 +13662,7 @@ export const AiInvocationScalarFieldEnum = {
   actorAppUserId: 'actorAppUserId',
   actorEmployeeId: 'actorEmployeeId',
   status: 'status',
+  providerMode: 'providerMode',
   sourceRevision: 'sourceRevision',
   configHash: 'configHash',
   modelId: 'modelId',
@@ -15172,6 +15173,7 @@ export const SubscriptionRenewalScalarFieldEnum = {
   proposedChoice: 'proposedChoice',
   proposedQuantity: 'proposedQuantity',
   proposalNote: 'proposalNote',
+  seatsNeeded: 'seatsNeeded',
   businessOwnerOpinion: 'businessOwnerOpinion',
   proposedByEmployeeId: 'proposedByEmployeeId',
   proposedByAppUserId: 'proposedByAppUserId',
@@ -16953,6 +16955,20 @@ export type EnumAiInvocationStatusFieldRefInput<$PrismaModel> = FieldRefInputTyp
  * Reference to a field of type 'AiInvocationStatus[]'
  */
 export type ListEnumAiInvocationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiInvocationStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AiProviderMode'
+ */
+export type EnumAiProviderModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiProviderMode'>
+    
+
+
+/**
+ * Reference to a field of type 'AiProviderMode[]'
+ */
+export type ListEnumAiProviderModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiProviderMode[]'>
     
 
 

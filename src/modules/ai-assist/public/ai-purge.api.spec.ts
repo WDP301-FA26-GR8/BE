@@ -4,6 +4,8 @@ import type { AuditEventInput } from '../../audit/public/audit.types';
 import type { OrganizationReadApi } from '../../organization/public/organization-read.api';
 import type { HistoryDeliveryService } from '../history-delivery/history-delivery.service';
 import type { InvocationHistoryOutboxRepo } from '../invocation-history/invocation-history-outbox.repo';
+import { MongoInvocationHistoryRepo } from '../invocation-history/invocation-history-mongo.repo';
+import type { InvocationHistoryStoreRepo } from '../invocation-history/invocation-history-store.repo';
 import type { AiInvocationRepo } from '../invocation/invocation.repo';
 import { AiPurgeApi } from './ai-purge.api';
 import { AiPurgeRefusedError } from './ai-purge.errors';
@@ -53,9 +55,15 @@ function world(
     getOrganization: jest.fn(() => Promise.resolve(options.organization === false ? null : { id: ORGANIZATION_ID })),
   };
   const run = jest.fn(<T>(work: (tx: DbTx) => Promise<T>) => work(TX));
+  // The port is the MongoDB store itself, on the same fakes: the logical purge it does is what these cases pin.
+  const contents = new MongoInvocationHistoryRepo(
+    outbox as unknown as InvocationHistoryOutboxRepo,
+    {} as unknown as InvocationHistoryStoreRepo,
+    invocations as unknown as AiInvocationRepo,
+  );
   const api = new AiPurgeApi(
     { run } as unknown as TransactionRunner,
-    invocations as unknown as AiInvocationRepo,
+    contents,
     outbox as unknown as InvocationHistoryOutboxRepo,
     delivery as unknown as HistoryDeliveryService,
     organizations as unknown as OrganizationReadApi,

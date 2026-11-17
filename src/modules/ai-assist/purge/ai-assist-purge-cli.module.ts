@@ -5,7 +5,9 @@ import { AuditModule } from '../../audit/audit.module';
 import { OrganizationModule } from '../../organization/organization.module';
 import { HistoryDeliveryService } from '../history-delivery/history-delivery.service';
 import { InvocationHistoryOutboxRepo } from '../invocation-history/invocation-history-outbox.repo';
+import { MongoInvocationHistoryRepo } from '../invocation-history/invocation-history-mongo.repo';
 import { InvocationHistoryStoreRepo } from '../invocation-history/invocation-history-store.repo';
+import { AiInvocationHistoryStore } from '../invocation/invocation-history-store.types';
 import { AiInvocationRepo } from '../invocation/invocation.repo';
 import { AiPurgeApi } from '../public/ai-purge.api';
 
@@ -19,6 +21,8 @@ import { AiPurgeApi } from '../public/ai-purge.api';
     AiInvocationRepo,
     InvocationHistoryOutboxRepo,
     InvocationHistoryStoreRepo,
+    MongoInvocationHistoryRepo,
+    { provide: AiInvocationHistoryStore, useExisting: MongoInvocationHistoryRepo },
     HistoryDeliveryService,
     AiPurgeApi,
   ],
