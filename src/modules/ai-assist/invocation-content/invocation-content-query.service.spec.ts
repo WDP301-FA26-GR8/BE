@@ -2,7 +2,10 @@ import type { DbTx, TransactionRunner } from '../../../infrastructure/database/t
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
 import type { AuditApi } from '../../audit/public/audit.api';
 import type { AuditEventInput } from '../../audit/public/audit.types';
-import type { AiInvocationContentRepo } from '../invocation/invocation-content.repo';
+import type {
+  MongoInvocationHistoryRepo,
+  PreparedContentRead,
+} from '../invocation-history/invocation-history-mongo.repo';
 import type { InvocationContentRecord } from '../invocation/invocation.types';
 import { InvocationContentNotFoundError } from './invocation-content.errors';
 import { InvocationContentQueryService } from './invocation-content-query.service';
@@ -22,6 +25,7 @@ const ADMIN = {
 const RECORD: InvocationContentRecord = {
   invocationId: INVOCATION_ID,
   organizationId: ORGANIZATION_ID,
+  providerMode: 'MODEL',
   context: { generatedAt: '2026-11-04T09:00:00.000Z', requests: [] },
   promptText: 'the prompt',
   rawResponse: '{"items":[]}',
@@ -29,12 +33,23 @@ const RECORD: InvocationContentRecord = {
   result: { total: 0, steps: [], accepted: [], rejections: [] },
 };
 
-function world(found: InvocationContentRecord | null = RECORD) {
+const PREPARED = { invocationId: INVOCATION_ID, generation: 0, version: 2 } as unknown as PreparedContentRead;
+
+/**
+ * `found` is what the second phase (inside the transaction) settles; `prepared` what the first phase (before any transaction)
+ * does: null for a call that is gone or purged. The fake transaction runner writes `tx-open` when a transaction opens, so a spec can
+ * tell that MongoDB (`prepareRead`) was read before it and `confirmRead` inside it.
+ */
+function world(found: InvocationContentRecord | null = RECORD, prepared: PreparedContentRead | null = PREPARED) {
   const order: string[] = [];
   const events: AuditEventInput[] = [];
-  const repo = {
-    find: jest.fn<Promise<InvocationContentRecord | null>, [DbTx, string]>(() => {
-      order.push('read');
+  const history = {
+    prepareRead: jest.fn<Promise<PreparedContentRead | null>, [string]>(() => {
+      order.push('prepare');
+      return Promise.resolve(prepared);
+    }),
+    confirmRead: jest.fn<Promise<InvocationContentRecord | null>, [DbTx, PreparedContentRead]>(() => {
+      order.push('confirm');
       return Promise.resolve(found);
     }),
   };
@@ -45,14 +60,17 @@ function world(found: InvocationContentRecord | null = RECORD) {
       return Promise.resolve();
     }),
   };
-  const run = jest.fn(<T>(work: (tx: DbTx) => Promise<T>) => work(TX));
+  const run = jest.fn(<T>(work: (tx: DbTx) => Promise<T>) => {
+    order.push('tx-open');
+    return work(TX);
+  });
   const service = new InvocationContentQueryService(
     { run } as unknown as TransactionRunner,
-    repo as unknown as AiInvocationContentRepo,
+    history as unknown as MongoInvocationHistoryRepo,
     audit as unknown as AuditApi,
   );
 
-  return { service, repo, audit, run, events, order };
+  return { service, history, audit, run, events, order };
 }
 
 describe('InvocationContentQueryService.read', () => {
@@ -61,12 +79,19 @@ describe('InvocationContentQueryService.read', () => {
 
     await expect(service.read(ADMIN, INVOCATION_ID)).resolves.toEqual({
       invocationId: INVOCATION_ID,
+      providerMode: 'MODEL',
       context: RECORD.context,
       promptText: 'the prompt',
       rawResponse: '{"items":[]}',
       parsed: { items: [] },
       result: RECORD.result,
     });
+  });
+
+  it('gives the mode the call was made in, so a simulated answer is never read as one of the model', async () => {
+    const { service } = world({ ...RECORD, providerMode: 'SIMULATED' });
+
+    await expect(service.read(ADMIN, INVOCATION_ID)).resolves.toMatchObject({ providerMode: 'SIMULATED' });
   });
 
   it('keeps the fields the table lets be empty as null', async () => {
@@ -81,14 +106,15 @@ describe('InvocationContentQueryService.read', () => {
   });
 
   it('writes one AI_INVOCATION.CONTENT_READ event per read, carrying the invocation id and no content, in the transaction of the read', async () => {
-    const { service, repo, audit, events, order, run } = world();
+    const { service, history, audit, events, order, run } = world();
 
     await service.read(ADMIN, INVOCATION_ID);
 
     expect(run).toHaveBeenCalledTimes(1);
-    expect(repo.find).toHaveBeenCalledWith(TX, INVOCATION_ID);
+    expect(history.confirmRead).toHaveBeenCalledWith(TX, PREPARED);
     expect(audit.record).toHaveBeenCalledWith(TX, expect.anything());
-    expect(order).toEqual(['read', 'audit']);
+    // MongoDB is read before any transaction opens (the rule of TransactionRunner: no network call inside `work`).
+    expect(order).toEqual(['prepare', 'tx-open', 'confirm', 'audit']);
     expect(events).toEqual([
       {
         organizationId: ORGANIZATION_ID,
@@ -122,11 +148,35 @@ describe('InvocationContentQueryService.read', () => {
     expect(audit.record).not.toHaveBeenCalled();
   });
 
+  it('answers not found without opening a transaction when the history is gone before the read (never made, or purged)', async () => {
+    const { service, run, audit } = world(RECORD, null);
+
+    await expect(service.read(ADMIN, INVOCATION_ID)).rejects.toThrow(InvocationContentNotFoundError);
+    expect(run).not.toHaveBeenCalled();
+    expect(audit.record).not.toHaveBeenCalled();
+  });
+
+  it('answers not found, with no event, when a purge came between the read of MongoDB and the lock', async () => {
+    const { service, audit } = world(null, PREPARED);
+
+    await expect(service.read(ADMIN, INVOCATION_ID)).rejects.toThrow(InvocationContentNotFoundError);
+    expect(audit.record).not.toHaveBeenCalled();
+  });
+
+  it('opens no transaction when reading MongoDB fails: the refusal of the first phase goes out as it is', async () => {
+    const { service, history, run } = world();
+    const refusal = new Error('history unavailable');
+    history.prepareRead.mockRejectedValueOnce(refusal);
+
+    await expect(service.read(ADMIN, INVOCATION_ID)).rejects.toBe(refusal);
+    expect(run).not.toHaveBeenCalled();
+  });
+
   it('refuses an id that is not a UUID the same way, without reading', async () => {
-    const { service, repo, run } = world();
+    const { service, history, run } = world();
 
     await expect(service.read(ADMIN, 'not-an-id')).rejects.toThrow(InvocationContentNotFoundError);
-    expect(repo.find).not.toHaveBeenCalled();
+    expect(history.prepareRead).not.toHaveBeenCalled();
     expect(run).not.toHaveBeenCalled();
   });
 

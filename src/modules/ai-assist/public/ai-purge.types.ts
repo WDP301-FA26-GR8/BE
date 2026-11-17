@@ -1,4 +1,4 @@
-/** What the operator typed, parsed: the last day (`YYYY-MM-DD`, UTC) whose contents are in scope, and whether to delete. */
+/** What the operator typed, parsed: the last day (`YYYY-MM-DD`, UTC) whose calls are in scope, and whether to purge. */
 export interface AiPurgeCommand {
   through: string;
   apply: boolean;
@@ -6,9 +6,19 @@ export interface AiPurgeCommand {
   operator: string | null;
 }
 
-/** What the command answers: how many contents were (or, for a dry run, would be) deleted, never what they hold. */
+/** What the command answers: counts only, never what the histories held. */
 export interface AiPurgeResult {
   mode: 'DRY_RUN' | 'APPLIED';
   through: string;
+  /** Calls whose history was (or, for a dry run, would be) purged by this run. */
   contentCount: number;
+  /** Tombstones MongoDB confirmed during this run, this purge's and those left over by an earlier one. */
+  confirmedCount: number;
+  /** Tombstones still waiting for MongoDB: the content is unreadable already, but not yet gone from MongoDB. */
+  pendingCount: number;
+  /**
+   * Tombstones MongoDB refused for good (parked): running again does not deliver them; an operator looks at the parked rows of
+   * `ai_history_deliveries`.
+   */
+  parkedCount: number;
 }

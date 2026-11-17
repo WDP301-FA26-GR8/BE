@@ -33,7 +33,7 @@ export class InvocationContentController {
   @ApiSuccessResponse(InvocationContentResponseDto, {
     message: 'AI.CONTENT_READ',
     description:
-      'The context sent to the AI service, the prompt, the raw answer, the parsed output and the result of the checks of the backend, as stored. The fields a call never got (it failed before the model answered) are null. Every read writes the event AI_INVOCATION.CONTENT_READ with the id of the call, in the same transaction.',
+      'The context sent to the AI service, the prompt, the raw answer and the parsed output, from the history store (MongoDB), and the result of the checks of the backend, from PostgreSQL. The fields a call never got (it failed before the model answered) are null. Every read writes the event AI_INVOCATION.CONTENT_READ with the id of the call; the content is returned only once that event is committed.',
   })
   @ApiErrorResponses(
     UNAUTHENTICATED_RESPONSE,
@@ -42,7 +42,19 @@ export class InvocationContentController {
       description: 'Only the Super Admin reads the content of a call of the AI, whoever made the call.',
       examples: [FORBIDDEN_EXAMPLE],
     },
-    GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
+    // The 503 of every guarded route, and AI.HISTORY_UNAVAILABLE when the history store (MongoDB) cannot give the content now:
+    // nothing is recorded in that case.
+    {
+      ...GUARDED_SERVICE_UNAVAILABLE_RESPONSE,
+      examples: [...GUARDED_SERVICE_UNAVAILABLE_RESPONSE.examples, EXAMPLES.HISTORY_UNAVAILABLE],
+    },
+    {
+      status: HttpStatus.CONFLICT,
+      description:
+        'The last snapshot of the history is not in the history store yet (AI.HISTORY_PENDING): the worker delivers it shortly. ' +
+        'An earlier snapshot is never served as the last one. Nothing was recorded.',
+      examples: [EXAMPLES.HISTORY_PENDING],
+    },
     {
       status: HttpStatus.UNPROCESSABLE_ENTITY,
       description: 'The id is not a UUID (VALIDATION_ERROR).',
@@ -50,7 +62,7 @@ export class InvocationContentController {
     },
     {
       status: HttpStatus.NOT_FOUND,
-      description: 'There is no content for the id: the call was never made, or its content was purged (AI.NOT_FOUND).',
+      description: 'There is no content for the id: the call was never made, or its history was purged (AI.NOT_FOUND).',
       examples: [EXAMPLES.NOT_FOUND],
     },
   )

@@ -1,9 +1,11 @@
 # Containers and migrations
 
-`docker compose up -d --wait` starts local PostgreSQL only; that is all the API and the worker need. Redis and MinIO are
-optional and start only under their named profiles (`--profile queue`, `--profile storage`), for trying the queue and
-object storage the API mounts for contract files. The queue is standby infrastructure with no consumer yet (kept by the Owner,
-OD-R5; not mounted, E2 = A, H6.4). Ports bind to loopback.
+`docker compose up -d --wait` starts local PostgreSQL only; that is all the API and the worker need. Redis, MinIO and
+MongoDB are optional and start only under their named profiles (`--profile queue`, `--profile storage`, `--profile
+history`), for trying the queue, the object storage the API mounts for contract files, and the AI history store. The queue
+is standby infrastructure with no consumer yet (kept by the Owner, OD-R5; not mounted, E2 = A, H6.4). MongoDB (`mongo:8.0`,
+no authentication locally; ADR-0020) holds the raw history of the AI calls: without it the API still runs and the history
+waits in the outbox until MongoDB is back (or point `MONGODB_URI` at an Atlas cluster). Ports bind to loopback.
 Check for port conflicts before starting; do not stop unrelated services.
 Create the configured MinIO bucket before using storage. The API refuses the public default credentials of MinIO
 (`minioadmin`) in every environment but `NODE_ENV=test` (SEC-04): set your own `MINIO_ROOT_USER`/`MINIO_ROOT_PASSWORD`
@@ -16,8 +18,8 @@ cannot be pulled. The first build downloads Go dependencies and can take several
 This is a local development service; review storage support/security separately for production.
 [Official source-build instructions](https://github.com/minio/minio/releases/tag/RELEASE.2025-10-15T17-29-55Z).
 
-For port conflicts set POSTGRES_PORT, REDIS_PORT, MINIO_PORT and MINIO_CONSOLE_PORT
-in your shell/.env, and align DATABASE_URL/OBJECT_STORAGE_ENDPOINT with those host ports.
+For port conflicts set POSTGRES_PORT, REDIS_PORT, MINIO_PORT, MINIO_CONSOLE_PORT and MONGODB_PORT
+in your shell/.env, and align DATABASE_URL/OBJECT_STORAGE_ENDPOINT/MONGODB_URI with those host ports.
 All variable names (application and Compose-only) are listed in [.env.example](../../.env.example), with the variables
 production requires and how to generate secrets; it carries no values and is not a production configuration.
 
@@ -49,7 +51,12 @@ docker build --target migrate -t slm-migrate:foundation .
 
 The runtime defaults to production. Supply DATABASE_URL and HTTPS CORS_ORIGINS.
 Redis is not required today: the queue is standby infrastructure with no consumer yet, and it validates Redis only when a future
-module mounts it. Object storage is mounted by the API (ADR-0014) and so needs an HTTPS
+module mounts it. MongoDB **is required**: the API, the worker and `ops:ai-purge` mount `MongoInfrastructureModule` (the raw
+history of the AI calls, ADR-0020), so production refuses to start without a `MONGODB_URI` that carries a username and a password.
+`docker-compose.prod.yml` runs it as the `mongodb` service (WDP, Owner decision of 17/11/2026; Atlas is for development with
+synthetic data only): no published port, root user from `MONGODB_ROOT_USER`/`MONGODB_ROOT_PASSWORD` in `.env`, volume `mongodb-data`,
+and `MONGODB_URI=mongodb://<user>:<password>@mongodb:27017/?authSource=admin` in `.env.app`. The deploy script checks both before it
+migrates (see [WDP MongoDB deploy](../operations/wdp-mongodb-deploy.md)). MongoDB being down after a valid start does not stop the API: the history waits in the outbox. Object storage is mounted by the API (ADR-0014) and so needs an HTTPS
 OBJECT_STORAGE_ENDPOINT with OBJECT_STORAGE_BUCKET and the access key (the variables marked
 `@production-required-when-mounted` in `.env.example`); the worker and the commands do not read them. The endpoint is
 the one the browser uploads to and the one signed links open: its host is written into every link, so it must be
@@ -241,11 +248,13 @@ is ready`, `RECOVERY: FAILED — …` (the previous release does not answer read
   reads its rows. Each runtime image declares in its label `io.github.baophipham.slm.data-reads` the data representations
   it reads that an older runtime cannot (Dockerfile, stage `runtime`); an image built before that label (the compatibility
   image `fba4dfe` and every older one) declares none. `ops:preflight --recovery-target "<labels>"`, run read-only from the
-  candidate as the deploy role, counts the rows of each representation the database holds (today three:
+  candidate as the deploy role, counts the rows of each representation the database holds (today four:
   `access-request-null-cost-center`, a sent internal free Request with no Cost Center;
   `access-request-cancel-spending-approver-party`, a Request or a group line closed with cause `SPENDING_APPROVER_PARTY` and no
   closing employee; `access-request-step-qd93-waiting-reason`, a step that waits with `NO_DEPARTMENT_HEAD`, `NO_SPENDING_APPROVER`
-  or `SPENDING_APPROVER_IS_PARTY`, values an image before `QĐ-93c` cannot read) and says `COMPATIBLE` (exit 0),
+  or `SPENDING_APPROVER_IS_PARTY`, values an image before `QĐ-93c` cannot read; `ai-history-outbox`, counted by the table
+  `ai_history_deliveries` rather than by rows: once migration `20261116100000` ran, `ai_invocation_contents` is gone and no image
+  before it can serve the database, ADR-0020) and says `COMPATIBLE` (exit 0),
   `INCOMPATIBLE` (2) or `NO_HISTORY` (3: no migration ever ran here). The script judges the previous image twice:
   - **before `migrate deploy`:** an image that is not on the host (its labels cannot be read) or a database with no
     migration history while the host names a previous release (a reset database under an old release state) stops the

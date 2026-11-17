@@ -34,6 +34,12 @@
 # <dir>/releases/.deploy.lock without waiting and keeps it until it exits; a second deployment — from the workflow or by
 # hand — exits 2 at once and changes nothing. Needs util-linux `flock`.
 #
+# ADR-0020 (WDP): the AI history lives in the `mongodb` service of docker-compose.prod.yml. `migrate deploy` drops the
+# PostgreSQL table the previous release read the AI content from, so a release that cannot reach MongoDB must stop BEFORE it:
+# the environment files are checked for the MongoDB settings before any docker call, and `mongodb` is started, waited for and
+# probed with the credentials of the API before the backup and the migration. Neither the recreation nor the recovery ever
+# names `mongodb`: the service and its volume `mongodb-data` are never stopped, recreated or removed here.
+#
 # Removes no image, volume or orphan container. Never prints a credential: no `set -x`, no command here echoes the
 # environment files, and the output of the Caddy validation (a Caddy log can carry environment values) is discarded.
 set -euo pipefail
@@ -152,6 +158,14 @@ if grep -Eq '^[[:space:]]*(export[[:space:]]+)?(POSTGRES_[A-Z_]*|DATABASE_[A-Z_]
   fail '.env.app names a database variable (POSTGRES_*, DATABASE_*, PG*); the API and the worker get the runtime role from Compose only.'
 fi
 
+# ADR-0020: the settings of the MongoDB service (`.env`, Compose interpolation) and the URI of the API and the worker (`.env.app`)
+# must exist before anything is changed: `migrate deploy` is not reversible for the AI history. Values are never printed.
+mongo_setting() { grep -Eq "^[[:space:]]*(export[[:space:]]+)?$2[[:space:]]*=[[:space:]]*[^[:space:]#]" "$1"; }
+mongo_setting .env MONGODB_ROOT_USER && mongo_setting .env MONGODB_ROOT_PASSWORD ||
+  fail '.env has no MONGODB_ROOT_USER and MONGODB_ROOT_PASSWORD (the root user of the mongodb service, ADR-0020); add them (docs/operations/wdp-mongodb-deploy.md); nothing was changed.'
+grep -Eq "^[[:space:]]*(export[[:space:]]+)?MONGODB_URI[[:space:]]*=[[:space:]]*['\"]?mongodb(\+srv)?://[^:@/[:space:]]+:[^@/[:space:]]+@" .env.app ||
+  fail '.env.app has no MONGODB_URI with a user and a password (mongodb://<user>:<password>@mongodb:27017/?authSource=admin, ADR-0020); add it (docs/operations/wdp-mongodb-deploy.md); nothing was changed.'
+
 # H7-OPS-RV-05: one mkdir that fails on an existing directory claims this attempt; an earlier attempt is never rewritten.
 mkdir -p "$RELEASE_DIR/attempts"
 if [ -e "$ATTEMPT_DIR" ]; then
@@ -170,7 +184,7 @@ live() { CADDYFILE_PATH="$APP_DIR/Caddyfile" timeout 120 docker compose --projec
 
 echo "🔎 Validating candidate $RELEASE with the live .env and .env.app..."
 candidate config --quiet ||
-  fail 'the candidate does not validate with .env/.env.app (missing POSTGRES_PASSWORD, DATABASE_DEPLOY_PASSWORD or DATABASE_RUNTIME_PASSWORD?).'
+  fail 'the candidate does not validate with .env/.env.app (missing POSTGRES_PASSWORD, DATABASE_DEPLOY_PASSWORD, DATABASE_RUNTIME_PASSWORD, MONGODB_ROOT_USER or MONGODB_ROOT_PASSWORD?).'
 
 echo "🔎 Validating the candidate Caddyfile with Caddy..."
 candidate run --rm --no-deps -T caddy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile > /dev/null 2>&1 ||
@@ -192,6 +206,18 @@ for attempt in $(seq 1 30); do
   sleep 2
 done
 [ "$READY" -eq 1 ] || fail 'PostgreSQL is not ready; nothing was backed up or migrated.'
+
+# ADR-0020: MongoDB before `migrate deploy`, which drops ai_invocation_contents and cannot be reversed. An existing container is not
+# recreated, the volume is never touched. `--wait` returns only when the healthcheck of the service passes.
+echo "📦 Starting MongoDB if it is not running (an existing container is not recreated)..."
+candidate up -d --no-recreate --wait --wait-timeout 120 mongodb ||
+  fail 'MongoDB did not become healthy; nothing was backed up or migrated.'
+# The URI the API and the worker will use, with their own environment: the credentials and the network are proved, not assumed.
+# stderr is discarded: a driver error can carry a host or a user.
+echo "🔎 Checking that the API's MONGODB_URI reaches MongoDB..."
+MONGO_PROBE='const {MongoClient}=require("mongodb");(async()=>{const c=new MongoClient(process.env.MONGODB_URI,{serverSelectionTimeoutMS:8000});await c.connect();await c.db("admin").command({ping:1});await c.close()})().catch(()=>process.exit(1))'
+candidate run --rm --no-deps -T api node -e "$MONGO_PROBE" > /dev/null 2>&1 ||
+  fail "MONGODB_URI of .env.app cannot reach or authenticate to the mongodb service (user, password or authSource differ from MONGODB_ROOT_USER/MONGODB_ROOT_PASSWORD?); nothing was backed up or migrated."
 
 # DB-05: back up before migrating, as the deploy role (H7). Never deleted here (scripts/ops/postgres-backup-retention.sh).
 BACKUP_DIR="$APP_DIR/backups/postgres"

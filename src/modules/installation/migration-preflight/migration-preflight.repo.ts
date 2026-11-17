@@ -82,8 +82,20 @@ export class MigrationPreflightRepo {
         'access-request-null-cost-center': requests.rows,
         'access-request-cancel-spending-approver-party': await this.cancelledBySpendingApproverPartyRows(tx),
         'access-request-step-qd93-waiting-reason': await this.qd93WaitingReasonRows(tx),
+        'ai-history-outbox': await this.aiHistoryOutboxTables(tx),
       },
     };
+  }
+
+  /**
+   * `ai-history-outbox`: 1 when migration `20261116100000_ai_history_mongodb` ran, 0 before it. Counted by the table, not by its
+   * rows: a runtime before it fails on the dropped `ai_invocation_contents` even when the database holds no AI call at all.
+   */
+  private async aiHistoryOutboxTables(tx: DbTx): Promise<number> {
+    const [row] = await tx.$queryRaw<{ present: boolean }[]>`
+      SELECT to_regclass('public.ai_history_deliveries') IS NOT NULL AS "present"`;
+
+    return row.present ? 1 : 0;
   }
 
   /** Whether the table has the column in this schema (an older database lacks the table or the column). */

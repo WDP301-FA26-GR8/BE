@@ -28,7 +28,10 @@ export function contentReadEvent(reader: ContentReader, organizationId: string, 
   };
 }
 
-/** `AI_INVOCATION.PURGED`: the contents deleted up to the end of the day `through`, by an operator; the count and the cut-off only. */
+/**
+ * `AI_INVOCATION.PURGED`: the histories purged up to the end of the day `through`, by an operator; the count and the cut-off only.
+ * Written when the purge takes effect in PostgreSQL (the content is unreadable from then on); MongoDB gets the tombstones after.
+ */
 export function contentsPurgedEvent(
   organizationId: string,
   facts: { deletedCount: number; through: string },

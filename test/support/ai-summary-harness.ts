@@ -2,6 +2,13 @@ import request from 'supertest';
 import { QueueSummaryRunService } from '../../src/modules/ai-assist/queue-summary/queue-summary-run.service';
 import type { ApiAccount } from './api-accounts';
 import { declareSubscription } from './builders/catalog.builder';
+import {
+  type DisposableHistoryStore,
+  deliverHistory,
+  dropHistoryStore,
+  historyDocument,
+  provisionHistoryStore,
+} from './disposable-history-store';
 import { FakeAiService } from './fake-ai-service';
 import { GroupHarness } from './group-harness';
 import type { Unit } from './spend-harness';
@@ -19,6 +26,7 @@ export interface SummaryWire {
   status: string;
   createdAt: string;
   sourceStale: boolean;
+  simulated: boolean;
   omittedCount: number;
   lines: SummaryLineWire[];
   errorCode: string | null;
@@ -53,10 +61,13 @@ export const AI_SWITCHES = ['AI_ENABLED', 'AI_ACCESS_REQUEST_SUMMARY_ENABLED'] a
 /**
  * The group harness with the AI summary of the approval queue (`US-15-05`) wired to a local stand-in of the AI service
  * (`fake-ai-service.ts`) over real HTTP: the two switches, the three routes, the content route of the Super Admin, and the reads of
- * what the database keeps. `settled` waits for every run the API started in its background. No assertion lives here.
+ * what the databases keep (PostgreSQL, and the MongoDB of the raw history, one of its own per suite: `TEST_MONGODB_URI`).
+ * `settled` waits for every run the API started in its background and delivers its history. No assertion lives here.
  */
 export class AiSummaryHarness extends GroupHarness {
   readonly ai = new FakeAiService();
+  /** The MongoDB of the raw history of this suite (ADR-0020). */
+  history: DisposableHistoryStore | undefined;
   private unitNumber = 0;
 
   /** `timeoutMs`: the deadline of one call to the AI service, its retry included. */
@@ -64,9 +75,20 @@ export class AiSummaryHarness extends GroupHarness {
     super();
   }
 
+  /**
+   * Starts the application pointed at the stand-in (`env` may override, `AI_SERVICE_BASE_URL: ''` for no AI service) with
+   * `AI_PROVIDER_MODE` = MODEL, so a summary goes to the stand-in; a spec of the simulation sets SIMULATED with `setMode`.
+   */
   override async start(options: Parameters<GroupHarness['start']>[0] = {}): Promise<void> {
     await this.ai.start();
-    await super.start({ ...options, env: { ...this.ai.environment(this.timeoutMs), ...(options.env ?? {}) } });
+    this.history = await provisionHistoryStore();
+    await super.start({
+      ...options,
+      env: { ...this.ai.environment(this.timeoutMs), ...this.history.env, ...(options.env ?? {}) },
+    });
+    const response = await this.setMode('MODEL');
+    if (response.status !== 200)
+      throw new Error(`AI_PROVIDER_MODE: ${response.status} ${JSON.stringify(response.body)}`);
   }
 
   override async stop(): Promise<void> {
@@ -76,6 +98,7 @@ export class AiSummaryHarness extends GroupHarness {
     } finally {
       // Never left listening, even when the application failed to start or to close.
       await this.ai.stop();
+      if (this.history) await dropHistoryStore(this.history);
     }
   }
 
@@ -87,11 +110,12 @@ export class AiSummaryHarness extends GroupHarness {
   }
 
   /**
-   * A renewal of a term subscription of the department, proposed by the IT Admin, that waits for the decision of the spending
-   * approver (`US-11-02`, state `PROPOSED`): what `RenewalHarness.proposedRenewal` makes, on this branch of the harnesses. The notice
-   * deadline is 20 days from today. Returns the case and its subscription.
+   * The cancellation of a term subscription of the department, recorded by the IT Admin in the one write of the point of adjustment
+   * (`SBF-20` §4.4: no step waits for the head or the spending approver any more), the vendor having refused it with `opinion` as its
+   * note: what `RenewalHarness.recordedRenewal` makes, on this branch of the harnesses. The notice deadline is 20 days from today, so its
+   * point of adjustment has come. Returns the case and its subscription.
    */
-  async proposedRenewal(
+  async recordedRenewal(
     ownerDepartmentId: string,
     opinion: string,
   ): Promise<{ renewalId: string; subscriptionId: string }> {
@@ -113,15 +137,31 @@ export class AiSummaryHarness extends GroupHarness {
     const response = await request(this.server())
       .post('/api/v1/subscription-renewals')
       .set(this.as(this.it1))
-      .send({ subscriptionId, choice: 'RENEW', note: opinion });
-    if (response.status !== 201) throw new Error(`propose: ${response.status} ${JSON.stringify(response.body)}`);
+      .send({
+        subscriptionId,
+        choice: 'CANCEL',
+        outcome: 'VENDOR_REFUSED',
+        outcomeNote: opinion,
+        // The vendor kept the period anyway (V-2): the period it made, starting on the renewal day.
+        nextPeriod: {
+          purchasedQuantity: 10,
+          unitPrice: { amount: '1000000', currency: 'VND' },
+          billingCycle: 'ANNUAL',
+          startDate: inDays(50),
+          endDate: inDays(414),
+          noticeDeadline: inDays(385),
+          autoRenew: true,
+          allowsMidTermReduction: false,
+        },
+      });
+    if (response.status !== 201) throw new Error(`record: ${response.status} ${JSON.stringify(response.body)}`);
 
     return { renewalId: this.dataOf<{ renewal: { id: string } }>(response).renewal.id, subscriptionId };
   }
 
-  /** The renewals waiting for a decision that `account` reads in its own queue. */
+  /** The renewals `account` reads in its own list. */
   renewalQueue = (account: ApiAccount) =>
-    request(this.server()).get('/api/v1/subscription-renewals?state=PROPOSED').set(this.as(account));
+    request(this.server()).get('/api/v1/subscription-renewals').set(this.as(account));
 
   /** The Super Admin sets one AI switch. */
   setSwitch = (key: (typeof AI_SWITCHES)[number], value: 'ON' | 'OFF') =>
@@ -129,6 +169,13 @@ export class AiSummaryHarness extends GroupHarness {
       .put(`/api/v1/operating-parameters/${key}`)
       .set({ Authorization: `Bearer ${this.admin}` })
       .send({ value });
+
+  /** The Super Admin sets where the answers of the next calls come from. */
+  setMode = (mode: 'MODEL' | 'SIMULATED') =>
+    request(this.server())
+      .put('/api/v1/operating-parameters/AI_PROVIDER_MODE')
+      .set({ Authorization: `Bearer ${this.admin}` })
+      .send({ value: mode });
 
   async switchAll(value: 'ON' | 'OFF'): Promise<void> {
     for (const key of AI_SWITCHES) await this.setSwitch(key, value).expect(200);
@@ -145,9 +192,13 @@ export class AiSummaryHarness extends GroupHarness {
       .get(`/api/v1/ai/invocations/${invocationId}/content`)
       .set({ Authorization: `Bearer ${token}` });
 
-  /** Resolves when every run of the AI the API started has ended. */
+  /**
+   * Resolves when every run of the AI the API started has ended and its raw history is in MongoDB: what the worker would have done
+   * by the time a person reads it.
+   */
   async settled(): Promise<void> {
     await this.ctx.app.get(QueueSummaryRunService, { strict: false }).idle();
+    await deliverHistory(this.ctx.app);
   }
 
   async revisionOf(account: ApiAccount): Promise<string> {
@@ -200,13 +251,21 @@ export class AiSummaryHarness extends GroupHarness {
     return Number(rows[0].n);
   }
 
-  async contentRow(invocationId: string): Promise<Record<string, unknown> | undefined> {
+  /** The result the checks kept for the call, as PostgreSQL holds it. */
+  async resultRow(invocationId: string): Promise<Record<string, unknown> | undefined> {
     return (
       await this.ctx.sql.query<Record<string, unknown>>(
-        `SELECT * FROM ai_invocation_contents WHERE invocation_id = $1`,
+        `SELECT * FROM ai_invocation_results WHERE invocation_id = $1`,
         [invocationId],
       )
     ).rows[0];
+  }
+
+  /** The document of the raw history of the call, as MongoDB holds it; null when MongoDB never got it. */
+  async historyDocument(invocationId: string): Promise<Record<string, unknown> | null> {
+    if (!this.history) throw new Error('the harness has not started');
+
+    return historyDocument(this.history, invocationId);
   }
 
   /** The audit events about a call, oldest first. */

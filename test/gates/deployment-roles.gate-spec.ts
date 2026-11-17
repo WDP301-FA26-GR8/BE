@@ -136,7 +136,9 @@ describe('production PostgreSQL identities', () => {
 
     it('never runs a database step through the API service or as the cluster superuser', () => {
       for (const text of [workflow, hostScript]) {
-        expect(text).not.toMatch(/run\b[^\n]*\bapi node/);
+        // The one exception is the MongoDB reachability probe of ADR-0020: it runs with the environment of the API (the URI it
+        // will use) and touches no PostgreSQL role.
+        expect(text).not.toMatch(/run\b[^\n]*\bapi node(?! -e "\$MONGO_PROBE")/);
         expect(text).not.toMatch(/pg_dump[^\n]*POSTGRES_USER|exec -T postgres sh -c 'pg_dump/);
         // The cluster superuser is for one-off provisioning by hand (runbook), never a step of an automatic deploy.
         expect(text).not.toMatch(/\b(?:run|up|exec)\b[^\n]*\bdb-admin\b/);

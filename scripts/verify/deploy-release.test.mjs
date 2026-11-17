@@ -47,14 +47,18 @@ const CANDIDATE = {
 };
 const MALFORMED_CADDY = ':80 {\n  MALFORMED directive\n}\n';
 /** The `.env` of H7 (the live one in every case) and the one kept before the first H7 rollout. */
-const H7_ENV = `ENV_GENERATION=h7\nPOSTGRES_PASSWORD=${SECRET}\nDATABASE_DEPLOY_PASSWORD=${SECRET}\n`;
+const H7_ENV = `ENV_GENERATION=h7\nPOSTGRES_PASSWORD=${SECRET}\nDATABASE_DEPLOY_PASSWORD=${SECRET}\nMONGODB_ROOT_USER=slm_mongo\nMONGODB_ROOT_PASSWORD=${SECRET}\n`;
+/** ADR-0020: the URI the API and the worker read from `.env.app`. */
+const MONGO_URI_LINE = `MONGODB_URI=mongodb://slm_mongo:${SECRET}@mongodb:27017/?authSource=admin\n`;
 const PRE_H7_ENV = `ENV_GENERATION=pre-h7\nPOSTGRES_PASSWORD=${SECRET}\nAUTH_ACCESS_TOKEN_SECRET=${SECRET}\n`;
 /**
  * P04-CPE-04: the labels `docker image inspect --format '{{json .Config.Labels}}'` prints for an image that reads the
  * representation the final release writes (the Dockerfile label, pinned in recovery-target.policy.spec.ts). The previous image
  * prints `null` by default: an image built before the label, as the compatibility image `fba4dfe`.
  */
-const FINAL_LABELS = JSON.stringify({ 'io.github.baophipham.slm.data-reads': 'access-request-null-cost-center' });
+const FINAL_LABELS = JSON.stringify({
+  'io.github.baophipham.slm.data-reads': 'access-request-null-cost-center ai-history-outbox',
+});
 /** Short, still bounded, windows: the fake answers at once. */
 const QUICK = ['--ready-timeout', '2', '--stability-window', '0', '--poll-interval', '0'];
 const created = [];
@@ -231,6 +235,8 @@ case "$*" in
     fi ;;
   *" stop api worker")
     : > "$state/stopped-$generation" ;;
+  *"node_modules/prisma/build/index.js migrate deploy")
+    if [ -n "\${FAKE_OUTBOX_AT_MIGRATE:-}" ]; then : > "$state/outbox"; fi ;;
   "image inspect --format "*)
     image="\${@: -1}"
     if [ "$image" = "\${FAKE_ABSENT_IMAGE:-}" ]; then echo "Error: No such image: $image" >&2; exit 1; fi
@@ -244,6 +250,8 @@ case "$*" in
     rows="$value"
     verdict=0
     if [ "$rows" -gt 0 ] && [[ "\${@: -1}" != *access-request-null-cost-center* ]]; then verdict=2; fi
+    # ADR-0020: once migrate deploy created the outbox table (FAKE_OUTBOX_AT_MIGRATE), a runtime that does not declare it cannot serve.
+    if [ -e "$state/outbox" ] && [[ "\${@: -1}" != *ai-history-outbox* ]]; then verdict=2; echo "  - ai-history-outbox: 1 row(s), NOT read by the image"; fi
     # A release still running while it is judged keeps writing: a row after the verdict is one the verdict missed.
     image_of "$generation"
     if [ -n "\${FAKE_WRITE_DURING_JUDGE:-}" ] && [ "$generation_image" = "$FAKE_NEW_IMAGE" ] && [ ! -e "$state/stopped-$generation" ]; then
@@ -326,7 +334,7 @@ const setup = (() => {
  * `noFlock` leaves PATH with the fakes only, so that no `flock` can be found.
  */
 function host({
-  appEnv = `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nSMTP_HOST=smtp.example.com\n`,
+  appEnv = `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nSMTP_HOST=smtp.example.com\n${MONGO_URI_LINE}`,
   fresh = false,
   preH7 = false,
   noFlock = false,
@@ -395,6 +403,7 @@ function environmentFor(target, options, log) {
   // P04-CPE-04: the labels of the previous image, what the fake database holds and how the release writes.
   const { labelsOld, absentImage, nullRows, candidateWrites, writeDuringJudge, noHistory, judgeFailsAfterRecreate } =
     options;
+  const { outboxAtMigrate } = options;
   const { bash } = setup;
   return {
     ...process.env,
@@ -426,6 +435,7 @@ function environmentFor(target, options, log) {
     ...(writeDuringJudge ? { FAKE_WRITE_DURING_JUDGE: '1' } : {}),
     ...(noHistory ? { FAKE_NO_HISTORY: '1' } : {}),
     ...(judgeFailsAfterRecreate ? { FAKE_JUDGE_FAILS_AFTER_RECREATE: '1' } : {}),
+    ...(outboxAtMigrate ? { FAKE_OUTBOX_AT_MIGRATE: '1' } : {}),
   };
 }
 
@@ -790,6 +800,8 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
     ['the candidate Caddyfile cannot be checked', 'caddy validate', 1],
     ['the image cannot be pulled', 'pull api worker', 1],
     ['the database cannot start', 'up -d --no-recreate postgres', 1],
+    ['MongoDB does not become healthy (ADR-0020)', 'up -d --no-recreate --wait', 1],
+    ['the MONGODB_URI of the API cannot reach MongoDB (ADR-0020)', 'api node -e', 1],
     ['the backup fails', 'pg_dump', 1],
     ['the backup is unreadable', 'pg_restore', 1],
     ['the preflight blocks', 'migration-preflight-cli', 2],
@@ -808,6 +820,85 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
       assert.equal(result.output.includes(SECRET), false);
     });
   }
+
+  it('starts MongoDB and proves the URI of the API before the backup and migrate deploy, and never stops or removes it (ADR-0020)', () => {
+    const target = host();
+    const result = deploy(target);
+
+    assert.equal(result.status, 0, result.output);
+    const order = [
+      step(result, / up -d --no-recreate postgres$/),
+      step(result, / up -d --no-recreate --wait --wait-timeout 120 mongodb$/),
+      step(result, / run --rm --no-deps -T api node -e /),
+      step(result, / backup pg_dump /),
+      step(result, / migrate node node_modules\/prisma\/build\/index\.js migrate deploy$/),
+    ];
+    assert.ok(
+      order.every((index) => index >= 0),
+      `missing step in ${result.calls.join('\n')}`,
+    );
+    assert.deepEqual(
+      order,
+      [...order].sort((a, b) => a - b),
+    );
+    // Neither the deploy nor a recovery names the service or its volume: no stop, rm, down, volume or orphan removal.
+    for (const call of result.calls) {
+      // The two steps that start and probe it; the probe's own code names the driver.
+      if (
+        / up -d --no-recreate --wait --wait-timeout 120 mongodb$/.test(call) ||
+        / run --rm --no-deps -T api node -e /.test(call)
+      )
+        continue;
+      assert.doesNotMatch(call, /\bmongodb\b|mongodb-data|--remove-orphans|volume rm| down( |$)/);
+    }
+    assert.equal(result.output.includes(SECRET), false);
+  });
+
+  it('stops before any docker call when the host has no MongoDB settings (ADR-0020)', () => {
+    for (const [name, env] of [
+      ['.env without the root user', (v) => v.replace(/MONGODB_ROOT_USER=.*\n/, '')],
+      ['.env without the root password', (v) => v.replace(/MONGODB_ROOT_PASSWORD=.*\n/, '')],
+    ]) {
+      const target = host();
+      const path = join(target.app, '.env');
+      writeFileSync(path, env(readFileSync(path, 'utf8')));
+      const result = deploy(target);
+
+      assert.equal(result.status, 1, name);
+      assert.deepEqual(result.calls, [], name);
+      assert.match(result.output, /MONGODB_ROOT_USER and MONGODB_ROOT_PASSWORD/);
+      assert.deepEqual(live(target), LIVE);
+      assert.equal(result.output.includes(SECRET), false);
+    }
+    for (const appEnv of [
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\n`,
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nMONGODB_URI=mongodb://mongodb:27017\n`,
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nMONGODB_URI=mongodb://slm_mongo@mongodb:27017\n`,
+    ]) {
+      const target = host({ appEnv });
+      const result = deploy(target);
+
+      assert.equal(result.status, 1);
+      assert.deepEqual(result.calls, []);
+      assert.match(result.output, /MONGODB_URI with a user and a password/);
+      assert.equal(result.output.includes(SECRET), false);
+    }
+  });
+
+  it('does not backup or migrate when MongoDB is not ready (ADR-0020)', () => {
+    for (const fail of ['up -d --no-recreate --wait', 'api node -e']) {
+      const target = host();
+      const result = deploy(target, { fail });
+
+      assert.equal(result.status, 1);
+      assert.equal(
+        result.calls.some((call) => / backup pg_dump | migrate deploy$/.test(call)),
+        false,
+        result.calls.join('\n'),
+      );
+      assert.deepEqual(live(target), LIVE);
+    }
+  });
 
   for (const [what, mvFail] of [
     ['the first rename (docker-compose.prod.yml)', '.docker-compose.prod.yml.promote'],
@@ -1203,6 +1294,32 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
 
       assert.equal(result.status, 1, result.output);
       assert.match(result.calls[all(result, JUDGE).at(-1)], /access-request-null-cost-center/);
+      assert.equal(recreations(result).length, 2, result.calls.join('\n'));
+      assert.match(result.output, /RECOVERY: the previous release ghcr\.io\/example\/slm-api:a{40} is ready/);
+    });
+
+    // ADR-0020: migration 20261116100000 drops ai_invocation_contents, which the release before it reads; counted by the table, not by rows.
+    it('refuses the previous image once migrate deploy created the AI history outbox: its tables are gone (ADR-0020)', () => {
+      const target = host();
+      const result = deploy(target, { badNew: 'api:notready', outboxAtMigrate: true });
+
+      assert.equal(result.status, 1, result.output);
+      // Before migrate deploy the table was absent: the previous image was still a valid way back, so the deploy went on.
+      assert.match(result.output, /is the way back of this deployment/);
+      assert.ok(step(result, / migrate node node_modules\/prisma\/build\/index\.js migrate deploy$/) > 0);
+      assert.match(
+        result.output,
+        /RECOVERY: REFUSED — ghcr\.io\/example\/slm-api:a{40} cannot read rows release [0-9a-f]{40} wrote/,
+      );
+      assert.equal(recreations(result).length, 1, result.calls.join('\n'));
+      assert.doesNotMatch(result.output, /RECOVERY: the previous release .* is ready/);
+    });
+
+    it('brings back a previous image that declares ai-history-outbox after migrate deploy created the table (ADR-0020)', () => {
+      const target = host();
+      const result = deploy(target, { badNew: 'api:notready', outboxAtMigrate: true, labelsOld: FINAL_LABELS });
+
+      assert.equal(result.status, 1, result.output);
       assert.equal(recreations(result).length, 2, result.calls.join('\n'));
       assert.match(result.output, /RECOVERY: the previous release ghcr\.io\/example\/slm-api:a{40} is ready/);
     });
@@ -1664,8 +1781,8 @@ describe('deploy-release.sh (H7-OPS-02, H7-OPS-RV-01..07)', () => {
   it('stops before any docker call without .env.app, or with a database variable in it', () => {
     for (const appEnv of [
       null,
-      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nPOSTGRES_PASSWORD=${SECRET}\n`,
-      'export PGPASSWORD=x\n',
+      `AUTH_ACCESS_TOKEN_SECRET=${SECRET}\nPOSTGRES_PASSWORD=${SECRET}\n${MONGO_URI_LINE}`,
+      `export PGPASSWORD=x\n${MONGO_URI_LINE}`,
     ]) {
       const target = host({ appEnv });
       const result = deploy(target);

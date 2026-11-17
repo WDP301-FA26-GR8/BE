@@ -161,6 +161,8 @@ const PUBLIC_CONTRACT_EXPORTS: ReadonlySet<string> = new Set([
   'SubscriptionOwnerAssignmentCliModule: SubscriptionOwnerAssignmentApi',
   // US-15-05: the entry service of `pnpm ops:ai-purge`.
   'AiAssistPurgeCliModule: AiPurgeApi',
+  // ADR-0020: the delivery of the raw AI history to MongoDB, which the loop of the worker runs.
+  'AiAssistHistoryFacadeModule: AiHistoryDeliveryApi',
   // F01: the service `pnpm ops:cost-center-direction` runs and the organization facade asks (whether the link is activated).
   'CostCenterDirectionCliModule: CostCenterDirectionApi',
   // F19 (Task 5.5): the controlled procedure for an event about the Super Admin, and the writes of the events it runs with an operator
@@ -177,6 +179,8 @@ const PUBLIC_CONTRACT_EXPORTS: ReadonlySet<string> = new Set([
   'NotificationsModule: EmailDeliveryApi',
   // G5 (FR-3.11): the inbox the routes of `NotificationsHttpModule` read, held once in the module that gives the notices.
   'NotificationsModule: InboxService',
+  // P5-B (A5): the extension point the owners of names (organization, catalog, requests) add their `NotificationNameSource` to (public/notifications.extension-points.ts).
+  'NotificationsModule: NotificationNameContributions',
   'OperatingParametersModule: OperatingParametersApi',
   // G6 (ADR-0017): the extension point the flows that follow a personnel file (the owner of a service account) add their hooks to.
   'PersonnelModule: PersonnelFileHookContributions',

@@ -34,7 +34,7 @@ Reset thuộc wrapper local/VPS, không thuộc Nest hay CI/CD; xem [seed](docs/
 
 ```text
 src/core            TypeScript thuần (ngày nghiệp vụ, tiền, extension point) — không phụ thuộc gì
-src/infrastructure  adapter kỹ thuật (config, database, HTTP, bảo mật, mail, storage, queue dự phòng) — chỉ dùng core
+src/infrastructure  adapter kỹ thuật (config, database, HTTP, bảo mật, mail, storage, queue dự phòng, MongoDB) — chỉ dùng core
 src/modules/*       bounded context nghiệp vụ, xếp theo tầng dưới đây
 src/app, worker, cli  ghép tiến trình; chỉ chạm module qua public/ và *.module.ts
 ```
@@ -42,6 +42,13 @@ src/app, worker, cli  ghép tiến trình; chỉ chạm module qua public/ và *
 `src/infrastructure/queue` (BullMQ/Redis) là **hạ tầng dự phòng, chưa có consumer** (Owner `OD-R5`: giữ cho tương lai). Chưa
 process nào mount `QueueInfrastructureModule`, nên API, worker và lệnh không cần Redis và không kiểm cấu hình Redis; module nào
 mount nó sau này mới có validation chặt (`REDIS_HOST`, `REDIS_PASSWORD` ở production).
+
+`src/infrastructure/mongodb` (driver chính thức `mongodb`) giữ **lịch sử thô của lần gọi AI** theo
+[ADR-0020](docs/decisions/0020-mongodb-for-ai-invocation-history.md) (collection `ai_invocation_histories`). `ai-assist` mount
+`MongoInfrastructureModule` ở API (đọc cho Super Admin), worker (giao outbox `ai_history_deliveries` sang MongoDB) và
+`ops:ai-purge` (ghi tombstone), nên ba process này kiểm `MONGODB_*` khi khởi động (production: URI có thông tin xác thực).
+PostgreSQL vẫn là nguồn có thẩm quyền: trạng thái lần gọi, kết quả phục vụ hàng chờ và outbox ở PostgreSQL; MongoDB tắt chỉ
+làm lịch sử ở trạng thái chờ, không chặn hàng chờ hay liveness.
 
 | Tầng | Module                                                          | Ý nghĩa                                                                                        |
 | ---- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
