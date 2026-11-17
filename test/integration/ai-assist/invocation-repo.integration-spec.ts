@@ -149,7 +149,9 @@ describe('AiInvocationRepo (integration, real PostgreSQL)', () => {
     await repo.markRunning(id, new Date(Date.now() - 200_000));
     const cutoff = new Date(Date.now() - 150_000);
 
-    await expect(runner.run((tx) => repo.stuckOf(tx, input, cutoff))).resolves.toEqual([id]);
+    await expect(runner.run((tx) => repo.stuckOf(tx, input, cutoff))).resolves.toEqual([
+      { id, providerMode: input.providerMode },
+    ]);
     await expect(runner.run((tx) => repo.expire(tx, id, cutoff, new Date()))).resolves.toBe(true);
     await expect(runner.run((tx) => repo.expire(tx, id, cutoff, new Date()))).resolves.toBe(false);
     await expect(runner.run((tx) => repo.finish(tx, id, OUTCOME, new Date()))).resolves.toBe(false);
