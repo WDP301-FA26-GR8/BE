@@ -25796,7 +25796,7 @@
             }
           },
           "409": {
-            "description": "The department that owns the subscription has no Cost Center in use yet and the change creates, raises or extends what is owed: a higher quantity, a later end or renewal date (or one where there was none), auto renewal switched on or a higher unit price (FINANCE.SETUP_INCOMPLETE, nothing is written). The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire.",
+            "description": "The department that owns the subscription has no Cost Center in use yet and the change creates, raises or extends what is owed: a higher quantity, a later end or renewal date (or one where there was none), auto renewal switched on or a higher unit price (FINANCE.SETUP_INCOMPLETE, nothing is written). The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire. When expectedUpdatedAt is sent and the subscription was changed since (by another edit, or by a seat bought for a grant), nothing is written (SUBSCRIPTION.STALE, details.currentUpdatedAt): read it again and redo the edit.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -25820,6 +25820,18 @@
                       "error": {
                         "code": "SUBSCRIPTION.PRIMARY_CONFLICT",
                         "message": "Another subscription of the plan was made the primary one at the same time. Read it again and retry.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SUBSCRIPTION.STALE": {
+                    "summary": "The subscription was changed by someone else since it was read: read it again before editing.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SUBSCRIPTION.STALE",
+                        "message": "The subscription was changed by someone else since it was read: read it again before editing.",
+                        "details": { "currentUpdatedAt": "2026-11-18T08:00:00.000Z" },
                         "requestId": "req_example"
                       }
                     }
@@ -108520,7 +108532,12 @@
           "allowsMidTermReduction": { "type": "boolean" },
           "responsibleItAdminEmployeeId": { "type": "string", "format": "uuid" },
           "vendorMinimumSeats": { "type": "integer", "minimum": 1, "maximum": 1000000000, "nullable": true },
-          "isPrimaryForPlan": { "type": "boolean" }
+          "isPrimaryForPlan": { "type": "boolean" },
+          "expectedUpdatedAt": {
+            "description": "The updatedAt of the subscription as the client read it. When it is not the current one the change is refused (SUBSCRIPTION.STALE) and nothing is written; leave it out to change without the check.",
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "additionalProperties": false
       },

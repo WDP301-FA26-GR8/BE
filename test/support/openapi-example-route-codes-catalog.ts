@@ -247,7 +247,7 @@ export const ROUTE_ERROR_CODES_CATALOG: Readonly<Record<string, Partial<Record<R
     },
     subscriptionUpdate: {
       '404': ['SUBSCRIPTION.NOT_FOUND'],
-      '409': ['FINANCE.SETUP_INCOMPLETE', 'SUBSCRIPTION.PRIMARY_CONFLICT'],
+      '409': ['FINANCE.SETUP_INCOMPLETE', 'SUBSCRIPTION.PRIMARY_CONFLICT', 'SUBSCRIPTION.STALE'],
       '422': [
         'CURRENCY_NOT_SUPPORTED',
         'MONEY_OUT_OF_RANGE',

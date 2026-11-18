@@ -109,8 +109,12 @@ const DUPLICATE_PLAN_CONFLICT = {
 const UPDATE_CONFLICT = {
   status: HttpStatus.CONFLICT,
   description:
-    'The department that owns the subscription has no Cost Center in use yet and the change creates, raises or extends what is owed: a higher quantity, a later end or renewal date (or one where there was none), auto renewal switched on or a higher unit price (FINANCE.SETUP_INCOMPLETE, nothing is written). The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire.',
-  examples: [SUBSCRIPTION_ERROR_EXAMPLES.FINANCE_SETUP_INCOMPLETE, SUBSCRIPTION_ERROR_EXAMPLES.PRIMARY_CONFLICT],
+    'The department that owns the subscription has no Cost Center in use yet and the change creates, raises or extends what is owed: a higher quantity, a later end or renewal date (or one where there was none), auto renewal switched on or a higher unit price (FINANCE.SETUP_INCOMPLETE, nothing is written). The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire. When expectedUpdatedAt is sent and the subscription was changed since (by another edit, or by a seat bought for a grant), nothing is written (SUBSCRIPTION.STALE, details.currentUpdatedAt): read it again and redo the edit.',
+  examples: [
+    SUBSCRIPTION_ERROR_EXAMPLES.FINANCE_SETUP_INCOMPLETE,
+    SUBSCRIPTION_ERROR_EXAMPLES.PRIMARY_CONFLICT,
+    SUBSCRIPTION_ERROR_EXAMPLES.STALE,
+  ],
 } as const;
 
 const toWire = (view: SubscriptionView) => ({
@@ -215,7 +219,10 @@ export class SubscriptionsController {
     @Body() body: UpdateSubscriptionBodyDto,
   ) {
     try {
-      return toWire(await this.changes.update(actor, params.id, body));
+      const { expectedUpdatedAt, ...change } = body;
+      const expected = expectedUpdatedAt === undefined ? undefined : new Date(expectedUpdatedAt);
+
+      return toWire(await this.changes.update(actor, params.id, change, expected));
     } catch (error) {
       throw toSubscriptionApiException(error);
     }

@@ -121,7 +121,8 @@ file thuần xuống tầng thấp, hoặc đưa dịch vụ điều phối lên
 - `subscription/` — subscription và mua đứt (US-04-03, US-04-05), đích ghế, giá; `subscriptions.controller.ts`;
   `SubscriptionService`, `SubscriptionChangeService` (đổi subscription; kiểm trước khi ghi ở `SubscriptionChangeGuard`),
   `SeatTargetService`, `seat-guard.policy.ts` (số lượng không dưới ghế đang chiếm); `nextStateOf`, `subscriptionStatusOf`,
-  `sameUnitPrice` là hàm thuần trong `subscription.policy.ts`.
+  `sameUnitPrice`, `isStaleEdit` là hàm thuần trong `subscription.policy.ts`.
+  Khóa lạc quan: `PATCH /subscriptions/:id` nhận `expectedUpdatedAt` (tùy chọn); trong giao dịch đã khóa `FOR UPDATE`, khác `updated_at` hiện tại (độ chính xác ms) thì 409 `SUBSCRIPTION.STALE` + `details.currentUpdatedAt`, không ghi gì. Mọi đường ghi dòng `subscriptions` đều bump `updated_at`: Prisma `@updatedAt` (kể cả `addPoolSeat` cho cấp K1/K2/K4 và gia hạn) và SQL thô `reassignResponsible` (`updated_at = now()`); gia hạn/thu hồi ghế không có đường SQL thô nào khác. Thu hồi/kết thúc cấp phát không giảm `purchased_quantity`.
   `SubscriptionPoolRulesService` giữ các luật kho dùng chung mà policy thuần không biết (ai được phụ trách thuê bao).
 - `contract/` — hợp đồng (nhà cung cấp, số, hiệu lực từ/đến — để trống là vô thời hạn —, ghi chú; không có loại hợp đồng,
   US-04-13, `QĐ-111t`) và file riêng tư trong object storage (US-04-04). `contracts.controller.ts` (danh sách, tạo, sửa kèm

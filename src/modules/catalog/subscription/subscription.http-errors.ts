@@ -20,6 +20,7 @@ import {
   SubscriptionK1MonthlyOnlyError,
   SubscriptionK4PerpetualOnlyError,
   SubscriptionPrimaryConflictError,
+  SubscriptionStaleError,
   SubscriptionPrimaryNotEligibleError,
   SubscriptionResponsibleNotItAdminError,
   SubscriptionResponsibleRequiredError,
@@ -132,6 +133,11 @@ export function toSubscriptionApiException(error: unknown): unknown {
   if (error instanceof SubscriptionPrimaryNotEligibleError) {
     return refuse(UNPROCESSABLE, 'SUBSCRIPTION.PRIMARY_NOT_ELIGIBLE', error.message, { reason: error.reason });
   }
+  if (error instanceof SubscriptionStaleError) {
+    return refuse(HttpStatus.CONFLICT, 'SUBSCRIPTION.STALE', error.message, {
+      currentUpdatedAt: error.currentUpdatedAt.toISOString(),
+    });
+  }
   if (
     error instanceof SubscriptionPrimaryConflictError ||
     isUniqueViolation(error, 'subscriptions_one_primary_per_plan')
@@ -173,6 +179,7 @@ export const SUBSCRIPTION_ERROR_EXAMPLES = {
   RESPONSIBLE_NOT_IT_ADMIN: example(new SubscriptionResponsibleNotItAdminError()),
   PRIMARY_NOT_ELIGIBLE: example(new SubscriptionPrimaryNotEligibleError('NOT_ACTIVE')),
   PRIMARY_CONFLICT: example(new SubscriptionPrimaryConflictError()),
+  STALE: example(new SubscriptionStaleError(new Date('2026-11-18T08:00:00.000Z'))),
   DUPLICATE_PLAN: example(new SubscriptionDuplicatePlanError(['<subscription-id>'])),
   MONEY_SCALE_EXCEEDED: example(new MoneyScaleExceededError(2, 'unitPrice')),
   MONEY_OUT_OF_RANGE: example(new MoneyOutOfRangeError('unitPrice')),
