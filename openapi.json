@@ -110480,7 +110480,7 @@
                       "employeeCode": { "type": "string" },
                       "fullName": { "type": "string" },
                       "workEmail": {
-                        "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one (`QĐ-87b`, `FR-2.9`); null when the profile has none.",
+                        "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one; null when the profile has none.",
                         "type": "string",
                         "nullable": true
                       }
@@ -110860,7 +110860,7 @@
                         "employeeCode": { "type": "string" },
                         "fullName": { "type": "string" },
                         "workEmail": {
-                          "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one (`QĐ-87b`, `FR-2.9`); null when the profile has none.",
+                          "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one; null when the profile has none.",
                           "type": "string",
                           "nullable": true
                         }
@@ -111110,7 +111110,7 @@
                       "employeeCode": { "type": "string" },
                       "fullName": { "type": "string" },
                       "workEmail": {
-                        "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one (`QĐ-87b`, `FR-2.9`); null when the profile has none.",
+                        "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one; null when the profile has none.",
                         "type": "string",
                         "nullable": true
                       }
