@@ -1,5 +1,7 @@
-/** Pure check of a picture (`QĐ-111at` for a person, `QĐ-113c` for a department): shared, with no framework and no storage. */
-/** The largest picture of a person or a department: one megabyte (`QĐ-111at`). */
+/**
+ * Pure check of a picture (`QĐ-111at` for a person, `QĐ-113c` for a department): shared, with no framework and no storage.
+ * The largest picture of a person or a department is one megabyte (`QĐ-111at`).
+ */
 export const PICTURE_MAX_BYTES = 1024 * 1024;
 
 export interface PictureKind {

@@ -29,7 +29,8 @@ export interface UploadedDepartmentPicture {
  * The picture of a department (`QĐ-113c`), set, replaced or removed by the Super Admin while the department is active. The file is judged by its
  * signature, written to the storage under a key of its own, and only then does the department point at it, in one transaction with its audit. The
  * object it stopped pointing at is deleted after the commit, never inside the transaction, which could still roll back; a failed delete is logged and
- * leaves an unreachable object, which is cheaper than a purge table of its own for one picture per department.
+ * leaves an unreachable object, which is cheaper than a purge table of its own for one picture per department (known limitation, D-1: a crash between the
+ * write and the commit, or a failed delete, leaves such an object; no purge table until it is seen to matter).
  */
 @Injectable()
 export class DepartmentAvatarService {
@@ -62,6 +63,10 @@ export class DepartmentAvatarService {
       throw new DepartmentAvatarInvalidError(judged.reason);
     }
     const organization = await requireOrganization(this.context);
+    // Without a lock: only to refuse a missing or retired department before anything is written; the locked check below decides.
+    const existing = await this.repo.findById(departmentId);
+    if (!existing) throw new DepartmentNotFoundError();
+    if (existing.status !== 'ACTIVE') throw new DepartmentInactiveError();
     const key = departmentAvatarObjectKey(organization.id, departmentId, randomUUID(), judged.kind.extension);
     await this.storage.putObject({ key, body: file.bytes, contentType: judged.kind.contentType });
 

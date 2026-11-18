@@ -100,4 +100,142 @@ describe('PATCH /employees/{id}/first-placement (integration, real PostgreSQL)',
     );
     expect(audit.rowCount).toBe(1);
   });
+
+  /** A person whose only placement starts 30 days after today and has been told to nobody: what the trigger lets be corrected. */
+  async function futurePerson(code: string, departmentCode: string) {
+    const employeeId = await person(code, departmentCode);
+    const placement = await placementOf(employeeId);
+    await h.ctx.sql.query('UPDATE employee_placements SET valid_from = valid_from + 30 WHERE id = $1', [placement.id]);
+
+    return { employeeId, placementId: placement.id };
+  }
+
+  const tell = (placementId: string) =>
+    h.ctx.sql.query(
+      `INSERT INTO organization_change_announcements (id, organization_id, kind, subject_id, effective_on)
+       SELECT gen_random_uuid(), organization_id, 'PLACEMENT_START', id, valid_from FROM employee_placements WHERE id = $1`,
+      [placementId],
+    );
+
+  describe('the trigger employee_placements_keep_history (QĐ-113e), straight in SQL', () => {
+    const changeDepartment = (placementId: string, departmentId: string) =>
+      sqlState(h.ctx.sql, 'UPDATE employee_placements SET department_id = $2 WHERE id = $1', [
+        placementId,
+        departmentId,
+      ]);
+
+    it('lets a lone future placement that nobody was told of change department, and keeps its id', async () => {
+      const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR1' })).expect(201));
+      const to = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR2' })).expect(201));
+      const { employeeId, placementId } = await futurePerson('NV-TR1', from.code);
+
+      expect(await changeDepartment(placementId, to.id)).toBeNull();
+
+      expect(await placementOf(employeeId)).toMatchObject({ id: placementId, department_id: to.id });
+    });
+
+    it('refuses the change when the person has a second placement, for either of the two', async () => {
+      const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR3' })).expect(201));
+      const to = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR4' })).expect(201));
+      const { employeeId, placementId } = await futurePerson('NV-TR3', from.code);
+      await h.ctx.sql.query('UPDATE employee_placements SET valid_to = valid_from + 30 WHERE id = $1', [placementId]);
+      const second = (
+        await h.ctx.sql.query<{ id: string }>(
+          `INSERT INTO employee_placements (id, organization_id, employee_id, department_id, valid_from)
+           SELECT gen_random_uuid(), organization_id, employee_id, department_id, valid_to
+             FROM employee_placements WHERE id = $1
+           RETURNING id`,
+          [placementId],
+        )
+      ).rows[0].id;
+
+      expect(await changeDepartment(placementId, to.id)).toBe('55000');
+      expect(await changeDepartment(second, to.id)).toBe('55000');
+      expect((await placementOf(employeeId)).department_id).toBe(from.id);
+    });
+
+    it('refuses the change once the start was told (PLACEMENT_START), and the delete stops at the history guard', async () => {
+      const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR5' })).expect(201));
+      const to = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR6' })).expect(201));
+      const { placementId } = await futurePerson('NV-TR5', from.code);
+      await tell(placementId);
+
+      expect(await changeDepartment(placementId, to.id)).toBe('55000');
+      expect(await sqlState(h.ctx.sql, 'DELETE FROM employee_placements WHERE id = $1', [placementId])).toBe('55000');
+    });
+
+    it('refuses the change once a department transfer opens or closes the placement', async () => {
+      const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR7' })).expect(201));
+      const to = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR8' })).expect(201));
+      const { employeeId, placementId } = await futurePerson('NV-TR7', from.code);
+      await h.ctx.sql.query(
+        `INSERT INTO department_transfers (id, organization_id, employee_id, from_department_id, to_department_id, effective_on, status,
+           effective_at, closes_placement_id, opens_placement_id, grounds_type, grounds_reference, grounds_issuer, grounds_issued_on,
+           recorded_by_app_user_id)
+         VALUES (gen_random_uuid(), $1, $2, $3, $4, CURRENT_DATE + 90, 'EFFECTIVE', now(), $5, gen_random_uuid(), 'DECISION', 'D-1', 'HR',
+           CURRENT_DATE, $6)`,
+        [h.seed.organizationId, employeeId, from.id, to.id, placementId, h.seed.superAdmin.appUserId],
+      );
+
+      expect(await changeDepartment(placementId, to.id)).toBe('55000');
+    });
+
+    it('takes "today" in the time zone of the organization, not the one of the server', async () => {
+      const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR9' })).expect(201));
+      const to = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TRA' })).expect(201));
+      const { placementId } = await futurePerson('NV-TR9', from.code);
+      const dayIn = async (zone: string) =>
+        (await h.ctx.sql.query<{ day: string }>('SELECT (now() AT TIME ZONE $1)::date::text AS day', [zone])).rows[0]
+          .day;
+      const original = (
+        await h.ctx.sql.query<{ time_zone: string }>('SELECT time_zone FROM organizations WHERE id = $1', [
+          h.seed.organizationId,
+        ])
+      ).rows[0].time_zone;
+      const setZone = (zone: string) =>
+        h.ctx.sql.query('UPDATE organizations SET time_zone = $2 WHERE id = $1', [h.seed.organizationId, zone]);
+
+      try {
+        // The placement starts on the day it is in the far east: today there, so already in effect there...
+        await setZone('Pacific/Kiritimati');
+        const eastDay = await dayIn('Pacific/Kiritimati');
+        await h.ctx.sql.query('UPDATE employee_placements SET valid_from = $2::date WHERE id = $1', [
+          placementId,
+          eastDay,
+        ]);
+        expect(await changeDepartment(placementId, to.id)).toBe('55000');
+
+        // ... and still ahead of today in the far west, where the same instant is an earlier day.
+        await setZone('Pacific/Pago_Pago');
+        expect((await dayIn('Pacific/Pago_Pago')) < eastDay).toBe(true);
+        expect(await changeDepartment(placementId, to.id)).toBeNull();
+      } finally {
+        await setZone(original);
+      }
+    });
+
+    it('still refuses to delete the lone placement (keep_one), whether or not it may change department', async () => {
+      const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TRB' })).expect(201));
+      const { placementId } = await futurePerson('NV-TRB', from.code);
+
+      expect(await sqlState(h.ctx.sql, 'DELETE FROM employee_placements WHERE id = $1', [placementId])).toBe('23001');
+    });
+  });
+
+  it('answers 409 ALREADY_EFFECTIVE, not 500, when the trigger refuses a change the service let through', async () => {
+    const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TRC' })).expect(201));
+    const to = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TRD' })).expect(201));
+    const { placementId, employeeId } = await futurePerson('NV-TRC', from.code);
+    // The service reads no announcement; the trigger is the last guard.
+    await tell(placementId);
+
+    const response = await h
+      .api()
+      .patch(`/api/v1/employees/${employeeId}/first-placement`)
+      .set(h.asAdmin())
+      .send({ departmentId: to.id, reason: 'Wrong team' })
+      .expect(409);
+
+    expect(bodyOf(response).error.code).toBe('EMPLOYEE.FIRST_PLACEMENT_ALREADY_EFFECTIVE');
+  });
 });
