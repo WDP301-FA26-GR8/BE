@@ -14,8 +14,6 @@ interface TaskWire {
 /** What a notice says, without the ids that differ from one run to the next. */
 const said = (rows: NoticeRow[]) => rows.map((row) => row.code);
 
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('the status of a request told to the people it concerns, over PostgreSQL (US-05-15)', () => {
@@ -465,6 +463,8 @@ describe('the status of a request told to the people it concerns, over PostgreSQ
     });
 
     it('tells the approver who held the spend step that it was closed', async () => {
+      // QĐ-113d: this test withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const u = await example();
       const id = await h.waitingForApprover(u, plan, { amount: 5 * M });
 
@@ -479,6 +479,8 @@ describe('the status of a request told to the people it concerns, over PostgreSQ
     });
 
     it('tells the IT Admin and Finance once that what was held went back, and the IT Admin that the task of the grant was cancelled', async () => {
+      // QĐ-113d: this test withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const u = await example();
       const id = await approved(u);
       // Nobody has worked it: the grant takes the work for whoever presses it, so this is a task put back in the queue after a failure.

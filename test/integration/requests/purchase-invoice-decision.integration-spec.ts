@@ -34,8 +34,6 @@ interface InvoiceRow {
  * What Finance decides on a purchase invoice (`PI-1.6`, `QĐ-111u`, `QĐ-111v`): signing the money out writes the one invoice, booked to the month
  * and the year of the period, never by the person who submitted it, and returning it needs a reason and writes nothing. On real PostgreSQL.
  */
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('Finance signs or returns a purchase invoice over PostgreSQL (integration; PI-1.6, T-PI)', () => {
@@ -321,6 +319,8 @@ describe('Finance signs or returns a purchase invoice over PostgreSQL (integrati
     if (state === 'FAILED') {
       await h.closeFailed(granted.task.id, { reason: 'The portal cannot hold the account' }).expect(200);
     } else {
+      // QĐ-113d: the requester withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       await h.withdrawRequest(requestId, { reason: 'Not needed any more' }, unit.member.account).expect(200);
     }
     expect(await h.state(requestId)).toBe(state);

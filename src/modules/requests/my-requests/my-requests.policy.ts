@@ -131,12 +131,14 @@ export function outcomeOf(
 
 /**
  * Whether the sender may withdraw the request now, by the policy of the withdrawal (`checkWithdrawal`) as it judges the sender: while
- * nobody has decided it (`QĐ-113d`). A hint
+ * nobody has decided it (`QĐ-113d`); a request for a group by the need step read over its people, as its withdrawal reads it. A hint
  * for the screen only: the withdrawal judges again on the locked request, and the task of a grant that is being worked is refused there
  * by licensing, which a list does not ask.
  */
 export function canWithdrawOwn(
-  row: Pick<MyRequestRow, 'state' | 'needStep' | 'hasSpendStep'> & { requesterEmployeeId: string },
+  row: Pick<MyRequestRow, 'state' | 'withdrawalNeedStep' | 'hasSpendStep' | 'hasAssessmentStep'> & {
+    requesterEmployeeId: string;
+  },
   stage: SpendStage | null,
 ): boolean {
   return (
@@ -145,8 +147,9 @@ export function canWithdrawOwn(
       requesterEmployeeId: row.requesterEmployeeId,
       actorHeadsDepartment: false,
       state: row.state,
-      needStep: row.needStep.state,
+      needStep: row.withdrawalNeedStep,
       hasSpendStep: row.hasSpendStep,
+      hasAssessmentStep: row.hasAssessmentStep,
       spendStage: stage,
       reason: null,
     }) === null

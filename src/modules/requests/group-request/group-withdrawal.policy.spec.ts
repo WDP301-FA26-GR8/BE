@@ -1,5 +1,6 @@
 import {
   checkLineWithdrawal,
+  needStepOfGroup,
   hasGrantTask,
   holdsMoney,
   releasedByYear,
@@ -160,5 +161,31 @@ describe('what is given back and what is recorded when people of a group are wit
       released: false,
       taskId: 'task-1',
     });
+  });
+});
+
+describe('the need step a request for a group is withdrawn by (QĐ-113d)', () => {
+  const steps = [
+    { id: 's1', state: 'PENDING' as const },
+    { id: 's2', state: 'APPROVED' as const },
+    { id: 's3', state: 'NOT_REQUIRED' as const },
+  ];
+  const first = steps[0];
+
+  it('is the open step while every live person awaits their need', () => {
+    expect(needStepOfGroup(steps, first, [{ state: 'AWAITING_NEED', needStepId: 's1' }])).toBe('PENDING');
+  });
+
+  it('is NOT_REQUIRED while the people the head vouched for wait for the spending approver', () => {
+    expect(needStepOfGroup(steps, first, [{ state: 'NEED_CONFIRMED', needStepId: 's3' }])).toBe('NOT_REQUIRED');
+  });
+
+  it('counts as decided as soon as one live person was decided, ended lines left out', () => {
+    const lines = [
+      { state: 'AWAITING_NEED' as const, needStepId: 's1' },
+      { state: 'APPROVED' as const, needStepId: 's2' },
+    ];
+    expect(needStepOfGroup(steps, first, lines)).toBe('APPROVED');
+    expect(needStepOfGroup(steps, first, [lines[0], { state: 'WITHDRAWN', needStepId: 's2' }])).toBe('PENDING');
   });
 });

@@ -13,6 +13,7 @@ const base: WithdrawalFacts = {
   state: 'PENDING',
   needStep: 'PENDING',
   hasSpendStep: false,
+  hasAssessmentStep: false,
   spendStage: null,
   reason: null,
 };
@@ -52,6 +53,18 @@ describe('checkWithdrawal (US-05-08)', () => {
       'WITHDRAWAL_AFTER_DECISION',
     );
     expect(checkWithdrawal(withFacts({ ...none, state: 'EXECUTING' }))).toBe('WITHDRAWAL_AFTER_DECISION');
+  });
+
+  it('QĐ-113d: once the IT Admin has decided the assessment of new software, the requester withdraws no more', () => {
+    const none = { needStep: 'NOT_REQUIRED', hasAssessmentStep: true, hasSpendStep: true } as const;
+    expect(checkWithdrawal(withFacts({ ...none, state: 'AWAITING_IT_ASSESSMENT' }))).toBeNull();
+    for (const state of ['AWAITING_SPEND_SUBMISSION', 'AWAITING_SPEND_DECISION', 'AWAITING_EXECUTION'] as const) {
+      expect(checkWithdrawal(withFacts({ ...none, state }))).toBe('WITHDRAWAL_AFTER_DECISION');
+    }
+    // Registered as free internal software: no spend step, but the IT Admin has decided.
+    expect(checkWithdrawal(withFacts({ ...none, hasSpendStep: false, state: 'AWAITING_EXECUTION' }))).toBe(
+      'WITHDRAWAL_AFTER_DECISION',
+    );
   });
 
   it('refuses anybody who is not the requester, the person it is for included (AC-4, AC-8)', () => {

@@ -143,7 +143,7 @@ export const GROUP_REQUEST_ERROR_EXAMPLES = {
   WITHDRAWAL_PENDING: example(new AccessRequestWithdrawalRefusedError('WITHDRAWAL_PENDING')),
   GRANT_RUNNING: example(new AccessRequestWithdrawalRefusedError('GRANT_RUNNING', { employeeIds: [PERSON] })),
   WITHDRAWAL_AFTER_DECISION: example(
-    new AccessRequestWithdrawalRefusedError('WITHDRAWAL_AFTER_DECISION', { state: 'APPROVED' }),
+    new AccessRequestWithdrawalRefusedError('WITHDRAWAL_AFTER_DECISION', { scope: 'LINE', state: 'APPROVED' }),
   ),
   GRANT_COMPLETED: example(
     new AccessRequestWithdrawalRefusedError('GRANT_COMPLETED', { assignmentId: '<assignment-id>' }),

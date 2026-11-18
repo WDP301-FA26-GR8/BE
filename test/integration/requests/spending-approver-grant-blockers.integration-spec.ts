@@ -27,8 +27,6 @@ interface Refusal {
  * The refusal lists the work (409 `APP_USER.SPENDING_APPROVER_HAS_OPEN_WORK`); a draft is not work (OD-5); once the work is over the grant
  * goes through. `lockSpendingApproverAmong` is what the creating side of a Request uses to meet the same rows (`FOR SHARE`).
  */
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('the grant of SPENDING_APPROVER and the work that is still open (integration, real PostgreSQL)', () => {
@@ -127,6 +125,8 @@ describe('the grant of SPENDING_APPROVER and the work that is still open (integr
 
   describe('Requests (US-01-03 AC-12)', () => {
     it('refuses a holder with open requests and lists them: the one they sent and the one sent for them and a colleague, nothing is redetermined', async () => {
+      // QĐ-113d: this test withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const u = await unit();
       const person = await h.staff(u.department, `E7-${counter}`);
       const colleague = await h.staff(u.department, `E7C-${counter}`);

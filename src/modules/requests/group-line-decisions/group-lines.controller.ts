@@ -203,7 +203,7 @@ export class GroupLinesController {
   @ApiSuccessResponse(GroupResponseDto, {
     message: 'GROUP_REQUEST.LINE_WITHDRAWN',
     description:
-      'The sender withdraws one person only while their line still awaits the need, or while the request is sent back to add what is missing (QĐ-113d); after any decision the way back is a return once granted. The head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.',
+      'The sender withdraws one person only while their line still awaits the need, or while the request is sent back to add what is missing; after any decision the way back is a return once granted. The head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.',
   })
   @ApiErrorResponses(
     ...AUTH_ERRORS,

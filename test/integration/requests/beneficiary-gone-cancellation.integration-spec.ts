@@ -35,8 +35,6 @@ async function sqlState(text: string, values: unknown[] = []): Promise<string | 
  * called as the sweeps of MF-2 (`ALL_OPEN`, the day access is blocked) and MF-3 (`PAID_OLD_DEPARTMENT`, the day a transfer takes effect)
  * call it, in a transaction of their own; nothing here goes through a route to close anything.
  */
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('the system closes the open requests of a person who is gone (integration, real PostgreSQL)', () => {
@@ -222,6 +220,8 @@ describe('the system closes the open requests of a person who is gone (integrati
     });
 
     it('does not close a request withdrawn while its grant had failed, whose task waits for the IT Admin to close it, and tells the IT Admin', async () => {
+      // QĐ-113d: this test withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const u = await unit();
       const person = await h.colleague(u);
       const failing = await approvedFor(u, person, 1);

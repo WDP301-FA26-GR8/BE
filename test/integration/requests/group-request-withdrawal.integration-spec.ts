@@ -15,8 +15,6 @@ interface Refused {
   error: { code: string; details?: { assignmentId?: string; employeeIds?: string[] } };
 }
 
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('withdrawing one person of a request for a group, or what is left of it, over PostgreSQL (US-05-17 AC-10, US-05-08)', () => {
@@ -84,6 +82,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
 
   describe('before the spend there is no money to give back (AC-10)', () => {
     it('ends the line of the person and prices the request again for those who remain, and the others are decided as they were', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const u = await unit();
       const [e1, e2, e3] = await h.colleagues(u, 3);
       const id = await h.groupWaiting(u, paid, [e1, e2, e3]);
@@ -127,6 +127,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
 
   describe('once the spend is approved the share of the person goes back and nobody else’s does (AC-10)', () => {
     it('gives back exactly the share of the person withdrawn: the example of three million of twelve', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const { u, people, id } = await approved(4);
       const [, , , e4] = people;
       const share = await shareOf(id, e4.employeeId);
@@ -146,6 +148,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
     });
 
     it('cancels the task and the assignment of a person nobody has worked, as cancelled and never as failed', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const { u, people, id } = await approved(3);
       // Nobody has worked it: the grant takes the work for whoever presses it, so this is a task put back in the queue after a failure.
       await h.unclaimed((await granted(id, people[2].employeeId)).id);
@@ -160,6 +164,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
     });
 
     it('refuses while the task is being worked and when the seat is real, saying where the seat is', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const { u, people, id } = await approved(3);
       const running = await granted(id, people[0].employeeId);
       const finished = await granted(id, people[1].employeeId);
@@ -178,6 +184,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
     });
 
     it('lets the line wait for the IT Admin when the grant had failed, and ends it, giving back the share, when the task is cancelled', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const { u, people, id } = await approved(2);
       const task = await granted(id, people[0].employeeId);
       await failed(task.id);
@@ -199,6 +207,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
     });
 
     it('is the right of the sender, not of the person withdrawn nor of a stranger', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const u = await unit();
       const [e1, e2, e3] = await h.colleagues(u, 3);
       const id = h.dataOf<{ request: { id: string } }>(
@@ -220,6 +230,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
 
   describe('the whole request when a person has a seat already (AC-10)', () => {
     it('withdraws every person who has not ended, keeps the one who was granted, and gives back what the others held', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const { u, people, id } = await approved(3);
       const [e1, e2, e3] = people;
       const done = await granted(id, e1.employeeId);
@@ -239,6 +251,8 @@ describe('withdrawing one person of a request for a group, or what is left of it
     });
 
     it('refuses the whole when a task is being worked, and changes nothing', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const { u, people, id } = await approved(3);
       const task = await granted(id, people[0].employeeId);
       await worked(task.id);

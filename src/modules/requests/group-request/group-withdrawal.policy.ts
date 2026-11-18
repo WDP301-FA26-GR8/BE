@@ -1,6 +1,6 @@
 import type { AccessRequestState, NeedStepState, SpendStage } from '../access-request/access-request.types';
 import { headMayWithdraw, type WithdrawalRefusal } from '../access-request/withdrawal.policy';
-import type { LineState } from '../access-request/group-request.types';
+import { isEnded, type LineState } from '../access-request/group-request.types';
 
 /**
  * Who withdraws one person of a request for a group, and what that does to the money (`US-05-08`, `US-06-14` AC-14, `US-05-17`
@@ -106,4 +106,32 @@ export function withdrawalAuditOf(
       ...(done.kind === 'WAITING_FOR_IT' ? { taskId: done.taskId } : {}),
     },
   };
+}
+
+/** The state of the need step that holds a person of a request for a group; a step that is gone counts as decided. */
+const stepStateOf = (
+  steps: readonly { id: string; state: NeedStepState }[],
+  line: { needStepId: string },
+): NeedStepState => steps.find((step) => step.id === line.needStepId)?.state ?? 'APPROVED';
+
+/**
+ * The need step a request for a group is judged by when all of it is withdrawn, and when the list says whether its sender may
+ * (`QĐ-113d`): nobody was decided only while every person who has not ended is undecided (`lineUndecided`); otherwise a decision
+ * was taken and the step counts as decided. `fallback` is the step the request waits at (the first open one, else the first).
+ * A request for a group is for plans of the catalog: its chain has no IT assessment, so the spending approver decides first.
+ */
+export function needStepOfGroup(
+  steps: readonly { id: string; state: NeedStepState }[],
+  fallback: { state: NeedStepState },
+  lines: readonly { state: LineState; needStepId: string }[],
+): NeedStepState {
+  const live = lines.filter((line) => !isEnded(line.state) && line.state !== 'AWAITING_IT_CLOSE');
+  if (!live.every((line) => lineUndecided({ lineState: line.state, needStep: stepStateOf(steps, line) }))) {
+    return 'APPROVED';
+  }
+  if (live.some((line) => line.state === 'AWAITING_NEED')) {
+    return (steps.find((step) => step.state === 'PENDING' || step.state === 'WAITING') ?? fallback).state;
+  }
+
+  return 'NOT_REQUIRED';
 }

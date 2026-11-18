@@ -7,11 +7,15 @@ import {
   AccessRequestNotFoundError,
   AccessRequestWithdrawalRefusedError,
 } from '../access-request/access-request.errors';
-import { canViewRequest, hasSpendStep, viewFactsOf } from '../access-request/access-request.policy';
+import { canViewRequest, hasAssessmentStep, hasSpendStep, viewFactsOf } from '../access-request/access-request.policy';
 import { AccessRequestRepo } from '../access-request/access-request.repo';
 import type { AccessRequestRecord } from '../access-request/access-request.types';
 import { checkWithdrawal } from '../access-request/withdrawal.policy';
 import { SpendStatusService } from '../spend/spend-status.service';
+
+/** A draft is not a request until it is sent: there is nothing to withdraw, and it is not found here. */
+const isWithdrawableBy = (actor: AuthenticatedPrincipal, request: AccessRequestRecord, heads: boolean): boolean =>
+  request.state !== 'DRAFT' && (heads || canViewRequest(actor, viewFactsOf(request)));
 
 /**
  * What a withdrawal needs to hold before anything is written (`US-05-08`, `US-06-14` AC-14): the task of the grant locked before the
@@ -40,9 +44,7 @@ export class WithdrawalPreconditions {
     const today = await this.organizationReads.businessToday(now, tx);
     const headed = await this.organizationReads.getHeadedDepartment(actor.employeeId, today);
     const heads = headed?.departmentId === request?.departmentId;
-    if (!request || !(heads || canViewRequest(actor, viewFactsOf(request)))) {
-      throw new AccessRequestNotFoundError();
-    }
+    if (!request || !isWithdrawableBy(actor, request, heads)) throw new AccessRequestNotFoundError();
 
     const refusal = checkWithdrawal({
       actorEmployeeId: actor.employeeId,
@@ -51,6 +53,7 @@ export class WithdrawalPreconditions {
       state: request.state,
       needStep: request.needStep.state,
       hasSpendStep: hasSpendStep(request.policy),
+      hasAssessmentStep: hasAssessmentStep(request.policy),
       spendStage: (await this.spendStatus.of(request))?.stage ?? null,
       reason,
     });
@@ -60,7 +63,7 @@ export class WithdrawalPreconditions {
       throw new AccessRequestWithdrawalRefusedError('GRANT_COMPLETED', assignmentId ? { assignmentId } : null);
     }
     if (refusal === 'WITHDRAWAL_AFTER_DECISION') {
-      throw new AccessRequestWithdrawalRefusedError(refusal, { state: request.state });
+      throw new AccessRequestWithdrawalRefusedError(refusal, { scope: 'REQUEST', state: request.state });
     }
     if (refusal) throw new AccessRequestWithdrawalRefusedError(refusal);
 

@@ -32,8 +32,6 @@ interface YearWire {
  * stale. Routes of the web with a mobile label; real HTTP and PostgreSQL. One queue of both kinds of step does not exist yet
  * (B-02/B-10): `GET /spend-approvals` lists spend steps only, which a test below records.
  */
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('the spending approver decides on the phone (US-16-03, integration)', () => {
@@ -291,6 +289,8 @@ describe('the spending approver decides on the phone (US-16-03, integration)', (
     });
 
     it('refuses the phone after the employee withdrew the request on the web, and nothing is held', async () => {
+      // QĐ-113d: this test withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const u = await example();
       const r2 = await h.waitingForApprover(u, plan, { amount: 10 * M });
       await post(`/access-requests/${r2}/withdraw`, u.member.account, {}, WEB).expect(200);

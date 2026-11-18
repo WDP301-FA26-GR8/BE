@@ -23,8 +23,6 @@ interface TaskWire {
   status: string;
 }
 
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('closing a request because its person was transferred (integration, real PostgreSQL)', () => {
@@ -325,6 +323,8 @@ describe('closing a request because its person was transferred (integration, rea
     });
 
     it('closes a request whose last live line is the transferred person’s: the line goes and the request ends with it', async () => {
+      // QĐ-113d: the sender withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       // A group names two people at least, so the other one is taken out first and the last live line is the transferred person's.
       const { u, people, id, target } = await group(2);
       await h.withdrawLine(id, people[1].employeeId, {}, u.head.account).expect(200);

@@ -14,7 +14,7 @@ import { checkWithdrawal } from '../access-request/withdrawal.policy';
 import { SpendStatusService } from '../spend/spend-status.service';
 import { GroupLineWithdrawer } from './group-line-withdrawer.service';
 import { GroupWithdrawalAftermath } from './group-withdrawal-aftermath.service';
-import { checkLineWithdrawal, lineUndecided, type Withdrawn } from './group-withdrawal.policy';
+import { checkLineWithdrawal, needStepOfGroup, type Withdrawn } from './group-withdrawal.policy';
 import { isEnded, type LineRecord } from '../access-request/group-request.types';
 import { RequestLineRepo } from './request-line.repo';
 
@@ -66,7 +66,7 @@ export class GroupWithdrawalService {
       });
       if (refusal === 'GRANT_COMPLETED') await this.refuseCompleted(tx, request.id, employeeId);
       if (refusal === 'WITHDRAWAL_AFTER_DECISION') {
-        throw new AccessRequestWithdrawalRefusedError(refusal, { state: line.state });
+        throw new AccessRequestWithdrawalRefusedError(refusal, { scope: 'LINE', state: line.state });
       }
       if (refusal) throw new AccessRequestWithdrawalRefusedError(refusal);
 
@@ -103,13 +103,14 @@ export class GroupWithdrawalService {
         requesterEmployeeId: request.requesterEmployeeId,
         actorHeadsDepartment: await this.heads(actor, request),
         state: request.state,
-        needStep: needStepOfGroup(request, lines),
+        needStep: needStepOfGroup(request.needSteps, request.needStep, lines),
+        hasAssessmentStep: false,
         hasSpendStep: hasSpendStep(request.policy),
         spendStage: (await this.spendStatus.of(request))?.stage ?? null,
         reason,
       });
       if (refusal === 'WITHDRAWAL_AFTER_DECISION') {
-        throw new AccessRequestWithdrawalRefusedError(refusal, { state: request.state });
+        throw new AccessRequestWithdrawalRefusedError(refusal, { scope: 'REQUEST', state: request.state });
       }
       if (refusal) throw new AccessRequestWithdrawalRefusedError(refusal);
 
@@ -135,6 +136,7 @@ export class GroupWithdrawalService {
     const request = await this.requests.lockById(tx, requestId);
     if (
       !request ||
+      request.state === 'DRAFT' ||
       request.type !== 'GROUP_GRANT' ||
       !((await this.heads(actor, request)) || canViewRequest(actor, viewFactsOf(request)))
     ) {
@@ -166,20 +168,3 @@ export class GroupWithdrawalService {
 
 const stepStateOf = (request: AccessRequestRecord, line: LineRecord): NeedStepState =>
   request.needSteps.find((step) => step.id === line.needStepId)?.state ?? 'APPROVED';
-
-/**
- * The need step a request for a group is judged by when all of it is withdrawn (`QĐ-113d`): nobody was decided only while every person
- * who has not ended is undecided (`lineUndecided`); otherwise a decision was taken and the step counts as decided.
- */
-function needStepOfGroup(request: AccessRequestRecord, lines: readonly LineRecord[]): NeedStepState {
-  const live = lines.filter((line) => !isEnded(line.state) && line.state !== 'AWAITING_IT_CLOSE');
-  if (!live.every((line) => lineUndecided({ lineState: line.state, needStep: stepStateOf(request, line) }))) {
-    return 'APPROVED';
-  }
-  if (live.some((line) => line.state === 'AWAITING_NEED')) {
-    return (request.needSteps.find((step) => step.state === 'PENDING' || step.state === 'WAITING') ?? request.needStep)
-      .state;
-  }
-
-  return 'NOT_REQUIRED';
-}

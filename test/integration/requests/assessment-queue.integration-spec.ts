@@ -18,8 +18,6 @@ interface QueueWire {
  * IT Admin finds the proposals of the departments they work, with who holds them and how far the assessment has come, and goes on
  * with the routes of the request, which keep their rules. Nobody else reads it.
  */
-// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
-beforeEach(liftWithdrawalAfterDecisionRefusal);
 afterEach(() => jest.restoreAllMocks());
 
 describe('the proposals waiting for IT assessment (integration, real PostgreSQL)', () => {
@@ -191,6 +189,8 @@ describe('the proposals waiting for IT assessment (integration, real PostgreSQL)
     });
 
     it('drops a proposal that is completed, refused at the gate or withdrawn', async () => {
+      // QĐ-113d: this test withdraws after a decision, which only the system or the IT Admin can still do over HTTP.
+      liftWithdrawalAfterDecisionRefusal();
       const done = await inDesign();
       const refused = await inDesign();
       const withdrawn = await inDesign();

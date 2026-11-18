@@ -56,7 +56,13 @@ export function toSummary(
     outcome: outcomeOf(row, stage, lookups.facts),
     withdrawal: row.withdrawal && { withdrawnAt: row.withdrawal.withdrawnAt?.toISOString() ?? null },
     canWithdraw: canWithdrawOwn(
-      { state: row.state, needStep: row.needStep, hasSpendStep: row.hasSpendStep, requesterEmployeeId },
+      {
+        state: row.state,
+        withdrawalNeedStep: row.withdrawalNeedStep,
+        hasSpendStep: row.hasSpendStep,
+        hasAssessmentStep: row.hasAssessmentStep,
+        requesterEmployeeId,
+      },
       stage,
     ),
   };
