@@ -55,8 +55,7 @@ operating-parameters, personnel, requests ([module-graph](../../../docs/generate
 - Mở ([public/organization.extension-points.ts](public/organization.extension-points.ts)), bên đăng ký `*.listener.ts`:
   - `OrganizationChangeListeners` (`organization.change-listeners`) — organization `department/held-notice-handover`;
     budgets `proposal/budget-head-change`; personnel `transfer/transfer-effective`; requests `reassignment/organization-change`.
-  - `DepartmentUseContributions` (`organization.department-use-readers`) — catalog
-    `subscription/subscription-department-use`; licensing `provisioning/department-use/department-open-work`; personnel
+  - `DepartmentUseContributions` (`organization.department-use-readers`) — licensing `provisioning/department-use/department-open-work`; personnel
     `event-notice/department-open-work`; requests `access-request/open-request/department-open-requests`.
   - `CostCenterUseContributions` (`organization.cost-center-use-readers`) — budgets
     `commitment/budget-cost-center-use`; requests `access-request/open-request/cost-center-open-requests`.
@@ -124,8 +123,8 @@ Từ vựng trạng thái nhân viên (`EmployeeStatus`, `EmployeeWorkState`, `E
 - Thứ tự khóa: các phòng theo id, rồi nhân viên (`OrganizationHistoryApi.lockDepartments`).
 - Mỗi thay đổi báo đúng một lần (`@@unique([kind, subjectId])` của `organization_change_announcements`); listener ném
   lỗi thì thay đổi rollback theo.
-- Không xóa phòng ban, Cost Center, chỉ ngừng; ngừng phòng bị từ chối khi còn thành viên, service account, việc mở hoặc
-  subscription (`DepartmentInUseError`); nhóm "đang dùng" không có reader nào → `UseReaderMissingError`.
+- Không xóa phòng ban, Cost Center, chỉ ngừng; ngừng phòng bị từ chối khi còn thành viên, service account, hoặc việc mở
+  (`DepartmentInUseError`); thuê bao không có phòng đứng tên nên không chặn (`QĐ-113g`); nhóm "đang dùng" không có reader nào → `UseReaderMissingError`.
 
 ## Test
 

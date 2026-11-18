@@ -4675,27 +4675,25 @@
             }
           },
           "409": {
-            "description": "Something still keeps it in use (DEPARTMENT.IN_USE; details lists each group with its first things and its total): the people in it, the service accounts it owns, open work (Requests not over, personnel events waiting, open tasks) and the subscriptions or purchases it owns that still owe a payment.",
+            "description": "Something still keeps it in use (DEPARTMENT.IN_USE; details lists each group with its first things and its total): the people in it, the service accounts it owns, and open work (Requests not over, personnel events waiting, open tasks).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
                   "DEPARTMENT.IN_USE": {
-                    "summary": "The department still has members, service accounts, open work or subscriptions that owe a payment.",
+                    "summary": "The department still has members, service accounts, or open work.",
                     "value": {
                       "success": false,
                       "error": {
                         "code": "DEPARTMENT.IN_USE",
-                        "message": "The department still has members, service accounts, open work or subscriptions that owe a payment.",
+                        "message": "The department still has members, service accounts, or open work.",
                         "details": {
                           "members": [{ "employeeCode": "E001", "fullName": "<full-name>" }],
                           "totalMembers": 1,
                           "serviceAccounts": [],
                           "totalServiceAccounts": 0,
                           "openWork": [{ "kind": "ACCESS_REQUEST", "id": "<request-id>", "label": null }],
-                          "totalOpenWork": 1,
-                          "subscriptions": [{ "kind": "SUBSCRIPTION", "id": "<subscription-id>", "label": null }],
-                          "totalSubscriptions": 1
+                          "totalOpenWork": 1
                         },
                         "requestId": "req_example"
                       }
@@ -25195,7 +25193,7 @@
             }
           },
           "422": {
-            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: SUBSCRIPTION.PLAN_NOT_FOUND, OWNER_DEPARTMENT_INACTIVE and APPLICATION_RETIRED (declaring only), PLAN_HAS_NO_SUBSCRIPTION, PERPETUAL_NEEDS_LICENSED_APPLICATION, PERPETUAL_HAS_NO_TERM, DATES_INVALID or UPDATE_EMPTY; the shared-pool rules refuse COMMITMENT_TERM_REQUIRED (a term that becomes active names 1 or 12 months), COMMITMENT_TERM_NOT_ALLOWED (a perpetual purchase), K1_MONTHLY_ONLY (R-E01), K4_PERPETUAL_ONLY (a K4 plan is bought once: only a perpetual purchase is written for it), BILLING_LONGER_THAN_COMMITMENT (R-G01), BILLING_CYCLE_UNSUPPORTED (only MONTHLY and ANNUAL are written; QUARTERLY and OTHER stay readable on older data), RESPONSIBLE_REQUIRED (an active subscription names the IT Admin who answers for it), RESPONSIBLE_NOT_IT_ADMIN and VENDOR_ADMINS_REQUIRED (a plan that needs admins at the vendor, a K2 plan or a K4 plan with an admin console, is not activated as a new subscription, nor its pool made, while its workspace profile names fewer than two different IT Admins; the period a renewal continues is never asked, it only carries the flag vendorAdminsBelowMinimum), and an update may also be refused with PRIMARY_NOT_ELIGIBLE (details.reason); the unit price is refused with PRICE_NOT_VND (it is entered in dong only, details.currency), and the unit price and the original price with MONEY_SCALE_EXCEEDED, MONEY_OUT_OF_RANGE or CURRENCY_NOT_SUPPORTED (the currency of the original price).",
+            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: SUBSCRIPTION.PLAN_NOT_FOUND and APPLICATION_RETIRED (declaring only), PLAN_HAS_NO_SUBSCRIPTION, PERPETUAL_NEEDS_LICENSED_APPLICATION, PERPETUAL_HAS_NO_TERM, DATES_INVALID or UPDATE_EMPTY; the shared-pool rules refuse COMMITMENT_TERM_REQUIRED (a term that becomes active names 1 or 12 months), COMMITMENT_TERM_NOT_ALLOWED (a perpetual purchase), K1_MONTHLY_ONLY (R-E01), K4_PERPETUAL_ONLY (a K4 plan is bought once: only a perpetual purchase is written for it), BILLING_LONGER_THAN_COMMITMENT (R-G01), BILLING_CYCLE_UNSUPPORTED (only MONTHLY and ANNUAL are written; QUARTERLY and OTHER stay readable on older data), RESPONSIBLE_REQUIRED (an active subscription names the IT Admin who answers for it), RESPONSIBLE_NOT_IT_ADMIN and VENDOR_ADMINS_REQUIRED (a plan that needs admins at the vendor, a K2 plan or a K4 plan with an admin console, is not activated as a new subscription, nor its pool made, while its workspace profile names fewer than two different IT Admins; the period a renewal continues is never asked, it only carries the flag vendorAdminsBelowMinimum), and an update may also be refused with PRIMARY_NOT_ELIGIBLE (details.reason); the unit price is refused with PRICE_NOT_VND (it is entered in dong only, details.currency), and the unit price and the original price with MONEY_SCALE_EXCEEDED, MONEY_OUT_OF_RANGE or CURRENCY_NOT_SUPPORTED (the currency of the original price).",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -25219,17 +25217,6 @@
                       "error": {
                         "code": "SUBSCRIPTION.PLAN_NOT_FOUND",
                         "message": "The plan does not exist.",
-                        "requestId": "req_example"
-                      }
-                    }
-                  },
-                  "SUBSCRIPTION.OWNER_DEPARTMENT_INACTIVE": {
-                    "summary": "The department that would own the subscription does not exist or is not active.",
-                    "value": {
-                      "success": false,
-                      "error": {
-                        "code": "SUBSCRIPTION.OWNER_DEPARTMENT_INACTIVE",
-                        "message": "The department that would own the subscription does not exist or is not active.",
                         "requestId": "req_example"
                       }
                     }
@@ -25796,23 +25783,11 @@
             }
           },
           "409": {
-            "description": "The department that owns the subscription has no Cost Center in use yet and the change creates, raises or extends what is owed: a higher quantity, a later end or renewal date (or one where there was none), auto renewal switched on or a higher unit price (FINANCE.SETUP_INCOMPLETE, nothing is written). The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire. When expectedUpdatedAt is sent and the subscription was changed since (by another edit, or by a seat bought for a grant), nothing is written (SUBSCRIPTION.STALE, details.currentUpdatedAt): read it again and redo the edit.",
+            "description": "The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire. When expectedUpdatedAt is sent and the subscription was changed since (by another edit, or by a seat bought for a grant), nothing is written (SUBSCRIPTION.STALE, details.currentUpdatedAt): read it again and redo the edit.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
-                  "FINANCE.SETUP_INCOMPLETE": {
-                    "summary": "The department has no Cost Center in use yet: Finance has to create one for it first.",
-                    "value": {
-                      "success": false,
-                      "error": {
-                        "code": "FINANCE.SETUP_INCOMPLETE",
-                        "message": "The department has no Cost Center in use yet: Finance has to create one for it first.",
-                        "details": { "departmentId": "<department-id>" },
-                        "requestId": "req_example"
-                      }
-                    }
-                  },
                   "SUBSCRIPTION.PRIMARY_CONFLICT": {
                     "summary": "Another subscription of the plan was made the primary one at the same time. Read it again and retry.",
                     "value": {
@@ -25883,7 +25858,7 @@
             }
           },
           "422": {
-            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: SUBSCRIPTION.PLAN_NOT_FOUND, OWNER_DEPARTMENT_INACTIVE and APPLICATION_RETIRED (declaring only), PLAN_HAS_NO_SUBSCRIPTION, PERPETUAL_NEEDS_LICENSED_APPLICATION, PERPETUAL_HAS_NO_TERM, DATES_INVALID or UPDATE_EMPTY; the shared-pool rules refuse COMMITMENT_TERM_REQUIRED (a term that becomes active names 1 or 12 months), COMMITMENT_TERM_NOT_ALLOWED (a perpetual purchase), K1_MONTHLY_ONLY (R-E01), K4_PERPETUAL_ONLY (a K4 plan is bought once: only a perpetual purchase is written for it), BILLING_LONGER_THAN_COMMITMENT (R-G01), BILLING_CYCLE_UNSUPPORTED (only MONTHLY and ANNUAL are written; QUARTERLY and OTHER stay readable on older data), RESPONSIBLE_REQUIRED (an active subscription names the IT Admin who answers for it), RESPONSIBLE_NOT_IT_ADMIN and VENDOR_ADMINS_REQUIRED (a plan that needs admins at the vendor, a K2 plan or a K4 plan with an admin console, is not activated as a new subscription, nor its pool made, while its workspace profile names fewer than two different IT Admins; the period a renewal continues is never asked, it only carries the flag vendorAdminsBelowMinimum), and an update may also be refused with PRIMARY_NOT_ELIGIBLE (details.reason); the unit price is refused with PRICE_NOT_VND (it is entered in dong only, details.currency), and the unit price and the original price with MONEY_SCALE_EXCEEDED, MONEY_OUT_OF_RANGE or CURRENCY_NOT_SUPPORTED (the currency of the original price). An update that would put the seats bought under the seats taken is refused with SUBSCRIPTION.QUANTITY_BELOW_OCCUPIED (details.occupied, details.requested). An active subscription is never lowered to a draft by an update: one still priced in another currency (an earlier release could not convert it) is refused with SUBSCRIPTION.STILL_DRAFT (details.missing is UNIT_PRICE) until the update enters the price in dong, and it stays active.",
+            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: SUBSCRIPTION.PLAN_NOT_FOUND and APPLICATION_RETIRED (declaring only), PLAN_HAS_NO_SUBSCRIPTION, PERPETUAL_NEEDS_LICENSED_APPLICATION, PERPETUAL_HAS_NO_TERM, DATES_INVALID or UPDATE_EMPTY; the shared-pool rules refuse COMMITMENT_TERM_REQUIRED (a term that becomes active names 1 or 12 months), COMMITMENT_TERM_NOT_ALLOWED (a perpetual purchase), K1_MONTHLY_ONLY (R-E01), K4_PERPETUAL_ONLY (a K4 plan is bought once: only a perpetual purchase is written for it), BILLING_LONGER_THAN_COMMITMENT (R-G01), BILLING_CYCLE_UNSUPPORTED (only MONTHLY and ANNUAL are written; QUARTERLY and OTHER stay readable on older data), RESPONSIBLE_REQUIRED (an active subscription names the IT Admin who answers for it), RESPONSIBLE_NOT_IT_ADMIN and VENDOR_ADMINS_REQUIRED (a plan that needs admins at the vendor, a K2 plan or a K4 plan with an admin console, is not activated as a new subscription, nor its pool made, while its workspace profile names fewer than two different IT Admins; the period a renewal continues is never asked, it only carries the flag vendorAdminsBelowMinimum), and an update may also be refused with PRIMARY_NOT_ELIGIBLE (details.reason); the unit price is refused with PRICE_NOT_VND (it is entered in dong only, details.currency), and the unit price and the original price with MONEY_SCALE_EXCEEDED, MONEY_OUT_OF_RANGE or CURRENCY_NOT_SUPPORTED (the currency of the original price). An update that would put the seats bought under the seats taken is refused with SUBSCRIPTION.QUANTITY_BELOW_OCCUPIED (details.occupied, details.requested). An active subscription is never lowered to a draft by an update: one still priced in another currency (an earlier release could not convert it) is refused with SUBSCRIPTION.STILL_DRAFT (details.missing is UNIT_PRICE) until the update enters the price in dong, and it stays active.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -108140,7 +108115,12 @@
         "type": "object",
         "properties": {
           "planId": { "type": "string", "format": "uuid" },
-          "ownerDepartmentId": { "type": "string", "format": "uuid" },
+          "ownerDepartmentId": {
+            "deprecated": true,
+            "description": "Deprecated and ignored: a subscription has no owning department. The cost follows the person who holds the right (a K1 through that person request and invoices, a K2 or K4 seat by seat-month). Accepted so older callers keep working; never stored.",
+            "type": "string",
+            "format": "uuid"
+          },
           "kind": { "type": "string", "enum": ["TERM", "PERPETUAL"] },
           "purchasedQuantity": { "type": "integer", "minimum": 0, "maximum": 1000000000 },
           "unitPrice": {

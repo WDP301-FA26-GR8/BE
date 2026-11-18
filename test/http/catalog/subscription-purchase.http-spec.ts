@@ -90,7 +90,7 @@ describe('subscription routes (e2e, no database)', () => {
   describe('validation', () => {
     const asIt = () => ({ Authorization: bearer(principal(['IT_ADMIN'])) });
 
-    it('AF-05, QĐ-103d: takes a POST with no owner department at validation; whether the plan needs one (K1) is judged by the service', () => {
+    it('QĐ-113g: takes a POST with no owner department, a K1 one too; the field is deprecated and ignored', () => {
       expect(declareSubscriptionBodySchema.safeParse(without(VALID_SUBSCRIPTION, 'ownerDepartmentId')).success).toBe(
         true,
       );

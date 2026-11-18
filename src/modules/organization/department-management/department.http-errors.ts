@@ -87,7 +87,7 @@ export function toDepartmentApiException(error: unknown): unknown {
     return refuse(HttpStatus.UNPROCESSABLE_ENTITY, `DEPARTMENT.AVATAR_${error.reason}`, error.message);
   }
   if (error instanceof DepartmentInUseError) {
-    const { members, serviceAccounts, openWork, subscriptions } = error.groups;
+    const { members, serviceAccounts, openWork } = error.groups;
 
     return refuse(HttpStatus.CONFLICT, 'DEPARTMENT.IN_USE', error.message, {
       members: members.items,
@@ -96,8 +96,6 @@ export function toDepartmentApiException(error: unknown): unknown {
       totalServiceAccounts: serviceAccounts.total,
       openWork: openWork.items,
       totalOpenWork: openWork.total,
-      subscriptions: subscriptions.items,
-      totalSubscriptions: subscriptions.total,
     });
   }
   if (error instanceof HeadAssignmentError) {
@@ -137,7 +135,6 @@ export const DEPARTMENT_ERROR_EXAMPLES = {
       members: { items: [{ employeeCode: 'E001', fullName: '<full-name>' }], total: 1 },
       serviceAccounts: { items: [], total: 0 },
       openWork: { items: [{ kind: 'ACCESS_REQUEST', id: '<request-id>', label: null }], total: 1 },
-      subscriptions: { items: [{ kind: 'SUBSCRIPTION', id: '<subscription-id>', label: null }], total: 1 },
     }),
   ),
   DEPARTMENT_HEAD_DATE_IN_PAST: example(new HeadAssignmentError('DATE_IN_PAST')),

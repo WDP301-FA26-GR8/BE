@@ -59,7 +59,7 @@ flowchart BT
   catalog -->|8| identity_access
   catalog -->|3| notifications
   catalog -->|3| operating_parameters
-  catalog -->|34| organization
+  catalog -->|29| organization
   dashboards -->|2| catalog
   dashboards -->|2| devices
   dashboards -->|4| identity_access

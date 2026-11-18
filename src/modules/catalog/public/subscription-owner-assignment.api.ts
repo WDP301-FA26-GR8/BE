@@ -11,6 +11,9 @@ import type { AssignmentCommand, AssignmentResult } from './subscription-owner-a
  * the subscription is locked, the department is the active one the operator named by its code, the row of the basis is
  * written and the Audit Trail event commits with it. Nothing is inferred and nothing is written when anything is refused.
  * There is no principal: the command is the operator's, and the Audit Trail says so (`OPERATOR`).
+ *
+ * Deprecated (`QĐ-113g`): a subscription has no owning department, so nothing in a running system assigns one. It stays only so the
+ * migration preflight of data an earlier release stored can still be closed with it.
  */
 @Injectable()
 export class SubscriptionOwnerAssignmentApi {

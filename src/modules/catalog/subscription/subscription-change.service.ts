@@ -25,7 +25,6 @@ import {
 import { assertDeclarableCycle } from './pool/subscription-pool.policy';
 import { SubscriptionRepo } from './subscription.repo';
 import { SubscriptionChangeGuard } from './subscription-change-guard.service';
-import { SubscriptionObligationService } from './obligation/subscription-obligation.service';
 import { SubscriptionPricingService } from './subscription-pricing.service';
 import { SubscriptionViewService } from './subscription-view.service';
 import type {
@@ -47,7 +46,6 @@ export class SubscriptionChangeService {
     private readonly subscriptions: SubscriptionRepo,
     private readonly plans: PlanFactsService,
     private readonly pricing: SubscriptionPricingService,
-    private readonly obligation: SubscriptionObligationService,
     private readonly views: SubscriptionViewService,
     private readonly audit: AuditApi,
     private readonly runner: TransactionRunner,
@@ -58,8 +56,7 @@ export class SubscriptionChangeService {
    * Changes a subscription: a new unit price is entered in dong and recorded with today as its day; the original price a vendor
    * quoted is kept as given (`null` takes it away); the other fields are stored as they are; the owner department is not a field
    * of a change. Throws SubscriptionNotFoundError, SubscriptionUpdateEmptyError, SubscriptionStaleError (`expectedUpdatedAt` is not the row's), the shape errors, SubscriptionPriceNotVndError
-   * (a unit price that is not in dong), the money errors and FinanceSetupIncompleteError (a change that creates, raises or extends
-   * what is owed while the owner department has no Cost Center in use).
+   * (a unit price that is not in dong), and the money errors. A subscription has no owning department, so a change asks no Cost Center (`QĐ-113g`).
    */
   async update(
     actor: AuthenticatedPrincipal,
@@ -125,13 +122,6 @@ export class SubscriptionChangeService {
     };
     await this.guard.judgePool(tx, { plan, current, state, input, actor, organizationId });
     if (sameState(state, stateOf(current))) return current;
-    // What is owed cannot be created, raised or extended for a K1 or K5 subscription of a department with no Cost Center in use (a K2 or K4 pool has no such gate).
-    await this.obligation.assertChargeable(
-      tx,
-      { ownerDepartmentId: current.ownerDepartmentId, provisioningType: plan.provisioningType },
-      stateOf(current),
-      state,
-    );
 
     const updated = await this.subscriptions.update(tx, id, state);
     await this.auditChange(tx, actor, { current, updated, organizationId });

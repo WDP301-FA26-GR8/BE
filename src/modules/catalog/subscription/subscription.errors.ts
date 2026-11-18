@@ -12,14 +12,6 @@ export class SubscriptionPlanNotFoundError extends Error {
   }
 }
 
-/** The department named as the owner of a purchase does not exist or is no longer active (`QĐ-89a`). */
-export class SubscriptionOwnerDepartmentInactiveError extends Error {
-  constructor() {
-    super('The department that would own the subscription does not exist or is not active.');
-    this.name = 'SubscriptionOwnerDepartmentInactiveError';
-  }
-}
-
 /** The application of the plan is retired: a purchase of it is no longer declared (`US-04-01` AC-8, AC-9). */
 export class SubscriptionApplicationRetiredError extends Error {
   constructor() {

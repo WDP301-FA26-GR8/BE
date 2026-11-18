@@ -133,17 +133,16 @@ const SUBSCRIPTIONS: DemoSubscription[] = [
   { ...monthly('mailchimp', 'mailchimp-standard', '400000', 'NV-ITA4', 4), renewalInDays: 20 },
   { ...monthly('canva', 'canva-teams', '250000', 'NV-ITA2', 4), renewalInDays: 20 },
   // K1: bought one by one when a seat is granted, so ChatGPT and Cursor start with none (the MF-5 reduction flows count their seats).
-  { ...monthly('chatgpt', 'chatgpt-plus', '500000', 'NV-ITA1', 0), quantity: 0, ownerDepartment: 'ENG' },
+  { ...monthly('chatgpt', 'chatgpt-plus', '500000', 'NV-ITA1', 0), quantity: 0 },
   // The vendor quotes 20 USD; a price is written in dong (`QĐ-111an`), so it is 508.000 (at the 25.400 the dataset used to record) and the
   // dollar quote stays beside it as the original price (FX-1, D-45).
   {
     ...monthly('cursor', 'cursor-pro', '508000', 'NV-ITA1', 0),
     quantity: 0,
-    ownerDepartment: 'ENG',
     originalPrice: { amount: '20', currency: 'USD' },
   },
   // The K1 plan of the person who leaves today: its one seat is his, so his revocation shows the K1 checklist (D-62).
-  { ...monthly('grammarly', 'grammarly-pro', '300000', 'NV-ITA1', 0), quantity: 1, ownerDepartment: 'ENG' },
+  { ...monthly('grammarly', 'grammarly-pro', '300000', 'NV-ITA1', 0), quantity: 1 },
   // K4: a key is bought once; the keys sit in the key store. JetBrains has three, DataGrip none.
   {
     key: 'jetbrains',

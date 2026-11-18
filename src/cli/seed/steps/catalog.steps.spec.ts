@@ -34,6 +34,10 @@ describe('the body of a subscription the dataset declares', () => {
     expect(body).not.toHaveProperty('ownerDepartmentId');
   });
 
+  it('names no owner department for a K1 subscription either (QĐ-113g)', () => {
+    expect(subscriptionBody(ctx, subscription('chatgpt'), 'plan-1')).not.toHaveProperty('ownerDepartmentId');
+  });
+
   it('commits to a year that renews on the day the fixture says, counted from today', () => {
     expect(subscriptionBody(ctx, subscription('figma'), 'plan-1')).toMatchObject({
       billingCycle: 'ANNUAL',

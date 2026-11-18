@@ -46,11 +46,10 @@ const INVALID_UPDATE_NOTE =
 const INVALID = {
   status: HttpStatus.UNPROCESSABLE_ENTITY,
   description:
-    'The request is invalid (VALIDATION_ERROR) or a rule refuses it: SUBSCRIPTION.PLAN_NOT_FOUND, OWNER_DEPARTMENT_INACTIVE and APPLICATION_RETIRED (declaring only), PLAN_HAS_NO_SUBSCRIPTION, PERPETUAL_NEEDS_LICENSED_APPLICATION, PERPETUAL_HAS_NO_TERM, DATES_INVALID or UPDATE_EMPTY; the shared-pool rules refuse COMMITMENT_TERM_REQUIRED (a term that becomes active names 1 or 12 months), COMMITMENT_TERM_NOT_ALLOWED (a perpetual purchase), K1_MONTHLY_ONLY (R-E01), K4_PERPETUAL_ONLY (a K4 plan is bought once: only a perpetual purchase is written for it), BILLING_LONGER_THAN_COMMITMENT (R-G01), BILLING_CYCLE_UNSUPPORTED (only MONTHLY and ANNUAL are written; QUARTERLY and OTHER stay readable on older data), RESPONSIBLE_REQUIRED (an active subscription names the IT Admin who answers for it), RESPONSIBLE_NOT_IT_ADMIN and VENDOR_ADMINS_REQUIRED (a plan that needs admins at the vendor, a K2 plan or a K4 plan with an admin console, is not activated as a new subscription, nor its pool made, while its workspace profile names fewer than two different IT Admins; the period a renewal continues is never asked, it only carries the flag vendorAdminsBelowMinimum), and an update may also be refused with PRIMARY_NOT_ELIGIBLE (details.reason); the unit price is refused with PRICE_NOT_VND (it is entered in dong only, details.currency), and the unit price and the original price with MONEY_SCALE_EXCEEDED, MONEY_OUT_OF_RANGE or CURRENCY_NOT_SUPPORTED (the currency of the original price).',
+    'The request is invalid (VALIDATION_ERROR) or a rule refuses it: SUBSCRIPTION.PLAN_NOT_FOUND and APPLICATION_RETIRED (declaring only), PLAN_HAS_NO_SUBSCRIPTION, PERPETUAL_NEEDS_LICENSED_APPLICATION, PERPETUAL_HAS_NO_TERM, DATES_INVALID or UPDATE_EMPTY; the shared-pool rules refuse COMMITMENT_TERM_REQUIRED (a term that becomes active names 1 or 12 months), COMMITMENT_TERM_NOT_ALLOWED (a perpetual purchase), K1_MONTHLY_ONLY (R-E01), K4_PERPETUAL_ONLY (a K4 plan is bought once: only a perpetual purchase is written for it), BILLING_LONGER_THAN_COMMITMENT (R-G01), BILLING_CYCLE_UNSUPPORTED (only MONTHLY and ANNUAL are written; QUARTERLY and OTHER stay readable on older data), RESPONSIBLE_REQUIRED (an active subscription names the IT Admin who answers for it), RESPONSIBLE_NOT_IT_ADMIN and VENDOR_ADMINS_REQUIRED (a plan that needs admins at the vendor, a K2 plan or a K4 plan with an admin console, is not activated as a new subscription, nor its pool made, while its workspace profile names fewer than two different IT Admins; the period a renewal continues is never asked, it only carries the flag vendorAdminsBelowMinimum), and an update may also be refused with PRIMARY_NOT_ELIGIBLE (details.reason); the unit price is refused with PRICE_NOT_VND (it is entered in dong only, details.currency), and the unit price and the original price with MONEY_SCALE_EXCEEDED, MONEY_OUT_OF_RANGE or CURRENCY_NOT_SUPPORTED (the currency of the original price).',
   examples: [
     VALIDATION_EXAMPLE,
     SUBSCRIPTION_ERROR_EXAMPLES.PLAN_NOT_FOUND,
-    SUBSCRIPTION_ERROR_EXAMPLES.OWNER_DEPARTMENT_INACTIVE,
     SUBSCRIPTION_ERROR_EXAMPLES.APPLICATION_RETIRED,
     SUBSCRIPTION_ERROR_EXAMPLES.PLAN_HAS_NO_SUBSCRIPTION,
     SUBSCRIPTION_ERROR_EXAMPLES.PERPETUAL_NEEDS_LICENSED_APPLICATION,
@@ -105,16 +104,12 @@ const DUPLICATE_PLAN_CONFLICT = {
   examples: [SUBSCRIPTION_ERROR_EXAMPLES.DUPLICATE_PLAN],
 } as const;
 
-/** The update is the one route whose conflict is not only the configuration: a change that owes more needs a Cost Center. */
+/** The update is the one route whose conflict is not only the configuration: the loser of a race on the primary flag, or a stale edit. */
 const UPDATE_CONFLICT = {
   status: HttpStatus.CONFLICT,
   description:
-    'The department that owns the subscription has no Cost Center in use yet and the change creates, raises or extends what is owed: a higher quantity, a later end or renewal date (or one where there was none), auto renewal switched on or a higher unit price (FINANCE.SETUP_INCOMPLETE, nothing is written). The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire. When expectedUpdatedAt is sent and the subscription was changed since (by another edit, or by a seat bought for a grant), nothing is written (SUBSCRIPTION.STALE, details.currentUpdatedAt): read it again and redo the edit.',
-  examples: [
-    SUBSCRIPTION_ERROR_EXAMPLES.FINANCE_SETUP_INCOMPLETE,
-    SUBSCRIPTION_ERROR_EXAMPLES.PRIMARY_CONFLICT,
-    SUBSCRIPTION_ERROR_EXAMPLES.STALE,
-  ],
+    'The unique index of the flag that makes a subscription the primary one of its plan refuses the loser of a race (SUBSCRIPTION.PRIMARY_CONFLICT); the plan is locked for the write, so it normally does not fire. When expectedUpdatedAt is sent and the subscription was changed since (by another edit, or by a seat bought for a grant), nothing is written (SUBSCRIPTION.STALE, details.currentUpdatedAt): read it again and redo the edit.',
+  examples: [SUBSCRIPTION_ERROR_EXAMPLES.PRIMARY_CONFLICT, SUBSCRIPTION_ERROR_EXAMPLES.STALE],
 } as const;
 
 const toWire = (view: SubscriptionView) => ({
