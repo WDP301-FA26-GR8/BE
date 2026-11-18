@@ -338,6 +338,25 @@ describe('department profiles, heads and the MANAGER role over HTTP (integration
       expect(retired.every((item) => item.status === 'INACTIVE')).toBe(true);
     });
 
+    it('keeps the starting department out of an IT Admin list unless named for it, and shows the Super Admin every one', async () => {
+      const starting = await newDepartment();
+      await h.ctx.sql.query('UPDATE departments SET is_starting = true WHERE id = $1', [starting.id]);
+      const listOf = async (headers: Record<string, string>) =>
+        (
+          (await api().get(`/api/v1/departments?search=${starting.code.toLowerCase()}`).set(headers).expect(200))
+            .body as { data: { items: DepartmentWire[]; pagination: { totalItems: number } } }
+        ).data;
+
+      const seenByIt = await listOf(asIt());
+      const seenByAdmin = await listOf(asAdmin());
+
+      expect(seenByIt.items).toHaveLength(0);
+      expect(seenByIt.pagination.totalItems).toBe(0);
+      expect(seenByAdmin.items.map((item) => item.id)).toEqual([starting.id]);
+      expect(seenByAdmin.items[0]).toMatchObject({ starting: true });
+      await api().get(`/api/v1/departments/${starting.id}`).set(asIt()).expect(404);
+    });
+
     it('shows the IT Admin and the Super Admin the warnings, and nobody else (SoD-1)', async () => {
       const department = await newDepartment();
 
