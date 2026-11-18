@@ -133,7 +133,7 @@ const planSummarySchema = z.strictObject({
   referencePrice: z
     .strictObject({ amount: z.string(), currency: z.string() })
     .nullable()
-    .meta({ description: 'The reference price in dong before tax (QĐ-113a), or null when none is entered.' }),
+    .meta({ description: 'The reference price in dong before tax, or null when none is entered.' }),
   seatTracking: z.enum(['APPLICABLE', 'NOT_APPLICABLE']),
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime(),

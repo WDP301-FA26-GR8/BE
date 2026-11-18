@@ -705,7 +705,7 @@
         },
         "responses": {
           "200": {
-            "description": "The department and/or the first day of the first placement changed (`QĐ-113e`), with the reason kept in the Audit Trail; a new department is told like a first placement. Values the placement already has change nothing. Allowed only while the placement starts after today and nothing refers to it.",
+            "description": "The department and/or the first day of the first placement changed, with the reason kept in the Audit Trail; a new department is told like a first placement. Values the placement already has change nothing. Allowed only while the placement starts after today and nothing refers to it.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4064,7 +4064,7 @@
         },
         "responses": {
           "200": {
-            "description": "The picture (png, jpeg or webp, at most 1 MiB, judged by its first bytes) was stored and the department points at it; avatarUrl is a link that works for 15 minutes (`QĐ-113c`). The picture before it, if any, is deleted after the change.",
+            "description": "The picture (png, jpeg or webp, at most 1 MiB, judged by its first bytes) was stored and the department points at it; avatarUrl is a link that works for 15 minutes. The picture before it, if any, is deleted after the change.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4365,7 +4365,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The department has no picture now; with none to begin with, nothing changed (`QĐ-113c`).",
+            "description": "The department has no picture now; with none to begin with, nothing changed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -106605,7 +106605,7 @@
                     "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
                     "required": ["amount", "currency"],
                     "additionalProperties": false,
-                    "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                    "description": "The reference price in dong before tax, or null when none is entered.",
                     "nullable": true
                   },
                   "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
@@ -106798,7 +106798,7 @@
                       "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
                       "required": ["amount", "currency"],
                       "additionalProperties": false,
-                      "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                      "description": "The reference price in dong before tax, or null when none is entered.",
                       "nullable": true
                     },
                     "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
@@ -106915,7 +106915,7 @@
                 "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
                 "required": ["amount", "currency"],
                 "additionalProperties": false,
-                "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                "description": "The reference price in dong before tax, or null when none is entered.",
                 "nullable": true
               },
               "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
@@ -106984,7 +106984,7 @@
                 "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
                 "required": ["amount", "currency"],
                 "additionalProperties": false,
-                "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                "description": "The reference price in dong before tax, or null when none is entered.",
                 "nullable": true
               },
               "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
@@ -109447,7 +109447,7 @@
                       },
                       "required": ["status", "missingReason"],
                       "additionalProperties": false,
-                      "description": "Whether the department of the caller can price the plan, never the price itself: a plan with a subscription that has a price, or with a reference price of its own (QĐ-113a), is priced; NO_PRICED_SUBSCRIPTION means neither exists. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
+                      "description": "Whether the department of the caller can price the plan, never the price itself: a plan with a subscription that has a price, or with a reference price of its own, is priced; NO_PRICED_SUBSCRIPTION means neither exists. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
                     },
                     "costsMoney": {
                       "type": "boolean",
@@ -109540,7 +109540,7 @@
                 },
                 "required": ["status", "missingReason"],
                 "additionalProperties": false,
-                "description": "Whether the department of the caller can price the plan, never the price itself: a plan with a subscription that has a price, or with a reference price of its own (QĐ-113a), is priced; NO_PRICED_SUBSCRIPTION means neither exists. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
+                "description": "Whether the department of the caller can price the plan, never the price itself: a plan with a subscription that has a price, or with a reference price of its own, is priced; NO_PRICED_SUBSCRIPTION means neither exists. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
               },
               "costsMoney": {
                 "type": "boolean",

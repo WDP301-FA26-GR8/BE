@@ -84,7 +84,7 @@ const UPDATE_INVALID = {
  */
 const UPLOAD_LIMITS = { fileSize: PICTURE_MAX_BYTES + 1, files: 1, fields: 0, parts: 1 };
 
-/** The answers of a picture upload beyond the guards (`QĐ-113c`). */
+/** The answers of a picture upload beyond the guards. */
 const AVATAR_PUT_ERRORS = [
   {
     status: HttpStatus.BAD_REQUEST,
@@ -267,7 +267,7 @@ export class DepartmentsController {
   @ApiSuccessResponse(DepartmentResponseDto, {
     message: 'DEPARTMENT.AVATAR_CHANGED',
     description:
-      'The picture (png, jpeg or webp, at most 1 MiB, judged by its first bytes) was stored and the department points at it; avatarUrl is a link that works for 15 minutes (`QĐ-113c`). The picture before it, if any, is deleted after the change.',
+      'The picture (png, jpeg or webp, at most 1 MiB, judged by its first bytes) was stored and the department points at it; avatarUrl is a link that works for 15 minutes. The picture before it, if any, is deleted after the change.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, SUPER_ADMIN_ONLY, NOT_FOUND, ...AVATAR_PUT_ERRORS)
   async setAvatar(
@@ -293,7 +293,7 @@ export class DepartmentsController {
   @ApiOperation({ operationId: 'departmentAvatarDelete', summary: 'Remove the picture of a department' })
   @ApiSuccessResponse(DepartmentResponseDto, {
     message: 'DEPARTMENT.AVATAR_REMOVED',
-    description: 'The department has no picture now; with none to begin with, nothing changed (`QĐ-113c`).',
+    description: 'The department has no picture now; with none to begin with, nothing changed.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, SUPER_ADMIN_ONLY, ID_INVALID, NOT_FOUND, DEPARTMENT_INACTIVE_RESPONSE)
   async removeAvatar(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Param() params: DepartmentIdParamDto) {

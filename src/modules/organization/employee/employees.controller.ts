@@ -97,7 +97,7 @@ export class EmployeesController {
   @ApiSuccessResponse(EmployeeResponseDto, {
     message: 'EMPLOYEE.FIRST_PLACEMENT_CORRECTED',
     description:
-      'The department and/or the first day of the first placement changed (`QĐ-113e`), with the reason kept in the Audit Trail; a new department is told like a first placement. Values the placement already has change nothing. Allowed only while the placement starts after today and nothing refers to it.',
+      'The department and/or the first day of the first placement changed, with the reason kept in the Audit Trail; a new department is told like a first placement. Values the placement already has change nothing. Allowed only while the placement starts after today and nothing refers to it.',
   })
   @ApiErrorResponses(
     UNAUTHENTICATED_RESPONSE,
