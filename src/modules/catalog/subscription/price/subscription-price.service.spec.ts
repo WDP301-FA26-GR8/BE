@@ -85,6 +85,19 @@ describe('BR-MF1-06 shared catalog price facts', () => {
       expect(findPlanReferencePrice).toHaveBeenCalledWith('plan', tx);
     });
 
+    it('is not read by the price of a subscription alone, which stays null for a plan only the reference price prices', async () => {
+      const findPlanReferencePrice = jest
+        .fn()
+        .mockResolvedValue({ provisioningType: 'K2', amountMinor: 500_000n, currency: 'VND' });
+      const service = new SubscriptionPriceService(
+        { findPricedOfPlan: jest.fn().mockResolvedValue(null) } as unknown as SubscriptionRepo,
+        { findOfPlan: findPlanReferencePrice } as unknown as PlanReferencePriceRepo,
+      );
+
+      expect(await service.subscriptionPriceOfPlan('plan')).toBeNull();
+      expect(findPlanReferencePrice).not.toHaveBeenCalled();
+    });
+
     it('prices a K4 plan with no priced subscription by its one purchase', async () => {
       const service = new SubscriptionPriceService(
         { findPricedOfPlan: jest.fn().mockResolvedValue(null) } as unknown as SubscriptionRepo,

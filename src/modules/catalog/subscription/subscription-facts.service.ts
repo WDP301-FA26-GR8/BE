@@ -50,6 +50,11 @@ export class SubscriptionFactsService {
     return this.pricing.priceOfPlan(planId, tx, on);
   }
 
+  /** What a plan is bought at by a subscription alone, never by its reference price (`QĐ-113a`): the price for cost, adjustments and savings. */
+  async subscriptionPriceOfPlan(planId: string, tx?: DbTx, on?: BusinessDate): Promise<PlanPriceFacts | null> {
+    return this.pricing.subscriptionPriceOfPlan(planId, tx, on);
+  }
+
   /** The price the vendor quoted for the main subscription of the plan, in the currency it was quoted in; null when none was kept. */
   originalPriceOfPlan(
     planId: string,

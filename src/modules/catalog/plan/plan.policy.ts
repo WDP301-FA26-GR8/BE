@@ -142,13 +142,18 @@ export function kpi3Percent(activeSeats: number, purchasedSeats: number): number
 }
 
 /**
- * The reference price of a plan (`QĐ-113a`): none is always fine; one is for a plan that is paid for (K1, K2, K4), in dong, and not negative (the
- * sign is read with the amount, in the service). The kind is judged first. Throws PlanReferencePriceNotApplicableError, PlanReferencePriceNotVndError.
+ * The reference price of a plan (`QĐ-113a`): none is always fine; one is for a plan that is paid for (K1, K2, K4), in dong, and above zero (the
+ * amount is read in the service). The kind is judged first. Throws PlanReferencePriceNotApplicableError, PlanReferencePriceNotVndError.
  */
 export function assertReferencePrice(type: ProvisioningType, price: ReferencePrice | null): void {
   if (price === null) return;
-  if (type !== 'K1' && type !== 'K2' && type !== 'K4') throw new PlanReferencePriceNotApplicableError();
+  assertReferencePriceKind(type);
   if (price.currency !== DONG) throw new PlanReferencePriceNotVndError(price.currency);
+}
+
+/** Only a plan that is paid for (K1, K2, K4) can have a reference price. Throws PlanReferencePriceNotApplicableError. */
+export function assertReferencePriceKind(type: ProvisioningType): void {
+  if (type !== 'K1' && type !== 'K2' && type !== 'K4') throw new PlanReferencePriceNotApplicableError();
 }
 
 /**

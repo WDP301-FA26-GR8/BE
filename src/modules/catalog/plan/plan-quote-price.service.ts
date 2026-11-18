@@ -25,7 +25,7 @@ export class PlanQuotePriceService {
 
   /** Returns whether the price was set. */
   async adopt(actor: AuthenticatedPrincipal, planId: string, price: ReferencePrice, tx: DbTx): Promise<boolean> {
-    if (price.currency !== DONG || price.amountMinor < 0n) return false;
+    if (price.currency !== DONG || price.amountMinor <= 0n) return false;
     const current = await this.plans.lock(tx, planId);
     if (!current || !canAdoptQuotePrice(current.provisioningType, current.referencePrice)) return false;
     const organization = await this.organizationReads.getOrganization();

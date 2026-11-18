@@ -204,3 +204,11 @@ export class PlanReferencePriceNotApplicableError extends Error {
     this.name = 'PlanReferencePriceNotApplicableError';
   }
 }
+
+/** A reference price of 0 is no price: a request counts a price of 0 as missing (`QĐ-113a`), so the plan must give one above zero or none. */
+export class PlanReferencePriceNotPositiveError extends Error {
+  constructor() {
+    super('The reference price of a plan must be above zero.');
+    this.name = 'PlanReferencePriceNotPositiveError';
+  }
+}

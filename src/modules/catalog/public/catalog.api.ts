@@ -145,12 +145,20 @@ export class CatalogApi {
 
   /**
    * What a plan is bought at (kind, unit price and billing cycle), from the main subscription of the plan: the newest priced
-   * active one; null when it has none. It is the plan's price whatever department asks (S1-02). With `on`, the price of that day:
+   * active one; else the reference price of the plan when it has one (`QĐ-113a`, `source` says which); null when it has none. It is the plan's price whatever department asks (S1-02). With `on`, the price of that day:
    * the main one among the periods that run on it (begun, not ended, not yet continued by a later period that has begun), and
    * the newest priced one as above only when no period runs on it.
    */
   getPlanPrice(planId: string, tx?: DbTx, on?: BusinessDate) {
     return this.subscriptions.priceOfPlan(planId, tx, on);
+  }
+
+  /**
+   * What a plan is bought at by a subscription alone: null when none prices it, even if the plan has a reference price (`QĐ-113a`). The price of the
+   * cost of a seat, an adjustment and savings; `getPlanPrice` is for pricing a request, which the reference price may stand in for.
+   */
+  getSubscriptionPlanPrice(planId: string, tx?: DbTx, on?: BusinessDate) {
+    return this.subscriptions.subscriptionPriceOfPlan(planId, tx, on);
   }
 
   /**

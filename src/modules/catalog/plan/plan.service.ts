@@ -4,7 +4,6 @@ import { Page, pageOf } from '../../../core/application/pagination';
 import { DbTx, TransactionRunner } from '../../../infrastructure/database/transaction-runner';
 import { isCheckViolation, isUniqueViolation } from '../../../infrastructure/database/unique-violation';
 import type { AuthenticatedPrincipal } from '../../../infrastructure/security/tokens/access-token-verifier.port';
-import { MoneyOutOfRangeError } from '../../../core/money/money.errors';
 import { AuditApi } from '../../audit/public/audit.api';
 import { FinanceApi } from '../../finance/public/finance.api';
 import { OrganizationReadApi } from '../../organization/public/organization-read.api';
@@ -16,6 +15,7 @@ import {
   PlanNameTakenError,
   PlanNotFoundError,
   PlanProvisioningTypeMismatchError,
+  PlanReferencePriceNotPositiveError,
   PlanReferencePriceNotVndError,
   PlanChangeBlock,
   PlanInUseBlocksChangeError,
@@ -27,6 +27,7 @@ import {
   assertPlanShape,
   assertPricingModelDerived,
   assertReferencePrice,
+  assertReferencePriceKind,
   cleanPlanName,
   cleanRevocationNote,
   derivedPricingModel,
@@ -131,7 +132,6 @@ export class PlanService {
   async declare(actor: AuthenticatedPrincipal, input: DeclarePlanInput, outer?: DbTx): Promise<PlanRecord> {
     const name = cleanPlanName(input.name);
     const revocationNote = cleanRevocationNote(input.revocationNote);
-    const referencePrice = input.referencePrice ? await this.readReferencePrice(input.referencePrice) : null;
     const organizationId = await this.requireOrganizationId();
 
     const write = async (tx: DbTx): Promise<PlanRecord> => {
@@ -139,6 +139,10 @@ export class PlanService {
         const application = await this.applications.lockShared(tx, input.applicationId);
         if (!application) throw new PlanApplicationNotFoundError();
         if (application.status === 'RETIRED') throw new PlanApplicationRetiredError();
+        // The kind is judged before the money is read, so a K5 plan with a price in dollars is not applicable, not a currency error (`QĐ-113a`).
+        const referencePrice = input.referencePrice
+          ? await this.readReferencePrice(input.provisioningType, input.referencePrice)
+          : null;
 
         const plan = {
           organizationId,
@@ -183,13 +187,15 @@ export class PlanService {
     if (Object.values(input).every((value) => value === undefined)) throw new PlanUpdateEmptyError();
     const name = input.name === undefined ? undefined : cleanPlanName(input.name);
     const revocationNote = input.revocationNote === undefined ? undefined : cleanRevocationNote(input.revocationNote);
-    const sentPrice = input.referencePrice ? await this.readReferencePrice(input.referencePrice) : input.referencePrice;
     const organizationId = await this.requireOrganizationId();
 
     try {
       return await this.runner.run(async (tx) => {
         const current = await this.plans.lock(tx, id);
         if (!current) throw new PlanNotFoundError();
+        const sentPrice = input.referencePrice
+          ? await this.readReferencePrice(input.provisioningType ?? current.provisioningType, input.referencePrice)
+          : input.referencePrice;
 
         const next = {
           name: name ?? current.name,
@@ -257,11 +263,18 @@ export class PlanService {
     return referencePriceOnKindChange(current.provisioningType, nextType) === 'CLEAR' ? null : current.referencePrice;
   }
 
-  /** The reference price as money in dong, not negative: another currency is refused before the amount is read (`SUBSCRIPTION.PRICE_NOT_VND`'s counterpart for a plan). */
-  private async readReferencePrice(price: { amount: string; currency: string }): Promise<ReferencePrice> {
+  /**
+   * The reference price as money in dong, above zero (`QĐ-113a`: a price of 0 is no price, as a request counts it): the kind is judged first, then the
+   * currency before the amount is read (`SUBSCRIPTION.PRICE_NOT_VND`'s counterpart for a plan).
+   */
+  private async readReferencePrice(
+    type: ProvisioningType,
+    price: { amount: string; currency: string },
+  ): Promise<ReferencePrice> {
+    assertReferencePriceKind(type);
     if (price.currency !== DONG) throw new PlanReferencePriceNotVndError(price.currency);
     const money = await this.finance.parseMoney(price, 'referencePrice');
-    if (money.amountMinor < 0n) throw new MoneyOutOfRangeError('referencePrice');
+    if (money.amountMinor <= 0n) throw new PlanReferencePriceNotPositiveError();
 
     return money;
   }

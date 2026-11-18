@@ -12,7 +12,7 @@ import { referenceCycleOf } from './subscription-price.policy';
 export class PlanReferencePriceRepo {
   constructor(private readonly prisma: PrismaService) {}
 
-  /** The reference price of the plan in dong with its kind; null when it has none or the plan does not exist. */
+  /** The reference price of the plan in dong (above zero) with its kind; null when it has none, it is not in dong, or the plan does not exist. */
   async findOfPlan(
     planId: string,
     tx?: DbTx,
@@ -21,12 +21,13 @@ export class PlanReferencePriceRepo {
       where: { id: planId },
       select: { provisioningType: true, referencePriceMinor: true, referencePriceCurrency: true },
     });
-    if (!row || row.referencePriceMinor === null || row.referencePriceCurrency === null) return null;
+    if (!row || row.referencePriceMinor === null || row.referencePriceMinor <= 0n) return null;
+    if (row.referencePriceCurrency !== DONG) return null;
 
     return {
       provisioningType: row.provisioningType,
       amountMinor: row.referencePriceMinor,
-      currency: row.referencePriceCurrency,
+      currency: DONG,
     };
   }
 
@@ -35,7 +36,7 @@ export class PlanReferencePriceRepo {
     const cycles = new Map<string, 'MONTHLY' | 'ONE_TIME'>();
     if (planIds.length === 0) return cycles;
     const rows = await (tx ?? this.prisma).plan.findMany({
-      where: { id: { in: [...planIds] }, referencePriceMinor: { not: null }, referencePriceCurrency: DONG },
+      where: { id: { in: [...planIds] }, referencePriceMinor: { gt: 0n }, referencePriceCurrency: DONG },
       select: { id: true, provisioningType: true },
     });
     for (const row of rows) {

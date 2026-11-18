@@ -13,6 +13,7 @@ import {
   PlanProvisioningTypeNotSupportedError,
   PlanProvisioningTypeMismatchError,
   PlanReferencePriceNotApplicableError,
+  PlanReferencePriceNotPositiveError,
   PlanReferencePriceNotVndError,
   PlanPricingModelRequiredError,
   PlanPricingModelNotApplicableError,
@@ -73,6 +74,8 @@ export function toPlanApiException(error: unknown): unknown {
     return refuse(HttpStatus.UNPROCESSABLE_ENTITY, 'PLAN.REFERENCE_PRICE_NOT_VND', error.message, {
       currency: error.currency,
     });
+  if (error instanceof PlanReferencePriceNotPositiveError)
+    return refuse(HttpStatus.UNPROCESSABLE_ENTITY, 'PLAN.REFERENCE_PRICE_NOT_POSITIVE', error.message);
   if (error instanceof PlanReferencePriceNotApplicableError)
     return refuse(HttpStatus.UNPROCESSABLE_ENTITY, 'PLAN.REFERENCE_PRICE_NOT_APPLICABLE', error.message);
   if (error instanceof PlanControlLevelRequiredError)
@@ -137,6 +140,7 @@ export const PLAN_ERROR_EXAMPLES = {
   PRICING_MODEL_NOT_APPLICABLE: example(new PlanPricingModelNotApplicableError()),
   PRICING_MODEL_NOT_DERIVED: example(new PlanPricingModelNotDerivedError('PER_SEAT')),
   REFERENCE_PRICE_NOT_VND: example(new PlanReferencePriceNotVndError('USD')),
+  REFERENCE_PRICE_NOT_POSITIVE: example(new PlanReferencePriceNotPositiveError()),
   REFERENCE_PRICE_NOT_APPLICABLE: example(new PlanReferencePriceNotApplicableError()),
   CONTROL_LEVEL_REQUIRED: example(new PlanControlLevelRequiredError()),
   DATA_LOSS_NOTE_REQUIRED: example(new PlanDataLossNoteRequiredError()),

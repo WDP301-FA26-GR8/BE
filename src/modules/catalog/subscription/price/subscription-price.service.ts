@@ -19,17 +19,8 @@ export class SubscriptionPriceService {
    * that prices it is priced by its reference price when it has one (`QĐ-113a`); `source` says which.
    */
   async priceOfPlan(planId: string, tx?: DbTx, on?: BusinessDate): Promise<PlanPriceFacts | null> {
-    const priced = await this.subscriptions.findPricedOfPlan(planId, tx, on);
-    if (priced) {
-      return {
-        kind: priced.subscriptionKind === 'PERPETUAL' ? 'ONE_TIME' : 'RECURRING',
-        unitPrice: { amountMinor: priced.unitPriceMinor, currency: priced.currency },
-        reportingUnitPrice: priced.reporting,
-        billingCycle: priced.billingCycle,
-        allowsMidTermReduction: priced.allowsMidTermReduction,
-        source: 'SUBSCRIPTION',
-      };
-    }
+    const priced = await this.subscriptionPriceOfPlan(planId, tx, on);
+    if (priced) return priced;
 
     // No subscription prices the plan: its own reference price stands in (`QĐ-113a`); none of the two leaves the price missing.
     const reference = await this.references.findOfPlan(planId, tx);
@@ -41,6 +32,24 @@ export class SubscriptionPriceService {
         currency: reference.currency,
       })
     );
+  }
+
+  /**
+   * What a plan is bought at by a subscription alone, never by its reference price (`QĐ-113a`): the price the cost of a seat, the point of an
+   * adjustment and the savings of a plan are worked out from. Null when no subscription prices the plan.
+   */
+  async subscriptionPriceOfPlan(planId: string, tx?: DbTx, on?: BusinessDate): Promise<PlanPriceFacts | null> {
+    const priced = await this.subscriptions.findPricedOfPlan(planId, tx, on);
+    if (!priced) return null;
+
+    return {
+      kind: priced.subscriptionKind === 'PERPETUAL' ? 'ONE_TIME' : 'RECURRING',
+      unitPrice: { amountMinor: priced.unitPriceMinor, currency: priced.currency },
+      reportingUnitPrice: priced.reporting,
+      billingCycle: priced.billingCycle,
+      allowsMidTermReduction: priced.allowsMidTermReduction,
+      source: 'SUBSCRIPTION',
+    };
   }
 
   /**
