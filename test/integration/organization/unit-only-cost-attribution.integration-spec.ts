@@ -224,7 +224,7 @@ describe('cost attribution to Units only (integration, BBI-D04 → BBI-D08, BBI-
     it('refuses to retire a department while it owns an open service account, naming it, and retires it once the account has ended', async () => {
       today('2026-12-01');
       const ops = await department('P-UO3');
-      const subscriptionId = await h.subscription(10, 'K2', ops.id);
+      const subscriptionId = await h.subscription(10, 'K2');
       const owner = await enter(ops.code, 'UO-OWN3');
       // A service account of the earlier releases, written by SQL (nothing writes one any more).
       const serviceId = await legacyServiceAccount(h.ctx.sql, {

@@ -31,11 +31,6 @@ const originalPrice = money.meta({
 
 export const declareSubscriptionBodySchema = z.strictObject({
   planId: z.uuid(),
-  ownerDepartmentId: z.uuid().optional().meta({
-    deprecated: true,
-    description:
-      'Deprecated and ignored: a subscription has no owning department. The cost follows the person who holds the right (a K1 through that person request and invoices, a K2 or K4 seat by seat-month). Accepted so older callers keep working; never stored.',
-  }),
   kind,
   purchasedQuantity: quantity.optional(),
   unitPrice: unitPrice.optional(),
@@ -116,8 +111,6 @@ const subscriptionSchema = z.strictObject({
   id: z.uuid(),
   planId: z.uuid(),
   planName: z.string(),
-  // The department that owns the purchase (`QĐ-89a`); null on a subscription of the shared pool that no department owns.
-  ownerDepartmentId: z.uuid().nullable(),
   applicationId: z.uuid(),
   applicationName: z.string(),
   logoUrl: z.string().nullable().meta({

@@ -230,9 +230,8 @@ describe('the periods that have no invoice over PostgreSQL (PI-2, T-PI)', () => 
     });
   });
 
-  it('follows the cycle of a subscription a department owns from the day the system came to know it, and counts a submitted invoice of a month', async () => {
-    const u = await unit();
-    const owned = await h.subscription(10, 'K2', u.department.id);
+  it('follows the cycle of a subscription from the day the system came to know it, and counts a submitted invoice of a month', async () => {
+    const owned = await h.subscription(10, 'K2');
     // Known since 01/10/2026: the payments are the 5th of each month (start 05/01, by the month); the months before are not its to answer for.
     await h.ctx.sql.query(`UPDATE subscriptions SET created_at = '2026-10-01T03:00:00Z' WHERE id = $1`, [owned]);
 
@@ -252,11 +251,12 @@ describe('the periods that have no invoice over PostgreSQL (PI-2, T-PI)', () => 
 
     await submitted({ subscriptionId: owned }, '2026-11');
     expect((await ofSubscription(h.it1, owned)).map((row) => row.servicePeriodMonth)).toEqual(['2026-10', '2026-12']);
-    expect(await ofSubscription(it2, owned)).toEqual([]);
+    // A subscription has no department: every IT Admin reads its periods and may submit its invoice.
+    expect((await ofSubscription(it2, owned)).map((row) => row.servicePeriodMonth)).toEqual(['2026-10', '2026-12']);
   });
 
   it('gives the periods of a subscription of the shared pool to every IT Admin and to Finance, with no department, and a submitted invoice takes the mark off (PI-1c)', async () => {
-    const pool = await takeOwnerOff(h, await h.subscription(10, 'K2', h.seed.departmentId));
+    const pool = await takeOwnerOff(h, await h.subscription(10, 'K2'));
     await h.ctx.sql.query(`UPDATE subscriptions SET created_at = '2026-10-01T03:00:00Z' WHERE id = $1`, [pool]);
 
     day('2026-12-14');
@@ -307,7 +307,7 @@ describe('the periods that have no invoice over PostgreSQL (PI-2, T-PI)', () => 
     await granted(await unit(), 3, '2026-11-05T10:00:00Z');
     const last = await unit();
     await granted(last, 3, '2026-11-06T10:00:00Z');
-    const more = await h.subscription(10, 'K2', last.department.id);
+    const more = await h.subscription(10, 'K2');
     await h.ctx.sql.query(`UPDATE subscriptions SET created_at = '2026-10-01T03:00:00Z' WHERE id = $1`, [more]);
     day('2026-12-14');
     const rowsAfter = (await periods(h.finance, { pageSize: 100 })).items.length;

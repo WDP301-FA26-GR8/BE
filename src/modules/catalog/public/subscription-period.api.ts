@@ -49,12 +49,10 @@ export class SubscriptionPeriodApi {
   }
 
   /**
-   * The subscriptions that run a period, with the days their payments follow, for the periods that have no invoice (`PI-2`): those of the
-   * `departmentIds` and of the shared pool, which no department owns and every IT Admin works (`PI-1c`), or every one when null. A purchase
-   * made once and a draft are not among them.
+   * The subscriptions that run a period, with the days their payments follow, for the periods that have no invoice (`PI-2`). A purchase made once and a draft are not among them.
    */
-  listPaymentSchedules(departmentIds: readonly string[] | null, tx?: DbTx): Promise<PaymentScheduleFacts[]> {
-    return this.periods.paymentSchedules(departmentIds, tx);
+  listPaymentSchedules(tx?: DbTx): Promise<PaymentScheduleFacts[]> {
+    return this.periods.paymentSchedules(tx);
   }
 
   /**

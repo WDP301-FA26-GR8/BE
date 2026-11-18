@@ -23,8 +23,11 @@ export async function legacyServiceAccount(sql: Client, input: LegacyServiceAcco
        normalized_account_identifier, reason, cost_center_id, owning_department_id, valid_from, valid_from_basis, valid_until,
        created_by_app_user_id)
      SELECT gen_random_uuid(), s.organization_id, 'SERVICE', 'REQUEST', s.plan_id, s.id, $2, $3, lower($3), $4,
-            c.id, s.owner_department_id, $5, 'RECORDED', $6, $7
-       FROM subscriptions s JOIN cost_centers c ON c.department_id = s.owner_department_id AND c.status = 'ACTIVE'
+            c.id, c.department_id, $5, 'RECORDED', $6, $7
+       FROM subscriptions s
+       JOIN cost_centers c ON c.status = 'ACTIVE' AND c.department_id = (
+         SELECT a.owning_department_id FROM license_assignments a
+          WHERE a.subscription_id = s.id AND a.owning_department_id IS NOT NULL ORDER BY a.created_at LIMIT 1)
       WHERE s.id = $1
      RETURNING id`,
     [

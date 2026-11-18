@@ -50,7 +50,6 @@ const NO_HTTP_GRAPHS = [
   'InstallationModule',
   'RecoveryCliModule',
   'InspectionCliModule',
-  'AssignSubscriptionOwnerCliModule',
   'AiPurgeCliModule',
   'SeedCliModule',
 ] as const;
@@ -109,14 +108,7 @@ const GRAPH_WIRING_EXCEPTIONS: readonly WiringException[] = [
       'in the API graph) and the command `record-super-admin-event`; the worker declares none of them and its loops reach no write of the organization.',
   },
   {
-    graphs: [
-      'InstallationModule',
-      'RecoveryCliModule',
-      'InspectionCliModule',
-      'AssignSubscriptionOwnerCliModule',
-      'AiPurgeCliModule',
-      'SeedCliModule',
-    ],
+    graphs: ['InstallationModule', 'RecoveryCliModule', 'InspectionCliModule', 'AiPurgeCliModule', 'SeedCliModule'],
     point: 'OrganizationChangeListeners',
     binders: [
       'BudgetHeadChangeListener',

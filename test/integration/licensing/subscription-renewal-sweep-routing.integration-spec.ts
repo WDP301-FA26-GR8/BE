@@ -125,7 +125,6 @@ describe('who the pass tells and from which date (integration, real PostgreSQL)'
     it('counts the point and the red alert from the renewal day minus the days of notice, says the deadline is inferred, and tells nothing from the renewal day itself', async () => {
       // Renewal in 80 days, 30 days of notice: the deadline is in 50, the point (30 days before it) in 20 and the red alert (7 before it) in 43.
       const subscriptionId = await h.term({
-        ownerDepartmentId: unit.department.id,
         quantity: 10,
         startDate: h.inDays(-285),
         renewalDate: h.inDays(80),

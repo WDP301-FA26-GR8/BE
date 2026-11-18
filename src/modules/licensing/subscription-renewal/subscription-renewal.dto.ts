@@ -125,8 +125,13 @@ const subscriptionBrief = z.strictObject({
   planName: z.string(),
   applicationId: z.uuid(),
   applicationName: z.string(),
-  /** Null for a subscription of the shared pool (a K2 workspace no department owns). */
-  ownerDepartmentId: z.uuid().nullable(),
+  provisioningType: z.enum(['K1', 'K2', 'K3', 'K4', 'K5']).meta({
+    description: 'K1 is a plan of personal seats; K2 and K4 are shared pools (a workspace, a key pool).',
+  }),
+  responsibleItAdmin: z
+    .strictObject({ employeeId: z.uuid(), employeeCode: z.string(), fullName: z.string() })
+    .nullable()
+    .meta({ description: 'The IT Admin who answers for the subscription, by name; null when none is named.' }),
 });
 
 export const renewalSummarySchema = z.strictObject({

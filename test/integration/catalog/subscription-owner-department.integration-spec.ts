@@ -32,7 +32,7 @@ describe('a subscription has no owning department: no finance gate on a change, 
 
   /** A subscription of the department with the seats bought, a price, a start and an end date (made by SQL when the API would not allow it). */
   const subscriptionOf = async (departmentId: string, quantity = 10, type: 'K1' | 'K2' = 'K1'): Promise<string> => {
-    const id = await h.subscription(quantity, type, departmentId);
+    const id = await h.subscription(quantity, type);
     await h.ctx.sql.query(
       `UPDATE subscriptions SET end_date = '2027-12-31', renewal_date = '2026-12-31' WHERE id = $1`,
       [id],
@@ -73,13 +73,12 @@ describe('a subscription has no owning department: no finance gate on a change, 
 
   describe('the price of a plan for the department of a request (F38, spec L.8)', () => {
     /** Declares an active subscription of the plan for the department and returns the unit price it stored, in minor units. */
-    const declare = async (planId: string, ownerDepartmentId: string, amount: string): Promise<string> => {
+    const declare = async (planId: string, amount: string): Promise<string> => {
       const created = h.dataOf<{ id: string }>(
         await request(h.server())
           .post('/api/v1/subscriptions')
           .set(h.as(h.it1))
           .send({
-            ownerDepartmentId,
             planId,
             kind: 'TERM',
             purchasedQuantity: 5,
@@ -98,7 +97,7 @@ describe('a subscription has no owning department: no finance gate on a change, 
 
     it('BR-MF1-07: is the price of the main subscription of the plan, whichever department owns it (S1-02)', async () => {
       const planId = await h.plan('K2');
-      const price = await declare(planId, h.seed.departmentId, '1000000');
+      const price = await declare(planId, '1000000');
 
       expect((await priceOf(planId))?.unitPrice.amountMinor.toString()).toBe(price);
     });
@@ -107,48 +106,6 @@ describe('a subscription has no owning department: no finance gate on a change, 
       const planId = await h.plan('K2');
 
       expect(await priceOf(planId)).toBeNull();
-    });
-  });
-
-  describe('QĐ-113g: a purchase names no department', () => {
-    const declare = (planId: string, kind: 'TERM', extra: object = {}) =>
-      request(h.server())
-        .post('/api/v1/subscriptions')
-        .set(h.as(h.it1))
-        .send({
-          planId,
-          kind,
-          purchasedQuantity: 10,
-          unitPrice: { amount: '1000000', currency: 'VND' },
-          billingCycle: 'MONTHLY',
-          commitmentTermMonths: 1,
-          responsibleItAdminEmployeeId: h.it1.employeeId,
-          startDate: '2026-01-05',
-          ...extra,
-        });
-    const ownerOf = async (id: string) =>
-      (
-        await h.ctx.sql.query<{ owner_department_id: string | null }>(
-          `SELECT owner_department_id FROM subscriptions WHERE id = $1`,
-          [id],
-        )
-      ).rows[0].owner_department_id;
-
-    it.each(['K1', 'K2'] as const)(
-      'declares a %s subscription without ownerDepartmentId: it owns none',
-      async (type) => {
-        const created = h.dataOf<{ id: string }>(await declare(await h.plan(type), 'TERM').expect(201));
-
-        expect(await ownerOf(created.id)).toBeNull();
-      },
-    );
-
-    it('ignores an ownerDepartmentId a caller still sends: nothing is stored', async () => {
-      const created = h.dataOf<{ id: string }>(
-        await declare(await h.plan('K1'), 'TERM', { ownerDepartmentId: h.seed.departmentId }).expect(201),
-      );
-
-      expect(await ownerOf(created.id)).toBeNull();
     });
   });
 });

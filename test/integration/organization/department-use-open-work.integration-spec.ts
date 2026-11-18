@@ -32,8 +32,8 @@ describe('what keeps a department in use: the open provisioning tasks (integrati
   };
   const granted = async (subscriptionId: string, planId: string, departmentId: string) =>
     h.granted(await h.person(`E-OW${(counter += 1)}`), planId, { subscriptionId, departmentId });
-  const subscriptionOf = async (departmentId: string) => {
-    const subscriptionId = await h.subscription(20, 'K2', departmentId);
+  const subscriptionOf = async () => {
+    const subscriptionId = await h.subscription(20, 'K2');
 
     return { subscriptionId, planId: await h.planOf(subscriptionId) };
   };
@@ -68,7 +68,7 @@ describe('what keeps a department in use: the open provisioning tasks (integrati
     owner = await h.department('P-OWNER');
     other = await h.department('P-OTHER');
     nothing = await h.department('P-NOTHING');
-    ({ subscriptionId: ownerSubscription, planId: ownerPlan } = await subscriptionOf(owner.id));
+    ({ subscriptionId: ownerSubscription, planId: ownerPlan } = await subscriptionOf());
 
     // Open: a queued task, one being worked, one that failed (a grant of a seat on a subscription of the department).
     open.push((await granted(ownerSubscription, ownerPlan, owner.id)).id);
@@ -91,7 +91,7 @@ describe('what keeps a department in use: the open provisioning tasks (integrati
     await h.fail(closed.id, { reason: 'no' }).expect(200);
     await h.closeFailed(closed.id, { reason: 'not wanted' }).expect(200);
     // Another department's seat is not this one's.
-    const elsewhere = await subscriptionOf(other.id);
+    const elsewhere = await subscriptionOf();
     await granted(elsewhere.subscriptionId, elsewhere.planId, other.id);
   }, 300000);
 

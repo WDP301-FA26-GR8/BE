@@ -216,11 +216,6 @@ export type PlanWorkspaceAdmin = Prisma.PlanWorkspaceAdminModel
  */
 export type Subscription = Prisma.SubscriptionModel
 /**
- * Model SubscriptionOwnerAssignment
- * 
- */
-export type SubscriptionOwnerAssignment = Prisma.SubscriptionOwnerAssignmentModel
-/**
  * Model PlanTerms
  * 
  */

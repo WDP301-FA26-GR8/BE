@@ -77,7 +77,6 @@ function factsOf(
     applicationId: record.applicationId,
     applicationName: record.applicationName,
     applicationKind: record.applicationKind,
-    ownerDepartmentId: record.ownerDepartmentId,
     responsibleItAdminEmployeeId: record.responsibleItAdminEmployeeId,
     provisioningType: record.planProvisioningType,
     commitmentTermMonths: record.commitmentTermMonths,
@@ -108,7 +107,6 @@ function scheduleOf(row: PaidTermRow): PaymentScheduleFacts | null {
   return {
     subscriptionId: row.id,
     planId: row.planId,
-    ownerDepartmentId: row.ownerDepartmentId,
     billingCycle: row.billingCycle,
     startDate: fromDateColumn(row.startDate),
     endDate: row.endDate ? fromDateColumn(row.endDate) : null,
@@ -148,7 +146,6 @@ export class SubscriptionPeriodService {
     return (await this.subscriptions.findMany(ids, tx)).map((record) => ({
       subscriptionId: record.id,
       planId: record.planId,
-      ownerDepartmentId: record.ownerDepartmentId,
       responsibleItAdminEmployeeId: record.responsibleItAdminEmployeeId,
       purchasedQuantity: record.purchasedQuantity,
       ...monthlyCostOf(record),
@@ -176,11 +173,10 @@ export class SubscriptionPeriodService {
   }
 
   /**
-   * The subscriptions that run a period, with the days their payments follow (`PI-2`): `departmentIds` narrows to those departments and the
-   * shared pool, which no department owns and every IT Admin works; null reads every one. One statement; the invoices of the periods are not read here.
+   * The subscriptions that run a period, with the days their payments follow (`PI-2`), whoever answers for them: any IT Admin submits their invoices. One statement; the invoices of the periods are not read here.
    */
-  async paymentSchedules(departmentIds: readonly string[] | null, tx?: DbTx): Promise<PaymentScheduleFacts[]> {
-    return (await this.subscriptions.listPaidTerms(departmentIds, tx)).flatMap((row) => scheduleOf(row) ?? []);
+  async paymentSchedules(tx?: DbTx): Promise<PaymentScheduleFacts[]> {
+    return (await this.subscriptions.listPaidTerms(tx)).flatMap((row) => scheduleOf(row) ?? []);
   }
 
   /**
@@ -228,7 +224,6 @@ export class SubscriptionPeriodService {
     const created = await this.subscriptions.insert(tx, {
       organizationId: organization.id,
       planId: previous.planId,
-      ownerDepartmentId: previous.ownerDepartmentId,
       kind: 'TERM',
       renewedFromId: previous.id,
       ...state,

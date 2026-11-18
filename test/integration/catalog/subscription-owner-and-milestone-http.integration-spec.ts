@@ -13,7 +13,7 @@ const RUNNING_ANNUAL = {
 
 describe('subscriptions and perpetual purchases over HTTP (integration, real PostgreSQL): the owner department and the milestone for a cancellation', () => {
   const h = new SubscriptionHttpHarness();
-  const { server, as, dataOf, codeOf, today, plan, create, patch, get, subscription, n, auditOf } = h;
+  const { server, as, dataOf, codeOf, today, plan, create, patch, subscription, n, auditOf } = h;
 
   beforeAll(async () => {
     await h.start();
@@ -26,51 +26,16 @@ describe('subscriptions and perpetual purchases over HTTP (integration, real Pos
   });
 
   describe('a subscription has no owner department (QĐ-113g)', () => {
-    it('declares a subscription with no department: the wire and the audit event carry none', async () => {
-      const { planId } = await plan();
-
+    it('refuses a department a caller names, on a declaration and on a change: the body takes no such field', async () => {
+      const { planId } = await plan({ type: 'K1' });
       const created = await subscription(planId);
 
-      expect(created.ownerDepartmentId).toBeNull();
-      const stored = await h.ctx.sql.query<{ owner_department_id: string | null }>(
-        'SELECT owner_department_id FROM subscriptions WHERE id = $1',
-        [created.id],
-      );
-      expect(stored.rows[0].owner_department_id).toBeNull();
-      const [event] = await auditOf(created.id);
-      expect(event).toEqual(
-        expect.objectContaining({
-          action: 'SUBSCRIPTION.CREATED',
-          after: expect.objectContaining({ ownerDepartmentId: null }) as unknown,
-        }),
-      );
-    });
+      const declared = await create({ planId, kind: 'TERM', ownerDepartmentId: randomUUID() }).expect(422);
+      const changed = await patch(created.id, { ownerDepartmentId: randomUUID() }).expect(422);
 
-    it('declares a K1 subscription with no department: 201 (it was 422 SUBSCRIPTION.OWNER_DEPARTMENT_INACTIVE before)', async () => {
-      const { planId } = await plan({ type: 'K1' });
-
-      const response = await create({ planId, kind: 'TERM', ownerDepartmentId: undefined }).expect(201);
-
-      expect(dataOf<SubscriptionWire>(response).ownerDepartmentId).toBeNull();
-    });
-
-    it('ignores a department a caller still names, even one that does not exist: nothing is stored', async () => {
-      const { planId } = await plan({ type: 'K1' });
-
-      const response = await create({ planId, kind: 'TERM', ownerDepartmentId: randomUUID() }).expect(201);
-
-      expect(dataOf<SubscriptionWire>(response).ownerDepartmentId).toBeNull();
-    });
-
-    it('reads no owner on a subscription, and a change neither gives nor alters one: the body refuses the field', async () => {
-      const { planId } = await plan();
-      const created = await subscription(planId);
-
-      expect(dataOf<SubscriptionWire>(await get(created.id).expect(200)).ownerDepartmentId).toBeNull();
-      const changed = dataOf<SubscriptionWire>(await patch(created.id, { purchasedQuantity: 3 }).expect(200));
-      expect(changed.ownerDepartmentId).toBeNull();
-      const refused = await patch(created.id, { ownerDepartmentId: randomUUID() }).expect(422);
-      expect(codeOf(refused)).toBe('VALIDATION_ERROR');
+      expect(codeOf(declared)).toBe('VALIDATION_ERROR');
+      expect(codeOf(changed)).toBe('VALIDATION_ERROR');
+      expect(Object.keys(created)).not.toContain('ownerDepartmentId');
     });
 
     it('F23: refuses to declare a subscription for a plan whose application is retired: 422 SUBSCRIPTION.APPLICATION_RETIRED, nothing is written', async () => {

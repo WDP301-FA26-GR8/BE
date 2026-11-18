@@ -29,7 +29,6 @@ describe('QĐ-113g: no owning department on a subscription', () => {
       id: 'sub-1',
       planId: 'plan-1',
       planProvisioningType: 'K1',
-      ownerDepartmentId: null,
       kind: 'TERM',
       status: 'DRAFT',
       purchasedQuantity: 5,
@@ -63,10 +62,8 @@ describe('QĐ-113g: no owning department on a subscription', () => {
 
   beforeEach(() => jest.clearAllMocks());
 
-  it('declares a K1 subscription with no department: it is stored with none and no department is looked at', async () => {
-    const insert = jest.fn((_tx: unknown, row: { ownerDepartmentId: string | null }) =>
-      Promise.resolve(stored({ ownerDepartmentId: row.ownerDepartmentId })),
-    );
+  it('declares a K1 subscription: it has no department and none is looked at', async () => {
+    const insert = jest.fn(() => Promise.resolve(stored({})));
     const service = new SubscriptionService(
       { insert } as unknown as SubscriptionRepo,
       { lockExclusive: jest.fn(() => Promise.resolve(plan)) } as unknown as PlanFactsService,
@@ -86,34 +83,7 @@ describe('QĐ-113g: no owning department on a subscription', () => {
 
     await service.declare(actor, { planId: 'plan-1', kind: 'TERM' });
 
-    expect(insert).toHaveBeenCalledWith(tx, expect.objectContaining({ ownerDepartmentId: null }));
-    expect(lockDepartmentShared).not.toHaveBeenCalled();
-  });
-
-  it('ignores a department a caller still names: nothing is stored and it is not read', async () => {
-    const insert = jest.fn((_tx: unknown, row: { ownerDepartmentId: string | null }) =>
-      Promise.resolve(stored({ ownerDepartmentId: row.ownerDepartmentId })),
-    );
-    const service = new SubscriptionService(
-      { insert } as unknown as SubscriptionRepo,
-      { lockExclusive: jest.fn(() => Promise.resolve(plan)) } as unknown as PlanFactsService,
-      pricing,
-      view,
-      { ...organization, lockDepartmentShared } as unknown as OrganizationReadApi,
-      {
-        assertNoLiveDuplicate: jest.fn(),
-        responsibleOfDeclaration: jest.fn(() => Promise.resolve(null)),
-        assert: jest.fn(),
-        assertVendorAdmins: jest.fn(),
-        requireItAdmin: jest.fn(),
-      } as unknown as SubscriptionPoolService,
-      audit,
-      runner,
-    );
-
-    await service.declare(actor, { planId: 'plan-1', kind: 'TERM', ownerDepartmentId: 'dep-gone' });
-
-    expect(insert).toHaveBeenCalledWith(tx, expect.objectContaining({ ownerDepartmentId: null }));
+    expect((insert.mock.calls as unknown[][])[0]?.[1]).not.toHaveProperty('ownerDepartmentId');
     expect(lockDepartmentShared).not.toHaveBeenCalled();
   });
 
