@@ -1,4 +1,4 @@
-import type { SpendStage } from '../access-request/access-request.types';
+import type { AccessRequestState, NeedStepState, SpendStage } from '../access-request/access-request.types';
 import { headMayWithdraw, type WithdrawalRefusal } from '../access-request/withdrawal.policy';
 import type { LineState } from '../access-request/group-request.types';
 
@@ -15,6 +15,10 @@ export interface LineWithdrawalFacts {
   /** The actor heads the department of the request today. */
   actorHeadsDepartment: boolean;
   lineState: LineState;
+  /** The need step of the line: `NOT_REQUIRED` when the head who sent the request vouched for the person, so no one decides their need. */
+  needStep: NeedStepState;
+  /** The state of the whole request: sent back to its sender, every open line may be withdrawn (`QĐ-113d`). */
+  requestState: AccessRequestState;
   /** Where the request stands on its way to the spending approver. */
   spendStage: SpendStage | null;
   reason: string | null;
@@ -30,9 +34,17 @@ export function checkLineWithdrawal(facts: LineWithdrawalFacts): WithdrawalRefus
   if (facts.lineState === 'AWAITING_IT_CLOSE') return 'WITHDRAWAL_PENDING';
   if (isEndedWithoutSeat(facts.lineState)) return 'ALREADY_ENDED';
   if (byHead && (facts.reason === null || facts.reason.trim() === '')) return 'REASON_REQUIRED';
+  // The sender withdraws a person only before any decision on them (`QĐ-113d`).
+  if (byRequester && !lineUndecided(facts) && facts.requestState !== 'AWAITING_REQUESTER_REVISION') {
+    return 'WITHDRAWAL_AFTER_DECISION';
+  }
 
   return null;
 }
+
+/** No decision was taken on the person: their need awaits its head, or no one decides it and the spending approver has not decided (`QĐ-113d`). */
+export const lineUndecided = (facts: Pick<LineWithdrawalFacts, 'lineState' | 'needStep'>): boolean =>
+  facts.lineState === 'AWAITING_NEED' || (facts.lineState === 'NEED_CONFIRMED' && facts.needStep === 'NOT_REQUIRED');
 
 const isEndedWithoutSeat = (state: LineState): boolean =>
   state === 'NEED_REJECTED' ||

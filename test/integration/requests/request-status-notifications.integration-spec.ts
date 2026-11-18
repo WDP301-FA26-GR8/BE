@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { StatusHarness, type NoticeRow } from '../../support/status-harness';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new StatusHarness();
 const M = 1_000_000;
@@ -12,6 +13,10 @@ interface TaskWire {
 
 /** What a notice says, without the ids that differ from one run to the next. */
 const said = (rows: NoticeRow[]) => rows.map((row) => row.code);
+
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
 
 describe('the status of a request told to the people it concerns, over PostgreSQL (US-05-15)', () => {
   let plan: string;

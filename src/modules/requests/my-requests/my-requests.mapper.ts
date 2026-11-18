@@ -55,7 +55,10 @@ export function toSummary(
     spend: stage === null ? null : { stage },
     outcome: outcomeOf(row, stage, lookups.facts),
     withdrawal: row.withdrawal && { withdrawnAt: row.withdrawal.withdrawnAt?.toISOString() ?? null },
-    canWithdraw: canWithdrawOwn({ state: row.state, requesterEmployeeId }, stage),
+    canWithdraw: canWithdrawOwn(
+      { state: row.state, needStep: row.needStep, hasSpendStep: row.hasSpendStep, requesterEmployeeId },
+      stage,
+    ),
   };
 }
 

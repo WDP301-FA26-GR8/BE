@@ -1,7 +1,12 @@
 import { GroupHarness } from '../../support/group-harness';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new GroupHarness();
+
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
 
 describe('what the people of a group are told, each of what became of them alone, over PostgreSQL (US-05-15 AC-9, US-05-17)', () => {
   let subscriptionId: string;

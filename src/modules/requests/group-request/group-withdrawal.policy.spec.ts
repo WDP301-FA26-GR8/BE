@@ -11,19 +11,43 @@ const facts: LineWithdrawalFacts = {
   actorEmployeeId: 'sender',
   requesterEmployeeId: 'sender',
   actorHeadsDepartment: false,
-  lineState: 'NEED_CONFIRMED',
+  lineState: 'AWAITING_NEED',
+  needStep: 'PENDING',
+  requestState: 'PENDING',
   spendStage: null,
   reason: null,
 };
 
 describe('withdrawing one person of a request for a group (US-05-08, US-05-17 AC-10)', () => {
-  it.each(['AWAITING_NEED', 'NEED_CONFIRMED', 'APPROVED', 'EXECUTING'] as const)(
-    'lets the sender withdraw the person while their line is %s, with or without a reason',
+  it('QĐ-113d: lets the sender withdraw the person while their line awaits the need, with or without a reason', () => {
+    expect(checkLineWithdrawal(facts)).toBeNull();
+    expect(checkLineWithdrawal({ ...facts, reason: 'Not needed' })).toBeNull();
+  });
+
+  it.each(['NEED_CONFIRMED', 'APPROVED', 'EXECUTING'] as const)(
+    'QĐ-113d: refuses the sender once the line is %s, a decision was taken',
     (lineState) => {
-      expect(checkLineWithdrawal({ ...facts, lineState })).toBeNull();
-      expect(checkLineWithdrawal({ ...facts, lineState, reason: 'Not needed' })).toBeNull();
+      expect(checkLineWithdrawal({ ...facts, lineState, needStep: 'APPROVED' })).toBe('WITHDRAWAL_AFTER_DECISION');
     },
   );
+
+  it('QĐ-113d: lets the sender withdraw a person the head vouched for by sending, until the spending approver decides', () => {
+    expect(checkLineWithdrawal({ ...facts, lineState: 'NEED_CONFIRMED', needStep: 'NOT_REQUIRED' })).toBeNull();
+    expect(checkLineWithdrawal({ ...facts, lineState: 'APPROVED', needStep: 'NOT_REQUIRED' })).toBe(
+      'WITHDRAWAL_AFTER_DECISION',
+    );
+  });
+
+  it('QĐ-113d: lets the sender withdraw any open line while the request is sent back to add what is missing', () => {
+    expect(
+      checkLineWithdrawal({
+        ...facts,
+        lineState: 'NEED_CONFIRMED',
+        needStep: 'APPROVED',
+        requestState: 'AWAITING_REQUESTER_REVISION',
+      }),
+    ).toBeNull();
+  });
 
   it('refuses a person the request is for who is not the sender, whatever the state of their line', () => {
     expect(checkLineWithdrawal({ ...facts, actorEmployeeId: 'e2' })).toBe('NOT_REQUESTER');

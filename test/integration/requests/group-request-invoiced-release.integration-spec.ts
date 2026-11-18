@@ -1,6 +1,7 @@
 import { bookPurchaseInvoice } from '../../support/book-purchase-invoice';
 import { GroupHarness } from '../../support/group-harness';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new GroupHarness();
 
@@ -9,6 +10,10 @@ const h = new GroupHarness();
  * share of the person can reach into what the invoice made an expense. The withdrawal gives back only what is still held, and
  * does not fail because the share is more than that.
  */
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
+
 describe('a person of a group leaves after an invoice was recorded over PostgreSQL (US-06-06 AC-9, US-05-17 AC-10)', () => {
   let paid: string;
   let vendorId: string;

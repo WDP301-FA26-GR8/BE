@@ -2,6 +2,7 @@ import { RequestsApi } from '../../../src/modules/requests/public/requests.api';
 import { GroupHarness } from '../../support/group-harness';
 import type { Person } from '../../support/request-harness';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new GroupHarness();
 const M = 1_000_000;
@@ -36,6 +37,10 @@ async function sqlState(text: string, values: unknown[] = []): Promise<string | 
  * (`US-03-04` AC-25, `US-05-17`), over HTTP, on real PostgreSQL: the line is cancelled with the cause, only that person's task and share
  * go, the request closes only with its last live line, and each person is told only of their own line.
  */
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
+
 describe('removing a person who left from a request for a group (integration, real PostgreSQL)', () => {
   let subscriptionId: string;
   let paid: string;

@@ -165,7 +165,12 @@ cùng cần; phần ghi nằm ở `assessment/assessment.repo.ts`.
     `similar-seats.controller.ts`, US-05-04; `NeedDecisionService` quyết định, `NeedDecisionEffects` làm những gì theo sau trong
     cùng transaction) và route rút ở `withdraw/` (`withdrawal.controller.ts`, US-05-08; `WithdrawalPreconditions` đọc, khóa và kiểm
     lại, `WithdrawalWriter` ghi, `withdrawal.policy.ts` ở L0); ba controller khai báo
-    ngay sau hub trong `requests.module.ts` để thứ tự path của API không đổi.
+    ngay sau hub trong `requests.module.ts` để thứ tự path của API không đổi. **Luật rút (`QĐ-113d`)**: người yêu cầu chỉ rút khi
+    Request chưa có quyết định nào (bước nhu cầu đang chờ/đứng chờ, hoặc `AWAITING_REQUESTER_REVISION`; Request không có bước nhu cầu: tới khi
+    người quyết đầu tiên chưa quyết, K5 cấp thẳng tới khi tác vụ chưa bắt đầu; dòng nhóm: còn `AWAITING_NEED` hoặc được trưởng phòng
+    xác nhận khi gửi và Người duyệt chi chưa quyết); ngoài đó `409 ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION` (`details.state`), muốn thôi thì
+    chờ cấp xong rồi hoàn trả. Trưởng phòng giữ luật `BLOCKED`/`RESERVE_CONFIRMATION` kèm lý do. `canWithdraw` của `my-requests` dùng cùng
+    policy. Hậu quả của việc rút (rời lô, giải phóng cam kết, hủy tác vụ) giữ nguyên.
   - `draft/` — bản nháp: lưu, liệt kê, gửi, xóa; `request-drafts.controller.ts`; `RequestDraftService`.
   - `repricing/` — tính lại số tiền của Request theo ngày (QĐ-109e): `RepricingService` (giá thuê bao chính hoặc báo giá của IT Admin, tính theo `asOf`; Request giữ số tháng thì mỗi người một ngày kết thúc riêng qua `RequestTermEndsService`), `quote-pricing.policy.ts` (số tiền từ báo giá); `spend`, `spend-submission`, `group-request`, `assessment` gọi, không import capability nào ngoài lõi `access-request`.
   - `assessment/` — thẩm định phần mềm ngoài catalog, đăng ký nội bộ, nối plan (US-05-06, US-05-18, US-05-20); hoàn tất và từ chối ở cổng nhận `checklist` của bước `1.3` (`AssessmentGate.judgeChecklist`, `QĐ-111ap`); `assessment-decision/` — `AssessmentDecisionService` chọn `REJECT` hay `RETURN` của `POST /access-requests/{id}/assessment/rejection`, `AssessmentReturnService` trả đề xuất về người gửi (`AWAITING_REQUESTER_REVISION`, bước đánh giá `CLOSED`, audit `ASSESSMENT_RETURNED`, thông báo `REQUEST_RETURNED` by `IT_ASSESSMENT`; không có bản ghi phê duyệt vì IT Admin chưa có vai ở `approval_records`);

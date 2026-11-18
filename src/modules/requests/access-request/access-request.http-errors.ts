@@ -223,6 +223,9 @@ export const ACCESS_REQUEST_ERROR_EXAMPLES = {
   WITHDRAWAL_ALREADY_ENDED: withdrawal('ALREADY_ENDED'),
   WITHDRAWAL_PENDING: withdrawal('WITHDRAWAL_PENDING'),
   GRANT_RUNNING: withdrawal('GRANT_RUNNING'),
+  WITHDRAWAL_AFTER_DECISION: example(
+    new AccessRequestWithdrawalRefusedError('WITHDRAWAL_AFTER_DECISION', { state: 'AWAITING_SPEND_DECISION' }),
+  ),
   GRANT_COMPLETED: example(
     new AccessRequestWithdrawalRefusedError('GRANT_COMPLETED', { assignmentId: '<assignment-id>' }),
   ),

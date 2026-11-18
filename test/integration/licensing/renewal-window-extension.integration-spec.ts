@@ -5,6 +5,7 @@ import { LicensingRenewalApi } from '../../../src/modules/licensing/public/licen
 import { YearStartCommitmentsRepo } from '../../../src/modules/requests/year-start-commitments/year-start-commitments.repo';
 import { k1Checklist } from '../../support/k1-checklist';
 import { ReturnHarness, type RenewalWire } from '../../support/return-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new ReturnHarness();
 const REASON = 'The work goes on';
@@ -16,6 +17,10 @@ const REASON = 'The work goes on';
  * record that follows the old one is written only when the IT Admin completes it. Until then the request is approved and not granted, for
  * the commitment of 01/01 too (RV-03).
  */
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
+
 describe('the window and the IT extension of a renewal (integration, real PostgreSQL, BR-MF1-08)', () => {
   let internalPlan: string;
   let counter = 0;

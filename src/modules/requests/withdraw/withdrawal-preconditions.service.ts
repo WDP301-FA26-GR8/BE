@@ -7,7 +7,7 @@ import {
   AccessRequestNotFoundError,
   AccessRequestWithdrawalRefusedError,
 } from '../access-request/access-request.errors';
-import { canViewRequest, viewFactsOf } from '../access-request/access-request.policy';
+import { canViewRequest, hasSpendStep, viewFactsOf } from '../access-request/access-request.policy';
 import { AccessRequestRepo } from '../access-request/access-request.repo';
 import type { AccessRequestRecord } from '../access-request/access-request.types';
 import { checkWithdrawal } from '../access-request/withdrawal.policy';
@@ -49,6 +49,8 @@ export class WithdrawalPreconditions {
       requesterEmployeeId: request.requesterEmployeeId,
       actorHeadsDepartment: heads,
       state: request.state,
+      needStep: request.needStep.state,
+      hasSpendStep: hasSpendStep(request.policy),
       spendStage: (await this.spendStatus.of(request))?.stage ?? null,
       reason,
     });
@@ -56,6 +58,9 @@ export class WithdrawalPreconditions {
       // The seat is real: the way on is the return of the seat the grant made, which the person names by this id (`US-05-13`).
       const assignmentId = await this.licensing.completedGrantOfRequest(tx, request.id);
       throw new AccessRequestWithdrawalRefusedError('GRANT_COMPLETED', assignmentId ? { assignmentId } : null);
+    }
+    if (refusal === 'WITHDRAWAL_AFTER_DECISION') {
+      throw new AccessRequestWithdrawalRefusedError(refusal, { state: request.state });
     }
     if (refusal) throw new AccessRequestWithdrawalRefusedError(refusal);
 

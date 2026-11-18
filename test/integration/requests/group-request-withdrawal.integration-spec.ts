@@ -1,5 +1,6 @@
 import { GroupHarness } from '../../support/group-harness';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new GroupHarness();
 const M = 1_000_000;
@@ -13,6 +14,10 @@ interface TaskWire {
 interface Refused {
   error: { code: string; details?: { assignmentId?: string; employeeIds?: string[] } };
 }
+
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
 
 describe('withdrawing one person of a request for a group, or what is left of it, over PostgreSQL (US-05-17 AC-10, US-05-08)', () => {
   let subscriptionId: string;

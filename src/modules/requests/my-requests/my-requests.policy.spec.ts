@@ -204,23 +204,42 @@ describe('why a request did not go on', () => {
   );
 });
 
-describe('whether the sender may withdraw the request now', () => {
+describe('whether the sender may withdraw the request now (QĐ-113d)', () => {
+  const none = 'NOT_REQUIRED';
   it.each([
-    ['PENDING', null, true],
-    ['WAITING_CONTROLLED', null, true],
-    ['AWAITING_IT_ASSESSMENT', null, true],
-    ['AWAITING_SPEND_SUBMISSION', 'BLOCKED', true],
-    ['AWAITING_SPEND_SUBMISSION', 'RESERVE_CONFIRMATION', true],
-    ['AWAITING_SPEND_DECISION', 'WAITING_SPEND_DECISION', true],
-    ['EXECUTING', null, true],
-    ['AWAITING_IT_CLOSE', null, false],
-    ['COMPLETED', null, false],
-    ['REJECTED', 'REFUSED', false],
-    ['IT_REJECTED', null, false],
-    ['FAILED', null, false],
-    ['WITHDRAWN', null, false],
-    ['CANCELLED', null, false],
-  ] as const)('is judged by the policy of the withdrawal: %s with stage %s is %s', (state, stage, expected) => {
-    expect(canWithdrawOwn({ state, requesterEmployeeId: 'e1' }, stage)).toBe(expected);
-  });
+    ['PENDING', 'PENDING', true, null, true],
+    ['WAITING_CONTROLLED', 'WAITING', true, null, true],
+    ['AWAITING_REQUESTER_REVISION', 'APPROVED', true, 'RETURNED_TO_REQUESTER', true],
+    ['AWAITING_SPEND_SUBMISSION', none, true, 'BLOCKED', true],
+    ['AWAITING_SPEND_DECISION', none, true, 'WAITING_SPEND_DECISION', true],
+    ['AWAITING_EXECUTION', none, false, null, true],
+    ['AWAITING_EXECUTION', none, true, null, false],
+    ['AWAITING_IT_ASSESSMENT', 'APPROVED', true, null, false],
+    ['AWAITING_SPEND_SUBMISSION', 'APPROVED', true, 'BLOCKED', false],
+    ['AWAITING_SPEND_DECISION', 'APPROVED', true, 'WAITING_SPEND_DECISION', false],
+    ['AWAITING_EXECUTION', 'APPROVED', false, null, false],
+    ['EXECUTING', 'APPROVED', false, null, false],
+    ['AWAITING_IT_CLOSE', 'APPROVED', false, null, false],
+    ['COMPLETED', 'APPROVED', false, null, false],
+    ['REJECTED', 'REJECTED', true, 'REFUSED', false],
+    ['IT_REJECTED', 'APPROVED', false, null, false],
+    ['FAILED', 'APPROVED', false, null, false],
+    ['WITHDRAWN', 'CLOSED', false, null, false],
+    ['CANCELLED', 'CLOSED', false, null, false],
+  ] as const)(
+    'is judged by the policy of the withdrawal: %s with need step %s (spend step %s, stage %s) is %s',
+    (state, needState, hasSpendStep, stage, expected) => {
+      expect(
+        canWithdrawOwn(
+          {
+            state,
+            hasSpendStep,
+            needStep: { state: needState, assigneeEmployeeId: null, waitingReason: null },
+            requesterEmployeeId: 'e1',
+          },
+          stage,
+        ),
+      ).toBe(expected);
+    },
+  );
 });

@@ -5,6 +5,7 @@ import type { ApiAccount } from '../../support/api-accounts';
 import { InvoiceHarness } from '../../support/invoice-harness';
 import { takeOwnerOff } from '../../support/shared-pool-subscription';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new InvoiceHarness();
 const M = 1_000_000;
@@ -33,6 +34,10 @@ interface InvoiceRow {
  * What Finance decides on a purchase invoice (`PI-1.6`, `QĐ-111u`, `QĐ-111v`): signing the money out writes the one invoice, booked to the month
  * and the year of the period, never by the person who submitted it, and returning it needs a reason and writes nothing. On real PostgreSQL.
  */
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
+
 describe('Finance signs or returns a purchase invoice over PostgreSQL (integration; PI-1.6, T-PI)', () => {
   /** The plan of the requests whose invoices go into their commitment: a `K1` (a personal account), whose cost follows the person who holds it. */
   let plan: string;

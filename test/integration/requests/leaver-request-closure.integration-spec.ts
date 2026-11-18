@@ -6,6 +6,7 @@ import { PgRelay } from '../../support/pg-relay';
 import { dataStatements, QueryCounter } from '../../support/query-count';
 import type { Person } from '../../support/request-harness';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new OffboardingHarness();
 const M = 1_000_000;
@@ -59,6 +60,10 @@ async function sqlState(text: string, values: unknown[] = []): Promise<string | 
  * US-03-04 AC-24, AC-25: what is still open for a person who leaves is listed for the IT Admin, and the IT Admin closes each request
  * as cancelled once the person has left, over HTTP, on real PostgreSQL.
  */
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
+
 describe('the requests and grants of a person who left (integration, real PostgreSQL)', () => {
   let relay: PgRelay;
   let counter: QueryCounter;

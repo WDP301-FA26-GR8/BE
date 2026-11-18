@@ -1,6 +1,7 @@
 import { GroupHarness } from '../../support/group-harness';
 import type { Person } from '../../support/request-harness';
 import type { Unit } from '../../support/spend-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 /**
  * `g0-g6-final-business-baseline-remediation`, Task 4.1 (F29, `QĐ-90b`, spec L.8): the IT Admin closes the part of a request that is not
@@ -21,6 +22,10 @@ interface TaskWire {
   id: string;
   status: string;
 }
+
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
 
 describe('closing a request because its person was transferred (integration, real PostgreSQL)', () => {
   let subscriptionId: string;

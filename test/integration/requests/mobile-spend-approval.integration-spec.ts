@@ -3,6 +3,7 @@ import type { ApiAccount } from '../../support/api-accounts';
 import type { AccessRequestWire } from '../../support/request-harness';
 import type { Unit } from '../../support/spend-harness';
 import { StatusHarness } from '../../support/status-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new StatusHarness();
 const M = 1_000_000;
@@ -31,6 +32,10 @@ interface YearWire {
  * stale. Routes of the web with a mobile label; real HTTP and PostgreSQL. One queue of both kinds of step does not exist yet
  * (B-02/B-10): `GET /spend-approvals` lists spend steps only, which a test below records.
  */
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
+
 describe('the spending approver decides on the phone (US-16-03, integration)', () => {
   let plan: string;
   let counter = 0;

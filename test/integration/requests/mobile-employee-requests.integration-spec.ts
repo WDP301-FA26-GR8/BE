@@ -3,6 +3,7 @@ import type { ApiAccount } from '../../support/api-accounts';
 import type { TaskWire } from '../../support/provisioning-harness';
 import type { AccessRequestWire, Department, Person } from '../../support/request-harness';
 import { StatusHarness } from '../../support/status-harness';
+import { liftWithdrawalAfterDecisionRefusal } from '../../support/withdrawal-after-decision';
 
 const h = new StatusHarness();
 /** What a client may say about itself; the server reads neither label (A-09), which the comparisons below rely on. */
@@ -29,6 +30,10 @@ interface RightWire {
  * withdrawing a simple request, all on the routes of the web with a mobile label. Real HTTP and PostgreSQL. The list of the
  * requests the Employee sent is not here: no route lists them yet (B-03), see the item spec.
  */
+// QĐ-113d: this test reaches a withdrawn request through a withdrawal after a decision, which only the system can still do.
+beforeEach(liftWithdrawalAfterDecisionRefusal);
+afterEach(() => jest.restoreAllMocks());
+
 describe('the Employee on the phone: own software, own requests, send and withdraw a simple request (US-16-01, integration)', () => {
   let design: Department;
   let head: Person;
