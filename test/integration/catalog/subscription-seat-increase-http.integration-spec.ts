@@ -124,68 +124,59 @@ describe('the notice of a rise of the seats bought of a subscription (X-IT.7)', 
     expect(told).toEqual([it3.employeeId]);
     await h.ctx.sql.query(`UPDATE app_users SET status = 'ACTIVE' WHERE employee_id = $1`, [it2.employeeId]);
   });
-});
 
-/** A stale edit of a subscription is refused (optimistic check on `updatedAt`), real PostgreSQL. */
-describe('the edit of a subscription made on an old read', () => {
-  const h2 = new SeatHarness();
-  const patch = (subscriptionId: string, body: object) =>
-    request(h2.server()).patch(`/api/v1/subscriptions/${subscriptionId}`).set(h2.as(h2.it1)).send(body);
-  const read = async (subscriptionId: string) =>
-    h2.dataOf<{ updatedAt: string }>(
-      await request(h2.server()).get(`/api/v1/subscriptions/${subscriptionId}`).set(h2.as(h2.it1)).expect(200),
-    ).updatedAt;
-  const quantityOf = async (subscriptionId: string) =>
-    (
-      await h2.ctx.sql.query<{ q: number }>(`SELECT purchased_quantity AS q FROM subscriptions WHERE id = $1`, [
-        subscriptionId,
-      ])
-    ).rows[0].q;
+  /** A stale edit of a subscription is refused (optimistic check on `updatedAt`), real PostgreSQL. */
+  describe('the edit of a subscription made on an old read', () => {
+    const patch = (subscriptionId: string, body: object) =>
+      request(h.server()).patch(`/api/v1/subscriptions/${subscriptionId}`).set(h.as(h.it1)).send(body);
+    const read = async (subscriptionId: string) =>
+      h.dataOf<{ updatedAt: string }>(
+        await request(h.server()).get(`/api/v1/subscriptions/${subscriptionId}`).set(h.as(h.it1)).expect(200),
+      ).updatedAt;
+    const quantityOf = async (subscriptionId: string) =>
+      (
+        await h.ctx.sql.query<{ q: number }>(`SELECT purchased_quantity AS q FROM subscriptions WHERE id = $1`, [
+          subscriptionId,
+        ])
+      ).rows[0].q;
 
-  beforeAll(async () => {
-    await h2.start();
-  }, 240000);
-
-  afterAll(async () => {
-    await h2.stop();
-  });
-
-  it('refuses the second of two edits made on the same read: 409 SUBSCRIPTION.STALE, nothing written', async () => {
-    const id = await h2.subscription(4, 'K2');
-    const seen = await read(id);
-
-    const first = await patch(id, { purchasedQuantity: 6, expectedUpdatedAt: seen }).expect(200);
-    const second = await patch(id, { purchasedQuantity: 5, expectedUpdatedAt: seen }).expect(409);
-
-    expect(h2.codeOf(second)).toBe('SUBSCRIPTION.STALE');
-    expect(h2.detailsOf(second)).toMatchObject({ currentUpdatedAt: h2.dataOf<{ updatedAt: string }>(first).updatedAt });
-    expect(await quantityOf(id)).toBe(6);
-  });
-
-  it('changes without the check when expectedUpdatedAt is left out', async () => {
-    const id = await h2.subscription(4, 'K2');
-
-    await patch(id, { purchasedQuantity: 6 }).expect(200);
-    await patch(id, { purchasedQuantity: 5 }).expect(200);
-  });
-
-  it.each(['K2', 'K1'] as const)(
-    'a seat bought for a %s grant between the read and the PATCH makes the PATCH stale',
-    async (type) => {
-      const id = await h2.subscription(4, type);
+    it('refuses the second of two edits made on the same read: 409 SUBSCRIPTION.STALE, nothing written', async () => {
+      const id = await h.subscription(4, 'K2');
       const seen = await read(id);
 
-      // What a grant does in its own transaction: lock the target, then buy the seat (the K1 grant takes its own seat the same way).
-      const catalog = h2.ctx.app.get(CatalogApi, { strict: false });
-      await h2.ctx.app.get(TransactionRunner).run(async (tx) => {
-        await catalog.lockSeatTarget(tx, { subscriptionId: id });
-        await catalog.addPoolSeat(tx, principal(h2.it1.employeeId), id, null);
-      });
-      expect(await quantityOf(id)).toBe(5);
+      const first = await patch(id, { purchasedQuantity: 6, expectedUpdatedAt: seen }).expect(200);
+      const second = await patch(id, { purchasedQuantity: 5, expectedUpdatedAt: seen }).expect(409);
 
-      const refused = await patch(id, { purchasedQuantity: 9, expectedUpdatedAt: seen }).expect(409);
-      expect(h2.codeOf(refused)).toBe('SUBSCRIPTION.STALE');
-      expect(await quantityOf(id)).toBe(5);
-    },
-  );
+      expect(h.codeOf(second)).toBe('SUBSCRIPTION.STALE');
+      expect(h.detailsOf(second)).toMatchObject({ currentUpdatedAt: h.dataOf<{ updatedAt: string }>(first).updatedAt });
+      expect(await quantityOf(id)).toBe(6);
+    });
+
+    it('changes without the check when expectedUpdatedAt is left out', async () => {
+      const id = await h.subscription(4, 'K2');
+
+      await patch(id, { purchasedQuantity: 6 }).expect(200);
+      await patch(id, { purchasedQuantity: 5 }).expect(200);
+    });
+
+    it.each(['K2', 'K1'] as const)(
+      'a seat bought for a %s grant between the read and the PATCH makes the PATCH stale',
+      async (type) => {
+        const id = await h.subscription(4, type);
+        const seen = await read(id);
+
+        // What a grant does in its own transaction: lock the target, then buy the seat (the K1 grant takes its own seat the same way).
+        const catalog = h.ctx.app.get(CatalogApi, { strict: false });
+        await h.ctx.app.get(TransactionRunner).run(async (tx) => {
+          await catalog.lockSeatTarget(tx, { subscriptionId: id });
+          await catalog.addPoolSeat(tx, principal(h.it1.employeeId), id, null);
+        });
+        expect(await quantityOf(id)).toBe(5);
+
+        const refused = await patch(id, { purchasedQuantity: 9, expectedUpdatedAt: seen }).expect(409);
+        expect(h.codeOf(refused)).toBe('SUBSCRIPTION.STALE');
+        expect(await quantityOf(id)).toBe(5);
+      },
+    );
+  });
 });

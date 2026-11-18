@@ -25831,7 +25831,7 @@
                       "error": {
                         "code": "SUBSCRIPTION.STALE",
                         "message": "The subscription was changed by someone else since it was read: read it again before editing.",
-                        "details": { "currentUpdatedAt": "2026-11-18T08:00:00.000Z" },
+                        "details": { "currentUpdatedAt": "2026-01-01T00:00:00.000Z" },
                         "requestId": "req_example"
                       }
                     }

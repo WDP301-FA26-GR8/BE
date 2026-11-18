@@ -179,7 +179,7 @@ export const SUBSCRIPTION_ERROR_EXAMPLES = {
   RESPONSIBLE_NOT_IT_ADMIN: example(new SubscriptionResponsibleNotItAdminError()),
   PRIMARY_NOT_ELIGIBLE: example(new SubscriptionPrimaryNotEligibleError('NOT_ACTIVE')),
   PRIMARY_CONFLICT: example(new SubscriptionPrimaryConflictError()),
-  STALE: example(new SubscriptionStaleError(new Date('2026-11-18T08:00:00.000Z'))),
+  STALE: example(new SubscriptionStaleError(new Date('2026-01-01T00:00:00.000Z'))),
   DUPLICATE_PLAN: example(new SubscriptionDuplicatePlanError(['<subscription-id>'])),
   MONEY_SCALE_EXCEEDED: example(new MoneyScaleExceededError(2, 'unitPrice')),
   MONEY_OUT_OF_RANGE: example(new MoneyOutOfRangeError('unitPrice')),

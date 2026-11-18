@@ -70,6 +70,7 @@ describe('department profiles, heads and the MANAGER role over HTTP (integration
         status: 'ACTIVE',
         effectiveFrom: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/) as unknown,
         costCenter: null,
+        avatarUrl: null,
         itAdmin: {
           employeeId: h.it2.employeeId,
           employeeCode: 'E-IT2',
