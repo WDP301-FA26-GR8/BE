@@ -421,36 +421,6 @@ export class SubscriptionRepo {
   }
 
   /**
-   * The ids of the term subscriptions a department owns that are not over on `day`, by id: those with no end date, an end date that
-   * has not passed, or that renew themselves (the catalog records no cancellation yet, so only an end date or switching the renewal
-   * off ends one). A draft counts: its data is incomplete, not its obligation.
-   */
-  async termIdsNotOverOf(departmentId: string, day: BusinessDate, tx?: DbTx): Promise<string[]> {
-    const rows = await (tx ?? this.prisma).subscription.findMany({
-      where: {
-        ownerDepartmentId: departmentId,
-        kind: 'TERM',
-        OR: [{ endDate: null }, { endDate: { gte: toDateColumn(day) } }, { autoRenew: true }],
-      },
-      select: { id: true },
-      orderBy: { id: 'asc' },
-    });
-
-    return rows.map((row) => row.id);
-  }
-
-  /** The ids of the perpetual purchases a department owns, by id: one blocks it only while some seat of it is held. */
-  async perpetualIdsOf(departmentId: string, tx?: DbTx): Promise<string[]> {
-    const rows = await (tx ?? this.prisma).subscription.findMany({
-      where: { ownerDepartmentId: departmentId, kind: 'PERPETUAL' },
-      select: { id: true },
-      orderBy: { id: 'asc' },
-    });
-
-    return rows.map((row) => row.id);
-  }
-
-  /**
    * Every active subscription of the company, with its plan and application, by id: one statement. Its cost follows the people who hold its
    * seats, not the department that may own it (`QĐ-103k`), so the baseline reads them all.
    */

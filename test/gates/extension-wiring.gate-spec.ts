@@ -70,7 +70,6 @@ const GRAPH_WIRING_EXCEPTIONS: readonly WiringException[] = [
     graphs: NO_HTTP_GRAPHS,
     point: 'DepartmentUseContributions',
     binders: [
-      'SubscriptionDepartmentUseReader',
       'DepartmentOpenWorkReader @ modules/licensing/provisioning/department-use/department-open-work.listener.ts',
       'DepartmentOpenWorkReader @ modules/personnel/event-notice/department-open-work.listener.ts',
       'DepartmentOpenRequestsReader',

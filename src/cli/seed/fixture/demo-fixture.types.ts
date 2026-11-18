@@ -128,8 +128,6 @@ export interface DemoSubscription {
   responsible: string;
   /** Seats bought on top of the baseline ones: the free seats of the pool the demo can grant from. */
   freeAfterBaseline: number;
-  /** A K1 purchase must name the department it is bought for (`SUBSCRIPTION.OWNER_DEPARTMENT_INACTIVE` otherwise); the other plans name none. */
-  ownerDepartment?: string;
   /** Seats bought when no baseline file gives the number (K1, K4, K5). */
   quantity?: number;
 }

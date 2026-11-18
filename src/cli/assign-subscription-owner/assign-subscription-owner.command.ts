@@ -10,7 +10,7 @@ import {
 /** Exit codes are part of the command's contract (see --help). */
 const EXIT = { assigned: 0, failed: 1, nothingToDo: 2 } as const;
 
-/** `node dist/cli.js assign-subscription-owner` (`pnpm ops:assign-subscription-owner`, alias `dist/subscription-owner-assignment-cli.js`). */
+/** Deprecated, unused in operation (`QĐ-113g`: a subscription has no owning department); kept for the migration preflight of older data. `node dist/cli.js assign-subscription-owner` (`pnpm ops:assign-subscription-owner`, alias `dist/subscription-owner-assignment-cli.js`). */
 export const assignSubscriptionOwnerCommand = defineCommand({
   usage: ASSIGNMENT_USAGE,
   parse: parseAssignmentArguments,

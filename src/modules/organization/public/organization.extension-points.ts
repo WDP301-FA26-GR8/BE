@@ -37,7 +37,7 @@ export class OrganizationChangeListeners extends Listeners<OrganizationChange, D
 
 /**
  * Tells one kind of thing that keeps a department in use: the Requests and personnel events that are not over and the tasks that
- * are open (`OPEN_WORK`), or the subscriptions and purchases that still owe a payment (`SUBSCRIPTIONS`). The module that holds the
+ * are open (`OPEN_WORK`). The module that holds the
  * fact adds it when it starts; several may tell the same group.
  */
 export interface DepartmentUseReader {

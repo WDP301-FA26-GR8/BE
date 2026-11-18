@@ -31,9 +31,11 @@ const originalPrice = money.meta({
 
 export const declareSubscriptionBodySchema = z.strictObject({
   planId: z.uuid(),
-  // The department that owns the purchase (QĐ-89a), never part of a change: it is not a field of PATCH. A K2/K4 purchase is the company's
-  // shared pool (QĐ-103d) and may name none; a K1 purchase must name one (SUBSCRIPTION.OWNER_DEPARTMENT_INACTIVE when it does not).
-  ownerDepartmentId: z.uuid().optional(),
+  ownerDepartmentId: z.uuid().optional().meta({
+    deprecated: true,
+    description:
+      'Deprecated and ignored: a subscription has no owning department. The cost follows the person who holds the right (a K1 through that person request and invoices, a K2 or K4 seat by seat-month). Accepted so older callers keep working; never stored.',
+  }),
   kind,
   purchasedQuantity: quantity.optional(),
   unitPrice: unitPrice.optional(),

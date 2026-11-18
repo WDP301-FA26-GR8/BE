@@ -8,7 +8,6 @@ import {
   MoneyOutOfRangeError,
   MoneyScaleExceededError,
 } from '../../../core/money/money.errors';
-import { FinanceSetupIncompleteError } from '../../organization/public/organization.errors';
 import { isUniqueViolation } from '../../../infrastructure/database/unique-violation';
 import {
   SubscriptionApplicationRetiredError,
@@ -28,7 +27,6 @@ import {
   SubscriptionDatesInvalidError,
   SubscriptionDuplicatePlanError,
   SubscriptionNotFoundError,
-  SubscriptionOwnerDepartmentInactiveError,
   SubscriptionPerpetualHasNoTermError,
   SubscriptionPerpetualNeedsLicensedApplicationError,
   SubscriptionPlanHasNoSubscriptionError,
@@ -53,15 +51,8 @@ export function toSubscriptionApiException(error: unknown): unknown {
   if (error instanceof SubscriptionPlanNotFoundError) {
     return refuse(UNPROCESSABLE, 'SUBSCRIPTION.PLAN_NOT_FOUND', error.message);
   }
-  if (error instanceof SubscriptionOwnerDepartmentInactiveError) {
-    return refuse(UNPROCESSABLE, 'SUBSCRIPTION.OWNER_DEPARTMENT_INACTIVE', error.message);
-  }
   if (error instanceof SubscriptionApplicationRetiredError) {
     return refuse(UNPROCESSABLE, 'SUBSCRIPTION.APPLICATION_RETIRED', error.message);
-  }
-  // The owner department has no Cost Center in use yet and the change would create, raise or extend what is owed (`QĐ-88a`(2)).
-  if (error instanceof FinanceSetupIncompleteError) {
-    return refuse(HttpStatus.CONFLICT, 'FINANCE.SETUP_INCOMPLETE', error.message, { departmentId: error.departmentId });
   }
   if (error instanceof SubscriptionPlanHasNoSubscriptionError) {
     return refuse(UNPROCESSABLE, 'SUBSCRIPTION.PLAN_HAS_NO_SUBSCRIPTION', error.message);
@@ -157,9 +148,7 @@ const example = (error: Error) => errorExampleOf(toSubscriptionApiException(erro
 export const SUBSCRIPTION_ERROR_EXAMPLES = {
   NOT_FOUND: example(new SubscriptionNotFoundError()),
   PLAN_NOT_FOUND: example(new SubscriptionPlanNotFoundError()),
-  OWNER_DEPARTMENT_INACTIVE: example(new SubscriptionOwnerDepartmentInactiveError()),
   APPLICATION_RETIRED: example(new SubscriptionApplicationRetiredError()),
-  FINANCE_SETUP_INCOMPLETE: example(new FinanceSetupIncompleteError('<department-id>')),
   PLAN_HAS_NO_SUBSCRIPTION: example(new SubscriptionPlanHasNoSubscriptionError()),
   PERPETUAL_NEEDS_LICENSED_APPLICATION: example(new SubscriptionPerpetualNeedsLicensedApplicationError()),
   PERPETUAL_HAS_NO_TERM: example(new SubscriptionPerpetualHasNoTermError(['endDate'])),

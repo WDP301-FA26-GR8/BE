@@ -49,7 +49,7 @@ unitPrice, reportingUnitPrice, billingCycle }`, thuê bao `PERPETUAL` có giá �
   lần), `getRenewalAlertRecipient`, `listPaymentSchedules` (PI-2: chu kỳ và ngày thanh toán của thuê bao có phòng sở hữu đang chạy kỳ, cho cờ kỳ chưa có hóa đơn của `requests`; thuê bao kho dùng chung không phòng không có trong đó); lỗi `public/subscription-period.errors.ts`, kiểu `public/subscription-period.types.ts`.
 - `CatalogResponsibilityApi` ([public/catalog-responsibility.api.ts](public/catalog-responsibility.api.ts)) — IT Admin phụ trách (`QĐ-111g`, R-8, R-26) cho bàn giao của IT Admin rời: `countResponsibilitiesOf` (số thuê bao + ứng dụng mỗi người phụ trách), `transferResponsibilities(tx, actor, from, to)` đổi MỌI thuê bao và ứng dụng sang IT Admin khác trong transaction của bên gọi, một Audit mỗi thứ; lỗi `public/catalog-responsibility.errors.ts` (`ResponsibilityHandoverRefusedError`: cùng một người / đích không phải IT Admin đang làm việc), kiểu `public/catalog-responsibility.types.ts`.
 - `SubscriptionOwnerAssignmentApi` (`public/subscription-owner-assignment.api.ts`) — `assign`: gán phòng ban sở hữu cho
-  một subscription (`pnpm ops:assign-subscription-owner`).
+  một subscription (`pnpm ops:assign-subscription-owner`; deprecated, `QĐ-113g`).
 - `public/subscription-owner-assignment.errors.ts` — `AssignmentRefusedError`;
   `public/subscription-owner-assignment.types.ts` — `AssignmentCommand`, `AssignmentResult`.
 - `public/catalog.types.ts` — `SeatTarget`, `SeatTargetRef`, `PlanSummary`, `PlanRevocationInfo`, `WorkspaceDuty`…
@@ -69,8 +69,7 @@ unitPrice, reportingUnitPrice, billingCycle }`, thuê bao `PERPETUAL` có giá �
   `assignment/assignment-seat-occupancy.listener.ts` (`seatsOfSubscriptions`: ghế và ghế đang thu hồi của cả trang thuê bao trong một câu; dòng `GET /subscriptions` K2 có `seats`, `EXPIRED` chỉ khi còn ghế). Chưa bind thì `get()` ném lỗi, không để rule đi qua.
 - Mở: `SeatBaselinePhaseHook` (`catalog.seat-baseline-phase`, Hook) — bên bind: licensing `seat-baseline/seat-baseline-phase.listener.ts`; cho
   biết baseline đã đóng chưa để chặn trùng thuê bao K2/K4. Chưa bind ⟹ coi như đã đóng (chặn).
-- Đăng ký vào: `organization.department-use-readers` (`DepartmentUseContributions`, tên `catalog.subscriptions`) —
-  `subscription/subscription-department-use.listener.ts`.
+- Không còn đăng ký vào `organization.department-use-readers`: thuê bao không có phòng đứng tên (`QĐ-113g`) nên không chặn việc ngừng phòng.
 - Đăng ký vào `notifications.name-sources` (`NotificationNameContributions`, tên `catalog.names`) — `requestable-software/catalog-notification-names.listener.ts`, khai ở `catalog.module.ts`:
   APPLICATION (tên ứng dụng), PLAN và SUBSCRIPTION (`<Ứng dụng> – <Gói>`, hàm `applicationPlanName` ở `plan/plan.policy.ts`), mỗi kind một truy vấn theo lô ở repo chủ bảng (`ApplicationRepo.namesOf`,
   `PlanRepo.namesOf`, `SubscriptionRepo.labelsOf(ids, tx, applicationPlanName)`; mặc định `labelsOf` vẫn là `<Ứng dụng> / <Gói>` cho phần "đang dùng" của phòng ban). Đặt ở `requestable-software` vì capability này đã đọc
@@ -150,7 +149,7 @@ file thuần xuống tầng thấp, hoặc đưa dịch vụ điều phối lên
   `WORKING`, đọc không khóa (một vai bị thu ngay sau kiểm tra không bị chặn). Cờ thuê bao chính: `PATCH isPrimaryForPlan` khóa
   `plans FOR UPDATE`, gỡ cờ ở thuê bao khác cùng gói rồi đặt; chỉ thuê bao `ACTIVE` chưa có kỳ kế tiếp
   (`PRIMARY_NOT_ELIGIBLE`); unique index chặn đua còn lại (409 `PRIMARY_CONFLICT`). Kỳ gia hạn kế thừa kỳ cam kết, người phụ
-  trách, mức tối thiểu và cờ chính (`SubscriptionPeriodService.recordNext`). Cột phòng sở hữu chưa bỏ (W5; API tạo vẫn bắt `ownerDepartmentId`).
+  trách, mức tối thiểu và cờ chính (`SubscriptionPeriodService.recordNext`). Cột phòng sở hữu chưa bỏ (W5) nhưng thuê bao mới luôn lưu null: `POST /subscriptions` bỏ qua `ownerDepartmentId` (deprecated, `QĐ-113g`); chỉ hàng cũ còn giá trị.
   Chặn trùng (R-E02, `QĐ-104k`(3)), chỉ plan `K2`/`K4`: thuê bao "đang sống" khác của cùng plan = `DRAFT`, hoặc `ACTIVE` chưa có kỳ kế tiếp và (`PERPETUAL` hoặc
   không có `end_date` hoặc `end_date` ≥ hôm nay). Có ≥ 1: baseline chưa đóng ⟹ cho ghi, đọc trả `warnings` có `SHOULD_MERGE` + `mergeCandidateIds`
   (ở mọi giai đoạn); đã đóng (hoặc hook chưa bind) ⟹ 409 `SUBSCRIPTION.DUPLICATE_PLAN` (`details.subscriptionIds`). Kỳ gia hạn không là trùng.
@@ -166,10 +165,9 @@ file thuần xuống tầng thấp, hoặc đưa dịch vụ điều phối lên
   (`application-retirement/application-retirement.service.ts`). Cả hai đọc ghế qua `SeatOccupancyHook`.
 - Điểm điều chỉnh (QĐ-111o, `subscription/obligation/subscription-obligation.policy.ts` `adjustmentPointOf`/`expiryReading`): gói tháng mở 7 ngày trước ngày thanh toán (ngày gia hạn, thiếu thì ngày kết thúc), gói năm 30 ngày trước hạn chót báo hủy (khai, suy từ số ngày báo trước, thiếu cả hai thì ngày gia hạn khi tự gia hạn, hoặc ngày kết thúc); mua một lần không có điểm. `GET /subscriptions?expiry=SOON|EXPIRED` tìm trong thuê bao `ACTIVE` kiểu `TERM` chưa có kỳ nối tiếp bằng policy rồi mới phân trang; `EXPIRED` chỉ khi còn ghế; `mine=true` lọc theo IT Admin phụ trách.
 - `lockSeatTarget`: subscription `FOR UPDATE`, plan nội bộ `FOR SHARE` tới hết transaction (`seat-target.service.ts`).
-- Thay đổi tạo/tăng/kéo dài khoản phải trả của thuê bao `K1`/`K5` có phòng sở hữu cần phòng đó có Cost Center đang dùng (F26,
-  `FINANCE.SETUP_INCOMPLETE`, `subscription/obligation/subscription-obligation.service.ts`). Thuê bao `K2`/`K4` KHÔNG có cổng này ở mọi đường tăng (PATCH, `addPoolSeat`): chi
-  phí tính theo seat-tháng của phòng người nhận (`QĐ-103d`(2), DA4-21).
-- Gán phòng ban sở hữu: một transaction, khóa subscription, audit actor `OPERATOR`; chạy lại cùng lệnh trả
+- Thay đổi thuê bao (PATCH, `addPoolSeat`) KHÔNG hỏi Cost Center của phòng nào (`QĐ-113g`): chi phí theo người giữ quyền (`K1` qua Request và hóa đơn của người đó,
+  `K2`/`K4` theo seat-tháng, `QĐ-103d`(2)). Cost Center của phòng người xin vẫn là điều kiện của Request trả phí (`QĐ-87g`, ở `requests`).
+- Gán phòng ban sở hữu (LỖI THỜI, không còn dùng khi vận hành: thuê bao không có phòng đứng tên, `QĐ-113g`; lệnh giữ lại cho cổng preflight di trú dữ liệu cũ): một transaction, khóa subscription, audit actor `OPERATOR`; chạy lại cùng lệnh trả
   `ALREADY_ASSIGNED` (`subscription-owner-assignment.api.ts`).
 
 ## Test

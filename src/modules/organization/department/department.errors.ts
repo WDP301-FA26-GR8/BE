@@ -59,20 +59,18 @@ export class DepartmentUpdateEmptyError extends Error {
 /**
  * What still keeps a department in use, group by group: each holds the first of its things and how many there are in all
  * (`US-03-06` AC-19, `QĐ-90e`, `QĐ-86c`). The first group is the people in it, the second the service accounts it owns, the third the
- * open work (Requests not over, personnel events waiting, tasks open) and the last the subscriptions and purchases it owns that
- * still owe a payment.
+ * open work (Requests not over, personnel events waiting, tasks open). A subscription has no owning department, so none keeps it in use.
  */
 export interface DepartmentInUseGroups {
   members: { items: { employeeCode: string; fullName: string }[]; total: number };
   serviceAccounts: { items: { assignmentId: string; accountIdentifier: string }[]; total: number };
   openWork: { items: UseItem[]; total: number };
-  subscriptions: { items: UseItem[]; total: number };
 }
 
 /** Something still keeps the department in use, so it cannot be retired. */
 export class DepartmentInUseError extends Error {
   constructor(readonly groups: DepartmentInUseGroups) {
-    super('The department still has members, service accounts, open work or subscriptions that owe a payment.');
+    super('The department still has members, service accounts, or open work.');
     this.name = 'DepartmentInUseError';
   }
 }

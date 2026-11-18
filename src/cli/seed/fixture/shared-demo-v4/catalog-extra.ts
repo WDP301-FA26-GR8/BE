@@ -123,7 +123,6 @@ const byMonth = (
 const k1Subscription = (key: string, amount: string, dollars: string): DemoSubscription => ({
   ...monthly(key, key, amount, 'NV-ITA1', 0),
   quantity: 0,
-  ownerDepartment: 'ENG',
   originalPrice: { amount: dollars, currency: 'USD' },
 });
 

@@ -18,12 +18,11 @@ export interface UseGroup {
   total: number;
 }
 
-export type DepartmentUseGroupName = 'OPEN_WORK' | 'SUBSCRIPTIONS';
+export type DepartmentUseGroupName = 'OPEN_WORK';
 export type CostCenterUseGroupName = 'REQUESTS' | 'COMMITMENTS';
 
 export interface DepartmentUse {
   openWork: UseGroup;
-  subscriptions: UseGroup;
 }
 
 export interface CostCenterUse {

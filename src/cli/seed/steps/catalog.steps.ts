@@ -301,9 +301,6 @@ export function subscriptionBody(
   return {
     planId,
     kind: subscription.kind,
-    ...(subscription.ownerDepartment
-      ? { ownerDepartmentId: ctx.ids.departments.get(subscription.ownerDepartment) }
-      : {}),
     ...subscriptionTerms(ctx, subscription),
   };
 }

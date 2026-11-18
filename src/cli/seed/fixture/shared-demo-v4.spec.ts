@@ -287,9 +287,10 @@ describe('shared dataset v4: the catalog and the shared pool', () => {
     expect(subscriptionOf('hubspot-starter').renewalInDays).toBe(1);
   });
 
-  it('leaves the stock of the new K1, K4 plans as the plan needs and the K1 plans for ENG (T6)', () => {
+  it('leaves the stock of the new K1, K4 plans as the plan needs and the K1 plans with no owner department (T6)', () => {
     for (const key of ['claude-pro', 'copilot-pro']) {
-      expect(subscriptionOf(key)).toMatchObject({ quantity: 0, ownerDepartment: 'ENG', responsible: 'NV-ITA1' });
+      expect(subscriptionOf(key)).toMatchObject({ quantity: 0, responsible: 'NV-ITA1' });
+      expect(subscriptionOf(key)).not.toHaveProperty('ownerDepartment');
     }
     expect(subscriptionOf('visio-pro')).toMatchObject({ kind: 'PERPETUAL', quantity: 3 });
     expect(subscriptionOf('sublime-license')).toMatchObject({ kind: 'PERPETUAL', quantity: 2 });
