@@ -110429,7 +110429,11 @@
         "properties": {
           "requestId": { "type": "string", "format": "uuid" },
           "subscriptionId": { "type": "string", "format": "uuid" },
-          "accountIdentifier": { "type": "string", "maxLength": 254 },
+          "accountIdentifier": {
+            "description": "The company address to grant a paid right to. Leave it empty or omit the field to use the work email of the person.",
+            "type": "string",
+            "maxLength": 254
+          },
           "responsibleEmployeeId": { "type": "string", "format": "uuid" },
           "beneficiaryEmployeeId": { "type": "string", "format": "uuid" },
           "purchase": {
@@ -110474,9 +110478,14 @@
                     "properties": {
                       "employeeId": { "type": "string", "format": "uuid" },
                       "employeeCode": { "type": "string" },
-                      "fullName": { "type": "string" }
+                      "fullName": { "type": "string" },
+                      "workEmail": {
+                        "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one; null when the profile has none.",
+                        "type": "string",
+                        "nullable": true
+                      }
                     },
-                    "required": ["employeeId", "employeeCode", "fullName"],
+                    "required": ["employeeId", "employeeCode", "fullName", "workEmail"],
                     "additionalProperties": false,
                     "nullable": true
                   },
@@ -110849,9 +110858,14 @@
                       "properties": {
                         "employeeId": { "type": "string", "format": "uuid" },
                         "employeeCode": { "type": "string" },
-                        "fullName": { "type": "string" }
+                        "fullName": { "type": "string" },
+                        "workEmail": {
+                          "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one; null when the profile has none.",
+                          "type": "string",
+                          "nullable": true
+                        }
                       },
-                      "required": ["employeeId", "employeeCode", "fullName"],
+                      "required": ["employeeId", "employeeCode", "fullName", "workEmail"],
                       "additionalProperties": false,
                       "nullable": true
                     },
@@ -111094,9 +111108,14 @@
                     "properties": {
                       "employeeId": { "type": "string", "format": "uuid" },
                       "employeeCode": { "type": "string" },
-                      "fullName": { "type": "string" }
+                      "fullName": { "type": "string" },
+                      "workEmail": {
+                        "description": "The work email on the profile, as stored (not normalized): the address a grant is made to when the IT Admin names no other one; null when the profile has none.",
+                        "type": "string",
+                        "nullable": true
+                      }
                     },
-                    "required": ["employeeId", "employeeCode", "fullName"],
+                    "required": ["employeeId", "employeeCode", "fullName", "workEmail"],
                     "additionalProperties": false,
                     "nullable": true
                   },
@@ -119403,9 +119422,14 @@
                       "properties": {
                         "employeeId": { "type": "string", "format": "uuid" },
                         "employeeCode": { "type": "string" },
-                        "fullName": { "type": "string" }
+                        "fullName": { "type": "string" },
+                        "workEmail": {
+                          "description": "The work email on the profile, as stored (not normalized): the address the grant is made to when the IT Admin names no other one; null when the profile has none.",
+                          "type": "string",
+                          "nullable": true
+                        }
                       },
-                      "required": ["employeeId", "employeeCode", "fullName"],
+                      "required": ["employeeId", "employeeCode", "fullName", "workEmail"],
                       "additionalProperties": false
                     },
                     "state": { "type": "string", "enum": ["WAITING", "EXECUTING", "DONE"] },
