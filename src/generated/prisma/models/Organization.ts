@@ -202,7 +202,6 @@ export type OrganizationWhereInput = {
   plans?: Prisma.PlanListRelationFilter
   vendorTaxProfiles?: Prisma.VendorTaxProfileListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentListRelationFilter
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkListRelationFilter
   costCenterDirectionActivation?: Prisma.XOR<Prisma.CostCenterDirectionActivationNullableScalarRelationFilter, Prisma.CostCenterDirectionActivationWhereInput> | null
   seatBaselineImports?: Prisma.SeatBaselineImportListRelationFilter
@@ -268,7 +267,6 @@ export type OrganizationOrderByWithRelationInput = {
   plans?: Prisma.PlanOrderByRelationAggregateInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentOrderByRelationAggregateInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkOrderByRelationAggregateInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationOrderByWithRelationInput
   seatBaselineImports?: Prisma.SeatBaselineImportOrderByRelationAggregateInput
@@ -337,7 +335,6 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   plans?: Prisma.PlanListRelationFilter
   vendorTaxProfiles?: Prisma.VendorTaxProfileListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentListRelationFilter
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkListRelationFilter
   costCenterDirectionActivation?: Prisma.XOR<Prisma.CostCenterDirectionActivationNullableScalarRelationFilter, Prisma.CostCenterDirectionActivationWhereInput> | null
   seatBaselineImports?: Prisma.SeatBaselineImportListRelationFilter
@@ -426,7 +423,6 @@ export type OrganizationCreateInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -491,7 +487,6 @@ export type OrganizationUncheckedCreateInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -556,7 +551,6 @@ export type OrganizationUpdateInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -621,7 +615,6 @@ export type OrganizationUncheckedUpdateInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -930,20 +923,6 @@ export type OrganizationUpdateOneRequiredWithoutSubscriptionsNestedInput = {
   upsert?: Prisma.OrganizationUpsertWithoutSubscriptionsInput
   connect?: Prisma.OrganizationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.OrganizationUpdateWithoutSubscriptionsInput>, Prisma.OrganizationUncheckedUpdateWithoutSubscriptionsInput>
-}
-
-export type OrganizationCreateNestedOneWithoutSubscriptionOwnerAssignmentsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSubscriptionOwnerAssignmentsInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneRequiredWithoutSubscriptionOwnerAssignmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSubscriptionOwnerAssignmentsInput
-  upsert?: Prisma.OrganizationUpsertWithoutSubscriptionOwnerAssignmentsInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSubscriptionOwnerAssignmentsInput, Prisma.OrganizationUpdateWithoutSubscriptionOwnerAssignmentsInput>, Prisma.OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput>
 }
 
 export type OrganizationCreateNestedOneWithoutApplicationRetirementConfirmationsInput = {
@@ -1580,7 +1559,6 @@ export type OrganizationCreateWithoutBudgetProposalsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -1644,7 +1622,6 @@ export type OrganizationUncheckedCreateWithoutBudgetProposalsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1724,7 +1701,6 @@ export type OrganizationUpdateWithoutBudgetProposalsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -1788,7 +1764,6 @@ export type OrganizationUncheckedUpdateWithoutBudgetProposalsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1852,7 +1827,6 @@ export type OrganizationCreateWithoutBudgetVersionsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -1916,7 +1890,6 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1996,7 +1969,6 @@ export type OrganizationUpdateWithoutBudgetVersionsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -2060,7 +2032,6 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2124,7 +2095,6 @@ export type OrganizationCreateWithoutBudgetCommitmentsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -2188,7 +2158,6 @@ export type OrganizationUncheckedCreateWithoutBudgetCommitmentsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2268,7 +2237,6 @@ export type OrganizationUpdateWithoutBudgetCommitmentsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -2332,7 +2300,6 @@ export type OrganizationUncheckedUpdateWithoutBudgetCommitmentsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2396,7 +2363,6 @@ export type OrganizationCreateWithoutInvoicesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -2460,7 +2426,6 @@ export type OrganizationUncheckedCreateWithoutInvoicesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2540,7 +2505,6 @@ export type OrganizationUpdateWithoutInvoicesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -2604,7 +2568,6 @@ export type OrganizationUncheckedUpdateWithoutInvoicesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2668,7 +2631,6 @@ export type OrganizationCreateWithoutBudgetVersionHistoryInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -2732,7 +2694,6 @@ export type OrganizationUncheckedCreateWithoutBudgetVersionHistoryInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2812,7 +2773,6 @@ export type OrganizationUpdateWithoutBudgetVersionHistoryInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -2876,7 +2836,6 @@ export type OrganizationUncheckedUpdateWithoutBudgetVersionHistoryInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2940,7 +2899,6 @@ export type OrganizationCreateWithoutBudgetAttachmentsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -3004,7 +2962,6 @@ export type OrganizationUncheckedCreateWithoutBudgetAttachmentsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3084,7 +3041,6 @@ export type OrganizationUpdateWithoutBudgetAttachmentsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -3148,7 +3104,6 @@ export type OrganizationUncheckedUpdateWithoutBudgetAttachmentsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3212,7 +3167,6 @@ export type OrganizationCreateWithoutBudgetCyclesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -3276,7 +3230,6 @@ export type OrganizationUncheckedCreateWithoutBudgetCyclesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3356,7 +3309,6 @@ export type OrganizationUpdateWithoutBudgetCyclesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -3420,7 +3372,6 @@ export type OrganizationUncheckedUpdateWithoutBudgetCyclesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3483,7 +3434,6 @@ export type OrganizationCreateWithoutVendorProposalsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -3547,7 +3497,6 @@ export type OrganizationUncheckedCreateWithoutVendorProposalsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3627,7 +3576,6 @@ export type OrganizationUpdateWithoutVendorProposalsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -3691,7 +3639,6 @@ export type OrganizationUncheckedUpdateWithoutVendorProposalsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -3755,7 +3702,6 @@ export type OrganizationCreateWithoutVendorsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -3819,7 +3765,6 @@ export type OrganizationUncheckedCreateWithoutVendorsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -3899,7 +3844,6 @@ export type OrganizationUpdateWithoutVendorsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -3963,7 +3907,6 @@ export type OrganizationUncheckedUpdateWithoutVendorsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4027,7 +3970,6 @@ export type OrganizationCreateWithoutFunctionalGroupsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -4091,7 +4033,6 @@ export type OrganizationUncheckedCreateWithoutFunctionalGroupsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4171,7 +4112,6 @@ export type OrganizationUpdateWithoutFunctionalGroupsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -4235,7 +4175,6 @@ export type OrganizationUncheckedUpdateWithoutFunctionalGroupsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4299,7 +4238,6 @@ export type OrganizationCreateWithoutApplicationsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -4363,7 +4301,6 @@ export type OrganizationUncheckedCreateWithoutApplicationsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4443,7 +4380,6 @@ export type OrganizationUpdateWithoutApplicationsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -4507,7 +4443,6 @@ export type OrganizationUncheckedUpdateWithoutApplicationsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4571,7 +4506,6 @@ export type OrganizationCreateWithoutPlansInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -4635,7 +4569,6 @@ export type OrganizationUncheckedCreateWithoutPlansInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4715,7 +4648,6 @@ export type OrganizationUpdateWithoutPlansInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -4779,7 +4711,6 @@ export type OrganizationUncheckedUpdateWithoutPlansInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -4844,7 +4775,6 @@ export type OrganizationCreateWithoutPlanUsageRatesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -4908,7 +4838,6 @@ export type OrganizationUncheckedCreateWithoutPlanUsageRatesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -4988,7 +4917,6 @@ export type OrganizationUpdateWithoutPlanUsageRatesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -5052,7 +4980,6 @@ export type OrganizationUncheckedUpdateWithoutPlanUsageRatesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5115,7 +5042,6 @@ export type OrganizationCreateWithoutSubscriptionsInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -5179,7 +5105,6 @@ export type OrganizationUncheckedCreateWithoutSubscriptionsInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5259,7 +5184,6 @@ export type OrganizationUpdateWithoutSubscriptionsInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -5323,279 +5247,6 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionsInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
-  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
-  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
-  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
-  licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedUpdateManyWithoutOrganizationNestedInput
-  provisioningTasks?: Prisma.ProvisioningTaskUncheckedUpdateManyWithoutOrganizationNestedInput
-  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedUpdateManyWithoutOrganizationNestedInput
-  returnRequests?: Prisma.ReturnRequestUncheckedUpdateManyWithoutOrganizationNestedInput
-  handoverDuties?: Prisma.HandoverDutyUncheckedUpdateManyWithoutOrganizationNestedInput
-  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOrganizationNestedInput
-  approvalRecords?: Prisma.ApprovalRecordUncheckedUpdateManyWithoutOrganizationNestedInput
-  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedUpdateManyWithoutOrganizationNestedInput
-  stepSlaReminders?: Prisma.StepSlaReminderUncheckedUpdateManyWithoutOrganizationNestedInput
-  congestionIncidents?: Prisma.CongestionIncidentUncheckedUpdateManyWithoutOrganizationNestedInput
-  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedUpdateManyWithoutOrganizationNestedInput
-  spendBatches?: Prisma.SpendBatchUncheckedUpdateManyWithoutOrganizationNestedInput
-  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
-  requestSupplements?: Prisma.RequestSupplementUncheckedUpdateManyWithoutOrganizationNestedInput
-  budgetProposals?: Prisma.BudgetProposalUncheckedUpdateManyWithoutOrganizationNestedInput
-  budgetCycles?: Prisma.BudgetCycleUncheckedUpdateManyWithoutOrganizationNestedInput
-  budgetVersions?: Prisma.BudgetVersionUncheckedUpdateManyWithoutOrganizationNestedInput
-  budgetCommitments?: Prisma.BudgetCommitmentUncheckedUpdateManyWithoutOrganizationNestedInput
-  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedUpdateManyWithoutOrganizationNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
-  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedUpdateManyWithoutOrganizationNestedInput
-  contracts?: Prisma.ContractUncheckedUpdateManyWithoutOrganizationNestedInput
-  documentAttachments?: Prisma.DocumentAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
-  licenseKeys?: Prisma.LicenseKeyUncheckedUpdateManyWithoutOrganizationNestedInput
-  seatBaselineState?: Prisma.SeatBaselineStateUncheckedUpdateOneWithoutOrganizationNestedInput
-  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedUpdateManyWithoutOrganizationNestedInput
-  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedUpdateManyWithoutOrganizationNestedInput
-  budgetAttachments?: Prisma.BudgetAttachmentUncheckedUpdateManyWithoutOrganizationNestedInput
-  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedUpdateManyWithoutOrganizationNestedInput
-  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedUpdateManyWithoutOrganizationNestedInput
-  departmentTransfers?: Prisma.DepartmentTransferUncheckedUpdateManyWithoutOrganizationNestedInput
-  transferReviews?: Prisma.TransferReviewUncheckedUpdateManyWithoutOrganizationNestedInput
-  employeeLeaves?: Prisma.EmployeeLeaveUncheckedUpdateManyWithoutOrganizationNestedInput
-  offboardingCases?: Prisma.OffboardingCaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  personnelNotices?: Prisma.PersonnelNoticeUncheckedUpdateManyWithoutOrganizationNestedInput
-  planUsageRates?: Prisma.PlanUsageRateUncheckedUpdateManyWithoutOrganizationNestedInput
-  itAdminHandovers?: Prisma.ItAdminHandoverUncheckedUpdateManyWithoutOrganizationNestedInput
-  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedUpdateManyWithoutOrganizationNestedInput
-  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput = {
-  id?: string
-  name: string
-  timeZone: string
-  bootstrapCompletedAt?: Date | string | null
-  createdAt?: Date | string
-  reportingCurrencyRecord: Prisma.CurrencyCreateNestedOneWithoutOrganizationsInput
-  costCenters?: Prisma.CostCenterCreateNestedManyWithoutOrganizationInput
-  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
-  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
-  exchangeRates?: Prisma.ExchangeRateCreateNestedManyWithoutOrganizationInput
-  vendorProposals?: Prisma.VendorDictionaryProposalCreateNestedManyWithoutOrganizationInput
-  vendors?: Prisma.VendorCreateNestedManyWithoutOrganizationInput
-  functionalGroups?: Prisma.FunctionalGroupCreateNestedManyWithoutOrganizationInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
-  plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
-  vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
-  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
-  seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
-  licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
-  subscriptionRenewals?: Prisma.SubscriptionRenewalCreateNestedManyWithoutOrganizationInput
-  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventCreateNestedManyWithoutOrganizationInput
-  provisioningTasks?: Prisma.ProvisioningTaskCreateNestedManyWithoutOrganizationInput
-  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostCreateNestedManyWithoutOrganizationInput
-  returnRequests?: Prisma.ReturnRequestCreateNestedManyWithoutOrganizationInput
-  handoverDuties?: Prisma.HandoverDutyCreateNestedManyWithoutOrganizationInput
-  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOrganizationInput
-  approvalRecords?: Prisma.ApprovalRecordCreateNestedManyWithoutOrganizationInput
-  controlledWaitAlerts?: Prisma.ControlledWaitAlertCreateNestedManyWithoutOrganizationInput
-  stepSlaReminders?: Prisma.StepSlaReminderCreateNestedManyWithoutOrganizationInput
-  congestionIncidents?: Prisma.CongestionIncidentCreateNestedManyWithoutOrganizationInput
-  requestBudgetChecks?: Prisma.RequestBudgetCheckCreateNestedManyWithoutOrganizationInput
-  spendBatches?: Prisma.SpendBatchCreateNestedManyWithoutOrganizationInput
-  requestReserveConfirmations?: Prisma.RequestReserveConfirmationCreateNestedManyWithoutOrganizationInput
-  requestSupplements?: Prisma.RequestSupplementCreateNestedManyWithoutOrganizationInput
-  budgetProposals?: Prisma.BudgetProposalCreateNestedManyWithoutOrganizationInput
-  budgetCycles?: Prisma.BudgetCycleCreateNestedManyWithoutOrganizationInput
-  budgetVersions?: Prisma.BudgetVersionCreateNestedManyWithoutOrganizationInput
-  budgetCommitments?: Prisma.BudgetCommitmentCreateNestedManyWithoutOrganizationInput
-  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunCreateNestedManyWithoutOrganizationInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
-  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationCreateNestedManyWithoutOrganizationInput
-  contracts?: Prisma.ContractCreateNestedManyWithoutOrganizationInput
-  documentAttachments?: Prisma.DocumentAttachmentCreateNestedManyWithoutOrganizationInput
-  licenseKeys?: Prisma.LicenseKeyCreateNestedManyWithoutOrganizationInput
-  seatBaselineState?: Prisma.SeatBaselineStateCreateNestedOneWithoutOrganizationInput
-  superAdminEventTickets?: Prisma.SuperAdminEventTicketCreateNestedManyWithoutOrganizationInput
-  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryCreateNestedManyWithoutOrganizationInput
-  budgetAttachments?: Prisma.BudgetAttachmentCreateNestedManyWithoutOrganizationInput
-  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationCreateNestedManyWithoutOrganizationInput
-  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementCreateNestedManyWithoutOrganizationInput
-  departmentTransfers?: Prisma.DepartmentTransferCreateNestedManyWithoutOrganizationInput
-  transferReviews?: Prisma.TransferReviewCreateNestedManyWithoutOrganizationInput
-  employeeLeaves?: Prisma.EmployeeLeaveCreateNestedManyWithoutOrganizationInput
-  offboardingCases?: Prisma.OffboardingCaseCreateNestedManyWithoutOrganizationInput
-  personnelNotices?: Prisma.PersonnelNoticeCreateNestedManyWithoutOrganizationInput
-  planUsageRates?: Prisma.PlanUsageRateCreateNestedManyWithoutOrganizationInput
-  itAdminHandovers?: Prisma.ItAdminHandoverCreateNestedManyWithoutOrganizationInput
-  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryCreateNestedManyWithoutOrganizationInput
-  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput = {
-  id?: string
-  name: string
-  timeZone: string
-  reportingCurrency: string
-  bootstrapCompletedAt?: Date | string | null
-  createdAt?: Date | string
-  costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutOrganizationInput
-  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
-  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
-  exchangeRates?: Prisma.ExchangeRateUncheckedCreateNestedManyWithoutOrganizationInput
-  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedCreateNestedManyWithoutOrganizationInput
-  vendors?: Prisma.VendorUncheckedCreateNestedManyWithoutOrganizationInput
-  functionalGroups?: Prisma.FunctionalGroupUncheckedCreateNestedManyWithoutOrganizationInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
-  plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
-  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
-  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
-  seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
-  licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionRenewals?: Prisma.SubscriptionRenewalUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUncheckedCreateNestedManyWithoutOrganizationInput
-  provisioningTasks?: Prisma.ProvisioningTaskUncheckedCreateNestedManyWithoutOrganizationInput
-  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUncheckedCreateNestedManyWithoutOrganizationInput
-  returnRequests?: Prisma.ReturnRequestUncheckedCreateNestedManyWithoutOrganizationInput
-  handoverDuties?: Prisma.HandoverDutyUncheckedCreateNestedManyWithoutOrganizationInput
-  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOrganizationInput
-  approvalRecords?: Prisma.ApprovalRecordUncheckedCreateNestedManyWithoutOrganizationInput
-  controlledWaitAlerts?: Prisma.ControlledWaitAlertUncheckedCreateNestedManyWithoutOrganizationInput
-  stepSlaReminders?: Prisma.StepSlaReminderUncheckedCreateNestedManyWithoutOrganizationInput
-  congestionIncidents?: Prisma.CongestionIncidentUncheckedCreateNestedManyWithoutOrganizationInput
-  requestBudgetChecks?: Prisma.RequestBudgetCheckUncheckedCreateNestedManyWithoutOrganizationInput
-  spendBatches?: Prisma.SpendBatchUncheckedCreateNestedManyWithoutOrganizationInput
-  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
-  requestSupplements?: Prisma.RequestSupplementUncheckedCreateNestedManyWithoutOrganizationInput
-  budgetProposals?: Prisma.BudgetProposalUncheckedCreateNestedManyWithoutOrganizationInput
-  budgetCycles?: Prisma.BudgetCycleUncheckedCreateNestedManyWithoutOrganizationInput
-  budgetVersions?: Prisma.BudgetVersionUncheckedCreateNestedManyWithoutOrganizationInput
-  budgetCommitments?: Prisma.BudgetCommitmentUncheckedCreateNestedManyWithoutOrganizationInput
-  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUncheckedCreateNestedManyWithoutOrganizationInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
-  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUncheckedCreateNestedManyWithoutOrganizationInput
-  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutOrganizationInput
-  documentAttachments?: Prisma.DocumentAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
-  licenseKeys?: Prisma.LicenseKeyUncheckedCreateNestedManyWithoutOrganizationInput
-  seatBaselineState?: Prisma.SeatBaselineStateUncheckedCreateNestedOneWithoutOrganizationInput
-  superAdminEventTickets?: Prisma.SuperAdminEventTicketUncheckedCreateNestedManyWithoutOrganizationInput
-  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUncheckedCreateNestedManyWithoutOrganizationInput
-  budgetAttachments?: Prisma.BudgetAttachmentUncheckedCreateNestedManyWithoutOrganizationInput
-  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUncheckedCreateNestedManyWithoutOrganizationInput
-  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUncheckedCreateNestedManyWithoutOrganizationInput
-  departmentTransfers?: Prisma.DepartmentTransferUncheckedCreateNestedManyWithoutOrganizationInput
-  transferReviews?: Prisma.TransferReviewUncheckedCreateNestedManyWithoutOrganizationInput
-  employeeLeaves?: Prisma.EmployeeLeaveUncheckedCreateNestedManyWithoutOrganizationInput
-  offboardingCases?: Prisma.OffboardingCaseUncheckedCreateNestedManyWithoutOrganizationInput
-  personnelNotices?: Prisma.PersonnelNoticeUncheckedCreateNestedManyWithoutOrganizationInput
-  planUsageRates?: Prisma.PlanUsageRateUncheckedCreateNestedManyWithoutOrganizationInput
-  itAdminHandovers?: Prisma.ItAdminHandoverUncheckedCreateNestedManyWithoutOrganizationInput
-  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUncheckedCreateNestedManyWithoutOrganizationInput
-  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutSubscriptionOwnerAssignmentsInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput>
-}
-
-export type OrganizationUpsertWithoutSubscriptionOwnerAssignmentsInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSubscriptionOwnerAssignmentsInput, Prisma.OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscriptionOwnerAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutSubscriptionOwnerAssignmentsInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutSubscriptionOwnerAssignmentsInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSubscriptionOwnerAssignmentsInput, Prisma.OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput>
-}
-
-export type OrganizationUpdateWithoutSubscriptionOwnerAssignmentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
-  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  reportingCurrencyRecord?: Prisma.CurrencyUpdateOneRequiredWithoutOrganizationsNestedInput
-  costCenters?: Prisma.CostCenterUpdateManyWithoutOrganizationNestedInput
-  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
-  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
-  exchangeRates?: Prisma.ExchangeRateUpdateManyWithoutOrganizationNestedInput
-  vendorProposals?: Prisma.VendorDictionaryProposalUpdateManyWithoutOrganizationNestedInput
-  vendors?: Prisma.VendorUpdateManyWithoutOrganizationNestedInput
-  functionalGroups?: Prisma.FunctionalGroupUpdateManyWithoutOrganizationNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
-  plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
-  vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
-  costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
-  seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
-  licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
-  subscriptionRenewals?: Prisma.SubscriptionRenewalUpdateManyWithoutOrganizationNestedInput
-  subscriptionDeadlineEvents?: Prisma.SubscriptionDeadlineEventUpdateManyWithoutOrganizationNestedInput
-  provisioningTasks?: Prisma.ProvisioningTaskUpdateManyWithoutOrganizationNestedInput
-  poolGrantAvoidedCosts?: Prisma.PoolGrantAvoidedCostUpdateManyWithoutOrganizationNestedInput
-  returnRequests?: Prisma.ReturnRequestUpdateManyWithoutOrganizationNestedInput
-  handoverDuties?: Prisma.HandoverDutyUpdateManyWithoutOrganizationNestedInput
-  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOrganizationNestedInput
-  approvalRecords?: Prisma.ApprovalRecordUpdateManyWithoutOrganizationNestedInput
-  controlledWaitAlerts?: Prisma.ControlledWaitAlertUpdateManyWithoutOrganizationNestedInput
-  stepSlaReminders?: Prisma.StepSlaReminderUpdateManyWithoutOrganizationNestedInput
-  congestionIncidents?: Prisma.CongestionIncidentUpdateManyWithoutOrganizationNestedInput
-  requestBudgetChecks?: Prisma.RequestBudgetCheckUpdateManyWithoutOrganizationNestedInput
-  spendBatches?: Prisma.SpendBatchUpdateManyWithoutOrganizationNestedInput
-  requestReserveConfirmations?: Prisma.RequestReserveConfirmationUpdateManyWithoutOrganizationNestedInput
-  requestSupplements?: Prisma.RequestSupplementUpdateManyWithoutOrganizationNestedInput
-  budgetProposals?: Prisma.BudgetProposalUpdateManyWithoutOrganizationNestedInput
-  budgetCycles?: Prisma.BudgetCycleUpdateManyWithoutOrganizationNestedInput
-  budgetVersions?: Prisma.BudgetVersionUpdateManyWithoutOrganizationNestedInput
-  budgetCommitments?: Prisma.BudgetCommitmentUpdateManyWithoutOrganizationNestedInput
-  yearStartCommitmentRuns?: Prisma.YearStartCommitmentRunUpdateManyWithoutOrganizationNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
-  applicationRetirementConfirmations?: Prisma.ApplicationRetirementConfirmationUpdateManyWithoutOrganizationNestedInput
-  contracts?: Prisma.ContractUpdateManyWithoutOrganizationNestedInput
-  documentAttachments?: Prisma.DocumentAttachmentUpdateManyWithoutOrganizationNestedInput
-  licenseKeys?: Prisma.LicenseKeyUpdateManyWithoutOrganizationNestedInput
-  seatBaselineState?: Prisma.SeatBaselineStateUpdateOneWithoutOrganizationNestedInput
-  superAdminEventTickets?: Prisma.SuperAdminEventTicketUpdateManyWithoutOrganizationNestedInput
-  budgetVersionHistory?: Prisma.BudgetVersionHistoryEntryUpdateManyWithoutOrganizationNestedInput
-  budgetAttachments?: Prisma.BudgetAttachmentUpdateManyWithoutOrganizationNestedInput
-  heldDepartmentNotifications?: Prisma.HeldDepartmentNotificationUpdateManyWithoutOrganizationNestedInput
-  changeAnnouncements?: Prisma.OrganizationChangeAnnouncementUpdateManyWithoutOrganizationNestedInput
-  departmentTransfers?: Prisma.DepartmentTransferUpdateManyWithoutOrganizationNestedInput
-  transferReviews?: Prisma.TransferReviewUpdateManyWithoutOrganizationNestedInput
-  employeeLeaves?: Prisma.EmployeeLeaveUpdateManyWithoutOrganizationNestedInput
-  offboardingCases?: Prisma.OffboardingCaseUpdateManyWithoutOrganizationNestedInput
-  personnelNotices?: Prisma.PersonnelNoticeUpdateManyWithoutOrganizationNestedInput
-  planUsageRates?: Prisma.PlanUsageRateUpdateManyWithoutOrganizationNestedInput
-  itAdminHandovers?: Prisma.ItAdminHandoverUpdateManyWithoutOrganizationNestedInput
-  departmentSoftwareEntries?: Prisma.DepartmentSoftwareEntryUpdateManyWithoutOrganizationNestedInput
-  departmentSoftwareProposals?: Prisma.DepartmentSoftwareProposalUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutSubscriptionOwnerAssignmentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  timeZone?: Prisma.StringFieldUpdateOperationsInput | string
-  reportingCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  bootstrapCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutOrganizationNestedInput
-  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
-  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
-  exchangeRates?: Prisma.ExchangeRateUncheckedUpdateManyWithoutOrganizationNestedInput
-  vendorProposals?: Prisma.VendorDictionaryProposalUncheckedUpdateManyWithoutOrganizationNestedInput
-  vendors?: Prisma.VendorUncheckedUpdateManyWithoutOrganizationNestedInput
-  functionalGroups?: Prisma.FunctionalGroupUncheckedUpdateManyWithoutOrganizationNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
-  plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
-  vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5660,7 +5311,6 @@ export type OrganizationCreateWithoutApplicationRetirementConfirmationsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -5724,7 +5374,6 @@ export type OrganizationUncheckedCreateWithoutApplicationRetirementConfirmations
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -5804,7 +5453,6 @@ export type OrganizationUpdateWithoutApplicationRetirementConfirmationsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -5868,7 +5516,6 @@ export type OrganizationUncheckedUpdateWithoutApplicationRetirementConfirmations
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -5932,7 +5579,6 @@ export type OrganizationCreateWithoutContractsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -5996,7 +5642,6 @@ export type OrganizationUncheckedCreateWithoutContractsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6076,7 +5721,6 @@ export type OrganizationUpdateWithoutContractsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -6140,7 +5784,6 @@ export type OrganizationUncheckedUpdateWithoutContractsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6204,7 +5847,6 @@ export type OrganizationCreateWithoutDocumentAttachmentsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -6268,7 +5910,6 @@ export type OrganizationUncheckedCreateWithoutDocumentAttachmentsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6348,7 +5989,6 @@ export type OrganizationUpdateWithoutDocumentAttachmentsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -6412,7 +6052,6 @@ export type OrganizationUncheckedUpdateWithoutDocumentAttachmentsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6476,7 +6115,6 @@ export type OrganizationCreateWithoutSeatBaselineImportsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
@@ -6540,7 +6178,6 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineImportsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6620,7 +6257,6 @@ export type OrganizationUpdateWithoutSeatBaselineImportsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
@@ -6684,7 +6320,6 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineImportsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -6747,7 +6382,6 @@ export type OrganizationCreateWithoutReportingCurrencyRecordInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -6811,7 +6445,6 @@ export type OrganizationUncheckedCreateWithoutReportingCurrencyRecordInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -6913,7 +6546,6 @@ export type OrganizationCreateWithoutExchangeRatesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -6977,7 +6609,6 @@ export type OrganizationUncheckedCreateWithoutExchangeRatesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7057,7 +6688,6 @@ export type OrganizationUpdateWithoutExchangeRatesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -7121,7 +6751,6 @@ export type OrganizationUncheckedUpdateWithoutExchangeRatesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7185,7 +6814,6 @@ export type OrganizationCreateWithoutVendorTaxProfilesInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutOrganizationInput
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -7249,7 +6877,6 @@ export type OrganizationUncheckedCreateWithoutVendorTaxProfilesInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutOrganizationInput
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7329,7 +6956,6 @@ export type OrganizationUpdateWithoutVendorTaxProfilesInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutOrganizationNestedInput
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -7393,7 +7019,6 @@ export type OrganizationUncheckedUpdateWithoutVendorTaxProfilesInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutOrganizationNestedInput
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7458,7 +7083,6 @@ export type OrganizationCreateWithoutLicenseAssignmentsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -7522,7 +7146,6 @@ export type OrganizationUncheckedCreateWithoutLicenseAssignmentsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7602,7 +7225,6 @@ export type OrganizationUpdateWithoutLicenseAssignmentsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -7666,7 +7288,6 @@ export type OrganizationUncheckedUpdateWithoutLicenseAssignmentsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -7730,7 +7351,6 @@ export type OrganizationCreateWithoutSeatBaselineStateInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -7794,7 +7414,6 @@ export type OrganizationUncheckedCreateWithoutSeatBaselineStateInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -7874,7 +7493,6 @@ export type OrganizationUpdateWithoutSeatBaselineStateInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -7938,7 +7556,6 @@ export type OrganizationUncheckedUpdateWithoutSeatBaselineStateInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8002,7 +7619,6 @@ export type OrganizationCreateWithoutProvisioningTasksInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -8066,7 +7682,6 @@ export type OrganizationUncheckedCreateWithoutProvisioningTasksInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8146,7 +7761,6 @@ export type OrganizationUpdateWithoutProvisioningTasksInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -8210,7 +7824,6 @@ export type OrganizationUncheckedUpdateWithoutProvisioningTasksInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8274,7 +7887,6 @@ export type OrganizationCreateWithoutLicenseKeysInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -8338,7 +7950,6 @@ export type OrganizationUncheckedCreateWithoutLicenseKeysInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8418,7 +8029,6 @@ export type OrganizationUpdateWithoutLicenseKeysInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -8482,7 +8092,6 @@ export type OrganizationUncheckedUpdateWithoutLicenseKeysInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8546,7 +8155,6 @@ export type OrganizationCreateWithoutHandoverDutiesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -8610,7 +8218,6 @@ export type OrganizationUncheckedCreateWithoutHandoverDutiesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8690,7 +8297,6 @@ export type OrganizationUpdateWithoutHandoverDutiesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -8754,7 +8360,6 @@ export type OrganizationUncheckedUpdateWithoutHandoverDutiesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -8818,7 +8423,6 @@ export type OrganizationCreateWithoutSubscriptionRenewalsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -8882,7 +8486,6 @@ export type OrganizationUncheckedCreateWithoutSubscriptionRenewalsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -8962,7 +8565,6 @@ export type OrganizationUpdateWithoutSubscriptionRenewalsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -9026,7 +8628,6 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionRenewalsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9090,7 +8691,6 @@ export type OrganizationCreateWithoutSubscriptionDeadlineEventsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -9154,7 +8754,6 @@ export type OrganizationUncheckedCreateWithoutSubscriptionDeadlineEventsInput = 
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9234,7 +8833,6 @@ export type OrganizationUpdateWithoutSubscriptionDeadlineEventsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -9298,7 +8896,6 @@ export type OrganizationUncheckedUpdateWithoutSubscriptionDeadlineEventsInput = 
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9362,7 +8959,6 @@ export type OrganizationCreateWithoutPoolGrantAvoidedCostsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -9426,7 +9022,6 @@ export type OrganizationUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9506,7 +9101,6 @@ export type OrganizationUpdateWithoutPoolGrantAvoidedCostsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -9570,7 +9164,6 @@ export type OrganizationUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9634,7 +9227,6 @@ export type OrganizationCreateWithoutDepartmentSoftwareEntriesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -9698,7 +9290,6 @@ export type OrganizationUncheckedCreateWithoutDepartmentSoftwareEntriesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -9778,7 +9369,6 @@ export type OrganizationUpdateWithoutDepartmentSoftwareEntriesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -9842,7 +9432,6 @@ export type OrganizationUncheckedUpdateWithoutDepartmentSoftwareEntriesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -9906,7 +9495,6 @@ export type OrganizationCreateWithoutDepartmentSoftwareProposalsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -9970,7 +9558,6 @@ export type OrganizationUncheckedCreateWithoutDepartmentSoftwareProposalsInput =
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10050,7 +9637,6 @@ export type OrganizationUpdateWithoutDepartmentSoftwareProposalsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -10114,7 +9700,6 @@ export type OrganizationUncheckedUpdateWithoutDepartmentSoftwareProposalsInput =
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10178,7 +9763,6 @@ export type OrganizationCreateWithoutHeldDepartmentNotificationsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -10242,7 +9826,6 @@ export type OrganizationUncheckedCreateWithoutHeldDepartmentNotificationsInput =
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10322,7 +9905,6 @@ export type OrganizationUpdateWithoutHeldDepartmentNotificationsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -10386,7 +9968,6 @@ export type OrganizationUncheckedUpdateWithoutHeldDepartmentNotificationsInput =
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10449,7 +10030,6 @@ export type OrganizationCreateWithoutCostCentersInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -10513,7 +10093,6 @@ export type OrganizationUncheckedCreateWithoutCostCentersInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10593,7 +10172,6 @@ export type OrganizationUpdateWithoutCostCentersInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -10657,7 +10235,6 @@ export type OrganizationUncheckedUpdateWithoutCostCentersInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10721,7 +10298,6 @@ export type OrganizationCreateWithoutDepartmentsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -10785,7 +10361,6 @@ export type OrganizationUncheckedCreateWithoutDepartmentsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10865,7 +10440,6 @@ export type OrganizationUpdateWithoutDepartmentsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -10929,7 +10503,6 @@ export type OrganizationUncheckedUpdateWithoutDepartmentsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10994,7 +10567,6 @@ export type OrganizationCreateWithoutCostCenterDepartmentLinksInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
@@ -11058,7 +10630,6 @@ export type OrganizationUncheckedCreateWithoutCostCenterDepartmentLinksInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11138,7 +10709,6 @@ export type OrganizationUpdateWithoutCostCenterDepartmentLinksInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
@@ -11202,7 +10772,6 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDepartmentLinksInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11266,7 +10835,6 @@ export type OrganizationCreateWithoutCostCenterDirectionActivationInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
   licenseAssignments?: Prisma.LicenseAssignmentCreateNestedManyWithoutOrganizationInput
@@ -11330,7 +10898,6 @@ export type OrganizationUncheckedCreateWithoutCostCenterDirectionActivationInput
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11410,7 +10977,6 @@ export type OrganizationUpdateWithoutCostCenterDirectionActivationInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUpdateManyWithoutOrganizationNestedInput
@@ -11474,7 +11040,6 @@ export type OrganizationUncheckedUpdateWithoutCostCenterDirectionActivationInput
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
   licenseAssignments?: Prisma.LicenseAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11537,7 +11102,6 @@ export type OrganizationCreateWithoutEmployeesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -11601,7 +11165,6 @@ export type OrganizationUncheckedCreateWithoutEmployeesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11681,7 +11244,6 @@ export type OrganizationUpdateWithoutEmployeesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -11745,7 +11307,6 @@ export type OrganizationUncheckedUpdateWithoutEmployeesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -11810,7 +11371,6 @@ export type OrganizationCreateWithoutChangeAnnouncementsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -11874,7 +11434,6 @@ export type OrganizationUncheckedCreateWithoutChangeAnnouncementsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -11954,7 +11513,6 @@ export type OrganizationUpdateWithoutChangeAnnouncementsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -12018,7 +11576,6 @@ export type OrganizationUncheckedUpdateWithoutChangeAnnouncementsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12082,7 +11639,6 @@ export type OrganizationCreateWithoutDepartmentTransfersInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -12146,7 +11702,6 @@ export type OrganizationUncheckedCreateWithoutDepartmentTransfersInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12226,7 +11781,6 @@ export type OrganizationUpdateWithoutDepartmentTransfersInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -12290,7 +11844,6 @@ export type OrganizationUncheckedUpdateWithoutDepartmentTransfersInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12354,7 +11907,6 @@ export type OrganizationCreateWithoutTransferReviewsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -12418,7 +11970,6 @@ export type OrganizationUncheckedCreateWithoutTransferReviewsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12498,7 +12049,6 @@ export type OrganizationUpdateWithoutTransferReviewsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -12562,7 +12112,6 @@ export type OrganizationUncheckedUpdateWithoutTransferReviewsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12626,7 +12175,6 @@ export type OrganizationCreateWithoutEmployeeLeavesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -12690,7 +12238,6 @@ export type OrganizationUncheckedCreateWithoutEmployeeLeavesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -12770,7 +12317,6 @@ export type OrganizationUpdateWithoutEmployeeLeavesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -12834,7 +12380,6 @@ export type OrganizationUncheckedUpdateWithoutEmployeeLeavesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -12898,7 +12443,6 @@ export type OrganizationCreateWithoutOffboardingCasesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -12962,7 +12506,6 @@ export type OrganizationUncheckedCreateWithoutOffboardingCasesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -13042,7 +12585,6 @@ export type OrganizationUpdateWithoutOffboardingCasesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -13106,7 +12648,6 @@ export type OrganizationUncheckedUpdateWithoutOffboardingCasesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13170,7 +12711,6 @@ export type OrganizationCreateWithoutPersonnelNoticesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -13234,7 +12774,6 @@ export type OrganizationUncheckedCreateWithoutPersonnelNoticesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -13314,7 +12853,6 @@ export type OrganizationUpdateWithoutPersonnelNoticesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -13378,7 +12916,6 @@ export type OrganizationUncheckedUpdateWithoutPersonnelNoticesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13442,7 +12979,6 @@ export type OrganizationCreateWithoutSuperAdminEventTicketsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -13506,7 +13042,6 @@ export type OrganizationUncheckedCreateWithoutSuperAdminEventTicketsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -13586,7 +13121,6 @@ export type OrganizationUpdateWithoutSuperAdminEventTicketsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -13650,7 +13184,6 @@ export type OrganizationUncheckedUpdateWithoutSuperAdminEventTicketsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13714,7 +13247,6 @@ export type OrganizationCreateWithoutItAdminHandoversInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -13778,7 +13310,6 @@ export type OrganizationUncheckedCreateWithoutItAdminHandoversInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -13858,7 +13389,6 @@ export type OrganizationUpdateWithoutItAdminHandoversInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -13922,7 +13452,6 @@ export type OrganizationUncheckedUpdateWithoutItAdminHandoversInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -13986,7 +13515,6 @@ export type OrganizationCreateWithoutAccessRequestsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -14050,7 +13578,6 @@ export type OrganizationUncheckedCreateWithoutAccessRequestsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -14130,7 +13657,6 @@ export type OrganizationUpdateWithoutAccessRequestsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -14194,7 +13720,6 @@ export type OrganizationUncheckedUpdateWithoutAccessRequestsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -14258,7 +13783,6 @@ export type OrganizationCreateWithoutApprovalRecordsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -14322,7 +13846,6 @@ export type OrganizationUncheckedCreateWithoutApprovalRecordsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -14402,7 +13925,6 @@ export type OrganizationUpdateWithoutApprovalRecordsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -14466,7 +13988,6 @@ export type OrganizationUncheckedUpdateWithoutApprovalRecordsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -14530,7 +14051,6 @@ export type OrganizationCreateWithoutRequestBudgetChecksInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -14594,7 +14114,6 @@ export type OrganizationUncheckedCreateWithoutRequestBudgetChecksInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -14674,7 +14193,6 @@ export type OrganizationUpdateWithoutRequestBudgetChecksInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -14738,7 +14256,6 @@ export type OrganizationUncheckedUpdateWithoutRequestBudgetChecksInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -14802,7 +14319,6 @@ export type OrganizationCreateWithoutSpendBatchesInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -14866,7 +14382,6 @@ export type OrganizationUncheckedCreateWithoutSpendBatchesInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -14946,7 +14461,6 @@ export type OrganizationUpdateWithoutSpendBatchesInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -15010,7 +14524,6 @@ export type OrganizationUncheckedUpdateWithoutSpendBatchesInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -15074,7 +14587,6 @@ export type OrganizationCreateWithoutRequestSupplementsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -15138,7 +14650,6 @@ export type OrganizationUncheckedCreateWithoutRequestSupplementsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -15218,7 +14729,6 @@ export type OrganizationUpdateWithoutRequestSupplementsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -15282,7 +14792,6 @@ export type OrganizationUncheckedUpdateWithoutRequestSupplementsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -15346,7 +14855,6 @@ export type OrganizationCreateWithoutRequestReserveConfirmationsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -15410,7 +14918,6 @@ export type OrganizationUncheckedCreateWithoutRequestReserveConfirmationsInput =
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -15490,7 +14997,6 @@ export type OrganizationUpdateWithoutRequestReserveConfirmationsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -15554,7 +15060,6 @@ export type OrganizationUncheckedUpdateWithoutRequestReserveConfirmationsInput =
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -15618,7 +15123,6 @@ export type OrganizationCreateWithoutControlledWaitAlertsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -15682,7 +15186,6 @@ export type OrganizationUncheckedCreateWithoutControlledWaitAlertsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -15762,7 +15265,6 @@ export type OrganizationUpdateWithoutControlledWaitAlertsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -15826,7 +15328,6 @@ export type OrganizationUncheckedUpdateWithoutControlledWaitAlertsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -15890,7 +15391,6 @@ export type OrganizationCreateWithoutReturnRequestsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -15954,7 +15454,6 @@ export type OrganizationUncheckedCreateWithoutReturnRequestsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -16034,7 +15533,6 @@ export type OrganizationUpdateWithoutReturnRequestsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -16098,7 +15596,6 @@ export type OrganizationUncheckedUpdateWithoutReturnRequestsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -16162,7 +15659,6 @@ export type OrganizationCreateWithoutStepSlaRemindersInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -16226,7 +15722,6 @@ export type OrganizationUncheckedCreateWithoutStepSlaRemindersInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -16306,7 +15801,6 @@ export type OrganizationUpdateWithoutStepSlaRemindersInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -16370,7 +15864,6 @@ export type OrganizationUncheckedUpdateWithoutStepSlaRemindersInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -16434,7 +15927,6 @@ export type OrganizationCreateWithoutCongestionIncidentsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -16498,7 +15990,6 @@ export type OrganizationUncheckedCreateWithoutCongestionIncidentsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -16578,7 +16069,6 @@ export type OrganizationUpdateWithoutCongestionIncidentsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -16642,7 +16132,6 @@ export type OrganizationUncheckedUpdateWithoutCongestionIncidentsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -16706,7 +16195,6 @@ export type OrganizationCreateWithoutYearStartCommitmentRunsInput = {
   plans?: Prisma.PlanCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportCreateNestedManyWithoutOrganizationInput
@@ -16770,7 +16258,6 @@ export type OrganizationUncheckedCreateWithoutYearStartCommitmentRunsInput = {
   plans?: Prisma.PlanUncheckedCreateNestedManyWithoutOrganizationInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedCreateNestedManyWithoutOrganizationInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutOrganizationInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutOrganizationInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedCreateNestedOneWithoutOrganizationInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedCreateNestedManyWithoutOrganizationInput
@@ -16850,7 +16337,6 @@ export type OrganizationUpdateWithoutYearStartCommitmentRunsInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -16914,7 +16400,6 @@ export type OrganizationUncheckedUpdateWithoutYearStartCommitmentRunsInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -16985,7 +16470,6 @@ export type OrganizationUpdateWithoutReportingCurrencyRecordInput = {
   plans?: Prisma.PlanUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUpdateManyWithoutOrganizationNestedInput
@@ -17049,7 +16533,6 @@ export type OrganizationUncheckedUpdateWithoutReportingCurrencyRecordInput = {
   plans?: Prisma.PlanUncheckedUpdateManyWithoutOrganizationNestedInput
   vendorTaxProfiles?: Prisma.VendorTaxProfileUncheckedUpdateManyWithoutOrganizationNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscriptionOwnerAssignments?: Prisma.SubscriptionOwnerAssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDepartmentLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutOrganizationNestedInput
   costCenterDirectionActivation?: Prisma.CostCenterDirectionActivationUncheckedUpdateOneWithoutOrganizationNestedInput
   seatBaselineImports?: Prisma.SeatBaselineImportUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -17121,7 +16604,6 @@ export type OrganizationCountOutputType = {
   plans: number
   vendorTaxProfiles: number
   subscriptions: number
-  subscriptionOwnerAssignments: number
   costCenterDepartmentLinks: number
   seatBaselineImports: number
   licenseAssignments: number
@@ -17178,7 +16660,6 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   plans?: boolean | OrganizationCountOutputTypeCountPlansArgs
   vendorTaxProfiles?: boolean | OrganizationCountOutputTypeCountVendorTaxProfilesArgs
   subscriptions?: boolean | OrganizationCountOutputTypeCountSubscriptionsArgs
-  subscriptionOwnerAssignments?: boolean | OrganizationCountOutputTypeCountSubscriptionOwnerAssignmentsArgs
   costCenterDepartmentLinks?: boolean | OrganizationCountOutputTypeCountCostCenterDepartmentLinksArgs
   seatBaselineImports?: boolean | OrganizationCountOutputTypeCountSeatBaselineImportsArgs
   licenseAssignments?: boolean | OrganizationCountOutputTypeCountLicenseAssignmentsArgs
@@ -17308,13 +16789,6 @@ export type OrganizationCountOutputTypeCountVendorTaxProfilesArgs<ExtArgs extend
  */
 export type OrganizationCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SubscriptionWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountSubscriptionOwnerAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionOwnerAssignmentWhereInput
 }
 
 /**
@@ -17631,7 +17105,6 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   plans?: boolean | Prisma.Organization$plansArgs<ExtArgs>
   vendorTaxProfiles?: boolean | Prisma.Organization$vendorTaxProfilesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Organization$subscriptionsArgs<ExtArgs>
-  subscriptionOwnerAssignments?: boolean | Prisma.Organization$subscriptionOwnerAssignmentsArgs<ExtArgs>
   costCenterDepartmentLinks?: boolean | Prisma.Organization$costCenterDepartmentLinksArgs<ExtArgs>
   costCenterDirectionActivation?: boolean | Prisma.Organization$costCenterDirectionActivationArgs<ExtArgs>
   seatBaselineImports?: boolean | Prisma.Organization$seatBaselineImportsArgs<ExtArgs>
@@ -17722,7 +17195,6 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   plans?: boolean | Prisma.Organization$plansArgs<ExtArgs>
   vendorTaxProfiles?: boolean | Prisma.Organization$vendorTaxProfilesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Organization$subscriptionsArgs<ExtArgs>
-  subscriptionOwnerAssignments?: boolean | Prisma.Organization$subscriptionOwnerAssignmentsArgs<ExtArgs>
   costCenterDepartmentLinks?: boolean | Prisma.Organization$costCenterDepartmentLinksArgs<ExtArgs>
   costCenterDirectionActivation?: boolean | Prisma.Organization$costCenterDirectionActivationArgs<ExtArgs>
   seatBaselineImports?: boolean | Prisma.Organization$seatBaselineImportsArgs<ExtArgs>
@@ -17791,7 +17263,6 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     plans: Prisma.$PlanPayload<ExtArgs>[]
     vendorTaxProfiles: Prisma.$VendorTaxProfilePayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    subscriptionOwnerAssignments: Prisma.$SubscriptionOwnerAssignmentPayload<ExtArgs>[]
     costCenterDepartmentLinks: Prisma.$CostCenterDepartmentLinkPayload<ExtArgs>[]
     costCenterDirectionActivation: Prisma.$CostCenterDirectionActivationPayload<ExtArgs> | null
     seatBaselineImports: Prisma.$SeatBaselineImportPayload<ExtArgs>[]
@@ -18250,7 +17721,6 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   plans<T extends Prisma.Organization$plansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$plansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   vendorTaxProfiles<T extends Prisma.Organization$vendorTaxProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$vendorTaxProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorTaxProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.Organization$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscriptionOwnerAssignments<T extends Prisma.Organization$subscriptionOwnerAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$subscriptionOwnerAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionOwnerAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   costCenterDepartmentLinks<T extends Prisma.Organization$costCenterDepartmentLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$costCenterDepartmentLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CostCenterDepartmentLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   costCenterDirectionActivation<T extends Prisma.Organization$costCenterDirectionActivationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$costCenterDirectionActivationArgs<ExtArgs>>): Prisma.Prisma__CostCenterDirectionActivationClient<runtime.Types.Result.GetResult<Prisma.$CostCenterDirectionActivationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   seatBaselineImports<T extends Prisma.Organization$seatBaselineImportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$seatBaselineImportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeatBaselineImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -18992,30 +18462,6 @@ export type Organization$subscriptionsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
-}
-
-/**
- * Organization.subscriptionOwnerAssignments
- */
-export type Organization$subscriptionOwnerAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SubscriptionOwnerAssignment
-   */
-  select?: Prisma.SubscriptionOwnerAssignmentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SubscriptionOwnerAssignment
-   */
-  omit?: Prisma.SubscriptionOwnerAssignmentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionOwnerAssignmentInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionOwnerAssignmentWhereInput
-  orderBy?: Prisma.SubscriptionOwnerAssignmentOrderByWithRelationInput | Prisma.SubscriptionOwnerAssignmentOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionOwnerAssignmentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionOwnerAssignmentScalarFieldEnum | Prisma.SubscriptionOwnerAssignmentScalarFieldEnum[]
 }
 
 /**
