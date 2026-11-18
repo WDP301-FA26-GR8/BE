@@ -3,6 +3,7 @@ import { SHARED_DEMO_V4 } from '../fixture/shared-demo-v4';
 import {
   CATALOG_STEPS,
   baselineSeatsOf,
+  planBody,
   purchasedQuantityOf,
   subscriptionBody,
   workspaceProfileBody,
@@ -228,7 +229,8 @@ describe('the workspace profiles of the plans of T4 and T6', () => {
         ].includes(key),
     );
 
-    expect(added).toHaveLength(13);
+    // Claude Team is two plans of two workspaces (QĐ-113b): thirteen K2 plans with a subscription and Visio, as before, plus one.
+    expect(added).toHaveLength(14);
     expect(added).toContain('visio-pro');
     expect(withProfile).not.toContain('skype-online');
     expect(withProfile).not.toContain('claude-pro');
@@ -246,5 +248,31 @@ describe('the workspace profiles of the plans of T4 and T6', () => {
     expect(body('visio-pro').members).toContainEqual({ employeeId: 'id-NV-ITA3', role: 'ADMIN' });
     expect(body('notion-business')).not.toHaveProperty('ownerAccountEmail');
     expect(body('notion-plus').ownerAccountEmail).toBe('it-notion-plus@saoviet.example');
+  });
+});
+
+/** QĐ-113a: a paid plan carries its reference price in dong before tax; a plan with none (K5) sends no field. */
+describe('the body of a plan the dataset declares', () => {
+  const plan = (key: string) => SHARED_DEMO_V4.applications.flatMap((app) => app.plans).find((p) => p.key === key)!;
+
+  it('writes the reference price of a paid plan in dong', () => {
+    expect(planBody('app-1', plan('claude-team-standard'))).toMatchObject({
+      name: 'Claude Team Standard',
+      referencePrice: { amount: '500000', currency: 'VND' },
+    });
+    expect(planBody('app-1', plan('claude-team-premium'))).toMatchObject({
+      referencePrice: { amount: '2500000', currency: 'VND' },
+    });
+    expect(planBody('app-1', plan('jetbrains-all'))).toMatchObject({
+      referencePrice: { amount: '6000000', currency: 'VND' },
+    });
+  });
+
+  it('writes the price of the K1 plan that has no subscription, and none for an internal K5 plan', () => {
+    expect(planBody('app-1', plan('grammarly-business'))).toMatchObject({
+      provisioningType: 'K1',
+      referencePrice: { amount: '360000', currency: 'VND' },
+    });
+    expect(planBody('app-1', plan('hr-portal-access'))).not.toHaveProperty('referencePrice');
   });
 });

@@ -1,4 +1,4 @@
-import type { DemoApplication, DemoFixture, DemoSeat, DemoSubscription } from '../demo-fixture.types';
+import type { DemoApplication, DemoFixture, DemoPlan, DemoSeat, DemoSubscription } from '../demo-fixture.types';
 import { EXTRA_APPLICATIONS, EXTRA_SEATS, EXTRA_SUBSCRIPTIONS, PLAN_TERMS } from './catalog-extra';
 import { app, groupOf, k2, k4, monthly } from './catalog-kit';
 
@@ -79,6 +79,16 @@ const APPLICATIONS: DemoApplication[] = [
         controlLevel: 'PARTIAL',
         dataLossOnRemoval: false,
         sharingPolicy: 'NOT_ALLOWED',
+      },
+      // A K1 plan with no subscription at all, only a reference price: a request for it is priced from the plan (`QĐ-113a`, R59).
+      {
+        key: 'grammarly-business',
+        name: 'Grammarly Business',
+        provisioningType: 'K1',
+        controlLevel: 'PARTIAL',
+        dataLossOnRemoval: false,
+        sharingPolicy: 'NOT_ALLOWED',
+        referencePrice: '360000',
       },
     ],
     'SAAS',
@@ -198,8 +208,31 @@ const SEATS: DemoSeat[] = [
   ...seat('grammarly', ['NV-OFF1']),
 ];
 
+/**
+ * The reference price of every paid plan (`QĐ-113a`): the price of one seat for a month of the subscription of the plan (a yearly price over 12, rounded
+ * up to the dong), or the price of one key (K4). A plan the fixture gave a price by hand (a plan with no subscription) keeps it; K5 has none.
+ */
+function withReferencePrices(
+  applications: readonly DemoApplication[],
+  subscriptions: readonly DemoSubscription[],
+): DemoApplication[] {
+  const priced = (plan: DemoPlan): DemoPlan => {
+    const subscription = subscriptions.find((candidate) => candidate.plan === plan.key);
+    if (plan.provisioningType === 'K5' || plan.referencePrice !== undefined || !subscription) return plan;
+    const amount = BigInt(subscription.unitPrice.amount);
+    const perMonth = subscription.billingCycle === 'ANNUAL' ? (amount + 11n) / 12n : amount;
+
+    return { ...plan, referencePrice: String(plan.provisioningType === 'K4' ? amount : perMonth) };
+  };
+
+  return applications.map((application) => ({ ...application, plans: application.plans.map(priced) }));
+}
+
 export const CATALOG: Pick<DemoFixture, 'applications' | 'subscriptions' | 'seats' | 'planTerms'> = {
-  applications: [...APPLICATIONS, ...EXTRA_APPLICATIONS],
+  applications: withReferencePrices(
+    [...APPLICATIONS, ...EXTRA_APPLICATIONS],
+    [...SUBSCRIPTIONS, ...EXTRA_SUBSCRIPTIONS],
+  ),
   subscriptions: [...SUBSCRIPTIONS, ...EXTRA_SUBSCRIPTIONS],
   seats: [...SEATS, ...EXTRA_SEATS],
   planTerms: PLAN_TERMS,
