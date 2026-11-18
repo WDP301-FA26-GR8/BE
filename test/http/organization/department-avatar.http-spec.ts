@@ -70,7 +70,7 @@ describe('department avatar routes (http contract, no database)', () => {
       bytes: PNG,
       declaredContentType: 'image/png',
     });
-    expect(bodyOf(response).data.avatarUrl).toBe(profile.avatarUrl);
+    expect((response.body as { data: { avatarUrl: string } }).data.avatarUrl).toBe(profile.avatarUrl);
     expect(bodyOf(response).message).toBe('DEPARTMENT.AVATAR_CHANGED');
   });
 
