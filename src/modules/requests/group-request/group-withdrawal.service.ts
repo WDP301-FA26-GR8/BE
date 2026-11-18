@@ -9,12 +9,12 @@ import {
 } from '../access-request/access-request.errors';
 import { canViewRequest, hasSpendStep, viewFactsOf } from '../access-request/access-request.policy';
 import { AccessRequestRepo } from '../access-request/access-request.repo';
-import type { AccessRequestRecord, NeedStepState } from '../access-request/access-request.types';
+import type { AccessRequestRecord } from '../access-request/access-request.types';
 import { checkWithdrawal } from '../access-request/withdrawal.policy';
 import { SpendStatusService } from '../spend/spend-status.service';
 import { GroupLineWithdrawer } from './group-line-withdrawer.service';
 import { GroupWithdrawalAftermath } from './group-withdrawal-aftermath.service';
-import { checkLineWithdrawal, needStepOfGroup, type Withdrawn } from './group-withdrawal.policy';
+import { checkLineWithdrawal, needStepOfGroup, needStepOfLine, type Withdrawn } from './group-withdrawal.policy';
 import { isEnded, type LineRecord } from '../access-request/group-request.types';
 import { RequestLineRepo } from './request-line.repo';
 
@@ -59,7 +59,7 @@ export class GroupWithdrawalService {
         requesterEmployeeId: request.requesterEmployeeId,
         actorHeadsDepartment: await this.heads(actor, request),
         lineState: line.state,
-        needStep: stepStateOf(request, line),
+        needStep: needStepOfLine(request.needSteps, line, request.requesterEmployeeId),
         requestState: request.state,
         spendStage: (await this.spendStatus.of(request))?.stage ?? null,
         reason,
@@ -103,7 +103,7 @@ export class GroupWithdrawalService {
         requesterEmployeeId: request.requesterEmployeeId,
         actorHeadsDepartment: await this.heads(actor, request),
         state: request.state,
-        needStep: needStepOfGroup(request.needSteps, request.needStep, lines),
+        needStep: needStepOfGroup(request.needSteps, request.needStep, lines, request.requesterEmployeeId),
         hasAssessmentStep: false,
         hasSpendStep: hasSpendStep(request.policy),
         spendStage: (await this.spendStatus.of(request))?.stage ?? null,
@@ -165,6 +165,3 @@ export class GroupWithdrawalService {
     return record;
   }
 }
-
-const stepStateOf = (request: AccessRequestRecord, line: LineRecord): NeedStepState =>
-  request.needSteps.find((step) => step.id === line.needStepId)?.state ?? 'APPROVED';

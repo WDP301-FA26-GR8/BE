@@ -312,6 +312,7 @@ describe('the system closes the open requests of a person who is gone (integrati
     });
 
     it('does not end the line of a person withdrawn while their grant had failed: the IT Admin closes the task, and is told', async () => {
+      liftWithdrawalAfterDecisionRefusal();
       const u = await unit();
       const [e1, e2] = await h.colleagues(u, 2);
       const id = await h.groupApproved(u, plans[0].plan, [e1, e2]);

@@ -500,6 +500,7 @@ describe('the status of a request told to the people it concerns, over PostgreSQ
     });
 
     it('gives the IT Admin the task to close when the grant had failed, and tells nobody the request ended before it did', async () => {
+      liftWithdrawalAfterDecisionRefusal();
       const u = await example();
       const id = await approved(u);
       const task = await granted(id);

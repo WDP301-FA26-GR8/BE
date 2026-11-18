@@ -234,6 +234,7 @@ describe('the requester withdraws a request that is still waiting over PostgreSQ
       const refused = await h.withdrawRequest(waiting, {}, u.member.account).expect(409);
       expect(h.codeOf(refused)).toBe('ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION');
       expect((refused.body as { error: { details: unknown } }).error.details).toEqual({
+        scope: 'REQUEST',
         state: 'AWAITING_SPEND_DECISION',
       });
       expect(await h.state(waiting)).toBe('AWAITING_SPEND_DECISION');

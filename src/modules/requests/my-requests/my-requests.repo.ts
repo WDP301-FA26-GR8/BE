@@ -69,9 +69,14 @@ function toRow(row: Row): MyRequestRow {
     hasAssessmentStep: hasAssessmentStep(policy),
     withdrawalNeedStep: isGroup
       ? needStepOfGroup(
-          row.steps.map((s) => ({ id: s.id, state: s.state as NeedStepState })),
+          row.steps.map((s) => ({
+            id: s.id,
+            state: s.state as NeedStepState,
+            assigneeEmployeeId: s.assigneeEmployeeId,
+          })),
           { state: step.state as NeedStepState },
           row.lines,
+          row.requesterEmployeeId,
         )
       : (step.state as NeedStepState),
     beneficiaryEmployeeId: isGroup ? null : (row.beneficiaries[0]?.employeeId ?? null),

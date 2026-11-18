@@ -173,11 +173,18 @@ describe('the need step a request for a group is withdrawn by (QĐ-113d)', () =>
   const first = steps[0];
 
   it('is the open step while every live person awaits their need', () => {
-    expect(needStepOfGroup(steps, first, [{ state: 'AWAITING_NEED', needStepId: 's1' }])).toBe('PENDING');
+    expect(needStepOfGroup(steps, first, [{ state: 'AWAITING_NEED', needStepId: 's1' }], 'req')).toBe('PENDING');
   });
 
   it('is NOT_REQUIRED while the people the head vouched for wait for the spending approver', () => {
-    expect(needStepOfGroup(steps, first, [{ state: 'NEED_CONFIRMED', needStepId: 's3' }])).toBe('NOT_REQUIRED');
+    expect(needStepOfGroup(steps, first, [{ state: 'NEED_CONFIRMED', needStepId: 's3' }], 'req')).toBe('NOT_REQUIRED');
+  });
+
+  it('is NOT_REQUIRED for a step the sender held and approved by sending, and not for one another head approved', () => {
+    const held = [{ id: 'h1', state: 'APPROVED' as const, assigneeEmployeeId: 'req' }];
+    const line = [{ state: 'NEED_CONFIRMED' as const, needStepId: 'h1' }];
+    expect(needStepOfGroup(held, held[0], line, 'req')).toBe('NOT_REQUIRED');
+    expect(needStepOfGroup(held, held[0], line, 'someone-else')).toBe('APPROVED');
   });
 
   it('counts as decided as soon as one live person was decided, ended lines left out', () => {
@@ -185,7 +192,7 @@ describe('the need step a request for a group is withdrawn by (QĐ-113d)', () =>
       { state: 'AWAITING_NEED' as const, needStepId: 's1' },
       { state: 'APPROVED' as const, needStepId: 's2' },
     ];
-    expect(needStepOfGroup(steps, first, lines)).toBe('APPROVED');
-    expect(needStepOfGroup(steps, first, [lines[0], { state: 'WITHDRAWN', needStepId: 's2' }])).toBe('PENDING');
+    expect(needStepOfGroup(steps, first, lines, 'req')).toBe('APPROVED');
+    expect(needStepOfGroup(steps, first, [lines[0], { state: 'WITHDRAWN', needStepId: 's2' }], 'req')).toBe('PENDING');
   });
 });

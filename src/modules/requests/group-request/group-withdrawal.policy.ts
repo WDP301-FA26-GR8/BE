@@ -108,11 +108,21 @@ export function withdrawalAuditOf(
   };
 }
 
-/** The state of the need step that holds a person of a request for a group; a step that is gone counts as decided. */
-const stepStateOf = (
-  steps: readonly { id: string; state: NeedStepState }[],
+/**
+ * The state of the need step that holds a person of a request for a group; a step that is gone counts as decided. A step the sender
+ * held and approved by sending (the head confirms the people they send for) is no decision by anyone else: it reads as `NOT_REQUIRED`,
+ * so the sender withdraws until the spending approver has decided (`QĐ-113d`).
+ */
+export function needStepOfLine(
+  steps: readonly { id: string; state: NeedStepState; assigneeEmployeeId?: string | null }[],
   line: { needStepId: string },
-): NeedStepState => steps.find((step) => step.id === line.needStepId)?.state ?? 'APPROVED';
+  requesterEmployeeId: string,
+): NeedStepState {
+  const step = steps.find((candidate) => candidate.id === line.needStepId);
+  if (!step) return 'APPROVED';
+
+  return step.state === 'APPROVED' && step.assigneeEmployeeId === requesterEmployeeId ? 'NOT_REQUIRED' : step.state;
+}
 
 /**
  * The need step a request for a group is judged by when all of it is withdrawn, and when the list says whether its sender may
@@ -121,12 +131,17 @@ const stepStateOf = (
  * A request for a group is for plans of the catalog: its chain has no IT assessment, so the spending approver decides first.
  */
 export function needStepOfGroup(
-  steps: readonly { id: string; state: NeedStepState }[],
+  steps: readonly { id: string; state: NeedStepState; assigneeEmployeeId?: string | null }[],
   fallback: { state: NeedStepState },
   lines: readonly { state: LineState; needStepId: string }[],
+  requesterEmployeeId: string,
 ): NeedStepState {
   const live = lines.filter((line) => !isEnded(line.state) && line.state !== 'AWAITING_IT_CLOSE');
-  if (!live.every((line) => lineUndecided({ lineState: line.state, needStep: stepStateOf(steps, line) }))) {
+  if (
+    !live.every((line) =>
+      lineUndecided({ lineState: line.state, needStep: needStepOfLine(steps, line, requesterEmployeeId) }),
+    )
+  ) {
     return 'APPROVED';
   }
   if (live.some((line) => line.state === 'AWAITING_NEED')) {
