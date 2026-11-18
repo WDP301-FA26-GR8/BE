@@ -39,6 +39,7 @@ export type PaidTermRow = Prisma.SubscriptionGetPayload<{
   select: {
     id: true;
     planId: true;
+    responsibleItAdminEmployeeId: true;
     billingCycle: true;
     startDate: true;
     endDate: true;
@@ -205,6 +206,17 @@ export class SubscriptionRepo {
     });
 
     return new Map(rows.flatMap((row) => (row.renewedFromId ? [[row.renewedFromId, row.id] as const] : [])));
+  }
+
+  /** The ids of the subscriptions this IT Admin answers for, in one statement. */
+  async idsResponsibleFor(employeeId: string, tx?: DbTx): Promise<string[]> {
+    const rows = await (tx ?? this.prisma).subscription.findMany({
+      where: { responsibleItAdminEmployeeId: employeeId },
+      select: { id: true },
+      orderBy: { id: 'asc' },
+    });
+
+    return rows.map((row) => row.id);
   }
 
   /** The subscriptions with these ids, in one read; an id that does not exist is absent. */
@@ -486,7 +498,7 @@ export class SubscriptionRepo {
   }
 
   /**
-   * The subscriptions that run a period and are paid by a cycle from a start day, whose payment days an invoice follows (`PI-2`), of any IT Admin to submit (`PI-1c`). Only the columns the payment days are worked out from, one
+   * The subscriptions that run a period and are paid by a cycle from a start day, whose payment days an invoice follows (`PI-2`). Only the columns the payment days are worked out from, one
    * statement, by id.
    */
   async listPaidTerms(tx?: DbTx): Promise<PaidTermRow[]> {
@@ -499,6 +511,7 @@ export class SubscriptionRepo {
       select: {
         id: true,
         planId: true,
+        responsibleItAdminEmployeeId: true,
         billingCycle: true,
         startDate: true,
         endDate: true,

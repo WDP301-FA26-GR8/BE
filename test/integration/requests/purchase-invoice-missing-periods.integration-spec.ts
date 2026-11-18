@@ -34,7 +34,7 @@ interface Page {
 /**
  * The periods of a right paid by the month or the year that have no invoice (`PI-2`, `QĐ-111x`, `R-30`, T-PI): a `K1` right that a request
  * granted on Tuesday 10/11/2026 pays on the 10th, its invoice is due the fifth working day after (Tuesday 17/11) and the period carries the mark
- * from 18/11, not on 17/11; an invoice that was returned does not count; a subscription a department owns is paid by its cycle. On real
+ * from 18/11, not on 17/11; an invoice that was returned does not count; a subscription is paid by its cycle and shown to the IT Admin who answers for it. On real
  * PostgreSQL, through the route, with the day the organization is on pretended.
  */
 describe('the periods that have no invoice over PostgreSQL (PI-2, T-PI)', () => {
@@ -251,11 +251,15 @@ describe('the periods that have no invoice over PostgreSQL (PI-2, T-PI)', () => 
 
     await submitted({ subscriptionId: owned }, '2026-11');
     expect((await ofSubscription(h.it1, owned)).map((row) => row.servicePeriodMonth)).toEqual(['2026-10', '2026-12']);
-    // A subscription has no department: every IT Admin reads its periods and may submit its invoice.
-    expect((await ofSubscription(it2, owned)).map((row) => row.servicePeriodMonth)).toEqual(['2026-10', '2026-12']);
+    // The IT Admin of another subscription does not see them; Finance sees every subscription.
+    expect(await ofSubscription(it2, owned)).toEqual([]);
+    expect((await ofSubscription(h.finance, owned)).map((row) => row.servicePeriodMonth)).toEqual([
+      '2026-10',
+      '2026-12',
+    ]);
   });
 
-  it('gives the periods of a subscription of the shared pool to every IT Admin and to Finance, with no department, and a submitted invoice takes the mark off (PI-1c)', async () => {
+  it('gives the periods of a subscription to the IT Admin who answers for it and to Finance, with no department, and a submitted invoice takes the mark off', async () => {
     const pool = await takeOwnerOff(h, await h.subscription(10, 'K2'));
     await h.ctx.sql.query(`UPDATE subscriptions SET created_at = '2026-10-01T03:00:00Z' WHERE id = $1`, [pool]);
 
@@ -268,11 +272,11 @@ describe('the periods that have no invoice over PostgreSQL (PI-2, T-PI)', () => 
       ['2026-12', '2026-12-05', 'RENEWAL'],
     ]);
     expect(seen.map((row) => row.department)).toEqual([null, null, null]);
-    expect(await ofSubscription(it2, pool)).toEqual(seen);
+    expect(await ofSubscription(it2, pool)).toEqual([]);
     expect(await ofSubscription(h.finance, pool)).toEqual(seen);
 
     await submitted({ subscriptionId: pool }, '2026-11');
-    expect((await ofSubscription(it2, pool)).map((row) => row.servicePeriodMonth)).toEqual(['2026-10', '2026-12']);
+    expect((await ofSubscription(h.it1, pool)).map((row) => row.servicePeriodMonth)).toEqual(['2026-10', '2026-12']);
   });
 
   it('pages the periods with a total that does not move and an order with no tie', async () => {

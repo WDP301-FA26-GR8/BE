@@ -107,6 +107,7 @@ function scheduleOf(row: PaidTermRow): PaymentScheduleFacts | null {
   return {
     subscriptionId: row.id,
     planId: row.planId,
+    responsibleItAdminEmployeeId: row.responsibleItAdminEmployeeId,
     billingCycle: row.billingCycle,
     startDate: fromDateColumn(row.startDate),
     endDate: row.endDate ? fromDateColumn(row.endDate) : null,
@@ -141,6 +142,11 @@ export class SubscriptionPeriodService {
     return this.withSuccessors(records, tx);
   }
 
+  /** The ids of the subscriptions this IT Admin answers for. */
+  idsResponsibleFor(employeeId: string, tx?: DbTx): Promise<string[]> {
+    return this.subscriptions.idsResponsibleFor(employeeId, tx);
+  }
+
   /** What a purchase invoice reads of the subscriptions with these ids, the shared pool's included; an id that does not exist is absent. */
   async purchaseFacts(ids: readonly string[], tx?: DbTx): Promise<SubscriptionPurchaseFacts[]> {
     return (await this.subscriptions.findMany(ids, tx)).map((record) => ({
@@ -173,7 +179,7 @@ export class SubscriptionPeriodService {
   }
 
   /**
-   * The subscriptions that run a period, with the days their payments follow (`PI-2`), whoever answers for them: any IT Admin submits their invoices. One statement; the invoices of the periods are not read here.
+   * The subscriptions that run a period, with the days their payments follow (`PI-2`) and the IT Admin who answers for each. One statement; the invoices of the periods are not read here.
    */
   async paymentSchedules(tx?: DbTx): Promise<PaymentScheduleFacts[]> {
     return (await this.subscriptions.listPaidTerms(tx)).flatMap((row) => scheduleOf(row) ?? []);

@@ -107,6 +107,10 @@ const listQuerySchema = z.strictObject({
   state: states.optional(),
   subscriptionId: z.uuid().optional(),
   late: flag.optional(),
+  mine: flag.optional().meta({
+    description:
+      'true lists only the renewals of the subscriptions the caller answers for as their IT Admin; false or absent lists them all.',
+  }),
   ...pageQuery,
 });
 const deadlineEventsQuerySchema = z.strictObject({

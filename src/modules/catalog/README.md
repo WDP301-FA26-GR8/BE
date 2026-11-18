@@ -46,7 +46,7 @@ unitPrice, reportingUnitPrice, billingCycle }`, thuê bao `PERPETUAL` có giá �
 - `CatalogContractApi` ([public/catalog-contract.api.ts](public/catalog-contract.api.ts)) — `getApplicationIds(contractId)`: ứng dụng của các thuê bao đang liên kết hợp đồng, mỗi ứng dụng một lần (tối đa `CONTRACT_APPLICATIONS_READ_MAX` = 1 000, chỉ để chặn đọc), `null` khi không có hợp đồng, rỗng khi chưa liên kết thuê bao nào. Dùng bởi `usage` cho `GET /contracts/{id}/usage-sources` (`US-04-13` AC-15); catalog không đọc `usage` (T4 < T6).
 - `SubscriptionPeriodApi` ([public/subscription-period.api.ts](public/subscription-period.api.ts)) — kỳ subscription cho gia hạn
   (licensing): `getPeriods` (cả thuê bao kho; kèm `adjustment` điểm điều chỉnh), `lockPeriod`, `listAdjustmentSubjects` (K2 đang chạy kỳ, chưa nối tiếp, tối đa 500), `recordNextPeriod` (kỳ mới nối chuỗi `renewed_from_id`, một
-  lần), `getRenewalAlertRecipient`, `listPaymentSchedules` (PI-2: chu kỳ và ngày thanh toán của thuê bao có phòng sở hữu đang chạy kỳ, cho cờ kỳ chưa có hóa đơn của `requests`; thuê bao kho dùng chung không phòng không có trong đó); lỗi `public/subscription-period.errors.ts`, kiểu `public/subscription-period.types.ts`.
+  lần), `getRenewalAlertRecipient`, `listPaymentSchedules` (PI-2: chu kỳ, ngày thanh toán và IT Admin phụ trách của mọi thuê bao đang chạy kỳ, cho cờ kỳ chưa có hóa đơn của `requests`); lỗi `public/subscription-period.errors.ts`, kiểu `public/subscription-period.types.ts`.
 - `CatalogResponsibilityApi` ([public/catalog-responsibility.api.ts](public/catalog-responsibility.api.ts)) — IT Admin phụ trách (`QĐ-111g`, R-8, R-26) cho bàn giao của IT Admin rời: `countResponsibilitiesOf` (số thuê bao + ứng dụng mỗi người phụ trách), `transferResponsibilities(tx, actor, from, to)` đổi MỌI thuê bao và ứng dụng sang IT Admin khác trong transaction của bên gọi, một Audit mỗi thứ; lỗi `public/catalog-responsibility.errors.ts` (`ResponsibilityHandoverRefusedError`: cùng một người / đích không phải IT Admin đang làm việc), kiểu `public/catalog-responsibility.types.ts`.
 - `public/catalog.types.ts` — `SeatTarget`, `SeatTargetRef`, `PlanSummary`, `PlanRevocationInfo`, `WorkspaceDuty`…
 - `public/catalog.extension-points.ts` — `SeatOccupancyHook` và contract `SeatOccupancyReader`; `SeatBaselinePhaseHook` (`catalog.seat-baseline-phase`) và `SeatBaselinePhase`.
@@ -56,7 +56,7 @@ unitPrice, reportingUnitPrice, billingCycle }`, thuê bao `PERPETUAL` có giá �
 - Vendor: `vendors`, `vendor_groups`, `vendor_service_lines`, `vendor_dictionary_proposals`.
 - Ứng dụng: `applications`, `application_business_owners`, `application_retirement_confirmations`, `functional_groups`.
 - Plan: `plans`, `plan_workspace_profiles`, `plan_workspace_admins`, `plan_terms`, `plan_term_opinions`.
-- Subscription: `subscriptions`, `subscription_owner_assignments`. Hợp đồng: `contracts`, `contract_subscriptions`, `document_attachments`.
+- Subscription: `subscriptions`. Hợp đồng: `contracts`, `contract_subscriptions`, `document_attachments`.
 - Nguồn: `prisma/models/catalog.prisma`; hồ sơ thuế vendor (`VendorTaxProfile*`) thuộc `finance`.
 
 ## Extension point

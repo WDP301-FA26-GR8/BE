@@ -49,12 +49,10 @@ const NOT_FOUND: ErrorResponseDeclaration = {
   examples: [EXAMPLES.NOT_FOUND],
 };
 
-/**
- * The renewal of a subscription of the shared pool at its point of adjustment (`QĐ-103e`, `SBF-20`): the IT Admin records the result once
- * (the seats the system counts for the next period, what the vendor did and the new period), and the case is written complete: decided by the
- * IT Admin in charge, outcome recorded. No head confirms and the person who decides spending takes no part. Nothing here renews, cancels or
- * pays a vendor, and it holds no budget commitment. A case decided before this rule still takes its outcome through its own route.
- */
+// The renewal of a subscription at its point of adjustment (QĐ-103e, SBF-20): the IT Admin records the result once
+// (the seats the system counts for the next period, what the vendor did and the new period), and the case is written complete: decided by the
+// IT Admin in charge, outcome recorded. No head confirms and the person who decides spending takes no part. Nothing here renews, cancels or
+// pays a vendor, and it holds no budget commitment. A case decided before this rule still takes its outcome through its own route.
 @ApiTags('subscription-renewals')
 @Controller({ version: '1' })
 export class SubscriptionRenewalsController {
@@ -70,7 +68,7 @@ export class SubscriptionRenewalsController {
   @ApiSuccessResponse(SubscriptionRenewalPageResponseDto, {
     message: 'SUBSCRIPTION_RENEWAL.LISTED',
     description:
-      'A page of the renewal cases: the period, the day the case counts from and where it comes from (a declared or an inferred cancellation deadline, the renewal day, the payment day or the end date), the choice recorded, the decision and the outcome. The IT Admin and Finance (who only reads) see every case; nobody else reads them. Cases are not scoped by department: each subscription names the IT Admin who answers for it (subscription.responsibleItAdmin) and its kind of provisioning (subscription.provisioningType: K1 personal seats, K2 or K4 a shared pool). A case that waited for a head before the one-write renewal is closed (state STALE); waitingReason is always null. Filter by state, by subscription or by the late flag.',
+      'A page of the renewal cases: the period, the day the case counts from and where it comes from (a declared or an inferred cancellation deadline, the renewal day, the payment day or the end date), the choice recorded, the decision and the outcome. The IT Admin and Finance (who only reads) see every case; nobody else reads them. Cases are not scoped by department: each subscription names the IT Admin who answers for it (subscription.responsibleItAdmin) and its kind of provisioning (subscription.provisioningType: K1 personal seats, K2 or K4 a shared pool). A case that waited for a head before the one-write renewal is closed (state STALE); waitingReason is always null. Filter by state, by subscription or by the late flag; mine=true keeps the renewals of the subscriptions the caller answers for (the default view of an IT Admin).',
   })
   @ApiErrorResponses(...AUTH_ERRORS, READERS_ONLY, INVALID)
   async list(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Query() query: SubscriptionRenewalListQueryDto) {

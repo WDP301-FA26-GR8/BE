@@ -33,6 +33,7 @@ describe('the payment schedules of the subscriptions that run a period (PI-2, PI
 
     expect(schedule).toMatchObject({
       subscriptionId: owned,
+      responsibleItAdminEmployeeId: h.it1.employeeId,
       billingCycle: 'MONTHLY',
       startDate: '2026-01-05',
       endDate: '2027-01-04',

@@ -40695,6 +40695,13 @@
             "schema": { "type": "string", "enum": ["true", "false"] }
           },
           {
+            "name": "mine",
+            "required": false,
+            "in": "query",
+            "description": "true lists only the renewals of the subscriptions the caller answers for as their IT Admin; false or absent lists them all.",
+            "schema": { "type": "string", "enum": ["true", "false"] }
+          },
+          {
             "name": "page",
             "required": false,
             "in": "query",
@@ -40715,7 +40722,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A page of the renewal cases: the period, the day the case counts from and where it comes from (a declared or an inferred cancellation deadline, the renewal day, the payment day or the end date), the choice recorded, the decision and the outcome. The IT Admin and Finance (who only reads) see every case; nobody else reads them. Cases are not scoped by department: each subscription names the IT Admin who answers for it (subscription.responsibleItAdmin) and its kind of provisioning (subscription.provisioningType: K1 personal seats, K2 or K4 a shared pool). A case that waited for a head before the one-write renewal is closed (state STALE); waitingReason is always null. Filter by state, by subscription or by the late flag.",
+            "description": "A page of the renewal cases: the period, the day the case counts from and where it comes from (a declared or an inferred cancellation deadline, the renewal day, the payment day or the end date), the choice recorded, the decision and the outcome. The IT Admin and Finance (who only reads) see every case; nobody else reads them. Cases are not scoped by department: each subscription names the IT Admin who answers for it (subscription.responsibleItAdmin) and its kind of provisioning (subscription.provisioningType: K1 personal seats, K2 or K4 a shared pool). A case that waited for a head before the one-write renewal is closed (state STALE); waitingReason is always null. Filter by state, by subscription or by the late flag; mine=true keeps the renewals of the subscriptions the caller answers for (the default view of an IT Admin).",
             "content": {
               "application/json": {
                 "schema": {
@@ -137892,7 +137899,7 @@
                     },
                     "required": ["state", "count", "sourceOperationId", "reason"],
                     "additionalProperties": false,
-                    "description": "The periods of a right paid by the month or the year whose invoice has not been submitted five working days after the payment day, in the departments of the caller: the total of the list of them (`purchaseInvoiceMissingPeriodList`)."
+                    "description": "The periods of a right paid by the month or the year whose invoice has not been submitted five working days after the payment day, in the requests of the departments of the caller and the subscriptions the caller answers for: the total of the list of them (`purchaseInvoiceMissingPeriodList`)."
                   },
                   "outOfProcessRevocationsDue": {
                     "type": "object",

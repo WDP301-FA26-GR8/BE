@@ -35,6 +35,11 @@ export class SubscriptionPeriodApi {
     return this.periods.purchaseFacts(subscriptionIds, tx);
   }
 
+  /** The ids of the subscriptions this IT Admin answers for (`responsibleItAdminEmployeeId`). */
+  getResponsibleSubscriptionIds(employeeId: string, tx?: DbTx): Promise<string[]> {
+    return this.periods.idsResponsibleFor(employeeId, tx);
+  }
+
   /** The period locked `FOR UPDATE` until the caller's transaction ends, the lock its seats are counted under; null if absent. */
   lockPeriod(tx: DbTx, subscriptionId: string): Promise<RenewalPeriodFacts | null> {
     return this.periods.lock(tx, subscriptionId);

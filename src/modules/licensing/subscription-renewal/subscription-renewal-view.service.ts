@@ -51,14 +51,17 @@ export class RenewalViewService {
   /** Throws RenewalError (`READ_FORBIDDEN`). */
   async list(
     actor: AuthenticatedPrincipal,
-    query: PageQuery & { state?: RenewalState; subscriptionId?: string; late?: boolean },
+    query: PageQuery & { state?: RenewalState; subscriptionId?: string; late?: boolean; mine?: boolean },
   ): Promise<Page<RenewalSummaryWire>> {
     this.scopeOf(actor);
+    // `mine` keeps the subscriptions the caller answers for; Finance has none, so its `mine` is empty.
+    const mine = query.mine ? await this.periods.getResponsibleSubscriptionIds(actor.employeeId) : undefined;
     const { items, total } = await this.repo.page(
       {
         state: query.state,
         subscriptionId: query.subscriptionId,
         late: query.late,
+        ...(mine ? { subscriptionIds: mine } : {}),
       },
       (query.page - 1) * query.pageSize,
       query.pageSize,
