@@ -31,6 +31,7 @@ describe('department profiles, heads and the MANAGER role over HTTP (integration
   describe('department contract kept by the Wave 3 move', () => {
     const ISO_INSTANT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
     const LIST_KEYS = [
+      'avatarUrl',
       'code',
       'costCenter',
       'createdAt',

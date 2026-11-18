@@ -184,34 +184,29 @@ describe('PATCH /employees/{id}/first-placement (integration, real PostgreSQL)',
       const from = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TR9' })).expect(201));
       const to = h.dataOf(await h.createDepartment(h.departmentBody({ code: 'P-TRA' })).expect(201));
       const { placementId } = await futurePerson('NV-TR9', from.code);
-      const dayIn = async (zone: string) =>
-        (await h.ctx.sql.query<{ day: string }>('SELECT (now() AT TIME ZONE $1)::date::text AS day', [zone])).rows[0]
-          .day;
-      const original = (
+      // The time zone of an organization cannot change after installation, so the day is read in the zone it has.
+      const zone = (
         await h.ctx.sql.query<{ time_zone: string }>('SELECT time_zone FROM organizations WHERE id = $1', [
           h.seed.organizationId,
         ])
       ).rows[0].time_zone;
-      const setZone = (zone: string) =>
-        h.ctx.sql.query('UPDATE organizations SET time_zone = $2 WHERE id = $1', [h.seed.organizationId, zone]);
+      const dayIn = async (offset: number) =>
+        (
+          await h.ctx.sql.query<{ day: string }>('SELECT ((now() AT TIME ZONE $1)::date + $2::int)::text AS day', [
+            zone,
+            offset,
+          ])
+        ).rows[0].day;
+      const startOn = (day: string) =>
+        h.ctx.sql.query('UPDATE employee_placements SET valid_from = $2::date WHERE id = $1', [placementId, day]);
 
-      try {
-        // The placement starts on the day it is in the far east: today there, so already in effect there...
-        await setZone('Pacific/Kiritimati');
-        const eastDay = await dayIn('Pacific/Kiritimati');
-        await h.ctx.sql.query('UPDATE employee_placements SET valid_from = $2::date WHERE id = $1', [
-          placementId,
-          eastDay,
-        ]);
-        expect(await changeDepartment(placementId, to.id)).toBe('55000');
+      // Starting today in the zone of the organization, the placement is in effect there: no change of department.
+      await startOn(await dayIn(0));
+      expect(await changeDepartment(placementId, to.id)).toBe('55000');
 
-        // ... and still ahead of today in the far west, where the same instant is an earlier day.
-        await setZone('Pacific/Pago_Pago');
-        expect((await dayIn('Pacific/Pago_Pago')) < eastDay).toBe(true);
-        expect(await changeDepartment(placementId, to.id)).toBeNull();
-      } finally {
-        await setZone(original);
-      }
+      // Starting tomorrow there, it is still ahead: the department may change.
+      await startOn(await dayIn(1));
+      expect(await changeDepartment(placementId, to.id)).toBeNull();
     });
 
     it('still refuses to delete the lone placement (keep_one), whether or not it may change department', async () => {
