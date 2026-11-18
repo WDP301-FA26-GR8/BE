@@ -59,6 +59,16 @@ export class FirstPlacementCorrectionError extends Error {
     this.name = 'FirstPlacementCorrectionError';
   }
 }
+/**
+ * A module that tells what refers to a first placement is not registered, so "nothing refers to it" cannot be told (`QĐ-113e`): a
+ * configuration error, answered 500 rather than letting the correction through.
+ */
+export class FirstPlacementUseReaderMissingError extends Error {
+  constructor(readonly missing: string) {
+    super(`The contributor ${missing} of the first placement use is not registered.`);
+    this.name = 'FirstPlacementUseReaderMissingError';
+  }
+}
 export class FirstPlacementError extends Error {
   constructor(readonly problem: 'ALREADY_PLACED' | 'EMPLOYEE_INACTIVE' | 'EMPLOYEE_LEAVING' | 'DATE_INVALID') {
     super(

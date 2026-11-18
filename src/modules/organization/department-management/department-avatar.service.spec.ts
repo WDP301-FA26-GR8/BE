@@ -26,8 +26,8 @@ const GIF = Buffer.from([0x47, 0x49, 0x46, 0x38, 0x39, 0x61, 0, 0, 0, 0, 0, 0]);
 describe('DepartmentAvatarService', () => {
   const tx = { name: 'tx' };
   const calls: string[] = [];
-  const repo = { lock: jest.fn(), setAvatar: jest.fn(), clearAvatar: jest.fn() };
-  const storage = { putObject: jest.fn(), delete: jest.fn() };
+  const repo = { findById: jest.fn(), lock: jest.fn(), setAvatar: jest.fn(), clearAvatar: jest.fn() };
+  const storage = { putObject: jest.fn<Promise<void>, [{ key: string; contentType: string }]>(), delete: jest.fn() };
   const audit = { record: jest.fn() };
   const context = { findOrganization: jest.fn() };
   const runner = {
@@ -49,6 +49,7 @@ describe('DepartmentAvatarService', () => {
     jest.clearAllMocks();
     calls.length = 0;
     context.findOrganization.mockResolvedValue({ id: 'org-1' });
+    repo.findById.mockResolvedValue({ id: 'dep-1', status: 'ACTIVE' });
     repo.lock.mockResolvedValue({ id: 'dep-1', status: 'ACTIVE', avatarObjectKey: null, avatarContentType: null });
     storage.putObject.mockImplementation(() => {
       calls.push('put');
@@ -75,6 +76,15 @@ describe('DepartmentAvatarService', () => {
   );
 
   describe('upload', () => {
+    it('refuses a missing or retired department before writing anything to the storage', async () => {
+      repo.findById.mockResolvedValueOnce(null);
+      await expect(service().upload(superAdmin, 'dep-1', png, now)).rejects.toBeInstanceOf(DepartmentNotFoundError);
+      repo.findById.mockResolvedValueOnce({ id: 'dep-1', status: 'INACTIVE' });
+      await expect(service().upload(superAdmin, 'dep-1', png, now)).rejects.toBeInstanceOf(DepartmentInactiveError);
+      expect(storage.putObject).not.toHaveBeenCalled();
+      expect(storage.delete).not.toHaveBeenCalled();
+    });
+
     it('needs a file, and judges it by its signature before anything is written', async () => {
       await expect(service().upload(superAdmin, 'dep-1', undefined, now)).rejects.toBeInstanceOf(
         DepartmentAvatarFileRequiredError,
@@ -117,7 +127,7 @@ describe('DepartmentAvatarService', () => {
 
       await service().upload(superAdmin, 'dep-1', png, now);
 
-      const put = storage.putObject.mock.calls[0]?.[0] as { key: string; contentType: string };
+      const put = storage.putObject.mock.calls[0]?.[0];
       expect(put.key).toMatch(/^department-avatars\/org-1\/dep-1\/[0-9a-f-]+\.png$/);
       expect(put.contentType).toBe('image/png');
       expect(repo.setAvatar).toHaveBeenCalledWith(tx, 'dep-1', { key: put.key, contentType: 'image/png', at: now });
@@ -140,7 +150,7 @@ describe('DepartmentAvatarService', () => {
 
       await expect(service().upload(superAdmin, 'dep-1', png, now)).rejects.toThrow('boom');
       expect(storage.delete).toHaveBeenCalledTimes(1);
-      expect(storage.delete).toHaveBeenCalledWith((storage.putObject.mock.calls[0]?.[0] as { key: string }).key);
+      expect(storage.delete).toHaveBeenCalledWith(storage.putObject.mock.calls[0]?.[0].key);
     });
 
     it('still succeeds when the old object cannot be deleted: it only logs', async () => {

@@ -72,6 +72,8 @@ export class EmployeeFirstPlacementCorrectionService {
       const department = asked ?? (await this.lockDepartment(tx, placement.departmentId));
       const effectiveFrom = input.effectiveFrom ?? placement.validFrom;
       const departmentChanged = department.id !== placement.departmentId;
+      // Only a department the person moves to must take people in; the one they are already placed in may have been retired since.
+      if (departmentChanged && department.status !== 'ACTIVE') throw new DepartmentInactiveError();
       const dayChanged = effectiveFrom !== placement.validFrom;
       if (!departmentChanged && !dayChanged) return firstPlacementView(employee, department, effectiveFrom);
 
@@ -148,11 +150,10 @@ export class EmployeeFirstPlacementCorrectionService {
     for (const notice of notices) await this.notifications.notifyInApp(tx, notice);
   }
 
-  /** Locks a department that takes people in: it exists and is in use. */
+  /** Locks a department and reads it; whether it must take people in is for the caller, who knows if the person moves to it. */
   private async lockDepartment(tx: DbTx, departmentId: string) {
     const department = await this.departments.lock(tx, departmentId, 'UPDATE');
     if (!department) throw new DepartmentNotFoundError();
-    if (department.status !== 'ACTIVE') throw new DepartmentInactiveError();
 
     return department;
   }

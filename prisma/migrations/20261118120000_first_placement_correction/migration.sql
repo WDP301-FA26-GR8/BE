@@ -39,6 +39,12 @@ BEGIN
     SELECT (now() AT TIME ZONE o."time_zone")::date INTO v_today
       FROM "organizations" o WHERE o."id" = OLD."organization_id";
 
+    -- Without the organization there is no "today" to compare with: refuse rather than let the change through.
+    IF v_today IS NULL THEN
+      RAISE EXCEPTION 'the department of a placement cannot change: the organization of the placement is not found'
+        USING ERRCODE = 'object_not_in_prerequisite_state';
+    END IF;
+
     IF OLD."valid_from" <= v_today
        OR EXISTS (
          SELECT 1 FROM "employee_placements" p

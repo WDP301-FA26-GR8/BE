@@ -174,6 +174,25 @@ describe('EmployeeFirstPlacementCorrectionService', () => {
     expect(view).toMatchObject({ memberSince: '2026-12-15', department: { id: 'dep-old' } });
   });
 
+  it('changes only the day although the current department has been retired, and still refuses a retired new department', async () => {
+    departments.lock.mockImplementation((_tx: unknown, id: string) =>
+      Promise.resolve(id === 'dep-new' ? newDepartment : { ...oldDepartment, status: 'INACTIVE' }),
+    );
+    await service().correct(superAdmin, 'emp-1', { effectiveFrom: '2026-12-15', reason: 'Later start' });
+    expect(employees.correctFirstPlacement).toHaveBeenCalledWith(tx, 'pl-1', {
+      departmentId: undefined,
+      effectiveFrom: '2026-12-15',
+    });
+    // Naming the current department again changes nothing about it: still a day-only change.
+    await service().correct(superAdmin, 'emp-1', { departmentId: 'dep-old', effectiveFrom: '2026-12-16', reason: 'x' });
+    expect(employees.correctFirstPlacement).toHaveBeenCalledTimes(2);
+
+    departments.lock.mockResolvedValue({ ...newDepartment, status: 'INACTIVE' });
+    await expect(
+      service().correct(superAdmin, 'emp-1', { departmentId: 'dep-new', reason: 'x' }),
+    ).rejects.toBeInstanceOf(DepartmentInactiveError);
+  });
+
   it('records nothing for values that are the ones it has', async () => {
     await service().correct(superAdmin, 'emp-1', {
       departmentId: 'dep-old',
