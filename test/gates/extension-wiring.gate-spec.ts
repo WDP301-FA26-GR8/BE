@@ -80,6 +80,16 @@ const GRAPH_WIRING_EXCEPTIONS: readonly WiringException[] = [
   },
   {
     graphs: NO_HTTP_GRAPHS,
+    point: 'FirstPlacementUseContributions',
+    binders: ['FirstPlacementRequestsReader', 'FirstPlacementPersonnelReader'],
+    users: ['FirstPlacementUseService'],
+    reason:
+      'The readers are asked by FirstPlacementUseService.read, which is called from nowhere but ' +
+      '`EmployeeFirstPlacementCorrectionService.correct`, run by `EmployeesController.correctFirstPlacement` (PATCH /employees/{id}/first-placement), ' +
+      'an HTTP route of the API; none of these graphs serves HTTP or has a command that corrects a first placement.',
+  },
+  {
+    graphs: NO_HTTP_GRAPHS,
     point: 'CostCenterUseContributions',
     binders: ['BudgetCostCenterUseReader', 'CostCenterOpenRequestsReader'],
     users: ['DepartmentUseService'],

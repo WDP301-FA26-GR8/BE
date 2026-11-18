@@ -194,6 +194,8 @@ const PUBLIC_CONTRACT_EXPORTS: ReadonlySet<string> = new Set([
   'OrganizationModule: OrganizationChangeListeners',
   'OrganizationModule: DepartmentUseContributions',
   'OrganizationModule: CostCenterUseContributions',
+  // QĐ-113e: what refers to the first placement of a person, told by requests and personnel.
+  'OrganizationModule: FirstPlacementUseContributions',
   'OrganizationModule: DepartmentServiceAccountReaderHook',
   'OrganizationModule: DepartmentCreationWindowHook',
   'OrganizationModule: EmployeeAccountsHook',

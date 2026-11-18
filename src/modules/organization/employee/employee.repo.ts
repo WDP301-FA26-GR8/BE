@@ -191,6 +191,22 @@ export class EmployeeRepo {
     });
   }
 
+  /** Every placement of the person, oldest first. */
+  async placementsOf(tx: DbTx, employeeId: string) {
+    const rows = await tx.employeePlacement.findMany({
+      where: { employeeId },
+      orderBy: [{ validFrom: 'asc' }, { id: 'asc' }],
+    });
+
+    return rows.map((r) => ({ id: r.id, departmentId: r.departmentId, validFrom: fromDateColumn(r.validFrom) }));
+  }
+
+  /** Changes the department and/or the first day in place; the triggers allow it only for the first placement not yet in effect (`QĐ-113e`). */
+  async correctFirstPlacement(tx: DbTx, id: string, to: { departmentId?: string; effectiveFrom?: BusinessDate }) {
+    const validFrom = to.effectiveFrom ? toDateColumn(to.effectiveFrom) : undefined;
+    await tx.employeePlacement.update({ where: { id }, data: { departmentId: to.departmentId, validFrom } });
+  }
+
   async scheduledFirstPlacement(
     employeeId: string,
     onDate: BusinessDate,

@@ -2163,7 +2163,10 @@ export const DepartmentScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deactivatedAt: 'deactivatedAt',
-  effectiveFrom: 'effectiveFrom'
+  effectiveFrom: 'effectiveFrom',
+  avatarObjectKey: 'avatarObjectKey',
+  avatarContentType: 'avatarContentType',
+  avatarUpdatedAt: 'avatarUpdatedAt'
 } as const
 
 export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]

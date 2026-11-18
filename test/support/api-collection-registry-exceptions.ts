@@ -292,6 +292,7 @@ export const COLLECTION_EXCEPTIONS: readonly CollectionException[] = [
       'Decision 6: keep the function text (up to 1000 characters) in the list as a field needed to choose a department, or return it only from departmentGet.',
     removeWhen: 'The Owner decides and the chosen contract ships.',
     itemProperties: [
+      'avatarUrl',
       'code',
       'costCenter',
       'createdAt',

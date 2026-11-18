@@ -156,3 +156,35 @@ export class DepartmentCodeInvalidError extends Error {
     this.name = 'DepartmentCodeInvalidError';
   }
 }
+
+/** No file came with the request of a department picture (`QĐ-113c`). */
+export class DepartmentAvatarFileRequiredError extends Error {
+  constructor() {
+    super('Send the picture as the form field "file".');
+    this.name = 'DepartmentAvatarFileRequiredError';
+  }
+}
+
+/** The picture is larger than one megabyte. */
+export class DepartmentAvatarTooLargeError extends Error {
+  constructor() {
+    super('The picture is larger than 1 MiB.');
+    this.name = 'DepartmentAvatarTooLargeError';
+  }
+}
+
+/** By its first bytes the file is not a png, jpeg or webp. */
+export class DepartmentAvatarTypeUnsupportedError extends Error {
+  constructor() {
+    super('The picture must be a png, jpeg or webp.');
+    this.name = 'DepartmentAvatarTypeUnsupportedError';
+  }
+}
+
+/** The picture is empty, or is not the type it declares. */
+export class DepartmentAvatarInvalidError extends Error {
+  constructor(readonly reason: 'EMPTY' | 'TYPE_MISMATCH') {
+    super(reason === 'EMPTY' ? 'The picture is empty.' : 'The picture is not the type it says it is.');
+    this.name = 'DepartmentAvatarInvalidError';
+  }
+}

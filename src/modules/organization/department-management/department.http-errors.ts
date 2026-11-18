@@ -4,6 +4,10 @@ import { ApiException } from '../../../infrastructure/http/errors/api.exception'
 import { errorExampleOf } from '../../../infrastructure/http/openapi-error-examples';
 import { refuse, toOrganizationApiException } from '../organization.http-errors';
 import {
+  DepartmentAvatarFileRequiredError,
+  DepartmentAvatarInvalidError,
+  DepartmentAvatarTooLargeError,
+  DepartmentAvatarTypeUnsupportedError,
   DepartmentCodeTakenError,
   DepartmentCodeInvalidError,
   DepartmentForbiddenError,
@@ -70,6 +74,18 @@ export function toDepartmentApiException(error: unknown): unknown {
   if (error instanceof DepartmentInactiveError) {
     return refuse(HttpStatus.CONFLICT, 'DEPARTMENT.INACTIVE', error.message);
   }
+  if (error instanceof DepartmentAvatarFileRequiredError) {
+    return refuse(HttpStatus.UNPROCESSABLE_ENTITY, 'DEPARTMENT.AVATAR_FILE_REQUIRED', error.message);
+  }
+  if (error instanceof DepartmentAvatarTooLargeError) {
+    return refuse(HttpStatus.PAYLOAD_TOO_LARGE, 'DEPARTMENT.AVATAR_TOO_LARGE', error.message);
+  }
+  if (error instanceof DepartmentAvatarTypeUnsupportedError) {
+    return refuse(HttpStatus.UNSUPPORTED_MEDIA_TYPE, 'DEPARTMENT.AVATAR_TYPE_UNSUPPORTED', error.message);
+  }
+  if (error instanceof DepartmentAvatarInvalidError) {
+    return refuse(HttpStatus.UNPROCESSABLE_ENTITY, `DEPARTMENT.AVATAR_${error.reason}`, error.message);
+  }
   if (error instanceof DepartmentInUseError) {
     const { members, serviceAccounts, openWork, subscriptions } = error.groups;
 
@@ -111,6 +127,11 @@ export const DEPARTMENT_ERROR_EXAMPLES = {
   DEPARTMENT_IT_ADMIN_LIMIT_REACHED: example(new DepartmentItAdminLimitReachedError(4)),
   DEPARTMENT_UPDATE_EMPTY: example(new DepartmentUpdateEmptyError()),
   DEPARTMENT_INACTIVE: example(new DepartmentInactiveError()),
+  DEPARTMENT_AVATAR_FILE_REQUIRED: example(new DepartmentAvatarFileRequiredError()),
+  DEPARTMENT_AVATAR_TOO_LARGE: example(new DepartmentAvatarTooLargeError()),
+  DEPARTMENT_AVATAR_TYPE_UNSUPPORTED: example(new DepartmentAvatarTypeUnsupportedError()),
+  DEPARTMENT_AVATAR_EMPTY: example(new DepartmentAvatarInvalidError('EMPTY')),
+  DEPARTMENT_AVATAR_TYPE_MISMATCH: example(new DepartmentAvatarInvalidError('TYPE_MISMATCH')),
   DEPARTMENT_IN_USE: example(
     new DepartmentInUseError({
       members: { items: [{ employeeCode: 'E001', fullName: '<full-name>' }], total: 1 },
