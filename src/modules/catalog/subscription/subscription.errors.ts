@@ -56,6 +56,14 @@ export class SubscriptionDatesInvalidError extends Error {
   }
 }
 
+/** The subscription changed after the client read it: its `updated_at` is no longer the one the edit was made on. */
+export class SubscriptionStaleError extends Error {
+  constructor(readonly currentUpdatedAt: Date) {
+    super('The subscription was changed by someone else since it was read: read it again before editing.');
+    this.name = 'SubscriptionStaleError';
+  }
+}
+
 export class SubscriptionUpdateEmptyError extends Error {
   constructor() {
     super('The update names no field to change.');
