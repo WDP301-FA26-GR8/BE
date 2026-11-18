@@ -196,7 +196,7 @@ async function futurePlacements(ctx: DemoRunContext): Promise<StepOutcome> {
       });
       results.push({ status: 'done', label });
     } catch (error) {
-      if (error instanceof DemoApiError && error.code === 'EMPLOYEE.FIRST_PLACEMENT_ALREADY_PLACED') {
+      if (error instanceof DemoApiError && error.code === 'EMPLOYEE.ALREADY_PLACED') {
         results.push({ status: 'present', label });
         continue;
       }

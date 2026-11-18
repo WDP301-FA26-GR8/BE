@@ -84,6 +84,42 @@ const UPDATE_INVALID = {
  */
 const UPLOAD_LIMITS = { fileSize: PICTURE_MAX_BYTES + 1, files: 1, fields: 0, parts: 1 };
 
+/** The answers of a picture upload beyond the guards (`QĐ-113c`). */
+const AVATAR_PUT_ERRORS = [
+  {
+    status: HttpStatus.BAD_REQUEST,
+    description: 'The form is not a readable multipart form with one file (HTTP_BAD_REQUEST).',
+    examples: [fallbackExample(HttpStatus.BAD_REQUEST)],
+  },
+  {
+    status: HttpStatus.CONFLICT,
+    description: 'The department is retired (DEPARTMENT.INACTIVE).',
+    examples: [DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_INACTIVE],
+  },
+  {
+    status: HttpStatus.PAYLOAD_TOO_LARGE,
+    description:
+      'The picture is larger than 1 MiB: DEPARTMENT.AVATAR_TOO_LARGE for one a little over it, HTTP_PAYLOAD_TOO_LARGE for any larger one, which the parser stops at once.',
+    examples: [DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_TOO_LARGE, fallbackExample(HttpStatus.PAYLOAD_TOO_LARGE)],
+  },
+  {
+    status: HttpStatus.UNSUPPORTED_MEDIA_TYPE,
+    description: 'By its first bytes the file is not a png, jpeg or webp (DEPARTMENT.AVATAR_TYPE_UNSUPPORTED).',
+    examples: [DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_TYPE_UNSUPPORTED],
+  },
+  {
+    status: HttpStatus.UNPROCESSABLE_ENTITY,
+    description:
+      'The id is not a UUID (VALIDATION_ERROR), no file was sent (DEPARTMENT.AVATAR_FILE_REQUIRED), it is empty (DEPARTMENT.AVATAR_EMPTY) or it is not the type it says it is (DEPARTMENT.AVATAR_TYPE_MISMATCH).',
+    examples: [
+      VALIDATION_EXAMPLE,
+      DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_FILE_REQUIRED,
+      DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_EMPTY,
+      DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_TYPE_MISMATCH,
+    ],
+  },
+] as const;
+
 interface UploadedBinary {
   buffer: Buffer;
   mimetype: string;
@@ -233,43 +269,7 @@ export class DepartmentsController {
     description:
       'The picture (png, jpeg or webp, at most 1 MiB, judged by its first bytes) was stored and the department points at it; avatarUrl is a link that works for 15 minutes (`QĐ-113c`). The picture before it, if any, is deleted after the change.',
   })
-  @ApiErrorResponses(
-    ...AUTH_ERRORS,
-    SUPER_ADMIN_ONLY,
-    NOT_FOUND,
-    {
-      status: HttpStatus.BAD_REQUEST,
-      description: 'The form is not a readable multipart form with one file (HTTP_BAD_REQUEST).',
-      examples: [fallbackExample(HttpStatus.BAD_REQUEST)],
-    },
-    {
-      status: HttpStatus.CONFLICT,
-      description: 'The department is retired (DEPARTMENT.INACTIVE).',
-      examples: [DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_INACTIVE],
-    },
-    {
-      status: HttpStatus.PAYLOAD_TOO_LARGE,
-      description:
-        'The picture is larger than 1 MiB: DEPARTMENT.AVATAR_TOO_LARGE for one a little over it, HTTP_PAYLOAD_TOO_LARGE for any larger one, which the parser stops at once.',
-      examples: [DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_TOO_LARGE, fallbackExample(HttpStatus.PAYLOAD_TOO_LARGE)],
-    },
-    {
-      status: HttpStatus.UNSUPPORTED_MEDIA_TYPE,
-      description: 'By its first bytes the file is not a png, jpeg or webp (DEPARTMENT.AVATAR_TYPE_UNSUPPORTED).',
-      examples: [DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_TYPE_UNSUPPORTED],
-    },
-    {
-      status: HttpStatus.UNPROCESSABLE_ENTITY,
-      description:
-        'The id is not a UUID (VALIDATION_ERROR), no file was sent (DEPARTMENT.AVATAR_FILE_REQUIRED), it is empty (DEPARTMENT.AVATAR_EMPTY) or it is not the type it says it is (DEPARTMENT.AVATAR_TYPE_MISMATCH).',
-      examples: [
-        VALIDATION_EXAMPLE,
-        DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_FILE_REQUIRED,
-        DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_EMPTY,
-        DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_AVATAR_TYPE_MISMATCH,
-      ],
-    },
-  )
+  @ApiErrorResponses(...AUTH_ERRORS, SUPER_ADMIN_ONLY, NOT_FOUND, ...AVATAR_PUT_ERRORS)
   async setAvatar(
     @CurrentPrincipal() actor: AuthenticatedPrincipal,
     @Param() params: DepartmentIdParamDto,
