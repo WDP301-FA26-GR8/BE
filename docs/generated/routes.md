@@ -9,6 +9,7 @@ Find a route, open its controller, then the service it calls. Module of a file =
 | GET | `/health/ready` | [src/infrastructure/health/health.controller.ts](../../src/infrastructure/health/health.controller.ts) → `getReadiness` | HealthCheckService, PrismaHealthIndicator |
 | GET | `/audit-events` | [audit/audit.controller.ts](../../src/modules/audit/audit.controller.ts) → `list` | [AuditQueryService](../../src/modules/audit/audit-query.service.ts) |
 | POST | `/employees/{id}/first-placements` | [organization/employee/employees.controller.ts](../../src/modules/organization/employee/employees.controller.ts) → `place` | [EmployeeFirstPlacementService](../../src/modules/organization/employee/employee-first-placement.service.ts) |
+| PATCH | `/employees/{id}/first-placement` | [organization/employee/employees.controller.ts](../../src/modules/organization/employee/employees.controller.ts) → `correctFirstPlacement` | [EmployeeFirstPlacementCorrectionService](../../src/modules/organization/employee/first-placement-correction/employee-first-placement-correction.service.ts) |
 | POST | `/employees` | [organization/employee/employees.controller.ts](../../src/modules/organization/employee/employees.controller.ts) → `create` | [EmployeeManualService](../../src/modules/organization/employee/employee-manual.service.ts) |
 | GET | `/employees` | [organization/employee-directory/employee-directory.controller.ts](../../src/modules/organization/employee-directory/employee-directory.controller.ts) → `list` | [EmployeeDirectoryQueryService](../../src/modules/organization/employee-directory/employee-directory-query.service.ts) |
 | GET | `/employees/{id}` | [organization/employee-directory/employee-directory.controller.ts](../../src/modules/organization/employee-directory/employee-directory.controller.ts) → `get` | [EmployeeDirectoryQueryService](../../src/modules/organization/employee-directory/employee-directory-query.service.ts) |
@@ -434,4 +435,4 @@ Find a route, open its controller, then the service it calls. Module of a file =
 | GET | `/dashboards/super-admin` | [dashboards/super-admin/super-admin-dashboard.controller.ts](../../src/modules/dashboards/super-admin/super-admin-dashboard.controller.ts) → `get` | [SuperAdminDashboardService](../../src/modules/dashboards/super-admin/super-admin-dashboard.service.ts) |
 | GET | `/reports/revocation-sla` | [dashboards/revocation-sla/revocation-sla.controller.ts](../../src/modules/dashboards/revocation-sla/revocation-sla.controller.ts) → `get` | [RevocationSlaQueryService](../../src/modules/dashboards/revocation-sla/revocation-sla-query.service.ts) |
 
-428 operations.
+429 operations.

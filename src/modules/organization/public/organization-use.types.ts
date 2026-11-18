@@ -30,3 +30,6 @@ export interface CostCenterUse {
   requests: UseGroup;
   commitments: UseGroup;
 }
+
+/** What refers to the first placement of a person, so it can no longer be corrected (`QĐ-113e`). */
+export type FirstPlacementUse = 'REQUEST' | 'TRANSFER' | 'HEAD_PERIOD' | 'OFFBOARDING';
