@@ -865,6 +865,8 @@ export const PlanScalarFieldEnum = {
   dataLossOnRemoval: 'dataLossOnRemoval',
   sharingPolicy: 'sharingPolicy',
   hasAdminConsole: 'hasAdminConsole',
+  referencePriceMinor: 'referencePriceMinor',
+  referencePriceCurrency: 'referencePriceCurrency',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
