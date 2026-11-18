@@ -44331,7 +44331,7 @@
         },
         "responses": {
           "200": {
-            "description": "The requester withdraws the request while it waits or while the grant has not been carried out; the head of the department does too, with a reason, only while the budget or the data stopped the request or it waits for the head to confirm the reserve. The open steps close, the request leaves the batch it was sent in, what was held for it goes back to the budget and a task nobody has worked is cancelled with its assignment (never failed). When the grant had failed the request waits (AWAITING_IT_CLOSE) until the IT Admin cancels the task, and it then ends as withdrawn.",
+            "description": "The requester withdraws the request only before any decision was taken on it (QĐ-113d): while it waits for the head at the need step or stands waiting for a head, while it is sent back to add what is missing, or, when no head decides the need, until the first who decides (the spending approver, the IT Admin) has decided; a direct grant until its task is begun. After that the way back is a return once granted. The head of the department does too, with a reason, only while the budget or the data stopped the request or it waits for the head to confirm the reserve. The open steps close, the request leaves the batch it was sent in, what was held for it goes back to the budget and a task nobody has worked is cancelled with its assignment (never failed). When the grant had failed the request waits (AWAITING_IT_CLOSE) until the IT Admin cancels the task, and it then ends as withdrawn.",
             "content": {
               "application/json": {
                 "schema": {
@@ -44439,11 +44439,23 @@
             }
           },
           "409": {
-            "description": "Nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked: ask again when it has a result (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
+            "description": "A decision was already taken (ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION, details.state), nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked: ask again when it has a result (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
+                  "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION": {
+                    "summary": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION",
+                        "message": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                        "details": { "state": "AWAITING_SPEND_DECISION" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
                   "ACCESS_REQUEST.ALREADY_ENDED": {
                     "summary": "The request cannot be withdrawn: ALREADY_ENDED.",
                     "value": {
@@ -44623,7 +44635,7 @@
           }
         },
         "security": [{ "bearer": [] }],
-        "summary": "Withdraw a request that is still waiting",
+        "summary": "Withdraw a request nobody has decided yet",
         "tags": ["access-requests"]
       }
     },
@@ -58332,7 +58344,7 @@
         },
         "responses": {
           "200": {
-            "description": "The sender withdraws one person while their seat is not real; the head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.",
+            "description": "The sender withdraws one person only while their line still awaits the need, or while the request is sent back to add what is missing (QĐ-113d); after any decision the way back is a return once granted. The head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.",
             "content": {
               "application/json": {
                 "schema": {
@@ -58440,11 +58452,23 @@
             }
           },
           "409": {
-            "description": "Nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
+            "description": "A decision was already taken on the person (ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION), nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
+                  "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION": {
+                    "summary": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION",
+                        "message": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                        "details": { "state": "APPROVED" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
                   "ACCESS_REQUEST.ALREADY_ENDED": {
                     "summary": "The request cannot be withdrawn: ALREADY_ENDED.",
                     "value": {

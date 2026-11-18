@@ -30,9 +30,8 @@ export function checkLineWithdrawal(facts: LineWithdrawalFacts): WithdrawalRefus
   const byHead = !byRequester && facts.actorHeadsDepartment && headMayWithdraw(facts.spendStage);
   if (!byRequester && !byHead) return 'NOT_REQUESTER';
 
-  if (facts.lineState === 'COMPLETED') return 'GRANT_COMPLETED';
-  if (facts.lineState === 'AWAITING_IT_CLOSE') return 'WITHDRAWAL_PENDING';
-  if (isEndedWithoutSeat(facts.lineState)) return 'ALREADY_ENDED';
+  const over = endedRefusal(facts.lineState);
+  if (over) return over;
   if (byHead && (facts.reason === null || facts.reason.trim() === '')) return 'REASON_REQUIRED';
   // The sender withdraws a person only before any decision on them (`QĐ-113d`).
   if (byRequester && !lineUndecided(facts) && facts.requestState !== 'AWAITING_REQUESTER_REVISION') {
@@ -40,6 +39,14 @@ export function checkLineWithdrawal(facts: LineWithdrawalFacts): WithdrawalRefus
   }
 
   return null;
+}
+
+/** The refusal of a line that no longer has anything to withdraw, or null. */
+function endedRefusal(state: LineState): WithdrawalRefusal | null {
+  if (state === 'COMPLETED') return 'GRANT_COMPLETED';
+  if (state === 'AWAITING_IT_CLOSE') return 'WITHDRAWAL_PENDING';
+
+  return isEndedWithoutSeat(state) ? 'ALREADY_ENDED' : null;
 }
 
 /** No decision was taken on the person: their need awaits its head, or no one decides it and the spending approver has not decided (`QĐ-113d`). */

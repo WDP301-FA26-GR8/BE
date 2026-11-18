@@ -69,6 +69,14 @@ export function undecidedForRequester(facts: Pick<WithdrawalFacts, 'state' | 'ne
 
 const ENDED: readonly AccessRequestState[] = ['REJECTED', 'IT_REJECTED', 'FAILED', 'WITHDRAWN', 'CANCELLED'];
 
+/** The refusal of a request that no longer has anything to withdraw, or null. */
+function endedRefusal(state: AccessRequestState): WithdrawalRefusal | null {
+  if (state === 'COMPLETED') return 'GRANT_COMPLETED';
+  if (state === 'AWAITING_IT_CLOSE') return 'WITHDRAWAL_PENDING';
+
+  return ENDED.includes(state) ? 'ALREADY_ENDED' : null;
+}
+
 /**
  * Whether the request may be withdrawn by this person: the requester, only while no decision was taken on it (`QĐ-113d`); the head of the department, with a reason, only in the stages the head has to act on (`AC-4`). The tasks of the
  * grant are judged by licensing, in the transaction.
@@ -78,9 +86,8 @@ export function checkWithdrawal(facts: WithdrawalFacts): WithdrawalRefusal | nul
   const byHead = !byRequester && facts.actorHeadsDepartment && headMayWithdraw(facts.spendStage);
   if (!byRequester && !byHead) return 'NOT_REQUESTER';
 
-  if (facts.state === 'COMPLETED') return 'GRANT_COMPLETED';
-  if (facts.state === 'AWAITING_IT_CLOSE') return 'WITHDRAWAL_PENDING';
-  if (ENDED.includes(facts.state)) return 'ALREADY_ENDED';
+  const over = endedRefusal(facts.state);
+  if (over) return over;
   if (byHead && (facts.reason === null || facts.reason.trim() === '')) return 'REASON_REQUIRED';
   if (byRequester && !undecidedForRequester(facts)) return 'WITHDRAWAL_AFTER_DECISION';
 

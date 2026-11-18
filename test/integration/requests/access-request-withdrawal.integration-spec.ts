@@ -292,7 +292,6 @@ describe('the requester withdraws a request that is still waiting over PostgreSQ
       const refused = await h.withdrawRequest(id, {}, colleague.account).expect(403);
       expect(h.codeOf(refused)).toBe('ACCESS_REQUEST.NOT_REQUESTER');
 
-      console.log('DBG', await h.state(id), JSON.stringify((await h.ctx.sql.query(`SELECT l.state, s.state AS step FROM access_request_lines l JOIN access_request_steps s ON s.id = l.need_step_id WHERE l.request_id = $1`, [id])).rows));
       await h.withdrawRequest(id, {}, u.head.account).expect(200);
       expect(await h.state(id)).toBe('WITHDRAWN');
     });
