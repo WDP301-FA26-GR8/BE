@@ -95,11 +95,18 @@ describe('the migration that takes service accounts out of the scope (integratio
   };
   const tomorrow = () => inDays(1);
 
-  /** A service account as an earlier release wrote it: charged to the Unit of the seed department. */
+  /** A service account as an earlier release wrote it: charged to the Unit of `extra.departmentId` (the seed department by default). The seat itself carries
+   * its owning department, which is what the migration reads for Q2; the subscription has none (QĐ-113g). */
   const serviceAccount = async (
     subscriptionId: string,
     responsible: string,
-    extra: { identifier?: string; validFrom?: string; validUntil?: string | null; reason?: string } = {},
+    extra: {
+      departmentId?: string;
+      identifier?: string;
+      validFrom?: string;
+      validUntil?: string | null;
+      reason?: string;
+    } = {},
   ): Promise<string> => {
     const { rows } = await h.ctx.sql.query<{ id: string }>(
       `INSERT INTO license_assignments (id, organization_id, kind, source, plan_id, subscription_id, employee_id, account_identifier,
@@ -117,7 +124,7 @@ describe('the migration that takes service accounts out of the scope (integratio
         extra.validFrom ?? '2026-01-05',
         extra.validUntil ?? null,
         randomUUID(),
-        h.seed.departmentId,
+        extra.departmentId ?? h.seed.departmentId,
       ],
     );
 
@@ -211,8 +218,14 @@ describe('the migration that takes service accounts out of the scope (integratio
 
     it('gives the account of a person who is not an IT Admin to the IT Admin in charge of the department that owns it (Q2), or else to the first IT Admin who can act', async () => {
       const worker = await h.person(code());
-      const inCharge = await serviceAccount(subscriptions.withIt, worker, { reason: 'Deploys the site' });
-      const nobodyInCharge = await serviceAccount(subscriptions.without, worker, { reason: 'Runs the reports' });
+      const inCharge = await serviceAccount(subscriptions.withIt, worker, {
+        reason: 'Deploys the site',
+        departmentId: ownerWithItAdmin.id,
+      });
+      const nobodyInCharge = await serviceAccount(subscriptions.without, worker, {
+        reason: 'Runs the reports',
+        departmentId: ownerWithoutItAdmin.id,
+      });
 
       await migrate();
 

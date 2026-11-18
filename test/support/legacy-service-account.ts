@@ -6,6 +6,8 @@ export interface LegacyServiceAccountInput {
   /** The person who answered for the account. */
   employeeId: string;
   identifier: string;
+  /** The department that owns the seat; by default the one of the first seat of the subscription that has one (a subscription has none, QĐ-113g). */
+  departmentId?: string;
   reason?: string;
   validFrom?: string;
   validUntil?: string | null;
@@ -25,9 +27,9 @@ export async function legacyServiceAccount(sql: Client, input: LegacyServiceAcco
      SELECT gen_random_uuid(), s.organization_id, 'SERVICE', 'REQUEST', s.plan_id, s.id, $2, $3, lower($3), $4,
             c.id, c.department_id, $5, 'RECORDED', $6, $7
        FROM subscriptions s
-       JOIN cost_centers c ON c.status = 'ACTIVE' AND c.department_id = (
+       JOIN cost_centers c ON c.status = 'ACTIVE' AND c.department_id = COALESCE($8::uuid, (
          SELECT a.owning_department_id FROM license_assignments a
-          WHERE a.subscription_id = s.id AND a.owning_department_id IS NOT NULL ORDER BY a.created_at LIMIT 1)
+          WHERE a.subscription_id = s.id AND a.owning_department_id IS NOT NULL ORDER BY a.created_at LIMIT 1))
       WHERE s.id = $1
      RETURNING id`,
     [
@@ -38,6 +40,7 @@ export async function legacyServiceAccount(sql: Client, input: LegacyServiceAcco
       input.validFrom ?? '2026-01-05',
       input.validUntil ?? null,
       randomUUID(),
+      input.departmentId ?? null,
     ],
   );
 
