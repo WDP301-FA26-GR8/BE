@@ -224,14 +224,34 @@ describe('EmployeeMaintenanceService', () => {
     expect(calls).not.toContain('commit');
   });
 
-  it('does not touch the account when the work email is not changed or is cleared', async () => {
+  it('does not touch the account when the work email is not changed', async () => {
     organization.getEmployee.mockResolvedValue({ ...person, workEmail: 'old@corp.test' });
     await (await service()).update(superAdmin, 'emp-1', { jobTitle: 'Lead' });
-    await (await service()).update(superAdmin, 'emp-1', { workEmail: null });
-
-    expect(organization.updateEmployeeOfficialFields).toHaveBeenCalledWith(tx, 'emp-1', { workEmail: null });
 
     expect(followWorkEmail).not.toHaveBeenCalled();
+  });
+
+  it('clears the work email of a person who has no account', async () => {
+    organization.getEmployee.mockResolvedValue({ ...person, workEmail: 'old@corp.test' });
+
+    await (await service()).update(superAdmin, 'emp-1', { workEmail: null });
+
+    expect(followWorkEmail).toHaveBeenCalledWith(tx, expect.objectContaining({ employeeId: 'emp-1', workEmail: null }));
+    expect(organization.updateEmployeeOfficialFields).toHaveBeenCalledWith(tx, 'emp-1', { workEmail: null });
+  });
+
+  it('refuses clearing the work email of a person who has an account, and writes, audits and tells nobody', async () => {
+    organization.getEmployee.mockResolvedValue({ ...person, workEmail: 'old@corp.test' });
+    followWorkEmail.mockResolvedValue('ACCOUNT_NEEDS_EMAIL');
+
+    await expect((await service()).update(superAdmin, 'emp-1', { workEmail: null })).rejects.toMatchObject({
+      reasons: [{ field: 'workEmail', code: 'WORK_EMAIL_REQUIRED_FOR_ACCOUNT' }],
+    });
+
+    expect(organization.updateEmployeeOfficialFields).not.toHaveBeenCalled();
+    expect(audit.record).not.toHaveBeenCalled();
+    expect(notifications.notifyInApp).not.toHaveBeenCalled();
+    expect(calls).not.toContain('commit');
   });
 
   it('clears the title when it is sent blank or null', async () => {

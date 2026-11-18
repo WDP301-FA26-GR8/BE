@@ -11,7 +11,7 @@ import { AppUserRepo } from './app-user.repo';
  * work email of someone who has an account, the organization asks this to move the login email with it, in the same transaction: the old
  * address no longer signs in, the new one does. The sessions already open and the invitations still waiting are left as they are, and the
  * way the address was verified is not touched (nobody has verified the new one; an invited account is verified when it redeems).
- * A new address that another account already logs in with is refused with nothing written (`TAKEN`); the unique index backs the check.
+ * Clearing the work email of someone who has an account is refused (`ACCOUNT_NEEDS_EMAIL`). A new address that another account already logs in with is refused with nothing written (`TAKEN`); the unique index backs the check.
  * The caller holds the employee `FOR UPDATE`, so this takes the account `FOR UPDATE` after it (lock order: the employee, then the account).
  */
 @Injectable()
@@ -23,10 +23,12 @@ export class AccountLoginEmailFollowService {
 
   async follow(
     tx: DbTx,
-    input: { actor: AuthenticatedPrincipal; organizationId: string; employeeId: string; workEmail: string },
+    input: { actor: AuthenticatedPrincipal; organizationId: string; employeeId: string; workEmail: string | null },
   ): Promise<LoginEmailFollow> {
     const accountId = await this.accounts.findAccountIdByEmployee(tx, input.employeeId);
     if (accountId === null) return 'NO_ACCOUNT';
+    // The work email is being cleared: an account cannot have no login email, so nothing is written and the caller refuses.
+    if (input.workEmail === null) return 'ACCOUNT_NEEDS_EMAIL';
     await this.accounts.lockAppUser(tx, accountId, 'UPDATE');
     // A statement of its own after the lock (lock protocol rule 2).
     const account = await this.accounts.findLoginEmailOfEmployee(tx, input.employeeId);

@@ -128,10 +128,21 @@ export class EmployeeMaintenanceService {
     current: EmployeeRecord,
     correction: Correction,
   ): Promise<void> {
-    await this.employees.updateOfficialFields(tx, who.employeeId, correction.changes);
-    // The account of the person logs in with the work email (`POST /app-users`): a new work email moves it in the same transaction.
-    // A cleared work email leaves the login email as it is (an account cannot have none).
+    // The account of the person logs in with the work email (`POST /app-users`): a new work email moves it in the same transaction,
+    // and clearing it is refused for a person who has an account (it cannot have no login email), before anything is written.
     const newWorkEmail = correction.changes.workEmail;
+    if (newWorkEmail === null) {
+      const followed = await this.employeeAccounts.get().followWorkEmail(tx, {
+        actor: who.actor,
+        organizationId: who.organizationId,
+        employeeId: who.employeeId,
+        workEmail: null,
+      });
+      if (followed === 'ACCOUNT_NEEDS_EMAIL') {
+        throw new EmployeeRowInvalidError([{ field: 'workEmail', code: 'WORK_EMAIL_REQUIRED_FOR_ACCOUNT' }]);
+      }
+    }
+    await this.employees.updateOfficialFields(tx, who.employeeId, correction.changes);
     if (newWorkEmail) {
       const followed = await this.employeeAccounts.get().followWorkEmail(tx, {
         actor: who.actor,

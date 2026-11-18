@@ -56,6 +56,22 @@ describe('AccountLoginEmailFollowService', () => {
     expect(audit.record).not.toHaveBeenCalled();
   });
 
+  it('refuses to follow a cleared work email for a person with an account, and writes nothing', async () => {
+    const { service, accounts, audit } = setup();
+
+    await expect(service.follow(tx, { ...input, workEmail: null })).resolves.toBe('ACCOUNT_NEEDS_EMAIL');
+
+    expect(accounts.lockAppUser).not.toHaveBeenCalled();
+    expect(accounts.moveLoginEmail).not.toHaveBeenCalled();
+    expect(audit.record).not.toHaveBeenCalled();
+  });
+
+  it('answers a cleared work email of a person with no account as no account', async () => {
+    const { service } = setup({ account: null });
+
+    await expect(service.follow(tx, { ...input, workEmail: null })).resolves.toBe('NO_ACCOUNT');
+  });
+
   it('locks the account, then moves the login email with its normalized form and audits it, touching no verification', async () => {
     const { service, accounts, audit, order } = setup();
 

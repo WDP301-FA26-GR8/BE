@@ -324,6 +324,18 @@ describe('correcting the official fields of an employee over HTTP (integration, 
         )
       ).rows[0];
 
+    it('refuses clearing the work email of a person who has an account, and changes nothing', async () => {
+      const workBefore = (await rowOf(h.finance.employeeId)).work_email;
+      const before = await loginOf(h.finance.appUserId);
+
+      const refused = await patch(h.finance.employeeId, { workEmail: null }).expect(422);
+
+      expect(codeOf(refused)).toBe('EMPLOYEE.ROW_INVALID');
+      expect(reasonsOf(refused)).toEqual([{ field: 'workEmail', code: 'WORK_EMAIL_REQUIRED_FOR_ACCOUNT' }]);
+      expect((await rowOf(h.finance.employeeId)).work_email).toBe(workBefore);
+      expect(await loginOf(h.finance.appUserId)).toEqual(before);
+    });
+
     it('moves the login email of the account the person has with it, in the same change, and audits the move', async () => {
       await patch(h.finance.employeeId, { workEmail: ' Finance.New+x@Acme.vn ' }).expect(200);
 
