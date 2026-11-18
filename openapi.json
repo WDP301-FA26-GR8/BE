@@ -691,6 +691,383 @@
         "tags": ["employees"]
       }
     },
+    "/api/v1/employees/{id}/first-placement": {
+      "patch": {
+        "operationId": "employeeFirstPlacementCorrect",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/CorrectFirstPlacementBodyDto" } }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The department and/or the first day of the first placement changed (`QĐ-113e`), with the reason kept in the Audit Trail; a new department is told like a first placement. Values the placement already has change nothing. Allowed only while the placement starts after today and nothing refers to it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/EmployeeResponseDto" },
+                    { "properties": { "message": { "example": "EMPLOYEE.FIRST_PLACEMENT_CORRECTED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JSON body cannot be read: it is not valid JSON, it does not match its declared length, or its compressed content is corrupt (HTTP_BAD_REQUEST).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_BAD_REQUEST": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_BAD_REQUEST",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only SUPER_ADMIN corrects a placement, and never the one of their own record (EMPLOYEE.SELF_CHANGE_FORBIDDEN).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "EMPLOYEE.SELF_CHANGE_FORBIDDEN": {
+                    "summary": "You cannot change your own employee record. The Super Admin record is changed with: pnpm ops:record-super-admin-event profile-correct.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.SELF_CHANGE_FORBIDDEN",
+                        "message": "You cannot change your own employee record. The Super Admin record is changed with: pnpm ops:record-super-admin-event profile-correct.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Employee or department not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "EMPLOYEE.NOT_FOUND": {
+                    "summary": "Employee not found: <employee-id>",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.NOT_FOUND",
+                        "message": "Employee not found: <employee-id>",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.NOT_FOUND": {
+                    "summary": "Department not found.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.NOT_FOUND",
+                        "message": "Department not found.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The employee has no placement (EMPLOYEE.NOT_PLACED), it already took effect or is not the only one (EMPLOYEE.FIRST_PLACEMENT_ALREADY_EFFECTIVE: a change of department is then a transfer), something refers to it (EMPLOYEE.FIRST_PLACEMENT_IN_USE, details.usedBy: REQUEST, TRANSFER, HEAD_PERIOD or OFFBOARDING), the employee is not active (EMPLOYEE.EMPLOYEE_INACTIVE) or is leaving (EMPLOYEE.EMPLOYEE_LEAVING), or the department is retired (DEPARTMENT.INACTIVE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "EMPLOYEE.NOT_PLACED": {
+                    "summary": "The employee has no placement to correct; place them for the first time.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.NOT_PLACED",
+                        "message": "The employee has no placement to correct; place them for the first time.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "EMPLOYEE.FIRST_PLACEMENT_ALREADY_EFFECTIVE": {
+                    "summary": "Only the first placement of a person, before it takes effect, can be corrected; a change of department after that is a transfer.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.FIRST_PLACEMENT_ALREADY_EFFECTIVE",
+                        "message": "Only the first placement of a person, before it takes effect, can be corrected; a change of department after that is a transfer.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "EMPLOYEE.FIRST_PLACEMENT_IN_USE": {
+                    "summary": "Something already refers to this placement (a Request, a transfer, a period as head or a departure).",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.FIRST_PLACEMENT_IN_USE",
+                        "message": "Something already refers to this placement (a Request, a transfer, a period as head or a departure).",
+                        "details": { "usedBy": "REQUEST" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "EMPLOYEE.EMPLOYEE_INACTIVE": {
+                    "summary": "Employee must be active and not handing over.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.EMPLOYEE_INACTIVE",
+                        "message": "Employee must be active and not handing over.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "EMPLOYEE.EMPLOYEE_LEAVING": {
+                    "summary": "The employee is currently handing over and leaving the organization.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.EMPLOYEE_LEAVING",
+                        "message": "The employee is currently handing over and leaving the organization.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.INACTIVE": {
+                    "summary": "The department is no longer in use.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.INACTIVE",
+                        "message": "The department is no longer in use.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The JSON body is larger than 100 KiB; it is refused before it is read (HTTP_PAYLOAD_TOO_LARGE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_PAYLOAD_TOO_LARGE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_PAYLOAD_TOO_LARGE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "The JSON body declares a charset other than UTF, or a Content-Encoding other than gzip, deflate or br (HTTP_UNSUPPORTED_MEDIA_TYPE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_UNSUPPORTED_MEDIA_TYPE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_UNSUPPORTED_MEDIA_TYPE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid body (neither a department nor a day, or no reason), a day before today or the hire date (EMPLOYEE.DATE_INVALID), or a department that takes effect later than the day (DEPARTMENT.NOT_YET_EFFECTIVE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "EMPLOYEE.UPDATE_EMPTY": {
+                    "summary": "Name at least one official field to change.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.UPDATE_EMPTY",
+                        "message": "Name at least one official field to change.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "EMPLOYEE.DATE_INVALID": {
+                    "summary": "Effective date must be on or after today and hire date.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "EMPLOYEE.DATE_INVALID",
+                        "message": "Effective date must be on or after today and hire date.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.NOT_YET_EFFECTIVE": {
+                    "summary": "The department takes effect on 2027-01-01.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.NOT_YET_EFFECTIVE",
+                        "message": "The department takes effect on 2027-01-01.",
+                        "details": { "effectiveFrom": "2027-01-01" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Correct the first placement of an employee",
+        "tags": ["employees"]
+      }
+    },
     "/api/v1/employees": {
       "post": {
         "operationId": "employeeCreate",
@@ -3664,6 +4041,515 @@
         },
         "security": [{ "bearer": [] }],
         "summary": "Update a department profile",
+        "tags": ["departments"]
+      }
+    },
+    "/api/v1/departments/{id}/avatar": {
+      "put": {
+        "operationId": "departmentAvatarPut",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The picture (png, jpeg or webp, at most 1 MiB, judged by its first bytes) was stored and the department points at it; avatarUrl is a link that works for 15 minutes (`QĐ-113c`). The picture before it, if any, is deleted after the change.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/DepartmentResponseDto" },
+                    { "properties": { "message": { "example": "DEPARTMENT.AVATAR_CHANGED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The form is not a readable multipart form with one file (HTTP_BAD_REQUEST).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_BAD_REQUEST": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_BAD_REQUEST",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only the Super Admin changes department data. The IT Admin does not.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The department does not exist, or an IT Admin is asking about one they are not in charge of or standing in for.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.NOT_FOUND": {
+                    "summary": "Department not found.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.NOT_FOUND",
+                        "message": "Department not found.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The department is retired (DEPARTMENT.INACTIVE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.INACTIVE": {
+                    "summary": "The department is no longer in use.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.INACTIVE",
+                        "message": "The department is no longer in use.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The picture is larger than 1 MiB: DEPARTMENT.AVATAR_TOO_LARGE for one a little over it, HTTP_PAYLOAD_TOO_LARGE for any larger one, which the parser stops at once.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.AVATAR_TOO_LARGE": {
+                    "summary": "The picture is larger than 1 MiB.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_TOO_LARGE",
+                        "message": "The picture is larger than 1 MiB.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "HTTP_PAYLOAD_TOO_LARGE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_PAYLOAD_TOO_LARGE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "By its first bytes the file is not a png, jpeg or webp (DEPARTMENT.AVATAR_TYPE_UNSUPPORTED).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.AVATAR_TYPE_UNSUPPORTED": {
+                    "summary": "The picture must be a png, jpeg or webp.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_TYPE_UNSUPPORTED",
+                        "message": "The picture must be a png, jpeg or webp.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The id is not a UUID (VALIDATION_ERROR), no file was sent (DEPARTMENT.AVATAR_FILE_REQUIRED), it is empty (DEPARTMENT.AVATAR_EMPTY) or it is not the type it says it is (DEPARTMENT.AVATAR_TYPE_MISMATCH).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.AVATAR_FILE_REQUIRED": {
+                    "summary": "Send the picture as the form field \"file\".",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_FILE_REQUIRED",
+                        "message": "Send the picture as the form field \"file\".",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.AVATAR_EMPTY": {
+                    "summary": "The picture is empty.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_EMPTY",
+                        "message": "The picture is empty.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.AVATAR_TYPE_MISMATCH": {
+                    "summary": "The picture is not the type it says it is.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_TYPE_MISMATCH",
+                        "message": "The picture is not the type it says it is.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Set the picture of a department",
+        "tags": ["departments"]
+      },
+      "delete": {
+        "operationId": "departmentAvatarDelete",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "The department has no picture now; with none to begin with, nothing changed (`QĐ-113c`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/DepartmentResponseDto" },
+                    { "properties": { "message": { "example": "DEPARTMENT.AVATAR_REMOVED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only the Super Admin changes department data. The IT Admin does not.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The department does not exist, or an IT Admin is asking about one they are not in charge of or standing in for.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.NOT_FOUND": {
+                    "summary": "Department not found.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.NOT_FOUND",
+                        "message": "Department not found.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The department is retired (DEPARTMENT.INACTIVE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.INACTIVE": {
+                    "summary": "The department is no longer in use.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.INACTIVE",
+                        "message": "The department is no longer in use.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The id is not a UUID (VALIDATION_ERROR).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Remove the picture of a department",
         "tags": ["departments"]
       }
     },
@@ -100777,6 +101663,20 @@
         "required": ["success", "message", "data"],
         "additionalProperties": false
       },
+      "CorrectFirstPlacementBodyDto": {
+        "type": "object",
+        "properties": {
+          "departmentId": { "type": "string", "format": "uuid" },
+          "effectiveFrom": {
+            "type": "string",
+            "format": "date",
+            "description": "A calendar date as YYYY-MM-DD; it must exist (2026-02-30 is refused)."
+          },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+        },
+        "required": ["reason"],
+        "additionalProperties": false
+      },
       "CreateEmployeeBodyDto": {
         "type": "object",
         "properties": {
@@ -101316,6 +102216,7 @@
                       "additionalProperties": false,
                       "nullable": true
                     },
+                    "avatarUrl": { "type": "string", "nullable": true },
                     "memberCount": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
                     "warnings": {
                       "type": "array",
@@ -101339,6 +102240,7 @@
                     "costCenter",
                     "itAdmin",
                     "head",
+                    "avatarUrl",
                     "memberCount",
                     "warnings",
                     "effectiveFrom",
@@ -101440,6 +102342,7 @@
                 "additionalProperties": false,
                 "nullable": true
               },
+              "avatarUrl": { "type": "string", "nullable": true },
               "memberCount": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
               "warnings": {
                 "type": "array",
@@ -101487,6 +102390,7 @@
               "costCenter",
               "itAdmin",
               "head",
+              "avatarUrl",
               "memberCount",
               "warnings",
               "effectiveFrom",
