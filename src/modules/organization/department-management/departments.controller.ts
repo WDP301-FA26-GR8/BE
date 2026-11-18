@@ -317,7 +317,7 @@ export class DepartmentsController {
   @ApiErrorResponses(...AUTH_ERRORS, SUPER_ADMIN_ONLY, VALIDATION_ERROR, NOT_FOUND, {
     status: HttpStatus.CONFLICT,
     description:
-      'Something still keeps it in use (DEPARTMENT.IN_USE; details lists each group with its first things and its total): the people in it, the service accounts it owns, and open work (Requests not over, personnel events waiting, open tasks).',
+      'Something still keeps it in use (DEPARTMENT.IN_USE; details lists each group with its first things and its total): the people in it, the service accounts it owns, and open work (Requests not over, personnel events waiting, open tasks). Subscriptions never keep a department in use: a subscription has no owning department.',
     examples: [DEPARTMENT_ERROR_EXAMPLES.DEPARTMENT_IN_USE],
   })
   async deactivate(

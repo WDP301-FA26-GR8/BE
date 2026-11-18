@@ -43,11 +43,9 @@ export class AssignmentDepartmentRepo {
         {
           OR: [
             { owningDepartmentId: input.departmentId },
-            { kind: 'PERSONAL', owningDepartmentId: null, subscription: { ownerDepartmentId: input.departmentId } },
             {
               kind: 'PERSONAL',
               owningDepartmentId: null,
-              subscriptionId: null,
               employeeId: { in: [...input.memberIds] },
             },
           ],

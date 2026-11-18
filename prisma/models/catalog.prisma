@@ -377,7 +377,6 @@ model Subscription {
   // The subscription that prices the plan when there are several of it (Q-04): at most one per plan (a unique partial index).
   isPrimaryForPlan       Boolean            @default(false) @map("is_primary_for_plan")
   // The department that owns the purchase (QĐ-89a): nullable since gói 9 (phần cấp từ kho không được ghi phòng sở hữu).
-  ownerDepartmentId      String?            @map("owner_department_id") @db.Uuid
   // The period this one continues (QĐ-16): set once, when the outcome of a renewal is recorded; a period has at most one
   // successor (the unique index) and the link never changes (a trigger).
   renewedFromId          String?            @unique @map("renewed_from_id") @db.Uuid
@@ -386,14 +385,12 @@ model Subscription {
 
   organization        Organization                 @relation(fields: [organizationId], references: [id])
   plan                Plan                         @relation(fields: [planId], references: [id])
-  ownerDepartment     Department?                  @relation("SubscriptionOwnerDepartment", fields: [ownerDepartmentId], references: [id], onDelete: Restrict)
   responsibleItAdmin  Employee?                    @relation("SubscriptionResponsibleItAdmin", fields: [responsibleItAdminEmployeeId], references: [id], onDelete: Restrict)
   renewedFrom         Subscription?                @relation("SubscriptionRenewalChain", fields: [renewedFromId], references: [id], onDelete: Restrict)
   renewedBy           Subscription?                @relation("SubscriptionRenewalChain")
   renewalCases        SubscriptionRenewal[]        @relation("RenewalOfPeriod")
   renewalNextOf       SubscriptionRenewal?         @relation("RenewalNextPeriod")
   deadlineEvent       SubscriptionDeadlineEvent?
-  ownerAssignment     SubscriptionOwnerAssignment?
   priceCurrency       Currency?                    @relation("SubscriptionPriceCurrency", fields: [unitPriceCurrency], references: [code], onDelete: Restrict)
   originalCurrencyRecord Currency?                 @relation("SubscriptionOriginalCurrency", fields: [originalCurrency], references: [code], onDelete: Restrict)
   exchangeRate        ExchangeRate?                @relation(fields: [priceExchangeRateId], references: [id], onDelete: Restrict)
@@ -403,30 +400,8 @@ model Subscription {
   contractLink        ContractSubscription?
 
   @@index([planId])
-  @@index([ownerDepartmentId])
   @@index([responsibleItAdminEmployeeId])
   @@map("subscriptions")
-}
-
-// The durable record of the basis on which an operator gave an existing subscription its owner department (QĐ-89e,
-// `pnpm ops:assign-subscription-owner`). Added to, never changed: the final release copies the department from here
-// into `subscriptions.owner_department_id` and keeps the row as the evidence.
-model SubscriptionOwnerAssignment {
-  id             String   @id @default(uuid()) @db.Uuid
-  organizationId String   @map("organization_id") @db.Uuid
-  subscriptionId String   @unique @map("subscription_id") @db.Uuid
-  departmentId   String   @map("department_id") @db.Uuid
-  basisReference String   @map("basis_reference")
-  operatorRef    String   @map("operator_ref")
-  environment    String
-  assignedAt     DateTime @default(now()) @map("assigned_at") @db.Timestamptz(3)
-
-  organization Organization @relation(fields: [organizationId], references: [id])
-  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Restrict)
-  department   Department   @relation(fields: [departmentId], references: [id], onDelete: Restrict)
-
-  @@index([departmentId])
-  @@map("subscription_owner_assignments")
 }
 
 // What IT read in the terms of a plan (US-04-11): a link, the date of the last review and the points of the checklist, as

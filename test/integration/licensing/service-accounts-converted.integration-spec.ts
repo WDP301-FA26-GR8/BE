@@ -68,8 +68,8 @@ describe('the migration that takes service accounts out of the scope (integratio
     await h.ctx.sql.query(`UPDATE departments SET it_admin_employee_id = NULL WHERE id = $1`, [ownerWithoutItAdmin.id]);
     subscriptions = {
       seed: await h.subscription(40, 'K2'),
-      withIt: await h.subscription(40, 'K2', ownerWithItAdmin.id),
-      without: await h.subscription(40, 'K2', ownerWithoutItAdmin.id),
+      withIt: await h.subscription(40, 'K2'),
+      without: await h.subscription(40, 'K2'),
     };
     h.ctx.sql.on('notice', (notice) => notices.push(notice.message ?? ''));
   }, 240000);
@@ -95,7 +95,7 @@ describe('the migration that takes service accounts out of the scope (integratio
   };
   const tomorrow = () => inDays(1);
 
-  /** A service account as an earlier release wrote it: charged to the Unit of the department that owns its subscription. */
+  /** A service account as an earlier release wrote it: charged to the Unit of the seed department. */
   const serviceAccount = async (
     subscriptionId: string,
     responsible: string,
@@ -106,8 +106,8 @@ describe('the migration that takes service accounts out of the scope (integratio
          normalized_account_identifier, reason, cost_center_id, owning_department_id, valid_from, valid_from_basis, valid_until,
          created_by_app_user_id)
        SELECT gen_random_uuid(), s.organization_id, 'SERVICE', 'REQUEST', s.plan_id, s.id, $2, $3, lower($3), $4,
-              c.id, s.owner_department_id, $5, 'RECORDED', $6, $7
-         FROM subscriptions s JOIN cost_centers c ON c.department_id = s.owner_department_id AND c.status = 'ACTIVE' WHERE s.id = $1
+              c.id, c.department_id, $5, 'RECORDED', $6, $7
+         FROM subscriptions s JOIN cost_centers c ON c.department_id = $8::uuid AND c.status = 'ACTIVE' WHERE s.id = $1
        RETURNING id`,
       [
         subscriptionId,
@@ -117,6 +117,7 @@ describe('the migration that takes service accounts out of the scope (integratio
         extra.validFrom ?? '2026-01-05',
         extra.validUntil ?? null,
         randomUUID(),
+        h.seed.departmentId,
       ],
     );
 

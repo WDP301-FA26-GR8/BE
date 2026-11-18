@@ -51,7 +51,7 @@ describe('Finance signs or returns a purchase invoice over PostgreSQL (integrati
     await h.withApprover();
     subscriptionId = await h.subscription(20, 'K1');
     plan = await h.planOf(subscriptionId);
-    poolSubscriptionId = await takeOwnerOff(h, await h.subscription(20, 'K2', h.seed.departmentId));
+    poolSubscriptionId = await takeOwnerOff(h, await h.subscription(20, 'K2'));
     poolPlan = await h.planOf(poolSubscriptionId);
     await h.ctx.sql.query(
       `UPDATE subscriptions SET original_unit_price_minor = 1500, original_currency = 'USD' WHERE id = ANY($1::uuid[])`,
@@ -486,7 +486,7 @@ describe('Finance signs or returns a purchase invoice over PostgreSQL (integrati
   it('writes the one invoice of a subscription as a line of the subscription, with no commitment', async () => {
     const unit = await h.departmentWithHead(`P-PDS${counter++}`);
     await h.setItAdminInCharge(unit.department, { employeeId: h.it1.employeeId, account: h.it1 });
-    const owned = await h.subscription(10, 'K2', unit.department.id);
+    const owned = await h.subscription(10, 'K2');
     await h.ctx.sql.query(
       `UPDATE subscriptions SET original_unit_price_minor = 1500, original_currency = 'USD' WHERE id = $1`,
       [owned],
@@ -520,7 +520,7 @@ describe('Finance signs or returns a purchase invoice over PostgreSQL (integrati
     expect(rows.rows).toEqual([{ commitment_id: null, cost_center_id: null, subscription_id: owned }]);
   });
   it('writes the one invoice of a subscription of the shared pool as a line of the subscription too, with no department to bear it (PI-1c)', async () => {
-    const pool = await takeOwnerOff(h, await h.subscription(10, 'K2', h.seed.departmentId));
+    const pool = await takeOwnerOff(h, await h.subscription(10, 'K2'));
     await h.ctx.sql.query(
       `UPDATE subscriptions SET original_unit_price_minor = 1500, original_currency = 'USD' WHERE id = $1`,
       [pool],

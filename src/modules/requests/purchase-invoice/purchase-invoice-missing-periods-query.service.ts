@@ -82,7 +82,7 @@ export class PurchaseInvoiceMissingPeriodsQueryService {
     const today = await this.organizationReads.businessToday();
     const departmentIds = scope.kind === 'ALL' ? null : scope.departmentIds;
     const running = await this.runningGrants(departmentIds, today, organization.timeZone);
-    const schedules = await this.subscriptions.listPaymentSchedules(departmentIds);
+    const schedules = await this.subscriptions.listPaymentSchedules();
     const months = await this.invoices.openServiceMonths({
       requestIds: running.map((grant) => grant.id),
       subscriptionIds: schedules.map((schedule) => schedule.subscriptionId),
@@ -182,7 +182,7 @@ export class PurchaseInvoiceMissingPeriodsQueryService {
       .map((period) => ({
         link: { kind: 'SUBSCRIPTION', subscriptionId: schedule.subscriptionId },
         planId: schedule.planId,
-        departmentId: schedule.ownerDepartmentId,
+        departmentId: null,
         label: 'RENEWAL',
         periodIndex: null,
         periodCount: null,

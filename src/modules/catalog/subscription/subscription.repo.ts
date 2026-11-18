@@ -39,7 +39,6 @@ export type PaidTermRow = Prisma.SubscriptionGetPayload<{
   select: {
     id: true;
     planId: true;
-    ownerDepartmentId: true;
     billingCycle: true;
     startDate: true;
     endDate: true;
@@ -98,7 +97,6 @@ function toRecord(row: Row): SubscriptionRecord {
     planPricingModel: row.plan.pricingModel,
     planProvisioningType: row.plan.provisioningType,
     planHasAdminConsole: row.plan.hasAdminConsole,
-    ownerDepartmentId: row.ownerDepartmentId, // Gói 9: nullable kho chung
     applicationId: application.id,
     applicationName: application.name,
     applicationLogoUrl: application.logoUrl,
@@ -166,12 +164,11 @@ export class SubscriptionRepo {
   constructor(private readonly prisma: PrismaService) {}
 
   async insert(tx: DbTx, input: NewSubscription): Promise<SubscriptionRecord> {
-    const { organizationId, planId, ownerDepartmentId, kind, renewedFromId, ...state } = input;
+    const { organizationId, planId, kind, renewedFromId, ...state } = input;
     const row = await tx.subscription.create({
       data: {
         organizationId,
         planId,
-        ownerDepartmentId,
         kind,
         renewedFromId: renewedFromId ?? null,
         ...columnsOf(state),
@@ -458,17 +455,6 @@ export class SubscriptionRepo {
     }));
   }
 
-  /** The ids of every subscription and purchase a department owns, by id. */
-  async idsOwnedBy(departmentId: string, tx?: DbTx): Promise<string[]> {
-    const rows = await (tx ?? this.prisma).subscription.findMany({
-      where: { ownerDepartmentId: departmentId },
-      select: { id: true },
-      orderBy: { id: 'asc' },
-    });
-
-    return rows.map((row) => row.id);
-  }
-
   /**
    * A short label for each of these subscriptions, by id: the application and the plan, never a price or a person; "application / plan" unless
    * `label` words them (the notification text uses `applicationPlanName`). An id that does not exist is absent.
@@ -500,24 +486,19 @@ export class SubscriptionRepo {
   }
 
   /**
-   * The subscriptions that run a period and are paid by a cycle from a start day, whose payment days an invoice follows (`PI-2`): those of the
-   * `departmentIds` and of the shared pool, which no department owns and every IT Admin submits the invoice of (`PI-1c`); every one when
-   * `departmentIds` is null. An empty list is the pool alone. Only the columns the payment days are worked out from, one statement, by id.
+   * The subscriptions that run a period and are paid by a cycle from a start day, whose payment days an invoice follows (`PI-2`), of any IT Admin to submit (`PI-1c`). Only the columns the payment days are worked out from, one
+   * statement, by id.
    */
-  async listPaidTerms(departmentIds: readonly string[] | null, tx?: DbTx): Promise<PaidTermRow[]> {
+  async listPaidTerms(tx?: DbTx): Promise<PaidTermRow[]> {
     return (tx ?? this.prisma).subscription.findMany({
       where: {
         ...RUNS_A_PERIOD,
         startDate: { not: null },
         billingCycle: { in: ['MONTHLY', 'QUARTERLY', 'ANNUAL'] },
-        ...(departmentIds === null
-          ? {}
-          : { OR: [{ ownerDepartmentId: null }, { ownerDepartmentId: { in: [...departmentIds] } }] }),
       },
       select: {
         id: true,
         planId: true,
-        ownerDepartmentId: true,
         billingCycle: true,
         startDate: true,
         endDate: true,

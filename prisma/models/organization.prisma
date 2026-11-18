@@ -65,7 +65,6 @@ model Organization {
   plans                              Plan[]
   vendorTaxProfiles                  VendorTaxProfile[]
   subscriptions                      Subscription[]
-  subscriptionOwnerAssignments       SubscriptionOwnerAssignment[]
   costCenterDepartmentLinks          CostCenterDepartmentLink[]
   costCenterDirectionActivation      CostCenterDirectionActivation?
   seatBaselineImports                SeatBaselineImport[]
@@ -186,8 +185,6 @@ model Department {
   noticesTargeting        PersonnelNotice[]             @relation("NoticeTargetDepartment")
   noticesSent             PersonnelNotice[]             @relation("NoticeSenderDepartment")
   // The subscriptions the department owns (QĐ-89a) and the assignments that gave existing ones their owner.
-  ownedSubscriptions      Subscription[]                @relation("SubscriptionOwnerDepartment")
-  ownerAssignments        SubscriptionOwnerAssignment[]
   heldNotifications       HeldDepartmentNotification[]
 
   @@unique([organizationId, code])

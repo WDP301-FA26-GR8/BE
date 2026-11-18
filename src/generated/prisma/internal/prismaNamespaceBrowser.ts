@@ -86,7 +86,6 @@ export const ModelName = {
   PlanWorkspaceProfile: 'PlanWorkspaceProfile',
   PlanWorkspaceAdmin: 'PlanWorkspaceAdmin',
   Subscription: 'Subscription',
-  SubscriptionOwnerAssignment: 'SubscriptionOwnerAssignment',
   PlanTerms: 'PlanTerms',
   PlanTermOpinion: 'PlanTermOpinion',
   ApplicationBusinessOwner: 'ApplicationBusinessOwner',
@@ -944,27 +943,12 @@ export const SubscriptionScalarFieldEnum = {
   responsibleItAdminEmployeeId: 'responsibleItAdminEmployeeId',
   vendorMinimumSeats: 'vendorMinimumSeats',
   isPrimaryForPlan: 'isPrimaryForPlan',
-  ownerDepartmentId: 'ownerDepartmentId',
   renewedFromId: 'renewedFromId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
-
-
-export const SubscriptionOwnerAssignmentScalarFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  subscriptionId: 'subscriptionId',
-  departmentId: 'departmentId',
-  basisReference: 'basisReference',
-  operatorRef: 'operatorRef',
-  environment: 'environment',
-  assignedAt: 'assignedAt'
-} as const
-
-export type SubscriptionOwnerAssignmentScalarFieldEnum = (typeof SubscriptionOwnerAssignmentScalarFieldEnum)[keyof typeof SubscriptionOwnerAssignmentScalarFieldEnum]
 
 
 export const PlanTermsScalarFieldEnum = {

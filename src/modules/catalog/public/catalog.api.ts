@@ -309,11 +309,6 @@ export class CatalogApi {
     return this.subscriptions.responsibleItAdminOf(subscriptionId, tx);
   }
 
-  /** The ids of every subscription and purchase a department owns, by id: for a module that finds what belongs to the department through them. */
-  getSubscriptionIdsOwnedBy(departmentId: string, tx?: DbTx): Promise<string[]> {
-    return this.subscriptions.idsOwnedBy(departmentId, tx);
-  }
-
   /** The vendor of the application of the plan, null for internal software: whose tax profile estimates its price. */
   getPlanVendorId(planId: string, tx?: DbTx): Promise<string | null> {
     return this.plans.vendorIdOf(planId, tx);

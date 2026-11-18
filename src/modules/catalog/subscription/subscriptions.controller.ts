@@ -142,7 +142,7 @@ export class SubscriptionsController {
   @ApiSuccessResponse(SubscriptionPageResponseDto, {
     message: 'SUBSCRIPTION.LISTED',
     description:
-      'A page of subscriptions by application, plan and creation, optionally filtered; warning=NO_ALERT_ANCHOR lists those with no date to alert from, mine=true those the caller answers for, expiry=SOON or EXPIRED those from the point of adjustment to the last day of their period, or past it (a plan by the month opens 7 days before its next payment day, a plan by the year 30 days before the deadline to cancel; a purchase made once never). Each row says the days left to the deadline, the seats of a shared pool (K2), who answers for it and the logo of the application. Who administers the plan at the vendor (vendorAdmins), the email of the company account that owns it there (ownerAccountEmail) and the note (adminNote) are for the IT Admin: Finance reads them empty, with the two flags.',
+      'A page of subscriptions by application, plan and creation, optionally filtered (planId finds the subscription to grant a seat from or to edit, as a plan has one subscription; a subscription has no owning department); warning=NO_ALERT_ANCHOR lists those with no date to alert from, mine=true those the caller answers for, expiry=SOON or EXPIRED those from the point of adjustment to the last day of their period, or past it (a plan by the month opens 7 days before its next payment day, a plan by the year 30 days before the deadline to cancel; a purchase made once never). Each row says the days left to the deadline, the seats of a shared pool (K2), who answers for it and the logo of the application. Who administers the plan at the vendor (vendorAdmins), the email of the company account that owns it there (ownerAccountEmail) and the note (adminNote) are for the IT Admin: Finance reads them empty, with the two flags.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, READERS, {
     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -167,7 +167,7 @@ export class SubscriptionsController {
     status: HttpStatus.CREATED,
     message: 'SUBSCRIPTION.CREATED',
     description:
-      'The subscription is stored: a draft while its data is incomplete, with what is missing; the unit price is in dong, and the price in the currency of the vendor is kept beside it when given.',
+      'The subscription is stored: it has no owning department and a plan has one subscription; a K1 subscription is the shared record of the personal purchases of the plan, and each grant adds one seat to it. It is a draft while its data is incomplete, with what is missing; the unit price is in dong, and the price in the currency of the vendor is kept beside it when given.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, IT_ONLY, INVALID, DUPLICATE_PLAN_CONFLICT)
   async declare(@CurrentPrincipal() actor: AuthenticatedPrincipal, @Body() body: DeclareSubscriptionBodyDto) {
@@ -205,7 +205,7 @@ export class SubscriptionsController {
   @ApiSuccessResponse(SubscriptionResponseDto, {
     message: 'SUBSCRIPTION.UPDATED',
     description:
-      'The subscription as it is after the change; a new unit price is in dong and nothing is converted; a change of nothing is answered the same and not audited. The plan, the kind and the owner department cannot change.',
+      'The subscription as it is after the change; a new unit price is in dong and nothing is converted; a change of nothing is answered the same and not audited. The plan and the kind cannot change.',
   })
   @ApiErrorResponses(...AUTH_ERRORS, IT_ONLY, INVALID_UPDATE, NOT_FOUND, UPDATE_CONFLICT)
   async update(

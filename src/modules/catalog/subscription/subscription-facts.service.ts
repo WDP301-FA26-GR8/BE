@@ -129,11 +129,6 @@ export class SubscriptionFactsService {
     return (await this.subscriptions.find(subscriptionId, tx))?.responsibleItAdminEmployeeId ?? null;
   }
 
-  /** The ids of every subscription and purchase a department owns, by id (what a rule about the department's work reads). */
-  idsOwnedBy(departmentId: string, tx?: DbTx): Promise<string[]> {
-    return this.subscriptions.idsOwnedBy(departmentId, tx);
-  }
-
   /** The subscriptions and perpetual purchases of these plans, oldest first. */
   termsOfPlans(
     planIds: readonly string[],

@@ -432,7 +432,6 @@ export const ModelName = {
   PlanWorkspaceProfile: 'PlanWorkspaceProfile',
   PlanWorkspaceAdmin: 'PlanWorkspaceAdmin',
   Subscription: 'Subscription',
-  SubscriptionOwnerAssignment: 'SubscriptionOwnerAssignment',
   PlanTerms: 'PlanTerms',
   PlanTermOpinion: 'PlanTermOpinion',
   ApplicationBusinessOwner: 'ApplicationBusinessOwner',
@@ -588,7 +587,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aiInvocation" | "aiInvocationResult" | "aiHistoryDelivery" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "budgetCycle" | "budgetDepartmentCeiling" | "seatMonthCharge" | "seatMonthRun" | "budgetReviewPeriod" | "budgetReviewLine" | "budgetCommitmentSeatMonthReversal" | "budgetAdjustment" | "budgetThresholdAlert" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planUsageRate" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "subscriptionOwnerAssignment" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "contractSubscription" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "avatarPurge" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "assignmentRenewalWindow" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "poolGrantAvoidedCost" | "departmentSoftwareEntry" | "departmentSoftwareProposal" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "ghostSeatRuleRun" | "ghostSeatRuleSkip" | "ghostSeatRecommendation" | "ghostSeatDecision" | "ghostSeatReturn" | "ghostSeatExemption" | "ghostSeatApplicationThreshold" | "ghostSeatSeatState" | "ghostSeatEscalation" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "itAdminHandover" | "policy" | "policyVersion" | "policyAcknowledgement" | "decisionChecklist" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "requestReserveConfirmation" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "yearStartCommitmentRun" | "purchaseInvoice" | "purchaseInvoiceDocument" | "invoiceDiscrepancyCase" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection" | "usageSource" | "usageImport" | "usageImportRow" | "usageActivityDay" | "usageIdentityMapping" | "usageUnmatchedIdentity" | "usageNoAssignmentFinding" | "vendorAccountDiscrepancy" | "outOfProcessCase"
+    modelProps: "aiInvocation" | "aiInvocationResult" | "aiHistoryDelivery" | "auditEvent" | "budgetProposal" | "budgetProposalLine" | "budgetVersion" | "budgetVersionLine" | "budgetVersionLineChange" | "budgetVersionDecision" | "budgetCommitment" | "budgetCommitmentRelease" | "invoice" | "budgetVersionHistoryEntry" | "budgetAttachment" | "budgetCycle" | "budgetDepartmentCeiling" | "seatMonthCharge" | "seatMonthRun" | "budgetReviewPeriod" | "budgetReviewLine" | "budgetCommitmentSeatMonthReversal" | "budgetAdjustment" | "budgetThresholdAlert" | "vendorGroup" | "vendorServiceLine" | "vendorDictionaryProposal" | "vendor" | "functionalGroup" | "application" | "plan" | "planUsageRate" | "planWorkspaceProfile" | "planWorkspaceAdmin" | "subscription" | "planTerms" | "planTermOpinion" | "applicationBusinessOwner" | "applicationRetirementConfirmation" | "contract" | "contractSubscription" | "documentAttachment" | "employeeImport" | "employeeImportRow" | "seatBaselineImport" | "seatBaselineImportRow" | "managedDevice" | "deviceRegistration" | "monitoringNoticeVersion" | "deviceSignatureRecord" | "deviceAcknowledgement" | "deviceStopRequest" | "deviceEnrollmentCode" | "deviceEnrollmentUse" | "deviceCredential" | "currency" | "exchangeRate" | "vendorTaxProfile" | "vendorTaxProfileVersion" | "vendorTaxProfileLine" | "appUser" | "passwordCredential" | "roleGrant" | "authSession" | "refreshToken" | "loginThrottle" | "accountActionToken" | "recoveryTicket" | "employeeAccessBlock" | "avatarPurge" | "licenseAssignment" | "seatBaselineState" | "provisioningTask" | "provisioningTaskReason" | "licenseKeyRevealWindow" | "licenseKey" | "handoverDuty" | "serviceAccountDutyNotice" | "assignmentExpiryReminder" | "assignmentRenewalWindow" | "saasIssue" | "saasIssueEntry" | "saasIssueCounter" | "subscriptionRenewal" | "subscriptionRenewalReleasedSeat" | "subscriptionDeadlineEvent" | "poolGrantAvoidedCost" | "departmentSoftwareEntry" | "departmentSoftwareProposal" | "emailOutbox" | "inAppNotification" | "heldDepartmentNotification" | "parameterValue" | "nonWorkingDate" | "ghostSeatRuleRun" | "ghostSeatRuleSkip" | "ghostSeatRecommendation" | "ghostSeatDecision" | "ghostSeatReturn" | "ghostSeatExemption" | "ghostSeatApplicationThreshold" | "ghostSeatSeatState" | "ghostSeatEscalation" | "organization" | "costCenter" | "department" | "departmentHeadPeriod" | "costCenterDepartmentLink" | "costCenterDirectionActivation" | "employee" | "employeePlacement" | "organizationChangeAnnouncement" | "departmentTransfer" | "departmentTransferChange" | "transferReview" | "transferReviewItem" | "employeeLeave" | "employeeLeaveChange" | "offboardingCase" | "offboardingCaseChange" | "personnelNotice" | "personnelNoticeVerification" | "superAdminEventTicket" | "personnelNoticeCounter" | "itAdminHandover" | "policy" | "policyVersion" | "policyAcknowledgement" | "decisionChecklist" | "accessRequest" | "accessRequestBeneficiary" | "accessRequestLine" | "accessRequestLineDecision" | "accessRequestLineAmount" | "accessRequestStep" | "approvalRecord" | "accessRequestProposal" | "accessRequestAssessment" | "requestBudgetCheck" | "requestBudgetCheckYear" | "requestFinanceReview" | "spendBatch" | "spendBatchItem" | "requestSupplement" | "requestSupplementDrop" | "spendDecision" | "requestReserveConfirmation" | "budgetInformationRequest" | "controlledWaitAlert" | "accessRequestServiceAccount" | "returnRequest" | "accessRequestRenewal" | "requestStatusCursor" | "stepSlaReminder" | "stepSlaReminderRecipient" | "congestionIncident" | "yearStartCommitmentRun" | "purchaseInvoice" | "purchaseInvoiceDocument" | "invoiceDiscrepancyCase" | "collectorAllowlistVersion" | "collectorAllowlistEntry" | "aiUsageDay" | "toolStatusSnapshot" | "toolStatusWindow" | "intakeRejection" | "usageSource" | "usageImport" | "usageImportRow" | "usageActivityDay" | "usageIdentityMapping" | "usageUnmatchedIdentity" | "usageNoAssignmentFinding" | "vendorAccountDiscrepancy" | "outOfProcessCase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3179,80 +3178,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SubscriptionCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SubscriptionCountAggregateOutputType> | number
-        }
-      }
-    }
-    SubscriptionOwnerAssignment: {
-      payload: Prisma.$SubscriptionOwnerAssignmentPayload<ExtArgs>
-      fields: Prisma.SubscriptionOwnerAssignmentFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.SubscriptionOwnerAssignmentFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.SubscriptionOwnerAssignmentFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>
-        }
-        findFirst: {
-          args: Prisma.SubscriptionOwnerAssignmentFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.SubscriptionOwnerAssignmentFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>
-        }
-        findMany: {
-          args: Prisma.SubscriptionOwnerAssignmentFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>[]
-        }
-        create: {
-          args: Prisma.SubscriptionOwnerAssignmentCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>
-        }
-        createMany: {
-          args: Prisma.SubscriptionOwnerAssignmentCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.SubscriptionOwnerAssignmentCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>[]
-        }
-        delete: {
-          args: Prisma.SubscriptionOwnerAssignmentDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>
-        }
-        update: {
-          args: Prisma.SubscriptionOwnerAssignmentUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>
-        }
-        deleteMany: {
-          args: Prisma.SubscriptionOwnerAssignmentDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.SubscriptionOwnerAssignmentUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.SubscriptionOwnerAssignmentUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>[]
-        }
-        upsert: {
-          args: Prisma.SubscriptionOwnerAssignmentUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionOwnerAssignmentPayload>
-        }
-        aggregate: {
-          args: Prisma.SubscriptionOwnerAssignmentAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSubscriptionOwnerAssignment>
-        }
-        groupBy: {
-          args: Prisma.SubscriptionOwnerAssignmentGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SubscriptionOwnerAssignmentGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.SubscriptionOwnerAssignmentCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SubscriptionOwnerAssignmentCountAggregateOutputType> | number
         }
       }
     }
@@ -14354,27 +14279,12 @@ export const SubscriptionScalarFieldEnum = {
   responsibleItAdminEmployeeId: 'responsibleItAdminEmployeeId',
   vendorMinimumSeats: 'vendorMinimumSeats',
   isPrimaryForPlan: 'isPrimaryForPlan',
-  ownerDepartmentId: 'ownerDepartmentId',
   renewedFromId: 'renewedFromId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
-
-
-export const SubscriptionOwnerAssignmentScalarFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  subscriptionId: 'subscriptionId',
-  departmentId: 'departmentId',
-  basisReference: 'basisReference',
-  operatorRef: 'operatorRef',
-  environment: 'environment',
-  assignedAt: 'assignedAt'
-} as const
-
-export type SubscriptionOwnerAssignmentScalarFieldEnum = (typeof SubscriptionOwnerAssignmentScalarFieldEnum)[keyof typeof SubscriptionOwnerAssignmentScalarFieldEnum]
 
 
 export const PlanTermsScalarFieldEnum = {
@@ -19843,7 +19753,6 @@ export type GlobalOmitConfig = {
   planWorkspaceProfile?: Prisma.PlanWorkspaceProfileOmit
   planWorkspaceAdmin?: Prisma.PlanWorkspaceAdminOmit
   subscription?: Prisma.SubscriptionOmit
-  subscriptionOwnerAssignment?: Prisma.SubscriptionOwnerAssignmentOmit
   planTerms?: Prisma.PlanTermsOmit
   planTermOpinion?: Prisma.PlanTermOpinionOmit
   applicationBusinessOwner?: Prisma.ApplicationBusinessOwnerOmit

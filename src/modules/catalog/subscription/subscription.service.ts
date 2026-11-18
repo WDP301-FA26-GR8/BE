@@ -37,8 +37,6 @@ import type {
 
 export interface DeclareSubscriptionInput {
   planId: string;
-  /** Ignored: a subscription has no owning department (`QĐ-113g`); the cost follows the person who holds the right. Kept so older callers still pass. */
-  ownerDepartmentId?: string;
   kind: SubscriptionKind;
   purchasedQuantity?: number;
   /** The unit price in dong (`QĐ-111an`); another currency is refused with SubscriptionPriceNotVndError. */
@@ -212,7 +210,6 @@ export class SubscriptionService {
     const created = await this.subscriptions.insert(tx, {
       organizationId,
       planId: plan.id,
-      ownerDepartmentId: null,
       kind: input.kind,
       ...state,
       ...priced,
