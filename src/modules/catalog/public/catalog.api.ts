@@ -153,6 +153,20 @@ export class CatalogApi {
     return this.subscriptions.priceOfPlan(planId, tx, on);
   }
 
+  /**
+   * A plan the IT Admin linked to a case B request takes the monthly price of the approved quote as its reference price when it has none (`QĐ-113a`):
+   * only a K1 or K2 plan, never over a price already entered, in dong only. In the transaction of the caller, audited as a change of the plan by `actor`.
+   * Returns whether the price was set.
+   */
+  adoptPlanQuotePrice(
+    actor: AuthenticatedPrincipal,
+    planId: string,
+    price: { amountMinor: bigint; currency: string },
+    tx: DbTx,
+  ): Promise<boolean> {
+    return this.plans.adoptQuotePrice(actor, planId, price, tx);
+  }
+
   /** The subscriptions of the plan a seat can be taken from today: the shared pool of the plan (`QĐ-103d`); a next period recorded ahead of its start is not one while the period it continues is (its seats are carried from it). */
   getGrantableSubscriptions(planId: string, today: BusinessDate, tx?: DbTx): Promise<PoolSubscription[]> {
     return this.subscriptions.grantableOfPlan(planId, today, tx);

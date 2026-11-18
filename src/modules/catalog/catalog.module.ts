@@ -51,6 +51,7 @@ import { VendorAdminMinimumService } from './plan/vendor-admin-minimum.service';
 import { VendorAdminRolesService } from './plan/vendor-admin-roles.service';
 import { PlanRepo } from './plan/plan.repo';
 import { PlanService } from './plan/plan.service';
+import { PlanQuotePriceService } from './plan/plan-quote-price.service';
 import { PlansController } from './plan/plans.controller';
 import { PlanTermsController } from './plan-terms/plan-terms.controller';
 import { PlanTermsRepo } from './plan-terms/plan-terms.repo';
@@ -154,6 +155,7 @@ import { VendorRepo } from './vendor/vendor.repo';
     ApplicationRepo,
     ApplicationFactsService,
     PlanService,
+    PlanQuotePriceService,
     PlanWorkspaceService,
     VendorAdminRolesService,
     VendorAdminMinimumService,

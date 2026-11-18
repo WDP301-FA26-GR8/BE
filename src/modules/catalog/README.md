@@ -27,6 +27,11 @@ personnel, onboarding, data-import (chỉ type), installation (`CatalogBootstrap
 unitPrice, reportingUnitPrice, billingCycle }`, thuê bao `PERPETUAL` có giá ⟹ `ONE_TIME` (khóa `K4`). Kỳ đã có kỳ kế tiếp vẫn định giá khi kỳ kế
     tiếp còn `DRAFT` (F-012). `getPlanPrice(planId, tx, on)` — giá hiệu lực ngày `on`: ưu tiên kỳ thuê bao chạy ngày đó (đã bắt
     đầu, chưa kết thúc, chưa có kỳ kế tiếp bắt đầu trước/đúng ngày đó); không kỳ nào chạy ngày đó thì như không có `on` (khoản 01/01, `BR-MF1-09e`).
+    **Giá tham chiếu của gói (`QĐ-113a`)**: không thuê bao nào định giá được gói thì dùng `plans.reference_price_minor/_currency` (VND chưa thuế; `K1`/`K2` = giá một
+    seat một tháng ⟹ `RECURRING` + `MONTHLY`, `K4` = giá một khóa ⟹ `ONE_TIME`; `K5` không có); kết quả thêm `source: SUBSCRIPTION | PLAN_REFERENCE`. Thiếu cả hai ⟹ `null`
+    như cũ (`NO_PRICED_SUBSCRIPTION`). Giá tham chiếu **không** dùng cho chi phí theo seat, điểm điều chỉnh, đối chiếu hóa đơn. `CatalogPricingApi.getPlanPrice` (facade worker,
+    `catalog-pricing-facade.module.ts`) đi cùng đường `SubscriptionPriceService.priceOfPlan`. `adoptPlanQuotePrice(actor, planId, price, tx)` — case B: báo giá đã duyệt (quy về
+    giá tháng, làm tròn lên tới đồng) thành giá tham chiếu của gói `K1`/`K2` chưa có giá khi IT gắn Request vào gói; không ghi đè, không chép cho `K4`.
   - `getGrantableSubscriptions(planId, today, tx?)` / `getGrantableSubscriptionsOfPlans` (nhiều plan, một lần đọc) — thuê bao `ACTIVE` còn hiệu lực hôm
     nay, chưa bị kỳ kế tiếp `ACTIVE` đã bắt đầu thay (kỳ đang chạy và kỳ kế tiếp ghi trước ngày bắt đầu cùng là kho; bản `DRAFT` không cấp được), thứ tự:
     thuê bao chính trước, rồi giá tháng quy đổi cao nhất (`orderBySourcePreference`); `getSubscriptionPrice` (kèm giá quy đổi; `PERPETUAL` ⟹ `ONE_TIME`).
@@ -104,10 +109,13 @@ file thuần xuống tầng thấp, hoặc đưa dịch vụ điều phối lên
   `a01-employee-catalog-selector`): `GET /requestable-applications[/{id}]`, `GET /requestable-plans[/{id}]`, mọi người đăng
   nhập; projection riêng, không dùng DTO quản trị. Ẩn ứng dụng retired/không có gói/loại ngoài baseline; mỗi dòng nêu
   `canSubmit` (cổng Cost Center như preview) và trạng thái giá (`SubscriptionFactsService.pricedCyclesOfPlans`, không lộ số
-  tiền). `RequestableSoftwareService`, `requestable-software.policy.ts`, repo chỉ `select` trường được phép.
+  tiền); gói không có thuê bao có giá nhưng có giá tham chiếu (`QĐ-113a`) vẫn tính là "định giá được" (`referenceCycleOf`: `K1`/`K2` theo tháng, `K4` một lần). `RequestableSoftwareService`, `requestable-software.policy.ts`, repo chỉ `select` trường được phép.
 - `functional-group/` — nhóm chức năng (BR-06.9); `functional-groups.controller.ts`; `FunctionalGroupService`.
 - `plan/` — plan của ứng dụng, workspace profile K2 (US-04-02); `plans.controller.ts`; `PlanService`,
   `PlanWorkspaceService`.
+  Giá tham chiếu (`QĐ-113a`): `referencePrice { amount, currency }` không bắt buộc ở `POST/PATCH /plans` và gói đầu của `POST /applications` (`null` xóa khi sửa); chỉ `K1`/`K2`/`K4`,
+  chỉ VND (`PLAN.REFERENCE_PRICE_NOT_VND`, `PLAN.REFERENCE_PRICE_NOT_APPLICABLE`); CHECK ở bảng (`plans_reference_price_whole/_valid`). Đổi kiểu sang `K5` hoặc giữa
+  `K1`/`K2` và `K4` ⟹ xóa giá (nhập lại; audit `PLAN.UPDATED` giữ giá cũ); `K1`↔`K2` giữ. Requestable-software không lộ số (chỉ trạng thái giá).
 - `plan-terms/` — điều khoản, cảnh báo review (US-04-11; ý kiến Business Owner đã gỡ, `QĐ-111g`); `plan-terms.controller.ts`;
   `PlanTermsService`.
 - `subscription/` — subscription và mua đứt (US-04-03, US-04-05), đích ghế, giá; `subscriptions.controller.ts`;

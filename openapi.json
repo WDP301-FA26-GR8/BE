@@ -21064,7 +21064,7 @@
             }
           },
           "422": {
-            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: PLAN.APPLICATION_NOT_FOUND, APPLICATION_RETIRED, NAME_INVALID, NOTE_INVALID, PROVISIONING_TYPE_NOT_SUPPORTED, PROVISIONING_TYPE_MISMATCH, PRICING_MODEL_REQUIRED, PRICING_MODEL_NOT_APPLICABLE, PRICING_MODEL_NOT_DERIVED (the pricing model follows the kind of provisioning: leave it out or send the implied one; details.expected), CONTROL_LEVEL_REQUIRED, DATA_LOSS_NOTE_REQUIRED, ADMIN_CONSOLE_NOT_APPLICABLE (the flag hasAdminConsole belongs to a K4 plan alone) or UPDATE_EMPTY.",
+            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: PLAN.APPLICATION_NOT_FOUND, APPLICATION_RETIRED, NAME_INVALID, NOTE_INVALID, PROVISIONING_TYPE_NOT_SUPPORTED, PROVISIONING_TYPE_MISMATCH, PRICING_MODEL_REQUIRED, PRICING_MODEL_NOT_APPLICABLE, PRICING_MODEL_NOT_DERIVED (the pricing model follows the kind of provisioning: leave it out or send the implied one; details.expected), CONTROL_LEVEL_REQUIRED, DATA_LOSS_NOTE_REQUIRED, ADMIN_CONSOLE_NOT_APPLICABLE (the flag hasAdminConsole belongs to a K4 plan alone), REFERENCE_PRICE_NOT_VND (the reference price is in dong), REFERENCE_PRICE_NOT_APPLICABLE (only a K1, K2 or K4 plan has one), MONEY_SCALE_EXCEEDED or MONEY_OUT_OF_RANGE (a negative or too large amount) or UPDATE_EMPTY.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -21210,6 +21210,29 @@
                       "error": {
                         "code": "PLAN.ADMIN_CONSOLE_NOT_APPLICABLE",
                         "message": "Only a K4 plan says whether it has an admin console.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "PLAN.REFERENCE_PRICE_NOT_VND": {
+                    "summary": "The reference price of a plan is entered in dong (VND).",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "PLAN.REFERENCE_PRICE_NOT_VND",
+                        "message": "The reference price of a plan is entered in dong (VND).",
+                        "details": { "currency": "USD" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "PLAN.REFERENCE_PRICE_NOT_APPLICABLE": {
+                    "summary": "Only a K1, K2 or K4 plan has a reference price.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "PLAN.REFERENCE_PRICE_NOT_APPLICABLE",
+                        "message": "Only a K1, K2 or K4 plan has a reference price.",
                         "requestId": "req_example"
                       }
                     }
@@ -21668,7 +21691,7 @@
             }
           },
           "422": {
-            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: PLAN.APPLICATION_NOT_FOUND, APPLICATION_RETIRED, NAME_INVALID, NOTE_INVALID, PROVISIONING_TYPE_NOT_SUPPORTED, PROVISIONING_TYPE_MISMATCH, PRICING_MODEL_REQUIRED, PRICING_MODEL_NOT_APPLICABLE, PRICING_MODEL_NOT_DERIVED (the pricing model follows the kind of provisioning: leave it out or send the implied one; details.expected), CONTROL_LEVEL_REQUIRED, DATA_LOSS_NOTE_REQUIRED, ADMIN_CONSOLE_NOT_APPLICABLE (the flag hasAdminConsole belongs to a K4 plan alone) or UPDATE_EMPTY.",
+            "description": "The request is invalid (VALIDATION_ERROR) or a rule refuses it: PLAN.APPLICATION_NOT_FOUND, APPLICATION_RETIRED, NAME_INVALID, NOTE_INVALID, PROVISIONING_TYPE_NOT_SUPPORTED, PROVISIONING_TYPE_MISMATCH, PRICING_MODEL_REQUIRED, PRICING_MODEL_NOT_APPLICABLE, PRICING_MODEL_NOT_DERIVED (the pricing model follows the kind of provisioning: leave it out or send the implied one; details.expected), CONTROL_LEVEL_REQUIRED, DATA_LOSS_NOTE_REQUIRED, ADMIN_CONSOLE_NOT_APPLICABLE (the flag hasAdminConsole belongs to a K4 plan alone), REFERENCE_PRICE_NOT_VND (the reference price is in dong), REFERENCE_PRICE_NOT_APPLICABLE (only a K1, K2 or K4 plan has one), MONEY_SCALE_EXCEEDED or MONEY_OUT_OF_RANGE (a negative or too large amount) or UPDATE_EMPTY.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
@@ -21792,6 +21815,29 @@
                       "error": {
                         "code": "PLAN.ADMIN_CONSOLE_NOT_APPLICABLE",
                         "message": "Only a K4 plan says whether it has an admin console.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "PLAN.REFERENCE_PRICE_NOT_VND": {
+                    "summary": "The reference price of a plan is entered in dong (VND).",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "PLAN.REFERENCE_PRICE_NOT_VND",
+                        "message": "The reference price of a plan is entered in dong (VND).",
+                        "details": { "currency": "USD" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "PLAN.REFERENCE_PRICE_NOT_APPLICABLE": {
+                    "summary": "Only a K1, K2 or K4 plan has a reference price.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "PLAN.REFERENCE_PRICE_NOT_APPLICABLE",
+                        "message": "Only a K1, K2 or K4 plan has a reference price.",
                         "requestId": "req_example"
                       }
                     }
@@ -44331,7 +44377,7 @@
         },
         "responses": {
           "200": {
-            "description": "The requester withdraws the request while it waits or while the grant has not been carried out; the head of the department does too, with a reason, only while the budget or the data stopped the request or it waits for the head to confirm the reserve. The open steps close, the request leaves the batch it was sent in, what was held for it goes back to the budget and a task nobody has worked is cancelled with its assignment (never failed). When the grant had failed the request waits (AWAITING_IT_CLOSE) until the IT Admin cancels the task, and it then ends as withdrawn.",
+            "description": "The requester withdraws the request only before any decision was taken on it (QĐ-113d): while it waits for the head at the need step or stands waiting for a head, while it is sent back to add what is missing, or, when no head decides the need, until the first who decides (the spending approver, the IT Admin) has decided; a direct grant until its task is begun. After that the way back is a return once granted. The head of the department does too, with a reason, only while the budget or the data stopped the request or it waits for the head to confirm the reserve. The open steps close, the request leaves the batch it was sent in, what was held for it goes back to the budget and a task nobody has worked is cancelled with its assignment (never failed). When the grant had failed the request waits (AWAITING_IT_CLOSE) until the IT Admin cancels the task, and it then ends as withdrawn.",
             "content": {
               "application/json": {
                 "schema": {
@@ -44439,11 +44485,23 @@
             }
           },
           "409": {
-            "description": "Nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked: ask again when it has a result (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
+            "description": "A decision was already taken (ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION, details.state), nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked: ask again when it has a result (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
+                  "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION": {
+                    "summary": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION",
+                        "message": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                        "details": { "state": "AWAITING_SPEND_DECISION" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
                   "ACCESS_REQUEST.ALREADY_ENDED": {
                     "summary": "The request cannot be withdrawn: ALREADY_ENDED.",
                     "value": {
@@ -44623,7 +44681,7 @@
           }
         },
         "security": [{ "bearer": [] }],
-        "summary": "Withdraw a request that is still waiting",
+        "summary": "Withdraw a request nobody has decided yet",
         "tags": ["access-requests"]
       }
     },
@@ -58332,7 +58390,7 @@
         },
         "responses": {
           "200": {
-            "description": "The sender withdraws one person while their seat is not real; the head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.",
+            "description": "The sender withdraws one person only while their line still awaits the need, or while the request is sent back to add what is missing (QĐ-113d); after any decision the way back is a return once granted. The head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.",
             "content": {
               "application/json": {
                 "schema": {
@@ -58440,11 +58498,23 @@
             }
           },
           "409": {
-            "description": "Nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
+            "description": "A decision was already taken on the person (ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION), nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
+                  "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION": {
+                    "summary": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION",
+                        "message": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                        "details": { "state": "APPROVED" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
                   "ACCESS_REQUEST.ALREADY_ENDED": {
                     "summary": "The request cannot be withdrawn: ALREADY_ENDED.",
                     "value": {
@@ -105502,7 +105572,17 @@
               "revocationNote": { "type": "string", "maxLength": 5000, "nullable": true },
               "dataLossOnRemoval": { "type": "boolean" },
               "sharingPolicy": { "type": "string", "enum": ["ALLOWED", "NOT_ALLOWED"] },
-              "hasAdminConsole": { "type": "boolean" }
+              "hasAdminConsole": { "type": "boolean" },
+              "referencePrice": {
+                "type": "object",
+                "properties": {
+                  "amount": { "type": "string", "maxLength": 40 },
+                  "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+                },
+                "required": ["amount", "currency"],
+                "additionalProperties": false,
+                "description": "The price before tax in dong, a decimal string in major units, currency VND: K1/K2, one seat for one month (a yearly price over 12); K4, one purchase. Used by a request when no subscription of the plan has a price. K5 has none."
+              }
             },
             "required": ["name", "provisioningType"],
             "additionalProperties": false
@@ -105594,6 +105674,14 @@
                   "dataLossOnRemoval": { "type": "boolean" },
                   "sharingPolicy": { "type": "string", "enum": ["ALLOWED", "NOT_ALLOWED", null], "nullable": true },
                   "hasAdminConsole": { "type": "boolean" },
+                  "referencePrice": {
+                    "type": "object",
+                    "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                    "required": ["amount", "currency"],
+                    "additionalProperties": false,
+                    "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                    "nullable": true
+                  },
                   "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
                   "createdAt": { "type": "string", "format": "date-time" },
                   "updatedAt": { "type": "string", "format": "date-time" },
@@ -105611,6 +105699,7 @@
                   "dataLossOnRemoval",
                   "sharingPolicy",
                   "hasAdminConsole",
+                  "referencePrice",
                   "seatTracking",
                   "createdAt",
                   "updatedAt",
@@ -105778,6 +105867,14 @@
                     "dataLossOnRemoval": { "type": "boolean" },
                     "sharingPolicy": { "type": "string", "enum": ["ALLOWED", "NOT_ALLOWED", null], "nullable": true },
                     "hasAdminConsole": { "type": "boolean" },
+                    "referencePrice": {
+                      "type": "object",
+                      "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                      "required": ["amount", "currency"],
+                      "additionalProperties": false,
+                      "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                      "nullable": true
+                    },
                     "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
                     "createdAt": { "type": "string", "format": "date-time" },
                     "updatedAt": { "type": "string", "format": "date-time" }
@@ -105794,6 +105891,7 @@
                     "dataLossOnRemoval",
                     "sharingPolicy",
                     "hasAdminConsole",
+                    "referencePrice",
                     "seatTracking",
                     "createdAt",
                     "updatedAt"
@@ -105840,7 +105938,17 @@
           "revocationNote": { "type": "string", "maxLength": 5000, "nullable": true },
           "dataLossOnRemoval": { "type": "boolean" },
           "sharingPolicy": { "type": "string", "enum": ["ALLOWED", "NOT_ALLOWED"] },
-          "hasAdminConsole": { "type": "boolean" }
+          "hasAdminConsole": { "type": "boolean" },
+          "referencePrice": {
+            "type": "object",
+            "properties": {
+              "amount": { "type": "string", "maxLength": 40 },
+              "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+            },
+            "required": ["amount", "currency"],
+            "additionalProperties": false,
+            "description": "The price before tax in dong, a decimal string in major units, currency VND: K1/K2, one seat for one month (a yearly price over 12); K4, one purchase. Used by a request when no subscription of the plan has a price. K5 has none."
+          }
         },
         "required": ["applicationId", "name", "provisioningType"],
         "additionalProperties": false
@@ -105876,6 +105984,14 @@
               "dataLossOnRemoval": { "type": "boolean" },
               "sharingPolicy": { "type": "string", "enum": ["ALLOWED", "NOT_ALLOWED", null], "nullable": true },
               "hasAdminConsole": { "type": "boolean" },
+              "referencePrice": {
+                "type": "object",
+                "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                "required": ["amount", "currency"],
+                "additionalProperties": false,
+                "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                "nullable": true
+              },
               "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
               "createdAt": { "type": "string", "format": "date-time" },
               "updatedAt": { "type": "string", "format": "date-time" },
@@ -105893,6 +106009,7 @@
               "dataLossOnRemoval",
               "sharingPolicy",
               "hasAdminConsole",
+              "referencePrice",
               "seatTracking",
               "createdAt",
               "updatedAt",
@@ -105936,6 +106053,14 @@
               "dataLossOnRemoval": { "type": "boolean" },
               "sharingPolicy": { "type": "string", "enum": ["ALLOWED", "NOT_ALLOWED", null], "nullable": true },
               "hasAdminConsole": { "type": "boolean" },
+              "referencePrice": {
+                "type": "object",
+                "properties": { "amount": { "type": "string" }, "currency": { "type": "string" } },
+                "required": ["amount", "currency"],
+                "additionalProperties": false,
+                "description": "The reference price in dong before tax (QĐ-113a), or null when none is entered.",
+                "nullable": true
+              },
               "seatTracking": { "type": "string", "enum": ["APPLICABLE", "NOT_APPLICABLE"] },
               "createdAt": { "type": "string", "format": "date-time" },
               "updatedAt": { "type": "string", "format": "date-time" },
@@ -106032,6 +106157,7 @@
               "dataLossOnRemoval",
               "sharingPolicy",
               "hasAdminConsole",
+              "referencePrice",
               "seatTracking",
               "createdAt",
               "updatedAt",
@@ -106059,7 +106185,18 @@
           "revocationNote": { "type": "string", "maxLength": 5000, "nullable": true },
           "dataLossOnRemoval": { "type": "boolean" },
           "sharingPolicy": { "type": "string", "enum": ["ALLOWED", "NOT_ALLOWED", null], "nullable": true },
-          "hasAdminConsole": { "type": "boolean" }
+          "hasAdminConsole": { "type": "boolean" },
+          "referencePrice": {
+            "type": "object",
+            "properties": {
+              "amount": { "type": "string", "maxLength": 40 },
+              "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+            },
+            "required": ["amount", "currency"],
+            "additionalProperties": false,
+            "description": "The reference price; null clears it. Moving the plan to K5, or between K1/K2 and K4, clears it too.",
+            "nullable": true
+          }
         },
         "additionalProperties": false
       },
@@ -108384,7 +108521,7 @@
                       },
                       "required": ["status", "missingReason"],
                       "additionalProperties": false,
-                      "description": "Whether the department of the caller can price the plan, never the price itself. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
+                      "description": "Whether the department of the caller can price the plan, never the price itself: a plan with a subscription that has a price, or with a reference price of its own (QĐ-113a), is priced; NO_PRICED_SUBSCRIPTION means neither exists. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
                     },
                     "costsMoney": {
                       "type": "boolean",
@@ -108477,7 +108614,7 @@
                 },
                 "required": ["status", "missingReason"],
                 "additionalProperties": false,
-                "description": "Whether the department of the caller can price the plan, never the price itself. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
+                "description": "Whether the department of the caller can price the plan, never the price itself: a plan with a subscription that has a price, or with a reference price of its own (QĐ-113a), is priced; NO_PRICED_SUBSCRIPTION means neither exists. A missing price does not stop the request: the preview says it cannot go on to the spend step until the plan is priced."
               },
               "costsMoney": {
                 "type": "boolean",

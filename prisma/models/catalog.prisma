@@ -231,6 +231,9 @@ model Plan {
   sharingPolicy     SharingPolicy?   @map("sharing_policy")
   // R-53: a K4 plan the company administers through a console of the vendor needs two admins there (QĐ-110k). Only K4 may be true (a CHECK).
   hasAdminConsole   Boolean          @default(false) @map("has_admin_console")
+  // QĐ-113a: the reference price in dong, before tax (K1/K2: one seat for one month; K4: one purchase). Both columns or none, VND, K1/K2/K4 only (CHECKs in the migration).
+  referencePriceMinor    BigInt?          @map("reference_price_minor")
+  referencePriceCurrency String?          @map("reference_price_currency") @db.Char(3)
   createdAt         DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt         DateTime         @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
 

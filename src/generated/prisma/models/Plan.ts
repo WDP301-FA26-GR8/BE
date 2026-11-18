@@ -20,8 +20,18 @@ export type PlanModel = runtime.Types.Result.DefaultSelection<Prisma.$PlanPayloa
 
 export type AggregatePlan = {
   _count: PlanCountAggregateOutputType | null
+  _avg: PlanAvgAggregateOutputType | null
+  _sum: PlanSumAggregateOutputType | null
   _min: PlanMinAggregateOutputType | null
   _max: PlanMaxAggregateOutputType | null
+}
+
+export type PlanAvgAggregateOutputType = {
+  referencePriceMinor: number | null
+}
+
+export type PlanSumAggregateOutputType = {
+  referencePriceMinor: bigint | null
 }
 
 export type PlanMinAggregateOutputType = {
@@ -37,6 +47,8 @@ export type PlanMinAggregateOutputType = {
   dataLossOnRemoval: boolean | null
   sharingPolicy: $Enums.SharingPolicy | null
   hasAdminConsole: boolean | null
+  referencePriceMinor: bigint | null
+  referencePriceCurrency: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +66,8 @@ export type PlanMaxAggregateOutputType = {
   dataLossOnRemoval: boolean | null
   sharingPolicy: $Enums.SharingPolicy | null
   hasAdminConsole: boolean | null
+  referencePriceMinor: bigint | null
+  referencePriceCurrency: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -71,11 +85,21 @@ export type PlanCountAggregateOutputType = {
   dataLossOnRemoval: number
   sharingPolicy: number
   hasAdminConsole: number
+  referencePriceMinor: number
+  referencePriceCurrency: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type PlanAvgAggregateInputType = {
+  referencePriceMinor?: true
+}
+
+export type PlanSumAggregateInputType = {
+  referencePriceMinor?: true
+}
 
 export type PlanMinAggregateInputType = {
   id?: true
@@ -90,6 +114,8 @@ export type PlanMinAggregateInputType = {
   dataLossOnRemoval?: true
   sharingPolicy?: true
   hasAdminConsole?: true
+  referencePriceMinor?: true
+  referencePriceCurrency?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -107,6 +133,8 @@ export type PlanMaxAggregateInputType = {
   dataLossOnRemoval?: true
   sharingPolicy?: true
   hasAdminConsole?: true
+  referencePriceMinor?: true
+  referencePriceCurrency?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -124,6 +152,8 @@ export type PlanCountAggregateInputType = {
   dataLossOnRemoval?: true
   sharingPolicy?: true
   hasAdminConsole?: true
+  referencePriceMinor?: true
+  referencePriceCurrency?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -167,6 +197,18 @@ export type PlanAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: PlanAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: PlanSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: PlanMinAggregateInputType
@@ -197,6 +239,8 @@ export type PlanGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: PlanCountAggregateInputType | true
+  _avg?: PlanAvgAggregateInputType
+  _sum?: PlanSumAggregateInputType
   _min?: PlanMinAggregateInputType
   _max?: PlanMaxAggregateInputType
 }
@@ -214,9 +258,13 @@ export type PlanGroupByOutputType = {
   dataLossOnRemoval: boolean
   sharingPolicy: $Enums.SharingPolicy | null
   hasAdminConsole: boolean
+  referencePriceMinor: bigint | null
+  referencePriceCurrency: string | null
   createdAt: Date
   updatedAt: Date
   _count: PlanCountAggregateOutputType | null
+  _avg: PlanAvgAggregateOutputType | null
+  _sum: PlanSumAggregateOutputType | null
   _min: PlanMinAggregateOutputType | null
   _max: PlanMaxAggregateOutputType | null
 }
@@ -252,6 +300,8 @@ export type PlanWhereInput = {
   dataLossOnRemoval?: Prisma.BoolFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableFilter<"Plan"> | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFilter<"Plan"> | boolean
+  referencePriceMinor?: Prisma.BigIntNullableFilter<"Plan"> | bigint | number | null
+  referencePriceCurrency?: Prisma.StringNullableFilter<"Plan"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -287,6 +337,8 @@ export type PlanOrderByWithRelationInput = {
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrderInput | Prisma.SortOrder
   hasAdminConsole?: Prisma.SortOrder
+  referencePriceMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  referencePriceCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -326,6 +378,8 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   dataLossOnRemoval?: Prisma.BoolFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableFilter<"Plan"> | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFilter<"Plan"> | boolean
+  referencePriceMinor?: Prisma.BigIntNullableFilter<"Plan"> | bigint | number | null
+  referencePriceCurrency?: Prisma.StringNullableFilter<"Plan"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -361,11 +415,15 @@ export type PlanOrderByWithAggregationInput = {
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrderInput | Prisma.SortOrder
   hasAdminConsole?: Prisma.SortOrder
+  referencePriceMinor?: Prisma.SortOrderInput | Prisma.SortOrder
+  referencePriceCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanCountOrderByAggregateInput
+  _avg?: Prisma.PlanAvgOrderByAggregateInput
   _max?: Prisma.PlanMaxOrderByAggregateInput
   _min?: Prisma.PlanMinOrderByAggregateInput
+  _sum?: Prisma.PlanSumOrderByAggregateInput
 }
 
 export type PlanScalarWhereWithAggregatesInput = {
@@ -384,6 +442,8 @@ export type PlanScalarWhereWithAggregatesInput = {
   dataLossOnRemoval?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableWithAggregatesFilter<"Plan"> | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
+  referencePriceMinor?: Prisma.BigIntNullableWithAggregatesFilter<"Plan"> | bigint | number | null
+  referencePriceCurrency?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
 }
@@ -399,6 +459,8 @@ export type PlanCreateInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -434,6 +496,8 @@ export type PlanUncheckedCreateInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -465,6 +529,8 @@ export type PlanUpdateInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -500,6 +566,8 @@ export type PlanUncheckedUpdateInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -533,6 +601,8 @@ export type PlanCreateManyInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -548,6 +618,8 @@ export type PlanUpdateManyMutationInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -565,6 +637,8 @@ export type PlanUncheckedUpdateManyInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -603,8 +677,14 @@ export type PlanCountOrderByAggregateInput = {
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrder
   hasAdminConsole?: Prisma.SortOrder
+  referencePriceMinor?: Prisma.SortOrder
+  referencePriceCurrency?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type PlanAvgOrderByAggregateInput = {
+  referencePriceMinor?: Prisma.SortOrder
 }
 
 export type PlanMaxOrderByAggregateInput = {
@@ -620,6 +700,8 @@ export type PlanMaxOrderByAggregateInput = {
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrder
   hasAdminConsole?: Prisma.SortOrder
+  referencePriceMinor?: Prisma.SortOrder
+  referencePriceCurrency?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -637,8 +719,14 @@ export type PlanMinOrderByAggregateInput = {
   dataLossOnRemoval?: Prisma.SortOrder
   sharingPolicy?: Prisma.SortOrder
   hasAdminConsole?: Prisma.SortOrder
+  referencePriceMinor?: Prisma.SortOrder
+  referencePriceCurrency?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type PlanSumOrderByAggregateInput = {
+  referencePriceMinor?: Prisma.SortOrder
 }
 
 export type PlanScalarRelationFilter = {
@@ -995,6 +1083,8 @@ export type PlanCreateWithoutBudgetProposalLinesInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1029,6 +1119,8 @@ export type PlanUncheckedCreateWithoutBudgetProposalLinesInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1075,6 +1167,8 @@ export type PlanUpdateWithoutBudgetProposalLinesInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1109,6 +1203,8 @@ export type PlanUncheckedUpdateWithoutBudgetProposalLinesInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1139,6 +1235,8 @@ export type PlanCreateWithoutBudgetVersionLinesInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1173,6 +1271,8 @@ export type PlanUncheckedCreateWithoutBudgetVersionLinesInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1219,6 +1319,8 @@ export type PlanUpdateWithoutBudgetVersionLinesInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1253,6 +1355,8 @@ export type PlanUncheckedUpdateWithoutBudgetVersionLinesInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1283,6 +1387,8 @@ export type PlanCreateWithoutApplicationInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1316,6 +1422,8 @@ export type PlanUncheckedCreateWithoutApplicationInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1378,6 +1486,8 @@ export type PlanScalarWhereInput = {
   dataLossOnRemoval?: Prisma.BoolFilter<"Plan"> | boolean
   sharingPolicy?: Prisma.EnumSharingPolicyNullableFilter<"Plan"> | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFilter<"Plan"> | boolean
+  referencePriceMinor?: Prisma.BigIntNullableFilter<"Plan"> | bigint | number | null
+  referencePriceCurrency?: Prisma.StringNullableFilter<"Plan"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
 }
@@ -1393,6 +1503,8 @@ export type PlanCreateWithoutUsageRateInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1427,6 +1539,8 @@ export type PlanUncheckedCreateWithoutUsageRateInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1473,6 +1587,8 @@ export type PlanUpdateWithoutUsageRateInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1507,6 +1623,8 @@ export type PlanUncheckedUpdateWithoutUsageRateInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1537,6 +1655,8 @@ export type PlanCreateWithoutWorkspaceProfileInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1571,6 +1691,8 @@ export type PlanUncheckedCreateWithoutWorkspaceProfileInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
@@ -1617,6 +1739,8 @@ export type PlanUpdateWithoutWorkspaceProfileInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1651,6 +1775,8 @@ export type PlanUncheckedUpdateWithoutWorkspaceProfileInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
@@ -1681,6 +1807,8 @@ export type PlanCreateWithoutSubscriptionsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1715,6 +1843,8 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1761,6 +1891,8 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1795,6 +1927,8 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1825,6 +1959,8 @@ export type PlanCreateWithoutTermsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -1859,6 +1995,8 @@ export type PlanUncheckedCreateWithoutTermsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -1905,6 +2043,8 @@ export type PlanUpdateWithoutTermsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -1939,6 +2079,8 @@ export type PlanUncheckedUpdateWithoutTermsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -1969,6 +2111,8 @@ export type PlanCreateWithoutTermOpinionsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2003,6 +2147,8 @@ export type PlanUncheckedCreateWithoutTermOpinionsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2049,6 +2195,8 @@ export type PlanUpdateWithoutTermOpinionsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2083,6 +2231,8 @@ export type PlanUncheckedUpdateWithoutTermOpinionsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2113,6 +2263,8 @@ export type PlanCreateWithoutSeatBaselineImportsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2147,6 +2299,8 @@ export type PlanUncheckedCreateWithoutSeatBaselineImportsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2193,6 +2347,8 @@ export type PlanUpdateWithoutSeatBaselineImportsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2227,6 +2383,8 @@ export type PlanUncheckedUpdateWithoutSeatBaselineImportsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2257,6 +2415,8 @@ export type PlanCreateWithoutLicenseAssignmentsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2291,6 +2451,8 @@ export type PlanUncheckedCreateWithoutLicenseAssignmentsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2337,6 +2499,8 @@ export type PlanUpdateWithoutLicenseAssignmentsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2371,6 +2535,8 @@ export type PlanUncheckedUpdateWithoutLicenseAssignmentsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2401,6 +2567,8 @@ export type PlanCreateWithoutPoolGrantAvoidedCostsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2435,6 +2603,8 @@ export type PlanUncheckedCreateWithoutPoolGrantAvoidedCostsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2481,6 +2651,8 @@ export type PlanUpdateWithoutPoolGrantAvoidedCostsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2515,6 +2687,8 @@ export type PlanUncheckedUpdateWithoutPoolGrantAvoidedCostsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2545,6 +2719,8 @@ export type PlanCreateWithoutDepartmentSoftwareEntriesInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2579,6 +2755,8 @@ export type PlanUncheckedCreateWithoutDepartmentSoftwareEntriesInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2625,6 +2803,8 @@ export type PlanUpdateWithoutDepartmentSoftwareEntriesInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2659,6 +2839,8 @@ export type PlanUncheckedUpdateWithoutDepartmentSoftwareEntriesInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2689,6 +2871,8 @@ export type PlanCreateWithoutDepartmentSoftwareProposalsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2723,6 +2907,8 @@ export type PlanUncheckedCreateWithoutDepartmentSoftwareProposalsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2769,6 +2955,8 @@ export type PlanUpdateWithoutDepartmentSoftwareProposalsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -2803,6 +2991,8 @@ export type PlanUncheckedUpdateWithoutDepartmentSoftwareProposalsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -2833,6 +3023,8 @@ export type PlanCreateWithoutOrganizationInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   application: Prisma.ApplicationCreateNestedOneWithoutPlansInput
@@ -2866,6 +3058,8 @@ export type PlanUncheckedCreateWithoutOrganizationInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -2923,6 +3117,8 @@ export type PlanCreateWithoutAccessRequestsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -2957,6 +3153,8 @@ export type PlanUncheckedCreateWithoutAccessRequestsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -3003,6 +3201,8 @@ export type PlanUpdateWithoutAccessRequestsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -3037,6 +3237,8 @@ export type PlanUncheckedUpdateWithoutAccessRequestsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3067,6 +3269,8 @@ export type PlanCreateWithoutAssessmentsEquivalentInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -3101,6 +3305,8 @@ export type PlanUncheckedCreateWithoutAssessmentsEquivalentInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -3136,6 +3342,8 @@ export type PlanCreateWithoutAssessmentsAlternativeInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -3170,6 +3378,8 @@ export type PlanUncheckedCreateWithoutAssessmentsAlternativeInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -3216,6 +3426,8 @@ export type PlanUpdateWithoutAssessmentsEquivalentInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -3250,6 +3462,8 @@ export type PlanUncheckedUpdateWithoutAssessmentsEquivalentInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3291,6 +3505,8 @@ export type PlanUpdateWithoutAssessmentsAlternativeInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -3325,6 +3541,8 @@ export type PlanUncheckedUpdateWithoutAssessmentsAlternativeInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3355,6 +3573,8 @@ export type PlanCreateWithoutReturnRequestsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutPlansInput
@@ -3389,6 +3609,8 @@ export type PlanUncheckedCreateWithoutReturnRequestsInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedCreateNestedOneWithoutPlanInput
@@ -3435,6 +3657,8 @@ export type PlanUpdateWithoutReturnRequestsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -3469,6 +3693,8 @@ export type PlanUncheckedUpdateWithoutReturnRequestsInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3500,6 +3726,8 @@ export type PlanCreateManyApplicationInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -3515,6 +3743,8 @@ export type PlanUpdateWithoutApplicationInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutPlansNestedInput
@@ -3548,6 +3778,8 @@ export type PlanUncheckedUpdateWithoutApplicationInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3580,6 +3812,8 @@ export type PlanUncheckedUpdateManyWithoutApplicationInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -3596,6 +3830,8 @@ export type PlanCreateManyOrganizationInput = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: $Enums.SharingPolicy | null
   hasAdminConsole?: boolean
+  referencePriceMinor?: bigint | number | null
+  referencePriceCurrency?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -3611,6 +3847,8 @@ export type PlanUpdateWithoutOrganizationInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   application?: Prisma.ApplicationUpdateOneRequiredWithoutPlansNestedInput
@@ -3644,6 +3882,8 @@ export type PlanUncheckedUpdateWithoutOrganizationInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspaceProfile?: Prisma.PlanWorkspaceProfileUncheckedUpdateOneWithoutPlanNestedInput
@@ -3676,6 +3916,8 @@ export type PlanUncheckedUpdateManyWithoutOrganizationInput = {
   dataLossOnRemoval?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sharingPolicy?: Prisma.NullableEnumSharingPolicyFieldUpdateOperationsInput | $Enums.SharingPolicy | null
   hasAdminConsole?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencePriceMinor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  referencePriceCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -3832,6 +4074,8 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
   hasAdminConsole?: boolean
+  referencePriceMinor?: boolean
+  referencePriceCurrency?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -3868,6 +4112,8 @@ export type PlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
   hasAdminConsole?: boolean
+  referencePriceMinor?: boolean
+  referencePriceCurrency?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -3887,6 +4133,8 @@ export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
   hasAdminConsole?: boolean
+  referencePriceMinor?: boolean
+  referencePriceCurrency?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -3906,11 +4154,13 @@ export type PlanSelectScalar = {
   dataLossOnRemoval?: boolean
   sharingPolicy?: boolean
   hasAdminConsole?: boolean
+  referencePriceMinor?: boolean
+  referencePriceCurrency?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "applicationId" | "name" | "normalizedName" | "provisioningType" | "pricingModel" | "controlLevel" | "revocationNote" | "dataLossOnRemoval" | "sharingPolicy" | "hasAdminConsole" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
+export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "applicationId" | "name" | "normalizedName" | "provisioningType" | "pricingModel" | "controlLevel" | "revocationNote" | "dataLossOnRemoval" | "sharingPolicy" | "hasAdminConsole" | "referencePriceMinor" | "referencePriceCurrency" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
 export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -3976,6 +4226,8 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     dataLossOnRemoval: boolean
     sharingPolicy: $Enums.SharingPolicy | null
     hasAdminConsole: boolean
+    referencePriceMinor: bigint | null
+    referencePriceCurrency: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["plan"]>
@@ -4431,6 +4683,8 @@ export interface PlanFieldRefs {
   readonly dataLossOnRemoval: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly sharingPolicy: Prisma.FieldRef<"Plan", 'SharingPolicy'>
   readonly hasAdminConsole: Prisma.FieldRef<"Plan", 'Boolean'>
+  readonly referencePriceMinor: Prisma.FieldRef<"Plan", 'BigInt'>
+  readonly referencePriceCurrency: Prisma.FieldRef<"Plan", 'String'>
   readonly createdAt: Prisma.FieldRef<"Plan", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Plan", 'DateTime'>
 }
