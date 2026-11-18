@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../../infrastructure/database/database.module';
+import { ObjectStorageModule } from '../../infrastructure/object-storage/object-storage.module';
 import { AuditModule } from '../audit/audit.module';
 import { NotificationsModule } from '../notifications/notifications.module';
 import { OrganizationChangeSweeper } from './change-announcement/organization-change.job';
@@ -13,6 +14,7 @@ import { DepartmentNotificationNamesListener } from './department/department-not
 import { HeldNoticeHandoverListener } from './department/held-notice-handover.listener';
 import { DepartmentQueryService } from './department-management/department-query.service';
 import { DepartmentItAdminService } from './department-management/department-it-admin.service';
+import { DepartmentAvatarService } from './department-management/department-avatar.service';
 import { DepartmentService } from './department-management/department.service';
 import { DepartmentsController } from './department-management/departments.controller';
 import { EmployeeMaintenanceController } from './employee/employee-maintenance.controller';
@@ -33,7 +35,7 @@ import { OrganizationModule } from './organization.module';
  * `EmployeeAccountsHook`, which identity-access binds (D5): this module never imports identity-access.
  */
 @Module({
-  imports: [DatabaseModule, AuditModule, OrganizationModule, NotificationsModule],
+  imports: [DatabaseModule, ObjectStorageModule, AuditModule, OrganizationModule, NotificationsModule],
   controllers: [
     EmployeesController,
     EmployeeDirectoryController,
@@ -49,6 +51,7 @@ import { OrganizationModule } from './organization.module';
     CostCenterService,
     DepartmentQueryService,
     DepartmentService,
+    DepartmentAvatarService,
     DepartmentItAdminService,
     DepartmentHeadService,
     // Hands the notices kept for a department with no head to the head whose period starts, added to the change listeners.

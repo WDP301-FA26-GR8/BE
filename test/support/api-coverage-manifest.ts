@@ -225,6 +225,8 @@ export const API_COVERAGE_MANIFEST: readonly string[] = [
   'POST /api/v1/departments',
   'GET /api/v1/departments/{id}',
   'PATCH /api/v1/departments/{id}',
+  'PUT /api/v1/departments/{id}/avatar',
+  'DELETE /api/v1/departments/{id}/avatar',
   'POST /api/v1/departments/{id}/deactivate',
   'GET /api/v1/departments/{id}/employees',
   'GET /api/v1/departments/{id}/employees/{employeeId}',

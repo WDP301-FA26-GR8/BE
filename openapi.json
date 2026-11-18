@@ -3667,6 +3667,515 @@
         "tags": ["departments"]
       }
     },
+    "/api/v1/departments/{id}/avatar": {
+      "put": {
+        "operationId": "departmentAvatarPut",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The picture (png, jpeg or webp, at most 1 MiB, judged by its first bytes) was stored and the department points at it; avatarUrl is a link that works for 15 minutes (`QĐ-113c`). The picture before it, if any, is deleted after the change.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/DepartmentResponseDto" },
+                    { "properties": { "message": { "example": "DEPARTMENT.AVATAR_CHANGED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The form is not a readable multipart form with one file (HTTP_BAD_REQUEST).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_BAD_REQUEST": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_BAD_REQUEST",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only the Super Admin changes department data. The IT Admin does not.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The department does not exist, or an IT Admin is asking about one they are not in charge of or standing in for.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.NOT_FOUND": {
+                    "summary": "Department not found.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.NOT_FOUND",
+                        "message": "Department not found.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The department is retired (DEPARTMENT.INACTIVE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.INACTIVE": {
+                    "summary": "The department is no longer in use.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.INACTIVE",
+                        "message": "The department is no longer in use.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The picture is larger than 1 MiB: DEPARTMENT.AVATAR_TOO_LARGE for one a little over it, HTTP_PAYLOAD_TOO_LARGE for any larger one, which the parser stops at once.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.AVATAR_TOO_LARGE": {
+                    "summary": "The picture is larger than 1 MiB.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_TOO_LARGE",
+                        "message": "The picture is larger than 1 MiB.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "HTTP_PAYLOAD_TOO_LARGE": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_PAYLOAD_TOO_LARGE",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "By its first bytes the file is not a png, jpeg or webp (DEPARTMENT.AVATAR_TYPE_UNSUPPORTED).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.AVATAR_TYPE_UNSUPPORTED": {
+                    "summary": "The picture must be a png, jpeg or webp.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_TYPE_UNSUPPORTED",
+                        "message": "The picture must be a png, jpeg or webp.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The id is not a UUID (VALIDATION_ERROR), no file was sent (DEPARTMENT.AVATAR_FILE_REQUIRED), it is empty (DEPARTMENT.AVATAR_EMPTY) or it is not the type it says it is (DEPARTMENT.AVATAR_TYPE_MISMATCH).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.AVATAR_FILE_REQUIRED": {
+                    "summary": "Send the picture as the form field \"file\".",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_FILE_REQUIRED",
+                        "message": "Send the picture as the form field \"file\".",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.AVATAR_EMPTY": {
+                    "summary": "The picture is empty.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_EMPTY",
+                        "message": "The picture is empty.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "DEPARTMENT.AVATAR_TYPE_MISMATCH": {
+                    "summary": "The picture is not the type it says it is.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.AVATAR_TYPE_MISMATCH",
+                        "message": "The picture is not the type it says it is.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Set the picture of a department",
+        "tags": ["departments"]
+      },
+      "delete": {
+        "operationId": "departmentAvatarDelete",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "format": "uuid", "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "The department has no picture now; with none to begin with, nothing changed (`QĐ-113c`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/DepartmentResponseDto" },
+                    { "properties": { "message": { "example": "DEPARTMENT.AVATAR_REMOVED" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is required or the token is no longer valid.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHENTICATION_REQUIRED": {
+                    "summary": "A Bearer access token is required.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHENTICATION_REQUIRED",
+                        "message": "A Bearer access token is required.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "INVALID_ACCESS_TOKEN": {
+                    "summary": "The access token is invalid.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "INVALID_ACCESS_TOKEN",
+                        "message": "The access token is invalid.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Only the Super Admin changes department data. The IT Admin does not.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "AUTHORIZATION.FORBIDDEN": {
+                    "summary": "You do not have permission to perform this action.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "AUTHORIZATION.FORBIDDEN",
+                        "message": "You do not have permission to perform this action.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The department does not exist, or an IT Admin is asking about one they are not in charge of or standing in for.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.NOT_FOUND": {
+                    "summary": "Department not found.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.NOT_FOUND",
+                        "message": "Department not found.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The department is retired (DEPARTMENT.INACTIVE).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "DEPARTMENT.INACTIVE": {
+                    "summary": "The department is no longer in use.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "DEPARTMENT.INACTIVE",
+                        "message": "The department is no longer in use.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The id is not a UUID (VALIDATION_ERROR).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "VALIDATION_ERROR": {
+                    "summary": "Request validation failed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "VALIDATION_ERROR",
+                        "message": "Request validation failed.",
+                        "details": { "issues": [{ "code": "invalid_type", "path": "<field>" }] },
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests to this route from this address (HTTP_TOO_MANY_REQUESTS).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "HTTP_TOO_MANY_REQUESTS": {
+                    "summary": "The request could not be processed.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "HTTP_TOO_MANY_REQUESTS",
+                        "message": "The request could not be processed.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Authentication or the service is temporarily unavailable (TOKEN_VERIFICATION_UNAVAILABLE from the guard, SERVICE_UNAVAILABLE after it).",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
+                "examples": {
+                  "TOKEN_VERIFICATION_UNAVAILABLE": {
+                    "summary": "Authentication is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "TOKEN_VERIFICATION_UNAVAILABLE",
+                        "message": "Authentication is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
+                  "SERVICE_UNAVAILABLE": {
+                    "summary": "The service is temporarily unavailable. Retry shortly.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "SERVICE_UNAVAILABLE",
+                        "message": "The service is temporarily unavailable. Retry shortly.",
+                        "requestId": "req_example"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "bearer": [] }],
+        "summary": "Remove the picture of a department",
+        "tags": ["departments"]
+      }
+    },
     "/api/v1/departments/{id}/deactivate": {
       "post": {
         "operationId": "departmentDeactivate",
@@ -44331,7 +44840,7 @@
         },
         "responses": {
           "200": {
-            "description": "The requester withdraws the request while it waits or while the grant has not been carried out; the head of the department does too, with a reason, only while the budget or the data stopped the request or it waits for the head to confirm the reserve. The open steps close, the request leaves the batch it was sent in, what was held for it goes back to the budget and a task nobody has worked is cancelled with its assignment (never failed). When the grant had failed the request waits (AWAITING_IT_CLOSE) until the IT Admin cancels the task, and it then ends as withdrawn.",
+            "description": "The requester withdraws the request only before any decision was taken on it (QĐ-113d): while it waits for the head at the need step or stands waiting for a head, while it is sent back to add what is missing, or, when no head decides the need, until the first who decides (the spending approver, the IT Admin) has decided; a direct grant until its task is begun. After that the way back is a return once granted. The head of the department does too, with a reason, only while the budget or the data stopped the request or it waits for the head to confirm the reserve. The open steps close, the request leaves the batch it was sent in, what was held for it goes back to the budget and a task nobody has worked is cancelled with its assignment (never failed). When the grant had failed the request waits (AWAITING_IT_CLOSE) until the IT Admin cancels the task, and it then ends as withdrawn.",
             "content": {
               "application/json": {
                 "schema": {
@@ -44439,11 +44948,23 @@
             }
           },
           "409": {
-            "description": "Nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked: ask again when it has a result (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
+            "description": "A decision was already taken (ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION, details.state), nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked: ask again when it has a result (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
+                  "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION": {
+                    "summary": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION",
+                        "message": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                        "details": { "state": "AWAITING_SPEND_DECISION" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
                   "ACCESS_REQUEST.ALREADY_ENDED": {
                     "summary": "The request cannot be withdrawn: ALREADY_ENDED.",
                     "value": {
@@ -44623,7 +45144,7 @@
           }
         },
         "security": [{ "bearer": [] }],
-        "summary": "Withdraw a request that is still waiting",
+        "summary": "Withdraw a request nobody has decided yet",
         "tags": ["access-requests"]
       }
     },
@@ -58332,7 +58853,7 @@
         },
         "responses": {
           "200": {
-            "description": "The sender withdraws one person while their seat is not real; the head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.",
+            "description": "The sender withdraws one person only while their line still awaits the need, or while the request is sent back to add what is missing (QĐ-113d); after any decision the way back is a return once granted. The head of the department does too, with a reason, in the stages the head acts on. Before the spend nothing is held, and the request is priced again for those who remain. Once the spend is approved the share of that person goes back to the budget and nobody else’s does; a task nobody has worked is cancelled with its assignment (never failed), and when the grant had failed the person waits until the IT Admin cancels the task. The other people are not touched.",
             "content": {
               "application/json": {
                 "schema": {
@@ -58440,11 +58961,23 @@
             }
           },
           "409": {
-            "description": "Nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
+            "description": "A decision was already taken on the person (ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION), nothing is left to withdraw (ACCESS_REQUEST.ALREADY_ENDED), the withdrawal waits for the IT Admin (ACCESS_REQUEST.WITHDRAWAL_PENDING), the task of the grant is being worked (ACCESS_REQUEST.GRANT_RUNNING), or the seat is real and the way back is a return (ACCESS_REQUEST.GRANT_COMPLETED). Nothing changes.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ErrorEnvelopeDto" },
                 "examples": {
+                  "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION": {
+                    "summary": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                    "value": {
+                      "success": false,
+                      "error": {
+                        "code": "ACCESS_REQUEST.WITHDRAWAL_AFTER_DECISION",
+                        "message": "The request cannot be withdrawn: WITHDRAWAL_AFTER_DECISION.",
+                        "details": { "state": "APPROVED" },
+                        "requestId": "req_example"
+                      }
+                    }
+                  },
                   "ACCESS_REQUEST.ALREADY_ENDED": {
                     "summary": "The request cannot be withdrawn: ALREADY_ENDED.",
                     "value": {
@@ -101224,6 +101757,7 @@
                       "additionalProperties": false,
                       "nullable": true
                     },
+                    "avatarUrl": { "type": "string", "nullable": true },
                     "memberCount": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
                     "warnings": {
                       "type": "array",
@@ -101247,6 +101781,7 @@
                     "costCenter",
                     "itAdmin",
                     "head",
+                    "avatarUrl",
                     "memberCount",
                     "warnings",
                     "effectiveFrom",
@@ -101348,6 +101883,7 @@
                 "additionalProperties": false,
                 "nullable": true
               },
+              "avatarUrl": { "type": "string", "nullable": true },
               "memberCount": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
               "warnings": {
                 "type": "array",
@@ -101395,6 +101931,7 @@
               "costCenter",
               "itAdmin",
               "head",
+              "avatarUrl",
               "memberCount",
               "warnings",
               "effectiveFrom",
