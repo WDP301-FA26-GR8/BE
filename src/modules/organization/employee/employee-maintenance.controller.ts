@@ -33,7 +33,7 @@ export class EmployeeMaintenanceController {
   @ApiSuccessResponse(MaintainedEmployeeResponseDto, {
     message: 'EMPLOYEE.UPDATED',
     description:
-      'The name, work email, kind of staff, job title (free text; null clears it) or a hire date still to come were changed; the Audit Trail keeps who, when and the values before and after, and the employee and the head of their department are told. The login email, the department and the status are untouched.',
+      'The name, work email, kind of staff, job title (free text; null clears it) or a hire date still to come were changed; the Audit Trail keeps who, when and the values before and after, and the employee and the head of their department are told. The department and the status are untouched; the login email of the account of the person, if there is one, follows a new work email in the same change.',
   })
   @ApiErrorResponses(
     UNAUTHENTICATED_RESPONSE,
