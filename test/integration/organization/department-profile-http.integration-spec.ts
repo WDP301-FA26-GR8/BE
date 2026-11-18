@@ -361,7 +361,7 @@ describe('department profiles, heads and the MANAGER role over HTTP (integration
       const department = await newDepartment();
 
       for (const headers of [asIt(), asAdmin()]) {
-        const response = await api().get('/api/v1/department-warnings').set(headers).expect(200);
+        const response = await api().get('/api/v1/department-warnings?pageSize=100').set(headers).expect(200);
         const items = (response.body as { data: { items: { departmentId: string; warning: string }[] } }).data.items;
 
         expect(
@@ -381,7 +381,7 @@ describe('department profiles, heads and the MANAGER role over HTTP (integration
 
       await assignHead(department.id, member.employeeId).expect(200);
 
-      const response = await api().get('/api/v1/department-warnings').set(asIt()).expect(200);
+      const response = await api().get('/api/v1/department-warnings?pageSize=100').set(asIt()).expect(200);
       const items = (response.body as { data: { items: { departmentId: string }[] } }).data.items;
       expect(items.some((item) => item.departmentId === department.id)).toBe(false);
     });
