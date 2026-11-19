@@ -102211,6 +102211,7 @@
                       "nullable": true
                     },
                     "avatarUrl": { "type": "string", "nullable": true },
+                    "starting": { "type": "boolean" },
                     "memberCount": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
                     "warnings": {
                       "type": "array",
@@ -102235,6 +102236,7 @@
                     "itAdmin",
                     "head",
                     "avatarUrl",
+                    "starting",
                     "memberCount",
                     "warnings",
                     "effectiveFrom",
@@ -102337,6 +102339,7 @@
                 "nullable": true
               },
               "avatarUrl": { "type": "string", "nullable": true },
+              "starting": { "type": "boolean" },
               "memberCount": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
               "warnings": {
                 "type": "array",
@@ -102385,6 +102388,7 @@
               "itAdmin",
               "head",
               "avatarUrl",
+              "starting",
               "memberCount",
               "warnings",
               "effectiveFrom",
