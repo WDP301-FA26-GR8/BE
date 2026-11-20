@@ -39,6 +39,7 @@ export type DepartmentMinAggregateOutputType = {
   avatarObjectKey: string | null
   avatarContentType: string | null
   avatarUpdatedAt: Date | null
+  starting: boolean | null
 }
 
 export type DepartmentMaxAggregateOutputType = {
@@ -56,6 +57,7 @@ export type DepartmentMaxAggregateOutputType = {
   avatarObjectKey: string | null
   avatarContentType: string | null
   avatarUpdatedAt: Date | null
+  starting: boolean | null
 }
 
 export type DepartmentCountAggregateOutputType = {
@@ -73,6 +75,7 @@ export type DepartmentCountAggregateOutputType = {
   avatarObjectKey: number
   avatarContentType: number
   avatarUpdatedAt: number
+  starting: number
   _all: number
 }
 
@@ -92,6 +95,7 @@ export type DepartmentMinAggregateInputType = {
   avatarObjectKey?: true
   avatarContentType?: true
   avatarUpdatedAt?: true
+  starting?: true
 }
 
 export type DepartmentMaxAggregateInputType = {
@@ -109,6 +113,7 @@ export type DepartmentMaxAggregateInputType = {
   avatarObjectKey?: true
   avatarContentType?: true
   avatarUpdatedAt?: true
+  starting?: true
 }
 
 export type DepartmentCountAggregateInputType = {
@@ -126,6 +131,7 @@ export type DepartmentCountAggregateInputType = {
   avatarObjectKey?: true
   avatarContentType?: true
   avatarUpdatedAt?: true
+  starting?: true
   _all?: true
 }
 
@@ -216,6 +222,7 @@ export type DepartmentGroupByOutputType = {
   avatarObjectKey: string | null
   avatarContentType: string | null
   avatarUpdatedAt: Date | null
+  starting: boolean
   _count: DepartmentCountAggregateOutputType | null
   _min: DepartmentMinAggregateOutputType | null
   _max: DepartmentMaxAggregateOutputType | null
@@ -254,6 +261,7 @@ export type DepartmentWhereInput = {
   avatarObjectKey?: Prisma.StringNullableFilter<"Department"> | string | null
   avatarContentType?: Prisma.StringNullableFilter<"Department"> | string | null
   avatarUpdatedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
+  starting?: Prisma.BoolFilter<"Department"> | boolean
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   costCenters?: Prisma.CostCenterListRelationFilter
   budgetCeilings?: Prisma.BudgetDepartmentCeilingListRelationFilter
@@ -294,6 +302,7 @@ export type DepartmentOrderByWithRelationInput = {
   avatarObjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarContentType?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  starting?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   costCenters?: Prisma.CostCenterOrderByRelationAggregateInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingOrderByRelationAggregateInput
@@ -338,6 +347,7 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   avatarObjectKey?: Prisma.StringNullableFilter<"Department"> | string | null
   avatarContentType?: Prisma.StringNullableFilter<"Department"> | string | null
   avatarUpdatedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
+  starting?: Prisma.BoolFilter<"Department"> | boolean
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   costCenters?: Prisma.CostCenterListRelationFilter
   budgetCeilings?: Prisma.BudgetDepartmentCeilingListRelationFilter
@@ -378,6 +388,7 @@ export type DepartmentOrderByWithAggregationInput = {
   avatarObjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarContentType?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  starting?: Prisma.SortOrder
   _count?: Prisma.DepartmentCountOrderByAggregateInput
   _max?: Prisma.DepartmentMaxOrderByAggregateInput
   _min?: Prisma.DepartmentMinOrderByAggregateInput
@@ -401,6 +412,7 @@ export type DepartmentScalarWhereWithAggregatesInput = {
   avatarObjectKey?: Prisma.StringNullableWithAggregatesFilter<"Department"> | string | null
   avatarContentType?: Prisma.StringNullableWithAggregatesFilter<"Department"> | string | null
   avatarUpdatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Department"> | Date | string | null
+  starting?: Prisma.BoolWithAggregatesFilter<"Department"> | boolean
 }
 
 export type DepartmentCreateInput = {
@@ -416,6 +428,7 @@ export type DepartmentCreateInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -456,6 +469,7 @@ export type DepartmentUncheckedCreateInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -492,6 +506,7 @@ export type DepartmentUpdateInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -532,6 +547,7 @@ export type DepartmentUncheckedUpdateInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -570,6 +586,7 @@ export type DepartmentCreateManyInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
 }
 
 export type DepartmentUpdateManyMutationInput = {
@@ -585,6 +602,7 @@ export type DepartmentUpdateManyMutationInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DepartmentUncheckedUpdateManyInput = {
@@ -602,6 +620,7 @@ export type DepartmentUncheckedUpdateManyInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DepartmentScalarRelationFilter = {
@@ -644,6 +663,7 @@ export type DepartmentCountOrderByAggregateInput = {
   avatarObjectKey?: Prisma.SortOrder
   avatarContentType?: Prisma.SortOrder
   avatarUpdatedAt?: Prisma.SortOrder
+  starting?: Prisma.SortOrder
 }
 
 export type DepartmentMaxOrderByAggregateInput = {
@@ -661,6 +681,7 @@ export type DepartmentMaxOrderByAggregateInput = {
   avatarObjectKey?: Prisma.SortOrder
   avatarContentType?: Prisma.SortOrder
   avatarUpdatedAt?: Prisma.SortOrder
+  starting?: Prisma.SortOrder
 }
 
 export type DepartmentMinOrderByAggregateInput = {
@@ -678,6 +699,7 @@ export type DepartmentMinOrderByAggregateInput = {
   avatarObjectKey?: Prisma.SortOrder
   avatarContentType?: Prisma.SortOrder
   avatarUpdatedAt?: Prisma.SortOrder
+  starting?: Prisma.SortOrder
 }
 
 export type DepartmentCreateNestedOneWithoutBudgetCeilingsInput = {
@@ -1085,6 +1107,7 @@ export type DepartmentCreateWithoutBudgetCeilingsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutDepartmentInput
@@ -1124,6 +1147,7 @@ export type DepartmentUncheckedCreateWithoutBudgetCeilingsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
   placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutDepartmentInput
@@ -1175,6 +1199,7 @@ export type DepartmentUpdateWithoutBudgetCeilingsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutDepartmentNestedInput
@@ -1214,6 +1239,7 @@ export type DepartmentUncheckedUpdateWithoutBudgetCeilingsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
   placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -1249,6 +1275,7 @@ export type DepartmentCreateWithoutOwnedServiceAssignmentsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -1288,6 +1315,7 @@ export type DepartmentUncheckedCreateWithoutOwnedServiceAssignmentsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -1339,6 +1367,7 @@ export type DepartmentUpdateWithoutOwnedServiceAssignmentsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -1378,6 +1407,7 @@ export type DepartmentUncheckedUpdateWithoutOwnedServiceAssignmentsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -1413,6 +1443,7 @@ export type DepartmentCreateWithoutHandoverDutiesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -1452,6 +1483,7 @@ export type DepartmentUncheckedCreateWithoutHandoverDutiesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -1503,6 +1535,7 @@ export type DepartmentUpdateWithoutHandoverDutiesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -1542,6 +1575,7 @@ export type DepartmentUncheckedUpdateWithoutHandoverDutiesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -1577,6 +1611,7 @@ export type DepartmentCreateWithoutSoftwareEntriesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -1616,6 +1651,7 @@ export type DepartmentUncheckedCreateWithoutSoftwareEntriesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -1667,6 +1703,7 @@ export type DepartmentUpdateWithoutSoftwareEntriesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -1706,6 +1743,7 @@ export type DepartmentUncheckedUpdateWithoutSoftwareEntriesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -1741,6 +1779,7 @@ export type DepartmentCreateWithoutSoftwareProposalsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -1780,6 +1819,7 @@ export type DepartmentUncheckedCreateWithoutSoftwareProposalsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -1831,6 +1871,7 @@ export type DepartmentUpdateWithoutSoftwareProposalsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -1870,6 +1911,7 @@ export type DepartmentUncheckedUpdateWithoutSoftwareProposalsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -1905,6 +1947,7 @@ export type DepartmentCreateWithoutHeldNotificationsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -1944,6 +1987,7 @@ export type DepartmentUncheckedCreateWithoutHeldNotificationsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -1995,6 +2039,7 @@ export type DepartmentUpdateWithoutHeldNotificationsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -2034,6 +2079,7 @@ export type DepartmentUncheckedUpdateWithoutHeldNotificationsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -2069,6 +2115,7 @@ export type DepartmentCreateWithoutOrganizationInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutDepartmentInput
@@ -2107,6 +2154,7 @@ export type DepartmentUncheckedCreateWithoutOrganizationInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -2174,6 +2222,7 @@ export type DepartmentScalarWhereInput = {
   avatarObjectKey?: Prisma.StringNullableFilter<"Department"> | string | null
   avatarContentType?: Prisma.StringNullableFilter<"Department"> | string | null
   avatarUpdatedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
+  starting?: Prisma.BoolFilter<"Department"> | boolean
 }
 
 export type DepartmentCreateWithoutCostCentersInput = {
@@ -2189,6 +2238,7 @@ export type DepartmentCreateWithoutCostCentersInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkCreateNestedManyWithoutDepartmentInput
@@ -2228,6 +2278,7 @@ export type DepartmentUncheckedCreateWithoutCostCentersInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
   placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutDepartmentInput
@@ -2279,6 +2330,7 @@ export type DepartmentUpdateWithoutCostCentersInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutDepartmentNestedInput
@@ -2318,6 +2370,7 @@ export type DepartmentUncheckedUpdateWithoutCostCentersInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
   placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -2353,6 +2406,7 @@ export type DepartmentCreateWithoutHeadPeriodsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -2392,6 +2446,7 @@ export type DepartmentUncheckedCreateWithoutHeadPeriodsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -2443,6 +2498,7 @@ export type DepartmentUpdateWithoutHeadPeriodsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -2482,6 +2538,7 @@ export type DepartmentUncheckedUpdateWithoutHeadPeriodsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -2517,6 +2574,7 @@ export type DepartmentCreateWithoutCostCenterLinksInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -2556,6 +2614,7 @@ export type DepartmentUncheckedCreateWithoutCostCenterLinksInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   placements?: Prisma.EmployeePlacementUncheckedCreateNestedManyWithoutDepartmentInput
@@ -2607,6 +2666,7 @@ export type DepartmentUpdateWithoutCostCenterLinksInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -2646,6 +2706,7 @@ export type DepartmentUncheckedUpdateWithoutCostCenterLinksInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   placements?: Prisma.EmployeePlacementUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -2681,6 +2742,7 @@ export type DepartmentCreateWithoutItAdminInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -2719,6 +2781,7 @@ export type DepartmentUncheckedCreateWithoutItAdminInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -2781,6 +2844,7 @@ export type DepartmentCreateWithoutPlacementsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -2820,6 +2884,7 @@ export type DepartmentUncheckedCreateWithoutPlacementsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -2871,6 +2936,7 @@ export type DepartmentUpdateWithoutPlacementsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -2910,6 +2976,7 @@ export type DepartmentUncheckedUpdateWithoutPlacementsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -2945,6 +3012,7 @@ export type DepartmentCreateWithoutTransfersFromInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -2984,6 +3052,7 @@ export type DepartmentUncheckedCreateWithoutTransfersFromInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3024,6 +3093,7 @@ export type DepartmentCreateWithoutTransfersToInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -3063,6 +3133,7 @@ export type DepartmentUncheckedCreateWithoutTransfersToInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3114,6 +3185,7 @@ export type DepartmentUpdateWithoutTransfersFromInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -3153,6 +3225,7 @@ export type DepartmentUncheckedUpdateWithoutTransfersFromInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -3199,6 +3272,7 @@ export type DepartmentUpdateWithoutTransfersToInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -3238,6 +3312,7 @@ export type DepartmentUncheckedUpdateWithoutTransfersToInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -3273,6 +3348,7 @@ export type DepartmentCreateWithoutTransferReviewsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -3312,6 +3388,7 @@ export type DepartmentUncheckedCreateWithoutTransferReviewsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3363,6 +3440,7 @@ export type DepartmentUpdateWithoutTransferReviewsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -3402,6 +3480,7 @@ export type DepartmentUncheckedUpdateWithoutTransferReviewsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -3437,6 +3516,7 @@ export type DepartmentCreateWithoutOffboardingCasesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -3476,6 +3556,7 @@ export type DepartmentUncheckedCreateWithoutOffboardingCasesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3516,6 +3597,7 @@ export type DepartmentCreateWithoutCancelledOffboardingCasesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -3555,6 +3637,7 @@ export type DepartmentUncheckedCreateWithoutCancelledOffboardingCasesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3606,6 +3689,7 @@ export type DepartmentUpdateWithoutOffboardingCasesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -3645,6 +3729,7 @@ export type DepartmentUncheckedUpdateWithoutOffboardingCasesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -3691,6 +3776,7 @@ export type DepartmentUpdateWithoutCancelledOffboardingCasesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -3730,6 +3816,7 @@ export type DepartmentUncheckedUpdateWithoutCancelledOffboardingCasesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -3765,6 +3852,7 @@ export type DepartmentCreateWithoutNoticesTargetingInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -3804,6 +3892,7 @@ export type DepartmentUncheckedCreateWithoutNoticesTargetingInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3844,6 +3933,7 @@ export type DepartmentCreateWithoutNoticesSentInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -3883,6 +3973,7 @@ export type DepartmentUncheckedCreateWithoutNoticesSentInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -3934,6 +4025,7 @@ export type DepartmentUpdateWithoutNoticesTargetingInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -3973,6 +4065,7 @@ export type DepartmentUncheckedUpdateWithoutNoticesTargetingInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4019,6 +4112,7 @@ export type DepartmentUpdateWithoutNoticesSentInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -4058,6 +4152,7 @@ export type DepartmentUncheckedUpdateWithoutNoticesSentInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4093,6 +4188,7 @@ export type DepartmentCreateWithoutAccessRequestsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -4132,6 +4228,7 @@ export type DepartmentUncheckedCreateWithoutAccessRequestsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -4183,6 +4280,7 @@ export type DepartmentUpdateWithoutAccessRequestsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -4222,6 +4320,7 @@ export type DepartmentUncheckedUpdateWithoutAccessRequestsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4257,6 +4356,7 @@ export type DepartmentCreateWithoutApprovalRecordsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -4296,6 +4396,7 @@ export type DepartmentUncheckedCreateWithoutApprovalRecordsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -4347,6 +4448,7 @@ export type DepartmentUpdateWithoutApprovalRecordsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -4386,6 +4488,7 @@ export type DepartmentUncheckedUpdateWithoutApprovalRecordsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4421,6 +4524,7 @@ export type DepartmentCreateWithoutSpendBatchesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -4460,6 +4564,7 @@ export type DepartmentUncheckedCreateWithoutSpendBatchesInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -4511,6 +4616,7 @@ export type DepartmentUpdateWithoutSpendBatchesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -4550,6 +4656,7 @@ export type DepartmentUncheckedUpdateWithoutSpendBatchesInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4585,6 +4692,7 @@ export type DepartmentCreateWithoutReturnRequestsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
   costCenters?: Prisma.CostCenterCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingCreateNestedManyWithoutDepartmentInput
@@ -4624,6 +4732,7 @@ export type DepartmentUncheckedCreateWithoutReturnRequestsInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
   costCenters?: Prisma.CostCenterUncheckedCreateNestedManyWithoutDepartmentInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedCreateNestedManyWithoutDepartmentInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedCreateNestedManyWithoutDepartmentInput
@@ -4675,6 +4784,7 @@ export type DepartmentUpdateWithoutReturnRequestsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -4714,6 +4824,7 @@ export type DepartmentUncheckedUpdateWithoutReturnRequestsInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4750,6 +4861,7 @@ export type DepartmentCreateManyOrganizationInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
 }
 
 export type DepartmentUpdateWithoutOrganizationInput = {
@@ -4765,6 +4877,7 @@ export type DepartmentUpdateWithoutOrganizationInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUpdateManyWithoutDepartmentNestedInput
@@ -4803,6 +4916,7 @@ export type DepartmentUncheckedUpdateWithoutOrganizationInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4840,6 +4954,7 @@ export type DepartmentUncheckedUpdateManyWithoutOrganizationInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DepartmentCreateManyItAdminInput = {
@@ -4856,6 +4971,7 @@ export type DepartmentCreateManyItAdminInput = {
   avatarObjectKey?: string | null
   avatarContentType?: string | null
   avatarUpdatedAt?: Date | string | null
+  starting?: boolean
 }
 
 export type DepartmentUpdateWithoutItAdminInput = {
@@ -4871,6 +4987,7 @@ export type DepartmentUpdateWithoutItAdminInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
   costCenters?: Prisma.CostCenterUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUpdateManyWithoutDepartmentNestedInput
@@ -4909,6 +5026,7 @@ export type DepartmentUncheckedUpdateWithoutItAdminInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
   costCenters?: Prisma.CostCenterUncheckedUpdateManyWithoutDepartmentNestedInput
   budgetCeilings?: Prisma.BudgetDepartmentCeilingUncheckedUpdateManyWithoutDepartmentNestedInput
   costCenterLinks?: Prisma.CostCenterDepartmentLinkUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -4946,6 +5064,7 @@ export type DepartmentUncheckedUpdateManyWithoutItAdminInput = {
   avatarObjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarContentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  starting?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -5174,6 +5293,7 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   avatarObjectKey?: boolean
   avatarContentType?: boolean
   avatarUpdatedAt?: boolean
+  starting?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   costCenters?: boolean | Prisma.Department$costCentersArgs<ExtArgs>
   budgetCeilings?: boolean | Prisma.Department$budgetCeilingsArgs<ExtArgs>
@@ -5215,6 +5335,7 @@ export type DepartmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   avatarObjectKey?: boolean
   avatarContentType?: boolean
   avatarUpdatedAt?: boolean
+  starting?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   itAdmin?: boolean | Prisma.Department$itAdminArgs<ExtArgs>
 }, ExtArgs["result"]["department"]>
@@ -5234,6 +5355,7 @@ export type DepartmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   avatarObjectKey?: boolean
   avatarContentType?: boolean
   avatarUpdatedAt?: boolean
+  starting?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   itAdmin?: boolean | Prisma.Department$itAdminArgs<ExtArgs>
 }, ExtArgs["result"]["department"]>
@@ -5253,9 +5375,10 @@ export type DepartmentSelectScalar = {
   avatarObjectKey?: boolean
   avatarContentType?: boolean
   avatarUpdatedAt?: boolean
+  starting?: boolean
 }
 
-export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "code" | "name" | "functionDescription" | "status" | "itAdminEmployeeId" | "createdAt" | "updatedAt" | "deactivatedAt" | "effectiveFrom" | "avatarObjectKey" | "avatarContentType" | "avatarUpdatedAt", ExtArgs["result"]["department"]>
+export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "code" | "name" | "functionDescription" | "status" | "itAdminEmployeeId" | "createdAt" | "updatedAt" | "deactivatedAt" | "effectiveFrom" | "avatarObjectKey" | "avatarContentType" | "avatarUpdatedAt" | "starting", ExtArgs["result"]["department"]>
 export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   costCenters?: boolean | Prisma.Department$costCentersArgs<ExtArgs>
@@ -5333,6 +5456,7 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     avatarObjectKey: string | null
     avatarContentType: string | null
     avatarUpdatedAt: Date | null
+    starting: boolean
   }, ExtArgs["result"]["department"]>
   composites: {}
 }
@@ -5793,6 +5917,7 @@ export interface DepartmentFieldRefs {
   readonly avatarObjectKey: Prisma.FieldRef<"Department", 'String'>
   readonly avatarContentType: Prisma.FieldRef<"Department", 'String'>
   readonly avatarUpdatedAt: Prisma.FieldRef<"Department", 'DateTime'>
+  readonly starting: Prisma.FieldRef<"Department", 'Boolean'>
 }
     
 
